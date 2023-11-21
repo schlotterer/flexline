@@ -1,0 +1,189 @@
+/*
+Theme Name: FlexLine
+Theme URI: https://flexlinewp.com/
+Author: WP Engine
+Author URI: https://wpengine.com/
+Description: With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites. FlexLine is a masterpiece of design and functionality. It features a range of valuable patterns, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials. Whether you’re building a website for your business, personal brand, or creative project, FlexLine is perfect for anyone looking to launch quickly and efficiently.
+Tags: block-patterns, block-styles, custom-colors, custom-logo, custom-menu, editor-style, full-site-editing, one-column, template-editing, threaded-comments, translation-ready, wide-blocks
+Requires at least: 6.3
+Tested up to: 6.3
+Requires PHP: 7.0
+Version: 1.0.6
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: flexline
+*/
+
+
+/* Defaults
+---------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="submit"],
+textarea:focus,
+.wp-element-button {
+	transition: all 0.2s ease-in-out;
+}
+
+a,
+a:focus,
+a:hover,
+a:not(.wp-element-button) {
+	text-decoration-thickness: 1px;
+}
+
+b,
+strong,
+th {
+	font-weight: var(--wp--custom--font-weight--medium);
+}
+
+mark {
+	background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--primary) 100%);
+	background-position: 0 85%;
+	background-repeat: repeat-x;
+	background-size: 100% 15%;
+}
+
+/* -- Forms -- */
+
+input,
+select,
+textarea {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 0;
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--primary);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: var(--wp--custom--font-weight--light);
+	line-height: var(--wp--custom--line-height--body);
+	padding: 10px 20px;
+	width: 100%;
+}
+
+input:focus,
+textarea:focus {
+	background-color: var(--wp--preset--color--neutral);
+	outline: none;
+}
+
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+	width: auto;
+}
+
+input[type="button"],
+input[type="email"],
+input[type="search"],
+input[type="submit"],
+input[type="text"],
+textarea {
+	-webkit-appearance: none;
+}
+
+::placeholder {
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	opacity: 0.5;
+}
+
+/* Blocks
+---------------------------------------- */
+
+/* -- Code -- */
+
+*:not(.wp-block-code) > code {
+	background-color: var(--wp--preset--color--neutral);
+	font-size: var(--wp--preset--font-size--small);
+	padding: 5px 8px;
+}
+
+/* -- List -- */
+
+.is-style-no-disc {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+/* -- Navigation -- */
+
+.wp-block-navigation__responsive-container.is-menu-open {
+	padding: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+	padding-top: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-navigation__responsive-container-close,
+.wp-block-navigation__responsive-container-open {
+	border: 1px solid currentColor;
+	padding: 2px;
+}
+
+.has-background .wp-block-navigation__responsive-container-open:focus,
+.has-background .wp-block-navigation__responsive-container-open:hover {
+	color: var(--wp--preset--color--base);
+}
+
+/* -- Navigation Submenu -- */
+
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
+	background-color: var(--wp--preset--color--contrast);
+	border: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	padding: 10px;
+}
+
+.wp-block-navigation :where(.wp-block-navigation__submenu-container) a {
+	padding: 2px 10px;
+}
+
+/* Media Queries
+---------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+
+	/* -- Utility -- */
+
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
+
+}
+
+@media only screen and (max-width: 782px) {
+
+	/* -- Columns -- */
+
+	.is-style-columns-reverse {
+		flex-direction: column-reverse;
+	}
+
+}
+
+@media only screen and (min-width: 600px) {
+
+	/* -- Navigation Link -- */
+
+	.wp-block-navigation-item.is-style-outline a {
+		border: 1px solid currentColor;
+		padding: 8px 15px;
+	}
+
+}
