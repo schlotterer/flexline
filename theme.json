@@ -138,8 +138,7 @@
 					"700": "color-mix(in srgb, var(--wp--preset--color--secondary) 60%, #000 40%)",
 					"800": "color-mix(in srgb, var(--wp--preset--color--secondary) 40%, #000 60%)",
 					"900": "color-mix(in srgb, var(--wp--preset--color--secondary) 30%, #000 80%)",
-					"950": "color-mix(in srgb, var(--wp--preset--color--secondary) 25%, #000 100%)",
-					"rgba": "rgba( 0, 56, 113, 1 )"
+					"950": "color-mix(in srgb, var(--wp--preset--color--secondary) 25%, #000 100%)"
 				},
 				"gray": {
 					"50": "color-mix(in srgb, var(--wp--preset--color--white) 95%, var(--wp--preset--color--black) 5%)",
