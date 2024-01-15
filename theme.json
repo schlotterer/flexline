@@ -69,7 +69,7 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "var(--wp--custom--color--primary--800)",
+					"color": "var(--wp--custom--color--primary--700)",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
