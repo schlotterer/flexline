@@ -59,16 +59,6 @@
 			],
 			"palette": [
 				{
-					"color": "#ffffff",
-					"name": "Base",
-					"slug": "base"
-				},
-				{
-					"color": "#000000",
-					"name": "Contrast",
-					"slug": "contrast"
-				},
-				{
 					"color": "var(--wp--custom--color--brand--blue)",
 					"name": "Primary",
 					"slug": "primary"
@@ -87,6 +77,26 @@
 					"color": "var(--wp--custom--color--secondary--300)",
 					"name": "Highlight",
 					"slug": "highlight"
+				},
+				{
+					"color": "var(--wp--custom--color--alert-warning)",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "var(--wp--custom--color--alert-success)",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#ffffff",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#000000",
+					"name": "Contrast",
+					"slug": "contrast"
 				},
 				{
 					"color": "var(--wp--custom--color--gray--200)",
@@ -147,8 +157,7 @@
 				"alert": {
 					"success": "#18A957",
 					"warning": "#FFDD38",
-					"error": "#DF1642",
-					"focus": "#1769ff"
+					"error": "#DF1642"
 				}
 			},
 			"fontWeight": {
