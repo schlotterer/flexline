@@ -9,14 +9,6 @@
 		{
 			"name": "no-title",
 			"title": "No Title"
-		},
-		{
-			"name": "events",
-			"title": "Events"
-		},
-		{
-			"name": "single-event",
-			"title": "Single Event"
 		}
 	],
 	"settings": {
@@ -52,32 +44,12 @@
 						}
 					]
 				}
-			},
-			"core/post-title": {
-				
 			}
 		},
 		"color": {
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
-			"duotone": [
-				{
-					"name": "Black and White",
-					"slug": "black-and-white",
-					"colors": [ "var(--wp--preset--color--contrast)", "var(--wp--preset--color--base)" ]
-				},
-				{
-					"name": "Primary and White",
-					"slug": "primary-and-white",
-					"colors": [ "var(--wp--preset--color--primary)", "var(--wp--preset--color--base)" ]
-				},
-				{
-					"name": "Secondary and White",
-					"slug": "secondary-and-white",
-					"colors": [ "var(--wp--preset--color--secondary)", "var(--wp--preset--color--base)" ]
-				}
-			],
 			"gradients": [
 				{
 					"gradient": "linear-gradient(0deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--contrast) 100%)",
@@ -97,14 +69,24 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#FF0011",
+					"color": "var(--wp--custom--color--brand--blue)",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#000099",
+					"color": "var(--wp--custom--color--brand--green)",
 					"name": "Secondary",
 					"slug": "secondary"
+				},
+				{
+					"color": "var(--wp--custom--color--primary--800)",
+					"name": "Alternate",
+					"slug": "alternate"
+				},
+				{
+					"color": "var(--wp--custom--color--secondary--300)",
+					"name": "Highlight",
+					"slug": "highlight"
 				},
 				{
 					"color": "var(--wp--custom--color--gray--200)",
@@ -114,7 +96,12 @@
 			]
 		},
 		"custom": {
+			
 			"color":{
+				"brand":{
+					"blue" : "#0F6185",
+					"green" : "#39B26A"
+				},
 				"primary": {
 					"main" : "var(--wp--preset--color--primary)",
 					"50": "color-mix(in srgb, var(--wp--preset--color--primary) 25%, #fff 100%)",
