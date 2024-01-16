@@ -7,8 +7,12 @@
 			"title": "Blank"
 		},
 		{
-			"name": "no-title",
-			"title": "No Title"
+			"name": "page-hero-title",
+			"title": "Page Hero Title"
+		},
+		{
+			"name": "page-no-title",
+			"title": "Page No Title"
 		}
 	],
 	"settings": {
@@ -701,9 +705,24 @@
 	},
 	"templateParts": [
 		{
+			"area": "topbar",
+			"name": "top-bar",
+			"title": "Top Bar"
+		},
+		{
 			"area": "header",
 			"name": "header",
 			"title": "Header"
+		},
+		{
+			"area": "header",
+			"name": "header-hero",
+			"title": "Header Overlapping Hero"
+		},
+		{
+			"area": "general",
+			"name": "general",
+			"title": "General"
 		},
 		{
 			"area": "footer",
