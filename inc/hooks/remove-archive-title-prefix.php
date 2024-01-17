@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace USAClayTarget\flexline;
+namespace FlexLine\flexline;
 
 /**
  * Removes or Adjusts the prefix on category archive page titles.
