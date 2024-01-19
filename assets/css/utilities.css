@@ -1,0 +1,83 @@
+/* Media Queries
+---------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+
+	/* -- Utility -- */
+
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
+
+    .is-order-first-mobile{
+        order: -1;
+    }
+    .is-order-0-mobile {
+        order: 0;
+    }
+    .is-order-1-mobile {
+        order: 1;
+    }
+
+    .is-order-2-mobile {
+        order: 2;
+    }
+
+    .is-order-3-mobile {
+        order: 3;
+    }
+
+    .is-order-4-mobile {
+        order: 4;
+    }
+
+    .is-order-5-mobile {
+        order: 5;
+    }
+
+    .is-order-6-mobile {
+        order: 6;
+    }
+
+    .is-order-7-mobile {
+        order: 7;
+    }
+
+    .is-order-8-mobile {
+        order: 8;
+    }
+
+    .is-order-9-mobile {
+        order: 9;
+    }
+
+    .is-order-last-mobile {
+        order: 99999;
+    }
+
+}
+
+@media only screen and (max-width: 782px) {
+
+	/* -- Columns -- */
+
+	.is-style-columns-reverse {
+		flex-direction: column-reverse;
+	}
+
+    .is-style-row-reverse > * {
+        flex-direction: row-reverse;
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+	/* -- Navigation Link -- */
+
+	.wp-block-navigation-item.is-style-outline a {
+		border: 1px solid currentColor;
+		padding: 8px 15px;
+	}
+
+}

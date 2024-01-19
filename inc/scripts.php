@@ -13,7 +13,8 @@ function flexline_enqueue_style_sheet() {
 
 	// Styles
 	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/css/base.css', array(), []);
-	wp_enqueue_style( 'flexline-headroom', get_template_directory_uri() . '/assets/css/headroom.css', array(), []);
+	wp_enqueue_style( 'flexline-utilities', get_template_directory_uri() . '/assets/css/utilities.css', array(), []);
+	//wp_enqueue_style( 'flexline-headroom', get_template_directory_uri() . '/assets/css/headroom.css', array(), []);
 	wp_enqueue_style( 'flexline', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 
 	// Customized Styles
@@ -21,8 +22,8 @@ function flexline_enqueue_style_sheet() {
 	
 	// Scripts
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/js/global.js',  [], null, true );
-	wp_enqueue_script( 'flexline-headroom-js', get_template_directory_uri() . '/assets/js/headroom.js',  [], null, false );
-	wp_enqueue_script( 'flexline-headroom--js-init', get_template_directory_uri() . '/assets/js/headroom-init.js', ['flexline-headroom-js'], null, false );
+	//wp_enqueue_script( 'flexline-headroom-js', get_template_directory_uri() . '/assets/js/headroom.js',  [], null, false );
+	//wp_enqueue_script( 'flexline-headroom--js-init', get_template_directory_uri() . '/assets/js/headroom-init.js', ['flexline-headroom-js'], null, false );
 
 	// Customized Scripts
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/js/customize.js',  [], null, true );
