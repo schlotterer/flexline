@@ -391,14 +391,12 @@
 						"background": "var(--wp--preset--color--primary)",
 						"text": "var(--wp--preset--color--base)"
 					},
-					"spacing": {
-						"padding": {
-							"top": "15px",
-							"right": "30px",
-							"bottom": "15px",
-							"left": "30px"
-						}
-					},
+					"padding": {
+						"top": "15px",
+						"right": "30px",
+						"bottom": "15px",
+						"left": "30px"
+					}
 				}
 			},
 			"core/code": {
