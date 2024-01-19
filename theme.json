@@ -23,27 +23,27 @@
 					"spacingSizes": [
 						{
 							"name": "xSmall",
-							"size": "10px",
+							"size": "2px",
 							"slug": "x-small"
 						},
 						{
 							"name": "Small",
-							"size": "15px",
+							"size": "5px",
 							"slug": "small"
 						},
 						{
 							"name": "Medium",
-							"size": "20px",
+							"size": "10px",
 							"slug": "medium"
 						},
 						{
 							"name": "Large",
-							"size": "30px",
+							"size": "20px",
 							"slug": "large"
 						},
 						{
 							"name": "xLarge",
-							"size": "40px",
+							"size": "30px",
 							"slug": "x-large"
 						}
 					]
@@ -384,12 +384,21 @@
 			"core/buttons": {
 				"spacing": {
 					"blockGap": "10px",
-					"padding": {
-						"top": "var(--wp--custom--spacing--gap)",
-						"right": "var(--wp--custom--spacing--gap)",
-						"bottom": "var(--wp--custom--spacing--gap)",
-						"left": "var(--wp--custom--spacing--gap)"
-					}
+					"border": {
+						"radius": "5px"
+					},
+					"color": {
+						"background": "var(--wp--preset--color--primary)",
+						"text": "var(--wp--preset--color--base)"
+					},
+					"spacing": {
+						"padding": {
+							"top": "15px",
+							"right": "30px",
+							"bottom": "15px",
+							"left": "30px"
+						}
+					},
 				}
 			},
 			"core/code": {
