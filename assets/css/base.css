@@ -60,7 +60,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-	background-color: var(--wp--preset--color--neutral);
+	background-color: var(--wp--preset--color--base);
 	outline: none;
 }
 
