@@ -69,8 +69,8 @@
 <p><?php echo esc_html__( 'FlexLine is a masterpiece of design and functionality. It features a range of valuable elements, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials.', 'flexline' ); ?></p>
 <!-- /wp:paragraph -->
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--medium)"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
@@ -84,8 +84,8 @@
 <p><?php echo esc_html__( 'FlexLine utilizes the potential of the editor to create link pages, serve as a powerful tool for building relationships with clients, sharing valuable content, and boosting social media engagement.', 'flexline' ); ?></p>
 <!-- /wp:paragraph -->
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--medium)"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -109,8 +109,8 @@
 <p><?php echo esc_html__( 'Whether you’re building a website for your business, personal brand, or creative project, FlexLine is the perfect solution for anyone looking to launch a website quickly and efficiently.', 'flexline' ); ?></p>
 <!-- /wp:paragraph -->
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--medium)"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button"><?php echo esc_html__( 'Get Started', 'flexline' ); ?> →</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

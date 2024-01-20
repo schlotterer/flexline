@@ -1,13 +1,17 @@
 .wp-block-template-part.utility {
     top: 0;
     right: 0;
+    z-index: 999;
+}
+.wp-block-template-part.utility {
     .wp-block-group > * {
         opacity: .7;
-        transition: opacity .2s ease-in-out;
-        -webkit-transition: opacity .2s ease-in-out;
-        -moz-transition: opacity .2s ease-in-out;
-        -ms-transition: opacity .2s ease-in-out;
-        -o-transition: opacity .2s ease-in-out;
+        transition: var(--wp--custom--transition-time);
+        -webkit-transition: var(--wp--custom--transition-time);
+        -moz-transition: var(--wp--custom--transition-time);
+        -ms-transition: var(--wp--custom--transition-time);
+        -o-transition: var(--wp--custom--transition-time);
+        transition-property: opacity;
     }
     .wp-block-group > *:hover {
         opacity: 1;
@@ -41,5 +45,8 @@
         -moz-border-radius:  0px !important;
         -ms-border-radius:  0px !important;
         -o-border-radius:  0px !important;
+    }   
 }
+body .admin-bar .wp-block-template-part.utility{
+    top:var(--wp-admin--admin-bar--height);
 }

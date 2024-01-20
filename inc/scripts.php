@@ -35,6 +35,10 @@ function flexline_enqueue_style_sheet() {
  * Enqueue scripts for all admin pages.
  */
 function flexline_admin_enqueue_scripts() {
+	// Styles
+	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/css/base.css', array(), []);
+	//wp_enqueue_style( 'flexline-utilities', get_template_directory_uri() . '/assets/css/utilities.css', array(), []);
+	//wp_enqueue_style( 'flexline-templates', get_template_directory_uri() . '/assets/css/templates.css', array(), []);
 	//wp_register_style( 'flexline-swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css', [], '8.4.7' );
 }
 	
