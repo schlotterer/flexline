@@ -1,3 +1,31 @@
+.is-position-fixed{
+    position: fixed;
+}
+
+.utility.is-position-fixed{
+    top: 0;
+    right: 0;
+}
+.utility.is-position-fixed .wp-block-group > * {
+    opacity: .5;
+    transition: opacity .2s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -ms-transition: opacity .2s ease-in-out;
+    -o-transition: opacity .2s ease-in-out;
+}
+.utility.is-position-fixed .wp-block-group > *:hover {
+    opacity: 1;
+}
+
+/* -- List -- */
+
+.is-style-no-disc {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+
 /* Media Queries
 ---------------------------------------- */
 

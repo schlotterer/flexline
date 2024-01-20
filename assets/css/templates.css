@@ -1,0 +1,14 @@
+.wp-block-template-part.utility {
+    .wp-block-search__button-only .wp-block-search__inside-wrapper {
+        margin:0;
+        justify-content: flex-end;
+        input{
+            line-height: 25px;
+            transform-origin: right center;
+        }
+        button{
+            padding:10px;
+            max-width: 45px;
+        }
+    }
+}
