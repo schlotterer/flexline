@@ -11,4 +11,8 @@
             max-width: 45px;
         }
     }
+    .wp-block-navigation button {
+        border-left: 1px solid currentColor;
+        padding: 10px;
+    }
 }
