@@ -1,18 +1,45 @@
 .wp-block-template-part.utility {
+    top: 0;
+    right: 0;
+    .wp-block-group > * {
+        opacity: .7;
+        transition: opacity .2s ease-in-out;
+        -webkit-transition: opacity .2s ease-in-out;
+        -moz-transition: opacity .2s ease-in-out;
+        -ms-transition: opacity .2s ease-in-out;
+        -o-transition: opacity .2s ease-in-out;
+    }
+    .wp-block-group > *:hover {
+        opacity: 1;
+    }
+    .wp-block-search__button-only{
+        margin-bottom: 1px;
+    }
     .wp-block-search__button-only .wp-block-search__inside-wrapper {
         margin:0;
         justify-content: flex-end;
         input{
             line-height: 25px;
             transform-origin: right center;
+            padding-top: 3px;
+            padding-bottom: 3px;
         }
         button{
-            padding:10px;
-            max-width: 45px;
+            padding:5px;
+            max-width: 35px;
         }
     }
     .wp-block-navigation button {
-        border-left: 1px solid currentColor;
-        padding: 10px;
+        padding:5px;
+        border: none;
+        
     }
+    .wp-block-search__button-only .wp-block-search__inside-wrapper button,
+    .wp-block-navigation{
+        border-radius:  0px !important;
+        -webkit-border-radius:  0px !important;
+        -moz-border-radius:  0px !important;
+        -ms-border-radius:  0px !important;
+        -o-border-radius:  0px !important;
+}
 }
