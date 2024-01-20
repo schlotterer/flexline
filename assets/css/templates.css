@@ -38,7 +38,13 @@
         border: none;
         
     }
-    .wp-block-search__button-only .wp-block-search__inside-wrapper button,
+    .wp-block-search__button-only .wp-block-search__inside-wrapper button{
+        border-radius:  0px !important;
+        -webkit-border-radius:  0px !important;
+        -moz-border-radius:  0px !important;
+        -ms-border-radius:  0px !important;
+        -o-border-radius:  0px !important;   
+    }
     .wp-block-navigation{
         border-radius:  0px !important;
         -webkit-border-radius:  0px !important;
@@ -47,6 +53,6 @@
         -o-border-radius:  0px !important;
     }   
 }
-body .admin-bar .wp-block-template-part.utility{
+.admin-bar .wp-block-template-part.utility{
     top:var(--wp-admin--admin-bar--height);
 }
