@@ -13,20 +13,13 @@ namespace FlexLine\flexline;
  * @author WebDevStudios
  */
 function preload_scripts() {
-	$asset_file_path = dirname( __DIR__ ) . '/build/index.asset.php';
-
-	if ( is_readable( $asset_file_path ) ) {
-		$asset_file = include $asset_file_path;
-	} else {
-		$asset_file = [
-			'version'      => '1.0.0',
-			'dependencies' => [ 'wp-polyfill' ],
-		];
-	}
-
 	?>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/index.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/index.js?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="script">
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/base.css" as="style"/>
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/utilities.css" as="style"/>	
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/customize.css" as="style"/>
+
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/js/global.js" as="script"/>
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/js/customize.js" as="script"/>
 	<?php
 }
 add_action( 'wp_head', __NAMESPACE__ . '\preload_scripts', 1 );
