@@ -1,0 +1,69 @@
+#flexline-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#flexline-lightbox {
+    /* Ensure the lightbox covers the entire viewport */
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#flexline-lightbox img,
+#flexline-lightbox video,
+#flexline-lightbox iframe {
+    /* Adjustments for better responsiveness */
+    max-width: 90%;
+    max-height: 80vh;
+}
+
+#flexline-lightbox span[role="button"] {
+    /* Enhancements for the close button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.7;
+}
+
+#flexline-lightbox span[role="button"]:hover,
+#flexline-lightbox span[role="button"]:focus {
+    opacity: 1;
+    outline: none; /* For focus, consider a more accessible outline style */
+}
+
+/* Aspect Ratio Box */
+.aspect-ratio-16-9 {
+    position: relative;
+    width: 90%; /* or max-width depending on your design */
+    /* Padding Top = (Height / Width) * 100% for 16:9 */
+    padding-top: 56.25%; /* 9 / 16 = 0.5625 * 100% */
+    margin: auto; /* Center the container */
+}
+
+/* Make the iframe fill the aspect ratio box */
+.aspect-ratio-16-9 iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}

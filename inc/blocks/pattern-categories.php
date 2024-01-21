@@ -1,6 +1,6 @@
 <?php
 /**
- * Set up the theme customizer.
+ * Set up the theme Block Pattern Categories.
  *
  * @package flexline
  */

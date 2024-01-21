@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+# Local configuration files
+.env
+
+# Editor directories and files
+.idea
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Log files
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+._*
+.Spotlight-V100
+.Trashes
+
+# npm debug files
+npm-debug.log*
+
+# Laravel Mix files
+mix-manifest.json
+
+# Yarn
+yarn-error.log
+.yarn-integrity
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
