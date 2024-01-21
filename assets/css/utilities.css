@@ -21,6 +21,12 @@
 		display: none !important;
 	}
 
+    .is-justify-content-center-mobile {
+        justify-content: center !important;
+    }
+
+    /* -- Order -- */
+
     .is-order-first-mobile{
         order: -1;
     }

@@ -1,3 +1,9 @@
+:root {
+    --wp-admin-theme-color: var(--wp--preset--color--primary);
+    --wp-admin-theme-color-darker-10: var(--wp--custom--color--primary--600);
+    --wp-admin-theme-color-darker-20: var(--wp--custom--color--primary--700);
+}
+
 /* Defaults
 ---------------------------------------- */
 
