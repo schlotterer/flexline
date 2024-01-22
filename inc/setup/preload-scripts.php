@@ -14,8 +14,8 @@ namespace FlexLine\flexline;
  */
 function preload_scripts() {
 	?>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/base.css" as="style"/>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/utilities.css" as="style"/>	
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/app.css" as="style"/>
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/template.css" as="style"/>	
 	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/css/customize.css" as="style"/>
 
 	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/js/global.js" as="script"/>
