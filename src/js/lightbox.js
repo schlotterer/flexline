@@ -39,14 +39,21 @@ function displayLightbox(mediaUrl) {
     console.log('Displaying lightbox for:', mediaUrl);
     let contentHtml = '';
 
-    // Determine content type and construct the appropriate HTML
     if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
-        contentHtml = `<img src="${mediaUrl}" alt="Image Lightbox" style="max-width:90%; max-height:80vh;">`;
-    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be') || mediaUrl.includes('vimeo.com')) {
-        const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
-        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:90%; max-height:80vh;"></iframe></div>`;
+        contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
+    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be')) {
+        // Extract the YouTube video ID and construct the embed URL with autoplay
+        const youtubeId = mediaUrl.split(/v=|youtu\.be\//)[1].split(/[?&]/)[0];
+        const videoEmbedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
+        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+    } else if (mediaUrl.includes('vimeo.com')) {
+        // Extract the Vimeo video ID and construct the embed URL with autoplay
+        const vimeoId = mediaUrl.split('/').pop();
+        const videoEmbedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
+        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
     } else {
-        contentHtml = `<div class="aspect-ratio-16-9"><video controls src="${mediaUrl}" style="max-width:90%; max-height:80vh;"></video></div>`;
+        // For native video elements, add the autoplay attribute
+        contentHtml = `<video controls autoplay src="${mediaUrl}" style="max-width:90%; max-height:80vh;"></video>`;
     }
 
     // Create the lightbox container
