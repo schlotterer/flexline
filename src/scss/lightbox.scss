@@ -67,3 +67,48 @@
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
 }
+
+figure.wp-block-image.enable-lightbox{
+    position: relative;
+    &::after{
+        content: "↗";
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background-color:rgba(#000000,.7);
+        border-radius: 200px;
+        opacity: 0.7;
+        transition: all 0.3s ease-in-out;
+        pointer-events: none;
+        line-height: 1;
+        text-align: center;
+        // image pop specific
+        top: 5px;
+        right: 5px;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    &:hover{
+        &::after{
+            opacity: 1;
+        }
+    }
+    &[data-popup-media-url*="youtube.com"],
+    &[data-popup-media-url*="youtu.be"],
+    &[data-popup-media-url*="vimeo.com"] {
+        &::after{
+            content: "►";
+            right: unset;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            width: 100px;
+            height: 100px;
+        }
+        
+    }
+}
