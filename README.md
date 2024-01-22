@@ -1,14 +1,14 @@
 
 # Flexline
-An FSE theme based on Frost but extended for more advanced development and some custom features.
+An FSE theme based on Frost and WD_s but extended for more advanced development and some custom features.
 
 ## Description
 Provide a more detailed introduction to your project. Explain the functionality added, such as custom fields for Gutenberg blocks, lightbox implementation, and any unique features or considerations like accessibility and responsiveness.
 
 ## Features
 ### Development Structure
-- Adds LaravelMix and a build process to allow for easy custom feature additions (builds src files). 
-- Uses LaravelMix for an easily customizable output of files.
+- Adds LaravelMix and a build process to allow for easy custom feature additions (builds files from src - see webpack.mix.js). 
+- Uses LaravelMix for an easily customizable output of files (webpack.mix.js).
 - Breaks the functions file out into smaller pieces in the inc folder and namespaces the project.
 - While generally a single site shouldn't require changes, if you want to make small changes without getting into the build process there is a customize.js and customize.css in the assets folder for small basic CSS and JS or jQuery.
 ### Popup Media
@@ -40,8 +40,9 @@ Provide a more detailed introduction to your project. Explain the functionality 
    - Activate the plugin through the 'Plugins' screen in WordPress.
 
 ## Usage
-
-Explain how users can leverage the new lightbox functionality within their Gutenberg blocks. Include any necessary steps or considerations for adding the custom fields to images and buttons, and how they influence the lightbox behavior.
+### Popup Media extension
+1. Toggle on the "Popup Media" toggle.
+2. Add the full url to the youtube, vimeo, mp4, or image in the Popup Media URL field
 
 ## Building From Source
 
