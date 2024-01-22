@@ -108,3 +108,19 @@ figure.wp-block-image.enable-lightbox{
         
     }
 }
+
+a.enable-lightbox{
+    &::after{
+        content: "↗";
+        display: inline-flex;
+        align-items: center;
+        margin-left: 5px;
+    }
+    &[data-popup-media-url*="youtube.com"],
+    &[data-popup-media-url*="youtu.be"],
+    &[data-popup-media-url*="vimeo.com"] {
+        &::after{
+            content: "►";
+        }
+    }
+}
