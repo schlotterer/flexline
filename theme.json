@@ -56,9 +56,24 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(0deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--contrast) 100%)",
+					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--contrast) 100%)",
 					"name": "Primary to Contrast",
 					"slug": "primary-contrast"
+				},
+				{
+					"gradient": "linear-gradient(90deg, var(--wp--custom--color--primary--700) 0%, var(--wp--custom--color--primary--900) 100%)",
+					"name": "Primary 700 to 900",
+					"slug": "primary-700-900"
+				},
+				{
+					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Primary to Secondary",
+					"slug": "primary-secondary"
+				},
+				{
+					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Primary to Alternate",
+					"slug": "primary-alternate"
 				}
 			],
 			"palette": [
