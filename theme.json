@@ -78,12 +78,12 @@
 			],
 			"palette": [
 				{
-					"color": "var(--wp--custom--color--brand--blue)",
+					"color": "#0F6185",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "var(--wp--custom--color--brand--green)",
+					"color": "#39B26A",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -98,12 +98,12 @@
 					"slug": "highlight"
 				},
 				{
-					"color": "var(--wp--custom--color--alert-warning)",
+					"color": "#FFDD38",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "var(--wp--custom--color--alert-success)",
+					"color": "#18A957",
 					"name": "Success",
 					"slug": "success"
 				},
