@@ -41,19 +41,16 @@ function displayLightbox(mediaUrl) {
 
     if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
         contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
-    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be')) {
+    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be') || mediaUrl.includes('vimeo.com')) {
         // Extract the YouTube video ID and construct the embed URL with autoplay
-        const youtubeId = mediaUrl.split(/v=|youtu\.be\//)[1].split(/[?&]/)[0];
-        const videoEmbedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
+        const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
         contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-    } else if (mediaUrl.includes('vimeo.com')) {
-        // Extract the Vimeo video ID and construct the embed URL with autoplay
-        const vimeoId = mediaUrl.split('/').pop();
-        const videoEmbedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
-        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-    } else {
+    } else if (mediaUrl.match(/\.(mp4|webm|ogg)$/)) {
         // For native video elements, add the autoplay attribute
-        contentHtml = `<video controls autoplay src="${mediaUrl}" style="max-width:90%; max-height:80vh;"></video>`;
+        contentHtml = `<div class="aspect-ratio-16-9"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
+    } else {
+        // other domains try to put them in an iframe
+        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
     }
 
     // Create the lightbox container
