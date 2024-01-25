@@ -1,22 +1,6 @@
 #flexline-lightbox {
-    //position: fixed;
-    //top: 0;
-    //left: 0;
-    //width: 100%;
-    //height: 100%;
-    //background-color: rgba(0,0,0,0.8);
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
-    //z-index: 10000;
-    //padding: 20px;
     box-sizing: border-box;
-}
-
-#flexline-lightbox {
-    /* Ensure the lightbox covers the entire viewport */
-    //padding: 40px;
-    //box-sizing: border-box;
+    
 }
 
 #flexline-lightbox img,
@@ -69,6 +53,7 @@
 
 figure.wp-block-image.enable-lightbox{
     position: relative;
+    cursor: pointer;
     &::after{
         content: "↗";
         position: absolute;
@@ -119,6 +104,7 @@ a.enable-lightbox{
         display: inline-flex;
         align-items: center;
         margin-left: 5px;
+        font-size: 15px;
     }
     &[data-popup-media-url*="youtube.com"],
     &[data-popup-media-url*="youtu.be"],

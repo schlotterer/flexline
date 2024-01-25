@@ -3,7 +3,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { ToggleControl, TextControl } = wp.components;
+const { PanelBody, ToggleControl, TextControl, ToolsPanel, ToolsPanelItem } = wp.components;
 
 // Define custom attributes
 const customAttributes = {
@@ -38,18 +38,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 <Fragment>
                     <BlockEdit {...props} />
                     <InspectorControls>
-                        <ToggleControl
-                            label="Enable Popup"
-                            checked={!!props.attributes.enablePopup}
-                            onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
-                        />
-                        {props.attributes.enablePopup && (
-                            <TextControl
-                                label="Popup Media URL"
-                                value={props.attributes.popupMediaURL}
-                                onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
-                            />
-                        )}
+                        <PanelBody title="Mixed Media Popup Settings">
+                                    <ToggleControl
+                                        label="Enable Mixed Media Popup"
+                                        checked={!!props.attributes.enablePopup}
+                                        onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
+                                    />
+                                    {props.attributes.enablePopup && (
+                                        <TextControl
+                                            label="Popup Media URL"
+                                            value={props.attributes.popupMediaURL}
+                                            onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
+                                        />
+                                    )}
+                        </PanelBody>
                     </InspectorControls>
                 </Fragment>
             );
@@ -61,12 +63,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 // Hook filters
 addFilter(
     'blocks.registerBlockType',
-    'my-theme/add-custom-attributes',
+    'flexline/add-custom-attributes',
     addCustomAttributes
 );
 
 addFilter(
     'editor.BlockEdit',
-    'my-theme/with-custom-controls',
+    'flexline/with-custom-controls',
     withCustomControls
 );

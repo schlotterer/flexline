@@ -65,7 +65,7 @@ function displayLightbox(mediaUrl) {
     lightbox.style.display = 'flex';
     lightbox.style.justifyContent = 'center';
     lightbox.style.alignItems = 'center';
-    lightbox.style.zIndex = '10000';
+    lightbox.style.zIndex = '10000000';
     lightbox.style.cursor = 'pointer';
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
