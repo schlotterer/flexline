@@ -39,18 +39,18 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                     <BlockEdit {...props} />
                     <InspectorControls>
                         <PanelBody title="Mixed Media Popup Settings">
-                                    <ToggleControl
-                                        label="Enable Mixed Media Popup"
-                                        checked={!!props.attributes.enablePopup}
-                                        onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
-                                    />
-                                    {props.attributes.enablePopup && (
-                                        <TextControl
-                                            label="Popup Media URL"
-                                            value={props.attributes.popupMediaURL}
-                                            onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
-                                        />
-                                    )}
+                            <ToggleControl
+                                label="Enable Mixed Media Popup"
+                                checked={!!props.attributes.enablePopup}
+                                onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
+                            />
+                            {props.attributes.enablePopup && (
+                                <TextControl
+                                    label="Popup Media URL"
+                                    value={props.attributes.popupMediaURL}
+                                    onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
+                                />
+                            )}
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
