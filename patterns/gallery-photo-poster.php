@@ -14,31 +14,31 @@
 <figure class="wp-block-image size-large is-style-shadow-light"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>" alt="" class=""/></a><figcaption class="wp-element-caption">Image Caption</figcaption></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":368,"sizeSlug":"large","linkDestination":"media","enablePopup":true,"popupMediaURL":"<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media","enablePopup":true,"popupMediaURL":"<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":366,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":364,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":360,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":358,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":356,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image --></figure>
 <!-- /wp:gallery -->
@@ -56,31 +56,31 @@
 <figure class="wp-block-image size-large is-style-shadow-light"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>" alt="" class=""/></a><figcaption class="wp-element-caption">Image Caption</figcaption></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":368,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":366,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":364,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":360,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":358,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":356,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image --></figure>
 <!-- /wp:gallery -->
@@ -98,31 +98,31 @@
 <figure class="wp-block-image size-large is-style-shadow-light"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-9.jpg'; ?>" alt="" class=""/></a><figcaption class="wp-element-caption">Image Caption</figcaption></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":368,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-7.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":366,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-1.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":364,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-8.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":360,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-5.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":358,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-4.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:image {"id":356,"sizeSlug":"large","linkDestination":"media"} -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
 <figure class="wp-block-image size-large"><a href="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>" alt="" class=""/></a></figure>
 <!-- /wp:image --></figure>
 <!-- /wp:gallery -->
