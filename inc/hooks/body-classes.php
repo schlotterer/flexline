@@ -58,6 +58,9 @@ function body_classes( $classes ) {
 	// Adds "no-js" class. If JS is enabled, this will be replaced (by javascript) to "js".
 	$classes[] = 'no-js';
 
+	// Adds flexline class.
+	$classes[] = 'flexline';
+
 	return $classes;
 }
 
