@@ -148,3 +148,49 @@ textarea {
 	padding-right: 10px !important;
 	padding-left: 10px !important;
 }
+
+// Gravity Forms
+
+html{
+	--gf-form-gap-y: 16px;
+}
+
+
+// Poster Gallery
+figure.poster-gallery.has-nested-images{
+	> figure{
+		position: absolute !important;
+		visibility: hidden;
+	}
+	> figure:first-of-type{
+		position: relative !important;
+		z-index: 1;
+		visibility:visible;
+		&::after{
+			content: "❐";
+			position: absolute;
+			display: inline-block;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			background-color:rgba(#000000,.5);
+			border-radius: 200px;
+			opacity: 0.7;
+			transition: all 0.3s ease-in-out;
+			pointer-events: none;
+			line-height: 1.3;
+			text-align: center;
+			// image pop specific
+			top: 5px;
+			right: 5px;
+			font-size: 30px;
+			width: 40px;
+			height: 40px;
+		}
+		&:hover{
+			&::after{
+				opacity: 1;
+			}
+		}
+	}
+}

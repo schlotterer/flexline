@@ -16,6 +16,13 @@ const customAttributes = {
         default: '',
     },
 };
+// Define custom attributes
+const customGalleryAttributes = {
+    enablePosterGallery: {
+        type: 'boolean',
+        default: false,
+    },
+};
 
 // Filter function to add custom attributes to blocks
 function addCustomAttributes(settings, name) {
@@ -24,6 +31,18 @@ function addCustomAttributes(settings, name) {
         settings.attributes = {
             ...settings.attributes,
             ...customAttributes,
+        };
+    }
+    return settings;
+}
+
+// Filter function to add custom attributes to blocks
+function addCustomGalleryAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/gallery') {
+        settings.attributes = {
+            ...settings.attributes,
+            ...customGalleryAttributes,
         };
     }
     return settings;
@@ -56,6 +75,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 </Fragment>
             );
         }
+        if (props.name === 'core/gallery') {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Poster Gallery Settings">
+                            <ToggleControl
+                                label="Enable Poster Gallery"
+                                checked={!!props.attributes.enablePosterGallery}
+                                onChange={(newValue) => props.setAttributes({ enablePosterGallery: newValue })}
+                            />
+                        </PanelBody>
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
         return <BlockEdit {...props} />;
     };
 }, 'withCustomControls');
@@ -65,6 +100,13 @@ addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
     addCustomAttributes
+);
+
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomGalleryAttributes
 );
 
 addFilter(

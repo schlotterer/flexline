@@ -46,6 +46,13 @@ function flexline_block_popup_render($block_content, $block) {
             }
         }
     }
+    if ($block['blockName'] === 'core/gallery') {
+        // Check if your custom attributes are set and not empty
+        if (isset($block['attrs']['enablePosterGallery']) && $block['attrs']['enablePosterGallery']) {
+            // Add a class
+            $block_content = str_replace('class="', 'class="poster-gallery ', $block_content);
+        }
+    }
 
     return $block_content;
 }
