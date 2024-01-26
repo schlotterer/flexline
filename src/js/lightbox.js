@@ -41,11 +41,7 @@ function displayLightbox(mediaUrl) {
 
     if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
         contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
-    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be')) {
-        // Extract the YouTube video ID and construct the embed URL with autoplay
-        const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
-        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-    } else if ( mediaUrl.includes('vimeo.com')) {
+    } else if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be') || mediaUrl.includes('vimeo.com')) {
         // Extract the YouTube video ID and construct the embed URL with autoplay
         const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
         contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
