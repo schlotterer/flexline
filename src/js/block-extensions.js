@@ -16,14 +16,6 @@ const customAttributes = {
         default: '',
     },
 };
-// Define custom attributes
-const customGalleryAttributes = {
-    enablePosterGallery: {
-        type: 'boolean',
-        default: false,
-    },
-};
-
 // Filter function to add custom attributes to blocks
 function addCustomAttributes(settings, name) {
     // Target specific blocks
@@ -36,6 +28,13 @@ function addCustomAttributes(settings, name) {
     return settings;
 }
 
+// Define custom attributes
+const customGalleryAttributes = {
+    enablePosterGallery: {
+        type: 'boolean',
+        default: false,
+    },
+};
 // Filter function to add custom attributes to blocks
 function addCustomGalleryAttributes(settings, name) {
     // Target specific blocks
@@ -43,6 +42,35 @@ function addCustomGalleryAttributes(settings, name) {
         settings.attributes = {
             ...settings.attributes,
             ...customGalleryAttributes,
+        };
+    }
+    return settings;
+}
+
+
+
+// Define custom attributes
+const customGroupAttributes = {
+    enableGroupLink: {
+        type: 'boolean',
+        default: false,
+    },
+    groupLinkURL: {
+        type: 'string',
+        default: '',
+    },
+    linkNewTab: {
+        type: 'boolean',
+        default: false,
+    },
+};
+// Filter function to add custom attributes to blocks
+function addCustomGroupAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/group') {
+        settings.attributes = {
+            ...settings.attributes,
+            ...customGroupAttributes,
         };
     }
     return settings;
@@ -91,6 +119,36 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 </Fragment>
             );
         }
+        if (props.name === 'core/group') {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Group Link">
+                            <ToggleControl
+                                label="Enable Group Link"
+                                checked={!!props.attributes.enableGroupLink}
+                                onChange={(newValue) => props.setAttributes({ enableGroupLink: newValue })}
+                            />
+                            {props.attributes.enableGroupLink && (
+                                <TextControl
+                                    label="Group Link URL"
+                                    value={props.attributes.groupLinkURL}
+                                    onChange={(newValue) => props.setAttributes({ groupLinkURL: newValue })}
+                                />
+                            )}
+                            {props.attributes.enableGroupLink && (
+                                <ToggleControl
+                                    label="Open Link in New Tab"
+                                    checked={!!props.attributes.linkNewTab}
+                                    onChange={(newValue) => props.setAttributes({ linkNewTab: newValue })}
+                                />
+                            )}
+                        </PanelBody>
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
         return <BlockEdit {...props} />;
     };
 }, 'withCustomControls');
@@ -107,6 +165,13 @@ addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
     addCustomGalleryAttributes
+);
+
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomGroupAttributes
 );
 
 addFilter(

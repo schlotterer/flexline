@@ -2,7 +2,7 @@
 /**
  * Title: Gallery for mixed media.
  * Slug: flexline/gallery-mixed
- * Categories: featured
+ * Categories: galleries
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Floor Plan Rows"}} -->

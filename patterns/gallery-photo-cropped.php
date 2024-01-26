@@ -2,7 +2,7 @@
 /**
  * Title: Gallery with cropped photos.
  * Slug: flexline/gallery-cropped
- * Categories: featured
+ * Categories: galleries
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Gallery - Cropped"}} -->

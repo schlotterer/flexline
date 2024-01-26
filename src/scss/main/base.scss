@@ -149,6 +149,10 @@ textarea {
 	--gf-form-gap-y: 16px;
 }
 
+// Group Link
+.flexline .wp-block-group.group-link{
+	cursor: pointer;
+}
 
 // Poster Gallery
 figure.poster-gallery.has-nested-images{

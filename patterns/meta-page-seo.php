@@ -2,7 +2,7 @@
 /**
  * Title: Page Meta for custom SEO
  * Slug: flexline/page-meta-seo
- * Categories: featured
+ * Categories: titles-meta
  */
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Page Meta Bar SEO"}} -->

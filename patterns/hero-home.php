@@ -2,7 +2,7 @@
 /**
  * Title: Hero for Home Page ( no breadcrumbs ).
  * Slug: flexline/hero-home
- * Categories: featured
+ * Categories: heros
  */
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->

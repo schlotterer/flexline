@@ -28,6 +28,41 @@ function flexline_register_block_pattern_categories() {
 			'description' => __( 'Compare features for your digital products or service plans.', 'flexline' ),
 		)
 	);
+	register_block_pattern_category(
+		'galleries',
+		array(
+			'label'       => __( 'Galleries', 'flexline' ),
+			'description' => __( 'Display various media types.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'heros',
+		array(
+			'label'       => __( 'Heros', 'flexline' ),
+			'description' => __( 'Hero patterns for pages', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'titles-meta',
+		array(
+			'label'       => __( 'Titles and Meta', 'flexline' ),
+			'description' => __( 'Page titles and meta information.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'utilities',
+		array(
+			'label'       => __( 'Parts for templates', 'flexline' ),
+			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'pieces',
+		array(
+			'label'       => __( 'Pieces', 'flexline' ),
+			'description' => __( 'Small pre-configured pieces for creating custom layouts.', 'flexline' ),
+		)
+	);
 
 }
 

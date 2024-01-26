@@ -2,7 +2,7 @@
 /**
  * Title: Hero for feature pages.
  * Slug: flexline/hero-feature-page
- * Categories: featured
+ * Categories: heros
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Feature Page Hero"}} -->
