@@ -56,16 +56,16 @@ function flexline_block_popup_render($block_content, $block) {
     if ($block['blockName'] === 'core/group') {
     // Check if your custom attributes are set and not empty
     
-        if (isset($block['attrs']['enableGroupLink']) && $block['attrs']['enableGroupLink']) {
-            if (!isset($block['attrs']['groupLinkType'])) {
-                $block['attrs']['groupLinkType'] = 'self';
-            }
+        if (isset($block['attrs']['enableGroupLink']) && $block['attrs']['enableGroupLink'] === 1) {
+            
+            $linkType = isset($block['attrs']['groupLinkType']) ? $block['attrs']['groupLinkType'] : 'self';
+            $ariaLabel = !empty($block['attrs']['ariaLabel']) ? esc_attr($block['attrs']['ariaLabel']) : "Open link";
             // Add a class
-            $block_content = str_replace('class="', 'class="group-link group-link-type-' . esc_attr($block['attrs']['groupLinkType']) . ' ', $block_content);
+            $block_content = str_replace('class="', 'class="group-link group-link-type-' . esc_attr($linkType) . ' ', $block_content);
             if (!empty($block['attrs']['groupLinkURL'])) {
                 // Insert your data attribute just before the closing tag of the element.
                 // This is a basic string replacement and might need to be adjusted based on the block markup.
-                $block_content = str_replace('>', ' data-group-link-url="' . esc_attr($block['attrs']['groupLinkURL']) . '">', $block_content);
+                $block_content = str_replace('>', ' data-group-link-url="' . esc_attr($block['attrs']['groupLinkURL']) . '" tabindex="0" aria-label="'.$ariaLabel.'">', $block_content);
             }
         }
     }
