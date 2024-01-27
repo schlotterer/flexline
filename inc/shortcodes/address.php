@@ -16,6 +16,7 @@ namespace FlexLine\flexline;
 function flexline_contact_info_shortcode() {
     // Retrieve customizer settings
     $phone_number = get_theme_mod('flexline_main_phone_number', '');
+    $numeric_phone_number = preg_replace('/\D/', '', $phone_number); // Remove non-numeric characters
     $street = get_theme_mod('flexline_address_street', '');
     $city = get_theme_mod('flexline_address_city', '');
     $state = get_theme_mod('flexline_address_state', '');
@@ -30,7 +31,7 @@ function flexline_contact_info_shortcode() {
     ?>
     <address class="contact-info">
         <?php if (!empty($phone_number)) : ?>
-            <p><a class="phone-link" href="tel:<?php echo esc_attr($phone_number); ?>"><span class="dashicons dashicons-phone"></span> <?php echo esc_html($phone_number); ?></a></p>
+            <p><a class="phone-link" href="tel:<?php echo esc_attr($numeric_phone_number); ?>"><span class="dashicons dashicons-phone"></span> <?php echo esc_html($phone_number); ?></a></p>
         <?php endif; ?>
         <?php if (!empty($formatted_address)) : ?>
             <p>
