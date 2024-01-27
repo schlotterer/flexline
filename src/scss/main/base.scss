@@ -193,3 +193,17 @@ figure.poster-gallery.has-nested-images{
 		}
 	}
 }
+
+// Address
+address{
+	font-style: normal;
+	&.contact-info{
+		a{
+			display: inline-flex;
+			align-items: center;
+			.dashicons{
+				margin-right:5px;
+			}
+		}
+	}
+}
