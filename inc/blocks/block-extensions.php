@@ -53,10 +53,10 @@ function flexline_block_popup_render($block_content, $block) {
             $block_content = str_replace('class="', 'class="poster-gallery ', $block_content);
         }
     }
-    if ($block['blockName'] === 'core/group') {
+    if ($block['blockName'] === 'core/group' || $block['blockName'] === 'core/stack' || $block['blockName'] === 'core/row') {
     // Check if your custom attributes are set and not empty
     
-        if (isset($block['attrs']['enableGroupLink']) && $block['attrs']['enableGroupLink'] === 1) {
+        if (isset($block['attrs']['enableGroupLink']) && $block['attrs']['enableGroupLink']) {
             
             $linkType = isset($block['attrs']['groupLinkType']) ? $block['attrs']['groupLinkType'] : 'self';
             $ariaLabel = !empty($block['attrs']['ariaLabel']) ? esc_attr($block['attrs']['ariaLabel']) : "Open link";
