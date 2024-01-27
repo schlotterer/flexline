@@ -33,6 +33,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    document.querySelectorAll('.wp-block-group.group-link').forEach(block => {
+        const mediaUrl = block.getAttribute('data-group-link-url');
+        if (mediaUrl) {
+            if (block.classList.contains('group-link-type-popup_media')) {
+                // Add event listener or other logic to trigger the lightbox with the media URL
+                block.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    displayLightbox(mediaUrl); // Function to display the lightbox
+                });
+            } else if (block.classList.contains('group-link-type-new_tab')){
+                // Add event listener or other logic to trigger the lightbox with the media URL
+                block.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open(mediaUrl, '_blank').focus();
+                });
+            } else {
+                // Add event listener or other logic to trigger the lightbox with the media URL
+                block.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = mediaUrl;
+                });
+            }
+        }
+        
+    });
 });
 
 function displayLightbox(mediaUrl) {

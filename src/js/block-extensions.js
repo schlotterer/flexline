@@ -3,7 +3,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, ToggleControl, TextControl, ToolsPanel, ToolsPanelItem } = wp.components;
+const { PanelBody, ToggleControl, TextControl, ToolsPanel, SelectControl, ToolsPanelItem } = wp.components;
 
 // Define custom attributes
 const customAttributes = {
@@ -59,9 +59,9 @@ const customGroupAttributes = {
         type: 'string',
         default: '',
     },
-    linkNewTab: {
-        type: 'boolean',
-        default: false,
+    groupLinkType: {
+        type: 'string',
+        default: 'none', // Default to 'none' indicating no link or an unselected state
     },
 };
 // Filter function to add custom attributes to blocks
@@ -138,10 +138,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 />
                             )}
                             {props.attributes.enableGroupLink && (
-                                <ToggleControl
-                                    label="Open Link in New Tab"
-                                    checked={!!props.attributes.linkNewTab}
-                                    onChange={(newValue) => props.setAttributes({ linkNewTab: newValue })}
+                                <SelectControl
+                                    label="Link Type"
+                                    value={props.attributes.groupLinkType}
+                                    options={[
+                                        { label: 'None', value: 'none' },
+                                        { label: 'New Tab', value: 'new_tab' },
+                                        { label: 'Popup Media', value: 'popup_media' },
+                                    ]}
+                                    onChange={(newValue) => props.setAttributes({ groupLinkType: newValue })}
                                 />
                             )}
                         </PanelBody>
