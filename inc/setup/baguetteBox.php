@@ -20,7 +20,7 @@ function register_assets() {
 	 *
 	 * @param string  $value  The CSS selector to a gallery (or galleries) containing a tags
 	 */
-	$baguettebox_selector = apply_filters( 'baguettebox_selector', '.wp-block-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery,.wp-block-coblocks-gallery-masonry,.wp-block-coblocks-gallery-stacked,.wp-block-coblocks-gallery-collage,.wp-block-coblocks-gallery-offset,.wp-block-coblocks-gallery-stacked,.mgl-gallery,.gb-block-image' );
+	$baguettebox_selector = apply_filters( 'baguettebox_selector', '.wp-block-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery' );
 
 	/**
 	 * Filters the image files filter of baguetteBox.js
@@ -47,16 +47,8 @@ function enqueue_assets() {
 	 */
 	$baguettebox_enqueue_assets = apply_filters( 'baguettebox_enqueue_assets',
 		has_block( 'core/gallery' ) ||
-		has_block( 'core/image' ) ||
 		has_block( 'core/media-text' ) ||
-		get_post_gallery() ||
-		has_block( 'coblocks/gallery-masonry' ) ||
-		has_block( 'coblocks/gallery-stacked' ) ||
-		has_block( 'coblocks/gallery-collage' ) ||
-		has_block( 'coblocks/gallery-offset' ) ||
-		has_block( 'coblocks/gallery-stacked' ) ||
-		has_block( 'meow-gallery/gallery' ) ||
-		has_block( 'generateblocks/image' )
+		get_post_gallery()
 	);
 
 	if ( $baguettebox_enqueue_assets ) {
