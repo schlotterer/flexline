@@ -142,7 +142,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     label="Link Type"
                                     value={props.attributes.groupLinkType}
                                     options={[
-                                        { label: 'None', value: 'none' },
+                                        { label: 'Normal', value: 'none' },
                                         { label: 'New Tab', value: 'new_tab' },
                                         { label: 'Popup Media', value: 'popup_media' },
                                     ]}
