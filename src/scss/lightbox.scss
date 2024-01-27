@@ -82,7 +82,11 @@ figure.wp-block-image.enable-lightbox{
     }
     &[data-popup-media-url*="youtube.com"],
     &[data-popup-media-url*="youtu.be"],
-    &[data-popup-media-url*="vimeo.com"] {
+    &[data-popup-media-url*="vimeo.com"],
+    &[data-popup-media-url*=".mp4"],
+    &[data-popup-media-url*=".webm"],
+    &[data-popup-media-url*=".ogg"]
+     {
         &::after{
             content: "►";
             right: unset;
@@ -108,7 +112,10 @@ a.enable-lightbox{
     }
     &[data-popup-media-url*="youtube.com"],
     &[data-popup-media-url*="youtu.be"],
-    &[data-popup-media-url*="vimeo.com"] {
+    &[data-popup-media-url*="vimeo.com"],
+    &[data-popup-media-url*=".mp4"],
+    &[data-popup-media-url*=".webm"],
+    &[data-popup-media-url*=".ogg"] {
         &::after{
             content: "►";
         }
