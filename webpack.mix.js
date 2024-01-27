@@ -16,13 +16,13 @@ const sassFiles = [
 
 // Compile each JavaScript file to its own output
 jsFiles.forEach(file => {
-    mix.js(file, 'assets/js')
+    mix.js(file, 'assets/built/js')
        .react(); // If you're using React. Remove this line if not.
 });
 
 // Compile each SASS file to its own output
 sassFiles.forEach(file => {
-    mix.sass(file, 'assets/css');
+    mix.sass(file, 'assets/built/css');
 });
 
 // Optionally, set the public path if needed (useful for setting the correct absolute path for fonts and images referenced in CSS)

@@ -17,9 +17,9 @@ function flexline_enqueue_block_editor_assets() {
     // Popup addons to core button and image blocks.
     wp_enqueue_script(
         'flexline-block-extensions',
-        get_theme_file_uri('/assets/js/block-extensions.js'),
+        get_theme_file_uri('/assets/built/js/block-extensions.js'),
         array('wp-blocks', 'wp-element', 'wp-editor'),
-        filemtime(get_theme_file_path('/assets/js/block-extensions.js'))
+        filemtime(get_theme_file_path('/assets/built/js/block-extensions.js'))
     );
 }
 add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets');
