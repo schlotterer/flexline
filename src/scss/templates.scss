@@ -67,21 +67,3 @@
     }
     
 }
-
-@media screen and (min-width: 601px) {
-    .wp-block-template-part.utility {
-        .wp-block-page-list{
-            gap: 15px;
-            > .wp-block-pages-list__item{
-                > a{
-                    font-size: var(--wp--preset--font-size--large);
-                }
-                .wp-block-navigation__submenu-container{
-                    display: flex;
-                    flex-direction:row;
-                    gap: 15px !important;
-                }
-            }
-        }
-    }
-}

@@ -8,6 +8,7 @@ aside#slide-in-menu{
     transition: var(--wp--custom--transition-time);
     z-index: 100000000;
     width: 100%;
+    overflow: auto;
     &.active{
         top: 0;
         right: 0;
