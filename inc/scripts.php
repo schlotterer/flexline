@@ -34,8 +34,8 @@ function flexline_enqueue_style_sheet() {
  */
 function flexline_admin_enqueue_scripts() {
 	// Styles
-	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/css/app.css', array(), []);
-	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/css/lightbox.css', array(), []);
+	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/built/css/app.css', array(), []);
+	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
 }
 	
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
