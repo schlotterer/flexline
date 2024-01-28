@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
     var menuButton = document.querySelector('.slide-in-menu-button');
     var slideInMenu = document.getElementById('slide-in-menu');
     var closeButton = document.querySelector('.close-menu');
@@ -12,9 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function toggleMenu(isClosing) {
+        var body = document.body;
         var isExpanded = isClosing || menuButton.getAttribute('aria-expanded') === 'true';
         menuButton.setAttribute('aria-expanded', !isExpanded);
         slideInMenu.setAttribute('aria-hidden', isExpanded);
         slideInMenu.classList.toggle('active', !isExpanded);
+        body.classList.toggle('no-scroll');
     }
 });

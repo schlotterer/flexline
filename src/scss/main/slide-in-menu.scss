@@ -1,4 +1,10 @@
 // Slide in menu
+body.no-scroll {
+    overflow: hidden; /* Hide scrollbars and disable scrolling */
+    height: 100%; /* Optional: to ensure full page height */
+    width: 100%; /* Optional: to ensure full page width */
+    position: fixed; /* Optional: to lock the position */
+}
 aside#slide-in-menu{
     display: block;
     position: fixed;
