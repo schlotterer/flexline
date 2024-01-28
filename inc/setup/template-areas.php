@@ -21,7 +21,7 @@ function flexline_template_part_areas( array $areas ) {
         ];
         $areas[] = [
                 
-                'area'        => 'slideinmenu',
+                'area'        => 'slide-in-menu',
                 'area_tag'    => 'nav',
                 'label'       => __( 'Slide In Menu', 'flexline' ),
                 'description' => __( 'Area for custom full window menu', 'flexline' ),
