@@ -21,10 +21,10 @@ function flexline_template_part_areas( array $areas ) {
     ];
     $areas[] = [
         
-            'area'        => 'general',
+            'area'        => 'slide-in-menu',
             'area_tag'    => 'section',
-            'label'       => __( 'General', 'flexline' ),
-            'description' => __( 'General content', 'flexline' ),
+            'label'       => __( 'Slide In Menu', 'flexline' ),
+            'description' => __( 'Area for custom full window menu', 'flexline' ),
             'icon'        => 'site'
         
     ];

@@ -88,7 +88,7 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#003C4F",
+					"color": "var(--wp--custom--color--primary--700)",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
@@ -755,14 +755,19 @@
 			"title": "Header Overlapping Hero"
 		},
 		{
-			"area": "general",
-			"name": "general",
-			"title": "General"
+			"area": "slide-in-menu",
+			"name": "slidein",
+			"title": "Slide In Menu"
 		},
 		{
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer"
+		},
+		{
+			"area": "footer",
+			"name": "footer-no-form",
+			"title": "Footer No Form"
 		}
 	]
 }
