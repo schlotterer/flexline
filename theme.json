@@ -755,8 +755,8 @@
 			"title": "Header Overlapping Hero"
 		},
 		{
-			"area": "slide-in-menu",
-			"name": "slidein",
+			"area": "slideinmenu",
+			"name": "slide-in",
 			"title": "Slide In Menu"
 		},
 		{
