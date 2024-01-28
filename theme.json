@@ -88,12 +88,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "var(--wp--custom--color--primary--700)",
+					"color": "#003C4F",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "var(--wp--custom--color--secondary--300)",
+					"color": "#FB8C7B",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -128,7 +128,8 @@
 			"color":{
 				"brand":{
 					"blue" : "#0F6185",
-					"green" : "#39B26A"
+					"green" : "#39B26A",
+					"orange" : "#FB8C7B"
 				},
 				"primary": {
 					"main" : "var(--wp--preset--color--primary)",
