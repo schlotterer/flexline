@@ -4,6 +4,7 @@
  * Slug: flexline/utility
  * Categories: utilities
  * Block Types: core/template-part/utility
+ * Inserter: false
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"dimensions":{"minHeight":"0px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"right"}} -->
