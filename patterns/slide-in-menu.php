@@ -4,11 +4,19 @@
  * Slug: flexline/slide-in-menu
  * Categories: utilities
  * Block Types: core/template-part/slide-in-menu
- * Inserter: false
+ * 
  */
 ?>
-<!-- wp:group {"tagName":"aside","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"backgroundColor":"primary","layout":{"type":"constrained"},"metadata":{"name":"Slide In Menu"}} -->
-<aside class="slide-in-menu wp-block-group has-primary-background-color has-background is-position-fixed" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--small)">
+<!-- wp:group {"tagName":"aside","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"backgroundColor":"primary","layout":{"type":"constrained"},"metadata":{"name":"Slide In Menu"}} -->
+<aside class="wp-block-group has-primary-background-color has-background" id="slide-in-menu" aria-hidden="true" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--small)">
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+<div class="wp-block-group">
+<!-- wp:html -->
+<button id="slide-in-menu-close" class="close-menu" aria-label="Close menu">✖</button>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->
+
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->

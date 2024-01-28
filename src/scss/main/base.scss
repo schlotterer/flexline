@@ -126,7 +126,6 @@ textarea {
 }
 
 /* -- Navigation Submenu -- */
-
 .wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
 	background-color: var(--wp--preset--color--contrast);
 	border: var(--wp--preset--color--contrast);
@@ -145,7 +144,6 @@ textarea {
 }
 
 // Gravity Forms
-
 .flexline .gform-theme--foundation.gform_wrapper{
 	--gf-form-gap-y: 16px;
 }
@@ -169,7 +167,7 @@ address{
 	}
 }
 
-// Scroll to 
+// Scroll to button
 .wp-block-button.scroolTo{
 	position: absolute;
 	margin-top: -25px;

@@ -1,3 +1,4 @@
+// Utility Template Part - Search and Menu Button
 .wp-block-template-part.utility {
     // Nav and Search
     > div.wp-block-group {
@@ -40,24 +41,9 @@
     .wp-block-navigation{
         border-radius:  var(--wp--custom--border-radius) !important;    
     }
-    // Slide in menu
     
-    aside.slide-in-menu{
-        display: block;
-        top: 0;
-        left: 100%;
-        bottom: 0;
-        transition: var(--wp--custom--transition-time);
-        z-index: 100000000;
-        &.active{
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-        
-    }
 }
+
 .admin-bar .wp-block-template-part.utility{
     > div.wp-block-group {
         top:calc(var(--wp-admin--admin-bar--height) + 5px);

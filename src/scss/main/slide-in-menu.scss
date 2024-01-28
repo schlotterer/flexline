@@ -1,0 +1,39 @@
+// Slide in menu
+aside#slide-in-menu{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    transition: var(--wp--custom--transition-time);
+    z-index: 100000000;
+    width: 100%;
+    &.active{
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    
+}
+button{
+    &#slide-in-menu-button{
+        border-radius: var(--wp--custom--border-radius);
+        background-color: var(--wp--preset--color--primary);
+        display: inline-block;
+        padding: 5px 8px 8px 8px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: var(--wp--preset--color--base);
+        border: none;
+        font-size: var(--wp--preset--font-size--medium);
+        line-height: 1;
+    }
+    &#slide-in-menu-close{
+        border: none;
+        background-color: transparent;
+        color: var(--wp--preset--color--base);
+        font-size: var(--wp--preset--font-size--medium);
+    }
+}
