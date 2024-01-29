@@ -15,7 +15,6 @@ function flexline_enqueue_style_sheet() {
 	wp_enqueue_style( 'flexline', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 	// Styles
 	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/built/css/app.css', array(), []);
-	wp_enqueue_style( 'flexline-templates', get_template_directory_uri() . '/assets/built/css/templates.css', array(), []);
 	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
 	
 	// Customized Styles

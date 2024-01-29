@@ -10,8 +10,7 @@ const jsFiles = [
 // Individual SASS files
 const sassFiles = [
     'src/scss/app.scss',
-    'src/scss/lightbox.scss',
-    'src/scss/templates.scss'
+    'src/scss/lightbox.scss'
 ];
 
 // Compile each JavaScript file to its own output
