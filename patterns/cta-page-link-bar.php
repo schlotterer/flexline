@@ -2,7 +2,7 @@
 /**
  * Title: CTA Page Link Bar
  * Slug: flexline/cta-page-link-bar
- * Categories: pieces
+ * Categories: call-to-action
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"},"border":{"radius":"5px"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-shadow-light animated fadeInUp","layout":{"type":"constrained"},"metadata":{"name":"Page CTA Light"},"enableGroupLink":true,"groupLinkURL":"/community/services-amenities/"} -->

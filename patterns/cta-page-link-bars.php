@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: CTA Page Link Bar
- * Slug: flexline/cta-page-link-bar
- * Categories: features
+ * Title: CTA Page Link Bar Group
+ * Slug: flexline/cta-page-link-bars
+ * Categories: features, call-to-action
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"},"metadata":{"name":"Featured Page CTAs"}} -->

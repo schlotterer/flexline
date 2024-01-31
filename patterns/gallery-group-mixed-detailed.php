@@ -1,11 +1,11 @@
 <?php
 /**
- * Title: Gallery for mixed media.
- * Slug: flexline/gallery-mixed
+ * Title: Gallery group for mixed media - detailed.
+ * Slug: flexline/gallery-group-mixed
  * Categories: galleries
  */
 ?>
-<!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Floor Plan Rows"}} -->
+<!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Group Rows"}} -->
 <div class="wp-block-group alignwide"><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"0","left":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Floor Plans 4 Column"}} -->
 <div class="wp-block-group alignfull" style="padding-right:0;padding-left:0"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"right":"0","left":"0"}}}} -->
 <div class="wp-block-columns alignwide" style="padding-right:0;padding-left:0"><!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
@@ -16,15 +16,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -38,15 +38,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -60,15 +60,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -82,15 +82,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -108,15 +108,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -130,15 +130,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -152,15 +152,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -178,15 +178,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -200,15 +200,15 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"textAlign":"left","fontSize":"medium"} -->
-<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Floor Plan Name</h2>
+<h2 class="wp-block-heading has-text-align-left has-medium-font-size">Media Title</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">1 Bed / 1 Bath</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small"} -->
-<p class="has-x-small-font-size" style="line-height:1.3">2000 sq. ft.</p>
+<p class="has-x-small-font-size" style="line-height:1.3">Media Detail 2.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
