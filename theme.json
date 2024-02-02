@@ -400,7 +400,7 @@
 					"text": "var(--wp--preset--color--base)"
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--medium)",
+					"fontSize": "var(--wp--preset--font-size--small)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"textTransform": "uppercase"
 				},
