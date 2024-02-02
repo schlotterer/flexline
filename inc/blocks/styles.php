@@ -11,7 +11,11 @@ function flexline_register_block_styles() {
 
 	$block_styles = array(
 		'core/columns' => array(
-			'columns-reverse' => __( 'Reverse', 'flexline' ),
+			'columns-reverse' => __( 'Reverse on Mobile', 'flexline' ),
+		),
+		'core/column' => array(
+			'hide-on-mobile' => __( 'Hide on Mobile', 'flexline' ),
+			'hide-on-desktop' => __( 'Hide on Desktop', 'flexline' ),
 		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
