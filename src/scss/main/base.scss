@@ -173,3 +173,9 @@ address{
 	margin-top: -25px;
 	z-index: 1;
 }
+
+// Header - keep above sticky navigation
+header.site-header{
+	z-index: 11;
+	position: relative;
+}
