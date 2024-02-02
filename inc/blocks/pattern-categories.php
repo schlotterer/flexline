@@ -52,14 +52,14 @@ function flexline_register_block_pattern_categories() {
 	register_block_pattern_category(
 		'utilities',
 		array(
-			'label'       => __( 'Parts for templates', 'flexline' ),
+			'label'       => __( 'Specialty Template Utilities', 'flexline' ),
 			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
-		'pieces',
+		'components',
 		array(
-			'label'       => __( 'Pieces', 'flexline' ),
+			'label'       => __( 'Components', 'flexline' ),
 			'description' => __( 'Small pre-configured pieces for creating custom layouts.', 'flexline' ),
 		)
 	);
