@@ -60,41 +60,48 @@ function flexline_register_block_pattern_categories() {
 		'flexline-sections',
 		array(
 			'label'       => __( 'Sections', 'flexline' ),
-			'description' => __( 'Curated sections for pages.', 'flexline' ),
+			'description' => __( 'Curated sections of components and modules for pages.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
 		'flexline-page',
 		array(
-			'label'       => __( 'Pages', 'flexline' ),
-			'description' => __( 'Create a full page with multiple patterns that are grouped together.', 'flexline' ),
+			'label'       => __( 'Template - Pages', 'flexline' ),
+			'description' => __( 'Full pages with multiple sections that are grouped together.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
 		'flexline-posts',
 		array(
 			'label'       => __( 'Template - Posts', 'flexline' ),
-			'description' => __( 'Create a full page with multiple patterns that are grouped together.', 'flexline' ),
+			'description' => __( 'Templates for posts.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-events',
+		array(
+			'label'       => __( 'Template - Events', 'flexline' ),
+			'description' => __( 'Events Templates.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
 		'flexline-headers',
 		array(
-			'label'       => __( 'Template - Headers', 'flexline' ),
+			'label'       => __( 'Template Parts - Headers', 'flexline' ),
 			'description' => __( 'Header designs for templates', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
 		'flexline-footers',
 		array(
-			'label'       => __( 'Template - Footers', 'flexline' ),
+			'label'       => __( 'Template Parts - Footers', 'flexline' ),
 			'description' => __( 'Footer designs for templates.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
 		'flexline-utilities',
 		array(
-			'label'       => __( 'Template - Utilities', 'flexline' ),
+			'label'       => __( 'Template Parts - Utilities', 'flexline' ),
 			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
 		)
 	);
