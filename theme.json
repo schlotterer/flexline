@@ -348,23 +348,28 @@
 						},
 						{
 							"name": "Small",
-							"size": "8px",
+							"size": "5px",
 							"slug": "small"
 						},
 						{
 							"name": "Medium",
-							"size": "16px",
+							"size": "10px",
 							"slug": "medium"
 						},
 						{
 							"name": "Large",
-							"size": "24px",
+							"size": "16px",
 							"slug": "large"
 						},
 						{
 							"name": "xLarge",
-							"size": "36px",
+							"size": "24px",
 							"slug": "x-large"
+						},
+						{
+							"name": "Mega",
+							"size": "36px",
+							"slug": "mega"
 						}
 					]
 				}
