@@ -2,7 +2,7 @@
 /**
  * Title: Events page - using Tribe Events.
  * Slug: flexline/page-events
- * Categories: page
+ * Categories: flexline-page
  */
 ?>
 <!-- wp:group {"layout":{"type":"default"}} -->

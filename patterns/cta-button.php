@@ -2,7 +2,7 @@
 /**
  * Title: Call-to-action with text, button.
  * Slug: flexline/cta-button
- * Categories: call-to-action
+ * Categories: flexline-cta
  */
 ?>
 <!-- wp:group {"align":"wide","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|large","right":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|large"}}},"borderColor":"contrast","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->

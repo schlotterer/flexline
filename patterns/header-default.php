@@ -2,7 +2,7 @@
 /**
  * Title: Header with site title, navigation.
  * Slug: flexline/header-default
- * Categories: header
+ * Categories: flexline-headers
  * Block Types: core/template-part/header
  */
 ?>

@@ -2,10 +2,13 @@
 /**
  * Title: Slide In Navigation.
  * Slug: flexline/slide-in-menu
- * Categories: utilities
+ * Categories: flexline-utilities
  * 
  * 
  */
+ // Retrieve the phone number from the customizer settings
+ $phone_number = get_theme_mod('flexline_main_phone_number', '');
+ $tel_link_number = preg_replace('/\D+/', '', $phone_number);
 ?>
 <!-- wp:group {"tagName":"aside","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"backgroundColor":"primary","layout":{"type":"constrained"},"metadata":{"name":"Slide In Menu"}} -->
 <aside id="slide-in-menu" class="wp-block-group has-primary-background-color has-background" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"lock":{"move":true,"remove":true},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"},"metadata":{"name":"Close Nav button row"}} -->
@@ -29,8 +32,10 @@
 <!-- /wp:button -->
 
 <!-- wp:button {"textColor":"base","style":{"spacing":{"padding":{"left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="tel:19998887777" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--x-large)">Call Now</a></div>
-<!-- /wp:button --></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="tel:<?php echo $tel_link_number; ?>" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--x-large)">Call Now</a></div>
+<!-- /wp:button -->
+
+</div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

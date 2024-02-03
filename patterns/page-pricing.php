@@ -2,7 +2,7 @@
 /**
  * Title: Sample pricing page.
  * Slug: flexline/page-pricing
- * Categories: page
+ * Categories: flexline-page
  */
 ?>
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|large"}}},"layout":{"type":"constrained"}} -->

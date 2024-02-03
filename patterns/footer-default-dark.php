@@ -2,7 +2,7 @@
 /**
  * Title: Footer with text, links.
  * Slug: flexline/footer-default-dark
- * Categories: footer
+ * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
 ?>

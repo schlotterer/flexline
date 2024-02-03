@@ -2,7 +2,7 @@
 /**
  * Title: Call-to-action with text, button.
  * Slug: flexline/cta-stacked-dark
- * Categories: call-to-action
+ * Categories: flexline-cta
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"}} -->

@@ -2,7 +2,7 @@
 /**
  * Title: Box with image, heading, text, button.
  * Slug: flexline/product-box
- * Categories: call-to-action
+ * Categories: flexline-cta
  */
 ?>
 <!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"borderColor":"contrast","className":"stacked","layout":{"type":"default"}} -->

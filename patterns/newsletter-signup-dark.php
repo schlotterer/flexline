@@ -2,7 +2,7 @@
 /**
  * Title: Box with heading, text.
  * Slug: flexline/newsletter-signup-dark
- * Categories: call-to-action
+ * Categories: flexline-cta
  */
 ?>
 <!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|medium","right":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"backgroundColor":"contrast","textColor":"base","className":"stacked","layout":{"type":"default"}} -->

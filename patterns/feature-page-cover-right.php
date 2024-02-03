@@ -2,7 +2,7 @@
 /**
  * Title: Feature - Cover Right
  * Slug: flexline/feature-cover-right
- * Categories: featured
+ * Categories: flexline-components
  */
 ?>
 <!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","className":"animated slideInLeft is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Feature Page with cover right"}} -->

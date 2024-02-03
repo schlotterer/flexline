@@ -2,7 +2,7 @@
 /**
  * Title: List of posts in three columns.
  * Slug: flexline/posts-list
- * Categories: posts
+ * Categories: flexline-posts
  * Block Types: core/query
  */
 ?>

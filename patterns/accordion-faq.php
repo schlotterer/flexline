@@ -2,7 +2,7 @@
 /**
  * Title: FAQ/Accordion.
  * Slug: flexline/accordion-faq
- * Categories: featured
+ * Categories: flexline-components
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"FAQ / Accordions"}} -->

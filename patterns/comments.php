@@ -2,7 +2,7 @@
 /**
  * Title: Comments section and form
  * Slug: flexline/comments
- * Inserter: false
+ * Inserter: flexline-utilities
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"}} -->

@@ -2,7 +2,7 @@
 /**
  * Title: CTA Page Link Bar Group
  * Slug: flexline/cta-page-link-bars-dark
- * Categories: featured, call-to-action
+ * Categories: flexline-sections
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical"},"metadata":{"name":"Page CTAs Dark"}} -->

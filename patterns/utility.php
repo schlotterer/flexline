@@ -2,7 +2,7 @@
 /**
  * Title: Utility Bar with search and nav.
  * Slug: flexline/utility
- * Categories: utilities
+ * Categories: flexline-utilities
  * Block Types: core/template-part/utility
  * 
  */

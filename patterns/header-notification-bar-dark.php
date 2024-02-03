@@ -2,7 +2,7 @@
 /**
  * Title: Header notification bar with text, button.
  * Slug: flexline/header-notification-bar-dark
- * Categories: header
+ * Categories: flexline-headers
  * Block Types: core/template-part/header
  */
 ?>

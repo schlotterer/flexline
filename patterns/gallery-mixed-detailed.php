@@ -2,7 +2,7 @@
 /**
  * Title: Mixed Media Popup - detailed.
  * Slug: flexline/gallery-mixed-detailed
- * Categories: galleries
+ * Categories: flexline-components, flexline-galleries
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed"}} -->

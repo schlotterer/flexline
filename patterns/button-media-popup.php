@@ -2,7 +2,7 @@
 /**
  * Title: Button with the media popup option.
  * Slug: flexline/button-media-popup
- * Categories: featured
+ * Categories: flexline-elements
  */
 ?>
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"0"}}}} -->

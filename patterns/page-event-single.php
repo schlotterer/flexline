@@ -2,7 +2,7 @@
 /**
  * Title: Event Single page - using Tribe Events.
  * Slug: flexline/page-event-single
- * Categories: page
+ * Categories: flexline-page
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"}} -->

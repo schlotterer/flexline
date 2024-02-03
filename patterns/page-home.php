@@ -2,7 +2,7 @@
 /**
  * Title: Sample home page.
  * Slug: flexline/page-home
- * Categories: page
+ * Categories: flexline-page
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"30px","bottom":"var:preset|spacing|x-large","left":"30px","top":"70px"},"margin":{"top":"0px"},"blockGap":"10px"}},"className":"welcome","layout":{"type":"constrained","wideSize":"800px"}} -->

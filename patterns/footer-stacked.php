@@ -2,7 +2,7 @@
 /**
  * Title: Footer with heading, text, button.
  * Slug: flexline/footer-stacked
- * Categories: footer
+ * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
 ?>

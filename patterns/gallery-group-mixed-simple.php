@@ -2,7 +2,7 @@
 /**
  * Title: Gallery group for mixed media - simple.
  * Slug: flexline/gallery-group-mixed-simple
- * Categories: galleries
+ * Categories: flexline-galleries, flexline-sections
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Mixed Media Popup Group - simple"}} -->

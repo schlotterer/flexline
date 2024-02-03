@@ -2,7 +2,7 @@
 /**
  * Title: Header transparent over hero.
  * Slug: flexline/header-over-hero
- * Categories: header
+ * Categories: flexline-headers
  * Block Types: core/template-part/header
  */
 ?>

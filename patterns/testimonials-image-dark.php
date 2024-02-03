@@ -2,7 +2,7 @@
 /**
  * Title: Testimonials with text, image.
  * Slug: flexline/testimonials-image-dark
- * Categories: testimonials
+ * Categories: flexline-components
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"default"}} -->

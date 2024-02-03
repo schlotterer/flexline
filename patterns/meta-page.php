@@ -2,7 +2,7 @@
 /**
  * Title: Page Meta Bar
  * Slug: flexline/page-meta
- * Categories: titles-meta
+ * Categories: flexline-heroes
  */
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Page Meta Bar"}} -->

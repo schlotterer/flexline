@@ -2,7 +2,7 @@
 /**
  * Title: Gallery Group with videos.
  * Slug: flexline/gallery-group-video
- * Categories: galleries
+ * Categories: flexline-galleries, flexline-sections
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Video Gallery Rows"}} -->

@@ -1,12 +1,12 @@
 <?php
 /**
- * Title: Gallery for photos using the Photo Poster format.
- * Slug: flexline/gallery-photo-poster
+ * Title: Gallery for photos using the Photo Poster format as a card.
+ * Slug: flexline/gallery-photo-poster-card
  * Categories: flexline-components, flexline-galleries
  */
 ?>
-   <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery"}} -->
-<div class="wp-block-group">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+<div class="wp-block-group is-style-card-padded">
     <!-- wp:gallery {"columns":3,"linkTo":"media","enablePosterGallery":true} -->
     <figure class="wp-block-gallery has-nested-images columns-3 is-cropped">
         <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->

@@ -15,54 +15,90 @@ namespace FlexLine\flexline;
 function flexline_register_block_pattern_categories() {
 
 	register_block_pattern_category(
-		'page',
+		'flexline-elements',
 		array(
-			'label'       => __( 'Page', 'flexline' ),
-			'description' => __( 'Create a full page with multiple patterns that are grouped together.', 'flexline' ),
+			'label'       => __( 'Base Elements', 'flexline' ),
+			'description' => __( 'Basic parts for building up content.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
-		'pricing',
-		array(
-			'label'       => __( 'Pricing', 'flexline' ),
-			'description' => __( 'Compare features for your digital products or service plans.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'galleries',
-		array(
-			'label'       => __( 'Galleries', 'flexline' ),
-			'description' => __( 'Display various media types.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'heros',
-		array(
-			'label'       => __( 'Heros', 'flexline' ),
-			'description' => __( 'Hero patterns for pages', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'titles-meta',
-		array(
-			'label'       => __( 'Titles and Meta', 'flexline' ),
-			'description' => __( 'Page titles and meta information.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'utilities',
-		array(
-			'label'       => __( 'Specialty Template Utilities', 'flexline' ),
-			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'components',
+		'flexline-components',
 		array(
 			'label'       => __( 'Components', 'flexline' ),
 			'description' => __( 'Small pre-configured pieces for creating custom layouts.', 'flexline' ),
 		)
 	);
+	register_block_pattern_category(
+		'flexline-cta',
+		array(
+			'label'       => __( 'Components - Call-to-action', 'flexline' ),
+			'description' => __( 'CTA patterns for pages', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-galleries',
+		array(
+			'label'       => __( 'Components - Galleries', 'flexline' ),
+			'description' => __( 'Display various media types.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-heroes',
+		array(
+			'label'       => __( 'Components - Heroes', 'flexline' ),
+			'description' => __( 'Hero patterns for pages', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-modules',
+		array(
+			'label'       => __( 'Modules', 'flexline' ),
+			'description' => __( 'Rows of components', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-sections',
+		array(
+			'label'       => __( 'Sections', 'flexline' ),
+			'description' => __( 'Curated sections for pages.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-page',
+		array(
+			'label'       => __( 'Pages', 'flexline' ),
+			'description' => __( 'Create a full page with multiple patterns that are grouped together.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-posts',
+		array(
+			'label'       => __( 'Template - Posts', 'flexline' ),
+			'description' => __( 'Create a full page with multiple patterns that are grouped together.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-headers',
+		array(
+			'label'       => __( 'Template - Headers', 'flexline' ),
+			'description' => __( 'Header designs for templates', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-footers',
+		array(
+			'label'       => __( 'Template - Footers', 'flexline' ),
+			'description' => __( 'Footer designs for templates.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-utilities',
+		array(
+			'label'       => __( 'Template - Utilities', 'flexline' ),
+			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
+		)
+	);
+	
 
 }
 

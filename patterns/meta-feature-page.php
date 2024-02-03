@@ -2,7 +2,7 @@
 /**
  * Title: Feature Page Meta.
  * Slug: flexline/hero-feature-page
- * Categories: titles-meta, hero
+ * Categories: flexline-heroes
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Feature Page Meta"}} -->
