@@ -2,29 +2,10 @@
     position: fixed;
 }
 
-/* -- List -- */
-
-.is-style-no-disc {
-	list-style-type: none;
-	padding-left: 0;
-}
-
-
 /* Media Queries
 ---------------------------------------- */
 
 @media only screen and (max-width: 600px) {
-
-	/* -- Utility -- */
-
-	.is-style-hidden-mobile,
-    .is-style-hide-on-mobile {
-		display: none !important;
-	}
-
-    .is-justify-content-center-mobile {
-        justify-content: center !important;
-    }
 
     /* -- Order -- */
 
@@ -76,31 +57,3 @@
 
 }
 
-@media only screen and (max-width: 782px) {
-
-	/* -- Columns -- */
-
-	.is-style-columns-reverse {
-		flex-direction: column-reverse;
-	}
-
-    .is-style-row-reverse > * {
-        flex-direction: row-reverse;
-    }
-
-}
-
-@media only screen and (min-width: 601px) {
-
-	/* -- Navigation Link -- */
-
-	.wp-block-navigation-item.is-style-outline a {
-		border: 1px solid currentColor;
-		padding: 8px 15px;
-	}
-
-    .is-style-hide-on-desktop {
-		display: none !important;
-	}
-
-}

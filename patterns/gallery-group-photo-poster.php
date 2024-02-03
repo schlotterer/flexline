@@ -2,7 +2,7 @@
 /**
  * Title: Gallery Group for photos using the Photo Poster format.
  * Slug: flexline/gallery-group-photo-poster
- * Categories: flexline-galleries, flexline-sections
+ * Categories: flexline-modules, flexline-sections
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained","contentSize":""},"metadata":{"name":"Photo Poster Galleries"}} -->

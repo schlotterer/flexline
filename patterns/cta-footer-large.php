@@ -2,7 +2,7 @@
 /**
  * Title: CTA Footer Large
  * Slug: flexline/cta-footer-large
- * Categories: flexline-cta
+ * Categories: flexline-cta, flexline-modules
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer CTA Group"}} -->

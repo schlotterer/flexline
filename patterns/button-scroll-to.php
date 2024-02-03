@@ -1,7 +1,7 @@
 <?php
 /**
- * Title: Scroll to.
- * Slug: flexline/scroll-to
+ * Title: Button - Scroll to.
+ * Slug: flexline/button-scroll-to
  * Categories: flexline-elements, flexline-components
  */
 ?>

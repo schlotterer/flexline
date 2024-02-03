@@ -23,6 +23,7 @@ function flexline_register_block_styles() {
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
 			'card' => __( 'Card', 'flexline' ),
 			'card-padded' => __( 'Card w/ Padding', 'flexline' ),
+			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
 		),
 		'core/image' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
