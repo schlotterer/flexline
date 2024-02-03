@@ -10,10 +10,10 @@ namespace FlexLine\flexline;
 function flexline_phone_number_shortcode() {
     // Retrieve the phone number from the customizer settings
     $phone_number = get_theme_mod('flexline_main_phone_number', '');
-
+    $tel_link_number = preg_replace('/\D+/', '', $phone_number);
     // Return the phone number as a tel link if it's set
     if (!empty($phone_number)) {
-        return '<a href="tel:' . esc_attr($phone_number) . '">' . esc_html($phone_number) . '</a>';
+        return '<a href="tel:' . esc_attr($tel_link_number) . '">' . esc_html($phone_number) . '</a>';
     }
 
     return ''; // Return empty if the phone number is not set
