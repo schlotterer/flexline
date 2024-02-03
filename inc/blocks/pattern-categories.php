@@ -15,13 +15,6 @@ namespace FlexLine\flexline;
 function flexline_register_block_pattern_categories() {
 
 	register_block_pattern_category(
-		'flexline-elements',
-		array(
-			'label'       => __( 'Base Elements', 'flexline' ),
-			'description' => __( 'Basic parts for building up content.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
 		'flexline-components',
 		array(
 			'label'       => __( 'Components', 'flexline' ),

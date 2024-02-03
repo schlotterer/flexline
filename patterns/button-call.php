@@ -2,7 +2,7 @@
 /**
  * Title: Button Call
  * Slug: flexline/button-call
- * Categories: flexline-elements, flexline-utilities
+ * Categories: flexline-utilities
  */
  // Retrieve the phone number from the customizer settings
  $phone_number = get_theme_mod('flexline_main_phone_number', '');
