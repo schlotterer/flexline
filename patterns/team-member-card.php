@@ -2,7 +2,7 @@
 /**
  * Title: Team Member Card
  * Slug: flexline/team-member-card
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Team Member Card"}} -->

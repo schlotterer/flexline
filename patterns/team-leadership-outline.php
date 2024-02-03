@@ -2,7 +2,7 @@
 /**
  * Title: Leadership Outline.
  * Slug: flexline/team-leadership-outline
- * Categories: flexline-components, flexline-modules
+ * Categories: flexline-components, flexline-modules, flexline-misc
  */
 ?>
 <!-- wp:group {"align":"wide","style":{"border":{"width":"2px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"borderColor":"primary","className":"is-style-default","layout":{"type":"default"},"metadata":{"name":"Leadership Outline"}} -->

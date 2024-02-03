@@ -2,7 +2,7 @@
 /**
  * Title: Team Member Outline
  * Slug: flexline/team-member-outline
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}},"border":{"width":"2px"}},"borderColor":"primary","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Team Member Outline"}} -->

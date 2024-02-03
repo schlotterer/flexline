@@ -2,7 +2,7 @@
 /**
  * Title: Sticky Subnav.
  * Slug: flexline/subnav-sticky
- * Categories: flexline-components, flexline-elements, flexline-modules
+ * Categories: flexline-modules
  */
 ?>
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-alternate","className":"is-style-shadow-light","layout":{"type":"constrained"},"metadata":{"name":"Subnav Sticky"}} -->

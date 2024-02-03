@@ -2,7 +2,7 @@
 /**
  * Title: Pricing Card Light
  * Slug: flexline/pricing-card-light
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Pricing Light"}} -->

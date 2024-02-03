@@ -29,6 +29,13 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
+		'flexline-misc',
+		array(
+			'label'       => __( 'Components - Misc', 'flexline' ),
+			'description' => __( 'Misc component types.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
 		'flexline-cta',
 		array(
 			'label'       => __( 'Components - Call-to-action', 'flexline' ),

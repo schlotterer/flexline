@@ -2,7 +2,7 @@
 /**
  * Title: Button - Scroll to.
  * Slug: flexline/button-scroll-to
- * Categories: flexline-elements, flexline-components
+ * Categories: flexline-elements, flexline-utilities
  */
 ?>
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"top"},"style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->

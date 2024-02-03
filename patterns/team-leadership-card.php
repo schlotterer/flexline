@@ -2,7 +2,7 @@
 /**
  * Title: Leadership Card.
  * Slug: flexline/team-leadership-card
- * Categories: flexline-components, flexline-modules
+ * Categories: flexline-components, flexline-modules, flexline-misc
  */
 ?>
 <!-- wp:group {"align":"wide","className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->

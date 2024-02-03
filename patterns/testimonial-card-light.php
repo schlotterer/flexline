@@ -2,7 +2,7 @@
 /**
  * Title: Testimonial Card Light
  * Slug: flexline/testimonial-card-light
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Testimonial Card Light"}} -->

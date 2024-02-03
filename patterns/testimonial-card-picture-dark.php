@@ -2,7 +2,7 @@
 /**
  * Title: Testimonial Card with Picture Dark
  * Slug: flexline/testimonial-card-picture-dark
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Testimonial Card with Picture Dark"}} -->
