@@ -175,3 +175,7 @@ header.site-header{
 	position: relative;
 }
 
+// Fix cover images 
+img[style*="cover"]{
+	width: 100%;
+}
