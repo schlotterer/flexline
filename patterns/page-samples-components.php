@@ -12,8 +12,8 @@
 
 <!-- wp:columns {"align":"wide"} -->
 <div class="wp-block-columns alignwide"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box Dark - text and button"}} -->
-<div class="wp-block-group is-style-card-padded has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:heading {"level":3} -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"0px","style":"none"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box Dark - text and button"}} -->
+<div class="wp-block-group is-style-card-padded has-base-color has-primary-background-color has-text-color has-background has-link-color" style="border-style:none;border-width:0px"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
 <!-- /wp:heading -->
 
@@ -558,8 +558,8 @@
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","style":{"border":{"width":"2px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"borderColor":"primary","className":"is-style-default","layout":{"type":"default"},"metadata":{"name":"Leadership Outline"}} -->
-<div class="wp-block-group alignwide is-style-default has-border-color has-primary-border-color" style="border-width:2px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
+<!-- wp:group {"align":"wide","className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Leadership Outline"}} -->
+<div class="wp-block-group alignwide is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
 <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Leadership Info"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Name and Title"}} -->
@@ -610,13 +610,13 @@
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}},"border":{"width":"2px"}},"borderColor":"primary","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Team Member Outline"}} -->
-<div class="wp-block-group is-style-default has-border-color has-primary-border-color" style="border-width:2px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:image {"align":"center","id":3489,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Team Member Outline"}} -->
+<div class="wp-block-group is-style-outlined"><!-- wp:image {"align":"center","id":3489,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-6.jpg'; ?>" alt="Sample Image" class="wp-image-3489" style="object-fit:cover"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"},"metadata":{"name":"Name and Title"}} -->
-<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Name and Title"}} -->
+<div class="wp-block-group" style="padding-bottom:0"><!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
 <h3 class="wp-block-heading has-text-align-center has-medium-font-size" id="member-name-1">Member Name</h3>
 <!-- /wp:heading -->
 

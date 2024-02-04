@@ -5,8 +5,8 @@
  * Categories: flexline-components, flexline-modules, flexline-misc
  */
 ?>
-<!-- wp:group {"align":"wide","style":{"border":{"width":"2px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"borderColor":"primary","className":"is-style-default","layout":{"type":"default"},"metadata":{"name":"Leadership Outline"}} -->
-<div class="wp-block-group alignwide is-style-default has-border-color has-primary-border-color" style="border-width:2px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
+<!-- wp:group {"align":"wide","className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Leadership Outline"}} -->
+<div class="wp-block-group alignwide is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
 <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Leadership Info"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Name and Title"}} -->
