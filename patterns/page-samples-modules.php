@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Sample page displaying all Modules.
- * Slug: flexline/page-samples-components
+ * Slug: flexline/page-samples-modules
  * Categories: flexline-page
  */
 ?>
