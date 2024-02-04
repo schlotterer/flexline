@@ -2,12 +2,12 @@
 body{
 
     .wp-block-image{
-        border-radius: var(--wp--custom--border-radius);
         overflow: clip;
     }
 
     // All
     .is-style-card,
+    .is-style-card-alt,
     .is-style-card-padded,
     .is-style-outline-padded,
     .is-style-shadow-light,
@@ -18,6 +18,7 @@ body{
 
     // Cards
     .is-style-card,
+    .is-style-card-alt,
     .is-style-card-padded{
         overflow:clip; 
         background:var(--wp--preset--color--base);
@@ -43,6 +44,18 @@ body{
         &.has-global-padding,
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
             padding: var(--wp--preset--spacing--small);
+        }
+        
+    }
+    .is-style-card-alt{
+        > *:not(figure) {
+            padding: var(--wp--preset--spacing--small);
+        }
+        &.has-global-padding,
+        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+            > *:not(figure) {
+                padding: var(--wp--preset--spacing--small);
+            }
         }
         
     }
