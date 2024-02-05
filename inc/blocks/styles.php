@@ -34,8 +34,12 @@ function flexline_register_block_styles() {
 		'core/list' => array(
 			'no-disc' => __( 'No Disc', 'flexline' ),
 		),
+		'core/navigation' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
 		'core/quote' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
@@ -45,6 +49,12 @@ function flexline_register_block_styles() {
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'flexline' ),
 		),
+		'core/headline' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/paragraph' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		)
 	);
 
 	foreach ( $block_styles as $block => $styles ) {

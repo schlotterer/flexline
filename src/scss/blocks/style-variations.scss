@@ -57,10 +57,6 @@ body{
                 padding: var(--wp--preset--spacing--small);
             } 
         }
-        
-      
-        
-        
     }
 
     // Outlines
@@ -100,6 +96,11 @@ body{
     .is-style-no-disc {
         list-style-type: none;
         padding-left: 0;
+    }
+
+    // Text Shadow
+    .is-style-text-shadow{
+        text-shadow: var(--wp--custom--text-shadow);
     }
 
 

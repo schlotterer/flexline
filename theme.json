@@ -332,6 +332,7 @@
 			"spacing": {
 				"gap": "30px"
 			},
+			"textShadow": "0 0 2px var(--wp--preset--color--contrast)",
 			"borderRadius": "5px",
 			"buttonBorderRadius": "5px",
 			"transitionTime": "0.35s ease-in-out"
