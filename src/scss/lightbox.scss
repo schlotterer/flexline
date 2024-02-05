@@ -124,9 +124,11 @@ a.enable-lightbox{
 
 // Poster Gallery
 figure.poster-gallery.has-nested-images{
+    position: relative;
 	> figure{
 		position: absolute !important;
 		visibility: hidden;
+        max-width: 100%;
 	}
 	> figure:first-of-type{
 		position: relative !important;

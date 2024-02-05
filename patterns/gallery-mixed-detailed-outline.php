@@ -1,12 +1,12 @@
 <?php
 /**
- * Title: Mixed Media Popup - detailed.
- * Slug: flexline/gallery-mixed-detailed
+ * Title: Mixed Media Popup - detailed - outlined.
+ * Slug: flexline/gallery-mixed-detailed-outlined
  * Categories: flexline-components, flexline-galleries
  */
 ?>
-<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed Card"}} -->
-<div class="wp-block-group is-style-default"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed Outlined"}} -->
+<div class="wp-block-group is-style-outlined"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
 <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/featured-3.jpg'; ?>" alt="Sample Image"/></figure>
 <!-- /wp:image -->
 

@@ -48,15 +48,18 @@ body{
         
     }
     .is-style-card-alt{
+        padding:0;
         > *:not(figure) {
             padding: var(--wp--preset--spacing--small);
         }
-        &.has-global-padding,
-        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+        &.has-global-padding{
             > *:not(figure) {
                 padding: var(--wp--preset--spacing--small);
-            }
+            } 
         }
+        
+      
+        
         
     }
 
