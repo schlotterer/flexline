@@ -45,11 +45,14 @@ function flexline_register_block_styles() {
 			'shadow-light' => __( 'Shadow', 'flexline' ),
 			'shadow-dark' => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+			'card' => __( 'Card', 'flexline' ),
+			'card-padded' => __( 'Card w/ Padding', 'flexline' ),
+			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
 		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'flexline' ),
 		),
-		'core/headline' => array(
+		'core/heading' => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
 		'core/paragraph' => array(

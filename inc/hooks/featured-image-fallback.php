@@ -29,7 +29,8 @@ function flexline_featured_image_fallback( $value, $post_id, $size ) {
             return $attachment_id;
         }
     }
-
+    var_dump($fallback_image_url);
+    die();
     // Return the original value if no fallback image is found
     return $value;
 }
