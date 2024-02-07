@@ -1,7 +1,14 @@
 .is-position-fixed{
     position: fixed;
+    width: 100%;
+    z-index: 10;
 }
-
+.is-header-position-fixed{
+    position: fixed;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
 /* Media Queries
 ---------------------------------------- */
 
