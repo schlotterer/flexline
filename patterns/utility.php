@@ -12,7 +12,7 @@
     <!-- wp:search {"label":"Search","showLabel":false,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true,"style":{"border":{"radius":"0px"}},"backgroundColor":"primary"} /-->
 
     <!-- wp:html {"lock":{"move":true,"remove":true}} -->
-    <button id="slide-in-menu-button" class="slide-in-menu-button" aria-controls="slide-in-menu" aria-expanded="false">☰</button>
+    <button tabindex="0" aria-live="polite" id="slide-in-menu-button" class="slide-in-menu-button" aria-controls="slide-in-menu" aria-expanded="false">☰</button>
     <!-- /wp:html -->   
 </div>
 <!-- /wp:group -->
