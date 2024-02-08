@@ -750,8 +750,8 @@
 	"templateParts": [
 		{
 			"area": "topbar",
-			"name": "top-bar",
-			"title": "Top Bar"
+			"name": "slide-in",
+			"title": "Slide In"
 		},
 		{
 			"area": "header",
@@ -762,11 +762,6 @@
 			"area": "header",
 			"name": "header-hero",
 			"title": "Header Overlapping Hero"
-		},
-		{
-			"area": "slideinmenu",
-			"name": "slide-in",
-			"title": "Slide In Menu"
 		},
 		{
 			"area": "footer",

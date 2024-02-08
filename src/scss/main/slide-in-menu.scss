@@ -5,42 +5,90 @@ body.no-scroll {
     width: 100%; /* Optional: to ensure full page width */
     position: fixed; /* Optional: to lock the position */
 }
-aside#slide-in-menu{
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 100%;
-    bottom: 0;
-    transition: var(--wp--custom--transition-time);
-    z-index: 100000000;
-    width: 100%;
-    overflow: auto;
-    &.active{
+.wp-block-template-part.slide-in{
+    > aside{
+        display: block;
+        position: fixed;
         top: 0;
-        right: 0;
+        left: 100%;
         bottom: 0;
-        left: 0;
+        transition: var(--wp--custom--transition-time);
+        z-index: 100000000;
+        width: 100%;
+        overflow: auto;
+        &.active{
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
     }
-    
 }
 button{
     &#slide-in-menu-button{
+        
+        position: fixed;
+        display: flex;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        right: 5px;
+        transition: var(--wp--custom--transition-time);
+        z-index: 12;
+
         border-radius: var(--wp--custom--border-radius);
         background-color: var(--wp--preset--color--primary);
-        display: inline-block;
-        padding: 5px 8px 8px 8px;
+        
         text-align: center;
         justify-content: center;
         align-items: center;
         color: var(--wp--preset--color--base);
         border: none;
-        font-size: var(--wp--preset--font-size--medium);
+        font-size: var(--wp--preset--font-size--xlarge);
         line-height: 1;
-    }
+        > span{
+            display: flex;
+            justify-content: center;
+        align-items: center;
+            width: 100%;
+            height: 100%;
+            &::before{
+                line-height: 1.4;
+                font-size: 35px;
+            }
+        }
+}
     &#slide-in-menu-close{
         border: none;
         background-color: transparent;
         color: var(--wp--preset--color--base);
-        font-size: var(--wp--preset--font-size--medium);
+        font-size: var(--wp--preset--font-size--xlarge);
+        top: -20px;
+        right: 10px;
+        position: absolute;
+        > span{
+            &::before{
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+.admin-bar{
+    #slide-in-menu-button {
+        transform: translate(0,var(--wp-admin--admin-bar--height));
+    }
+}
+
+@media screen and (max-width: 1325px) {
+    button#slide-in-menu-button {
+        width: 35px;
+        height: 35px;
+
+        > span{
+            &::before{
+                font-size: 25px;
+            }
+        }
     }
 }
