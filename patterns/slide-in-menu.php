@@ -26,7 +26,7 @@ $tel_link_number = preg_replace('/\D+/', '', $phone_number);
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 
-<!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"layout":{"selfStretch":"fill","flexSize":null}}} /--></div>
+<!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","style":{"layout":{"selfStretch":"fill","flexSize":null}}} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
