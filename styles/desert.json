@@ -142,17 +142,37 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "Playfair Display",
+					"fontFamily": "'Playfair Display', serif",
 					"name": "Brand",
-					"slug": "brand"
+					"slug": "brand",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "'Playfair Display'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "500 700",
+							"src": [ "file:./assets/fonts/desert/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+						}
+					]
 				},
 				{
-					"fontFamily": "Lato",
+					"fontFamily": "'Lato', sans-serif",
 					"name": "Display",
-					"slug": "display"
+					"slug": "display",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "200 500 700 900",
+							"src": [ "file:./assets/fonts/desert/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+						}
+					]
 				},
 				{
-					"fontFamily": "Open Sans",
+					"fontFamily": "Tahoma, Verdana, Segoe, sans-serif",
 					"name": "Body",
 					"slug": "body"
 				},
@@ -404,7 +424,7 @@
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--body)",
 			"fontSize": "var(--wp--preset--font-size--medium)",
-			"fontWeight": "var(--wp--custom--font-weight--light)",
+			"fontWeight": "var(--wp--custom--font-weight--regular)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
 		},
 		"elements": {
@@ -487,7 +507,6 @@
 			},
 			"heading": {
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--display)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"lineHeight": "var(--wp--custom--line-height--heading)"
 				}
@@ -583,7 +602,7 @@
 				"elements": {
 					"link": {
 						"typography": {
-							
+							"fontFamily": "var(--wp--preset--font-family--display)",
 							"textDecoration": "none"
 						}
 					}
