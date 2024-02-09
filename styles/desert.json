@@ -64,24 +64,61 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--contrast) 100%)",
-					"name": "Primary to Contrast",
-					"slug": "primary-contrast"
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--custom--color--primary--dark) 100%)",
+					"name": "Primary to Primary Dark",
+					"slug": "primary-primaryDark"
 				},
 				{
-					"gradient": "linear-gradient(90deg, var(--wp--custom--color--primary--700) 0%, var(--wp--custom--color--primary--900) 100%)",
-					"name": "Primary 700 to 900",
-					"slug": "primary-700-900"
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--secondary) 0%, var(--wp--custom--color--secondary--dark) 100%)",
+					"name": "Secondary to Secondary Dark",
+					"slug": "secondary-secondaryDark"
 				},
 				{
-					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--alternate) 0%, var(--wp--custom--color--alternate--dark) 100%)",
+					"name": "Alternate to Alternate Dark",
+					"slug": "alternate-alternateDark"
+				},
+				{
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--highlight) 0%, var(--wp--custom--color--highlight--dark) 100%)",
+					"name": "Highlight to Highlight Dark",
+					"slug": "highlight-highlightDark"
+				},
+				{
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--neutral) 0%, var(--wp--custom--color--neutral--dark) 100%)",
+					"name": "Neutral to Neutral Dark",
+					"slug": "neutral-neutralDark"
+				},
+				{
+					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
+				}
+			],
+			"duotone": [
+				{
+					"colors": [ "#595f23", "#ffffff" ],
+					"slug": "primary",
+					"name": "Primary"
 				},
 				{
-					"gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
-					"name": "Primary to Alternate",
-					"slug": "primary-alternate"
+					"colors": [ "#af844b", "#ffffff" ],
+					"slug": "secondary",
+					"name": "Secondary"
+				},
+				{
+					"colors": [ "#a62a1c", "#ffffff" ],
+					"slug": "alternate",
+					"name": "Alternate"
+				},
+				{
+					"colors": [ "#919A3B", "#ffffff" ],
+					"slug": "highlight",
+					"name": "Highlight"
+				},
+				{
+					"colors": [ "#49535d", "#ffffff" ],
+					"slug": "nutral-dark",
+					"name": "Nutral Dark"
 				}
 			],
 			"palette": [
@@ -121,12 +158,12 @@
 					"slug": "base"
 				},
 				{
-					"color": "#0e161e",
-					"name": "Contrast",
-					"slug": "contrast"
+					"color": "#f5f0e9",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
 				},
 				{
-					"color": "#f5f0e9",
+					"color": "#dadcde",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -134,8 +171,14 @@
 					"color": "#49535d",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
+				},
+				{
+					"color": "#0e161e",
+					"name": "Contrast",
+					"slug": "contrast"
 				}
 			]
+			
 		},
 		"typography": {
 			"dropCap": false,
@@ -158,6 +201,21 @@
 				},
 				{
 					"fontFamily": "'Lato', sans-serif",
+					"name": "Display Light",
+					"slug": "display-light",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [ "file:./assets/fonts/desert/Lato/Lato-Light.ttf"]
+						}
+					]
+				},
+				{
+					"fontFamily": "'Lato', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
@@ -166,8 +224,8 @@
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "200 500 700 900",
-							"src": [ "file:./assets/fonts/desert/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/desert/Lato/Lato-Regular.ttf"]
 						}
 					]
 				},
@@ -288,51 +346,17 @@
 		},
 		"custom": {		
 			"color":{
-				"brand":{
-					"blue" : "#0F6185",
-					"green" : "#39B26A",
-					"orange" : "#FB8C7B"
-				},
 				"primary": {
-					"main" : "var(--wp--preset--color--primary)",
-					"50": "color-mix(in srgb, var(--wp--preset--color--primary) 25%, #fff 100%)",
-					"100": "color-mix(in srgb, var(--wp--preset--color--primary) 30%, #fff 80%)",
-					"200": "color-mix(in srgb, var(--wp--preset--color--primary) 40%, #fff 60%)",
-					"300": "color-mix(in srgb, var(--wp--preset--color--primary) 60%, #fff 40%)",
-					"400": "color-mix(in srgb, var(--wp--preset--color--primary) 80%, #fff 20%)",
-					"500": "var(--wp--preset--color--primary)",
-					"600": "color-mix(in srgb, var(--wp--preset--color--primary) 80%, #000 20%)",
-					"700": "color-mix(in srgb, var(--wp--preset--color--primary) 60%, #000 40%)",
-					"800": "color-mix(in srgb, var(--wp--preset--color--primary) 40%, #000 60%)",
-					"900": "color-mix(in srgb, var(--wp--preset--color--primary) 30%, #000 80%)",
-					"950": "color-mix(in srgb, var(--wp--preset--color--primary) 25%, #000 100%)"
+					"light" : "#acaf91",
+					"dark": "#2d3012"
 				},
 				"secondary": {
-					"main": "var(--wp--preset--color--secondary)",
-					"50": "color-mix(in srgb, var(--wp--preset--color--secondary) 25%, #fff 100%)",
-					"100": "color-mix(in srgb, var(--wp--preset--color--secondary) 30%, #fff 80%)",
-					"200": "color-mix(in srgb, var(--wp--preset--color--secondary) 40%, #fff 60%)",
-					"300": "color-mix(in srgb, var(--wp--preset--color--secondary) 60%, #fff 4%)",
-					"400": "color-mix(in srgb, var(--wp--preset--color--secondary) 80%, #fff 20%)",
-					"500": "var(--wp--preset--color--secondary)",
-					"600": "color-mix(in srgb, var(--wp--preset--color--secondary) 80%, #000 20%)",
-					"700": "color-mix(in srgb, var(--wp--preset--color--secondary) 60%, #000 40%)",
-					"800": "color-mix(in srgb, var(--wp--preset--color--secondary) 40%, #000 60%)",
-					"900": "color-mix(in srgb, var(--wp--preset--color--secondary) 30%, #000 80%)",
-					"950": "color-mix(in srgb, var(--wp--preset--color--secondary) 25%, #000 100%)"
+					"light" : "#e7dac9",
+					"dark": "#694f2d"
 				},
-				"gray": {
-					"50": "color-mix(in srgb, var(--wp--preset--color--white) 95%, var(--wp--preset--color--black) 5%)",
-					"100": "color-mix(in srgb, var(--wp--preset--color--white) 90%, var(--wp--preset--color--black) 10%)",
-					"200": "color-mix(in srgb, var(--wp--preset--color--white) 80%, var(--wp--preset--color--black) 20%)",
-					"300": "color-mix(in srgb, var(--wp--preset--color--white) 70%, var(--wp--preset--color--black) 30%)",
-					"400": "color-mix(in srgb, var(--wp--preset--color--white) 60%, var(--wp--preset--color--black) 40%)",
-					"500": "color-mix(in srgb, var(--wp--preset--color--white) 50%, var(--wp--preset--color--black) 50%)",
-					"600": "color-mix(in srgb, var(--wp--preset--color--white) 40%, var(--wp--preset--color--black) 60%)",
-					"700": "color-mix(in srgb, var(--wp--preset--color--white) 30%, var(--wp--preset--color--black) 70%)",
-					"800": "color-mix(in srgb, var(--wp--preset--color--white) 20%, var(--wp--preset--color--black) 80%)",
-					"900": "color-mix(in srgb, var(--wp--preset--color--white) 10%, var(--wp--preset--color--black) 90%)",
-					"950": "color-mix(in srgb, var(--wp--preset--color--white) 5%, var(--wp--preset--color--black) 95%)"
+				"alternate": {
+					"light" : "#d3958e",
+					"dark": "#53150e"
 				},
 				"alert": {
 					"success": "#18A957",
@@ -423,7 +447,7 @@
 		},
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--body)",
-			"fontSize": "var(--wp--preset--font-size--medium)",
+			"fontSize": "var(--wp--preset--font-size--small)",
 			"fontWeight": "var(--wp--custom--font-weight--regular)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
 		},
@@ -471,7 +495,7 @@
 			},
 			"h1": {
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--brand)",
+					"fontFamily": "var(--wp--preset--font-family--display)",
 					"fontSize": "var(--wp--preset--font-size--max-36)"
 				}
 			},

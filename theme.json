@@ -151,7 +151,7 @@
 				},
                 {
 					"fontFamily": "Outfit, sans-serif",
-					"name": "Display1",
+					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
@@ -412,7 +412,7 @@
 			"text": "var(--wp--preset--color--contrast)"
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-familbody)",
+			"fontFamily": "var(--wp--preset--font-family--body)",
 			"fontSize": "var(--wp--preset--font-size--medium)",
 			"fontWeight": "var(--wp--custom--font-weight--light)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
