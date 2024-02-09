@@ -1,6 +1,8 @@
 {
 	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
+    "title": "Corporate",
+	"description":  "Corporate Blues and Greens",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -136,8 +138,23 @@
 			"fontFamilies": [
 				{
 					"fontFamily": "Outfit, sans-serif",
-					"name": "Outfit",
-					"slug": "primary",
+					"name": "Brand",
+					"slug": "brand",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Outfit",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"src": [ "file:./assets/fonts/Outfit-Variable.woff2" ]
+						}
+					]
+				},
+                {
+					"fontFamily": "Outfit, sans-serif",
+					"name": "Display1",
+					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
@@ -150,6 +167,11 @@
 					]
 				},
 				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"name": "Body",
+					"slug": "body"
+				},
+                {
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
@@ -392,7 +414,7 @@
 			"text": "var(--wp--preset--color--contrast)"
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--primary)",
+			"fontFamily": "var(--wp--preset--font-familbody)",
 			"fontSize": "var(--wp--preset--font-size--medium)",
 			"fontWeight": "var(--wp--custom--font-weight--light)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
