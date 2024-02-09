@@ -20,7 +20,7 @@
 <!-- wp:column {"verticalAlignment":"center","width":""} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","align":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
 <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"id":362,"sizeSlug":"medium","linkDestination":"custom"} -->
-<figure class="wp-block-image size-medium"><a href="/contact/"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/slide-in.jpg'; ?>" alt="Sample Image" class="wp-image-362"/></a><figcaption class="wp-element-caption">Page Link Image</figcaption></figure>
+<figure class="wp-block-image size-medium"><a href="/contact/"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.jpg'; ?>" alt="Sample Image" class="wp-image-362"/></a><figcaption class="wp-element-caption">Page Link Image</figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:image {"id":362,"sizeSlug":"medium","linkDestination":"custom"} -->
