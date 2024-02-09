@@ -1,6 +1,8 @@
 {
 	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
+    "title": "Dessert",
+	"description":  "Dessert colors and box shadows",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -84,22 +86,22 @@
 			],
 			"palette": [
 				{
-					"color": "#0F6185",
+					"color": "#595f23",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#39B26A",
+					"color": "#af844b",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#004f94",
+					"color": "#a62a1c",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#FB8C7B",
+					"color": "#919A3B",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -119,14 +121,19 @@
 					"slug": "base"
 				},
 				{
-					"color": "#000000",
+					"color": "#0e161e",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "var(--wp--custom--color--gray--200)",
+					"color": "#f5f0e9",
 					"name": "Neutral",
 					"slug": "neutral"
+				},
+				{
+					"color": "#49535d",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
 				}
 			]
 		},
@@ -330,11 +337,11 @@
 				"one": 1
 			},
 			"spacing": {
-				"gap": "30px"
+				"gap": "35px"
 			},
 			"textShadow": "0 .2rem .4rem rgba(0,0,0, 0.5)",
-			"borderRadius": "5px",
-			"buttonBorderRadius": "5px",
+			"borderRadius": "0px",
+			"buttonBorderRadius": "200px",
 			"transitionTime": "0.35s ease-in-out"
 
 		},
