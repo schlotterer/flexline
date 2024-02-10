@@ -190,7 +190,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "500 700",
-							"src": [ "file:./assets/fonts/desert/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -205,7 +205,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "300",
-							"src": [ "file:./assets/fonts/desert/Lato/Lato-Light.ttf"]
+							"src": [ "file:./assets/fonts/Lato/Lato-Light.ttf"]
 						}
 					]
 				},
