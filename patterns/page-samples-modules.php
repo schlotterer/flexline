@@ -72,7 +72,7 @@
     <div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-columns alignwide"><!-- wp:column -->
             <div class="wp-block-column">
-                
+
                 <!-- wp:pattern {"slug":"flexline/team-member"} /-->
 
             </div>
@@ -80,7 +80,7 @@
 
             <!-- wp:column -->
             <div class="wp-block-column">
-                
+
                 <!-- wp:pattern {"slug":"flexline/team-member-card"} /-->
 
             </div>
@@ -88,7 +88,7 @@
 
             <!-- wp:column -->
             <div class="wp-block-column">
-                
+
                 <!-- wp:pattern {"slug":"flexline/team-member-outline"} /-->
 
             </div>
@@ -96,7 +96,7 @@
 
             <!-- wp:column -->
             <div class="wp-block-column">
-                
+
                 <!-- wp:pattern {"slug":"flexline/team-member-card-alt"} /-->
 
             </div>
@@ -113,7 +113,7 @@
     <!-- wp:pattern {"slug":"flexline/team-leadership-card"} /-->
 
     <!-- wp:pattern {"slug":"flexline/team-leadership-outline"} /-->
-   
+
 </div>
 <!-- /wp:group -->
 
@@ -139,7 +139,7 @@
         <div class="wp-block-column">
 
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster"} /-->
-            
+
         </div>
         <!-- /wp:column -->
 
@@ -156,7 +156,7 @@
 
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-outlined"} /-->
 
-            
+
         </div>
         <!-- /wp:column -->
 
@@ -180,7 +180,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video"} /-->
 
         </div>
@@ -188,7 +188,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video"} /-->
 
         </div>
@@ -214,7 +214,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple-card"} /-->
 
         </div>
@@ -222,7 +222,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple-card"} /-->
 
         </div>
@@ -248,7 +248,7 @@
 
         <!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-card-alt"} /-->
 
             <!-- wp:pattern {"slug":"flexline/gallery-video-card-alt"} /-->
@@ -264,7 +264,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
     <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-card-alt"} /-->
 
             <!-- wp:pattern {"slug":"flexline/gallery-video-card-alt"} /-->
@@ -274,7 +274,7 @@
 
         <!-- wp:column {"verticalAlignment":"center","width":"70%"} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:70%">
-        
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed"} /-->
 
         </div>
@@ -307,7 +307,7 @@
     <h2 class="wp-block-heading">Footer CTA</h2>
     <!-- /wp:heading -->
 
-    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->    
+    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
 
 </div>
 <!-- /wp:group -->

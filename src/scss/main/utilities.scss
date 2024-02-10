@@ -9,6 +9,22 @@
     width: 100%;
     z-index: 10;
 }
+
+.has-primary-primaryDark-gradient-background{
+    background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--custom--color--primary--dark) 100%);
+}
+.has-secondary-secondaryDark-gradient-background{
+    background: linear-gradient(90deg, var(--wp--preset--color--secondary) 0%, var(--wp--custom--color--secondary--dark) 100%);
+}
+.has-alternate-alternateDark-gradient-background{
+    background: linear-gradient(90deg, var(--wp--preset--color--alternate) 0%, var(--wp--custom--color--alternate--dark) 100%);
+}
+.has-neutral-neutralLight-gradient-background{
+    background: linear-gradient(90deg, var(--wp--preset--color--neutral) 0%, var(--wp--preset--color--neutral-light) 100%);
+}
+.has-primary-secondary-gradient-background{
+    background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%);
+}
 /* Media Queries
 ---------------------------------------- */
 
