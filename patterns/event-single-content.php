@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Title: Event Single
- * Slug: flexline/events-single
+ * Title: Event Single Content
+ * Slug: flexline/events-single-content
  * Categories: flexline-posts, flexline-sections
  */
 ?>
@@ -19,3 +19,5 @@
     <!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
+
+   
