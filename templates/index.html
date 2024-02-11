@@ -1,8 +1,34 @@
-<!-- wp:template-part {"slug":"slide-in","tagName":"header","className":"slide-in"} /-->
-<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header headroom"} /-->
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"40px","bottom":"40px"}}},"className":"site-content"} -->
-<main class="wp-block-group site-content" style="margin-top:0;padding-top:40px;padding-bottom:40px">
-	<!-- wp:pattern {"slug":"flexline/posts"} /-->
+<!-- wp:template-part {"slug":"slide-in","tagName":"div","className":"slide-in"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Archive Template"}} -->
+<main class="wp-block-group" style="margin-top:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+    
+    <!-- wp:pattern {"slug":"flexline/meta-archive"} /-->
+
+    <!-- wp:group {"layout":{"type":"constrained","contentSize":"600px"},"metadata":{"name":"Archive List View"}} -->
+    <div class="wp-block-group"><!-- wp:query {"queryId":0,"query":{"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"perPage":10},"layout":{"type":"constrained"}} -->
+        <div class="wp-block-query">
+            
+            <!-- wp:post-template {"layout":{"type":"default","columnCount":3}} -->
+            
+                <!-- wp:pattern {"slug":"flexline/post-list-single-outline"} /-->
+            
+            <!-- /wp:post-template -->
+
+            <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+                <!-- wp:query-pagination-previous /-->
+
+                <!-- wp:query-pagination-next /-->
+            <!-- /wp:query-pagination -->
+
+        </div>
+        <!-- /wp:query -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
 </main>
 <!-- /wp:group -->
+
 <!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->
