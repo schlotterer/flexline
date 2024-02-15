@@ -82,8 +82,14 @@
 
     .is-order-last-mobile {
         order: 99999;
-    }
+    }  
 
+}
+
+/* Media Queries
+---------------------------------------- */
+
+@media only screen and (max-width: 991px) {
     .is-style-horizontal-scroll-at-mobile:not(ul){
         &::after{
             content: "›";
@@ -119,7 +125,5 @@
                 display: none;
             }
         }
-    }    
-
+    }  
 }
-
