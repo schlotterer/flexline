@@ -35,7 +35,7 @@ function flexline_register_block_styles() {
 			'no-disc' => __( 'No Disc', 'flexline' ),
 		),
 		'core/navigation' => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'horizontal-scroll-at-mobile' => __( 'Horizontal Scroll at Mobile', 'flexline' ),
 		),
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'flexline' ),
