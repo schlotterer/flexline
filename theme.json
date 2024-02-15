@@ -429,7 +429,8 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
-					"textTransform": "uppercase"
+					"textTransform": "uppercase",
+					
 				},
 				"spacing": {
 					"padding": {
@@ -508,6 +509,7 @@
 				}
 			},
 			"core/button": {
+				"css": "text-wrap: nowrap;",
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--preset--spacing--medium)",
