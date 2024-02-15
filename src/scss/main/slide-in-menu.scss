@@ -29,8 +29,8 @@ button{
         
         position: fixed;
         display: flex;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         text-align: center;
         right: 5px;
         transition: var(--wp--custom--transition-time);
@@ -45,7 +45,7 @@ button{
         align-items: center;
         color: var(--wp--preset--color--base);
         border: none;
-        font-size: var(--wp--preset--font-size--xlarge);
+        font-size: var(--wp--preset--font-size--large);
         line-height: 1;
         > span{
             display: flex;
@@ -55,7 +55,7 @@ button{
             height: 100%;
             &::before{
                 line-height: 1.4;
-                font-size: 35px;
+                font-size: 30px;
             }
         }
 }
