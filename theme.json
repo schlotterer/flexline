@@ -419,6 +419,7 @@
 		},
 		"elements": {
 			"button": {
+				"css": "text-wrap:nowrap;",
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
 				},
@@ -509,7 +510,6 @@
 				}
 			},
 			"core/button": {
-				"css": "text-wrap: nowrap;",
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--preset--spacing--medium)",
