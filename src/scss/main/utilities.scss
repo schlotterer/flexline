@@ -25,6 +25,29 @@
 .has-primary-secondary-gradient-background{
     background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%);
 }
+
+
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+    white-space: nowrap; /* Ensure items are laid out in a single line */
+}
+.horizontal-scroll-container > * {
+    flex: 0 0 auto;
+    text-wrap: nowrap;
+}
+/* Optional: Hide scrollbar but still allow scrolling */
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+.horizontal-scroll-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+
+
 /* Media Queries
 ---------------------------------------- */
 
