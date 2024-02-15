@@ -430,8 +430,7 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
-					"textTransform": "uppercase",
-					
+					"textTransform": "uppercase"
 				},
 				"spacing": {
 					"padding": {
