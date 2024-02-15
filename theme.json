@@ -497,6 +497,9 @@
 			"link": {
 				"color": {
 					"text": "var(--wp--preset--color--contrast)"
+				},
+				"typography": {
+					"textDecoration": "none"
 				}
 			}
 		},
