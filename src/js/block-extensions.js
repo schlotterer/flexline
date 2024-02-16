@@ -76,6 +76,8 @@ function addCustomGroupAttributes(settings, name) {
     return settings;
 }
 
+
+
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
@@ -150,6 +152,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 />
                             )}
                         </PanelBody>
+                        
                     </InspectorControls>
                 </Fragment>
             );
