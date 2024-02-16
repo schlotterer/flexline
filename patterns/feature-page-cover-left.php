@@ -35,8 +35,8 @@
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
-                <div class="wp-block-buttons" style="margin-bottom:0"><!-- wp:button {"backgroundColor":"secondary","textColor":"base","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}}} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link has-base-color has-secondary-background-color has-text-color has-background has-link-color wp-element-button">View More →</a></div>
+                <div class="wp-block-buttons" style="margin-bottom:0"><!-- wp:button -->
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">View More →</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->

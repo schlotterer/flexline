@@ -24,12 +24,13 @@
                     <!-- /wp:paragraph -->
 
                     <!-- wp:buttons -->
-                    <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"secondary","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"medium"} -->
-                        <div class="wp-block-button has-custom-font-size has-medium-font-size" style="text-transform:uppercase"><a class="wp-block-button__link has-secondary-background-color has-background wp-element-button" href="#quickForm">Contact Us</a></div>
+                    <div class="wp-block-buttons">
+                        <!-- wp:button -->
+                        <div class="wp-block-button" style="text-transform:uppercase"><a class="wp-block-button__link wp-element-button" href="#quickForm">Contact Us</a></div>
                         <!-- /wp:button -->
 
-                        <!-- wp:button {"textColor":"base","style":{"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"className":"is-style-outline","fontSize":"medium","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=G1hKzCkywM8"} -->
-                        <div class="wp-block-button has-custom-font-size is-style-outline has-medium-font-size" style="text-transform:uppercase"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button">Watch video</a></div>
+                        <!-- wp:button {"className":"is-style-outline","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=G1hKzCkywM8"} -->
+                        <div class="wp-block-button is-style-outline" style="text-transform:uppercase"><a class="wp-block-button__link wp-element-button">Watch video</a></div>
                         <!-- /wp:button -->
                     </div>
                     <!-- /wp:buttons -->
