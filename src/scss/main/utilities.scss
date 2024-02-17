@@ -187,10 +187,10 @@
             }
         }
         scrollbar-width: thin; /* "auto" or "thin" */
-        scrollbar-color: rgba(#bdbdbd, .40) transparent; /* thumb and track color */
+        scrollbar-color: rgba(#000000, .20) transparent; /* thumb and track color */
         &::-webkit-scrollbar{
             height: 3px; /* Height of the scrollbar */
-            background-color: rgba(#bdbdbd, .40); /* Color of the scrollbar track */
+            background-color: rgba(#000000, .20); /* Color of the scrollbar track */
         }
         &::-webkit-scrollbar-thumb {
             background-color: transparent;/* Color of the scroll thumb */
