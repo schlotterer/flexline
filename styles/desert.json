@@ -324,6 +324,8 @@
 			]
 		},
 		"custom": {	
+			"linkColor": "var(--wp--preset--color--primary)",
+			"linkHoverColor": "var(--wp--preset--color--highlight)",
 			"textShadow": "0 .2rem .4rem rgba(0,0,0, 0.5)",
 			"borderRadius": "0px",
 			"buttonBorderRadius": "200px",
@@ -856,6 +858,44 @@
 				"css": "th {border-color: var(--wp--preset--color--contrast) !important;} & td {border-color: var(--wp--preset--color--contrast) !important;}",
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)"
+				}
+			},
+			"core/categories": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--display)"
+				},
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--primary)"
+						},
+						":hover": {
+							"color": {
+								"text": "var(--wp--preset--color--highlight)"
+							}
+						}
+					}
+				}
+			},
+			"core/read-more": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontFamily": "var(--wp--preset--font-family--display)"
+				},
+				"color": {
+					"text": "var(--wp--preset--color--primary)"
+				},
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--primary)"
+						},
+						":hover": {
+							"color": {
+								"text": "var(--wp--preset--color--highlight)"
+							}
+						}
+					}
 				}
 			},
 			"core/term-description": {

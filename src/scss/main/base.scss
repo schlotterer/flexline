@@ -43,7 +43,10 @@ mark {
 }
 
 a:where(:not(.wp-element-button)) {
-	color: var(--wp--preset--color--primary);
+	color: var(--wp--custom--link-color);
+	&:hover {
+		color: var(--wp--custom--link-hover-color);
+	}
 }
 a.wp-element-button {
 	text-wrap: nowrap;
