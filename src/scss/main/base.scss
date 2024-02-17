@@ -42,7 +42,9 @@ mark {
 	background-size: 100% 15%;
 }
 
-
+a:where(:not(.wp-element-button)) {
+	color: var(--wp--preset--color--primary);
+}
 a.wp-element-button {
 	text-wrap: nowrap;
 }
