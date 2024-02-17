@@ -12,8 +12,8 @@
         <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);flex-basis:50%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"right","verticalAlignment":"center"}} -->
             <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-bottom:var(--wp--preset--spacing--xxx-large)"><!-- wp:group {"layout":{"type":"constrained","contentSize":"570px"}} -->
                 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-                    <div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|neutral"}}}},"textColor":"neutral","fontSize":"medium"} -->
-                        <h1 class="wp-block-heading has-neutral-color has-text-color has-link-color has-medium-font-size" style="text-transform:uppercase">H1 SEO Eyebrow</h1>
+                    <div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|neutral"}}}},"textColor":"neutral","fontSize":"medium","fontFamily":"display"} -->
+                        <h1 class="wp-block-heading has-neutral-color has-text-color has-link-color has-display-font-family has-medium-font-size" style="text-transform:uppercase">H1 SEO Eyebrow</h1>
                         <!-- /wp:heading -->
 
                         <!-- wp:heading {"style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
@@ -46,7 +46,11 @@
     </div>
     <!-- /wp:columns -->
 
-   <!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
-   
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"top"},"style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->
+    <div class="wp-block-buttons" style="margin-top:0px;margin-bottom:0px"><!-- wp:button {"backgroundColor":"secondary","style":{"border":{"radius":"100px"},"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"className":"scroolTo animated bounce delay-2s slow"} -->
+        <div class="wp-block-button scroolTo animated bounce delay-2s slow" id="scrollTo"><a class="wp-block-button__link has-secondary-background-color has-background wp-element-button" href="#scrollTo" style="border-radius:100px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--large)">↓</a></div>
+        <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
 </div>
 <!-- /wp:group -->
