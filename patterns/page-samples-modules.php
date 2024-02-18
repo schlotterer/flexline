@@ -49,6 +49,12 @@
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
 <!-- /wp:separator -->
 
+<!-- wp:pattern {"slug":"flexline/section-horizontal-posts-scroll"} /-->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
+<!-- /wp:separator -->
+
 <!-- wp:pattern {"slug":"flexline/section-latest-posts"} /-->
 
 <!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->

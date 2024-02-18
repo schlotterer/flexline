@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Sample page displaying all Modules.
+ * Title: Sample page displaying all Sections.
  * Slug: flexline/page-samples-sections
  * Categories: flexline-page
  */
@@ -97,6 +97,12 @@
 <!-- /wp:heading -->
 
 <!-- wp:pattern {"slug":"flexline/section-testimonials-on-bkg"} /-->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
+<!-- /wp:separator -->
+
+<!-- wp:pattern {"slug":"flexline/section-horizontal-posts-scroll"} /-->
 
 <!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />

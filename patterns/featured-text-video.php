@@ -13,8 +13,8 @@
             <h2 class="wp-block-heading has-text-align-left has-max-48-font-size" style="margin-bottom:0px;letter-spacing:-1px">Text and Video popup</h2>
             <!-- /wp:heading -->
 
-            <!-- wp:paragraph {"align":"left","fontSize":"large"} -->
-            <p class="has-text-align-left has-large-font-size">FlexLine is the ultimate WordPress theme for website builders.</p>
+            <!-- wp:paragraph {"align":"left","fontSize":"small"} -->
+            <p class="has-text-align-left has-small-font-size">FlexLine is the ultimate WordPress theme for website builders.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->

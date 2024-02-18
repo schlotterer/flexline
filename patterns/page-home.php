@@ -13,6 +13,9 @@
 <!-- wp:pattern {"slug":"flexline/section-cards-colored-links"} /-->
 <!-- wp:pattern {"slug":"flexline/section-cover-boxes"} /-->
 <!-- wp:pattern {"slug":"flexline/testimonial-wide-outline"} /-->
+<!-- wp:spacer {"height":"var:preset|spacing|large"} -->
+<div style="height:var(--wp--preset--spacing--large)" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
 <!-- wp:pattern {"slug":"flexline/section-page-links"} /-->
 <!-- wp:pattern {"slug":"flexline/posts-sticky-feature"} /-->
 <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
