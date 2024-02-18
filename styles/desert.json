@@ -541,7 +541,7 @@
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"lineHeight": "var(--wp--custom--line-height--heading)"
 				},
-				"css": "a {color: var(--wp--preset--color--contrast);} a:hover {color: var(--wp--preset--color--primary);}"
+				"css": "text-wrap: balance; a {color: var(--wp--preset--color--contrast);} a:hover {color: var(--wp--preset--color--primary);}"
 			},
 			"link": {
 				"color": {
