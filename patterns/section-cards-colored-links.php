@@ -6,8 +6,8 @@
  * Categories: flexline-sections, flexline-modules
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","right":"30px","left":"30px"},"margin":{"top":"0"}}},"layout":{"type":"constrained","wideSize":"1200px"},"metadata":{"name":"Colored Cards with links"}} -->
-<div class="wp-block-group alignfull" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px"><!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Text"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"var:preset|spacing|large"}}},"layout":{"type":"constrained","wideSize":"1200px"},"metadata":{"name":"Colored Cards with links"}} -->
+<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--large);padding-top:0;padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Text"}} -->
     <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"typography":{"letterSpacing":"-1px"}},"className":"wp-block-heading","fontSize":"max-60"} -->
         <h2 class="wp-block-heading has-text-align-center has-max-60-font-size" id="text-on-left-image-on-right" style="letter-spacing:-1px">Build with FlexLine.</h2>
         <!-- /wp:heading -->
@@ -52,7 +52,7 @@
                 <p class="has-small-font-size" style="line-height:1.5">A preset bundle of blocks that empower builders and amplify their creativity.</p>
                 <!-- /wp:paragraph -->
 
-                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"fontSize":"small"} -->
+                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"fontSize":"small"} -->
                 <p class="has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
                 <!-- /wp:paragraph -->
             </div>
@@ -71,7 +71,7 @@
                 <p class="has-small-font-size" style="line-height:1.5">A collection of full-page patterns used to showcase content or a message.</p>
                 <!-- /wp:paragraph -->
 
-                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"fontSize":"small"} -->
+                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"fontSize":"small"} -->
                 <p class="has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
                 <!-- /wp:paragraph -->
             </div>
@@ -90,7 +90,7 @@
                 <p class="has-small-font-size" style="line-height:1.5">An essential element of web design used to create a visually striking design.</p>
                 <!-- /wp:paragraph -->
 
-                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"fontSize":"small"} -->
+                <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"fontSize":"small"} -->
                 <p class="has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
                 <!-- /wp:paragraph -->
             </div>

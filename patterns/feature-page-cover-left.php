@@ -27,7 +27,7 @@
         <!-- wp:column {"style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
         <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
             <div class="wp-block-group"><!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                <h2 class="wp-block-heading has-contrast-color has-text-color has-link-color">Cost of Living</h2>
+                <h2 class="wp-block-heading has-contrast-color has-text-color has-link-color">Featured Page</h2>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
@@ -36,7 +36,7 @@
 
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
                 <div class="wp-block-buttons" style="margin-bottom:0"><!-- wp:button -->
-                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://websitesforseniorliving.com/independent-living/cost-of-living-il/">View More →</a></div>
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#">View More →</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->

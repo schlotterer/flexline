@@ -43,7 +43,7 @@
 </div>
 <!-- /wp:buttons -->
 <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
-<p class="has-text-align-center has-small-font-size"><a href="https://wordpress.org/themes/flexline/"><?php echo esc_html__( 'Made with FlexLine', 'flexline' ); ?></a></p>
+<p class="has-text-align-center has-small-font-size"><a href="https://github.com/schlotterer/flexline/"><?php echo esc_html__( 'Made with FlexLine', 'flexline' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

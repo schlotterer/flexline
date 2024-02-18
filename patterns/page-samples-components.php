@@ -14,7 +14,7 @@
     <!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/box-dark"} /-->
 
         </div>
@@ -22,7 +22,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/box-card"} /-->
 
         </div>
@@ -30,7 +30,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/box"} /-->
 
         </div>
@@ -63,6 +63,44 @@
 <!-- /wp:separator -->
 
 <!-- wp:heading -->
+<h2 class="wp-block-heading">CTA Basic Card</h2>
+<!-- /wp:heading -->
+
+<!-- wp:pattern {"slug":"flexline/cta-button"} /-->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Post List Components</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide">
+    <!-- wp:column {"width":"33%"} -->
+    <div class="wp-block-column" style="flex-basis:33%">
+        
+        <!-- wp:pattern {"slug":"flexline/post-grid-single-card-alt"} /-->
+
+    </div>
+    <!-- /wp:column -->
+
+    <!-- wp:column -->
+    <div class="wp-block-column">
+        
+        <!-- wp:pattern {"slug":"flexline/posts-sticky-feature"} /-->
+
+    </div>
+    <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
 <h2 class="wp-block-heading">Galleries</h2>
 <!-- /wp:heading -->
 
@@ -74,7 +112,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster"} /-->
 
         </div>
@@ -82,7 +120,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
@@ -90,15 +128,15 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-outline"} /-->
-           
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
 
         </div>
@@ -116,7 +154,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video"} /-->
 
         </div>
@@ -124,7 +162,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-card"} /-->
 
         </div>
@@ -132,15 +170,15 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-outline"} /-->
-           
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-card-alt"} /-->
 
         </div>
@@ -158,7 +196,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple"} /-->
 
         </div>
@@ -166,25 +204,25 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple-card"} /-->
-            
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple-outline"} /-->
-           
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-simple-card-alt"} /-->
-            
+
         </div>
         <!-- /wp:column -->
     </div>
@@ -200,15 +238,15 @@
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide"} -->
     <div class="wp-block-columns alignwide"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed"} /-->
-          
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
         <div class="wp-block-column">
-        
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-card"} /-->
 
         </div>
@@ -216,7 +254,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-outlined"} /-->
 
         </div>
@@ -224,9 +262,9 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-card-alt"} /-->
-          
+
         </div>
         <!-- /wp:column -->
     </div>
@@ -246,7 +284,7 @@
     <!-- wp:columns -->
     <div class="wp-block-columns"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/pricing-card-light"} /-->
 
         </div>
@@ -254,7 +292,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/pricing-card-dark"} /-->
 
         </div>
@@ -356,7 +394,7 @@
     <!-- wp:columns -->
     <div class="wp-block-columns"><!-- wp:column -->
         <div class="wp-block-column">
-                    
+
             <!-- wp:pattern {"slug":"flexline/testimonial-card-picture-light"} /-->
 
         </div>
@@ -364,7 +402,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/testimonial-card-picture-dark"} /-->
 
         </div>
@@ -375,7 +413,7 @@
     <!-- wp:columns -->
     <div class="wp-block-columns"><!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/testimonial-card-light"} /-->
 
         </div>
@@ -383,7 +421,7 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            
+
             <!-- wp:pattern {"slug":"flexline/testimonial-card-dark"} /-->
 
         </div>
@@ -391,7 +429,7 @@
     </div>
     <!-- /wp:columns -->
 
-    <!-- wp:pattern {"slug":"flexline/testimonial-wide"} /--> 
+    <!-- wp:pattern {"slug":"flexline/testimonial-wide"} /-->
 
     <!-- wp:pattern {"slug":"flexline/testimonial-wide-card"} /-->
 
