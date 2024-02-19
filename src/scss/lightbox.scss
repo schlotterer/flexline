@@ -61,7 +61,7 @@ figure.wp-block-image.enable-lightbox{
     cursor: pointer;
     &::after{
         content: "↗";
-        position: relative;
+        position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
