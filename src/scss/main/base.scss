@@ -156,6 +156,13 @@ textarea {
 	cursor: pointer;
 }
 
+// Phone link
+@media only screen and (max-width: 600px) {
+	#phonelink{
+		padding: 8px 5px;
+	}
+}
+
 // Address
 address{
 	font-style: normal;
