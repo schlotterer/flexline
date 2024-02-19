@@ -383,17 +383,17 @@
 					"spacingSizes": [
 						{
 							"name": "xSmall",
-							"size": "4px",
+							"size": "5px",
 							"slug": "x-small"
 						},
 						{
 							"name": "Small",
-							"size": "8px",
+							"size": "10px",
 							"slug": "small"
 						},
 						{
 							"name": "Medium",
-							"size": "clamp(5px, 12px, 16px)",
+							"size": "15px",
 							"slug": "medium"
 						},
 						{
@@ -456,8 +456,8 @@
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--preset--spacing--medium)",
-						"right": "var(--wp--preset--spacing--medium)",
-						"bottom": "var(--wp--preset--spacing--medium)",
+						"right": "var(--wp--preset--spacing--large)",
+						"bottom": "var(--wp--preset--spacing--large)",
 						"left": "var(--wp--preset--spacing--medium)"
 					}
 					
@@ -591,9 +591,9 @@
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--preset--spacing--medium)",
-						"right": "var(--wp--preset--spacing--medium)",
+						"right": "var(--wp--preset--spacing--large)",
 						"bottom": "var(--wp--preset--spacing--medium)",
-						"left": "var(--wp--preset--spacing--medium)"
+						"left": "var(--wp--preset--spacing--large)"
 					}
 				},
 				"variations": {
@@ -610,9 +610,9 @@
 						"spacing": {
 							"padding": {
 								"top": "calc( var(--wp--preset--spacing--medium) - 1px )",
-								"right": "calc( var(--wp--preset--spacing--medium) - 1px )",
+								"right": "calc( var(--wp--preset--spacing--large) - 1px )",
 								"bottom": "calc( var(--wp--preset--spacing--medium) - 1px )",
-								"left": "calc( var(--wp--preset--spacing--medium) - 1px )"
+								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},
 						"css": ":hover {color: var(--wp--preset--color--highlight);}"
