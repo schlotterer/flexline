@@ -455,10 +455,10 @@
 				},
 				"spacing": {
 					"padding": {
-						"top": "var(--wp--preset--spacing--medium)",
-						"right": "var(--wp--preset--spacing--large)",
-						"bottom": "var(--wp--preset--spacing--medium)",
-						"left": "var(--wp--preset--spacing--large)"
+						"top": "var(--wp--preset--spacing--small)",
+						"right": "var(--wp--preset--spacing--medium)",
+						"bottom": "var(--wp--preset--spacing--small)",
+						"left": "var(--wp--preset--spacing--medium)"
 					}
 					
 				},
