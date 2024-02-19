@@ -158,7 +158,7 @@ textarea {
 
 // Phone link
 @media only screen and (max-width: 600px) {
-	#phonelink{
+	#phonelink > a{
 		padding: 8px 5px;
 	}
 }
