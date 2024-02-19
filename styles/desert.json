@@ -455,9 +455,9 @@
 				},
 				"spacing": {
 					"padding": {
-						"top": "var(--wp--preset--spacing--large)",
+						"top": "var(--wp--preset--spacing--medium)",
 						"right": "var(--wp--preset--spacing--large)",
-						"bottom": "var(--wp--preset--spacing--large)",
+						"bottom": "var(--wp--preset--spacing--medium)",
 						"left": "var(--wp--preset--spacing--large)"
 					}
 					
@@ -609,9 +609,9 @@
 						},
 						"spacing": {
 							"padding": {
-								"top": "calc( var(--wp--preset--spacing--large) - 1px )",
+								"top": "calc( var(--wp--preset--spacing--medium) - 1px )",
 								"right": "calc( var(--wp--preset--spacing--large) - 1px )",
-								"bottom": "calc( var(--wp--preset--spacing--large) - 1px )",
+								"bottom": "calc( var(--wp--preset--spacing--medium) - 1px )",
 								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},

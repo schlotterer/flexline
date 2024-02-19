@@ -31,12 +31,17 @@
 
 /* Aspect Ratio Box */
 .aspect-ratio-16-9 {
-    position: relative;
-    width: 77%;
+    position: absolute;
+    width: 90%;
     padding-top: 56.25%;
     margin: auto;
     top: 50%;
     transform: translate(0, -50%);
+}
+@media only screen and (max-width: 600px) {
+    .aspect-ratio-16-9 {
+        width: calc(100% - 10px);
+    }
 }
 
 /* Make the iframe fill the aspect ratio box */
@@ -102,7 +107,7 @@ figure.wp-block-image.enable-lightbox{
     }
 }
 
-a.enable-lightbox{
+.enable-lightbox > a{
     &::after{
         content: "↗";
         display: inline-flex;
