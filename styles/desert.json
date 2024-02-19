@@ -460,6 +460,7 @@
 						"bottom": "var(--wp--preset--spacing--small)",
 						"left": "var(--wp--preset--spacing--medium)"
 					}
+					
 				},
 				":hover": {
 					"shadow": "var(--wp--custom--button-hover-shadow)",
@@ -474,7 +475,8 @@
 					"outline": {
 						"color": "var(--wp--custom--color--alert--focus)"
 					}
-				}
+				},
+				"css": "white-space: nowrap;"
 			},
 			"caption": {
 				"spacing": {
