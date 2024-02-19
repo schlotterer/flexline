@@ -383,22 +383,22 @@
 					"spacingSizes": [
 						{
 							"name": "xSmall",
-							"size": "2px",
+							"size": "4px",
 							"slug": "x-small"
 						},
 						{
 							"name": "Small",
-							"size": "5px",
+							"size": "8px",
 							"slug": "small"
 						},
 						{
 							"name": "Medium",
-							"size": "10px",
+							"size": "16px",
 							"slug": "medium"
 						},
 						{
 							"name": "Large",
-							"size": "16px",
+							"size": "20px",
 							"slug": "large"
 						},
 						{
