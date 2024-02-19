@@ -101,7 +101,7 @@
             scrollbar-width: none; /* Firefox */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
             white-space: nowrap; /* Ensure items are laid out in a single line */
-            //margin: 0 30px 0 0;
+            margin: 0 20px 0 0;
             
             > * {
                 flex: 0 0 auto;
@@ -115,10 +115,10 @@
             }
             padding:0;
             scrollbar-width: thin; /* "auto" or "thin" */
-            scrollbar-color: #bdbdbd20 transparent; /* thumb and track color */
+            scrollbar-color: rgba(0, 0, 0, .50) transparent; /* thumb and track color */
             &::-webkit-scrollbar{
                 height: 3px; /* Height of the scrollbar */
-                background-color: #bdbdbd20; /* Color of the scrollbar track */
+                background-color: rgba(0, 0, 0, .50); /* Color of the scrollbar track */
             }
             &::-webkit-scrollbar-thumb {
                 background-color: transparent;/* Color of the scroll thumb */
@@ -133,7 +133,7 @@
             content: "›";
             display: inline-flex;
             position: absolute;
-            right: -20px;
+            left: calc(100% - 25px);
             color: inherit;
             font-size: 40px;
             top: 50%;
@@ -144,6 +144,7 @@
             padding-bottom: 4px;
             display: flex;
             justify-content: flex-start;
+            margin-right: 30px;
             
         }
     }  
@@ -164,6 +165,17 @@
         scrollbar-width: none; /* Firefox */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
         padding:5px 5px 10px 10px ;
+        &::after{
+            content: "›";
+            display: inline-flex;
+            position: absolute;
+            left: calc(100% - 25px);
+            color: inherit;
+            font-size: 40px;
+            top: 50%;
+            transform: translate(0px, -60%);
+            opacity: .2;
+        }
         > * {
             min-width: 300px;
             flex-shrink: 0;
