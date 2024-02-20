@@ -108,4 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
             centerButtonInHeader();
         }
     });
+
+    document.querySelectorAll('.is-style-horizontal-scroll').forEach(function(el) {
+        el.addEventListener('wheel', function(event) {
+            event.preventDefault(); // Prevent standard vertical scroll
+            this.scrollLeft += event.deltaY; // Translate vertical scroll into horizontal
+        });
+    });
 });
