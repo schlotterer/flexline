@@ -123,4 +123,80 @@ document.addEventListener('DOMContentLoaded', function() {
             this.scrollLeft += event.deltaY; // Translate vertical scroll delta into horizontal scroll
         });
     });
+
+
+
+    // Function to create buttons and implement scrolling for a given scroller
+    function setupScrollerButtons(scroller) {
+        // Create "Scroll to Next" button
+        var scrollToNextBtn = document.createElement('button');
+        scrollToNextBtn.textContent = 'Scroll to Next';
+        scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
+        scrollToNextBtn.setAttribute('role', 'button');
+        scrollToNextBtn.style.margin = '0 4px'; // Ensure visible focus indication
+        scroller.parentNode.insertBefore(scrollToNextBtn, scroller.nextSibling);
+
+        // Create "Scroll to Previous" button
+        var scrollToPrevBtn = document.createElement('button');
+        scrollToPrevBtn.textContent = 'Scroll to Previous';
+        scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
+        scrollToPrevBtn.setAttribute('role', 'button');
+        scrollToPrevBtn.style.margin = '0 4px'; // Ensure visible focus indication
+        scroller.parentNode.insertBefore(scrollToPrevBtn, scrollToNextBtn.nextSibling);
+
+        // Enhance keyboard navigation and focus styles
+        [scrollToNextBtn, scrollToPrevBtn].forEach(function(btn) {
+            btn.style.outline = 'none'; // Use custom focus styles
+            btn.style.border = '2px solid transparent'; // Placeholder for focus style
+            btn.onfocus = function() {
+                this.style.border = '2px solid blue'; // Example focus style
+            };
+            btn.onblur = function() {
+                this.style.border = '2px solid transparent';
+            };
+        });
+
+        // Scroll to the next item function
+        scrollToNextBtn.addEventListener('click', function() {
+            var items = scroller.querySelectorAll('.item');
+            var currentScroll = scroller.scrollLeft;
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (item.offsetLeft + item.clientWidth > currentScroll + scroller.clientWidth) {
+                    scroller.scrollTo({
+                        left: item.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                    break;
+                }
+            }
+        });
+
+        // Scroll to the previous item function
+        scrollToPrevBtn.addEventListener('click', function() {
+            var items = scroller.querySelectorAll('.item');
+            var currentScroll = scroller.scrollLeft;
+
+            for (var i = items.length - 1; i >= 0; i--) {
+                var item = items[i];
+                if (item.offsetLeft < currentScroll) {
+                    scroller.scrollTo({
+                        left: item.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                    break;
+                }
+            }
+        });
+    }
+
+    // Check for scrollers in the DOM and setup buttons for each
+    document.addEventListener('DOMContentLoaded', function() {
+        var scrollers = document.querySelectorAll('.horizontal-scroller');
+        scrollers.forEach(function(scroller) {
+            setupScrollerButtons(scroller);
+        });
+    });
+
 });
