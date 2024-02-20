@@ -111,8 +111,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.is-style-horizontal-scroll').forEach(function(el) {
         el.addEventListener('wheel', function(event) {
-            event.preventDefault(); // Prevent standard vertical scroll
-            this.scrollLeft += event.deltaY; // Translate vertical scroll into horizontal
+            // Calculate the maximum scroll left offset
+            var maxScrollLeft = this.scrollWidth - this.clientWidth;
+            
+            // If scrolling at the start or end, allow default vertical scroll
+            if ((this.scrollLeft === 0 && event.deltaY < 0) || (this.scrollLeft >= maxScrollLeft && event.deltaY > 0)) {
+                return; // Exit the function and allow vertical scroll
+            }
+    
+            event.preventDefault(); // Prevent vertical scroll
+            this.scrollLeft += event.deltaY; // Translate vertical scroll delta into horizontal scroll
         });
     });
 });
