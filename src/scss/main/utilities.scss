@@ -152,24 +152,12 @@
 
 
 .is-style-horizontal-scroll{
-    &::after{
-        content: "›";
-        display: inline-flex;
-        position: absolute;
-        left: calc(100% - 25px);
-        color: inherit;
-        font-size: 75px;
-        top: 50%;
-        transform: translate(0px, -60%);
-        opacity: .3;
-        z-index: 1;
-        font-family: var(--wp--preset--font-family--display);
-    }
+    
     &.wp-block-columns,
     &.wp-block-group,
     &.wp-block-post-template{
         position: relative;
-        display: flex;
+        display: flex !important;
         justify-content: flex-start;
         flex-wrap: nowrap;
         overflow-y: hidden;
