@@ -115,71 +115,103 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to create buttons and implement scrolling for a given scroller
     function setupScrollerButtons(scroller) {
-        // Create "Scroll to Next" button
-        var scrollToNextBtn = document.createElement('button');
-        scrollToNextBtn.textContent = 'Scroll to Next';
-        scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
-        scrollToNextBtn.setAttribute('role', 'button');
-        scrollToNextBtn.style.margin = '0 4px'; // Ensure visible focus indication
-        scroller.parentNode.insertBefore(scrollToNextBtn, scroller.nextSibling);
+        // Assuming scroller is your scrolling container
 
         // Create "Scroll to Previous" button
         var scrollToPrevBtn = document.createElement('button');
         scrollToPrevBtn.textContent = 'Scroll to Previous';
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
-        scrollToPrevBtn.style.margin = '0 4px'; // Ensure visible focus indication
-        scroller.parentNode.insertBefore(scrollToPrevBtn, scrollToNextBtn.nextSibling);
+        scrollToPrevBtn.style.margin = '0 4px';
+
+        // Create "Scroll to Next" button
+        var scrollToNextBtn = document.createElement('button');
+        scrollToNextBtn.textContent = 'Scroll to Next';
+        scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
+        scrollToNextBtn.setAttribute('role', 'button');
+        scrollToNextBtn.style.margin = '0 4px';
+
+        // Insert both buttons below the scroller
+        // The key here is to insert the "Scroll to Next" button first if we want it on the right, 
+        // and then insert the "Scroll to Previous" button before it, if keeping them below the scroller
+        scroller.parentNode.insertBefore(scrollToNextBtn, scroller.nextSibling); // Insert "Scroll to Next" first
+        scroller.parentNode.insertBefore(scrollToPrevBtn, scrollToNextBtn); // Then insert "Scroll to Previous" before "Scroll to Next"
+
+
 
         // Enhance keyboard navigation and focus styles
         [scrollToNextBtn, scrollToPrevBtn].forEach(function(btn) {
             btn.style.outline = 'none'; // Use custom focus styles
             btn.style.border = '2px solid transparent'; // Placeholder for focus style
             btn.onfocus = function() {
-                this.style.border = '2px solid blue'; // Example focus style
+                this.style.border = '2px solid var(--wp--preset--color--primary)'; // Example focus style
             };
             btn.onblur = function() {
                 this.style.border = '2px solid transparent';
             };
         });
 
-        // Scroll to the next item function
         scrollToNextBtn.addEventListener('click', function() {
             var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
-            var currentScroll = scroller.scrollLeft;
-
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i];
-                if (item.offsetLeft + item.clientWidth > currentScroll + scroller.clientWidth) {
-                    scroller.scrollTo({
-                        left: item.offsetLeft,
-                        behavior: 'smooth'
-                    });
+            var scrollerRect = scroller.getBoundingClientRect();
+            var currentScrollLeft = scroller.scrollLeft;
+            var nextItemToScrollTo = null;
+        
+            for (let i = 0; i < items.length; i++) {
+                let item = items[i];
+                let itemRect = item.getBoundingClientRect();
+                
+                // Find the item that is currently at or just passed the left edge of the scroller
+                if (itemRect.left - scrollerRect.left >= 0) {
+                    nextItemToScrollTo = items[i + 1]; // The next item to scroll into view
                     break;
                 }
             }
+        
+            if (nextItemToScrollTo) {
+                // Calculate the scroll amount needed to align the next item to the left edge
+                let nextItemStart = nextItemToScrollTo.offsetLeft - scroller.offsetLeft;
+                scroller.scrollTo({
+                    left: nextItemStart,
+                    behavior: 'smooth'
+                });
+            }
         });
+        
 
-        // Scroll to the previous item function
+        // Adjusted Scroll to the previous item function for precise alignment
         scrollToPrevBtn.addEventListener('click', function() {
             var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
             var currentScroll = scroller.scrollLeft;
+            var targetItem = null;
 
-            for (var i = items.length - 1; i >= 0; i--) {
-                var item = items[i];
-                if (item.offsetLeft < currentScroll) {
-                    scroller.scrollTo({
-                        left: item.offsetLeft,
-                        behavior: 'smooth'
-                    });
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].offsetLeft + items[i].clientWidth > currentScroll) {
+                    targetItem = items[i - 1];
                     break;
                 }
             }
+
+            if (targetItem) {
+                scroller.scrollTo({
+                    left: targetItem.offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
         });
     }
+    var scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
+    scrollers.forEach(function(scroller) {
+        setupScrollerButtons(scroller);
+    });
 
-    // Check for scrollers in the DOM and setup buttons for each
-    document.addEventListener('DOMContentLoaded', function() {
+    // Function to check if the current device supports touch interactions
+    function isTouchDevice() {
+        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+    }
+
+    // Only modify scroll behavior if it's not a touch device
+    if (!isTouchDevice()) {
         document.querySelectorAll('.is-style-horizontal-scroll').forEach(function(el) {
             el.addEventListener('wheel', function(event) {
                 // Calculate the maximum scroll left offset
@@ -189,16 +221,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 if ((this.scrollLeft === 0 && event.deltaY < 0) || (this.scrollLeft >= maxScrollLeft && event.deltaY > 0)) {
                     return; // Exit the function and allow vertical scroll
                 }
-        
+
                 event.preventDefault(); // Prevent vertical scroll
                 this.scrollLeft += event.deltaY; // Translate vertical scroll delta into horizontal scroll
             });
         });
-        var scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
-        scrollers.forEach(function(scroller) {
-            setupScrollerButtons(scroller);
-        });
-
-    });
-
+    }
+    
 });
+
+
+
+
+
