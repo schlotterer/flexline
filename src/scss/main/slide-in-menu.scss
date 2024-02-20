@@ -58,7 +58,15 @@ button{
                 font-size: 30px;
             }
         }
-}
+        &:hover{
+            box-shadow: var(--wp--preset--shadow--dark);
+            background-color: var(--wp--preset--color--alternate-dark);
+        }
+        &:focus{
+            box-shadow: var(--wp--preset--shadow--dark);
+            outline: var(--wp--preset--color--highlight);
+        }
+    }
     &#slide-in-menu-close{
         border: none;
         background-color: transparent;
