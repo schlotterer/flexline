@@ -166,7 +166,7 @@
         scrollbar-width: none; /* Firefox */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
         padding:5px 5px 10px 10px ;
-        
+        max-height: 75vh;
         > * {
             min-width: 300px;
             flex-shrink: 0;
