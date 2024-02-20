@@ -109,20 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.querySelectorAll('.is-style-horizontal-scroll').forEach(function(el) {
-        el.addEventListener('wheel', function(event) {
-            // Calculate the maximum scroll left offset
-            var maxScrollLeft = this.scrollWidth - this.clientWidth;
-            
-            // If scrolling at the start or end, allow default vertical scroll
-            if ((this.scrollLeft === 0 && event.deltaY < 0) || (this.scrollLeft >= maxScrollLeft && event.deltaY > 0)) {
-                return; // Exit the function and allow vertical scroll
-            }
-    
-            event.preventDefault(); // Prevent vertical scroll
-            this.scrollLeft += event.deltaY; // Translate vertical scroll delta into horizontal scroll
-        });
-    });
+   
 
 
 
@@ -158,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Scroll to the next item function
         scrollToNextBtn.addEventListener('click', function() {
-            var items = scroller.querySelectorAll('.item');
+            var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
             var currentScroll = scroller.scrollLeft;
 
             for (var i = 0; i < items.length; i++) {
@@ -175,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Scroll to the previous item function
         scrollToPrevBtn.addEventListener('click', function() {
-            var items = scroller.querySelectorAll('.item');
+            var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
             var currentScroll = scroller.scrollLeft;
 
             for (var i = items.length - 1; i >= 0; i--) {
@@ -193,10 +180,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check for scrollers in the DOM and setup buttons for each
     document.addEventListener('DOMContentLoaded', function() {
-        var scrollers = document.querySelectorAll('.horizontal-scroller');
+        document.querySelectorAll('.is-style-horizontal-scroll').forEach(function(el) {
+            el.addEventListener('wheel', function(event) {
+                // Calculate the maximum scroll left offset
+                var maxScrollLeft = this.scrollWidth - this.clientWidth;
+                
+                // If scrolling at the start or end, allow default vertical scroll
+                if ((this.scrollLeft === 0 && event.deltaY < 0) || (this.scrollLeft >= maxScrollLeft && event.deltaY > 0)) {
+                    return; // Exit the function and allow vertical scroll
+                }
+        
+                event.preventDefault(); // Prevent vertical scroll
+                this.scrollLeft += event.deltaY; // Translate vertical scroll delta into horizontal scroll
+            });
+        });
+        var scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
         scrollers.forEach(function(scroller) {
             setupScrollerButtons(scroller);
         });
+
     });
 
 });
