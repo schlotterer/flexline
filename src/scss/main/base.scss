@@ -183,6 +183,14 @@ address{
 	position: absolute;
 	margin-top: -25px;
 	z-index: 1;
+	> a{
+		height: 50px;
+		width: 50px;
+		padding: 0 !important;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 // Header - keep above sticky navigation
