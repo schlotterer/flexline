@@ -14,25 +14,30 @@ document.addEventListener('DOMContentLoaded', function() {
     mainButton.className = 'slide-in-menu-button';
     mainButton.setAttribute('aria-controls', 'slide-in-menu');
     mainButton.setAttribute('aria-expanded', 'false');
-    mainButton.innerHTML = '<span class="dashicons dashicons-search"></span>'; // Set the default icon
+    mainButton.innerHTML = '<span class="material-symbols-outlined">search</span>'; // Set the default icon
     // Add click event listener directly to the button during its creation
     mainButton.addEventListener('click', function() {
         // Logic to toggle the slide-in menu
         console.log('Menu button clicked');
         toggleMenu();
     });
+
+    
     
     // Insert the main toggle button just before the .slide-in div
     slideInDiv.parentNode.insertBefore(mainButton, slideInDiv);
 
     // Function to update the button icon based on screen size
     function updateButtonIcon() {
-        var iconSpan = mainButton.querySelector('.dashicons');
+        var iconSpan = mainButton.querySelector('.material-symbols-outlined');
         if (window.innerWidth > 991) {
-            iconSpan.className = 'dashicons dashicons-search';
+            // Update the content of the button to "search" icon
+            iconSpan.innerHTML = 'search'; // For text-based changes
             mainButton.setAttribute('aria-label', 'Search');
+            
         } else {
-            iconSpan.className = 'dashicons dashicons-menu';
+            // Update the content of the button to "menu" icon
+            iconSpan.innerHTML = 'menu'; // For text-based changes
             mainButton.setAttribute('aria-label', 'Menu');
         }
     }
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             closeButton.id = 'slide-in-menu-close';
             closeButton.className = 'slide-in-menu-close';
             closeButton.setAttribute('aria-label', 'Close Menu');
-            closeButton.innerHTML = '<span class="dashicons dashicons-no"></span>'; // Use Dashicon 'no' for close icon
+            closeButton.innerHTML = '<span class="material-symbols-outlined">close</span>'; // Use Dashicon 'no' for close icon
             menuContainer.appendChild(closeButton); // Append close button to the menu container
 
             // Close menu action
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.scrollY > 0) {
             // Reset or adjust the button's position when the page is scrolled
             button.style.position = 'fixed'; // Keep the button fixed at the top or adjust as necessary
-            button.style.top = '5px'; // Adjust this value to fit your design
+            button.style.top = '6px'; // Adjust this value to fit your design
         } else {
             // Re-center the button if the page is scrolled back to the top
             centerButtonInHeader();
@@ -119,17 +124,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create "Scroll to Previous" button
         var scrollToPrevBtn = document.createElement('button');
-        scrollToPrevBtn.textContent = 'Scroll to Previous';
+        //scrollToPrevBtn.textContent = 'Scroll to Previous';
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
         scrollToPrevBtn.style.margin = '0 4px';
+        scrollToPrevBtn.innerHTML = '<span class="material-symbols-outlined">chevron_left</span>';
 
         // Create "Scroll to Next" button
         var scrollToNextBtn = document.createElement('button');
-        scrollToNextBtn.textContent = 'Scroll to Next';
+        //scrollToNextBtn.textContent = 'Scroll to Next';
         scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
         scrollToNextBtn.setAttribute('role', 'button');
         scrollToNextBtn.style.margin = '0 4px';
+        scrollToNextBtn.innerHTML = '<span class="material-symbols-outlined">chevron_right</span>';
 
         // Insert both buttons below the scroller
         // The key here is to insert the "Scroll to Next" button first if we want it on the right, 
@@ -154,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToNextBtn.addEventListener('click', function() {
             var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
             var scrollerRect = scroller.getBoundingClientRect();
-            var currentScrollLeft = scroller.scrollLeft;
             var nextItemToScrollTo = null;
         
             for (let i = 0; i < items.length; i++) {
@@ -205,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setupScrollerButtons(scroller);
     });
 
+    /* Not sure i want this yet
     // Function to check if the current device supports touch interactions
     function isTouchDevice() {
         return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
@@ -227,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    */
     
 });
 

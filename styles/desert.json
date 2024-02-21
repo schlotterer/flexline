@@ -334,6 +334,7 @@
 			"boxShadow": "var(--wp--preset--shadow--light)",
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
+			"iconSettings": "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
 			"color":{
 				"primary": {
 					"light" : "#acaf91",
@@ -914,7 +915,8 @@
 				},
 				"css": "& p {margin: 0;}"
 			}
-		}
+		},
+		"css": ".material-symbols-outlined { font-variation-settings:var(--wp--custom--icon-settings); }"
 	},
 	"customTemplates": [
 		{

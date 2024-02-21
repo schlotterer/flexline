@@ -60,7 +60,8 @@ figure.wp-block-image.enable-lightbox{
     position: relative;
     cursor: pointer;
     &::after{
-        content: "↗";
+        font-family: 'Material Symbols Outlined';
+        content: "expand_content";
         position: absolute;
         display: flex;
         justify-content: center;
@@ -93,15 +94,16 @@ figure.wp-block-image.enable-lightbox{
     &[data-popup-media-url*=".ogg"]
      {
         &::after{
-            content: "►";
+            font-family: 'Material Symbols Outlined';
+            content: "play_arrow";
+            font-variation-settings:'FILL' 1;
             right: unset;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 35px;
-            width: 70px;
-            height: 70px;
-            text-indent: 7px;
+            font-size: 30px;
+            width: 50px;
+            height: 50px;
         }
         
     }
@@ -109,12 +111,14 @@ figure.wp-block-image.enable-lightbox{
 
 .enable-lightbox > a{
     &::after{
-        content: "↗";
+        font-family: 'Material Symbols Outlined';
+        content: "expand_content";
         position: relative;
         display: inline-flex;
         align-items: center;
-        margin-left: 5px;
-        font-size: 15px;
+        margin-left: 1px;
+        top: 2px;
+        
     }
     &[data-popup-media-url*="youtube.com"],
     &[data-popup-media-url*="youtu.be"],
@@ -123,7 +127,10 @@ figure.wp-block-image.enable-lightbox{
     &[data-popup-media-url*=".webm"],
     &[data-popup-media-url*=".ogg"] {
         &::after{
-            content: "►";
+            content: "play_arrow";
+            font-variation-settings:'FILL' 1;
+            font-size: inherit;
+            line-height: 1;
         }
     }
 }
@@ -141,7 +148,8 @@ figure.poster-gallery.has-nested-images{
 		z-index: 1;
 		visibility:visible;
 		&::after{
-			content: "❐";
+            font-family: 'Material Symbols Outlined';
+			content: "photo_library";
 			position: absolute;
 			display: inline-block;
 			justify-content: center;

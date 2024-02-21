@@ -101,7 +101,7 @@
             scrollbar-width: none; /* Firefox */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
             white-space: nowrap; /* Ensure items are laid out in a single line */
-            margin: 0 20px 0 0;
+            margin: 0 30px 0 0;
             
             > * {
                 flex: 0 0 auto;
@@ -130,15 +130,16 @@
 @media only screen and (max-width: 600px) {
     .is-style-horizontal-scroll-at-mobile:not(ul){
         &::after{
-            content: "›";
+            font-family: 'Material Symbols Outlined';
+            content: "chevron_right";
             display: inline-flex;
             position: absolute;
-            left: calc(100% - 25px);
+            left: calc(100% - 30px);
             color: inherit;
-            font-size: 40px;
+            font-size: 30px;
             top: 50%;
             transform: translate(0px, -60%);
-            opacity: .2;
+            opacity: .5;
         }
         > ul {
             padding-bottom: 4px;
@@ -217,4 +218,14 @@
 
     }
 
+}
+
+
+// Icon Font Settings
+.is-style-horizontal-scroll-at-mobile:not(ul)::after,
+.enable-lightbox > a::after,
+figure.poster-gallery.has-nested-images > figure:first-of-type::after,
+figure.wp-block-image.enable-lightbox::after
+{
+    font-variation-settings:var(--wp--custom--icon-settings);
 }

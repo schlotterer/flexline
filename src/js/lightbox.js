@@ -98,7 +98,7 @@ function displayLightbox(mediaUrl) {
 
     // Create the close button
     const closeButton = document.createElement('span');
-    closeButton.innerText = '✖';
+    closeButton.innerText = 'close';
     closeButton.style.position = 'absolute';
     closeButton.style.top = '20px';
     closeButton.style.right = '20px';
@@ -108,6 +108,7 @@ function displayLightbox(mediaUrl) {
     closeButton.setAttribute('aria-label', 'Close lightbox');
     closeButton.setAttribute('role', 'button');
     closeButton.setAttribute('tabindex', '0'); // Make it focusable
+    closeButton.className = 'material-symbols-outlined';
 
     // Append the media content and close button to the lightbox
     lightbox.innerHTML = contentHtml;
