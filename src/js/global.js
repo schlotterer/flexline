@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create "Scroll to Previous" button
         var scrollToPrevBtn = document.createElement('button');
-        //scrollToPrevBtn.textContent = 'Scroll to Previous';
+        scrollToPrevBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-prev');
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
         scrollToPrevBtn.style.margin = '0 4px';
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create "Scroll to Next" button
         var scrollToNextBtn = document.createElement('button');
-        //scrollToNextBtn.textContent = 'Scroll to Next';
+        scrollToNextBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-next');
         scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
         scrollToNextBtn.setAttribute('role', 'button');
         scrollToNextBtn.style.margin = '0 4px';
