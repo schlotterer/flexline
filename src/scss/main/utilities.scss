@@ -237,6 +237,9 @@
         box-shadow: var(--wp--custom--button-shadow-hover);
         background-color: var(--wp--custom--color--secondary--dark);
     }
+    &:last-of-type{
+        margin-left: 5px !important;
+    }
 }
 
 // Icon Font Settings
