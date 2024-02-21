@@ -31,12 +31,12 @@ function flexline_contact_info_shortcode() {
     ?>
     <address class="contact-info">
         <?php if (!empty($phone_number)) : ?>
-            <p><a class="phone-link" href="tel:<?php echo esc_attr($numeric_phone_number); ?>"><span class="dashicons dashicons-phone"></span> <?php echo esc_html($phone_number); ?></a></p>
+            <p><a class="phone-link" href="tel:<?php echo esc_attr($numeric_phone_number); ?>"><span class="material-symbols-outlined">call</span> <?php echo esc_html($phone_number); ?></a></p>
         <?php endif; ?>
         <?php if (!empty($formatted_address)) : ?>
             <p>
                 <?php echo $formatted_address; ?><br>
-                <a class="map-link" href="<?php echo esc_url($google_maps_url); ?>" target="_blank"><span class="dashicons dashicons-location"></span> View on Google Maps</a>
+                <a class="map-link" href="<?php echo esc_url($google_maps_url); ?>" target="_blank"><span class="material-symbols-outlined">location_on</span> View on Google Maps</a>
             </p>
         <?php endif; ?>
     </address>
