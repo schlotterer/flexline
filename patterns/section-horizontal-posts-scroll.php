@@ -6,8 +6,8 @@
  * Categories: flexline-sections
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|small","right":"0"},"blockGap":"var:preset|spacing|small"}},"gradient":"neutral-neutralLight","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Horizontal Post Scroll"}} -->
-<div class="wp-block-group alignfull is-style-default has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--large);padding-right:0;padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--small)"><!-- wp:heading {"align":"wide"} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"0"},"blockGap":"var:preset|spacing|small"}},"gradient":"neutral-neutralLight","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Horizontal Post Scroll"}} -->
+<div class="wp-block-group alignfull is-style-default has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--large);padding-right:0;padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"align":"wide"} -->
     <h2 class="wp-block-heading alignwide">Horizontal Post Scroll</h2>
     <!-- /wp:heading -->
 

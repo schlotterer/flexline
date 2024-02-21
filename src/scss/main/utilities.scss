@@ -166,10 +166,10 @@
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-        padding:5px 5px 10px 10px ;
-        max-height: 75vh;
+        padding:10px var(--wp--preset--spacing--medium) 15px 0;
+        max-height: 70vh;
         > * {
-            max-height: calc(100% - 40px);
+            max-height: calc(70vh - 40px);
             min-width: 300px;
             flex-shrink: 0;
             flex-grow: 0;
@@ -223,7 +223,6 @@
 .is-horizontal-scroll-btn{
     color: var(--wp--preset--color--base);
     background-color: var(--wp--preset--color--secondary);
-    margin: 10px 0 5px 5px;
     border-radius: var(--wp--custom--button-border-radius);
     box-shadow: var(--wp--custom--button-shadow);
     transition: var(--wp--custom--transition-time);
@@ -237,9 +236,6 @@
     &:hover{
         box-shadow: var(--wp--custom--button-shadow-hover);
         background-color: var(--wp--custom--color--secondary--dark);
-    }
-    &:first-of-type{
-        margin-left: 20px;
     }
 }
 

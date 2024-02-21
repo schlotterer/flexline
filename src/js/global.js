@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToPrevBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-prev');
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
-        scrollToPrevBtn.style.margin = '0 4px';
+        scrollToPrevBtn.style.margin = '5px 0px 5px 0px';
         scrollToPrevBtn.innerHTML = '<span class="material-symbols-outlined">chevron_left</span>';
 
         // Create "Scroll to Next" button
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToNextBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-next');
         scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
         scrollToNextBtn.setAttribute('role', 'button');
-        scrollToNextBtn.style.margin = '0 4px';
+        scrollToNextBtn.style.margin = '5px 20px 5px 5px';
         scrollToNextBtn.innerHTML = '<span class="material-symbols-outlined">chevron_right</span>';
 
         // Insert both buttons below the scroller
