@@ -1,3 +1,9 @@
 a.js-plethoraplugins-tabs--link,
 span.pds-accordion__heading{font-family:var(--wp--preset--font-family--display) !important;}
-.plethoraplugins-sidenavjump{min-width: 100px;}
+@media only screen and (max-width: 600px) {
+    .plethoraplugins-sidenavjump,
+    .js-plethoraplugins-tab-panel {
+        width: 100% !important;
+        flex-basis: 100% !important;
+    }
+}
