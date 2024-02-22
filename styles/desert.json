@@ -180,17 +180,17 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'DM Serif Display', serif",
+					"fontFamily": "'Quattrocento', serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'DM Serif Display'",
+							"fontFamily": "'Quattrocento'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/Quattrocento/Quattrocento-Regular.ttf" ]
 						}
 					]
 				},
