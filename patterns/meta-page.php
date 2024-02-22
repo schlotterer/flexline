@@ -15,7 +15,7 @@
                     <div class="wp-block-group alignwide has-small-font-size has-neutral-light-color has-text-color has-link-color has-display-font-family has-x-small-font-size" style="margin-bottom:var(--wp--preset--spacing--small);padding-right:0;padding-left:0"><!-- wp:yoast-seo/breadcrumbs /--></div>
                     <!-- /wp:group -->
 
-                    <!-- wp:post-title {"textAlign":"left","level":1,"style":{"typography":{"textTransform":"none"}},"fontSize":"max-48"} /-->
+                    <!-- wp:post-title {"textAlign":"left","level":1,"align":"wide","style":{"typography":{"textTransform":"none"}},"fontSize":"max-48"} /-->
                 </div>
             </div>
             <!-- /wp:cover -->

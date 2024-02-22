@@ -647,9 +647,6 @@
 						"bottom": "0",
 						"left": "0"
 					}
-				},
-				"border": {
-					"radius": "var(--wp--custom--border-radius)"
 				}
 			},
 			"core/list": {
