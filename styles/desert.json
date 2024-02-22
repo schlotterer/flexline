@@ -91,7 +91,7 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#595f23", "#ffffff" ],
+					"colors": [ "#45324b", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
@@ -101,24 +101,24 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#a62a1c", "#ffffff" ],
+					"colors": [ "#82735A", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#919A3B", "#ffffff" ],
+					"colors": [ "#DE3A39", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#49535d", "#ffffff" ],
+					"colors": [ "#907C74", "#ffffff" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				}
 			],
 			"palette": [
 				{
-					"color": "#595f23",
+					"color": "#45324b",
 					"name": "Primary",
 					"slug": "primary"
 				},
@@ -128,12 +128,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#a62a1c",
+					"color": "#82735A",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#919A3B",
+					"color": "#DE3A39",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -153,17 +153,17 @@
 					"slug": "base"
 				},
 				{
-					"color": "#f5f0e9",
+					"color": "#ECE7E5",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#dadcde",
+					"color": "#DFDFDF",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
 				{
-					"color": "#49535d",
+					"color": "#8B807C",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				},
@@ -180,17 +180,17 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Playfair Display', serif",
+					"fontFamily": "'DM Serif Display', serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Playfair Display'",
+							"fontFamily": "'DM Serif Display'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "500 700",
-							"src": [ "file:./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf" ]
 						}
 					]
 				},
@@ -337,16 +337,16 @@
 			"iconSettings": "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
 			"color":{
 				"primary": {
-					"light" : "#acaf91",
-					"dark": "#2d3012"
+					"light" : "#AC798D",
+					"dark": "#361735"
 				},
 				"secondary": {
-					"light" : "#e7dac9",
-					"dark": "#694f2d"
+					"light" : "#CBA06B",
+					"dark": "#8C6232"
 				},
 				"alternate": {
-					"light" : "#d3958e",
-					"dark": "#53150e"
+					"light" : "#9D8C72",
+					"dark": "#5A4B3C"
 				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
