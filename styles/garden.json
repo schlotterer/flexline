@@ -1,8 +1,8 @@
 {
 	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-    "title": "Desert Ridge",
-	"description":  "Desert colors and box shadows",
+    "title": "Garden",
+	"description":  "Serene Garden",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -91,49 +91,49 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#595f23", "#ffffff" ],
+					"colors": [ "#6CAE75", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#af844b", "#ffffff" ],
+					"colors": [ "#5D9CAE", "#ffffff" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#a62a1c", "#ffffff" ],
+					"colors": [ "#FFD966", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#919A3B", "#ffffff" ],
+					"colors": [ "#FF9266", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#49535d", "#ffffff" ],
+					"colors": [ "#808080", "#ffffff" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				}
 			],
 			"palette": [
 				{
-					"color": "#595f23",
+					"color": "#6CAE75",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#af844b",
+					"color": "#5D9CAE",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#a62a1c",
+					"color": "#FFD966",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#919A3B",
+					"color": "#FF9266",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -153,17 +153,17 @@
 					"slug": "base"
 				},
 				{
-					"color": "#f5f0e9",
+					"color": "#C0C0C0",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#dadcde",
+					"color": "#A8A8A8",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
 				{
-					"color": "#49535d",
+					"color": "#808080",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				},
@@ -180,37 +180,37 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Playfair Display', serif",
+					"fontFamily": "'DM Serif Display', serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Playfair Display'",
+							"fontFamily": "'DM Serif Display'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "500 700",
-							"src": [ "file:./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf" ]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Lato', sans-serif",
+					"fontFamily": "'Quicksand', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Lato'",
+							"fontFamily": "'Quicksand'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "300",
-							"src": [ "file:./assets/fonts/Lato/Lato-Light.ttf"]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "Tahoma, Verdana, Segoe, sans-serif",
+					"fontFamily": "Verdana, Tahoma, Segoe, sans-serif",
 					"name": "Body",
 					"slug": "body"
 				},
@@ -309,44 +309,44 @@
 				{
 					"name": "Light",
 					"slug": "light",
-					"shadow": "0 5px 10px -3px rgb(0 0 0 / 30%);"
+					"shadow": "0 8px 12px -4px rgb(0 0 0 / 30%);"
 				},
 				{
 					"name": "Dark",
 					"slug": "dark",
-					"shadow": "0 2px 5px -1px rgb(0 0 0 / 75%);"
+					"shadow": "0 6px 7px -1px rgb(0 0 0 / 80%);"
 				},
 				{
 					"name": "Diffused",
 					"slug": "diffused",
-					"shadow": "0 10px 20px -7px rgba(0,0,0,.3)"	
+					"shadow": "0 12px 20px -7px rgba(0,0,0,.5)"	
 				}
 			]
 		},
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
 			"linkHoverColor": "var(--wp--preset--color--highlight)",
-			"textShadow": "0 .2rem .4rem rgba(0,0,0, 0.5)",
-			"borderRadius": "0px",
+			"textShadow": "0 .15rem .3rem rgba(0,0,0, 0.5)",
+			"borderRadius": "5px",
 			"buttonBorderRadius": "200px",
 			"buttonShadow": "var(--wp--preset--shadow--light)", 
 			"buttonHoverShadow": "var(--wp--preset--shadow--dark)",
 			"boxShadow": "var(--wp--preset--shadow--light)",
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
-			"iconSettings": "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
+			"iconSettings": "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
 			"color":{
 				"primary": {
-					"light" : "#acaf91",
-					"dark": "#2d3012"
+					"light" : "#93C9A3",
+					"dark": "#487E53"
 				},
 				"secondary": {
-					"light" : "#e7dac9",
-					"dark": "#694f2d"
+					"light" : "#85B4C9",
+					"dark": "#3D7480"
 				},
 				"alternate": {
-					"light" : "#d3958e",
-					"dark": "#53150e"
+					"light" : "#FFEB99",
+					"dark": "#CCA53D"
 				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
