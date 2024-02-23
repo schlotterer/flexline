@@ -39,7 +39,6 @@ function flexline_register_block_styles() {
 			'no-disc' => __( 'No Disc', 'flexline' ),
 		),
 		'core/navigation' => array(
-			'main-header-nav' => __( 'Main Header Style', 'flexline' ),
 			'dark-over-light' => __( 'Dark Text on Light Background', 'flexline' ),
 			'light-over-dark' => __( 'Light Text on Dark Background', 'flexline' ),
 		),
