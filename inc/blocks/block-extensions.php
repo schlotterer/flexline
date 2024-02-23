@@ -62,6 +62,16 @@ function flexline_block_popup_render($block_content, $block) {
             $block_content = str_replace_first($searchString, $replaceString, $block_content);
         }
     }
+    if ($block['blockName'] === 'core/navigation') {
+        // Check if your custom attributes are set and not empty
+        if (isset($block['attrs']['enableHorizontalScroll']) && $block['attrs']['enableHorizontalScroll']) {
+            // Add a class
+            //$block_content = str_replace('class="', 'class="poster-gallery ', $block_content);
+            $searchString = 'class="';
+            $replaceString = 'class="is-style-horizontal-scroll-at-mobile ';
+            $block_content = str_replace_first($searchString, $replaceString, $block_content);
+        }
+    }
     if ($block['blockName'] === 'core/group' || $block['blockName'] === 'core/stack' || $block['blockName'] === 'core/row') {
     // Check if your custom attributes are set and not empty
     

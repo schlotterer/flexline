@@ -41,12 +41,6 @@ mark {
 	background-size: 100% 15%;
 }
 
-a:where(:not(.wp-element-button)) {
-	color: var(--wp--custom--link-color);
-	&:hover {
-		color: var(--wp--custom--link-hover-color);
-	}
-}
 a.wp-element-button {
 	text-wrap: nowrap;
 }
@@ -157,7 +151,7 @@ textarea {
 }
 
 // Phone link
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 781.98 ) {
 	#phonelink > a{
 		padding: 8px 5px !important;
 		font-size: 14px !important;

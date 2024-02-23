@@ -19,7 +19,7 @@ function flexline_register_block_styles() {
 		),
 		'core/column' => array(
 			'hide-on-mobile' => __( 'Hide on Mobile', 'flexline' ),
-			'hide-on-desktop' => __( 'Hide on Desktop', 'flexline' ),
+			'hide-on-desktop' => __( 'Show mobile only', 'flexline' ),
 		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
@@ -39,7 +39,9 @@ function flexline_register_block_styles() {
 			'no-disc' => __( 'No Disc', 'flexline' ),
 		),
 		'core/navigation' => array(
-			'horizontal-scroll-at-mobile' => __( 'Horizontal Scroll at Mobile', 'flexline' ),
+			'main-header-nav' => __( 'Main Header Style', 'flexline' ),
+			'dark-over-light' => __( 'Dark Text on Light Background', 'flexline' ),
+			'light-over-dark' => __( 'Light Text on Dark Background', 'flexline' ),
 		),
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'flexline' ),

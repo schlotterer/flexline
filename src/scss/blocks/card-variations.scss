@@ -1,0 +1,94 @@
+.editor-styles-wrapper,
+body{
+
+    .wp-block-image{
+        overflow: clip;
+        
+    }
+
+    // All
+    .is-style-card,
+    .is-style-card-alt,
+    .is-style-card-padded,
+    .is-style-outline-padded,
+    .is-style-shadow-light,
+    .is-style-shadow-dark,
+    .is-style-shadow-diffused{
+        transition:var(--wp--custom--transition-time);
+    }
+
+    // Cards
+    .is-style-card,
+    .is-style-card-alt,
+    .is-style-card-padded{
+        overflow:clip; 
+        background:var(--wp--preset--color--base);
+        border-radius:var(--wp--custom--border-radius);
+        box-shadow: var(--wp--preset--shadow--light);
+        &.group-link{
+            &:hover{
+                box-shadow: var(--wp--preset--shadow--dark);
+            }   
+        }
+    }
+    .is-style-card{
+        padding:0;
+        &.has-global-padding,
+        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+            padding:0;
+        }
+        
+    }
+    .is-style-card-padded,
+    .is-style-outlined{
+        padding: var(--wp--preset--spacing--small);
+        &.has-global-padding,
+        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+            padding: var(--wp--preset--spacing--small);
+        }
+        
+    }
+    .is-style-card-alt{
+        padding:0;
+        > *:not(figure) {
+            padding: var(--wp--preset--spacing--small);
+        }
+        &.has-global-padding{
+            > *:not(figure) {
+                padding: var(--wp--preset--spacing--small);
+            } 
+        }
+    }
+
+    // Outlines
+    .is-style-outlined{
+        border-radius:var(--wp--custom--border-radius);
+        border: 1px solid var(--wp--preset--color--primary);
+    }
+
+    // Shadows
+    .is-style-shadow-light{
+        box-shadow: var(--wp--preset--shadow--light);
+        &.group-link{
+            &:hover{
+                box-shadow: none;
+            }   
+        }
+    }
+    .is-style-shadow-dark{
+        box-shadow: var(--wp--preset--shadow--dark);
+        &.group-link{
+            &:hover{
+                box-shadow: var(--wp--preset--shadow--diffused);
+            }   
+        }
+    }
+    .is-style-shadow-diffused{
+        box-shadow: var(--wp--preset--shadow--diffused);
+        &.group-link{
+            &:hover{
+                box-shadow: var(--wp--preset--shadow--light);
+            }   
+        }
+    }
+}

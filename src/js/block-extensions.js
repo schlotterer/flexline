@@ -48,6 +48,26 @@ function addCustomGalleryAttributes(settings, name) {
 }
 
 
+// Define custom attributes
+const customNavigationAttributes = {
+    enableHorizontalScroll: {
+        type: 'boolean',
+        default: false,
+    },
+};
+// Filter function to add custom attributes to blocks
+function addCustomNavigationAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/navigation') {
+        settings.attributes = {
+            ...settings.attributes,
+            ...customNavigationAttributes,
+        };
+    }
+    return settings;
+}
+
+
 
 // Define custom attributes
 const customGroupAttributes = {
@@ -121,6 +141,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 </Fragment>
             );
         }
+        if (props.name === 'core/navigation') {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Horizontal Scroll at Mobile">
+                            <ToggleControl
+                                label="Enable Horizontal Scroll at Mobile"
+                                checked={!!props.attributes.enableHorizontalScroll}
+                                onChange={(newValue) => props.setAttributes({ enableHorizontalScroll: newValue })}
+                            />
+                        </PanelBody>
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
         if (props.name === 'core/group') {
             return (
                 <Fragment>
@@ -173,6 +209,13 @@ addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
     addCustomGalleryAttributes
+);
+
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomNavigationAttributes
 );
 
 // Hook filters
