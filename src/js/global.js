@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var mainButton = document.createElement('button');
     mainButton.id = 'slide-in-menu-button';
     mainButton.className = 'slide-in-menu-button';
+    mainButton.setAttribute('aria-label', 'Open Search and Menu');
     mainButton.setAttribute('aria-controls', 'slide-in-menu');
     mainButton.setAttribute('aria-expanded', 'false');
+    mainButton.setAttribute('tabindex', '1');
     mainButton.innerHTML = '<span class="material-symbols-outlined">search</span>'; // Set the default icon
     // Add click event listener directly to the button during its creation
     mainButton.addEventListener('click', function() {
@@ -70,7 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
             var closeButton = document.createElement('button');
             closeButton.id = 'slide-in-menu-close';
             closeButton.className = 'slide-in-menu-close';
+            mainButton.setAttribute('aria-label', 'Close Search and Menu');
             closeButton.setAttribute('aria-label', 'Close Menu');
+            closeButton.setAttribute('tabindex', '1');
             closeButton.innerHTML = '<span class="material-symbols-outlined">close</span>'; // Use Dashicon 'no' for close icon
             menuContainer.appendChild(closeButton); // Append close button to the menu container
 

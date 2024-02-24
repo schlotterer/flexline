@@ -7,6 +7,7 @@ body.no-scroll {
 }
 .wp-block-template-part.slide-in{
     > aside{
+        visibility: hidden;
         display: block;
         position: fixed;
         top: 0;
@@ -21,6 +22,7 @@ body.no-scroll {
             right: 0;
             bottom: 0;
             left: 0;
+            visibility: visible;
         }
     }
 }
