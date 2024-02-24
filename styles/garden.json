@@ -335,6 +335,12 @@
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
 			"linkHoverColor": "var(--wp--preset--color--highlight)",
+			"navMainColor": "var(--wp--preset--color--primary)",
+			"navMainHoverColor": "var(--wp--preset--color--highlight)",
+			"navLightOverDarkColor": "var(--wp--preset--color--base)",
+			"navDarkOverLightColor": "var(--wp--preset--color--secondary)",
+			"navLightOverDarkHoverColor": "var(--wp--preset--color--alternate)",
+			"navDarkOverLightHoverColor": "var(--wp--preset--color--primary)",
 			"textShadow": "0 .15rem .3rem rgba(0,0,0, 0.5)",
 			"borderRadius": "15px 5px 15px 5px",
 			"imageBorderRadius": "var(--wp--custrom--border-radius)",
@@ -641,7 +647,7 @@
 				}
 			},
 			"core/navigation": {
-				"css":"& ul.is-style-main-header-nav a.wp-block-navigation-item__content:not(.wp-element-button) {color:var(--wp--preset--color--primary);} & ul.is-style-main-header-nav a.wp-block-navigation-item__content:not(.wp-element-button):hover {color:var(--wp--preset--color--highlight);} & ul.is-style-light-over-dark a.wp-block-navigation-item__content:not(.wp-element-button) {color:var(--wp--preset--color--base);} & ul.is-style-light-over-dark a.wp-block-navigation-item__content:not(.wp-element-button):hover { color:var(--wp--custom--color--primary--light); } & ul.is-style-dark-over-light a.wp-block-navigation-item__content:not(.wp-element-button) { color:var(--wp--preset--color--contrast);} & ul.is-style-dark-over-light a.wp-block-navigation-item__content:not(.wp-element-button):hover {color:var(--wp--custom--color--primary--highlight);}",
+				"css":"& ul.is-style-main-header-nav a.wp-block-navigation-item__content:not(.wp-element-button) {color:var(--wp--custom--nav-main-color);} & ul.is-style-main-header-nav a.wp-block-navigation-item__content:not(.wp-element-button):hover {color:var(--wp--custom--nav-main-hover-color);} & ul.is-style-light-over-dark a.wp-block-navigation-item__content:not(.wp-element-button) {color:var(--wp--custom--nav-light-over-dark-color);} & ul.is-style-light-over-dark a.wp-block-navigation-item__content:not(.wp-element-button):hover { color:var(--wp--custom--nav-light-over-dark-hover-color); } & ul.is-style-dark-over-light a.wp-block-navigation-item__content:not(.wp-element-button) { color:var(--wp--custom--nav-dark-over-light-color);} & ul.is-style-dark-over-light a.wp-block-navigation-item__content:not(.wp-element-button):hover {color:var(--wp--custom--nav-dark-over-light-hover-color);}",
 				"elements": {
 					"link": {
 						"typography": {
