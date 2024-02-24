@@ -40,8 +40,8 @@ function flexline_register_block_styles() {
 		),
 		'core/navigation' => array(
 			'main-header-nav' => __( 'Main Header Style', 'flexline' ),
-			'dark-over-light' => __( 'Dark Text on Light Background', 'flexline' ),
-			'light-over-dark' => __( 'Light Text on Dark Background', 'flexline' ),
+			'dark-over-light' => __( 'Dark on Light', 'flexline' ),
+			'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 		),
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'flexline' ),
