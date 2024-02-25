@@ -171,10 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Close button listener
-    menuCloseButton.addEventListener('click', closeMenu);
-
-    
-    
+    menuCloseButton.addEventListener('click', closeMenu); 
 });
 
 
