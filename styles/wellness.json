@@ -91,22 +91,22 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#ebd40a", "#ffffff" ],
+					"colors": [ "#ee7674", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#974A14", "#ffffff" ],
+					"colors": [ "#00a8a8", "#ffffff" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#B37E4E", "#ffffff" ],
+					"colors": [ "#4f772d", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#606C38", "#ffffff" ],
+					"colors": [ "#ebd40a", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -118,12 +118,12 @@
 			],
 			"palette": [
 				{
-					"color": "#ebd40a",
+					"color": "#ee7674",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#ee7674",
+					"color": "#00a8a8",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -133,7 +133,7 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#00a8a8",
+					"color": "#ebd40a",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -158,7 +158,7 @@
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#C3BEC1",
+					"color": "#D7D0D4",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -180,7 +180,7 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Rubik One Mono', serif",
+					"fontFamily": "'Rubik Mono One', serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
@@ -344,12 +344,12 @@
 			"iconSettings": "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24",
 			"color":{
 				"primary": {
-					"light" : "#E9E090",
-					"dark": "#A3800F"
-				},
-				"secondary": {
 					"light" : "#FFC5C4",
 					"dark": "#b61916"
+				},
+				"secondary": {
+					"light" : "#33E0E0",
+					"dark": "#025454"
 				},
 				"alternate": {
 					"light" : "#7AAF4B",
