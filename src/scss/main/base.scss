@@ -197,3 +197,13 @@ header.site-header{
 img[style*="cover"]{
 	width: 100%;
 }
+
+
+// Icon Font Settings
+.is-style-horizontal-scroll-at-mobile:not(ul)::after,
+.enable-lightbox > a::after,
+figure.poster-gallery.has-nested-images > figure:first-of-type::after,
+figure.wp-block-image.enable-lightbox::after
+{
+    font-variation-settings:var(--wp--custom--icon-settings);
+}
