@@ -37,9 +37,9 @@ button{
         right: 5px;
         transition: var(--wp--custom--transition-time);
         z-index: 12;
-
+        padding: 0;
         border-radius: 200px;
-        background-color: var(--wp--preset--color--alternate);
+        background-color: var(--wp--preset--color--highlight);
         box-shadow: var(--wp--preset--shadow--light);
         
         text-align: center;
@@ -63,10 +63,6 @@ button{
         &:hover{
             box-shadow: var(--wp--preset--shadow--dark);
             background-color: var(--wp--custom--color--alternate--dark);
-        }
-        &:focus{
-            box-shadow: var(--wp--preset--shadow--dark);
-            outline: var(--wp--preset--color--highlight);
         }
     }
     &#slide-in-menu-close{

@@ -4,7 +4,8 @@ const mix = require('laravel-mix');
 const jsFiles = [
     'src/js/block-extensions.js',
     'src/js/lightbox.js',
-    'src/js/global.js'
+    'src/js/global.js',
+    'src/js/slide-in-menu.js',
 ];
 
 // Individual SASS files
