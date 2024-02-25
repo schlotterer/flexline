@@ -26,6 +26,7 @@ function flexline_enqueue_style_sheet() {
 	// Scripts
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/built/js/global.js',  [], null, true );
 	wp_enqueue_script( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/js/lightbox.js',  [], null, true );
+	wp_enqueue_script( 'flexline-slide-in-menu', get_template_directory_uri() . '/assets/built/js/slide-in-menu.js',  [], null, true );
 
 	// Customized Scripts
 	wp_enqueue_script( 'flexline-customize', get_template_directory_uri() . '/assets/js/customize.js',  [], null, true );
