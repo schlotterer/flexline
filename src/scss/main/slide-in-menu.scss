@@ -72,6 +72,8 @@ button{
         font-size: var(--wp--preset--font-size--xlarge);
         top: -30px;
         right: 5px;
+        padding: 0;
+        box-shadow: 0 !important;
         position: absolute;
         > span{
             &::before{

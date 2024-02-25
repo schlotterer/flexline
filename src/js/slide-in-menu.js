@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var slideInDiv = document.querySelector('.slide-in');
+    
     if (!slideInDiv) {
         console.error('The .slide-in div was not found.');
         return;
@@ -32,24 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateButtonIcon();
     window.addEventListener('resize', updateButtonIcon);
 
-    function toggleMenu() {
-        var expanded = mainButton.getAttribute('aria-expanded') === 'true';
-        mainButton.setAttribute('aria-expanded', !expanded);
-        var slideInMenu = document.getElementById('slide-in-menu');
-        if (slideInMenu) {
-            slideInMenu.setAttribute('aria-hidden', expanded);
-            slideInMenu.classList.toggle('active', !expanded);
-            document.body.classList.toggle('no-scroll', !expanded);
-            if (!expanded) {
-                addCloseButton(slideInMenu);
-                // Set focus to the first focusable element in the menu
-                var focusableElements = slideInMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                if (focusableElements.length) focusableElements[0].focus();
-            } else {
-                mainButton.focus(); // Focus back to the main button when menu is closed
-            }
-        }
-    }
+
 
     function centerButtonInHeader() {
         var header = document.querySelector('.site-header');
@@ -76,6 +60,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Adjusted toggleMenu function
+    function toggleMenu() {
+        var expanded = mainButton.getAttribute('aria-expanded') === 'true';
+        mainButton.setAttribute('aria-expanded', !expanded);
+        var slideInMenu = document.getElementById('slide-in-menu');
+        if (slideInMenu) {
+            slideInMenu.setAttribute('aria-hidden', expanded);
+            slideInMenu.classList.toggle('active', !expanded);
+            document.body.classList.toggle('no-scroll', !expanded);
+            if (!expanded) {
+                addCloseButton(slideInMenu);
+                // After adding the close button and showing the menu, focus on the first focusable element
+                var focusableElements = slideInMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusableElements.length) focusableElements[0].focus();
+                // Trap focus within the slide-in menu
+                document.addEventListener('keydown', trapTabKey);
+            } else {
+                // When closing the menu, remove the event listener to trap the tab key
+                document.removeEventListener('keydown', trapTabKey);
+                mainButton.focus(); // Focus back to the main button when menu is closed
+            }
+        }
+    }
+
+    // Trap tab key within the slide-in menu
+    function trapTabKey(e) {
+        if (e.key === 'Tab' || e.keyCode === 9) {
+            let focusableElements = slideInMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            let firstFocusableElement = focusableElements[0];
+            let lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableElement) {
+                    e.preventDefault();
+                    lastFocusableElement.focus();
+                }
+            } else {
+                if (document.activeElement === lastFocusableElement) {
+                    e.preventDefault();
+                    firstFocusableElement.focus();
+                }
+            }
+        }
+
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            toggleMenu();
+        }
+    }
+
     function addCloseButton(menuContainer) {
         if (!document.getElementById('slide-in-menu-close')) {
             var closeButton = document.createElement('button');
@@ -88,33 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             closeButton.addEventListener('click', function() {
                 toggleMenu();
-            });
-
-            // Trap focus within the slide-in menu
-            var focusableElements = menuContainer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            var firstFocusableElement = focusableElements[0];
-            var lastFocusableElement = focusableElements[focusableElements.length - 1];
-
-            closeButton.addEventListener('keydown', function(e) {
-                // Check for TAB key press
-                if (e.key === 'Tab') {
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableElement) {
-                            e.preventDefault();
-                            lastFocusableElement.focus();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableElement) {
-                            e.preventDefault();
-                            firstFocusableElement.focus();
-                        }
-                    }
-                }
-
-                // Close on ESC
-                if (e.key === 'Escape') {
-                    toggleMenu();
-                }
             });
         }
     }
