@@ -91,7 +91,7 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#ee7674", "#ffffff" ],
+					"colors": [ "#4f772d", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
@@ -101,7 +101,7 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#4f772d", "#ffffff" ],
+					"colors": [ "#ee7674", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
@@ -118,7 +118,7 @@
 			],
 			"palette": [
 				{
-					"color": "#ee7674",
+					"color": "#4f772d",
 					"name": "Primary",
 					"slug": "primary"
 				},
@@ -128,7 +128,7 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#4f772d",
+					"color": "#ee7674",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
@@ -158,7 +158,7 @@
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#D7D0D4",
+					"color": "#E1DADE",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -342,18 +342,19 @@
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
 			"iconSettings": "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24",
+			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"color":{
 				"primary": {
-					"light" : "#FFC5C4",
-					"dark": "#b61916"
+					"light" : "#7AAF4B",
+					"dark": "#223213"
 				},
 				"secondary": {
 					"light" : "#33E0E0",
 					"dark": "#025454"
 				},
 				"alternate": {
-					"light" : "#7AAF4B",
-					"dark": "#223213"
+					"light" : "#FFC5C4",
+					"dark": "#b61916"
 				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
