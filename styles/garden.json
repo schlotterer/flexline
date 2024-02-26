@@ -352,6 +352,7 @@
 			"transitionTime": "0.35s ease-in-out",	
 			"iconSettings": "'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24",
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
+			"decoColor": "var(--wp--preset--color--secondary)",
 			"color":{
 				"primary": {
 					"light" : "#4A5634",

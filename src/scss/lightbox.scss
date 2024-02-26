@@ -67,7 +67,7 @@ figure.wp-block-image.enable-lightbox{
         justify-content: center;
         align-items: center;
         color: #fff;
-        background-color:var(--wp--preset--color--primary);
+        background-color:var(--wp--custom--deco-color);
         border-radius: 200px;
         opacity: 0.7;
         transition: all 0.3s ease-in-out;
@@ -155,7 +155,7 @@ figure.poster-gallery.has-nested-images{
 			justify-content: center;
 			align-items: center;
 			color: #fff;
-			background-color:var(--wp--preset--color--primary);
+			background-color:var(--wp--custom--deco-color);
 			border-radius: 200px;
 			opacity: 0.7;
 			transition: all 0.3s ease-in-out;

@@ -2,7 +2,7 @@
 
 /**
  * Title: Header with light on dark.
- * Slug: flexline/header-light on dark
+ * Slug: flexline/header-light-on-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
  */

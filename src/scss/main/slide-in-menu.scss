@@ -62,12 +62,12 @@ button{
         }
         &:hover{
             box-shadow: var(--wp--preset--shadow--dark);
-            background-color: var(--wp--custom--color--alternate--dark);
+            background-color: color-mix(in lab, var(--wp--custom--search-menu-icon-color), #000000, 20%);
         }
     }
     &#slide-in-menu-close{
         border: none;
-        background-color: transparent;
+        background-color: var(--wp--custom--search-menu-icon-color);
         color: var(--wp--preset--color--base);
         font-size: var(--wp--preset--font-size--xlarge);
         top: -30px;
@@ -75,6 +75,9 @@ button{
         padding: 0;
         box-shadow: 0 !important;
         position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 200px;
         > span{
             &::before{
                 font-size: 30px;

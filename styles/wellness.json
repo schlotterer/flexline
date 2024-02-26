@@ -343,6 +343,7 @@
 			"transitionTime": "0.35s ease-in-out",	
 			"iconSettings": "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24",
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
+			"decoColor": "var(--wp--preset--color--alternate)",
 			"color":{
 				"primary": {
 					"light" : "#7AAF4B",
@@ -482,7 +483,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
-						"background": "var(--wp--preset--color--highlight)"
+						"background": "var(--wp--preset--color--alternate)"
 					}
 				},
 				":focus": {
@@ -629,7 +630,7 @@
 								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},
-						"css": ":hover {color: var(--wp--preset--color--highlight);}"
+						"css": "a:hover {color: var(--wp--preset--color--secondary);}"
 					}
 				}
 			},

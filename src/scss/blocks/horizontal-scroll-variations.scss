@@ -131,7 +131,7 @@
 }
 .is-horizontal-scroll-btn{
     color: var(--wp--preset--color--base);
-    background-color: var(--wp--preset--color--secondary);
+    background-color: var(--wp--custom--deco-color);
     border-radius: var(--wp--custom--button-border-radius);
     box-shadow: var(--wp--custom--button-shadow);
     transition: var(--wp--custom--transition-time);
@@ -144,7 +144,7 @@
     cursor: pointer;
     &:hover{
         box-shadow: var(--wp--custom--button-shadow-hover);
-        background-color: var(--wp--custom--color--secondary--dark);
+        background-color: color-mix(in lab, var(--wp--custom--deco-color), #000000 20%);
     }
     &:last-of-type{
         margin-left: 5px !important;
