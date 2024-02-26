@@ -114,6 +114,11 @@
 					"colors": [ "#8A8A8A", "#ffffff" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
+				},
+				{
+					"colors": [ "#000000", "#ffffff" ],
+					"slug": "dark",
+					"name": "Dark"
 				}
 			],
 			"palette": [
@@ -484,7 +489,6 @@
 						"bottom": "var(--wp--preset--spacing--small)",
 						"left": "var(--wp--preset--spacing--medium)"
 					}
-					
 				},
 				":hover": {
 					"shadow": "var(--wp--custom--button-hover-shadow)",
@@ -639,7 +643,7 @@
 								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},
-						"css": ":hover {color: var(--wp--preset--color--highlight);}"
+						"css": "a:hover {color: var(--wp--preset--color--highlight);}"
 					}
 				}
 			},
