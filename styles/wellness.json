@@ -64,44 +64,44 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral) 100%)",
+					"gradient": "linear-gradient(70deg to right, var(--wp--preset--color--neutral) 0%, var(--wp--preset--color--neutral-light) 100%)",
 					"name": "Neutral to Neutral Light",
 					"slug": "neutral-neutralLight"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(70deg to right, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
 				}
 			],
 			"duotone": [
 				{
-					"colors": [ "#4f772d", "#ffffff" ],
+					"colors": [ "#223213", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#00a8a8", "#ffffff" ],
+					"colors": [ "#025454", "#ffffff" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#ee7674", "#ffffff" ],
+					"colors": [ "#b61916", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
@@ -111,9 +111,14 @@
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#8A8A8A", "#ffffff" ],
+					"colors": [ "#464a4e", "#ffffff" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
+				},
+				{
+					"colors": [ "#000000", "#ffffff" ],
+					"slug": "dark",
+					"name": "Dark"
 				}
 			],
 			"palette": [
@@ -123,22 +128,22 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#00a8a8",
+					"color": "#029898",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#ee7674",
+					"color": "#D36260",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#ebd40a",
+					"color": "#BBA908",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#FFDD38",
+					"color": "#ebd40a",
 					"name": "Warning",
 					"slug": "warning"
 				},
@@ -153,22 +158,22 @@
 					"slug": "base"
 				},
 				{
-					"color": "#FEF0E0",
+					"color": "#F7E8D6",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#E0D3DA",
+					"color": "#E3D8DE",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
 				{
-					"color": "#82767E",
+					"color": "#464a4e",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				},
 				{
-					"color": "#464a4e",
+					"color": "#010101",
 					"name": "Contrast",
 					"slug": "contrast"
 				}
