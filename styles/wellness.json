@@ -64,27 +64,27 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg to right, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg to right, var(--wp--preset--color--neutral) 0%, var(--wp--preset--color--neutral-light) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--neutral) 0%, var(--wp--preset--color--neutral-light) 100%)",
 					"name": "Neutral to Neutral Light",
 					"slug": "neutral-neutralLight"
 				},
 				{
-					"gradient": "linear-gradient(70deg to right, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
 				}
