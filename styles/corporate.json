@@ -185,17 +185,17 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Outfit', sans-serif",
+					"fontFamily": "'Sulphur Point', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Outfit'",
+							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Outfit/static/Outfit-Medium.ttf" ]
+							"src": [ "file:./assets/fonts/Sulphur_Point/SulphurPoint-Regular.ttf" ]
 						}
 					]
 				},
