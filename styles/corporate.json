@@ -91,7 +91,7 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#0F6185", "#E8E6CC" ],
+					"colors": [ "#33515B", "#E8E6CC" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
@@ -101,7 +101,7 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#33515B", "#E8E6CC" ],
+					"colors": [ "#0F6185", "#E8E6CC" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
@@ -123,7 +123,7 @@
 			],
 			"palette": [
 				{
-					"color": "#0F6185",
+					"color": "#33515B",
 					"name": "Primary",
 					"slug": "primary"
 				},
@@ -133,7 +133,7 @@
 					"slug": "secondary"
 				},
 				{
-					"color": " #33515B",
+					"color": "#0F6185",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
@@ -360,16 +360,16 @@
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"color":{
 				"primary": {
-					"light" : "#4791B1",
-					"dark": "#133B50"
+					"light" : "#61848F",
+					"dark": "#1A4760"
 				},
 				"secondary": {
 					"light" : "#ECBB83",
 					"dark": "#6E360C"
 				},
 				"alternate": {
-					"light" : "#61848F",
-					"dark": "#1A4760"
+					"light" : "#4791B1",
+					"dark": "#133B50"
 				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
