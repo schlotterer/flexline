@@ -345,7 +345,7 @@
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
-			"navLightOverDarkHoverColor": "var(--wp--preset--color--alternate)",
+			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
 			"textShadow": "0 .15rem .3rem rgba(0,0,0, 0.5)",
 			"borderRadius": "3px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
