@@ -1,3 +1,6 @@
-figure.wp-block-image{
-    border-radius: var(--wp--custom--image-border-radius);
+.editor-styles-wrapper,
+body{
+    figure.wp-block-image{
+        border-radius: var(--wp--custom--image-border-radius);
+    }
 }

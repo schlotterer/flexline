@@ -1,21 +1,24 @@
-a.js-plethoraplugins-tabs--link,
-span.pds-accordion__heading{font-family:var(--wp--preset--font-family--display) !important;}
-.pds-accordion__title{
-    box-shadow: var(--wp--custom--box-shadow);
-    transition: var(--wp--custom--transition-time);
-    overflow: hidden!important;
-    border-radius: var(--wp--custom--border-radius)!important;
-    &[aria-expanded="true"]{
-        box-shadow:none;
-        background-color: color-mix(in lab, var(--wp--preset--color--primary) 70%, #000000)!important;
-        border-bottom-left-radius: 0!important;
-        border-bottom-right-radius: 0!important;
+.editor-styles-wrapper,
+body{
+    a.js-plethoraplugins-tabs--link,
+    span.pds-accordion__heading{font-family:var(--wp--preset--font-family--display) !important;}
+    .pds-accordion__title{
+        box-shadow: var(--wp--custom--box-shadow);
+        transition: var(--wp--custom--transition-time);
+        overflow: hidden!important;
+        border-radius: var(--wp--custom--border-radius)!important;
+        &[aria-expanded="true"]{
+            box-shadow:none;
+            background-color: color-mix(in lab, var(--wp--preset--color--primary) 70%, #000000)!important;
+            border-bottom-left-radius: 0!important;
+            border-bottom-right-radius: 0!important;
+        }
     }
-}
-@media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
-    .plethoraplugins-sidenavjump,
-    .js-plethoraplugins-tab-panel {
-        width: 100% !important;
-        flex-basis: 100% !important;
+    @media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
+        .plethoraplugins-sidenavjump,
+        .js-plethoraplugins-tab-panel {
+            width: 100% !important;
+            flex-basis: 100% !important;
+        }
     }
 }
