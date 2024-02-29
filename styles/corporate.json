@@ -358,6 +358,12 @@
 			"iconSettings": "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"decoColor": "var(--wp--preset--color--secondary)",
+			"breakpoint": {
+				"mobile": "max-width: 781.98",
+				"tablet-down": "max-width: 991.98px",
+				"tablet-up": "min-width: 782px",
+				"desktop": "min-width: 992px"
+			},
 			"color":{
 				"primary": {
 					"light" : "#61848F",
@@ -378,11 +384,6 @@
 					"error": "#DF1642",
 					"focus": "blue"
 				}
-			},
-			"breakpoint":{
-				"mobile": "max-width: 781.98",
-				"tablet": "",
-				"desktop": ""
 			},
 			"spacing": {
 				"gap": "var(--wp--preset--spacing--large)"

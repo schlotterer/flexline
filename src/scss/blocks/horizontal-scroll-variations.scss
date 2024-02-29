@@ -1,7 +1,7 @@
 /* Media Queries
 ---------------------------------------- */
 
-@media only screen and (max-width: 991px) {
+@media only screen and (var(--wp--custom--breakpoint--tablet-down)) {
     .is-style-horizontal-scroll-at-mobile:not(ul){
         > ul {
             position: relative;
@@ -39,7 +39,7 @@
         }
     }  
 }
-@media only screen and (max-width: 781.98px ) {
+@media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
     .is-style-horizontal-scroll-at-mobile:not(ul){
         &::after{
             font-family: 'Material Symbols Outlined';
@@ -114,7 +114,7 @@
     }
     
 }
-@media only screen and (max-width: 781.98 ) {
+@media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
     .is-style-horizontal-scroll{
         &.wp-block-columns,
         &.wp-block-group,

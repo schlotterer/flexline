@@ -29,7 +29,7 @@
 /* Media Queries
 ---------------------------------------- */
 
-@media only screen and (max-width: 781.98 ) {
+@media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
 
     /* -- Order -- */
 

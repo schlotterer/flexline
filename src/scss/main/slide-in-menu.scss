@@ -34,7 +34,7 @@ button{
         width: 40px;
         height: 40px;
         text-align: center;
-        right: 5px;
+        right: 10px;
         transition: var(--wp--custom--transition-time);
         z-index: 12;
         padding: 0;
@@ -62,12 +62,12 @@ button{
         }
         &:hover{
             box-shadow: var(--wp--preset--shadow--dark);
-            background-color: color-mix(in lab, var(--wp--custom--search-menu-icon-color), #000000, 20%);
+            background-color: var(--wp--preset--color--highlight);
         }
     }
     &#slide-in-menu-close{
+        z-index: 12;
         border: none;
-        background-color: var(--wp--custom--search-menu-icon-color);
         color: var(--wp--preset--color--base);
         font-size: var(--wp--preset--font-size--xlarge);
         top: -30px;
@@ -96,7 +96,7 @@ button{
     button#slide-in-menu-button {
         width: 35px;
         height: 35px;
-
+        right: 10px;
         > span{
             &::before{
                 font-size: 25px;

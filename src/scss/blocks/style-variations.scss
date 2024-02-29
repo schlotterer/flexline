@@ -17,10 +17,10 @@ body{
         text-shadow: var(--wp--custom--text-shadow);
     }
 
-    @media only screen and (min-width: 782px) {
+    @media only screen and (var(--wp--custom--breakpoint--tablet-up) ) {
 
         /* -- Navigation Link -- */
-
+// TODO: why is this like this?
         .wp-block-navigation-item.is-style-outline a {
             border: 1px solid currentColor;
             padding: 8px 15px;
