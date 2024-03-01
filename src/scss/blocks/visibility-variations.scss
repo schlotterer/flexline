@@ -1,6 +1,6 @@
 
 
-    @media only screen and (max-width: 781.98px) {
+    @media only screen and (max-width:781.98px) {
 
         /* -- Columns -- */
 
@@ -14,7 +14,7 @@
 
     }
 
-    @media only screen and ( min-width: 782px) {
+    @media only screen and ( min-width:782px) {
 
         .is-style-hide-on-desktop {
             display: none !important;
@@ -25,7 +25,7 @@
     /* Media Queries
     ---------------------------------------- */
 
-    @media only screen and (max-width: 781.98px ) {
+    @media only screen and (max-width:781.98px) {
 
         /* -- Utility -- */
 
@@ -40,22 +40,22 @@
 
     }
 
-    /* Large screens (desktops, 992px and up) */
-    @media ( min-width: 992px ) {
+    /* Large screens (desktops,992pxand up) */
+    @media ( min-width:992px) {
         .block-visibility-hide-large-screen {
             display: none !important;
         }
     }
 
-    /* Medium screens (tablets, between 768px and 992px) */
-    @media ( min-width: 782px  ) and ( max-width: 991.98px ) {
+    /* Medium screens (tablets, between 768px and992px) */
+    @media ( min-width:782px ) and ( max-width:991.98px) {
         .block-visibility-hide-medium-screen {
             display: none !important;
         }
     }
 
     /* Small screens (mobile devices, less than 768px) */
-    @media ( max-width: 781.98px ) {
+    @media (max-width:781.98px) {
         .block-visibility-hide-small-screen {
             display: none !important;
         }

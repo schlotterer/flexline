@@ -350,10 +350,10 @@
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"decoColor": "var(--wp--preset--color--alternate)",
 			"breakpoint": {
-				"mobile": "max-width: 781.98px",
+				"mobile": "max-width:781.98px",
 				"tablet-down": "max-width: 991.98px",
-				"tablet-up": "min-width: 782px",
-				"desktop": "min-width: 992px"
+				"tablet-up": "min-width:782px",
+				"desktop": "min-width:992px"
 			},
 			"color":{
 				"primary": {
