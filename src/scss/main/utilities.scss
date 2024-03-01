@@ -9,6 +9,10 @@
     z-index: 10 !important;
 }
 
+.is-pull-left-20{
+    margin-left: -20px;
+}
+
 .has-primary-primaryDark-gradient-background{
     background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--custom--color--primary--dark) 100%);
 }
