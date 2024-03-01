@@ -14,7 +14,7 @@ namespace FlexLine\flexline;
  */
 function preload_assets() {
     // TODO: check it first
-	echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() ) . '/assets/images/fallback.png" as="image"/>';
+	//echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() ) . '/assets/images/fallback.png" as="image"/>';
 
 }
 add_action( 'wp_head', __NAMESPACE__ . '\preload_assets', 1 );
