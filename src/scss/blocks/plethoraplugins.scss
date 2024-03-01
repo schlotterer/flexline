@@ -1,5 +1,10 @@
 .editor-styles-wrapper,
 body{
+    .plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__basic, 
+    .plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__tabby {
+        padding: 0 !important;
+        background-color: transparent !important;
+    }
     a.js-plethoraplugins-tabs--link,
     span.pds-accordion__heading{font-family:var(--wp--preset--font-family--display) !important;}
     .pds-accordion__title{
