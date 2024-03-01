@@ -185,17 +185,17 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Rubik Mono One', serif",
+					"fontFamily": "'Cabin', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Rubik Mono One', sans-serif",
+							"fontFamily": "'Cabin', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Rubik_Mono_One/RubikMonoOne-Regular.ttf" ]
+							"fontWeight": "500",
+							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" ]
 						}
 					]
 				},
