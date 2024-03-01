@@ -41,7 +41,7 @@
     }
 
     /* Large screens (desktops, 992px and up) */
-    @media ( var(--wp--custom--breakpoint--desktop) ) {
+    @media ( min-width: 992px ) {
         .block-visibility-hide-large-screen {
             display: none !important;
         }
