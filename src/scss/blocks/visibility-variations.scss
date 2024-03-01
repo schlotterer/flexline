@@ -1,7 +1,7 @@
 .editor-styles-wrapper,
 body{
 
-    @media only screen and (var(--wp--custom--breakpoint--mobile)) {
+    @media only screen and (max-width: 781.98) {
 
         /* -- Columns -- */
 
@@ -15,7 +15,7 @@ body{
 
     }
 
-    @media only screen and ( var(--wp--custom--breakpoint--tablet-up)) {
+    @media only screen and ( min-width: 782px) {
 
         .is-style-hide-on-desktop {
             display: none !important;
@@ -26,7 +26,7 @@ body{
     /* Media Queries
     ---------------------------------------- */
 
-    @media only screen and (var(--wp--custom--breakpoint--mobile) ) {
+    @media only screen and (max-width: 781.98 ) {
 
         /* -- Utility -- */
 
@@ -49,14 +49,14 @@ body{
     }
 
     /* Medium screens (tablets, between 768px and 992px) */
-    @media ( var(--wp--custom--breakpoint--tablet-up)  ) and ( var(--wp--custom--breakpoint--tablet-down)  ) {
+    @media ( min-width: 782px  ) and ( var(--wp--custom--breakpoint--tablet-down)  ) {
         .block-visibility-hide-medium-screen {
             display: none !important;
         }
     }
 
     /* Small screens (mobile devices, less than 768px) */
-    @media ( var(--wp--custom--breakpoint--mobile) ) {
+    @media ( max-width: 781.98 ) {
         .block-visibility-hide-small-screen {
             display: none !important;
         }

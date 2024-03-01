@@ -2,7 +2,7 @@
 ---------------------------------------- */
 .editor-styles-wrapper,
 body{
-    @media only screen and (var(--wp--custom--breakpoint--tablet-down)) {
+    @media only screen and (max-width: 991.98px) {
         .is-style-horizontal-scroll-at-mobile:not(ul){
             > ul {
                 position: relative;
@@ -40,7 +40,7 @@ body{
             }
         }  
     }
-    @media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
+    @media only screen and ( max-width: 781.98 ) {
         .is-style-horizontal-scroll-at-mobile:not(ul){
             &::after{
                 font-family: 'Material Symbols Outlined';
@@ -115,7 +115,7 @@ body{
         }
         
     }
-    @media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
+    @media only screen and ( max-width: 781.98 ) {
         .is-style-horizontal-scroll{
             &.wp-block-columns,
             &.wp-block-group,

@@ -17,7 +17,7 @@ body{
         text-shadow: var(--wp--custom--text-shadow);
     }
 
-    @media only screen and (var(--wp--custom--breakpoint--tablet-up) ) {
+    @media only screen and (min-width: 782px ) {
 
         /* -- Navigation Link -- */
 // TODO: why is this like this?

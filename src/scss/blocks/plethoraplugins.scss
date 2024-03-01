@@ -19,7 +19,7 @@ body{
             border-bottom-right-radius: 0!important;
         }
     }
-    @media only screen and ( var(--wp--custom--breakpoint--mobile) ) {
+    @media only screen and ( max-width: 781.98 ) {
         .plethoraplugins-sidenavjump,
         .js-plethoraplugins-tab-panel {
             width: 100% !important;
