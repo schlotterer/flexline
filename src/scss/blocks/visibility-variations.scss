@@ -1,6 +1,6 @@
 
 
-    @media only screen and (max-width: 781.98) {
+    @media only screen and (max-width: 781.98px) {
 
         /* -- Columns -- */
 
@@ -48,7 +48,7 @@
     }
 
     /* Medium screens (tablets, between 768px and 992px) */
-    @media ( min-width: 782px  ) and ( var(--wp--custom--breakpoint--tablet-down)  ) {
+    @media ( min-width: 782px  ) and ( max-width: 991.98px ) {
         .block-visibility-hide-medium-screen {
             display: none !important;
         }
