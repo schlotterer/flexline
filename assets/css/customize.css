@@ -1,7 +1,11 @@
 /*
 ## Customize CSS here to avoid dealing with a build.
 */
-
+.enable-lightbox > a{
+    &::after{
+        background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
+    }
+}
 .enable-lightbox > a[data-popup-media-url*="youtube.com"],
 .enable-lightbox > a[data-popup-media-url*="youtu.be"],
 .enable-lightbox > a[data-popup-media-url*="vimeo.com"],
