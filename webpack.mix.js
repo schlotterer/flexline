@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+
 // Individual JavaScript files
 const jsFiles = [
     'src/js/block-extensions.js',
@@ -16,14 +17,17 @@ const sassFiles = [
 
 // Compile each JavaScript file to its own output
 jsFiles.forEach(file => {
-    mix.js(file, 'assets/built/js')
+    mix.js(file, 'js')
        .react(); // If you're using React. Remove this line if not.
 });
 
 // Compile each SASS file to its own output
 sassFiles.forEach(file => {
-    mix.sass(file, 'assets/built/css');
+    mix.sass(file, 'css');
 });
 
+// Copy images from a source directory to an output directory
+mix.copy('src/images', 'assets/built/images');
+
 // Optionally, set the public path if needed (useful for setting the correct absolute path for fonts and images referenced in CSS)
-// mix.setPublicPath('path/to/theme/or/plugin');
+mix.setPublicPath('assets/built');
