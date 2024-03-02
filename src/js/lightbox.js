@@ -98,7 +98,7 @@ function displayLightbox(mediaUrl) {
 
     // Create the close button
     const closeButton = document.createElement('span');
-    closeButton.innerText = 'close';
+    closeButton.innerText = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
     closeButton.style.position = 'absolute';
     closeButton.style.top = '20px';
     closeButton.style.right = '20px';
