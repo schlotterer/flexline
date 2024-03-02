@@ -111,8 +111,7 @@ figure.wp-block-image.enable-lightbox{
 
 .enable-lightbox > a{
     &::after{
-        font-family: 'Material Symbols Outlined';
-        content: "expand_content";
+        content: "";
         position: relative;
         display: inline-flex;
         align-items: center;
