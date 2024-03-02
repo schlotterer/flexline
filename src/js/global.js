@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
         scrollToPrevBtn.style.margin = '5px 0px 5px 0px';
-        scrollToPrevBtn.innerHTML = '<span class="material-symbols-outlined">chevron_left</span>';
+        scrollToPrevBtn.innerHTML = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>';
 
         // Create "Scroll to Next" button
         var scrollToNextBtn = document.createElement('button');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
         scrollToNextBtn.setAttribute('role', 'button');
         scrollToNextBtn.style.margin = '5px 20px 5px 5px';
-        scrollToNextBtn.innerHTML = '<span class="material-symbols-outlined">chevron_right</span>';
+        scrollToNextBtn.innerHTML = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>';
 
         // Insert both buttons below the scroller
         // The key here is to insert the "Scroll to Next" button first if we want it on the right, 
