@@ -18,7 +18,7 @@ function flexline_enqueue_style_sheet() {
 	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
 	
 	// Material Icons
-	wp_enqueue_style( 'flexline-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', array(), []);
+	//wp_enqueue_style( 'flexline-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', array(), []);
 
 	// Customized Styles
 	wp_enqueue_style( 'flexline-custom', get_template_directory_uri() . '/assets/css/customize.css', array(), []);
@@ -41,7 +41,7 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_style( 'flexline-base-admin', get_template_directory_uri() . '/assets/built/css/app.css', array(), []);
 	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
 	// Material Icons
-	wp_enqueue_style( 'flexline-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', array(), []);
+	//wp_enqueue_style( 'flexline-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', array(), []);
 }
 	
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
