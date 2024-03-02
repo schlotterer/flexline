@@ -110,6 +110,7 @@ figure.wp-block-image.enable-lightbox{
 }
 
 .enable-lightbox > a{
+    display: inline-flex;
     &::after{
         content: "";
         position: relative;
