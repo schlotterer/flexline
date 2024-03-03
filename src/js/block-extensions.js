@@ -16,8 +16,9 @@ const customPopUpAttributes = {
         default: '',
     },
 };
+
 // Filter function to add custom attributes to blocks
-function addButtonAttributes(settings, name) {
+function addCustomButtonAttributes(settings, name) {
     // Target specific blocks
     if (name === 'core/button') {
         settings.attributes = {
@@ -27,14 +28,32 @@ function addButtonAttributes(settings, name) {
     }
     return settings;
 }
-
+// Define custom attributes
+const customLazyAttributes = {
+    enableLazyLoad: {
+        type: 'boolean',
+        default: true,
+    }
+};
 // Filter function to add custom attributes to blocks
-function addImageAttributes(settings, name) {
+function addCustomImageAttributes(settings, name) {
     // Target specific blocks
     if (name === 'core/image') {
         settings.attributes = {
             ...settings.attributes,
             ...customPopUpAttributes,
+            ...customLazyAttributes,
+        };
+    }
+    return settings;
+}
+
+// Filter function to add custom attributes to blocks
+function addCustomCoverAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/cover') {
+        settings.attributes = {
+            ...settings.attributes,
             ...customLazyAttributes,
         };
     }
@@ -60,7 +79,6 @@ function addCustomGalleryAttributes(settings, name) {
     return settings;
 }
 
-
 // Define custom attributes
 const customNavigationAttributes = {
     enableHorizontalScroll: {
@@ -80,7 +98,6 @@ function addCustomNavigationAttributes(settings, name) {
     return settings;
 }
 
-
 // Define custom attributes
 const customGroupAttributes = {
     enableGroupLink: {
@@ -96,7 +113,6 @@ const customGroupAttributes = {
         default: 'none', // Default to 'none' indicating no link or an unselected state
     },
 };
-
 // Filter function to add custom attributes to blocks
 function addCustomGroupAttributes(settings, name) {
     // Target specific blocks
@@ -109,29 +125,6 @@ function addCustomGroupAttributes(settings, name) {
     return settings;
 }
 
-
-// Define custom attributes
-const customLazyAttributes = {
-    enableLazyLoad: {
-        type: 'boolean',
-        default: true,
-    }
-};
-
-// Filter function to add custom attributes to blocks
-function addCustomCoverAttributes(settings, name) {
-    // Target specific blocks
-    if (name === 'core/cover') {
-        settings.attributes = {
-            ...settings.attributes,
-            ...customLazyAttributes,
-        };
-    }
-    return settings;
-}
-
-
-
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
@@ -142,6 +135,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                     <BlockEdit {...props} />
                     <InspectorControls>
                         <PanelBody title="Flexline Options">
+                            <ToggleControl
+                                label="Enable Lazy Load"
+                                checked={!!props.attributes.enableLazyLoad}
+                                onChange={(newValue) => props.setAttributes({ enableLazyLoad: newValue })}
+                            />
                             <ToggleControl
                                 label="Enable Mixed Media Popup"
                                 checked={!!props.attributes.enablePopup}
@@ -154,11 +152,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
                                 />
                             )}
-                            <ToggleControl
-                                label="Enable Lazy Load"
-                                checked={!!props.attributes.enableLazyLoad}
-                                onChange={(newValue) => props.setAttributes({ enableLazyLoad: newValue })}
-                            />
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
@@ -281,14 +274,21 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
-    addButtonAttributes
+    addCustomButtonAttributes
 );
 
 // Hook filters
 addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
-    addImageAttributes
+    addCustomImageAttributes
+);
+
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomCoverAttributes
 );
 
 // Hook filters
@@ -305,12 +305,7 @@ addFilter(
     addCustomNavigationAttributes
 );
 
-// Hook filters
-addFilter(
-    'blocks.registerBlockType',
-    'flexline/add-custom-attributes',
-    addCustomCoverAttributes
-);
+
 
 // Hook filters
 addFilter(
