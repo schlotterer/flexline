@@ -207,7 +207,7 @@
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontWeight": "100,400,700",
-							"src": [ "file:./assets/fonts/REM/REM-variableFont.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
 				},
