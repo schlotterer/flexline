@@ -198,9 +198,23 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Poppins', sans-serif",
+					"fontFamily": "'DM Serif Display', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "'DM Serif Display'",
+							"fontStretch": "normal",
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf" ]
+						}
+					]
+				},
+				{
+					"fontFamily": "'Poppins', sans-serif",
+					"name": "Display",
+					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
@@ -213,8 +227,8 @@
 				},
 				{
 					"fontFamily": "'REM', sans-serif",
-					"name": "Display",
-					"slug": "display",
+					"name": "Body",
+					"slug": "body",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
@@ -223,21 +237,6 @@
 							"fontStyle": "normal",
 							"fontWeight": "100,300,500",
 							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
-						}
-					]
-				},
-				{
-					"fontFamily": "'Source Sans 3', sans-serif",
-					"name": "Body",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "'Source Sans 3', sans-serif",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Source_Sans_3/static/SourceSans3-Medium.ttf" ]
 						}
 					]
 				},
