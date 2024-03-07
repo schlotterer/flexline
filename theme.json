@@ -213,21 +213,6 @@
 					]
 				},
 				{
-					"fontFamily": "'Poppins', sans-serif",
-					"name": "Brand Thin",
-					"slug": "brand-thin",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "'Poppins'",
-							"fontStretch": "normal",
-							"fontStyle": "thin",
-							"fontWeight": "100",
-							"src": [ "file:./assets/fonts/Poppins/Poppins-ExtraLight.ttf" ]
-						}
-					]
-				},
-				{
 					"fontFamily": "'Alumni Sans Pinstripe', sans-serif",
 					"name": "Display",
 					"slug": "display",
