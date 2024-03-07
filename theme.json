@@ -200,7 +200,7 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Sulphur Point', sans-serif",
+					"fontFamily": "'Poppins', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
@@ -211,6 +211,21 @@
 							"fontStyle": "normal",
 							"fontWeight": "500",
 							"src": [ "file:./assets/fonts/Poppins/Poppins-Medium.ttf" ]
+						}
+					]
+				},
+				{
+					"fontFamily": "'Poppins', sans-serif",
+					"name": "Brand Thin",
+					"slug": "brand-thin",
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "'Poppins'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100",
+							"src": [ "file:./assets/fonts/Poppins/Poppins-ExtraLight.ttf" ]
 						}
 					]
 				},
