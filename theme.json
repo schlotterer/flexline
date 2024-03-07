@@ -404,9 +404,14 @@
 			},
 			"fontWeight": {
 				"thin": 100,
-				"light": 300,
+				"extra-light": 100,
+				"light": 100,
+				"regular": 300,
+				"medium": 600,
 				"semi-bold": 600,
-				"extra-bold": 800
+				"bold": 800,
+				"extra-bold": 800,
+				"black": 800
 			},
 			"lineHeight": {
 				"body": 1.75,
