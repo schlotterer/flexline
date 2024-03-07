@@ -198,31 +198,31 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'Poppins', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'REM'",
+							"fontFamily": "'Poppins'",
 							"fontStretch": "normal",
-							"fontWeight": "100,400,700",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"fontWeight": "500",
+							"src": [ "file:./assets/fonts/Poppins/Poppins-Medium.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Sofia Sans Extra Condensed', sans-serif",
+					"fontFamily": "'REM', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Sofia Sans Extra Condensed'",
+							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,600",
-							"src": [ "file:./assets/fonts/Sofia_Sans_Extra_Condensed/SofiaSansExtraCondensed-VariableFont_wght.ttf" ]
+							"fontWeight": "100,300,500",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
 				},
