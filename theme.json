@@ -198,30 +198,32 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Poppins', sans-serif",
+					"fontFamily": "'REM', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Poppins'",
+							"fontFamily": "'REM'",
 							"fontStretch": "normal",
-							"fontWeight": "500",
-							"src": [ "file:./assets/fonts/Poppins/Poppins-Medium.ttf" ]
+							"fontStyle": "normal",
+							"fontWeight": "100,300,500,800",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Poppins', sans-serif",
+					"fontFamily": "'REM', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Poppins'",
+							"fontFamily": "'REM'",
 							"fontStretch": "normal",
-							"fontWeight": "500",
-							"src": [ "file:./assets/fonts/Poppins/Poppins-Medium.ttf" ]
+							"fontStyle": "normal",
+							"fontWeight": "100,300,500,800",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -235,7 +237,7 @@
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500",
+							"fontWeight": "100,300,500,800",
 							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
@@ -402,14 +404,9 @@
 			},
 			"fontWeight": {
 				"thin": 100,
-				"extra-light": 200,
 				"light": 300,
-				"regular": 400,
-				"medium": 500,
 				"semi-bold": 600,
-				"bold": 700,
-				"extra-bold": 800,
-				"black": 900
+				"extra-bold": 800
 			},
 			"lineHeight": {
 				"body": 1.75,
