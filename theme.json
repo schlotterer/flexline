@@ -198,16 +198,16 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Lora', sans-serif",
+					"fontFamily": "'Poppins', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Lora'",
+							"fontFamily": "'Poppins'",
 							"fontStretch": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Lora/Lora-VariableFont_wght.ttf" ]
+							"fontWeight": "500",
+							"src": [ "file:./assets/fonts/Poppins/Poppins-Medium.ttf" ]
 						}
 					]
 				},
