@@ -477,7 +477,7 @@
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--body)",
 			"fontSize": "var(--wp--preset--font-size--small)",
-			"fontWeight": "var(--wp--custom--font-weight--regular)",
+			"fontWeight": "var(--wp--custom--font-weight--light)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
 		},
 		"elements": {
