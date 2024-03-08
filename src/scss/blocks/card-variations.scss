@@ -59,11 +59,11 @@ body{
             padding:0;
         }
         > *:not(figure) {
-            padding: var(--wp--preset--spacing--small);
+            padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
         }
         &.has-global-padding{
             > *:not(figure) {
-                padding: var(--wp--preset--spacing--small);
+                padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
             } 
         }
     }
