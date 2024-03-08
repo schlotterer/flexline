@@ -25,7 +25,7 @@
 <!-- /wp:column -->
 <!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%"><!-- wp:image {"id":5886,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-5886"/></figure>
+<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-5886"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -33,19 +33,19 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","right":"30px","left":"30px"},"margin":{"top":"0"}}},"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-contrast-background-color has-background" style="margin-top:0;padding-top:var(--wp--preset--spacing--medium);padding-right:30px;padding-bottom:var(--wp--preset--spacing--medium);padding-left:30px"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 <div class="wp-block-group alignwide"><!-- wp:image {"id":5573,"width":150,"height":32,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
 <!-- /wp:image -->
 <!-- wp:image {"id":5573,"width":150,"height":32,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
 <!-- /wp:image -->
 <!-- wp:image {"id":5573,"width":150,"height":32,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
 <!-- /wp:image -->
 <!-- wp:image {"id":5573,"width":150,"height":32,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
 <!-- /wp:image -->
 <!-- wp:image {"id":5573,"width":150,"height":32,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Logo', 'flexline' ); ?>" class="wp-image-5573" width="150" height="32"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -149,7 +149,7 @@
 <div class="wp-block-group alignwide"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"align":"center","id":3489,"width":200,"height":200,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
 <h3 class="wp-block-heading has-text-align-center has-medium-font-size" id="member-name-1"><?php echo esc_html__( 'Member Name', 'flexline' ); ?></h3>
@@ -165,7 +165,7 @@
 <!-- /wp:column -->
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"align":"center","id":3489,"width":200,"height":200,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
 <h3 class="wp-block-heading has-text-align-center has-medium-font-size" id="member-name-1"><?php echo esc_html__( 'Member Name', 'flexline' ); ?></h3>
@@ -181,7 +181,7 @@
 <!-- /wp:column -->
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"align":"center","id":3489,"width":200,"height":200,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
 <h3 class="wp-block-heading has-text-align-center has-medium-font-size" id="member-name-1"><?php echo esc_html__( 'Member Name', 'flexline' ); ?></h3>
@@ -197,7 +197,7 @@
 <!-- /wp:column -->
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"align":"center","id":3489,"width":200,"height":200,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri() ) . '/assets/built/images/fallback.webp'; ?>" alt="<?php echo esc_attr__( 'Sample Image', 'flexline' ); ?>" class="wp-image-3489" width="200" height="200"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"textAlign":"center","level":3,"fontSize":"medium"} -->
 <h3 class="wp-block-heading has-text-align-center has-medium-font-size" id="member-name-1"><?php echo esc_html__( 'Member Name', 'flexline' ); ?></h3>
