@@ -128,7 +128,13 @@ figure.wp-block-image.enable-lightbox{
     &[data-popup-media-url*="vimeo.com"],
     &[data-popup-media-url*=".mp4"],
     &[data-popup-media-url*=".webm"],
-    &[data-popup-media-url*=".ogg"] {
+    &[data-popup-media-url*=".ogg"],
+    &[src*="youtube.com"],
+    &[src*="youtu.be"],
+    &[src*="vimeo.com"],
+    &[src*=".mp4"],
+    &[src*=".webm"],
+    &[src*=".ogg"] {
         display: inline-flex;
         &::after{
             content: "";
