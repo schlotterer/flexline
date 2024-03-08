@@ -188,7 +188,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
                             />
                             {props.attributes.enablePopup && (
-                                <TextControl
+                                <URLInput
                                     label="Popup Media URL"
                                     value={props.attributes.popupMediaURL}
                                     onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
