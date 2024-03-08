@@ -33,7 +33,7 @@ add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_blo
  * @return mixed The modified block content.
  */
 function flexline_block_customizations_render($block_content, $block) {
-    if ($block['blockName'] === 'core/image' || $block['blockName'] === 'core/button') {
+    if ( $block['blockName'] === 'core/button') {
         // Check if your custom attributes are set and not empty
         if (isset($block['attrs']['enablePopup']) && $block['attrs']['enablePopup']) {
             // Add a class
@@ -42,14 +42,6 @@ function flexline_block_customizations_render($block_content, $block) {
             $replaceString = 'class="enable-lightbox ';
             $block_content = str_replace_first($searchString, $replaceString, $block_content);
             // Add the media URL as a data attribute if it exists
-            if (!empty($block['attrs']['popupMediaURL'])) {
-                // Insert your data attribute just before the closing tag of the element.
-                // This is a basic string replacement and might need to be adjusted based on the block markup.
-                //$block_content = str_replace('>', ' data-popup-media-url="' . esc_attr($block['attrs']['popupMediaURL']) . '">', $block_content);
-                $searchString = '>';
-                $replaceString = ' data-popup-media-url="' . esc_attr($block['attrs']['popupMediaURL']) . '">';
-                $block_content = str_replace_first($searchString, $replaceString, $block_content);
-            }
         }
     }
     if ($block['blockName'] === 'core/image') {

@@ -187,13 +187,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 checked={!!props.attributes.enablePopup}
                                 onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
                             />
-                            {props.attributes.enablePopup && (
-                                <URLInput
-                                    label="Popup Media URL"
-                                    value={props.attributes.popupMediaURL}
-                                    onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
-                                />
-                            )}
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
