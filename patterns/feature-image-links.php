@@ -21,25 +21,25 @@
     <!-- wp:column {"verticalAlignment":"center","width":""} -->
     <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","align":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
         <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|primary"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
+            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
                 <figcaption class="wp-element-caption">Page Link Image</figcaption>
             </figure>
             <!-- /wp:image -->
 
             <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|secondary"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
+            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
                 <figcaption class="wp-element-caption">Page Link Image</figcaption>
             </figure>
             <!-- /wp:image -->
 
             <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|alternate"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
+            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
                 <figcaption class="wp-element-caption">Page Link Image</figcaption>
             </figure>
             <!-- /wp:image -->
 
             <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
+            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-999" /></a>
                 <figcaption class="wp-element-caption">Page Link Image</figcaption>
             </figure>
             <!-- /wp:image -->

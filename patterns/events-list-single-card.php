@@ -12,7 +12,7 @@
         <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"0"}}},"layout":{"type":"default"}} -->
             <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
                 <div class="wp-block-group"><!-- wp:image {"id":147,"width":"40px","sizeSlug":"thumbnail","linkDestination":"none","style":{"color":{"duotone":"var:preset|duotone|primary"}}} -->
-                    <figure class="wp-block-image size-thumbnail is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="width:40px" /></figure>
+                    <figure class="wp-block-image size-thumbnail is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="width:40px" /></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->

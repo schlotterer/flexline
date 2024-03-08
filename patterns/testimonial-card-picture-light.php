@@ -17,7 +17,7 @@
 
     <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
     <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:image {"id":354,"width":"60px","height":"60px","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"50px"}},"className":"is-style-rounded"} -->
-        <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
+        <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
         <!-- /wp:image -->
 
         <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"constrained"},"fontFamily":"display","metadata":{"name":"Cite"}} -->

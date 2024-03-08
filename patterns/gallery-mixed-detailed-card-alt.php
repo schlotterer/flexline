@@ -8,7 +8,7 @@
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed Card Alt"}} -->
 <div class="wp-block-group is-style-card-alt"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","style":{"border":{"radius":"0px"}},"className":"is-style-default","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
-    <figure class="wp-block-image size-large has-custom-border is-style-default"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback-small.webp'; ?>" alt="Sample Image" style="border-radius:0px" /></figure>
+    <figure class="wp-block-image size-large has-custom-border is-style-default"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" style="border-radius:0px" /></figure>
     <!-- /wp:image -->
 
     <!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"className":"is-style-default","layout":{"type":"constrained"}} -->

@@ -33,8 +33,8 @@
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"stretch","width":"50%"} -->
-        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback.webp'; ?>","id":657,"dimRatio":60,"overlayColor":"primary","focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background wp-image-657" alt="" src="<?php echo esc_url(get_theme_file_uri()) . '/assets/images/fallback.webp'; ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" />
+        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>","id":657,"dimRatio":60,"overlayColor":"primary","focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover" style="min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background wp-image-657" alt="" src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" />
                 <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"225px"} -->
                     <div style="height:225px" aria-hidden="true" class="wp-block-spacer"></div>
                     <!-- /wp:spacer -->
