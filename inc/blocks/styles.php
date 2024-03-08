@@ -34,6 +34,7 @@ function flexline_register_block_styles() {
 			'shadow-light' => __( 'Shadow', 'flexline' ),
 			'shadow-dark' => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+			'card' => __( 'Card', 'flexline' ),
 		),
 		'core/list' => array(
 			'no-disc' => __( 'No Disc', 'flexline' ),

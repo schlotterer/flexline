@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Title: CTA Footer Large
- * Slug: flexline/cta-footer-large
+ * Title: CTA Large
+ * Slug: flexline/cta-large
  * Categories: flexline-components, flexline-cta, flexline-modules
  */
 ?>
