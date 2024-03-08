@@ -58,7 +58,7 @@ body{
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
             padding:0;
         }
-        > *:not(figure) {
+        > *:not(figure):not(.wp-block-cover) {
             padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
         }
         &.has-global-padding{

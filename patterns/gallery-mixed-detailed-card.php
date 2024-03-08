@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-galleries
  */
 ?>
-<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed Card"}} -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Gallery Mixed Detailed Card"},"enableGroupLink":true,"groupLinkURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf","groupLinkType":"popup_media"} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
     <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" /></figure>
     <!-- /wp:image -->
