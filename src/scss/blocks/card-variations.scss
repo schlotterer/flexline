@@ -45,6 +45,10 @@ body{
     }
     .is-style-card-alt{
         padding:0;
+        &.has-global-padding,
+        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+            padding:0;
+        }
         > *:not(figure) {
             padding: var(--wp--preset--spacing--small);
         }
