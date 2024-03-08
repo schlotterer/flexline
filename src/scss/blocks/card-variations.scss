@@ -12,6 +12,15 @@ body{
         transition:var(--wp--custom--transition-time);
     }
 
+    .is-style-card,
+    .is-style-card-alt,
+    .is-style-card-padded,
+    .is-style-outline-padded{
+        img{
+            width: 100% !important;
+        }
+    }
+
     // Cards
     .is-style-card,
     .is-style-card-alt,
