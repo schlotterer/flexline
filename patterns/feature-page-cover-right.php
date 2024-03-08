@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Title: Feature - Cover Right
- * Slug: flexline/feature-cover-right
+ * Title: Feature Page - Cover 
+ * Slug: flexline/feature-cover
  * Categories: flexline-modules
  */
 ?>
