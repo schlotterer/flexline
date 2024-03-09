@@ -12,7 +12,7 @@
     <div class="wp-block-query alignwide">
         <!-- wp:post-template {"layout":{"type":"default","columnCount":3}} -->
         
-            <!-- wp:pattern {"slug":"flexline/post-list-single-cover-columns"} /-->
+            <!-- wp:pattern {"slug":"flexline/post-list-single-feature-post"} /-->
 
         <!-- /wp:post-template -->
     </div>

@@ -4,6 +4,7 @@
  * Title: Search Meta Bar
  * Slug: flexline/meta-search
  * Categories: flexline-heroes, flexline-sections, flexline-posts
+ * Block Types: core/template-part/header
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"bottom":"0"},"padding":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Search Meta Bar"}} -->

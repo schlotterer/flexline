@@ -4,6 +4,7 @@
  * Title: Event Meta for custom SEO
  * Slug: flexline/meta-event-single
  * Categories: flexline-heroes, flexline-sections
+ * Block Types: core/template-part/header
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Event Meta Bar"}} -->

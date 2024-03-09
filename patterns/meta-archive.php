@@ -4,6 +4,7 @@
  * Title: Archive Meta Bar
  * Slug: flexline/meta-archive
  * Categories: flexline-heroes, flexline-sections, flexline-posts
+ * Block Types: core/template-part/header
  */
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Archive Meta Bar"}} -->

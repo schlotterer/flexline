@@ -1,13 +1,12 @@
 <?php
-
 /**
- * Title: Post list single cover columns
- * Slug: flexline/post-list-single-cover-columns
+ * Title: Post list single Feature Post with cover left
+ * Slug: flexline/post-list-single-feature-post
  * Categories: flexline-posts, flexline-components
  * Block Types: core/query
  */
 ?>
-<!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Sticky Posts with cover left"}} -->
+<!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Post list single Feature Post with cover left"}} -->
 <div class="wp-block-group is-style-outlined has-contrast-color has-text-color has-link-color"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}},"className":"is-style-default"} -->
     <div class="wp-block-columns is-style-default"><!-- wp:column {"verticalAlignment":"stretch"} -->
         <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":0,"overlayColor":"secondary","minHeight":100,"minHeightUnit":"%","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->

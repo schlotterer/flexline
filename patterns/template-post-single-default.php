@@ -2,9 +2,10 @@
 
 /**
  * Title: Post Single Default.
- * Slug: flexline/post-single-default
+ * Slug: flexline/template-post-single-default
  * Categories: flexline-posts, flexline-pages
  * Block Types: core/query
+ * Inserter: false
  */
 ?>
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|x-large"}},"className":"site-content","metadata":{"name":"Post Single Template Group"}} -->
