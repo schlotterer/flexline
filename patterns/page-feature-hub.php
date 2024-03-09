@@ -19,4 +19,4 @@
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots"/>
 <!-- /wp:separator -->
-<!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
+<!-- wp:pattern {"slug":"flexline/cta-large"} /-->

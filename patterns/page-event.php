@@ -13,7 +13,7 @@
 
     <!-- wp:pattern {"slug":"flexline/events-single-content"} /-->
     
-    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
+    <!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 
 </main>
 <!-- /wp:group -->

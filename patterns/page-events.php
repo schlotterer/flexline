@@ -20,7 +20,7 @@
 
     <!-- wp:pattern {"slug":"flexline/events-list-loop"} /-->
 
-    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
+    <!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 
 </div>
 <!-- /wp:group -->

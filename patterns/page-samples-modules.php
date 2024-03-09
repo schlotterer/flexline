@@ -319,7 +319,7 @@
     <h2 class="wp-block-heading">Footer CTA</h2>
     <!-- /wp:heading -->
 
-    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
+    <!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 
 </div>
 <!-- /wp:group -->

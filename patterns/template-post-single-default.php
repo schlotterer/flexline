@@ -27,7 +27,7 @@
 
     <!-- wp:pattern {"slug":"flexline/section-latest-posts"} /-->
 
-    <!-- wp:pattern {"slug":"flexline/cta-footer-large"} /-->
+    <!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 
 </main>
 <!-- /wp:group -->
