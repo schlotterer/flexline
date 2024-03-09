@@ -3,7 +3,7 @@
 /**
  * Title: CTA Full Width
  * Slug: flexline/cta-full-width
- * Categories: flexline-cta
+ * Categories: flexline-components, flexline-cta,
  */
 ?>
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"backgroundColor":"primary","textColor":"base","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"CTA - Full Width"}} -->

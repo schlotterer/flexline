@@ -37,27 +37,27 @@ body{
         }
     }
     .is-style-card{
-        padding:0;
+        padding:0 !important;
         &.has-global-padding,
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
-            padding:0;
+            padding:0 !important;
         }
         
     }
     .is-style-card-padded,
     .is-style-outlined{
-        padding: var(--wp--preset--spacing--small);
+        padding: var(--wp--preset--spacing--small) !important;
         &.has-global-padding,
-        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
-            padding: var(--wp--preset--spacing--small);
+        &.has-global-padding:where(.has-global-padding:not(.wp-block-block)){
+            padding: var(--wp--preset--spacing--small) !important;
         }
         
     }
     .is-style-card-alt{
-        padding:0;
+        padding:0 !important;
         &.has-global-padding,
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
-            padding:0;
+            padding:0 !important;
         }
         > *:not(figure):not(.wp-block-cover) {
             padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;

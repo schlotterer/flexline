@@ -3,7 +3,7 @@
 /**
  * Title: Info Boxes
  * Slug: flexline/info-box
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->

@@ -2,7 +2,7 @@
 /**
  * Title: Box with heading, text, button.
  * Slug: flexline/box
- * Categories: flexline-components
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->

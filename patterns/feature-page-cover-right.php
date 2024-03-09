@@ -3,7 +3,7 @@
 /**
  * Title: Feature Page - Cover 
  * Slug: flexline/feature-cover
- * Categories: flexline-modules
+ * Categories: flexline-modules, flexline-components
  */
 ?>
 <!-- wp:group {"className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Feature Page with cover right"},"enableGroupLink":true,"groupLinkURL":"/independent-living/floor-plans"} -->

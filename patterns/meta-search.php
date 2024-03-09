@@ -3,7 +3,7 @@
 /**
  * Title: Search Meta Bar
  * Slug: flexline/meta-search
- * Categories: flexline-heroes, flexline-sections, flexline-posts
+ * Categories: flexline-heroes, flexline-posts
  * Block Types: core/template-part/header
  */
 ?>
