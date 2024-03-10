@@ -40,7 +40,7 @@ body{
         padding:0 !important;
         &.has-global-padding,
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
-            padding:0 !important;
+            padding:0;
         }
         
     }
