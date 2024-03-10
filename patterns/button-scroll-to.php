@@ -2,7 +2,7 @@
 
 /**
  * Title: Button - Scroll to.
- * Slug: 
+ * Slug: flexline/button-scroll-to
  * Categories: flexline-components, flexline-utilities, flexline-misc
  */
 ?>
