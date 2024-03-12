@@ -12,7 +12,7 @@
         <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);flex-basis:50%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"right","verticalAlignment":"center"}} -->
             <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-bottom:var(--wp--preset--spacing--xxx-large)"><!-- wp:group {"layout":{"type":"constrained","contentSize":"570px"}} -->
                 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-                    <div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|neutral"}}}},"textColor":"neutral","fontSize":"medium","fontFamily":"display"} -->
+                    <div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}},"textColor":"neutral","fontSize":"medium","fontFamily":"display"} -->
                         <h1 class="wp-block-heading has-neutral-color has-text-color has-link-color has-display-font-family has-medium-font-size" style="text-transform:uppercase">H1 SEO Eyebrow</h1>
                         <!-- /wp:heading -->
 
@@ -32,8 +32,8 @@
         </div>
         <!-- /wp:column -->
 
-        <!-- wp:column {"verticalAlignment":"stretch","width":"50%"} -->
-        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>","id":657,"dimRatio":60,"overlayColor":"primary","focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","layout":{"type":"constrained"}} -->
+        <!-- wp:column {"verticalAlignment":"stretch","width":"50%","backgroundColor":"primary"} -->
+        <div class="wp-block-column is-vertically-aligned-stretch has-primary-background-color has-background" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>","id":657,"dimRatio":60,"overlayColor":"primary","focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","layout":{"type":"constrained"}} -->
             <div class="wp-block-cover" style="min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background wp-image-657" alt="" src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" />
                 <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"225px"} -->
                     <div style="height:225px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -47,5 +47,4 @@
     <!-- /wp:columns -->
 
     <!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
-</div>
-<!-- /wp:group -->
+    <!-- /wp:group -->
