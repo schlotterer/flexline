@@ -2,7 +2,7 @@
 
 /**
  * Title: Events List Single Card/Outline
- * Slug: flexline/events-list-single-card
+ * Slug: flexline/events-list-single-card-outlined
  * Categories: flexline-posts, flexline-components
  */
 ?>
