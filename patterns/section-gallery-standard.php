@@ -10,7 +10,7 @@
     <div class="wp-block-columns alignfull"><!-- wp:column -->
         <div class="wp-block-column">
             
-            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
         <!-- /wp:column -->
@@ -18,7 +18,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             
-            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
         <!-- /wp:column -->
@@ -26,7 +26,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             
-            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
         <!-- /wp:column -->
@@ -37,7 +37,7 @@
     <div class="wp-block-columns alignfull"><!-- wp:column -->
         <div class="wp-block-column">
             
-            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
             
         </div>
         <!-- /wp:column -->
@@ -45,7 +45,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             
-           <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+           <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
         <!-- /wp:column -->
@@ -53,7 +53,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             
-            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card-alt"} /-->
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
         <!-- /wp:column -->
