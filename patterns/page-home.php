@@ -10,9 +10,9 @@
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots"/>
 <!-- /wp:separator -->
-<!-- wp:pattern {"slug":"flexline/section-cards-colored-links"} /-->
+<!-- wp:pattern {"slug":"flexline/section-colored-box-links"} /-->
 <!-- wp:pattern {"slug":"flexline/section-cover-boxes"} /-->
-<!-- wp:pattern {"slug":"flexline/testimonial-wide-outline"} /-->
+<!-- wp:pattern {"slug":"flexline/testimonial-wide"} /-->
 <!-- wp:spacer {"height":"var:preset|spacing|large"} -->
 <div style="height:var(--wp--preset--spacing--large)" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->

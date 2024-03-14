@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-    "title": "Desert Ridge",
+    "title": "Bravo",
 	"description":  "Desert colors and box shadows",
 	"settings": {
 		"appearanceTools": true,

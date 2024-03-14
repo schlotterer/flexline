@@ -1,8 +1,8 @@
 {
 	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-    "title": "Garden",
-	"description":  "Serene Garden",
+    "title": "Delta",
+	"description":  "Bold and Bright",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -64,54 +64,54 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--neutral) 0%, var(--wp--preset--color--neutral-light) 100%)",
 					"name": "Neutral to Neutral Light",
 					"slug": "neutral-neutralLight"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
 				}
 			],
 			"duotone": [
 				{
-					"colors": [ "#283618", "#ffffff" ],
+					"colors": [ "#223213", "#ffffff" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#974A14", "#ffffff" ],
+					"colors": [ "#025454", "#ffffff" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#B37E4E", "#ffffff" ],
+					"colors": [ "#b61916", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#606C38", "#ffffff" ],
+					"colors": [ "#ebd40a", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#8A8A8A", "#ffffff" ],
+					"colors": [ "#464a4e", "#ffffff" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
@@ -123,27 +123,27 @@
 			],
 			"palette": [
 				{
-					"color": "#283618",
+					"color": "#4f772d",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#BC6C25",
+					"color": "#029898",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#DDA15E",
+					"color": "#D36260",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#606C38",
+					"color": "#BBA908",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#FFDD38",
+					"color": "#ebd40a",
 					"name": "Warning",
 					"slug": "warning"
 				},
@@ -158,22 +158,22 @@
 					"slug": "base"
 				},
 				{
-					"color": "#FEFAE0",
+					"color": "#F7E8D6",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#B8B8B8",
+					"color": "#E3D8DE",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
 				{
-					"color": "#8A8A8A",
+					"color": "#464a4e",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				},
 				{
-					"color": "#000000",
+					"color": "#010101",
 					"name": "Contrast",
 					"slug": "contrast"
 				}
@@ -185,48 +185,39 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Calistoga', serif",
+					"fontFamily": "'Cabin', sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Calistoga'",
+							"fontFamily": "'Cabin', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Calistoga/Calistoga-Regular.ttf" ]
+							"fontWeight": "500",
+							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Quicksand', sans-serif",
+					"fontFamily": "'Varela', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Quicksand'",
+							"fontFamily": "'Varela'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/Varela/Varela-Regular.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Source Sans 3', sans-serif",
+					"fontFamily": "Tahoma, Verdana, sans-serif",
 					"name": "Body",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "'Source Sans 3', sans-serif",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
-						}
-					]
+					"slug": "body"
 				},
 				{
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
@@ -346,18 +337,18 @@
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
 			"navLightOverDarkHoverColor": "var(--wp--preset--color--alternate)",
-			"textShadow": "0 .15rem .3rem rgba(0,0,0, 0.5)",
-			"borderRadius": "15px 5px 15px 5px",
+			"textShadow": "0 .2rem .35rem rgba(0,0,0, 0.4)",
+			"borderRadius": "15px 15px 15px 15px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
-			"buttonBorderRadius": "10px 5px 10px 5px",
+			"buttonBorderRadius": "200px",
 			"buttonShadow": "var(--wp--preset--shadow--light)", 
 			"buttonHoverShadow": "var(--wp--preset--shadow--dark)",
 			"boxShadow": "var(--wp--preset--shadow--light)",
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
-			"iconSettings": "'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24",
+			"iconSettings": "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24",
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
-			"decoColor": "var(--wp--preset--color--secondary)",
+			"decoColor": "var(--wp--preset--color--alternate)",
 			"breakpoint": {
 				"mobile": "max-width:781.98px",
 				"tablet-down": "max-width: 991.98px",
@@ -366,16 +357,16 @@
 			},
 			"color":{
 				"primary": {
-					"light" : "#4A5634",
-					"dark": "#1C2612"
+					"light" : "#7AAF4B",
+					"dark": "#223213"
 				},
 				"secondary": {
-					"light" : "#D07F46",
-					"dark": "#974A14"
+					"light" : "#33E0E0",
+					"dark": "#025454"
 				},
 				"alternate": {
-					"light" : "#E8B789",
-					"dark": "#B37E4E"
+					"light" : "#FFC5C4",
+					"dark": "#b61916"
 				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
@@ -490,6 +481,7 @@
 						"bottom": "var(--wp--preset--spacing--small)",
 						"left": "var(--wp--preset--spacing--medium)"
 					}
+					
 				},
 				":hover": {
 					"shadow": "var(--wp--custom--button-hover-shadow)",
@@ -497,7 +489,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
-						"background": "var(--wp--preset--color--highlight)"
+						"background": "var(--wp--preset--color--alternate)"
 					}
 				},
 				":focus": {

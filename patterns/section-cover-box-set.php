@@ -18,8 +18,8 @@
             <p class="has-text-align-center is-style-text-shadow">Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
             <!-- /wp:paragraph -->
 
-            <!-- wp:pattern {"slug":"flexline/feature-cover-right"} /-->
-            <!-- wp:pattern {"slug":"flexline/feature-cover-left"} /-->
+            <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->
+            <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->
 
         </div>
     </div>
