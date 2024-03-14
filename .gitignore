@@ -41,8 +41,8 @@ yarn-error.log
 *.swo
 *~
 
-/styles/*
-!/styles/alpha.json
-!/styles/bravo.json
-!/styles/charlie.json
-!/styles/delta.json
+styles/*
+!styles/alpha.json
+!styles/bravo.json
+!styles/charlie.json
+!styles/delta.json
