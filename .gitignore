@@ -46,3 +46,5 @@ styles/*
 !styles/bravo.json
 !styles/charlie.json
 !styles/delta.json
+
+!styles/customize.json
