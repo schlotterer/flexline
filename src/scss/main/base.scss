@@ -25,7 +25,8 @@ a,
 a:focus,
 a:hover,
 a:not(.wp-element-button) {
-	text-decoration-thickness: 1px;
+	text-decoration-thickness: var(--wp--custom--text-deco-thickness);
+	text-decoration: none;
 }
 
 b,
@@ -165,13 +166,24 @@ address{
 		a{
 			display: inline-flex;
 			align-items: center;
-			.dashicons{
-				margin-right:5px;
+			path{
+				fill: var(--wp--preset--color--contrast);
 			}
 		}
 	}
 }
-
+.site-footer{
+	// Address
+	address{
+		&.contact-info{
+			a{
+				path{
+					fill: var(--wp--preset--color--contrast);
+				}
+			}
+		}
+	}
+}
 .material-symbols-outlined {
 	line-height: 1;
 }

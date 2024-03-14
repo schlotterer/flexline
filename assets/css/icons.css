@@ -35,3 +35,10 @@ figure.poster-gallery.has-nested-images > figure:first-of-type{
         background-image: url('../built/images/icon-photo_library_FILL0_wght400_GRAD0_opsz24.svg');
     }
 }
+
+
+@media only screen and (max-width:781.98px) {
+    .is-style-horizontal-scroll-at-mobile:not(ul)::after{
+        background-image: url('../built/images/icon-chevron_right_FILL0_wght400_GRAD0_opsz24.svg');
+    }  
+}

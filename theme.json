@@ -354,6 +354,7 @@
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
 			"linkHoverColor": "var(--wp--preset--color--highlight)",
+			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--primary)",
 			"navMainHoverColor": "var(--wp--preset--color--highlight)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",

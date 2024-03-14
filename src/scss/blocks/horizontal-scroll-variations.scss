@@ -43,20 +43,25 @@ body{
     }
     @media only screen and (max-width:781.98px) {
         .is-style-horizontal-scroll-at-mobile:not(ul){
+
             &::after{
-                font-family: 'Material Symbols Outlined';
-                content: "chevron_right";
+                content: "";
                 display: inline-flex;
                 position: absolute;
                 left: calc(100% - 35px);
                 color: inherit;
                 font-size: 30px;
                 top: 50%;
-                transform: translate(0px, -60%);
+                transform: translate(0px, -50%);
                 opacity: .5;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 50px;
+                width: 25px;
             }
             > ul {
-                padding-bottom: 4px;
+                //padding-bottom: 4px;
                 display: flex;
                 justify-content: flex-start;
                 margin-right: 35px;
