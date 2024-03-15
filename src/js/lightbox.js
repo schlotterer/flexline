@@ -14,18 +14,27 @@ function getVideoEmbedUrl(mediaUrl) {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.enable-lightbox').forEach(block => {
         const firstEligibleElement = block.querySelector('img, a'); // Adjust based on your target elements
-
+    
         if (firstEligibleElement) {
-            // Retrieve the media URL stored in the block's data attribute
-            const mediaUrl = block.getAttribute('data-popup-media-url');
-
+            // Initially, try to get the media URL from the data attribute
+            let mediaUrl = block.getAttribute('data-popup-media-url');
+    
+             // If no data attribute URL, and it's an anchor tag with href, use the href as the media URL
+            if (!mediaUrl && firstEligibleElement.tagName.toLowerCase() === 'a' && firstEligibleElement.hasAttribute('href')) {
+                mediaUrl = firstEligibleElement.getAttribute('href');
+            }
+            // If it's an image tag with src, use the src as the media URL
+            else if (!mediaUrl && firstEligibleElement.tagName.toLowerCase() === 'img' && firstEligibleElement.hasAttribute('src')) {
+                mediaUrl = firstEligibleElement.getAttribute('src');
+            }
+    
+            // If a media URL is available, either from data attribute or href
             if (mediaUrl) {
-                // Apply the lightbox logic here
+                // Common logic to add classes, set attributes, and attach event listener
                 firstEligibleElement.classList.add('has-popup');
                 firstEligibleElement.setAttribute('data-enable-popup', 'true');
                 firstEligibleElement.setAttribute('data-popup-media-url', mediaUrl);
-
-                // Add event listener or other logic to trigger the lightbox with the media URL
+    
                 firstEligibleElement.addEventListener('click', (e) => {
                     e.preventDefault();
                     displayLightbox(mediaUrl); // Function to display the lightbox
@@ -33,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    
+    
     document.querySelectorAll('.wp-block-group.group-link').forEach(block => {
         const mediaUrl = block.getAttribute('data-group-link-url');
         if (mediaUrl) {

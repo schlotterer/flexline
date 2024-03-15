@@ -3,7 +3,8 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, ToggleControl, TextControl, ToolsPanel, SelectControl, ToolsPanelItem } = wp.components;
+const { PanelBody, ToggleControl, ToolsPanel, SelectControl, ToolsPanelItem } = wp.components;
+const { URLInput } = wp.blockEditor;
 
 // Define custom attributes
 const customPopUpAttributes = {
@@ -146,7 +147,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
                             />
                             {props.attributes.enablePopup && (
-                                <TextControl
+                                <URLInput
                                     label="Popup Media URL"
                                     value={props.attributes.popupMediaURL}
                                     onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
@@ -186,13 +187,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 checked={!!props.attributes.enablePopup}
                                 onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
                             />
-                            {props.attributes.enablePopup && (
-                                <TextControl
-                                    label="Popup Media URL"
-                                    value={props.attributes.popupMediaURL}
-                                    onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
-                                />
-                            )}
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
@@ -242,7 +236,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 onChange={(newValue) => props.setAttributes({ enableGroupLink: newValue })}
                             />
                             {props.attributes.enableGroupLink && (
-                                <TextControl
+                                <URLInput
                                     label="Group Link URL"
                                     value={props.attributes.groupLinkURL}
                                     onChange={(newValue) => props.setAttributes({ groupLinkURL: newValue })}

@@ -5,11 +5,21 @@ body{
     .is-style-card,
     .is-style-card-alt,
     .is-style-card-padded,
-    .is-style-outline-padded,
+    .is-style-outlined,
     .is-style-shadow-light,
     .is-style-shadow-dark,
     .is-style-shadow-diffused{
         transition:var(--wp--custom--transition-time);
+    }
+
+    .is-style-card,
+    .is-style-card-alt,
+    .is-style-card-padded,
+    .is-style-outlined{
+        .poster-gallery,
+        img{
+            //width: 100% !important;
+        }
     }
 
     // Cards
@@ -27,7 +37,7 @@ body{
         }
     }
     .is-style-card{
-        padding:0;
+        padding:0 !important;
         &.has-global-padding,
         &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
             padding:0;
@@ -36,21 +46,25 @@ body{
     }
     .is-style-card-padded,
     .is-style-outlined{
-        padding: var(--wp--preset--spacing--small);
+        padding: var(--wp--preset--spacing--small) !important;
         &.has-global-padding,
-        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
-            padding: var(--wp--preset--spacing--small);
+        &.has-global-padding:where(.has-global-padding:not(.wp-block-block)){
+            padding: var(--wp--preset--spacing--small) !important;
         }
         
     }
     .is-style-card-alt{
-        padding:0;
-        > *:not(figure) {
-            padding: var(--wp--preset--spacing--small);
+        padding:0 !important;
+        &.has-global-padding,
+        &.has-global-padding :where(.has-global-padding:not(.wp-block-block)){
+            padding:0 !important;
+        }
+        > *:not(figure):not(.wp-block-cover) {
+            padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
         }
         &.has-global-padding{
             > *:not(figure) {
-                padding: var(--wp--preset--spacing--small);
+                padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
             } 
         }
     }

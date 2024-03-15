@@ -53,7 +53,7 @@ function flexline_register_block_pattern_categories() {
 		'flexline-modules',
 		array(
 			'label'       => __( 'Modules', 'flexline' ),
-			'description' => __( 'Rows of components', 'flexline' ),
+			'description' => __( 'Rows of components in groups', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
@@ -61,6 +61,13 @@ function flexline_register_block_pattern_categories() {
 		array(
 			'label'       => __( 'Sections', 'flexline' ),
 			'description' => __( 'Curated sections of components and modules for pages.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-samples',
+		array(
+			'label'       => __( 'Content Samples', 'flexline' ),
+			'description' => __( 'Samples of patterns for review and testing.', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(

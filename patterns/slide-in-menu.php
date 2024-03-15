@@ -4,6 +4,8 @@
  * Title: Slide In Navigation.
  * Slug: flexline/slide-in-menu
  * Categories: flexline-utilities
+ * Block Types: core/template-part/header
+ * Inserter: false
  * 
  * 
  */

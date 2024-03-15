@@ -340,6 +340,7 @@
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
 			"linkHoverColor": "var(--wp--preset--color--highlight)",
+			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--primary)",
 			"navMainHoverColor": "var(--wp--preset--color--highlight)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
@@ -693,6 +694,18 @@
 						"right": "0",
 						"bottom": "0",
 						"left": "0"
+					}
+				},
+				"variations": {
+					"rounded" : {
+						"color": {
+							"text": "var(--wp--preset--color--base)"
+						},
+						"border": {
+							"radius": "var(--wp--custom--image-border-radius)"
+						},
+						"css": "&.is-style-rounded figcaption { linear-gradient(0deg, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3) 70%, transparent);position:absolute;}"
+
 					}
 				}
 			},
