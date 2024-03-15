@@ -86,7 +86,7 @@ body{
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
             padding:10px var(--wp--preset--spacing--medium) 15px 0;
             max-height: 70vh;
-            > * {
+            > *:not(button) {
                 max-height: calc(70vh - 40px);
                 min-width: 300px;
                 flex-shrink: 0;

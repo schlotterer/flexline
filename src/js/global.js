@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
    
-    // Function to create buttons and implement scrolling for a given scroller
     function setupScrollerButtons(scroller) {
-        // Assuming scroller is your scrolling container
-
         // Create "Scroll to Previous" button
         var scrollToPrevBtn = document.createElement('button');
         scrollToPrevBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-prev');
@@ -20,20 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToNextBtn.style.margin = '5px 20px 5px 5px';
         scrollToNextBtn.innerHTML = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>';
 
-        // Insert both buttons below the scroller
-        // The key here is to insert the "Scroll to Next" button first if we want it on the right, 
-        // and then insert the "Scroll to Previous" button before it, if keeping them below the scroller
-        scroller.parentNode.insertBefore(scrollToNextBtn, scroller.nextSibling); // Insert "Scroll to Next" first
-        scroller.parentNode.insertBefore(scrollToPrevBtn, scrollToNextBtn); // Then insert "Scroll to Previous" before "Scroll to Next"
+        // Place buttons outside and adjacent to the scroller
+        scroller.after(scrollToNextBtn);
+        scroller.after(scrollToPrevBtn); // Ensures Prev button is directly after the scroller
 
-
-
-        // Enhance keyboard navigation and focus styles
+        // Style adjustments for buttons
         [scrollToNextBtn, scrollToPrevBtn].forEach(function(btn) {
-            btn.style.outline = 'none'; // Use custom focus styles
-            btn.style.border = '2px solid transparent'; // Placeholder for focus style
+            btn.style.outline = 'none';
+            btn.style.border = '2px solid transparent';
             btn.onfocus = function() {
-                this.style.border = '2px solid var(--wp--preset--color--primary)'; // Example focus style
+                this.style.border = '2px solid var(--wp--preset--color--primary)';
             };
             btn.onblur = function() {
                 this.style.border = '2px solid transparent';
@@ -41,62 +34,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         scrollToNextBtn.addEventListener('click', function() {
-            var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
-            var scrollerRect = scroller.getBoundingClientRect();
-            var nextItemToScrollTo = null;
-        
+            let currentScrollPosition = scroller.scrollLeft;
+            let targetScrollPosition = currentScrollPosition; // Default to current if no item is found
+            const items = Array.from(scroller.children);
+
+            for (let item of items) {
+                let itemStart = item.offsetLeft;
+                let itemEnd = itemStart + item.offsetWidth;
+
+                // If an item's start is beyond the current scroll position, it's our next target
+                if (itemStart > currentScrollPosition) {
+                    targetScrollPosition = itemStart; // Set to scroll to the start of this item
+                    break; // Exit loop once the next item is found
+                }
+            }
+
+            scroller.scrollTo({
+                left: targetScrollPosition,
+                behavior: 'smooth'
+            });
+        });
+
+        scrollToPrevBtn.addEventListener('click', function() {
+            const items = Array.from(scroller.children);
+            let targetScrollPosition = scroller.scrollLeft;
+            let firstVisibleItemFound = false;
+            
             for (let i = 0; i < items.length; i++) {
                 let item = items[i];
-                let itemRect = item.getBoundingClientRect();
+                let itemStart = item.offsetLeft;
+                let itemEnd = itemStart + item.offsetWidth;
                 
-                // Find the item that is currently at or just passed the left edge of the scroller
-                if (itemRect.left - scrollerRect.left >= 0) {
-                    nextItemToScrollTo = items[i + 1]; // The next item to scroll into view
-                    break;
-                }
-            }
-        
-            if (nextItemToScrollTo) {
-                // Calculate the scroll amount needed to align the next item to the left edge
-                let nextItemStart = nextItemToScrollTo.offsetLeft - scroller.offsetLeft;
-                scroller.scrollTo({
-                    left: nextItemStart,
-                    behavior: 'smooth'
-                });
-            }
-        });
-        
-
-        // Adjusted Scroll to the previous item function for precise alignment
-        scrollToPrevBtn.addEventListener('click', function() {
-            var items = scroller.querySelectorAll('.is-style-horizontal-scroll > *');
-            var currentScroll = scroller.scrollLeft;
-            var targetItem = null;
-
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].offsetLeft + items[i].clientWidth > currentScroll) {
-                    targetItem = items[i - 1];
+                // Check if the item is fully or partially visible in the scroller's viewport
+                if (itemStart >= scroller.scrollLeft && itemEnd <= (scroller.scrollLeft + scroller.offsetWidth)) {
+                    // Found the first fully or partially visible item
+                    firstVisibleItemFound = true;
+                    
+                    // Now find the previous item to this one
+                    if (i > 0) {
+                        let previousItem = items[i - 1];
+                        targetScrollPosition = previousItem.offsetLeft;
+                    } else {
+                        // If it's the first item, then we scroll to the start
+                        targetScrollPosition = 0;
+                    }
                     break;
                 }
             }
 
-            if (targetItem) {
-                scroller.scrollTo({
-                    left: targetItem.offsetLeft,
-                    behavior: 'smooth'
-                });
+            // If no fully or partially visible item found, it means we're at the start or items are larger than viewport
+            if (!firstVisibleItemFound && items.length > 0) {
+                // This condition might be adjusted based on the actual behavior you're observing
+                targetScrollPosition = items[0].offsetLeft; // Scroll to the first item
             }
+
+            scroller.scrollTo({
+                left: targetScrollPosition,
+                behavior: 'smooth'
+            });
         });
     }
+
+    // Initialize scroller buttons for each scroller
     var scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
-    scrollers.forEach(function(scroller) {
-        setupScrollerButtons(scroller);
-    });
-
-   
+    scrollers.forEach(setupScrollerButtons);
 });
-
-
-
-
-
