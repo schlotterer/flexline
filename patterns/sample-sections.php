@@ -681,7 +681,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
     <figure class="wp-block-image size-large is-style-shadow-light"><img src="https://flexline.test/wp-content/themes/flexline/assets/built/images/fallback.webp" alt="Sample Image" class="wp-image-362" /></figure>
     <!-- /wp:image -->
 
@@ -1607,7 +1607,7 @@
 
 <!-- wp:plethoraplugins/tab {"label":"Accordion 3","parentLayout":"accordion"} -->
 <!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
     <figure class="wp-block-image size-large is-style-shadow-light"><img src="https://flexline.test/wp-content/themes/flexline/assets/built/images/fallback.webp" alt="Sample Image" class="wp-image-362" /></figure>
     <!-- /wp:image -->
 
