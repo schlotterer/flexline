@@ -5,6 +5,7 @@
  * Slug: flexline/team-leadership
  * Categories: flexline-components, flexline-modules, flexline-misc
  */
+namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Team Leadership"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}},"className":"is-style-columns-reverse"} -->
@@ -31,7 +32,7 @@
 
         <!-- wp:column {"verticalAlignment":"center","width":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"sizeSlug":"full","linkDestination":"none"} -->
-            <figure class="wp-block-image size-full"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback.webp'; ?>" alt="Sample Image" class="wp-image-5592" /></figure>
+            <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->

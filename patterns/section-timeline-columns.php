@@ -5,6 +5,7 @@
  * Slug: flexline/section-timeline-columns
  * Categories: flexline-sections, flexline-modules
  */
+namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","gradient":"secondary-secondaryDark","layout":{"type":"constrained"},"metadata":{"name":"Timeline Columns"}} -->
 <div class="wp-block-group alignfull has-base-color has-secondary-secondaryDark-gradient-background has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:columns {"isStackedOnMobile":false,"align":"full","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}},"className":"is-style-horizontal-scroll"} -->
@@ -23,35 +24,35 @@
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
             <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                 <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="" /></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
                 </figure>
                 <!-- /wp:gallery -->

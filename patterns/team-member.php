@@ -5,10 +5,11 @@
  * Slug: flexline/team-member
  * Categories: flexline-components, flexline-misc
  */
+namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Team Member"}} -->
 <div class="wp-block-group is-style-default"><!-- wp:image {"align":"center","id":3489,"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-    <figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-3489" style="aspect-ratio:3/2;object-fit:cover" /></figure>
+    <figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-3489" style="aspect-ratio:3/2;object-fit:cover" /></figure>
     <!-- /wp:image -->
 
     <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Name and Title"}} -->

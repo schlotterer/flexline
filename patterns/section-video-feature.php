@@ -5,10 +5,11 @@
  * Slug: flexline/section-video-feature
  * Categories: flexline-sections, flexline-modules
  */
+namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
 <div class="wp-block-group alignwide"><!-- wp:image {"id":362,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
-    <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/fallback-small.webp'; ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:16/9;object-fit:cover" /></figure>
+    <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:16/9;object-fit:cover" /></figure>
     <!-- /wp:image -->
 
     <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"className":"wp-block-heading","fontSize":"x-large"} -->
