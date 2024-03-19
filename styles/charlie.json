@@ -356,7 +356,6 @@
 			"boxShadow": "var(--wp--preset--shadow--light)",
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
-			"iconSettings": "'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24",
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"breakpoint": {
