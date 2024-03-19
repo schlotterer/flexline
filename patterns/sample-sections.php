@@ -3,7 +3,7 @@
 /**
  * Title: Sample page displaying prebuilt Sections.
  * Slug: flexline/samples-sections
- * Categories: flexline-sections
+ * Categories: flexline-samples
  */
 namespace FlexLine\flexline;
 ?>
