@@ -497,7 +497,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
-						"background": "var(--wp--preset--color--secondary)"
+						"background": "var(--wp--custom--color--secondary--dark)"
 					}
 				},
 				":focus": {
@@ -644,7 +644,7 @@
 								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},
-						"css": "& a:hover {color: var(--wp--preset--color--secondary);}"
+						"css": "& :hover {color: var(--wp--preset--color--secondary);}"
 					}
 				}
 			},
