@@ -348,6 +348,7 @@
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
+			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"breakpoint": {
 				"mobile": "max-width: 781.98",

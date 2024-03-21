@@ -62,7 +62,7 @@ button{
         }
         &:hover{
             box-shadow: var(--wp--preset--shadow--dark);
-            background-color: var(--wp--preset--color--highlight);
+            background-color: var(--wp--custom--search-menu-icon-hover-color);
         }
     }
     &#slide-in-menu-close{
