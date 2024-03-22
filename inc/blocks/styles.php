@@ -17,10 +17,6 @@ function flexline_register_block_styles() {
 			'columns-reverse' => __( 'Reverse on Mobile', 'flexline' ),
 			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
-		'core/column' => array(
-			'hide-on-mobile' => __( 'Hide on Mobile', 'flexline' ),
-			'hide-on-desktop' => __( 'Show mobile only', 'flexline' ),
-		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
 			'shadow-dark' => __( 'Shadow Dark', 'flexline' ),

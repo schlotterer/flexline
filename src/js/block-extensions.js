@@ -44,6 +44,7 @@ function addCustomImageAttributes(settings, name) {
             ...settings.attributes,
             ...customPopUpAttributes,
             ...customLazyAttributes,
+            ...customVisibilityAttributes,
         };
     }
     return settings;
@@ -56,6 +57,7 @@ function addCustomCoverAttributes(settings, name) {
         settings.attributes = {
             ...settings.attributes,
             ...customLazyAttributes,
+            ...customVisibilityAttributes,
         };
     }
     return settings;
@@ -81,7 +83,7 @@ function addCustomGalleryAttributes(settings, name) {
 }
 
 // Define custom attributes
-const customNavigationAttributes = {
+const customHorizontalScrollAttributes = {
     enableHorizontalScroll: {
         type: 'boolean',
         default: false,
@@ -93,7 +95,8 @@ function addCustomNavigationAttributes(settings, name) {
     if (name === 'core/navigation') {
         settings.attributes = {
             ...settings.attributes,
-            ...customNavigationAttributes,
+            ...customHorizontalScrollAttributes,
+            ...customVisibilityAttributes,
         };
     }
     return settings;
@@ -121,10 +124,49 @@ function addCustomGroupAttributes(settings, name) {
         settings.attributes = {
             ...settings.attributes,
             ...customGroupAttributes,
+            ...customVisibilityAttributes,
         };
     }
     return settings;
 }
+
+const customVisibilityAttributes = {
+    hideOnDesktop: {
+        type: 'boolean',
+        default: false,
+    },
+    hideOnTablet: {
+        type: 'boolean',
+        default: false,
+    },
+    hideOnMobile: {
+        type: 'boolean',
+        default: false,
+    },
+};
+function addCustomVisibilityAttributes(settings, name) {
+    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading'].includes(name)) {
+        // Extend the existing attributes with custom visibility attributes
+        settings.attributes = {
+            ...settings.attributes,
+            ...customVisibilityAttributes,
+        };
+    }
+    return settings;
+}
+// Filter function to add custom attributes to blocks
+function addCustomColumnsAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/columns') {
+        settings.attributes = {
+            ...settings.attributes,
+            ...customHorizontalScrollAttributes,
+            ...customVisibilityAttributes,
+        };
+    }
+    return settings;
+}
+
 
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
@@ -153,6 +195,21 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
                                 />
                             )}
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
@@ -169,6 +226,21 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 label="Enable Lazy Load"
                                 checked={!!props.attributes.enableLazyLoad}
                                 onChange={(newValue) => props.setAttributes({ enableLazyLoad: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
                             />
                         </PanelBody>
                     </InspectorControls>
@@ -219,6 +291,21 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 checked={!!props.attributes.enableHorizontalScroll}
                                 onChange={(newValue) => props.setAttributes({ enableHorizontalScroll: newValue })}
                             />
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
                         </PanelBody>
                     </InspectorControls>
                 </Fragment>
@@ -254,8 +341,81 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     onChange={(newValue) => props.setAttributes({ groupLinkType: newValue })}
                                 />
                             )}
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
                         </PanelBody>
                         
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
+        if (props.name === 'core/columns') {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Flexline Options">
+                            <ToggleControl
+                                label="Enable Horizontal Scroll at Mobile"
+                                checked={!!props.attributes.enableHorizontalScroll}
+                                onChange={(newValue) => props.setAttributes({ enableHorizontalScroll: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
+                        </PanelBody>
+                        
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
+        if (['core/column', 'core/paragraph', 'core/heading'].includes(props.name)) {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Flexline Options">
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
+                        </PanelBody>
                     </InspectorControls>
                 </Fragment>
             );
@@ -299,7 +459,12 @@ addFilter(
     addCustomNavigationAttributes
 );
 
-
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomVisibilityAttributes
+);
 
 // Hook filters
 addFilter(

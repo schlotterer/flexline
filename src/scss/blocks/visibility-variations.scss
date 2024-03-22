@@ -14,50 +14,39 @@
 
     }
 
-    @media only screen and ( min-width:782px) {
-
-        .is-style-hide-on-desktop {
-            display: none !important;
-        }
-
-    }
-
+    
     /* Media Queries
     ---------------------------------------- */
 
-    @media only screen and (max-width:781.98px) {
-
-        /* -- Utility -- */
-
-        .is-style-hidden-mobile,
-        .is-style-hide-on-mobile {
-            display: none !important;
-        }
-
-        .is-justify-content-center-mobile {
-            justify-content: center !important;
-        }
-
-    }
-
     /* Large screens (desktops,992pxand up) */
     @media ( min-width:992px) {
-        .block-visibility-hide-large-screen {
+        .block-visibility-hide-large-screen,
+        .flexline-hide-on-desktop,
+        .is-style-hide-on-desktop {
             display: none !important;
         }
     }
 
     /* Medium screens (tablets, between 768px and992px) */
     @media ( min-width:782px ) and ( max-width:991.98px) {
-        .block-visibility-hide-medium-screen {
+        .block-visibility-hide-medium-screen,
+        .flexline-hide-on-tablet {
             display: none !important;
         }
     }
 
     /* Small screens (mobile devices, less than 768px) */
     @media (max-width:781.98px) {
-        .block-visibility-hide-small-screen {
+        .block-visibility-hide-small-screen,
+        .flexline-hide-on-mobile,
+        .is-style-hide-on-mobile,
+        .is-style-hidden-mobile  {
             display: none !important;
+        }
+
+
+        .is-justify-content-center-mobile {
+            justify-content: center !important;
         }
     }
 

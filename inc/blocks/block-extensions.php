@@ -90,13 +90,27 @@ function flexline_block_customizations_render($block_content, $block) {
         }
     }
     if ($block['blockName'] === 'core/navigation') {
+        $addedClasses = '';
         // Check if your custom attributes are set and not empty
         if (isset($block['attrs']['enableHorizontalScroll']) && $block['attrs']['enableHorizontalScroll']) {
             // Add a class
-            $searchString = 'class="';
-            $replaceString = 'class="is-style-horizontal-scroll-at-mobile ';
-            $block_content = str_replace_first($searchString, $replaceString, $block_content);
+            $addedClasses .= 'is-style-horizontal-scroll-at-mobile ';
         }
+        if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-mobile ';
+        }
+        if (isset($block['attrs']['hideOnTablet']) && $block['attrs']['hideOnTablet']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-tablet ';
+        }
+        if (isset($block['attrs']['hideOnDesktop']) && $block['attrs']['hideOnDesktop']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-desktop ';
+        }
+        $searchString = 'class="';
+        $replaceString = 'class="'.$addedClasses;
+        $block_content = str_replace_first($searchString, $replaceString, $block_content);
     }
     if ($block['blockName'] === 'core/group' || $block['blockName'] === 'core/stack' || $block['blockName'] === 'core/row') {
     // Check if your custom attributes are set and not empty
@@ -119,14 +133,45 @@ function flexline_block_customizations_render($block_content, $block) {
                 $block_content = str_replace_first($searchString, $replaceString, $block_content);
             }
         }
+        $addedClasses = '';
+        if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-mobile ';
+        }
+        if (isset($block['attrs']['hideOnTablet']) && $block['attrs']['hideOnTablet']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-tablet ';
+        }
+        if (isset($block['attrs']['hideOnDesktop']) && $block['attrs']['hideOnDesktop']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-desktop ';
+        }
+        $searchString = 'class="';
+        $replaceString = 'class="'.$addedClasses;
+        $block_content = str_replace_first($searchString, $replaceString, $block_content);
     }
-    if ($block['blockName'] === 'core/group' || $block['blockName'] === 'core/columns') {
+    if ( $block['blockName'] === 'core/columns') {
+        $addedClasses = '';
+        // Check if your custom attributes are set and not empty
         if (isset($block['attrs']['enableHorizontalScroll']) && $block['attrs']['enableHorizontalScroll']) {
             // Add a class
-            $searchString = 'class="';
-            $replaceString = 'class="is-style-horizontal-scroll ';
-            $block_content = str_replace_first($searchString, $replaceString, $block_content);
+            $addedClasses .= 'is-style-horizontal-scroll ';
         }
+        if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-mobile ';
+        }
+        if (isset($block['attrs']['hideOnTablet']) && $block['attrs']['hideOnTablet']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-tablet ';
+        }
+        if (isset($block['attrs']['hideOnDesktop']) && $block['attrs']['hideOnDesktop']) {
+            // Add a class
+            $addedClasses .= 'flexline-hide-on-desktop ';
+        }
+        $searchString = 'class="';
+        $replaceString = 'class="'.$addedClasses;
+        $block_content = str_replace_first($searchString, $replaceString, $block_content);
     }
 
 
