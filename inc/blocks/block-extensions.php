@@ -259,6 +259,9 @@ function flexline_block_customizations_render($block_content, $block) {
         $block['blockName'] === 'core/post-featured-image' ||
         $block['blockName'] === 'core/navigation-submenu' ||
         $block['blockName'] === 'core/navigation-link' ||
+        $block['blockName'] === 'core/html' ||
+        $block['blockName'] === 'core/social-link' ||
+        $block['blockName'] === 'core/social-links' ||
         $block['blockName'] === 'core/embed') {
         $addedClasses = '';
         if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {

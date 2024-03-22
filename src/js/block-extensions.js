@@ -160,7 +160,7 @@ const customVisibilityAttributes = {
     },
 };
 function addCustomVisibilityAttributes(settings, name) {
-    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading', 'core/video', 'core/site-logo', 'core/post-featured-image', 'core/embed'].includes(name)) {
+    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading', 'core/video', 'core/site-logo', 'core/post-featured-image', 'core/embed', 'core/html', 'core/social-link', 'core/social-links'].includes(name)) {
         // Extend the existing attributes with custom visibility attributes
         settings.attributes = {
             ...settings.attributes,
@@ -459,7 +459,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
             'core/post-featured-image', 
             'core/embed', 
             'core/navigation-submenu', 
-            'core/navigation-link'
+            'core/navigation-link',
+            'core/html', 
+            'core/social-link', 
+            'core/social-links'
             ].includes(props.name)) {
             return (
                 <Fragment>
