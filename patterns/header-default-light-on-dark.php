@@ -15,24 +15,24 @@
 
         <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
         <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"right","verticalAlignment":"center"}} -->
-            <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
-                <div class="wp-block-group"><!-- wp:navigation {"ref":48,"overlayMenu":"never","overlayBackgroundColor":"highlight","overlayTextColor":"base","className":"is-style-light-over-dark","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase"}},"fontSize":"small","blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":true,"medium":true}}}}]}} /--></div>
+            <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"},"hideOnTablet":true,"hideOnMobile":true} -->
+                <div class="wp-block-group"><!-- wp:navigation {"ref":691,"overlayMenu":"never","overlayBackgroundColor":"highlight","overlayTextColor":"base","className":"is-style-light-over-dark","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /--></div>
                 <!-- /wp:group -->
 
-                <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"},"blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"medium":true,"small":true}}}}]}} -->
-                <div class="wp-block-group"><!-- wp:navigation {"ref":5,"overlayMenu":"never","icon":"menu","overlayBackgroundColor":"primary","className":"is-style-light-over-dark","layout":{"type":"flex","justifyContent":"right","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"none"}},"fontSize":"small","blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":[]}]}} /--></div>
+                <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"},"hideOnTablet":true,"hideOnMobile":true} -->
+                <div class="wp-block-group"><!-- wp:navigation {"ref":47,"overlayMenu":"never","icon":"menu","overlayBackgroundColor":"primary","className":"is-style-light-over-dark","layout":{"type":"flex","justifyContent":"right","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"none"}},"fontSize":"small"} /--></div>
                 <!-- /wp:group -->
             </div>
             <!-- /wp:group -->
 
-            <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":true}}}}]}} -->
+            <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"hideOnMobile":true} -->
             <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}},"typography":{"textTransform":"uppercase"}}} -->
                 <div class="wp-block-button" style="text-transform:uppercase"><a class="wp-block-button__link wp-element-button" href="/contact/" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Contact</a></div>
                 <!-- /wp:button -->
             </div>
             <!-- /wp:buttons -->
 
-            <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":false,"medium":true,"large":true}}}}]}} -->
+            <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"hideOnDesktop":true,"hideOnTablet":true} -->
             <div class="wp-block-buttons"><!-- wp:button {"textColor":"base","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}},"typography":{"textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"className":"is-style-outline"} -->
                 <div class="wp-block-button is-style-outline" style="text-transform:uppercase"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="/contact/" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Call Now</a></div>
                 <!-- /wp:button -->

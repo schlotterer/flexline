@@ -25,10 +25,25 @@ function addCustomButtonAttributes(settings, name) {
         settings.attributes = {
             ...settings.attributes,
             ...customPopUpAttributes,
+            ...customVisibilityAttributes,
         };
     }
     return settings;
 }
+
+// Filter function to add custom attributes to blocks
+function addCustomButtonsAttributes(settings, name) {
+    // Target specific blocks
+    if (name === 'core/buttons') {
+        settings.attributes = {
+            ...settings.attributes,
+            ...customVisibilityAttributes,
+        };
+    }
+    return settings;
+}
+
+
 // Define custom attributes
 const customLazyAttributes = {
     enableLazyLoad: {
@@ -145,7 +160,7 @@ const customVisibilityAttributes = {
     },
 };
 function addCustomVisibilityAttributes(settings, name) {
-    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading'].includes(name)) {
+    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading', 'core/video', 'core/site-logo', 'core/post-featured-image', 'core/embed'].includes(name)) {
         // Extend the existing attributes with custom visibility attributes
         settings.attributes = {
             ...settings.attributes,
@@ -248,6 +263,32 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
             );
         }
         // Only show on specific blocks
+        if (props.name === 'core/buttons') {
+            return (
+                <Fragment>
+                    <BlockEdit {...props} />
+                    <InspectorControls>
+                        <PanelBody title="Flexline Options">
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
+                            />
+                        </PanelBody>
+                    </InspectorControls>
+                </Fragment>
+            );
+        }
         if (props.name === 'core/button') {
             return (
                 <Fragment>
@@ -258,6 +299,21 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 label="Enable Mixed Media Popup"
                                 checked={!!props.attributes.enablePopup}
                                 onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Desktop"
+                                checked={!!props.attributes.hideOnDesktop}
+                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Tablet"
+                                checked={!!props.attributes.hideOnTablet}
+                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
+                            />
+                            <ToggleControl
+                                label="Hide on Mobile"
+                                checked={!!props.attributes.hideOnMobile}
+                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
                             />
                         </PanelBody>
                     </InspectorControls>
@@ -394,7 +450,17 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 </Fragment>
             );
         }
-        if (['core/column', 'core/paragraph', 'core/heading'].includes(props.name)) {
+        if ([
+            'core/column', 
+            'core/paragraph', 
+            'core/heading', 
+            'core/video', 
+            'core/site-logo', 
+            'core/post-featured-image', 
+            'core/embed', 
+            'core/navigation-submenu', 
+            'core/navigation-link'
+            ].includes(props.name)) {
             return (
                 <Fragment>
                     <BlockEdit {...props} />
@@ -429,6 +495,13 @@ addFilter(
     'blocks.registerBlockType',
     'flexline/add-custom-attributes',
     addCustomButtonAttributes
+);
+
+// Hook filters
+addFilter(
+    'blocks.registerBlockType',
+    'flexline/add-custom-attributes',
+    addCustomButtonsAttributes
 );
 
 // Hook filters

@@ -9,7 +9,7 @@
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Post List Single Image Text/Outline"}} -->
 <div class="wp-block-group is-style-default"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|x-small"}}}} -->
-    <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile"><!-- wp:column {"verticalAlignment":"center","width":"20%","blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":true}}}}]}} -->
+    <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile"><!-- wp:column {"verticalAlignment":"center","width":"20%","hideOnMobile":true} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"1","width":"","dimRatio":20,"gradient":"primary-primaryDark","style":{"color":{"duotone":"var:preset|duotone|primary"}},"className":"is-style-card"} /--></div>
         <!-- /wp:column -->
 
