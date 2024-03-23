@@ -9,7 +9,29 @@ namespace FlexLine\flexline;
 
 use WP_Customize_Image_Control;
 
+function customize_main_phone_title( $wp_customize ) {
+	// Register a setting.
+	$wp_customize->add_setting(
+		'flexline_main_phone_title',
+		[
+			'default'           => 'call us',
+			'sanitize_callback' => 'wp_kses_post',
+		]
+	);
 
+	// Create the setting field.
+	$wp_customize->add_control(
+		'flexline_main_phone_title',
+		[
+			'label'       => esc_attr__( 'Main Phone Title', 'flexline' ),
+			'description' => esc_attr__( 'This optional text will the text in alt tag and for the link text', 'flexline' ),
+			'section'     => 'flexline_default_section',
+			'type'        => 'text',
+		]
+	);
+}
+
+add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_title' );
 /**
  * Register Header Phone Link Display Options
  *
