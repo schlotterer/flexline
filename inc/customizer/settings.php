@@ -11,35 +11,71 @@ use WP_Customize_Image_Control;
 
 
 /**
- * Register main phone title setting.
- *
- * @author WebDevStudios
+ * Register Header Phone Link Display Options
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
-function customize_main_phone_title( $wp_customize ) {
-	// Register a setting.
-	$wp_customize->add_setting(
-		'flexline_main_phone_title',
-		[
-			'default'           => '',
-			'sanitize_callback' => 'wp_kses_post',
-		]
-	);
+function customize_header_phone_display_options( $wp_customize ) {
+    // Adding the headline as a new control for clarity and grouping
+    $wp_customize->add_setting('flexline_header_phone_link_display_headline', array());
+    
+    $wp_customize->add_control(new \WP_Customize_Control(
+        $wp_customize,
+        'flexline_header_phone_link_display_headline',
+        array(
+            'label'     => esc_html__('Header phone link display options', 'flexline'),
+            'section'   => 'flexline_default_section',
+            'settings'  => 'flexline_header_phone_link_display_headline',
+            'type'      => 'heading', // Custom control type or use description for standard types
+        )
+    ));
 
-	// Create the setting field.
-	$wp_customize->add_control(
-		'flexline_main_phone_title',
-		[
-			'label'       => esc_attr__( 'Main Phone Title', 'flexline' ),
-			'description' => esc_attr__( 'This optional text will show in front of the phone number with a space in between.', 'flexline' ),
-			'section'     => 'flexline_default_section',
-			'type'        => 'text',
-		]
-	);
+    // Hide on Desktop
+    $wp_customize->add_setting('flexline_hide_phone_desktop', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_desktop', array(
+        'label' => esc_html__('Hide on Desktop', 'flexline'),
+        'section' => 'flexline_default_section',
+        'settings' => 'flexline_hide_phone_desktop',
+        'type' => 'checkbox',
+    ));
+
+    // Repeat for Tablet and Mobile
+    // Hide on Tablet
+    $wp_customize->add_setting('flexline_hide_phone_tablet', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_tablet', array(
+        'label' => esc_html__('Hide on Tablet', 'flexline'),
+        'section' => 'flexline_default_section',
+        'settings' => 'flexline_hide_phone_tablet',
+        'type' => 'checkbox',
+    ));
+
+    // Hide on Mobile
+    $wp_customize->add_setting('flexline_hide_phone_mobile', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_mobile', array(
+        'label' => esc_html__('Hide on Mobile', 'flexline'),
+        'section' => 'flexline_default_section',
+        'settings' => 'flexline_hide_phone_mobile',
+        'type' => 'checkbox',
+    ));
 }
 
-add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_title' );
+add_action('customize_register', __NAMESPACE__ . '\customize_header_phone_display_options');
+
 
 /**
  * Register main phone number setting.
