@@ -8,9 +8,9 @@
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minHeight":"100%"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Post Card - Image, Category, Title"}} -->
-<div class="wp-block-group is-style-default" style="min-height:100%"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"0"}}}} -->
-    <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile"><!-- wp:column {"verticalAlignment":"center","width":"20%","className":"is-pull-right-20","blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":false}}}}]},"hideOnMobile":true} -->
-        <div class="wp-block-column is-vertically-aligned-center is-pull-right-20" style="flex-basis:20%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"className":"is-style-card","layout":{"type":"constrained"}} -->
+<div class="wp-block-group is-style-default" style="min-height:100%"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|x-small"}}}} -->
+    <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile"><!-- wp:column {"verticalAlignment":"center","width":"20%","blockVisibility":{"controlSets":[{"id":1,"enable":true,"controls":{"screenSize":{"hideOnScreenSize":{"small":false}}}}]},"hideOnMobile":true} -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"className":"is-style-card","layout":{"type":"constrained"}} -->
             <div class="wp-block-group is-style-card" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"1","width":"100%","dimRatio":30,"gradient":"primary-primaryDark","style":{"color":{"duotone":"var:preset|duotone|primary"}}} /--></div>
             <!-- /wp:group -->
         </div>
