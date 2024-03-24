@@ -14,19 +14,10 @@ function flexline_template_part_areas( array $areas ) {
 
                 'area'        => 'topbar',
                 'area_tag'    => 'section',
-                'label'       => __( 'Top Bar', 'flexline' ),
-                'description' => __( 'Top Bar area for notifications', 'flexline' ),
+                'label'       => __( 'Slide In Menu', 'flexline' ),
+                'description' => __( 'Slide in search and menu area.', 'flexline' ),
                 'icon'        => 'tag'
 
-        ];
-        $areas[] = [
-                
-                'area'        => 'slide-in-menu',
-                'area_tag'    => 'nav',
-                'label'       => __( 'Slide In Menu', 'flexline' ),
-                'description' => __( 'Area for custom full window menu', 'flexline' ),
-                'icon'        => 'site'
-                
         ];
     
 	return $areas;
