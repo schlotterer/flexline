@@ -3,7 +3,7 @@
 /**
  * Title: Team Leadership.
  * Slug: flexline/team-leadership
- * Categories: flexline-components, flexline-modules, flexline-misc
+ * Categories: flexline-components, flexline-misc
  */
 namespace FlexLine\flexline;
 ?>

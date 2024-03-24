@@ -50,6 +50,13 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
+		'flexline-posts',
+		array(
+			'label'       => __( 'Components - Posts', 'flexline' ),
+			'description' => __( 'Components for posts and post lists.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
 		'flexline-modules',
 		array(
 			'label'       => __( 'Modules', 'flexline' ),
@@ -78,13 +85,6 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
-		'flexline-posts',
-		array(
-			'label'       => __( 'Template - Posts', 'flexline' ),
-			'description' => __( 'Templates for posts.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
 		'flexline-events',
 		array(
 			'label'       => __( 'Template - Events', 'flexline' ),
@@ -110,6 +110,13 @@ function flexline_register_block_pattern_categories() {
 		array(
 			'label'       => __( 'Template Parts - Utilities', 'flexline' ),
 			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
+		'flexline-samples',
+		array(
+			'label'       => __( 'Testing Samples', 'flexline' ),
+			'description' => __( 'Samples of patterns and configurations for testing and training.', 'flexline' ),
 		)
 	);
 	

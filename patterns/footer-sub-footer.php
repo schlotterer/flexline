@@ -2,7 +2,7 @@
 /**
  * Title: Footer Sub Footer
  * Slug: flexline/footer-sub-footer
- * Categories: flexline-sections, flexline-footers
+ * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
 ?>

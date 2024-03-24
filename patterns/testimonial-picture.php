@@ -5,10 +5,11 @@
  * Slug: flexline/testimonial-picture
  * Categories: flexline-components, flexline-misc
  */
+
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Testimonial with Picture"}} -->
-<div class="wp-block-group is-style-default"><!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->
+<!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Testimonial with Picture"}} -->
+<div class="wp-block-group is-style-card-padded"><!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->
     <p class="has-primary-color has-text-color has-link-color has-max-72-font-size" style="line-height:1">“</p>
     <!-- /wp:paragraph -->
 

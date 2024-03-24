@@ -3,7 +3,7 @@
 /**
  * Title: Sticky Subnav.
  * Slug: flexline/subnav-sticky
- * Categories: flexline-modules
+ * Categories: flexline-modules, flexline-components
  */
 
 namespace FlexLine\flexline;

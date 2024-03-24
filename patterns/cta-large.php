@@ -3,7 +3,7 @@
 /**
  * Title: CTA Large
  * Slug: flexline/cta-large
- * Categories: flexline-components, flexline-cta, flexline-modules
+ * Categories: flexline-components, flexline-cta
  */
 namespace FlexLine\flexline;
 ?>

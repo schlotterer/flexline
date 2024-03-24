@@ -3,7 +3,7 @@
 /**
  * Title: Events List Single Card/Outline
  * Slug: flexline/events-list-single-card
- * Categories: flexline-posts, flexline-components
+ * Categories: flexline-events
  */
 ?>
 <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card"}} -->

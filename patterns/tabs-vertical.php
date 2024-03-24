@@ -4,7 +4,7 @@
  * Title: Tabs Vertical
  * Dependencies: Plethora Tabs + Accordions - https://plethoraplugins.com/tabs-accordions/
  * Slug: flexline/tabs-vertical
- * Categories: flexline-modules, flexline-sections
+ * Categories: flexline-modules, flexline-components, flexline-misc
  */
 ?>
 <!-- wp:plethoraplugins/tabs {"layout":"vertical","tabLabels":["Vertical Tab 1","Vertical Tab 2","Basic Content"],"tabIds":[null,null,null]} -->

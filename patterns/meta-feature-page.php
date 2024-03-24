@@ -3,7 +3,7 @@
 /**
  * Title: Feature Page Meta.
  * Slug: flexline/hero-feature-page
- * Categories: flexline-heroes, flexline-posts
+ * Categories: flexline-heroes
  * Block Types: core/template-part/header
  */
 namespace FlexLine\flexline;

@@ -48,4 +48,5 @@ namespace FlexLine\flexline;
     <!-- /wp:columns -->
 
     <!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
+</div>
     <!-- /wp:group -->
