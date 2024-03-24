@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Enable custom mime types.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param array $mimes Current allowed mime types.
  *

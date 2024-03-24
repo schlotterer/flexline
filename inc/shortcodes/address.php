@@ -17,7 +17,7 @@ function flexline_contact_info_shortcode() {
     $aria_label = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call us";
 
     // Determine whether to show the phone link
-    $showPhoneLink = strpos($href, '#') === false;
+    $showPhoneLink = !(strpos($phone_number, '#') !== false && strpos($phone_number, '/') === false);
 
     $street = get_theme_mod('flexline_address_street', '');
     $city = get_theme_mod('flexline_address_city', '');

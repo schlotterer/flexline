@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Preload styles and scripts.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  */
 function preload_scripts() {
 	/*  None of these really need preloading, leaving them here for reference.

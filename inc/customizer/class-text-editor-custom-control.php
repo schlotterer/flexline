@@ -26,7 +26,7 @@ final class Text_Editor_Custom_Control extends \WP_Customize_Control {
 	/**
 	 * Render the content on the theme customizer page
 	 *
-	 * @author WebDevStudios
+	 * @author Joel Schlotterer
 	 */
 	public function render_content() {
 		?>
@@ -61,7 +61,7 @@ final class Text_Editor_Custom_Control extends \WP_Customize_Control {
 	/**
 	 * Enqueue scripts.
 	 *
-	 * @author WebDevStudios
+	 * @author Joel Schlotterer
 	 */
 	protected function enqueue_scripts() {
 		wp_enqueue_script( 'tiny_mce' );
@@ -71,7 +71,7 @@ final class Text_Editor_Custom_Control extends \WP_Customize_Control {
 	/**
 	 * Add footer scripts for Tinymce.
 	 *
-	 * @author WebDevStudios
+	 * @author Joel Schlotterer
 	 */
 	protected function add_footer_scripts() {
 		do_action( 'flexline_admin_print_footer_scripts' );

@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Include other customizer files.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  */
 function include_custom_controls() {
 	require get_template_directory() . '/inc/customizer/panels.php';
@@ -23,7 +23,7 @@ add_action( 'customize_register', __NAMESPACE__ . '\include_custom_controls', -9
 /**
  * Enqueue customizer related scripts.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  */
 function customize_scripts() {
 	wp_enqueue_script( 'flexline-customize-livepreview', get_template_directory_uri() . '/inc/customizer/assets/scripts/livepreview.js', [ 'jquery', 'customize-preview' ], '1.0.0', true );

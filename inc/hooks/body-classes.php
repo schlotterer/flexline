@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Adds custom classes to the array of body classes.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param array $classes Classes for the body element.
  *

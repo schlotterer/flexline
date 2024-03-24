@@ -23,86 +23,22 @@ function customize_main_phone_title( $wp_customize ) {
 	$wp_customize->add_control(
 		'flexline_main_phone_title',
 		[
-			'label'       => esc_attr__( 'Main Phone Title', 'flexline' ),
-			'description' => esc_attr__( 'This optional text will the text in alt tag and for the link text', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'label'       => esc_attr__( 'Main Phone Link Text', 'flexline' ),
+			'description' => esc_attr__( 'This optional text will the text in alt tag and for the link text in the phone and address shortcodes as well as the alt text in the header phone link.', 'flexline' ),
+			'section'     => 'flexline_phone_section',
 			'type'        => 'text',
 		]
 	);
 }
 
 add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_title' );
-/**
- * Register Header Phone Link Display Options
- *
- * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
- */
-function customize_header_phone_display_options( $wp_customize ) {
-    // Adding the headline as a new control for clarity and grouping
-    $wp_customize->add_setting('flexline_header_phone_link_display_headline', array());
-    
-    $wp_customize->add_control(new \WP_Customize_Control(
-        $wp_customize,
-        'flexline_header_phone_link_display_headline',
-        array(
-            'label'     => esc_html__('Header phone link display options', 'flexline'),
-            'section'   => 'flexline_default_section',
-            'settings'  => 'flexline_header_phone_link_display_headline',
-            'type'      => 'heading', // Custom control type or use description for standard types
-        )
-    ));
 
-    // Hide on Desktop
-    $wp_customize->add_setting('flexline_hide_phone_desktop', array(
-        'default' => false,
-        'transport' => 'refresh',
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-
-    $wp_customize->add_control('flexline_hide_phone_desktop', array(
-        'label' => esc_html__('Hide on Desktop', 'flexline'),
-        'section' => 'flexline_default_section',
-        'settings' => 'flexline_hide_phone_desktop',
-        'type' => 'checkbox',
-    ));
-
-    // Repeat for Tablet and Mobile
-    // Hide on Tablet
-    $wp_customize->add_setting('flexline_hide_phone_tablet', array(
-        'default' => false,
-        'transport' => 'refresh',
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-
-    $wp_customize->add_control('flexline_hide_phone_tablet', array(
-        'label' => esc_html__('Hide on Tablet', 'flexline'),
-        'section' => 'flexline_default_section',
-        'settings' => 'flexline_hide_phone_tablet',
-        'type' => 'checkbox',
-    ));
-
-    // Hide on Mobile
-    $wp_customize->add_setting('flexline_hide_phone_mobile', array(
-        'default' => false,
-        'transport' => 'refresh',
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-
-    $wp_customize->add_control('flexline_hide_phone_mobile', array(
-        'label' => esc_html__('Hide on Mobile', 'flexline'),
-        'section' => 'flexline_default_section',
-        'settings' => 'flexline_hide_phone_mobile',
-        'type' => 'checkbox',
-    ));
-}
-
-add_action('customize_register', __NAMESPACE__ . '\customize_header_phone_display_options');
 
 
 /**
  * Register main phone number setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -121,20 +57,75 @@ function customize_main_phone_number( $wp_customize ) {
 		'flexline_main_phone_number',
 		[
 			'label'       => esc_attr__( 'Main Phone Number', 'flexline' ),
-			'description' => esc_attr__( 'Format the number how you would like it to display. Make sure there are 10 digits total in the number', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'description' => esc_attr__( 'This can be a phone number, # anchor link to phone number/s, or any other link (/contact/)', 'flexline' ),
+			'section'     => 'flexline_phone_section',
 			'type'        => 'text',
 		]
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_number' );
+
+/**
+ * Register Header Phone Link Display Options
+ *
+ * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
+ */
+function customize_header_phone_display_options( $wp_customize ) {
+    
+    // Hide on Desktop
+    $wp_customize->add_setting('flexline_hide_phone_desktop', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_desktop', array(
+        'label' => esc_html__('Hide header phone link on Desktop', 'flexline'),
+        'section' => 'flexline_phone_section',
+        'settings' => 'flexline_hide_phone_desktop',
+        'type' => 'checkbox',
+    ));
+
+    // Repeat for Tablet and Mobile
+    // Hide on Tablet
+    $wp_customize->add_setting('flexline_hide_phone_tablet', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_tablet', array(
+        'label' => esc_html__('Hide header phone link on Tablet', 'flexline'),
+        'section' => 'flexline_phone_section',
+        'settings' => 'flexline_hide_phone_tablet',
+        'type' => 'checkbox',
+    ));
+
+    // Hide on Mobile
+    $wp_customize->add_setting('flexline_hide_phone_mobile', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('flexline_hide_phone_mobile', array(
+        'label' => esc_html__('Hide header phone link on Mobile', 'flexline'),
+        'section' => 'flexline_phone_section',
+        'settings' => 'flexline_hide_phone_mobile',
+        'type' => 'checkbox',
+    ));
+}
+add_action('customize_register', __NAMESPACE__ . '\customize_header_phone_display_options');
+
+
+
+
 
 
 /**
  * Register address street text setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -153,18 +144,17 @@ function customize_address_street( $wp_customize ) {
 		'flexline_address_street',
 		[
 			'label'       => esc_attr__( 'Street', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'section'     => 'flexline_address_section',
 			'type'        => 'text',
 		]
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_address_street' );
 
 /**
  * Register address city text setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -183,18 +173,17 @@ function customize_address_city( $wp_customize ) {
 		'flexline_address_city',
 		[
 			'label'       => esc_attr__( 'City', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'section'     => 'flexline_address_section',
 			'type'        => 'text',
 		]
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_address_city' );
 
 /**
  * Register address state text setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -213,18 +202,17 @@ function customize_address_state( $wp_customize ) {
 		'flexline_address_state',
 		[
 			'label'       => esc_attr__( 'State', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'section'     => 'flexline_address_section',
 			'type'        => 'text',
 		]
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_address_state' );
 
 /**
  * Register address zip text setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -243,18 +231,17 @@ function customize_address_zip( $wp_customize ) {
 		'flexline_address_zip',
 		[
 			'label'       => esc_attr__( 'Zip code', 'flexline' ),
-			'section'     => 'flexline_default_section',
+			'section'     => 'flexline_address_section',
 			'type'        => 'text',
 		]
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_address_zip' );
 
 /**
  * Register Feature Image Fallback setting.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
@@ -276,42 +263,11 @@ function customize_feature_fallback( $wp_customize ) {
 			array(
 				'label'       => esc_attr__( 'Feature Image Fallback', 'flexline' ),
 				'description' => esc_attr__( 'This image will display in list views when no featured image is present.', 'flexline' ),
-				'section'     => 'flexline_default_section',
+				'section'     => 'flexline_defaults_section',
 				'settings'    => 'flexline_feature_fallback',
 			)
 		)
 	);
 }
-
 add_action( 'customize_register', __NAMESPACE__ . '\customize_feature_fallback' );
 
-/**
- * Register copyright text setting.
- *
- * @author WebDevStudios
- *
- * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
- */
-function customize_copyright_text( $wp_customize ) {
-	// Register a setting.
-	$wp_customize->add_setting(
-		'flexline_copyright_text',
-		[
-			'default'           => '',
-			'sanitize_callback' => 'wp_kses_post',
-		]
-	);
-
-	// Create the setting field.
-	$wp_customize->add_control(
-		'flexline_copyright_text',
-		[
-			'label'       => esc_attr__( 'Copyright Text', 'flexline' ),
-			'description' => esc_attr__( 'The copyright text will be displayed in the footer. Basic HTML tags allowed.', 'flexline' ),
-			'section'     => 'flexline_default_section',
-			'type'        => 'textarea',
-		]
-	);
-}
-
-add_action( 'customize_register', __NAMESPACE__ . '\customize_copyright_text' );
