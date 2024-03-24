@@ -57,7 +57,7 @@ function customize_main_phone_number( $wp_customize ) {
 		'flexline_main_phone_number',
 		[
 			'label'       => esc_attr__( 'Main Phone Number', 'flexline' ),
-			'description' => esc_attr__( 'This can be a phone number, # anchor link to phone number/s, or any other link (/contact/)', 'flexline' ),
+			'description' => esc_attr__( 'This can be a phone number with 10 numeric digits, an anchor(#) link to phone number/s, or any other link (/contact/)', 'flexline' ),
 			'section'     => 'flexline_phone_section',
 			'type'        => 'text',
 		]
