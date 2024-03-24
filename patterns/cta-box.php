@@ -6,9 +6,9 @@
  * Categories: flexline-components, flexline-cta
  */
 ?>
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
-<div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-    <h3 class="wp-block-heading">CTA Box</h3>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+<div class="wp-block-group is-style-card-padded"><!-- wp:heading {"level":3} -->
+    <h3 class="wp-block-heading">Box - text and button</h3>
     <!-- /wp:heading -->
 
     <!-- wp:paragraph -->

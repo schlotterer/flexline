@@ -5,6 +5,7 @@
  * Slug: flexline/section-cover-boxes
  * Categories: flexline-sections
  */
+
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Featured Section"}} -->
@@ -16,7 +17,7 @@ namespace FlexLine\flexline;
             <!-- /wp:heading -->
 
             <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
-            <p class="has-text-align-center is-style-text-shadow">Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <p class="has-text-align-center is-style-text-shadow">This pattern sets up a background with a cover block to feature sections of content. In this case we're using the Feature Page with cover image pattern as the feature.</p>
             <!-- /wp:paragraph -->
 
             <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->

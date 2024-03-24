@@ -5,15 +5,46 @@
  * Slug: flexline/sample-components
  * Categories: flexline-samples
  */
+
 namespace FlexLine\flexline;
 ?>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading -->
+    <h2 class="wp-block-heading">Phone link shortcode</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph -->
+    <p>Below is the shortcode for displaying the phone link set in the customizer. </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph -->
+    <p>[flexline_phone_number]</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:code -->
+    <pre class="wp-block-code"><code>&#91;flexline_phone_number] - Uses the phone number and "Main Phone Title" from the Customizer settings.
+&#91;flexline_phone_number link="tel:6665554444"] - Overrides the default or Customizer-defined link with a custom link - make sure to include the "tel:" prefix if it's a phone number.
+&#91;flexline_phone_number text="Custom Text"] - Overrides the default or Customizer-defined link text with custom text.
+&#91;flexline_phone_number link="http://example.com" text="Custom Text"] - Overrides both the link and text.</code></pre>
+    <!-- /wp:code -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Flexline Address Shortcode</h2>
+<h2 class="wp-block-heading">Address Shortcode</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Below is the shortcode for displaying the local address from the customizer.</p>
+<p>Below is the shortcode for displaying the local address set in the customizer. This will include the phone link if it configured for it.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&#91;flexline_contact_info]</code></pre>
+<!-- /wp:code -->
 
 <!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Address Block"}} -->
 <div class="wp-block-group"><!-- wp:shortcode -->
@@ -31,7 +62,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The Call Now button pattern uses the phone number set in the customizer by default and is ready for click to call. The styles can be adjust per instance.</p>
+<p>The Call Now button pattern uses the phone number set in the customizer by default and the styles can be adjust per instance.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"left"}} -->
@@ -67,20 +98,72 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"layout":{"type":"constrained"},"metadata":{"name":"Boxes"}} -->
-<div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:heading -->
-    <h2 class="wp-block-heading">Box with text and button</h2>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"},"metadata":{"name":"Columns with multiple rows"}} -->
+<div class="wp-block-group"><!-- wp:heading -->
+    <h2 class="wp-block-heading">Info Box</h2>
     <!-- /wp:heading -->
 
-    <!-- wp:columns -->
+    <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
+                <h3 class="wp-block-heading">Info Box</h3>
+                <!-- /wp:heading -->
+
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-card-padded"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
+                <!-- /wp:heading -->
+
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+            <div class="wp-block-group is-style-default"><!-- wp:heading {"level":3} -->
+                <h3 class="wp-block-heading">Info Box</h3>
+                <!-- /wp:heading -->
+
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"layout":{"type":"constrained"},"metadata":{"name":"Boxes"}} -->
+<div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:heading -->
+    <h2 class="wp-block-heading">CTA Box</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
+    <div class="wp-block-columns"><!-- wp:column -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
+                <h3 class="wp-block-heading">CTA Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph -->
-                <p>FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p>Use this box with button in columns or in it's own row. The default headline is an h3 so make sure there is an h2 before this or change the headline to an h2 for accessibility.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons -->
@@ -95,13 +178,34 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+            <div class="wp-block-group is-style-card-padded"><!-- wp:heading {"level":3} -->
+                <h3 class="wp-block-heading">CTA Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph -->
-                <p>FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p>Use this box with button in columns or in it's own row. The default headline is an h3 so make sure there is an h2 before this or change the headline to an h2 for accessibility.</p>
+                <!-- /wp:paragraph -->
+
+                <!-- wp:buttons -->
+                <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}}} -->
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--large)">Learn More</a></div>
+                    <!-- /wp:button -->
+                </div>
+                <!-- /wp:buttons -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+            <div class="wp-block-group is-style-default"><!-- wp:heading {"level":3} -->
+                <h3 class="wp-block-heading">CTA Box</h3>
+                <!-- /wp:heading -->
+
+                <!-- wp:paragraph -->
+                <p>Use this box with button in columns or in it's own row. The default headline is an h3 so make sure there is an h2 before this or change the headline to an h2 for accessibility.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons -->
@@ -127,18 +231,18 @@ namespace FlexLine\flexline;
 <h2 class="wp-block-heading">CTA Large</h2>
 <!-- /wp:heading -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer CTA Group"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Large CTA Group"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Card Link Container"},"enableGroupLink":true,"groupLinkURL":"#"} -->
     <div class="wp-block-group alignwide is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":189,"hasParallax":true,"dimRatio":80,"overlayColor":"primary","align":"wide","style":{"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->
         <div class="wp-block-cover alignwide has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
             <div role="img" class="wp-block-cover__image-background wp-image-189 has-parallax" style="background-position:50% 50%;background-image:url(<?php echo esc_url(feature_image_fallback()); ?>)"></div>
             <div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained","contentSize":"600px"},"metadata":{"name":"Content Group"},"groupLinkURL":"#"} -->
                 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--x-large)"><!-- wp:heading {"textAlign":"center","className":"is-style-text-shadow","fontSize":"max-60"} -->
-                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Footer CTA Headline</h2>
+                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Large CTA Headline</h2>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
-                    <p class="has-text-align-center is-style-text-shadow">Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                    <p class="has-text-align-center is-style-text-shadow">This is an extra large CTA with a padding around it. This is often used for the main CTA on a page near the footer.</p>
                     <!-- /wp:paragraph -->
 
                     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
@@ -157,48 +261,22 @@ namespace FlexLine\flexline;
 </div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer CTA Group"}} -->
-<div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Card Link Container"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-    <div class="wp-block-group alignwide is-style-card"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":189,"hasParallax":true,"dimRatio":80,"overlayColor":"primary","align":"wide","style":{"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->
-        <div class="wp-block-cover alignwide has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
-            <div role="img" class="wp-block-cover__image-background wp-image-189 has-parallax" style="background-position:50% 50%;background-image:url(<?php echo esc_url(feature_image_fallback()); ?>)"></div>
-            <div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained","contentSize":"600px"},"metadata":{"name":"Content Group"},"groupLinkURL":"#"} -->
-                <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--x-large)"><!-- wp:heading {"textAlign":"center","className":"is-style-text-shadow","fontSize":"max-60"} -->
-                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Footer CTA Headline</h2>
-                    <!-- /wp:heading -->
-
-                    <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
-                    <p class="has-text-align-center is-style-text-shadow">Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-                    <!-- /wp:paragraph -->
-
-                    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-                    <div class="wp-block-buttons"><!-- wp:button {"textAlign":"center"} -->
-                        <div class="wp-block-button"><a class="wp-block-button__link has-text-align-center wp-element-button">Learn More</a></div>
-                        <!-- /wp:button -->
-                    </div>
-                    <!-- /wp:buttons -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-        </div>
-        <!-- /wp:cover -->
-    </div>
-    <!-- /wp:group -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer CTA Group"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Large CTA Group"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Card Link Container"},"enableGroupLink":true,"groupLinkURL":"#"} -->
     <div class="wp-block-group alignwide is-style-outlined"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":189,"hasParallax":true,"dimRatio":80,"overlayColor":"primary","align":"wide","style":{"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->
         <div class="wp-block-cover alignwide has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
             <div role="img" class="wp-block-cover__image-background wp-image-189 has-parallax" style="background-position:50% 50%;background-image:url(<?php echo esc_url(feature_image_fallback()); ?>)"></div>
             <div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained","contentSize":"600px"},"metadata":{"name":"Content Group"},"groupLinkURL":"#"} -->
                 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--x-large)"><!-- wp:heading {"textAlign":"center","className":"is-style-text-shadow","fontSize":"max-60"} -->
-                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Footer CTA Headline</h2>
+                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Large CTA Headline</h2>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
-                    <p class="has-text-align-center is-style-text-shadow">Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                    <p class="has-text-align-center is-style-text-shadow">This is an extra large CTA with a padding around it. This is often used for the main CTA on a page near the footer.</p>
+                    <!-- /wp:paragraph -->
+
+                    <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
+                    <p class="has-text-align-center is-style-text-shadow">Card Link Container style variation set to Outline w/ Padding</p>
                     <!-- /wp:paragraph -->
 
                     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
@@ -217,18 +295,22 @@ namespace FlexLine\flexline;
 </div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer CTA Group"}} -->
-<div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Card Link Container"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-    <div class="wp-block-group alignwide is-style-card-padded"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":189,"hasParallax":true,"dimRatio":80,"overlayColor":"primary","align":"wide","style":{"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"metadata":{"name":"Large CTA Group"}} -->
+<div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Card Link Container"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+    <div class="wp-block-group alignwide is-style-card"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":189,"hasParallax":true,"dimRatio":80,"overlayColor":"primary","align":"wide","style":{"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->
         <div class="wp-block-cover alignwide has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
             <div role="img" class="wp-block-cover__image-background wp-image-189 has-parallax" style="background-position:50% 50%;background-image:url(<?php echo esc_url(feature_image_fallback()); ?>)"></div>
             <div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained","contentSize":"600px"},"metadata":{"name":"Content Group"},"groupLinkURL":"#"} -->
                 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--x-large)"><!-- wp:heading {"textAlign":"center","className":"is-style-text-shadow","fontSize":"max-60"} -->
-                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Footer CTA Headline</h2>
+                    <h2 class="wp-block-heading has-text-align-center is-style-text-shadow has-max-60-font-size">Large CTA Headline</h2>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
-                    <p class="has-text-align-center is-style-text-shadow">Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                    <p class="has-text-align-center is-style-text-shadow">This is an extra large CTA with a padding around it. This is often used for the main CTA on a page near the footer.</p>
+                    <!-- /wp:paragraph -->
+
+                    <!-- wp:paragraph {"align":"center","className":"is-style-text-shadow"} -->
+                    <p class="has-text-align-center is-style-text-shadow">Card Link Container style variation set to Card</p>
                     <!-- /wp:paragraph -->
 
                     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
@@ -257,7 +339,7 @@ namespace FlexLine\flexline;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph -->
-    <p>The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
+    <p>Generally these CTAs are used for internal links.</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Page CTA Light"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
@@ -269,7 +351,7 @@ namespace FlexLine\flexline;
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                    <p class="has-small-font-size" style="line-height:1.5">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                    <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -299,7 +381,7 @@ namespace FlexLine\flexline;
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                    <p class="has-small-font-size" style="line-height:1.5">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                    <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -335,7 +417,7 @@ namespace FlexLine\flexline;
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"metadata":{"name":"CTA - Basic - Row"}} -->
             <div class="wp-block-group" style="border-style:none;border-width:0px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"large"} -->
-                <p class="has-large-font-size" style="line-height:1.5">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                <p class="has-large-font-size" style="line-height:1.5">This CTA creates a full width color band for breaking up content. </p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -369,27 +451,27 @@ namespace FlexLine\flexline;
     <p>Default:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-default","layout":{"type":"default"},"metadata":{"name":"CTA - Card with image, heading, text, button"}} -->
+    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-default","layout":{"type":"default"},"metadata":{"name":"CT - Card with image, heading, text, button"}} -->
     <div class="wp-block-group stacked is-style-default" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"0","left":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
-            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" style="aspect-ratio:4/3;object-fit:cover" /></figure>
+            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"sizeSlug":"full","linkDestination":"none"} -->
+                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" /></figure>
                 <!-- /wp:image -->
             </div>
             <!-- /wp:column -->
 
             <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"15px","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"0","right":"0"}}}} -->
             <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--small);padding-right:0;padding-bottom:var(--wp--preset--spacing--small);padding-left:0"><!-- wp:heading {"fontSize":"large"} -->
-                <h2 class="wp-block-heading has-large-font-size">FlexLine WordPress Theme</h2>
+                <h2 class="wp-block-heading has-large-font-size">CTA - Card with image, heading, text, button</h2>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-                <p style="line-height:1.5">The ultimate WordPress block theme for agencies and website builders.</p>
+                <p style="line-height:1.5">This CTA incorporates an image on the left and stacks responsively.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons -->
                 <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Buy FlexLine</a></div>
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Learn More</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->
@@ -404,27 +486,27 @@ namespace FlexLine\flexline;
     <p>Card w/ Padding:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"CTA - Card with image, heading, text, button"}} -->
+    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"CT - Card with image, heading, text, button"}} -->
     <div class="wp-block-group stacked is-style-card-padded" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"0","left":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
-            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" style="aspect-ratio:4/3;object-fit:cover" /></figure>
+            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"sizeSlug":"full","linkDestination":"none"} -->
+                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" /></figure>
                 <!-- /wp:image -->
             </div>
             <!-- /wp:column -->
 
             <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"15px","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"0","right":"0"}}}} -->
             <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--small);padding-right:0;padding-bottom:var(--wp--preset--spacing--small);padding-left:0"><!-- wp:heading {"fontSize":"large"} -->
-                <h2 class="wp-block-heading has-large-font-size">FlexLine WordPress Theme</h2>
+                <h2 class="wp-block-heading has-large-font-size">CTA - Card with image, heading, text, button</h2>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-                <p style="line-height:1.5">The ultimate WordPress block theme for agencies and website builders.</p>
+                <p style="line-height:1.5">This CTA incorporates an image on the left and stacks responsively.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons -->
                 <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Buy FlexLine</a></div>
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Learn More</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->
@@ -439,27 +521,27 @@ namespace FlexLine\flexline;
     <p>Outlined w/ padding:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-outlined","layout":{"type":"default"},"metadata":{"name":"CTA - Card with image, heading, text, button"}} -->
+    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","right":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"className":"stacked is-style-outlined","layout":{"type":"default"},"metadata":{"name":"CT - Card with image, heading, text, button"}} -->
     <div class="wp-block-group stacked is-style-outlined" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"0","left":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
-            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" style="aspect-ratio:4/3;object-fit:cover" /></figure>
+            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"id":6001,"sizeSlug":"full","linkDestination":"none"} -->
+                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" /></figure>
                 <!-- /wp:image -->
             </div>
             <!-- /wp:column -->
 
             <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"15px","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"0","right":"0"}}}} -->
             <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--small);padding-right:0;padding-bottom:var(--wp--preset--spacing--small);padding-left:0"><!-- wp:heading {"fontSize":"large"} -->
-                <h2 class="wp-block-heading has-large-font-size">FlexLine WordPress Theme</h2>
+                <h2 class="wp-block-heading has-large-font-size">CTA - Card with image, heading, text, button</h2>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-                <p style="line-height:1.5">The ultimate WordPress block theme for agencies and website builders.</p>
+                <p style="line-height:1.5">This CTA incorporates an image on the left and stacks responsively.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons -->
                 <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Buy FlexLine</a></div>
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--large)">Learn More</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->
@@ -484,47 +566,55 @@ namespace FlexLine\flexline;
 <h3 class="wp-block-heading">Photo Poster Gallery Styles and Row </h3>
 <!-- /wp:heading -->
 
+<!-- wp:paragraph -->
+<p>Using the custom "Enable poster gallery" option on the gallery block allows you to create a light box gallery with the first image in the gallery as the cover image.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Photo Poster"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family has-x-small-font-size" style="text-transform:uppercase">Default</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
             <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                 <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
                 </figure>
                 <!-- /wp:gallery -->
 
                 <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
-                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Gallery Title</p>
+                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -532,44 +622,48 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family has-x-small-font-size" style="text-transform:uppercase">card w/ padding</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
             <div class="wp-block-group is-style-card-padded"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                 <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
                 </figure>
                 <!-- /wp:gallery -->
 
                 <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
-                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Gallery Title</p>
+                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -577,44 +671,48 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family has-x-small-font-size" style="text-transform:uppercase">Outline w/ padding</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                 <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
                 </figure>
                 <!-- /wp:gallery -->
 
                 <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
-                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Gallery Title</p>
+                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -622,44 +720,48 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family has-x-small-font-size" style="text-transform:uppercase">card w/ image</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
             <div class="wp-block-group is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                 <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
                     <!-- /wp:image -->
                 </figure>
                 <!-- /wp:gallery -->
 
                 <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
-                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Gallery Title</p>
+                <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -674,16 +776,20 @@ namespace FlexLine\flexline;
 <h3 class="wp-block-heading">Video Gallery Styles and Row </h3>
 <!-- /wp:heading -->
 
+<!-- wp:paragraph -->
+<p>Using the custom "Enable media popup" option on the image block allows you to create a light box popup ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Videos"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-default"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
+            <div class="wp-block-group is-style-default"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"center","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family">Video Caption</p>
+                <p class="has-text-align-center has-brand-font-family">Video Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -692,12 +798,12 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
+            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"center","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family">Video Caption</p>
+                <p class="has-text-align-center has-brand-font-family">Video Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -706,12 +812,12 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"center","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family">Video Caption</p>
+                <p class="has-text-align-center has-brand-font-family">Video Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -720,12 +826,12 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center"} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
+            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"center","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family">Video Caption</p>
+                <p class="has-text-align-center has-brand-font-family">Video Title</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -739,6 +845,10 @@ namespace FlexLine\flexline;
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Mixed Media Styles and Row </h3>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Using the custom "Enable media popup" option on the image block allows you to create a light box popup ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Media"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
@@ -805,6 +915,10 @@ namespace FlexLine\flexline;
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Mixed Media Detailed Styles and Row </h3>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This version of the meida popup is the same as above but provides some preset extra lines for further details.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Media Detailed"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
@@ -916,14 +1030,18 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
 
-<!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|small"}}}} -->
-<h2 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--small)">Sticky Sub Navigation</h2>
+<!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
+<h2 class="wp-block-heading" style="margin-bottom:0">Sticky Sub Navigation</h2>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Sticky Sub navigation can use menus to make keeping site context easier. They can live anywhere in a page but will stick to the top once scrolled to that position and will stay there until its containing block clears the screen. This can be hidden at mobile, or you can also use the the "Sticky Sub navigation can use menus to make keeping site context easier. They can live anywhere in a page but will stick to the top once scrolled to that position and will stay there until its containing block clears the screen. This can be hidden at mobile, or you can also use the the "Enable horizontal scroll at mobile" option to leave it on screen an allow it to scroll horizontally.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-alternate","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Subnav Sticky"}} -->
 <div class="wp-block-group alignfull is-style-default has-base-color has-primary-alternate-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":90,"minHeight":50,"gradient":"primary-primaryDark","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-90 has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" />
-        <div class="wp-block-cover__inner-container"><!-- wp:navigation {"ref":691,"overlayMenu":"never","align":"wide","className":"has-text-align-center is-style-horizontal-scroll-at-mobile is-style-light-over-dark","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|medium"},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"500","lineHeight":"1.1"}},"fontSize":"medium","enableHorizontalScroll":true} /--></div>
+        <div class="wp-block-cover__inner-container"><!-- wp:navigation {"ref":47,"overlayMenu":"never","align":"wide","className":"has-text-align-center is-style-horizontal-scroll-at-mobile is-style-light-over-dark","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|medium"},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"500","lineHeight":"1.1"}},"fontSize":"medium","enableHorizontalScroll":true} /--></div>
     </div>
     <!-- /wp:cover -->
 </div>
@@ -1141,12 +1259,24 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
+<p>These patterns are currently dependent on the Plethora Tabs plugin.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
 <p>Accordion:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null]} -->
 <!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion"} -->
-<!-- wp:pattern {"slug":"flexline/flexline/product-card"} /-->
+<!-- wp:pattern {"slug":"flexline/cta-image-text-button"} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Accordion Content</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>You can use any blocks or patterns in this content.</p>
+<!-- /wp:paragraph -->
 <!-- /wp:plethoraplugins/tab -->
 
 <!-- wp:plethoraplugins/tab {"label":"Accordion 2","parentLayout":"accordion"} -->
@@ -1163,34 +1293,9 @@ namespace FlexLine\flexline;
 <!-- /wp:plethoraplugins/tab -->
 
 <!-- wp:plethoraplugins/tab {"label":"Accordion 3","parentLayout":"accordion"} -->
-<!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-    <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" /></figure>
-    <!-- /wp:image -->
 
-    <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"className":"wp-block-heading","fontSize":"x-large"} -->
-    <h2 class="wp-block-heading has-text-align-center has-x-large-font-size" id="image-heading-text-buttons" style="margin-top:var(--wp--preset--spacing--medium)">Watch this video</h2>
-    <!-- /wp:heading -->
-
-    <!-- wp:group {"layout":{"type":"constrained","wideSize":"600px"}} -->
-    <div class="wp-block-group"><!-- wp:paragraph {"align":"center"} -->
-        <p class="has-text-align-center">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
-        <!-- /wp:paragraph -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","orientation":"horizontal"}} -->
-    <div class="wp-block-buttons"><!-- wp:button -->
-        <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Get Started</a></div>
-        <!-- /wp:button -->
-
-        <!-- wp:button {"textColor":"secondary","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}},"className":"is-style-outline"} -->
-        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color has-link-color wp-element-button">Learn More</a></div>
-        <!-- /wp:button -->
-    </div>
-    <!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
+    <!-- wp:pattern {"slug":"flexline/section-video-feature"} /-->
+    
 <!-- /wp:plethoraplugins/tab -->
 <!-- /wp:plethoraplugins/tabs -->
 
@@ -1291,6 +1396,35 @@ namespace FlexLine\flexline;
 
 <!-- wp:plethoraplugins/tabs {"tabLabels":["Tab 1","Tab 2"],"tabIds":[null,null]} -->
 <!-- wp:plethoraplugins/tab {"label":"Tab 1","parentLayout":"horizontal"} -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tab 1 content</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.<!-- wp:list -->
+        <ul><!-- wp:list-item -->
+            <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+            <!-- /wp:list-item -->
+        </ul>
+        <!-- /wp:list -->
+    </li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
 <!-- wp:pattern {"slug":"flexline/feature-text-video"} /-->
 <!-- /wp:plethoraplugins/tab -->
 
@@ -1433,7 +1567,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:group -->
 
                         <!-- wp:paragraph -->
-                        <p>With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                        <p>This block is designed to feature leadership in the organization. The image goes first on mobile by using the custom "Row Reverse" option on the columns block.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -1441,8 +1575,8 @@ namespace FlexLine\flexline;
                 <!-- /wp:column -->
 
                 <!-- wp:column {"verticalAlignment":"center","width":""} -->
-                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"sizeSlug":"full","linkDestination":"none"} -->
-                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" /></figure>
+                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                     <!-- /wp:image -->
                 </div>
                 <!-- /wp:column -->
@@ -1457,8 +1591,8 @@ namespace FlexLine\flexline;
     <p>Outlined w/ padding:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
-    <div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
+    <div class="wp-block-group alignfull is-style-default" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
         <div class="wp-block-group alignwide is-style-outlined" style="margin-top:0;margin-bottom:0"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
             <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
                 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Leadership Info"}} -->
@@ -1474,7 +1608,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:group -->
 
                         <!-- wp:paragraph -->
-                        <p>With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                        <p>This block is designed to feature leadership in the organization. The image goes first on mobile by using the custom "Row Reverse" option on the columns block.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -1482,8 +1616,8 @@ namespace FlexLine\flexline;
                 <!-- /wp:column -->
 
                 <!-- wp:column {"verticalAlignment":"center","width":""} -->
-                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"sizeSlug":"full","linkDestination":"none"} -->
-                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" /></figure>
+                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                     <!-- /wp:image -->
                 </div>
                 <!-- /wp:column -->
@@ -1498,8 +1632,8 @@ namespace FlexLine\flexline;
     <p>Card w/ padding:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
-    <div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
+    <div class="wp-block-group alignfull is-style-default" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
         <div class="wp-block-group alignwide is-style-card-padded" style="margin-top:0;margin-bottom:0"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
             <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
                 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Leadership Info"}} -->
@@ -1515,7 +1649,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:group -->
 
                         <!-- wp:paragraph -->
-                        <p>With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                        <p>This block is designed to feature leadership in the organization. The image goes first on mobile by using the custom "Row Reverse" option on the columns block.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -1523,8 +1657,8 @@ namespace FlexLine\flexline;
                 <!-- /wp:column -->
 
                 <!-- wp:column {"verticalAlignment":"center","width":""} -->
-                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"sizeSlug":"full","linkDestination":"none"} -->
-                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" /></figure>
+                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                     <!-- /wp:image -->
                 </div>
                 <!-- /wp:column -->
@@ -1539,8 +1673,8 @@ namespace FlexLine\flexline;
     <p>Card:</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
-    <div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-card","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Team - Leadership Card Group"}} -->
+    <div class="wp-block-group alignfull is-style-default" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"className":"is-style-card","layout":{"type":"default"},"metadata":{"name":"Leadership Card"}} -->
         <div class="wp-block-group alignwide is-style-card" style="margin-top:0;margin-bottom:0"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->
             <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
                 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"},"metadata":{"name":"Leadership Info"}} -->
@@ -1556,7 +1690,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:group -->
 
                         <!-- wp:paragraph -->
-                        <p>With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
+                        <p>This block is designed to feature leadership in the organization. The image goes first on mobile by using the custom "Row Reverse" option on the columns block.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -1564,8 +1698,8 @@ namespace FlexLine\flexline;
                 <!-- /wp:column -->
 
                 <!-- wp:column {"verticalAlignment":"center","width":""} -->
-                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"sizeSlug":"full","linkDestination":"none"} -->
-                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" /></figure>
+                <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":5592,"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+                    <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                     <!-- /wp:image -->
                 </div>
                 <!-- /wp:column -->
@@ -1661,7 +1795,7 @@ namespace FlexLine\flexline;
 
                 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
                 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:image {"id":354,"width":"60px","height":"60px","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"50px"}},"className":"is-style-rounded"} -->
-                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
+                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"constrained"},"fontFamily":"display","metadata":{"name":"Cite"}} -->
@@ -1693,7 +1827,7 @@ namespace FlexLine\flexline;
 
                 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
                 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:image {"id":354,"width":"60px","height":"60px","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"50px"}},"className":"is-style-rounded"} -->
-                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
+                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"constrained"},"fontFamily":"display","metadata":{"name":"Cite"}} -->
@@ -1725,7 +1859,7 @@ namespace FlexLine\flexline;
 
                 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
                 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:image {"id":354,"width":"60px","height":"60px","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"50px"}},"className":"is-style-rounded"} -->
-                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
+                    <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="Sample Image" class="wp-image-354" style="border-radius:50px;width:60px;height:60px" /></figure>
                     <!-- /wp:image -->
 
                     <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"constrained"},"fontFamily":"display","metadata":{"name":"Cite"}} -->
@@ -1858,13 +1992,5 @@ namespace FlexLine\flexline;
         <!-- /wp:columns --><cite>Someone's Name</cite>
     </blockquote>
     <!-- /wp:quote -->
-
-    <!-- wp:separator {"className":"is-style-dots"} -->
-    <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
-    <!-- /wp:separator -->
 </div>
 <!-- /wp:group -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->

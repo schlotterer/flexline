@@ -5,6 +5,7 @@
  * Slug: flexline/sample-heroes
  * Categories: flexline-samples
  */
+
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary","layout":{"type":"constrained"},"metadata":{"name":"Home Hero"}} -->

@@ -5,6 +5,7 @@
  * Slug: flexline/feature-page-cover
  * Categories: flexline-modules, flexline-components
  */
+
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Feature Page with cover image"},"enableGroupLink":true,"groupLinkURL":"/independent-living/floor-plans"} -->
@@ -16,7 +17,7 @@ namespace FlexLine\flexline;
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
-                <p class="has-contrast-color has-text-color has-link-color">Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p class="has-contrast-color has-text-color has-link-color">This pattern can be used to tease site content. It uses a cover block and image to create visual interest and respond flexibly to variable content and breakpoints. You can also reverse the columns and choose if you want the image first on mobile in each use.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->

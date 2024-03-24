@@ -13,7 +13,7 @@ namespace FlexLine\flexline;
     <!-- /wp:image -->
 
     <!-- wp:paragraph {"align":"center","fontFamily":"brand"} -->
-    <p class="has-text-align-center has-brand-font-family">Video Caption</p>
+    <p class="has-text-align-center has-brand-font-family">Video Title</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

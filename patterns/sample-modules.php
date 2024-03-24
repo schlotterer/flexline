@@ -5,55 +5,59 @@
  * Slug: flexline/samples-modules
  * Categories: flexline-samples
  */
+
 namespace FlexLine\flexline;
 ?>
 <!-- wp:paragraph -->
 <p>A Module/Row in Flexline represents a collection of curated blocks and components combined to make more complication rows of content. These are ready to use pieces of content that have been tested responsively. You can use them directly or use them to build something new.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|medium","left":"var:preset|spacing|large"}}},"className":"is-style-columns-reverse"} -->
-<div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
-    <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"fontSize":"max-48"} -->
-        <h2 class="wp-block-heading has-max-48-font-size" id="sample-heading">Feature Image Links</h2>
-        <!-- /wp:heading -->
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Feature Image Links"}} -->
+<div class="wp-block-group"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|medium","left":"var:preset|spacing|large"}}},"className":"is-style-columns-reverse"} -->
+    <div class="wp-block-columns are-vertically-aligned-center is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"center","width":""} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"fontSize":"max-48"} -->
+            <h2 class="wp-block-heading has-max-48-font-size">Feature Image Links</h2>
+            <!-- /wp:heading -->
 
-        <!-- wp:paragraph -->
-        <p>This component uses a gallery block to create images as links in a grid next a headline and text.</p>
-        <!-- /wp:paragraph -->
+            <!-- wp:paragraph -->
+            <p>This component uses a gallery block to create images as links in a grid next a headline and text. Use the columns "reverse on mobile" style variation to choose to which content shows first on mobile.</p>
+            <!-- /wp:paragraph -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"verticalAlignment":"center","width":""} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","align":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
+            <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|primary"}},"className":"is-style-card"} -->
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                    <figcaption class="wp-element-caption">Page Link Image</figcaption>
+                </figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|secondary"}},"className":"is-style-card"} -->
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                    <figcaption class="wp-element-caption">Page Link Image</figcaption>
+                </figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|alternate"}},"className":"is-style-card"} -->
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                    <figcaption class="wp-element-caption">Page Link Image</figcaption>
+                </figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}},"className":"is-style-card"} -->
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                    <figcaption class="wp-element-caption">Page Link Image</figcaption>
+                </figure>
+                <!-- /wp:image -->
+            </figure>
+            <!-- /wp:gallery -->
+        </div>
+        <!-- /wp:column -->
     </div>
-    <!-- /wp:column -->
-
-    <!-- wp:column {"verticalAlignment":"center","width":""} -->
-    <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","align":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
-        <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|primary"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
-                <figcaption class="wp-element-caption">Page Link Image</figcaption>
-            </figure>
-            <!-- /wp:image -->
-
-            <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|secondary"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
-                <figcaption class="wp-element-caption">Page Link Image</figcaption>
-            </figure>
-            <!-- /wp:image -->
-
-            <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|alternate"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
-                <figcaption class="wp-element-caption">Page Link Image</figcaption>
-            </figure>
-            <!-- /wp:image -->
-
-            <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}},"className":"is-style-card"} -->
-            <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
-                <figcaption class="wp-element-caption">Page Link Image</figcaption>
-            </figure>
-            <!-- /wp:image -->
-        </figure>
-        <!-- /wp:gallery -->
-    </div>
-    <!-- /wp:column -->
+    <!-- /wp:columns -->
 </div>
-<!-- /wp:columns -->
+<!-- /wp:group -->
 
 <!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
@@ -76,7 +80,7 @@ namespace FlexLine\flexline;
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
-                <p class="has-contrast-color has-text-color has-link-color">Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p class="has-contrast-color has-text-color has-link-color">This pattern can be used to tease site content. It uses a cover block and image to create visual interest and respond flexibly to variable content and breakpoints. You can also reverse the columns and choose if you want the image first on mobile in each use.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
@@ -115,8 +119,8 @@ namespace FlexLine\flexline;
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Feature Page with cover image"},"enableGroupLink":true,"groupLinkURL":"/independent-living/floor-plans"} -->
-<div class="wp-block-group is-style-card"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}},"className":"is-style-default"} -->
-    <div class="wp-block-columns is-style-default"><!-- wp:column {"verticalAlignment":"stretch"} -->
+<div class="wp-block-group is-style-card"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}},"className":"is-style-columns-reverse"} -->
+    <div class="wp-block-columns is-style-columns-reverse"><!-- wp:column {"verticalAlignment":"stretch"} -->
         <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":186,"dimRatio":50,"overlayColor":"primary","focalPoint":{"x":0.25,"y":0.51},"minHeight":100,"minHeightUnit":"%","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
             <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span><img class="wp-block-cover__image-background wp-image-186" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" />
                 <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","placeholder":"Write title…","fontSize":"large"} -->
@@ -139,7 +143,7 @@ namespace FlexLine\flexline;
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
-                <p class="has-contrast-color has-text-color has-link-color">Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p class="has-contrast-color has-text-color has-link-color">This pattern can be used to tease site content. It uses a cover block and image to create visual interest and respond flexibly to variable content and breakpoints. You can also reverse the columns and choose if you want the image first on mobile in each use.</p>
                 <!-- /wp:paragraph -->
 
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
@@ -169,14 +173,14 @@ namespace FlexLine\flexline;
             <!-- /wp:heading -->
 
             <!-- wp:paragraph {"align":"left","fontSize":"small"} -->
-            <p class="has-text-align-left has-small-font-size">FlexLine is the ultimate WordPress theme for website builders.</p>
+            <p class="has-text-align-left has-small-font-size">This pattern takes advantage of the custom "Enable Media Popup" option on images to popup up a video in a lightbox.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-            <figure class="wp-block-image aligncenter size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></figure>
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=G1hKzCkywM8"} -->
+            <figure class="wp-block-image aligncenter size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->
@@ -247,13 +251,13 @@ namespace FlexLine\flexline;
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"},"metadata":{"name":"Columns with multiple rows"}} -->
 <div class="wp-block-group"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -261,13 +265,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -275,13 +279,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -292,13 +296,13 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -306,13 +310,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -320,13 +324,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
+                <h3 class="wp-block-heading">Info Box</h3>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">FlexLine is a powerful WordPress theme created for agencies and professional website builders.</p>
+                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -341,9 +345,13 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
 <!-- /wp:separator -->
 
-<!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|small"}}}} -->
-<h2 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--small)">Sticky Sub Navigation</h2>
+<!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
+<h2 class="wp-block-heading" style="margin-bottom:0">Sticky Sub Navigation</h2>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Sticky Sub navigation can use menus to make keeping site context easier. They can live anywhere in a page but will stick to the top once scrolled to that position and will stay there until its containing block clears the screen. This can be hidden at mobile, or you can also use the the "Sticky Sub navigation can use menus to make keeping site context easier. They can live anywhere in a page but will stick to the top once scrolled to that position and will stay there until its containing block clears the screen. This can be hidden at mobile, or you can also use the the "Enable horizontal scroll at mobile" option to leave it on screen an allow it to scroll horizontally.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-alternate","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Subnav Sticky"}} -->
 <div class="wp-block-group alignfull is-style-default has-base-color has-primary-alternate-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":90,"minHeight":50,"gradient":"primary-primaryDark","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"layout":{"type":"constrained"}} -->
@@ -358,42 +366,23 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
 <!-- /wp:separator -->
 
-<!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-    <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" /></figure>
-    <!-- /wp:image -->
-
-    <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"className":"wp-block-heading","fontSize":"x-large"} -->
-    <h2 class="wp-block-heading has-text-align-center has-x-large-font-size" id="image-heading-text-buttons" style="margin-top:var(--wp--preset--spacing--medium)">Watch this video</h2>
-    <!-- /wp:heading -->
-
-    <!-- wp:group {"layout":{"type":"constrained","wideSize":"600px"}} -->
-    <div class="wp-block-group"><!-- wp:paragraph {"align":"center"} -->
-        <p class="has-text-align-center">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
-        <!-- /wp:paragraph -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","orientation":"horizontal"}} -->
-    <div class="wp-block-buttons"><!-- wp:button -->
-        <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Get Started</a></div>
-        <!-- /wp:button -->
-
-        <!-- wp:button {"textColor":"secondary","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}},"className":"is-style-outline"} -->
-        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color has-link-color wp-element-button">Learn More</a></div>
-        <!-- /wp:button -->
-    </div>
-    <!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
+<!-- wp:pattern {"slug":"flexline/section-video-feature"} /-->
 
 <!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
 <!-- /wp:separator -->
 
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Horizontal Post Scroll</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>By setting the custom "Horizontal Scroll" style variation on the Post Template block set to grid view you can create a horizontal scroller of any post variation the Query Loop block can come up with.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"0"},"blockGap":"var:preset|spacing|small"}},"gradient":"neutral-neutralLight","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Horizontal Post Scroll"}} -->
 <div class="wp-block-group alignfull is-style-default has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--large);padding-right:0;padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"align":"wide"} -->
-    <h2 class="wp-block-heading alignwide">Horizontal Post Scroll</h2>
+    <h2 class="wp-block-heading alignwide">Latest Posts</h2>
     <!-- /wp:heading -->
 
     <!-- wp:query {"queryId":9,"query":{"perPage":"9","pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"full"} -->
@@ -424,6 +413,14 @@ namespace FlexLine\flexline;
 <!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--x-large)" />
 <!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Latest Posts</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Latest Post pattern display the 3 most recent post in a grid format. You can set custom content if there is no posts. But really just have at least 3 posts...</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"className":"latests-posts-3-card","layout":{"type":"constrained"},"metadata":{"name":"Latests Posts - 3 card"}} -->
 <div class="wp-block-group alignfull latests-posts-3-card" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"textAlign":"center"} -->
@@ -468,14 +465,14 @@ namespace FlexLine\flexline;
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Gallery by Title Small"}} -->
 <div class="wp-block-group alignwide is-style-card has-neutral-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
     <div class="wp-block-columns alignfull"><!-- wp:column {"verticalAlignment":"stretch","width":"35%"} -->
-        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:35%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":356,"dimRatio":80,"overlayColor":"primary","minHeight":100,"minHeightUnit":"%","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background wp-image-356" alt="Sample Image" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" />
+        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:35%"><!-- wp:cover {"url":"http://flexline.test/wp-content/uploads/fitzShiverer.png","id":356,"dimRatio":80,"overlayColor":"primary","minHeight":100,"minHeightUnit":"%","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background wp-image-356" alt="Sample Image" src="http://flexline.test/wp-content/uploads/fitzShiverer.png" data-object-fit="cover" />
                 <div class="wp-block-cover__inner-container"><!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}},"className":"is-style-text-shadow","fontSize":"max-48"} -->
-                    <h2 class="wp-block-heading is-style-text-shadow has-max-48-font-size" style="font-style:normal;font-weight:500">Gallery layout with the headline on the left.</h2>
+                    <h2 class="wp-block-heading is-style-text-shadow has-max-48-font-size" style="font-style:normal;font-weight:500">Exciting new gallery layout!</h2>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph -->
-                    <p>Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor.</p>
+                    <p>Gallery layout with the headline on the left with the "Card" style variation set on the containing block.</p>
                     <!-- /wp:paragraph -->
                 </div>
             </div>
@@ -487,44 +484,44 @@ namespace FlexLine\flexline;
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
             <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--x-small)"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
                 <div class="wp-block-columns alignfull"><!-- wp:column -->
-                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery Group - Card Alt"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-                        <div class="wp-block-group is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","enablePosterGallery":true} -->
+                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+                        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                             <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                                <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
                             </figure>
                             <!-- /wp:gallery -->
 
-                            <!-- wp:paragraph {"align":"center","fontFamily":"display"} -->
-                            <p class="has-text-align-center has-display-font-family">Gallery Title</p>
+                            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+                            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                             <!-- /wp:paragraph -->
                         </div>
                         <!-- /wp:group -->
@@ -532,44 +529,44 @@ namespace FlexLine\flexline;
                     <!-- /wp:column -->
 
                     <!-- wp:column -->
-                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery Group - Card Alt"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-                        <div class="wp-block-group is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","enablePosterGallery":true} -->
+                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+                        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                             <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                                <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
                             </figure>
                             <!-- /wp:gallery -->
 
-                            <!-- wp:paragraph {"align":"center","fontFamily":"display"} -->
-                            <p class="has-text-align-center has-display-font-family">Gallery Title</p>
+                            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+                            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                             <!-- /wp:paragraph -->
                         </div>
                         <!-- /wp:group -->
@@ -580,44 +577,44 @@ namespace FlexLine\flexline;
 
                 <!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
                 <div class="wp-block-columns alignfull"><!-- wp:column -->
-                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery Group - Card Alt"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-                        <div class="wp-block-group is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","enablePosterGallery":true} -->
+                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+                        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                             <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                                <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
                             </figure>
                             <!-- /wp:gallery -->
 
-                            <!-- wp:paragraph {"align":"center","fontFamily":"display"} -->
-                            <p class="has-text-align-center has-display-font-family">Gallery Title</p>
+                            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+                            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                             <!-- /wp:paragraph -->
                         </div>
                         <!-- /wp:group -->
@@ -625,44 +622,44 @@ namespace FlexLine\flexline;
                     <!-- /wp:column -->
 
                     <!-- wp:column -->
-                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"metadata":{"name":"Poster Gallery Group - Card Alt"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-                        <div class="wp-block-group is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","enablePosterGallery":true} -->
+                    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+                        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
                             <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                                <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
 
                                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
-                                <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt=""></a></figure>
+                                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
                                 <!-- /wp:image -->
                             </figure>
                             <!-- /wp:gallery -->
 
-                            <!-- wp:paragraph {"align":"center","fontFamily":"display"} -->
-                            <p class="has-text-align-center has-display-font-family">Gallery Title</p>
+                            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+                            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
                             <!-- /wp:paragraph -->
                         </div>
                         <!-- /wp:group -->
@@ -683,8 +680,154 @@ namespace FlexLine\flexline;
 <h2 class="wp-block-heading">Tabbed Content</h2>
 <!-- /wp:heading -->
 
+<!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null]} -->
+<!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion"} -->
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
+            <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
+                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+            </figure>
+            <!-- /wp:gallery -->
+
+            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
+            <!-- /wp:paragraph -->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- wp:column -->
+    <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Poster Gallery Group - Card"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+        <div class="wp-block-group is-style-default"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
+            <figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
+                <figure class="wp-block-image size-large is-style-default"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media"} -->
+                <figure class="wp-block-image size-large"><a href="http://flexline.test/wp-content/uploads/fitzShiverer.png"><img src="http://flexline.test/wp-content/uploads/fitzShiverer.png" alt="" /></a></figure>
+                <!-- /wp:image -->
+            </figure>
+            <!-- /wp:gallery -->
+
+            <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
+            <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
+            <!-- /wp:paragraph -->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+<!-- /wp:plethoraplugins/tab -->
+
+<!-- wp:plethoraplugins/tab {"label":"Accordion 2","parentLayout":"accordion"} -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Address Block</h3>
+<!-- /wp:heading -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Address Block"}} -->
+<div class="wp-block-group"><!-- wp:shortcode -->
+    [flexline_contact_info]
+    <!-- /wp:shortcode -->
+</div>
+<!-- /wp:group -->
+<!-- /wp:plethoraplugins/tab -->
+
+<!-- wp:plethoraplugins/tab {"label":"Accordion 3","parentLayout":"accordion"} -->
+
+<!-- wp:pattern {"slug":"flexline/section-video-feature"} /-->
+
+<!-- /wp:plethoraplugins/tab -->
+<!-- /wp:plethoraplugins/tabs -->
+
 <!-- wp:plethoraplugins/tabs {"tabLabels":["Tab 1","Tab 2"],"tabIds":[null,null]} -->
 <!-- wp:plethoraplugins/tab {"label":"Tab 1","parentLayout":"horizontal"} -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tab 1 content</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+        <!-- wp:list -->
+        <ul><!-- wp:list-item -->
+            <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+            <!-- /wp:list-item -->
+        </ul>
+        <!-- /wp:list -->
+    </li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+
+    <!-- wp:list-item -->
+    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+    <!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
 <!-- wp:pattern {"slug":"flexline/feature-text-video"} /-->
 <!-- /wp:plethoraplugins/tab -->
 
@@ -783,55 +926,5 @@ namespace FlexLine\flexline;
 <!-- wp:paragraph -->
 <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.</p>
 <!-- /wp:paragraph -->
-<!-- /wp:plethoraplugins/tab -->
-<!-- /wp:plethoraplugins/tabs -->
-
-<!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null]} -->
-<!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion"} -->
-<!-- wp:pattern {"slug":"flexline/flexline/product-card"} /-->
-<!-- /wp:plethoraplugins/tab -->
-
-<!-- wp:plethoraplugins/tab {"label":"Accordion 2","parentLayout":"accordion"} -->
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Address Block</h3>
-<!-- /wp:heading -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Address Block"}} -->
-<div class="wp-block-group"><!-- wp:shortcode -->
-    [flexline_contact_info]
-    <!-- /wp:shortcode -->
-</div>
-<!-- /wp:group -->
-<!-- /wp:plethoraplugins/tab -->
-
-<!-- wp:plethoraplugins/tab {"label":"Accordion 3","parentLayout":"accordion"} -->
-<!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-    <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" /></figure>
-    <!-- /wp:image -->
-
-    <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"className":"wp-block-heading","fontSize":"x-large"} -->
-    <h2 class="wp-block-heading has-text-align-center has-x-large-font-size" id="image-heading-text-buttons" style="margin-top:var(--wp--preset--spacing--medium)">Watch this video</h2>
-    <!-- /wp:heading -->
-
-    <!-- wp:group {"layout":{"type":"constrained","wideSize":"600px"}} -->
-    <div class="wp-block-group"><!-- wp:paragraph {"align":"center"} -->
-        <p class="has-text-align-center">With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites.</p>
-        <!-- /wp:paragraph -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","orientation":"horizontal"}} -->
-    <div class="wp-block-buttons"><!-- wp:button -->
-        <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Get Started</a></div>
-        <!-- /wp:button -->
-
-        <!-- wp:button {"textColor":"secondary","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}},"className":"is-style-outline"} -->
-        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color has-link-color wp-element-button">Learn More</a></div>
-        <!-- /wp:button -->
-    </div>
-    <!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
 <!-- /wp:plethoraplugins/tab -->
 <!-- /wp:plethoraplugins/tabs -->

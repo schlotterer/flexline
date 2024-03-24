@@ -9,9 +9,24 @@
 ?>
 <!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null]} -->
 <!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion"} -->
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+    <div class="wp-block-column">
+        
+        <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
-<!-- wp:pattern {"slug":"flexline/flexline/product-card"} /-->
+    </div>
+    <!-- /wp:column -->
 
+    <!-- wp:column -->
+    <div class="wp-block-column">
+        
+        <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
+
+    </div>
+    <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
 <!-- /wp:plethoraplugins/tab -->
 
 <!-- wp:plethoraplugins/tab {"label":"Accordion 2","parentLayout":"accordion"} -->
