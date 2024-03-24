@@ -3,7 +3,7 @@
 /**
  * Title: Grid of posts in three columns.
  * Slug: flexline/posts-grid
- * Categories: flexline-posts, flexline-modules
+ * Categories: flexline-posts
  * Block Types: core/query
  */
 ?>

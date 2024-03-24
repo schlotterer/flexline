@@ -7,6 +7,7 @@ const jsFiles = [
     'src/js/lightbox.js',
     'src/js/global.js',
     'src/js/slide-in-menu.js',
+    'src/js/header-phone-link.js',
 ];
 
 // Individual SASS files

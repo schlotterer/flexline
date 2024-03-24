@@ -3,10 +3,10 @@
 /**
  * Title: Box with text and button.
  * Slug: flexline/box
- * Categories: flexline-components, flexline-misc
+ * Categories: flexline-components, flexline-cta
  */
 ?>
-<!-- wp:group {"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box with text and button"}} -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box with text and button"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
     <h3 class="wp-block-heading" id="sample-heading-1">Build with FlexLine</h3>
     <!-- /wp:heading -->

@@ -3,7 +3,7 @@
 /**
  * Title: Footer with Map and links
  * Slug: flexline/footer-map-links
- * Categories: flexline-sections, flexline-footers
+ * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
 ?>

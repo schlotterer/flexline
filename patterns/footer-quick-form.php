@@ -3,7 +3,7 @@
 /**
  * Title: Quick Form
  * Slug: flexline/footer-quick-form
- * Categories: flexline-sections, flexline-footers
+ * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
 ?>

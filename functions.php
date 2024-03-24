@@ -12,7 +12,7 @@
 /**
  * Get all the include files for the theme.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  */
 function include_inc_files() {
 	$files = [

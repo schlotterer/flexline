@@ -4,7 +4,7 @@
  * Title: Tabs
  * Dependencies: Plethora Tabs + Accordions - https://plethoraplugins.com/tabs-accordions/
  * Slug: flexline/tabs
- * Categories: flexline-modules, flexline-sections
+ * Categories: flexline-modules, flexline-components, flexline-misc
  */
 ?>
 <!-- wp:plethoraplugins/tabs {"tabLabels":["Tab 1","Tab 2"],"tabIds":[null,null]} -->

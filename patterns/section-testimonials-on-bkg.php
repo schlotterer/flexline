@@ -5,6 +5,7 @@
  * Slug: flexline/section-testimonials-on-bkg
  * Categories: flexline-sections
  */
+
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Quote Group"}} -->
@@ -14,28 +15,22 @@ namespace FlexLine\flexline;
             <div class="wp-block-group alignfull"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
                 <div class="wp-block-columns alignwide"><!-- wp:column {"width":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
                     <div class="wp-block-column">
-
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-light"} /-->
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-picture-light"} /-->
-
+                        <!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->
+                        <!-- wp:pattern {"slug":"flexline/testimonial-picture"} /-->
                     </div>
                     <!-- /wp:column -->
 
-                    <!-- wp:column {"width":""} -->
+                    <!-- wp:column {"width":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
                     <div class="wp-block-column">
-
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-picture-light"} /-->
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-light"} /-->
-
+                        <!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->
+                        <!-- wp:pattern {"slug":"flexline/testimonial-picture"} /-->
                     </div>
                     <!-- /wp:column -->
 
-                    <!-- wp:column {"width":""} -->
+                    <!-- wp:column {"width":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
                     <div class="wp-block-column">
-
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-light"} /-->
-                        <!-- wp:pattern {"slug":"flexline/testimonial-card-picture-light"} /-->
-
+                        <!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->
+                        <!-- wp:pattern {"slug":"flexline/testimonial-picture"} /-->
                     </div>
                     <!-- /wp:column -->
                 </div>

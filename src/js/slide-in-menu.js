@@ -46,15 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.top = `${offset}px`;
         }
     }
-
     centerButtonInHeader();
     window.addEventListener('resize', centerButtonInHeader);
-
     window.addEventListener('scroll', function() {
         var button = document.getElementById('slide-in-menu-button');
         if (window.scrollY > 0) {
             button.style.position = 'fixed';
-            button.style.top = '6px';
+            // Check if the viewport width is smaller than 767px
+            if (window.matchMedia('(max-width: 781.98px)').matches) {
+                button.style.top = '12px'; // Apply for smaller screens
+            } else {
+                button.style.top = '8px'; // Apply for larger screens
+            }
         } else {
             centerButtonInHeader();
         }

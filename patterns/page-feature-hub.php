@@ -8,7 +8,7 @@
 <!-- wp:pattern {"slug":"flexline/hero-feature-page"} /-->
 <!-- wp:pattern {"slug":"flexline/text-video"} /-->
 <!-- wp:pattern {"slug":"flexline/section-page-links"} /-->
-<!-- wp:pattern {"slug":"flexline/testimonial-card-light"} /-->
+<!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots"/>
 <!-- /wp:separator -->

@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Add a custom panels to attach sections too.
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Class.
  */

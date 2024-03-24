@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Adds custom classes to apply to <main>
  *
- * @author WebDevStudios
+ * @author Joel Schlotterer
  *
  * @param array $new_classes Classes for the <main> element.
  *

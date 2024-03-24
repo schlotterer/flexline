@@ -3,7 +3,7 @@
 /**
  * Title: Event Meta for custom SEO
  * Slug: flexline/meta-event-single
- * Categories: flexline-heroes, flexline-posts
+ * Categories: flexline-events
  * Block Types: core/template-part/header
  */
 ?>
