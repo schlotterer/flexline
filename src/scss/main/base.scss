@@ -140,6 +140,30 @@ textarea {
 	padding-right: 10px !important;
 	padding-left: 10px !important;
 }
+.flexline .wp-block-navigation__container{
+	.wp-block-navigation__submenu-container{
+		min-width: 250px !important;
+		transition: var(--wp--custom--transition-time);
+		align-items: center;
+		gap: 12px;
+		a{
+			text-align: center;
+		}
+		.wp-block-navigation-item__label{
+			line-height: 1.1;
+			text-align: center;
+		}
+	}
+}
+.flexline .wp-block-navigation__container.items-justified-center{
+	.wp-block-navigation__submenu-container{
+		left: 50%;
+		transform: translate(-50%,0);
+	}
+}
+
+
+
 
 // Gravity Forms
 .flexline .gform-theme--foundation.gform_wrapper{
