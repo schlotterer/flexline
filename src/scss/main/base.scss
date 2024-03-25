@@ -161,7 +161,13 @@ textarea {
 		transform: translate(-50%,0);
 	}
 }
+#header_container{
 
+	@media (max-width:781.98px) {
+		justify-content: center !important;
+	}
+
+}
 
 
 
