@@ -5,7 +5,7 @@
  * Categories: flexline-page
  */
 ?>
-<!-- wp:pattern {"slug":"flexline/hero-feature-page"} /-->
+<!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
 <!-- wp:pattern {"slug":"flexline/text-video"} /-->
 <!-- wp:pattern {"slug":"flexline/section-page-links"} /-->
 <!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->

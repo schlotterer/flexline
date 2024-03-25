@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"default"},"metadata":{"name":"Events Template"}} -->
 <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0">
     
-    <!-- wp:pattern {"slug":"flexline/hero-feature-page"} /-->
+    <!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
 
     <!-- wp:group {"layout":{"type":"constrained","contentSize":"1000px"},"metadata":{"name":"Text Container"}} -->
     <div class="wp-block-group"><!-- wp:paragraph -->

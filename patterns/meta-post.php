@@ -2,7 +2,7 @@
 
 /**
  * Title: Post Meta Bar
- * Slug: flexline/post-meta
+ * Slug: flexline/meta-post
  * Categories: flexline-posts
  */
 ?>

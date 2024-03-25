@@ -11,7 +11,7 @@
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|x-large"}},"className":"site-content","metadata":{"name":"Post Single Template Group"}} -->
 <main class="wp-block-group site-content" style="margin-top:0">
 
-    <!-- wp:pattern {"slug":"flexline/post-meta"} /-->
+    <!-- wp:pattern {"slug":"flexline/meta-post"} /-->
 
     <!-- wp:post-content {"style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained"}} /-->
 

@@ -2,7 +2,7 @@
 
 /**
  * Title: Page Meta Bar
- * Slug: flexline/page-meta
+ * Slug: flexline/meta-page
  * Categories: flexline-heroes
  */
 ?>
