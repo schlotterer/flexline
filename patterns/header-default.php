@@ -16,11 +16,11 @@
         <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
         <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"right","verticalAlignment":"center"}} -->
             <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
-                <div class="wp-block-group"><!-- wp:navigation {"ref":1934,"overlayMenu":"never","overlayBackgroundColor":"base","overlayTextColor":"base","className":"is-style-main-header-nav","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase"}},"fontSize":"small","hideOnTablet":true,"hideOnMobile":true} /--></div>
+                <div class="wp-block-group"><!-- wp:navigation {"ref":75,"overlayMenu":"never","overlayBackgroundColor":"secondary","overlayTextColor":"base","className":"is-style-main-header-nav","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase"}},"fontSize":"small","hideOnTablet":true,"hideOnMobile":true} /--></div>
                 <!-- /wp:group -->
 
                 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"},"hideOnTablet":true,"hideOnMobile":true} -->
-                <div class="wp-block-group"><!-- wp:navigation {"ref":47,"overlayMenu":"never","icon":"menu","className":"is-style-main-header-nav","layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"none"}},"fontSize":"small"} /--></div>
+                <div class="wp-block-group"><!-- wp:navigation {"ref":4,"overlayMenu":"never","icon":"menu","overlayBackgroundColor":"primary","overlayTextColor":"base","className":"is-style-main-header-nav","layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"none"}},"fontSize":"small"} /--></div>
                 <!-- /wp:group -->
             </div>
             <!-- /wp:group -->
