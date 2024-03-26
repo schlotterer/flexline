@@ -10,11 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         link.className = 'wp-block-button__link';
         link.innerHTML = iconPhone;
         link.id = 'flexline-call-button';
-
-        addVisibilityClasses(link, settings);
-
-        siteHeader.parentNode.insertBefore(link, siteHeader);
         
+        addVisibilityClasses(link, settings);
+       
+        siteHeader.parentNode.insertBefore(link, siteHeader);
         adjustLinkPosition(); // Adjust the link's position on load, resize, and scroll
     }
 });
