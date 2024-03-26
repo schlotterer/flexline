@@ -1,5 +1,4 @@
 // Function to detect video type and return an embeddable URL
-// Enhanced function to detect video type and return an embeddable URL
 function getVideoEmbedUrl(mediaUrl) {
     const urlParsers = [
         {

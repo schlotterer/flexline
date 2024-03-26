@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
     function setupScrollerButtons(scroller) {
         // Create "Scroll to Previous" button
-        var scrollToPrevBtn = document.createElement('button');
+        const scrollToPrevBtn = document.createElement('button');
         scrollToPrevBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-prev');
         scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
         scrollToPrevBtn.setAttribute('role', 'button');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToPrevBtn.innerHTML = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>';
 
         // Create "Scroll to Next" button
-        var scrollToNextBtn = document.createElement('button');
+        const scrollToNextBtn = document.createElement('button');
         scrollToNextBtn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-next');
         scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
         scrollToNextBtn.setAttribute('role', 'button');
@@ -96,6 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize scroller buttons for each scroller
-    var scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
+    const scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
     scrollers.forEach(setupScrollerButtons);
 });
