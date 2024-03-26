@@ -71,7 +71,7 @@ button{
         background-color: transparent;
         color: var(--wp--preset--color--base);
         font-size: var(--wp--preset--font-size--xlarge);
-        top: -30px;
+        top: 5px;
         right: 5px;
         padding: 0;
         box-shadow: 0 !important;
@@ -79,6 +79,7 @@ button{
         width: 30px;
         height: 30px;
         border-radius: 200px;
+        box-shadow: none;
         > span{
             &::before{
                 font-size: 30px;
