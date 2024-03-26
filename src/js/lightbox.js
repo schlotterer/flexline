@@ -1,73 +1,70 @@
 // Function to detect video type and return an embeddable URL
+// Enhanced function to detect video type and return an embeddable URL
 function getVideoEmbedUrl(mediaUrl) {
-    let embedUrl = '';
-    if (mediaUrl.includes('youtube.com') || mediaUrl.includes('youtu.be')) {
-        const youtubeId = mediaUrl.split(/v=|youtu\.be\//)[1].split(/[?&]/)[0];
-        embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
-    } else if (mediaUrl.includes('vimeo.com')) {
-        const vimeoId = mediaUrl.split('/').pop();
-        embedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
+    const urlParsers = [
+        {
+            match: /(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/,
+            embedUrl: id => `https://www.youtube.com/embed/${id}?autoplay=1&enablejsapi=1`
+        },
+        {
+            match: /vimeo\.com\/(\d+)/,
+            embedUrl: id => `https://player.vimeo.com/video/${id}?autoplay=1`
+        }
+    ];
+
+    for (let parser of urlParsers) {
+        const match = mediaUrl.match(parser.match);
+        if (match && match[2]) {
+            return parser.embedUrl(match[2]);
+        }
     }
-    return embedUrl;
+
+    return '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const enablePopup = (element, url) => {
+        element.classList.add('has-popup');
+        element.setAttribute('data-enable-popup', 'true');
+        element.setAttribute('data-popup-media-url', url);
+
+        element.addEventListener('click', e => {
+            e.preventDefault();
+            displayLightbox(url); // Function to display the lightbox
+        });
+    };
+
     document.querySelectorAll('.enable-lightbox').forEach(block => {
-        const firstEligibleElement = block.querySelector('img, a'); // Adjust based on your target elements
-    
-        if (firstEligibleElement) {
-            // Initially, try to get the media URL from the data attribute
-            let mediaUrl = block.getAttribute('data-popup-media-url');
-    
-             // If no data attribute URL, and it's an anchor tag with href, use the href as the media URL
-            if (!mediaUrl && firstEligibleElement.tagName.toLowerCase() === 'a' && firstEligibleElement.hasAttribute('href')) {
-                mediaUrl = firstEligibleElement.getAttribute('href');
-            }
-            // If it's an image tag with src, use the src as the media URL
-            else if (!mediaUrl && firstEligibleElement.tagName.toLowerCase() === 'img' && firstEligibleElement.hasAttribute('src')) {
-                mediaUrl = firstEligibleElement.getAttribute('src');
-            }
-    
-            // If a media URL is available, either from data attribute or href
-            if (mediaUrl) {
-                // Common logic to add classes, set attributes, and attach event listener
-                firstEligibleElement.classList.add('has-popup');
-                firstEligibleElement.setAttribute('data-enable-popup', 'true');
-                firstEligibleElement.setAttribute('data-popup-media-url', mediaUrl);
-    
-                firstEligibleElement.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    displayLightbox(mediaUrl); // Function to display the lightbox
-                });
-            }
-        }
+        const mediaElement = block.querySelector('img, a');
+        if (!mediaElement) return;
+
+        let mediaUrl = block.dataset.popupMediaUrl || mediaElement.getAttribute(mediaElement.tagName === 'A' ? 'href' : 'src');
+        if (mediaUrl) enablePopup(mediaElement, mediaUrl);
     });
-    
-    
+
     document.querySelectorAll('.wp-block-group.group-link').forEach(block => {
-        const mediaUrl = block.getAttribute('data-group-link-url');
-        if (mediaUrl) {
-            if (block.classList.contains('group-link-type-popup_media')) {
-                // Add event listener or other logic to trigger the lightbox with the media URL
-                block.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    displayLightbox(mediaUrl); // Function to display the lightbox
-                });
-            } else if (block.classList.contains('group-link-type-new_tab')){
-                // Add event listener or other logic to trigger the lightbox with the media URL
-                block.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.open(mediaUrl, '_blank').focus();
-                });
-            } else {
-                // Add event listener or other logic to trigger the lightbox with the media URL
-                block.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.location.href = mediaUrl;
-                });
-            }
-        }
-        
+        const mediaUrl = block.dataset.groupLinkUrl;
+        if (!mediaUrl) return;
+
+        const triggerLightbox = e => {
+            e.preventDefault();
+            displayLightbox(mediaUrl);
+        };
+
+        const openInNewTab = e => {
+            e.preventDefault();
+            window.open(mediaUrl, '_blank').focus();
+        };
+
+        const redirectToUrl = e => {
+            e.preventDefault();
+            window.location.href = mediaUrl;
+        };
+
+        const action = block.classList.contains('group-link-type-popup_media') ? triggerLightbox : 
+                       block.classList.contains('group-link-type-new_tab') ? openInNewTab : redirectToUrl;
+
+        block.addEventListener('click', action);
     });
 });
 
@@ -86,7 +83,7 @@ function displayLightbox(mediaUrl) {
         contentHtml = `<div class="aspect-ratio-16-9"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
     } else {
         // other domains try to put them in an iframe
-        contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+        contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
     }
 
     // Create the lightbox container
