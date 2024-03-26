@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update the button icon and re-center it whenever the window is resized.
         updateButtonIcon();
         centerButtonInHeader();
-    }, 250));
+    }, 100));
 
     window.addEventListener('scroll', debounce(toggleButtonPosition, 250));
 
