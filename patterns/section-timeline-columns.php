@@ -8,9 +8,9 @@
 
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","gradient":"secondary-secondaryDark","layout":{"type":"constrained"},"metadata":{"name":"Timeline Columns"}} -->
-<div class="wp-block-group alignwide has-base-color has-secondary-secondaryDark-gradient-background has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:columns {"isStackedOnMobile":false,"align":"full","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"},"padding":{"left":"var:preset|spacing|medium"}}},"className":"is-style-horizontal-scroll"} -->
-    <div class="wp-block-columns alignfull is-not-stacked-on-mobile is-style-horizontal-scroll" style="padding-left:var(--wp--preset--spacing--medium)"><!-- wp:column {"verticalAlignment":"center","width":"275px","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"0","right":"0"}}},"gradient":"neutral-neutralLight","className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Timeline Columns"}} -->
+<div class="wp-block-group alignwide is-style-outlined has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:0"><!-- wp:columns {"isStackedOnMobile":false,"align":"full","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"},"padding":{"left":"0"}}},"className":"is-style-horizontal-scroll"} -->
+    <div class="wp-block-columns alignfull is-not-stacked-on-mobile is-style-horizontal-scroll" style="padding-left:0"><!-- wp:column {"verticalAlignment":"center","width":"275px","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:275px"><!-- wp:heading -->
             <h2 class="wp-block-heading">Timeline</h2>
             <!-- /wp:heading -->

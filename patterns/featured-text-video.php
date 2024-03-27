@@ -16,7 +16,7 @@ namespace FlexLine\flexline;
             <!-- /wp:heading -->
 
             <!-- wp:paragraph {"align":"left","fontSize":"small"} -->
-            <p class="has-text-align-left has-small-font-size">This pattern takes advantage of the custom "Enable Media Popup" option on images to popup up a video in a lightbox.</p>
+            <p class="has-text-align-left has-small-font-size">This pattern takes advantage of Flexline's custom "Enable Media Popup" option on images to popup up a video in a modal.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
