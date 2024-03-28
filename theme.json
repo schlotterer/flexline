@@ -679,8 +679,7 @@
 				"elements": {
 					"link": {
 						"typography": {
-							"textDecoration": "none",
-							"fontFamily": "var(--wp--preset--font-family--display)"
+							"textDecoration": "none"
 						},
 						"color": {
 							"text": "var(--wp--preset--color--primary)"

@@ -87,6 +87,16 @@
 					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Secondary to Highlight",
+					"slug": "secondary-highlight"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Primary to Highlight",
+					"slug": "primary-highlight"
 				}
 			],
 			"duotone": [
@@ -119,6 +129,11 @@
 					"colors": [ "#000000", "#ffffff" ],
 					"slug": "dark",
 					"name": "Dark"
+				},
+				{
+					"colors": [ "#002241", "#4D3562" ],
+					"slug": "primary-secondary",
+					"name": "Primary Secondary"
 				}
 			],
 			"palette": [
@@ -659,8 +674,7 @@
 				"elements": {
 					"link": {
 						"typography": {
-							"textDecoration": "none",
-							"fontFamily": "var(--wp--preset--font-family--display)"
+							"textDecoration": "none"
 						},
 						"color": {
 							"text": "var(--wp--preset--color--primary)"
