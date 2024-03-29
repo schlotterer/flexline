@@ -23,7 +23,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:heading -->
 
                         <!-- wp:paragraph {"className":"is-style-default"} -->
-                        <p class="is-style-default">Donec ullamcorper nulla non metus auctor fringilla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                        <p class="is-style-default">Heroes play a crucial role in grabbing attention and establishing the ambiance. The Flexline theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
