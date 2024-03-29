@@ -10,30 +10,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const iconSearch = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>';
     const iconClose = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
    
-    const phoneLink = document.createElement('a');
-    // Phone Link, Only if set.
+    
+    // Create Phone Link
+    function createPhoneLink() {
+        const link = document.createElement('a');
+        link.href = customizerSettings.phoneLink;
+        link.setAttribute('aria-label', customizerSettings.ariaLabel);
+        link.className = 'wp-block-button__link';
+        link.innerHTML = iconPhone;
+        link.id = 'flexline-call-button';
+        // Add responsive classes to the link
+        if (customizerSettings.hideOnDesktop) link.classList.add('flexline-hide-on-desktop');
+        if (customizerSettings.hideOnTablet) link.classList.add('flexline-hide-on-tablet');
+        if (customizerSettings.hideOnMobile) link.classList.add('flexline-hide-on-mobile');
+        return link;
+    }
+    // Only initiate the button if the phone link is set.
     if (customizerSettings.phoneLink && siteHeader) {
-        // Build the link
-        //const phoneLink = document.createElement('a');
-        phoneLink.href = customizerSettings.phoneLink;
-        phoneLink.setAttribute('aria-label', customizerSettings.ariaLabel);
-        phoneLink.className = 'wp-block-button__link';
-        phoneLink.innerHTML = iconPhone;
-        phoneLink.id = 'flexline-call-button';
-        // Add visibility classes
-        addVisibilityClasses(phoneLink, customizerSettings);
-        // insert the phone link.
+        // Phone Link, Only if set.
+        const phoneLink = createPhoneLink();
+        // Add it to the header
         siteHeader.parentNode.insertBefore(phoneLink, siteHeader);
-        
-        
+        centerButtonInHeader(phoneLink);
     }
    
-    // Add visibility classes to the link.
-    function addVisibilityClasses(phoneLink, scustomizerSettings) {
-        if (customizerSettings.hideOnDesktop) phoneLink.classList.add('flexline-hide-on-desktop');
-        if (customizerSettings.hideOnTablet) phoneLink.classList.add('flexline-hide-on-tablet');
-        if (customizerSettings.hideOnMobile) phoneLink.classList.add('flexline-hide-on-mobile');
-    }
+    
    
    
    
@@ -49,23 +50,28 @@ document.addEventListener('DOMContentLoaded', function() {
     slideInDiv.parentNode.insertBefore(mainButton, slideInDiv);
     // Initialize the button icon based on the current screen width and adjust its position.
     updateButtonIcon();
-    centerButtonInHeader([mainButton, phoneLink]);
+    centerButtonInHeader(mainButton);
 
     // Attach event listeners to the window object to handle resizing and scrolling events.
-    window.addEventListener('resize', debounce(() => {
-        // Update the button icon and re-center it whenever the window is resized.
-        updateButtonIcon();
-        centerButtonInHeader(mainButton);
-        if (customizerSettings.phoneLink && siteHeader) {
-            centerButtonInHeader(phoneLink);
-        }
-    }, 100));
-
+    window.addEventListener('resize', 
+        debounce(() => {
+            // Update the button icon and re-center it whenever the window is resized.
+            updateButtonIcon();
+            centerButtonInHeader(mainButton);
+            if (customizerSettings.phoneLink && siteHeader) {
+                centerButtonInHeader(phoneLink);
+            }
+        }, 100)
+    );
     window.addEventListener('scroll', 
-        debounce(() => toggleButtonPosition(mainButton), 100),
-        debounce(() => toggleButtonPosition(phoneLink), 100)
-    
-        );
+        debounce(() => {
+            toggleButtonPosition(mainButton);
+            const phoneButton = document.getElementById('flexline-call-button');
+            if (phoneButton) {
+                toggleButtonPosition(phoneButton);
+            }
+        }, 100)
+    );
 
     // Function to create the main toggle button for the slide-in menu.
     function createMainButton() {
@@ -105,8 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             buttonToCenter.style.top = `${offset}px`;
         }
     }
-
-   
 
     // Function to trap focus within the slide-in menu for accessibility.
     function trapFocus(element) {
@@ -178,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
 
     // Debounce function to limit the rate at which a function can fire
     function debounce(func, wait, immediate) {
