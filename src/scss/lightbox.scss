@@ -163,6 +163,15 @@ figure.wp-block-image.enable-lightbox{
             background-repeat: no-repeat;
         }
     }
+    &.is-style-outline{
+        > a{
+            &::after{
+                path{
+                    fill: inherit !important;
+                }
+            }
+        }
+    }
 }
 
 // Poster Gallery
