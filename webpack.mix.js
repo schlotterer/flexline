@@ -8,6 +8,7 @@ const jsFiles = [
     'src/js/global.js',
     'src/js/slide-in-menu.js',
     'src/js/header-phone-link.js',
+    'src/js/feature-links.js',
 ];
 
 // Individual SASS files

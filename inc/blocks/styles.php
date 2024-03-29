@@ -64,6 +64,15 @@ function flexline_register_block_styles() {
 		'core/heading' => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
+		'core/site-title' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/post-title' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/post-terms' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
 		'core/paragraph' => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		)
