@@ -131,7 +131,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#002241", "#4D3562" ],
+					"colors": [ "#283618", "#BC6C25" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				}
@@ -173,7 +173,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#FAFAFA",
+					"color": "#EAEAE7",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
