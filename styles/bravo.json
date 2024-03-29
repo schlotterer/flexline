@@ -111,12 +111,12 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#82735A", "#ffffff" ],
+					"colors": [ "#7A8442", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#DE3A39", "#ffffff" ],
+					"colors": [ "#A71B78", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -131,7 +131,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#002241", "#4D3562" ],
+					"colors": [ "#45324b", "#af844b" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				}
@@ -148,12 +148,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#82735A",
+					"color": "#7A8442",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#DE3A39",
+					"color": "#A71B78",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
