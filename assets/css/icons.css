@@ -2,6 +2,11 @@
     &::after{
         background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
     }
+    &.is-style-outline{
+        &::after{
+            background-image: url('../built/images/icon-play_arrow_dark_FILL1_wght400_GRAD0_opsz24.svg');
+        }
+    }
 }
 .enable-lightbox > a[data-popup-media-url*="youtube.com"],
 .enable-lightbox > a[data-popup-media-url*="youtu.be"],
@@ -11,6 +16,11 @@
 .enable-lightbox > a[data-popup-media-url*=".ogg"] {
     &::after{
         background-image: url('../built/images/icon-play_arrow_FILL1_wght400_GRAD0_opsz24.svg');
+    }
+    &.is-style-outline{
+        &::after{
+            background-image: url('../built/images/icon-play_arrow_dark_FILL1_wght400_GRAD0_opsz24.svg');
+        }
     }
 }
 

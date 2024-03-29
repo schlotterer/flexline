@@ -165,9 +165,25 @@ figure.wp-block-image.enable-lightbox{
     }
     &.is-style-outline{
         > a{
-            &::after{
-                path{
-                    fill: inherit !important;
+            &[data-popup-media-url*="youtube.com"],
+            &[data-popup-media-url*="youtu.be"],
+            &[data-popup-media-url*="vimeo.com"],
+            &[data-popup-media-url*=".mp4"],
+            &[data-popup-media-url*=".webm"],
+            &[data-popup-media-url*=".ogg"],
+            &[src*="youtube.com"],
+            &[src*="youtu.be"],
+            &[src*="vimeo.com"],
+            &[src*=".mp4"],
+            &[src*=".webm"],
+            &[src*=".ogg"] {
+                
+                &::after{
+                    content: "";
+                    font-size: inherit;
+                    line-height: 1;
+                    background-position: center;
+                    background-repeat: no-repeat;
                 }
             }
         }
