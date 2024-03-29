@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         centerButtonInHeader();
     }, 100));
 
-    window.addEventListener('scroll', debounce(toggleButtonPosition, 250));
+    window.addEventListener('scroll', debounce(toggleButtonPosition, 100));
 
     // Function to create the main toggle button for the slide-in menu.
     function createMainButton() {
