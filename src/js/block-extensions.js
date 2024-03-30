@@ -160,7 +160,7 @@ const customVisibilityAttributes = {
     },
 };
 function addCustomVisibilityAttributes(settings, name) {
-    if (['core/column', 'core/columns', 'core/paragraph', 'core/heading', 'core/video', 'core/site-logo', 'core/post-featured-image', 'core/embed', 'core/html', 'core/social-link', 'core/social-links'].includes(name)) {
+    if (['core/column', 'core/columns', 'core/spacer', 'core/paragraph', 'core/heading', 'core/video', 'core/site-logo', 'core/post-featured-image', 'core/embed', 'core/html', 'core/social-link', 'core/social-links'].includes(name)) {
         // Extend the existing attributes with custom visibility attributes
         settings.attributes = {
             ...settings.attributes,
@@ -169,18 +169,7 @@ function addCustomVisibilityAttributes(settings, name) {
     }
     return settings;
 }
-// Filter function to add custom attributes to blocks
-function addCustomColumnsAttributes(settings, name) {
-    // Target specific blocks
-    if (name === 'core/columns') {
-        settings.attributes = {
-            ...settings.attributes,
-            ...customHorizontalScrollAttributes,
-            ...customVisibilityAttributes,
-        };
-    }
-    return settings;
-}
+
 
 
 // Higher Order Component to add custom controls
@@ -418,40 +407,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                 </Fragment>
             );
         }
-        if (props.name === 'core/columns') {
-            return (
-                <Fragment>
-                    <BlockEdit {...props} />
-                    <InspectorControls>
-                        <PanelBody title="Flexline Options">
-                            <ToggleControl
-                                label="Enable Horizontal Scroll at Mobile"
-                                checked={!!props.attributes.enableHorizontalScroll}
-                                onChange={(newValue) => props.setAttributes({ enableHorizontalScroll: newValue })}
-                            />
-                            <ToggleControl
-                                label="Hide on Desktop"
-                                checked={!!props.attributes.hideOnDesktop}
-                                onChange={(newValue) => props.setAttributes({ hideOnDesktop: newValue })}
-                            />
-                            <ToggleControl
-                                label="Hide on Tablet"
-                                checked={!!props.attributes.hideOnTablet}
-                                onChange={(newValue) => props.setAttributes({ hideOnTablet: newValue })}
-                            />
-                            <ToggleControl
-                                label="Hide on Mobile"
-                                checked={!!props.attributes.hideOnMobile}
-                                onChange={(newValue) => props.setAttributes({ hideOnMobile: newValue })}
-                            />
-                        </PanelBody>
-                        
-                    </InspectorControls>
-                </Fragment>
-            );
-        }
         if ([
-            'core/column', 
+            'core/column',
+            'core/columns', 
+            'core/spacer', 
             'core/paragraph', 
             'core/heading', 
             'core/video', 

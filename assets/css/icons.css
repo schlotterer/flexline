@@ -1,10 +1,14 @@
-.enable-lightbox > a{
-    &::after{
-        background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
+.enable-lightbox {
+    > a{
+        &::after{
+            background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
+        }
     }
     &.is-style-outline{
-        &::after{
-            background-image: url('../built/images/icon-play_arrow_dark_FILL1_wght400_GRAD0_opsz24.svg');
+        > a{
+            &::after{
+                background-image: url('../built/images/icon-play_arrow_dark_FILL1_wght400_GRAD0_opsz24.svg');
+            }
         }
     }
 }
@@ -17,9 +21,20 @@
     &::after{
         background-image: url('../built/images/icon-play_arrow_FILL1_wght400_GRAD0_opsz24.svg');
     }
-    &.is-style-outline{
+   
+}
+.enable-lightbox.is-style-outline{
+    > a[data-popup-media-url*="youtube.com"],
+    > a[data-popup-media-url*="youtu.be"],
+    > a[data-popup-media-url*="vimeo.com"],
+    > a[data-popup-media-url*=".mp4"],
+    > a[data-popup-media-url*=".webm"],
+    > a[data-popup-media-url*=".ogg"] {
         &::after{
             background-image: url('../built/images/icon-play_arrow_dark_FILL1_wght400_GRAD0_opsz24.svg');
+        }
+        path{
+            fill:currentColor;
         }
     }
 }

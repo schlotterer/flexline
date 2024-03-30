@@ -212,11 +212,6 @@ function flexline_block_customizations_render($block_content, $block) {
     }
     if ( $block['blockName'] === 'core/columns') {
         $addedClasses = '';
-        // Check if your custom attributes are set and not empty
-        if (isset($block['attrs']['enableHorizontalScroll']) && $block['attrs']['enableHorizontalScroll']) {
-            // Add a class
-            $addedClasses .= 'is-style-horizontal-scroll ';
-        }
         if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
             // Add a class
             $addedClasses .= 'flexline-hide-on-mobile ';
@@ -262,6 +257,7 @@ function flexline_block_customizations_render($block_content, $block) {
         $block['blockName'] === 'core/html' ||
         $block['blockName'] === 'core/social-link' ||
         $block['blockName'] === 'core/social-links' ||
+        $block['blockName'] === 'core/spacer' ||
         $block['blockName'] === 'core/embed') {
         $addedClasses = '';
         if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {

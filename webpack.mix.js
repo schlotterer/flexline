@@ -6,8 +6,7 @@ const jsFiles = [
     'src/js/block-extensions.js',
     'src/js/lightbox.js',
     'src/js/global.js',
-    'src/js/slide-in-menu.js',
-    'src/js/header-phone-link.js',
+    'src/js/feature-links.js',
 ];
 
 // Individual SASS files
