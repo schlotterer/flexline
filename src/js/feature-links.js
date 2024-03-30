@@ -58,8 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update the button icon and re-center it whenever the window is resized.
             updateButtonIcon();
             centerButtonInHeader(mainButton);
-            if (customizerSettings.phoneLink && siteHeader) {
-                centerButtonInHeader(phoneLink);
+            const phoneButton = document.getElementById('flexline-call-button');
+            if (phoneButton) {
+                centerButtonInHeader(phoneButton);
             }
         }, 100)
     );
@@ -98,21 +99,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to adjust the position of the main button based on scroll position.
     function toggleButtonPosition(buttonToPosition) {
         const isScrolled = window.scrollY > 0;
-        buttonToPosition.style.position = isScrolled ? 'fixed' : 'absolute';
+        //buttonToPosition.style.position = isScrolled ? 'fixed' : 'absolute';
         buttonToPosition.style.top = isScrolled ? (window.matchMedia('(max-width: 781.98px)').matches ? '12px' : '8px') : '';
         if (!isScrolled) centerButtonInHeader(buttonToPosition);
     }
     
     // Function to center the main button within the header.
     function centerButtonInHeader(buttonToCenter) {
-        if (siteHeader) {
-            const headerRect = siteHeader.getBoundingClientRect();
-            const offset = (headerRect.height - buttonToCenter.offsetHeight) / 2;
-            buttonToCenter.style.position = 'absolute';
-            buttonToCenter.style.top = `${headerRect.top + window.scrollY + offset}px`;
+        const headerContainer = document.querySelector('#header_container');
+        if (headerContainer) {
+            // Assuming the headerContainer's position in the viewport doesn't drastically change
+            const offset = (headerContainer.offsetHeight - buttonToCenter.offsetHeight) / 2;
+            buttonToCenter.style.position = 'fixed';
+            // Use offsetTop for a more stable reference point from the document's start
+            buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
         }
     }
-
+    
     // Function to trap focus within the slide-in menu for accessibility.
     function trapFocus(element) {
         const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');

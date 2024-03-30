@@ -26,6 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
         element.classList.add('has-popup');
         element.setAttribute('data-enable-popup', 'true');
         element.setAttribute('data-popup-media-url', url);
+        
+        const iconPlay = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg"  height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M320-200v-560l440 280-440 280Z"/></svg></span>';
+        const iconExpand = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg></span>';
+        
+        if (/youtube\.com|youtu\.be|vimeo\.com|\.mp4|\.webm|\.ogg/.test(url)) {
+            // add the play icon to the end of the button content
+            element.insertAdjacentHTML('beforeend', iconPlay);
+        } else {
+            // add the expand icon to the end of the button content
+            element.insertAdjacentHTML('beforeend', iconExpand);
+        }
+
 
         element.addEventListener('click', e => {
             e.preventDefault();
