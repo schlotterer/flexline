@@ -33,7 +33,7 @@
 }
 
 .admin-bar{
-    #flexline-call-button {
+    #flexline-call-button[style*="fixed"] {
         transform: translate(0,var(--wp-admin--admin-bar--height));
     }
 }

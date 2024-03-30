@@ -106,9 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to center the main button within the header.
     function centerButtonInHeader(buttonToCenter) {
         if (siteHeader) {
-            const offset = (siteHeader.offsetHeight - buttonToCenter.offsetHeight) / 2;
+            const headerRect = siteHeader.getBoundingClientRect();
+            const offset = (headerRect.height - buttonToCenter.offsetHeight) / 2;
             buttonToCenter.style.position = 'absolute';
-            buttonToCenter.style.top = `${offset}px`;
+            buttonToCenter.style.top = `${headerRect.top + window.scrollY + offset}px`;
         }
     }
 

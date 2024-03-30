@@ -88,7 +88,7 @@ button{
 }
 
 .admin-bar{
-    #slide-in-menu-button {
+    #slide-in-menu-button[style*="fixed"] {
         transform: translate(0,var(--wp-admin--admin-bar--height));
     }
 }
