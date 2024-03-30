@@ -661,7 +661,6 @@
 				}
 			},
 			"core/navigation": {
-				"css":"& ul.is-style-main-header-nav > li *:not(.wp-element-button) {color:var(--wp--custom--nav-main-color);} & ul.is-style-main-header-nav > li *:not(.wp-element-button):hover {color:var(--wp--custom--nav-main-hover-color);} & ul.is-style-light-over-dark > li *:not(.wp-element-button) {color:var(--wp--custom--nav-light-over-dark-color);} & ul.is-style-light-over-dark > li *:not(.wp-element-button):hover { color:var(--wp--custom--nav-light-over-dark-hover-color); } & ul.is-style-dark-over-light > li *:not(.wp-element-button) { color:var(--wp--custom--nav-dark-over-light-color);} & ul.is-style-dark-over-light > li *:not(.wp-element-button):hover {color:var(--wp--custom--nav-dark-over-light-hover-color);}",
 				"elements": {
 					"link": {
 						"typography": {
