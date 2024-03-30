@@ -137,7 +137,10 @@ textarea {
 	padding-right: 10px !important;
 	padding-left: 10px !important;
 }
-#header_container .wp-block-navigation__container{
+
+
+
+.site-header .wp-block-navigation__container{
 	.wp-block-navigation__submenu-container{
 		min-width: 250px !important;
 		transition: var(--wp--custom--transition-time);
@@ -152,7 +155,7 @@ textarea {
 		}
 	}
 }
-#header_container .wp-block-navigation__container.items-justified-center{
+.site-header .wp-block-navigation__container.items-justified-center{
 	.wp-block-navigation__submenu-container{
 		left: 50%;
 		transform: translate(-50%,0);
