@@ -266,5 +266,7 @@ body{
 	img[style*="cover"]{
 		width: 100%;
 	}
-
+	&.flexline{
+		--gf-form-gap-y: 12px;
+	}
 }
