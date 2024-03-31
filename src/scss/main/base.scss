@@ -198,12 +198,12 @@ body{
 
 
 	// Gravity Forms
-	.flexline .gform-theme--foundation.gform_wrapper{
+	&.flexline .gform-theme--foundation.gform_wrapper{
 		--gf-form-gap-y: 16px;
 	}
 
 	// Group Link
-	.flexline .wp-block-group.group-link{
+	&.flexline .wp-block-group.group-link{
 		cursor: pointer;
 	}
 
@@ -265,8 +265,5 @@ body{
 	// Fix cover images 
 	img[style*="cover"]{
 		width: 100%;
-	}
-	&.flexline{
-		--gf-form-gap-y: 12px;
 	}
 }
