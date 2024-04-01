@@ -135,7 +135,6 @@ figure.wp-block-image.enable-lightbox{
 // Poster Gallery
 figure.poster-gallery.has-nested-images{
     position: relative;
-    overflow: hidden;
 	> figure{
 		position: absolute !important;
 		visibility: hidden;
