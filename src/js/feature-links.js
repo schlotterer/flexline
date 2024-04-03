@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleButtonPosition(buttonToPosition) {
         const isScrolled = window.scrollY > 0;
         //buttonToPosition.style.position = isScrolled ? 'fixed' : 'absolute';
-        buttonToPosition.style.top = isScrolled ? (window.matchMedia('(max-width: 781.98px)').matches ? '12px' : '8px') : '';
+        buttonToPosition.style.top = isScrolled ? (window.matchMedia('(max-width: 781.98px)').matches ? '12px' : '6px') : '';
         if (!isScrolled) centerButtonInHeader(buttonToPosition);
     }
     
