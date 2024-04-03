@@ -14,10 +14,6 @@ html {
 
 .editor-styles-wrapper,
 body{
-
-
-
-
 	a,
 	button,
 	input:focus,
@@ -146,20 +142,20 @@ body{
 	}
 
 	.wp-block-navigation{
-		ul.is-style-main-header-nav > li *:not(.wp-element-button) {
+		&.is-style-main-header-nav .wp-block-navigation__container > .wp-block-navigation-item *:not(.wp-element-button) {
 			color:var(--wp--custom--nav-main-color);
 			&:hover{
 				color:var(--wp--custom--nav-main-hover-color);
 			}
 		}
-		ul.is-style-light-over-dark > li *:not(.wp-element-button) {
+		&.is-style-light-over-dark .wp-block-navigation__container > .wp-block-navigation-item *:not(.wp-element-button) {
 			color:var(--wp--custom--nav-light-over-dark-color);
 			&:hover{
 				color:var(--wp--custom--nav-light-over-dark-hover-color);
 			}
 		
 		} 
-		ul.is-style-dark-over-light > li *:not(.wp-element-button) { 
+		&.is-style-dark-over-light .wp-block-navigation__container > .wp-block-navigation-item *:not(.wp-element-button) { 
 			color:var(--wp--custom--nav-dark-over-light-color);
 			&:hover{
 				color:var(--wp--custom--nav-dark-over-light-hover-color);
