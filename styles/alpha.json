@@ -489,10 +489,6 @@
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
 				},
-				"color": {
-					"background": "var(--wp--preset--color--secondary)",
-					"text": "var(--wp--preset--color--base)"
-				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--display)",
 					"fontSize": "var(--wp--preset--font-size--small)",
