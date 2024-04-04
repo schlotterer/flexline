@@ -21,7 +21,8 @@ body{
     }
     @media only screen and ( max-width:781.98px) {
         .plethoraplugins-sidenavjump,
-        .js-plethoraplugins-tab-panel {
+        .js-plethoraplugins-tab-panel,
+        .plethoraplugins-sidenavjump-content {
             width: 100% !important;
             flex-basis: 100% !important;
         }

@@ -98,57 +98,7 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
 
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"},"metadata":{"name":"Columns with multiple rows"}} -->
-<div class="wp-block-group"><!-- wp:heading -->
-    <h2 class="wp-block-heading">Info Box</h2>
-    <!-- /wp:heading -->
-
-    <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
-    <div class="wp-block-columns"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading">Info Box</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:column -->
-
-        <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
-            <div class="wp-block-group is-style-card-padded"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading">Info Box</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:column -->
-
-        <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Info Box"}} -->
-            <div class="wp-block-group is-style-default"><!-- wp:heading {"level":3} -->
-                <h3 class="wp-block-heading">Info Box</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"fontSize":"small"} -->
-                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:column -->
-    </div>
-    <!-- /wp:columns -->
-</div>
-<!-- /wp:group -->
+<!-- wp:pattern {"slug":"flexline/columns-multirow"} /-->
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"layout":{"type":"constrained"},"metadata":{"name":"Boxes"}} -->
 <div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:heading -->
@@ -157,7 +107,9 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|small"}}}} -->
     <div class="wp-block-columns"><!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+        <div class="wp-block-column">
+            
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
             <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">CTA Box</h3>
                 <!-- /wp:heading -->
@@ -174,11 +126,14 @@ namespace FlexLine\flexline;
                 <!-- /wp:buttons -->
             </div>
             <!-- /wp:group -->
+
         </div>
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
+        <div class="wp-block-column">
+            
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Box - text and button"}} -->
             <div class="wp-block-group is-style-card-padded"><!-- wp:heading {"level":3} -->
                 <h3 class="wp-block-heading">CTA Box</h3>
                 <!-- /wp:heading -->
@@ -195,6 +150,7 @@ namespace FlexLine\flexline;
                 <!-- /wp:buttons -->
             </div>
             <!-- /wp:group -->
+            
         </div>
         <!-- /wp:column -->
 
