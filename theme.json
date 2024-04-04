@@ -645,6 +645,7 @@
 				"variations": {
 					"outline" : {
 						"color": {
+							"background": "transparent",
 							"text": "var(--wp--preset--color--primary)"
 						},
 						"shadow": "none",

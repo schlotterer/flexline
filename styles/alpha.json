@@ -485,6 +485,10 @@
 		},
 		"elements": {
 			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--secondary)",
+					"text": "var(--wp--preset--color--base)"
+				},
 				"shadow": "var(--wp--custom--button-shadow)",
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
@@ -641,6 +645,7 @@
 				"variations": {
 					"outline" : {
 						"color": {
+							"background": "transparent",
 							"text": "var(--wp--preset--color--primary)"
 						},
 						"shadow": "none",
