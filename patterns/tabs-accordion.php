@@ -7,7 +7,7 @@
  * Categories: flexline-modules, flexline-components, flexline-misc
  */
 ?>
-<!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null]} -->
+<!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null],"metadata":{"name":"Accordion"}} -->
 <!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion"} -->
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->

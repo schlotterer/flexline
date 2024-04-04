@@ -7,7 +7,7 @@
  * Categories: flexline-modules, flexline-components, flexline-misc
  */
 ?>
-<!-- wp:plethoraplugins/tabs {"layout":"vertical","tabLabels":["Vertical Tab 1","Vertical Tab 2","Basic Content"],"tabIds":[null,null,null]} -->
+<!-- wp:plethoraplugins/tabs {"layout":"vertical","tabLabels":["Vertical Tab 1","Vertical Tab 2","Basic Content"],"tabIds":[null,null,null],"metadata":{"name":"Vertical Tabs"}} -->
 <!-- wp:plethoraplugins/tab {"label":"Vertical Tab 1","parentLayout":"vertical"} -->
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:heading -->
