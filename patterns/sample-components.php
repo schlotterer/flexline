@@ -58,6 +58,16 @@ namespace FlexLine\flexline;
 <!-- /wp:separator -->
 
 <!-- wp:heading -->
+<h2 class="wp-block-heading">Phone Directory</h2>
+<!-- /wp:heading -->
+
+<!-- wp:pattern {"slug":"flexline/phone-directory"} /-->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
 <h2 class="wp-block-heading">Call Now button</h2>
 <!-- /wp:heading -->
 
@@ -221,6 +231,9 @@ namespace FlexLine\flexline;
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
+
+<!-- wp:group {"metadata":{"name":"Sticky CTA sticky container"},"align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull">
 
 <!-- wp:heading -->
 <h2 class="wp-block-heading">CTA Full Width</h2>
@@ -410,6 +423,9 @@ namespace FlexLine\flexline;
         <!-- /wp:columns -->
     </div>
     <!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->
 
 </div>
 <!-- /wp:group -->
