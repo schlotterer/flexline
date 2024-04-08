@@ -412,7 +412,7 @@
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
 			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
 			"textShadow": "0 .18rem .4rem rgba(0,0,0, 0.5)",
-			"borderRadius": "0 5px 0 5px",
+			"borderRadius": "0 4px 0 4px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
 			"buttonBorderRadius": "var(--wp--custom--border-radius)",
 			"buttonShadow": "var(--wp--preset--shadow--light)", 
