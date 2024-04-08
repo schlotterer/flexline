@@ -89,14 +89,54 @@
 					"slug": "primary-secondary"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
-					"name": "Secondary to Highlight",
-					"slug": "secondary-highlight"
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Primary to Alternate",
+					"slug": "primary-alternate"
 				},
 				{
 					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--highlight) 100%)",
 					"name": "Primary to Highlight",
 					"slug": "primary-highlight"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary) 100%)",
+					"name": "Secondary to Primary",
+					"slug": "secondary-primary"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Secondary to Alternate",
+					"slug": "secondary-alternate"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Secondary to Highlight",
+					"slug": "secondary-highlight"
+				},
+				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Alternate to Highlight",
+					"slug": "alternate-highlight"
+				},
+				{
+					"gradient": "linear-gradient(to bottom, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - top to bottom",
+					"slug": "dark-transparent-top-to-bottom"
+				},
+				{
+					"gradient": "linear-gradient(to top, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - bottom to top",
+					"slug": "dark-transparent-bottom-to-top"
+				},
+				{
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - left to right",
+					"slug": "dark-transparent-left-to-right"
+				},
+				{
+					"gradient": "linear-gradient(to left, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - right to left",
+					"slug": "dark-transparent-right-to-left"
 				}
 			],
 			"duotone": [
@@ -956,11 +996,15 @@
 		},
 		{
 			"name": "page-hero-title",
-			"title": "Page Hero Title"
+			"title": "Page - Menu Over Hero"
 		},
 		{
 			"name": "page-no-title",
 			"title": "Page No Title"
+		},
+		{
+			"name": "page-no-title-no-form",
+			"title": "Page No Title & No Form"
 		}
 	],
 	"templateParts": [
