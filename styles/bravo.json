@@ -64,59 +64,74 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
 				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
-					"name": "Secondary to Secondary Dark",
-					"slug": "secondary-secondaryDark"
-				},
-				{
-					"gradient": "linear-gradient(70deg, var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
-					"name": "Alternate to Alternate Dark",
-					"slug": "alternate-alternateDark"
-				},
-				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral) 100%)",
-					"name": "Neutral to Neutral Light",
-					"slug": "neutral-neutralLight"
-				},
-				{
-					"gradient": "linear-gradient(70deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Primary to Alternate",
 					"slug": "primary-alternate"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--highlight) 100%)",
 					"name": "Primary to Highlight",
 					"slug": "primary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Secondary to Secondary Dark",
+					"slug": "secondary-secondaryDark"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Secondary to Primary",
 					"slug": "secondary-primary"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Secondary to Alternate",
 					"slug": "secondary-alternate"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
 					"name": "Secondary to Highlight",
 					"slug": "secondary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(300deg, var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--highlight) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Alternate to Alternate Dark",
+					"slug": "alternate-alternateDark"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--primary) 100%)",
+					"name": "Alternate to Primary",
+					"slug": "alternate-primary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Alternate to Secondary",
+					"slug": "alternate-secondary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--highlight) 100%)",
 					"name": "Alternate to Highlight",
 					"slug": "alternate-highlight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral) 100%)",
+					"name": "Neutral to Neutral Light",
+					"slug": "neutral-neutralLight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral-dark) 100%)",
+					"name": "Neutral Dark to Neutral Light",
+					"slug": "neutralDark-neutralLight"
 				},
 				{
 					"gradient": "linear-gradient(to bottom, var(--wp--preset--color--contrast) 0%, transparent 100%)",
@@ -174,6 +189,16 @@
 					"colors": [ "#45324b", "#af844b" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
+				},
+				{
+					"colors": [ "#002241", "#985594" ],
+					"slug": "primary-highlight",
+					"name": "Primary Highlight"
+				},
+				{
+					"colors": [ "#002241", "#1895CC" ],
+					"slug": "primary-alternate",
+					"name": "Primary Alt"
 				}
 			],
 			"palette": [
@@ -405,6 +430,7 @@
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
 			"decoColor": "var(--wp--preset--color--secondary)",
+			"gradientAngle": "300deg",
 			"breakpoint": {
 				"mobile": "max-width: 781.98",
 				"tablet-down": "max-width: 991.98px",
