@@ -82,6 +82,11 @@
 					"slug": "neutral-neutralLight"
 				},
 				{
+					"gradient": "linear-gradient(300deg, var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral-dark) 100%)",
+					"name": "Neutral Dark to Neutral Light",
+					"slug": "neutralDark-neutralLight"
+				},
+				{
 					"gradient": "linear-gradient(300deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Primary to Secondary",
 					"slug": "primary-secondary"
