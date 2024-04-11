@@ -199,7 +199,8 @@ body{
 	}
 
 	// Group Link
-	&.flexline .wp-block-group.group-link{
+	&.flexline .wp-block-group.group-link,
+	&.flexline .wp-block-group.group-link *{
 		cursor: pointer;
 	}
 
