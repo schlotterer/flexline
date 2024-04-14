@@ -21,9 +21,13 @@ namespace FlexLine\flexline;
  *
  */
 function shortcodes_in_yoast_schema( $data ) {
-    $siteName = do_shortcode('flexline_site_name');
-    $formattedAddress = do_shortcode('flexline_city_state');
-    
+    $siteName = get_bloginfo('name') ? '<span class="site-name">' . esc_html(get_bloginfo('name')) . '</span>' : '<span class="site-name">Flexline</span>';
+    $formattedAddress = '';
+    if (get_theme_mod('flexline_address_city', '') && get_theme_mod('flexline_address_state', '')) {
+        $city = get_theme_mod('flexline_address_city', '');
+        $state = get_theme_mod('flexline_address_state', '');
+        $formattedAddress = '<span>' . esc_html($city) . ', ' . esc_html($state) . '</span>';
+    }
     
     if (isset($data['@graph'])) {
         foreach ($data['@graph'] as $key => $graph) {
