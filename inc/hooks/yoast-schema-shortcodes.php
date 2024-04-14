@@ -13,7 +13,7 @@ namespace FlexLine\flexline;
  *
  */
 
-function shortcodes_in_yoast_schema( $data ) {
+function flexline_schema_fix( $data ) {
     $siteName = get_bloginfo('name') ? '<span class="site-name">' . esc_html(get_bloginfo('name')) . '</span>' : '<span class="site-name">Flexline</span>';
     $formattedAddress = '';
     if (get_theme_mod('flexline_address_city', '') && get_theme_mod('flexline_address_state', '')) {
@@ -39,4 +39,4 @@ function shortcodes_in_yoast_schema( $data ) {
     return $data;
 }
 
-add_filter( 'wpseo_json_ld_output', 'shortcodes_in_yoast_schema', 10, 1 );
+add_filter( 'wpseo_json_ld_output', __NAMESPACE__ . '\flexline_schema_fix', 10, 1 );
