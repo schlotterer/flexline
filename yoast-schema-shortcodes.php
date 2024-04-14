@@ -6,14 +6,6 @@
  */
 
 namespace FlexLine\flexline;
-
-/**
- * Add shortcodes to yoast schema.
- *
- * @author Joel Schlotterer
- *
- * 
- */
 /**
  * Add shortcodes to Yoast schema.
  *
