@@ -20,6 +20,7 @@ namespace FlexLine\flexline;
  * @author Joel Schlotterer
  *
  */
+/*
 function shortcodes_in_yoast_schema( $data ) {
     $siteName = get_bloginfo('name') ? '<span class="site-name">' . esc_html(get_bloginfo('name')) . '</span>' : '<span class="site-name">Flexline</span>';
     $formattedAddress = '';
@@ -45,4 +46,5 @@ function shortcodes_in_yoast_schema( $data ) {
     
     return $data;
 }
+*/
 //add_filter( 'wpseo_json_ld_output', __NAMESPACE__ . '\shortcodes_in_yoast_schema', 10, 1 );
