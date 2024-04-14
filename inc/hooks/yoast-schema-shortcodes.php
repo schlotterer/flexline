@@ -45,4 +45,4 @@ function shortcodes_in_yoast_schema( $data ) {
     
     return $data;
 }
-add_filter( 'wpseo_json_ld_output', __NAMESPACE__ . '\shortcodes_in_yoast_schema', 10, 1 );
+//add_filter( 'wpseo_json_ld_output', __NAMESPACE__ . '\shortcodes_in_yoast_schema', 10, 1 );
