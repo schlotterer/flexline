@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Removes or Adjusts the prefix on category archive page titles.
  *
- * @author Corey Collins
+ * @author Joel Schlotterer
  *
  * @param string $block_title The default $block_title of the page.
  *
