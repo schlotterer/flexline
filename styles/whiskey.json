@@ -579,6 +579,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
+						"gradient": "var(--wp--preset--gradient--primary-highlight)",
 						"background": "var(--wp--custom--color--secondary--dark)"
 					}
 				},
@@ -587,7 +588,7 @@
 						"color": "var(--wp--custom--color--alert--focus)"
 					}
 				},
-				"css": "white-space: nowrap;display:block;"
+				"css": "white-space: nowrap;display:block; transition: var(--wp--custom--transition-time);"
 			},
 			"caption": {
 				"spacing": {

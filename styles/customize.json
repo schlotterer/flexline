@@ -587,7 +587,7 @@
 						"color": "var(--wp--custom--color--alert--focus)"
 					}
 				},
-				"css": "white-space: nowrap;display:block;"
+				"css": "white-space: nowrap;display:block; transition:var(--wp--preset--transition-time);"
 			},
 			"caption": {
 				"spacing": {
