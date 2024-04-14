@@ -551,6 +551,7 @@
 		"elements": {
 			"button": {
 				"color": {
+					"gradient": "unset",
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
