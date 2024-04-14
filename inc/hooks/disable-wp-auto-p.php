@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Disables wpautop to remove empty p tags in rendered Gutenberg blocks.
  *
- * @author Corey Collins
+ * @author Joel Schlotterer
  */
 function disable_wpautop_for_gutenberg() {
 	// If we have blocks in place, don't add wpautop.

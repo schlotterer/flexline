@@ -10,7 +10,7 @@ namespace FlexLine\flexline;
 /**
  * Preload assets.
  *
- * @author Corey Collins
+ * @author Joel Schlotterer
  */
 function preload_assets() {
     // TODO: check it first

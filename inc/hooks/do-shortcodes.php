@@ -1,6 +1,6 @@
 <?php
 /**
- * Adds OG tags to the head for better social sharing.
+ * Adds shortcodes to meta.
  *
  * @package flexline
  */
@@ -8,11 +8,11 @@
 namespace FlexLine\flexline;
 
 /**
- * Adds OG tags to the head for better social sharing.
+ * Allows shortcodes for meta
  *
- * @author Corey Collins
+ * @author Joel Schlotterer
  *
- * @return string An empty string if Yoast is not found, otherwise a block of meta tag HTML.
+ * 
  */
 // Activate shortcode function in Post Title.
 add_filter( 'the_title', 'do_shortcode' );
