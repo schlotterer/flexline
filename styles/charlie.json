@@ -580,6 +580,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
+						"gradient": "none",
 						"background": "var(--wp--preset--color--highlight)"
 					}
 				},

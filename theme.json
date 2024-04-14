@@ -437,7 +437,7 @@
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
-			"decoColor": "var(--wp--preset--color--secondary)",
+			"decoColor": "var(--wp--preset--color--highlight)",
 			"gradientAngle": "300deg",
 			"breakpoint": {
 				"mobile": "max-width:781.98px",

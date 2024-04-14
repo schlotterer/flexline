@@ -551,6 +551,7 @@
 		"elements": {
 			"button": {
 				"color": {
+					"gradient": "none",
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
@@ -579,7 +580,7 @@
 						"textDecoration": "none"
 					},
 					"color": {
-						"gradient": "var(--wp--preset--gradient--primary-highlight)",
+						"gradient": "none",
 						"background": "var(--wp--custom--color--secondary--dark)"
 					}
 				},
