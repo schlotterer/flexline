@@ -7,9 +7,9 @@ namespace FlexLine\flexline;
  * @return string The formatted contact information.
  * @usage [flexline_site_name]
  */    
-function flexline_site_name__shortcode() {
+function flexline_site_name_shortcode() {
     // Get the site name
-    $siteName = get_bloginfo('name') ? '<span class="site-name">' . get_bloginfo('name') . '</span>' : '<span class="site-name">Flexline</span>';
+    $siteName = get_bloginfo('name') ? '<span class="site-name">' . esc_html(get_bloginfo('name')) . '</span>' : '<span class="site-name">Flexline</span>';
     
     // Start output buffering
     ob_start();
