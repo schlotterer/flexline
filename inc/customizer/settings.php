@@ -9,6 +9,46 @@ namespace FlexLine\flexline;
 
 use WP_Customize_Image_Control;
 
+
+/**
+ * Register Search/Menu Settings.
+ *
+ * @author Joel Schlotterer
+ *
+ * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
+ */
+function customize_search_menu( $wp_customize ) {
+	
+	// Use Menu Icon at all breakpoints
+    $wp_customize->add_setting('flexline_use_menu_icon', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('flexline_use_menu_icon', array(
+        'label' => esc_html__('Use menu icon at all breakpoints', 'flexline'),
+        'section' => 'flexline_search_menu_section',
+        'settings' => 'flexline_use_menu_icon',
+        'type' => 'checkbox',
+    ));
+
+	// Hide on Desktop
+    $wp_customize->add_setting('flexline_hide_search_desktop', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('flexline_hide_search_desktop', array(
+        'label' => esc_html__('Hide Search/Menu at Desktop', 'flexline'),
+        'section' => 'flexline_search_menu_section',
+        'settings' => 'flexline_hide_search_desktop',
+        'type' => 'checkbox',
+    ));
+
+	
+}
+add_action( 'customize_register', __NAMESPACE__ . '\customize_search_menu' );
+
 function customize_main_phone_title( $wp_customize ) {
 	// Register a setting.
 	$wp_customize->add_setting(
@@ -33,8 +73,6 @@ function customize_main_phone_title( $wp_customize ) {
 
 add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_title' );
 
-
-
 /**
  * Register main phone number setting.
  *
@@ -51,7 +89,6 @@ function customize_main_phone_number( $wp_customize ) {
 			'sanitize_callback' => 'wp_kses_post',
 		]
 	);
-
 	// Create the setting field.
 	$wp_customize->add_control(
 		'flexline_main_phone_number',
