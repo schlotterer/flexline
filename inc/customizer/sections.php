@@ -17,6 +17,15 @@ function customize_sections( $wp_customize ) {
 
 	// Register a default section.
 	$wp_customize->add_section(
+		'flexline_search_menu_section',
+		[
+			'title'    => esc_html__( 'Search/Menu Options', 'flexline' ),
+			'priority' => 20,
+			'panel'    => 'site-options',
+		]
+	);
+	// Register a default section.
+	$wp_customize->add_section(
 		'flexline_phone_section',
 		[
 			'title'    => esc_html__( 'Phone Link Settings', 'flexline' ),
