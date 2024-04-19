@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
             button.classList.add('flexline-hide-on-desktop');
         } 
-        if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
+        if (customizerSearchMenuSettings.hideSearchOnTablet == true) {
             button.classList.add('flexline-hide-on-tablet');
         } 
         return button;
