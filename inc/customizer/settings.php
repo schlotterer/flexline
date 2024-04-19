@@ -32,6 +32,19 @@ function customize_search_menu( $wp_customize ) {
         'type' => 'checkbox',
     ));
 
+	// Hide on Tablet
+    $wp_customize->add_setting('flexline_hide_search_tablet', array(
+        'default' => false,
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('flexline_hide_search_tablet', array(
+        'label' => esc_html__('Hide Search/Menu at tablet', 'flexline'),
+        'section' => 'flexline_search_menu_section',
+        'settings' => 'flexline_hide_search_tablet',
+        'type' => 'checkbox',
+    ));
+
 	// Hide on Desktop
     $wp_customize->add_setting('flexline_hide_search_desktop', array(
         'default' => false,

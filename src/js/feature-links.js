@@ -81,12 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let initialIcon = iconSearch;
         if (customizerSearchMenuSettings.useMenuIconOnDesktop === true) {
             initialIcon = iconMenu;
-            console.log("passed conditions");
+            
         }
-        console.log("Initial Icon:", initialIcon);
-        console.log("Menu Icon:", iconMenu);
-console.log("Menu Icon Setting:", customizerSearchMenuSettings.useMenuIconOnDesktop);
-console.log("Hide on Desktop Setting:", customizerSearchMenuSettings.hideSearchOnDesktop);
 
         button.id = 'slide-in-menu-button';
         button.className = 'slide-in-menu-button wp-element-button';
@@ -98,6 +94,9 @@ console.log("Hide on Desktop Setting:", customizerSearchMenuSettings.hideSearchO
         button.addEventListener('click', toggleMenu);
         if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
             button.classList.add('flexline-hide-on-desktop');
+        } 
+        if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
+            button.classList.add('flexline-hide-on-tablet');
         } 
         return button;
     }
