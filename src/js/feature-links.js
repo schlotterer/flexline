@@ -79,9 +79,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function createMainButton() {
         const button = document.createElement('button');
         let initialIcon = iconSearch;
-        if (customizerSearchMenuSettings.useMenuIconOnDesktop) {
+        if (customizerSearchMenuSettings.useMenuIconOnDesktop === true) {
             initialIcon = iconMenu;
+            console.log("passed conditions");
         }
+        console.log("Initial Icon:", initialIcon);
+        console.log("Menu Icon:", iconMenu);
+console.log("Menu Icon Setting:", customizerSearchMenuSettings.useMenuIconOnDesktop);
+console.log("Hide on Desktop Setting:", customizerSearchMenuSettings.hideSearchOnDesktop);
+
         button.id = 'slide-in-menu-button';
         button.className = 'slide-in-menu-button wp-element-button';
         button.setAttribute('aria-label', 'Open Search and Menu');
@@ -90,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.setAttribute('tabindex', '0');
         button.innerHTML = '<span class="material-symbols-outlined">' + initialIcon + '</span>';
         button.addEventListener('click', toggleMenu);
-        if (customizerSearchMenuSettings.hideSearchOnDesktop){
+        if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
             button.classList.add('flexline-hide-on-desktop');
         } 
         return button;
@@ -98,10 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to update the icon of the main button based on screen width.
     function updateButtonIcon() {
-        const iconSpan = mainButton.querySelector('.material-symbols-outlined');
-        const isLargeScreen = window.innerWidth > 991;
-        iconSpan.innerHTML = isLargeScreen ? iconSearch : iconMenu;
-        mainButton.setAttribute('aria-label', isLargeScreen ? 'Search' : 'Menu');
+        if (customizerSearchMenuSettings.useMenuIconOnDesktop !== true) {
+            const iconSpan = mainButton.querySelector('.material-symbols-outlined');
+            const isLargeScreen = window.innerWidth > 991;
+            iconSpan.innerHTML = isLargeScreen ? iconSearch : iconMenu;
+            mainButton.setAttribute('aria-label', isLargeScreen ? 'Search' : 'Menu');
+        }
     }
 
     // Function to adjust the position of the main button based on scroll position.
