@@ -146,6 +146,10 @@ function addCustomGroupAttributes(settings, name) {
 }
 
 const customVisibilityAttributes = {
+    stackAtTablet: {
+        type: 'boolean',
+        default: false,
+    },
     hideOnDesktop: {
         type: 'boolean',
         default: false,
@@ -428,6 +432,13 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                     <BlockEdit {...props} />
                     <InspectorControls>
                         <PanelBody title="Flexline Options">
+                            {props.name === 'core/columns' && (
+                                <ToggleControl
+                                label="Stack at Tablet"
+                                checked={!!props.attributes.stackAtTablet}
+                                onChange={(newValue) => props.setAttributes({ stackAtTablet: newValue })}
+                            />
+        )}
                             <ToggleControl
                                 label="Hide on Desktop"
                                 checked={!!props.attributes.hideOnDesktop}

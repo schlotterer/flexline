@@ -33,6 +33,12 @@
         .flexline-hide-on-tablet {
             display: none !important;
         }
+        .wp-block-columns.flexline-stack-at-tablet {
+            flex-wrap: wrap !important;
+            >.wp-block-column{
+                flex-basis: 100% !important;
+            }
+        }
     }
 
     /* Small screens (mobile devices, less than 768px) */
