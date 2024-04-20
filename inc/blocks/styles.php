@@ -25,6 +25,7 @@ function flexline_register_block_styles() {
 			'card-padded' => __( 'Card w/ Padding', 'flexline' ),
 			'card-alt' => __( 'Card w/ Images that fill', 'flexline' ),
 			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
+			'glass' => __( 'Glass', 'flexline' ),
 		),
 		'core/image' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
@@ -57,6 +58,7 @@ function flexline_register_block_styles() {
 			'card' => __( 'Card', 'flexline' ),
 			'card-padded' => __( 'Card w/ Padding', 'flexline' ),
 			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
+			'glass' => __( 'Glass', 'flexline' ),
 		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'flexline' ),

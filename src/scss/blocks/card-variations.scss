@@ -90,4 +90,11 @@ body{
             }   
         }
     }
+    .is-style-glass{
+        background: rgba( 255, 255, 255, 0.4 );
+        box-shadow: var(--wp--preset--shadow--diffused);
+        backdrop-filter: blur( 5.5px );
+        -webkit-backdrop-filter: blur( 5.5px );
+        border-radius: var(--wp--custom--border-radius);
+    }
 }
