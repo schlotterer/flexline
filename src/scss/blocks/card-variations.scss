@@ -109,6 +109,7 @@ body{
     }
     
     .is-style-glass-card{
+        overflow: hidden;
         border-radius: var(--wp--custom--border-radius);
     }
     .wp-block-button.is-style-glass-button .wp-element-button{
