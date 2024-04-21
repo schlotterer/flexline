@@ -25,7 +25,9 @@ function flexline_phone_number_shortcode($atts) {
 
     // Use the custom link if provided, otherwise use the default phone link logic
     $href = !empty($atts['link']) ? esc_url($atts['link']) : flexline_get_phone_button_link();
-    
+    if($href == '') {
+        return '';
+    }
     // Fetch the "Main Phone Title" if set, otherwise fallback to the phone number itself
     $mainPhoneTitle = get_theme_mod('flexline_main_phone_title', '');
     $defaultLinkText = get_theme_mod('flexline_main_phone_number', '');
