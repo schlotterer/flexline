@@ -7,12 +7,12 @@ const { PanelBody, ToggleControl, ToolsPanel, SelectControl, ToolsPanelItem } = 
 const { URLInput } = wp.blockEditor;
 
 // Define custom attributes
-const customPopUpAttributes = {
-    enablePopup: {
+const customModalAttributes = {
+    enableModal: {
         type: 'boolean',
         default: false,
     },
-    popupMediaURL: {
+    modalMediaURL: {
         type: 'string',
         default: '',
     },
@@ -24,7 +24,7 @@ function addCustomButtonAttributes(settings, name) {
     if (name === 'core/button') {
         settings.attributes = {
             ...settings.attributes,
-            ...customPopUpAttributes,
+            ...customModalAttributes,
             ...customVisibilityAttributes,
         };
     }
@@ -57,7 +57,7 @@ function addCustomImageAttributes(settings, name) {
     if (name === 'core/image') {
         settings.attributes = {
             ...settings.attributes,
-            ...customPopUpAttributes,
+            ...customModalAttributes,
             ...customLazyAttributes,
             ...customVisibilityAttributes,
         };
@@ -192,15 +192,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 onChange={(newValue) => props.setAttributes({ enableLazyLoad: newValue })}
                             />
                             <ToggleControl
-                                label="Enable Mixed Media Popup"
-                                checked={!!props.attributes.enablePopup}
-                                onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
+                                label="Enable Mixed Media Modal"
+                                checked={!!props.attributes.enableModal}
+                                onChange={(newValue) => props.setAttributes({ enableModal: newValue })}
                             />
-                            {props.attributes.enablePopup && (
+                            {props.attributes.enableModal && (
                                 <URLInput
-                                    label="Popup Media URL"
-                                    value={props.attributes.popupMediaURL}
-                                    onChange={(newValue) => props.setAttributes({ popupMediaURL: newValue })}
+                                    label="Modal Media URL"
+                                    value={props.attributes.modalMediaURL}
+                                    onChange={(newValue) => props.setAttributes({ modalMediaURL: newValue })}
                                 />
                             )}
                             <ToggleControl
@@ -289,9 +289,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                     <InspectorControls>
                         <PanelBody title="Flexline Options">
                             <ToggleControl
-                                label="Enable Mixed Media Popup"
-                                checked={!!props.attributes.enablePopup}
-                                onChange={(newValue) => props.setAttributes({ enablePopup: newValue })}
+                                label="Enable Mixed Media Modal"
+                                checked={!!props.attributes.enableModal}
+                                onChange={(newValue) => props.setAttributes({ enableModal: newValue })}
                             />
                             <ToggleControl
                                 label="Hide on Desktop"
@@ -385,7 +385,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     options={[
                                         { label: 'Normal', value: 'none' },
                                         { label: 'New Tab', value: 'new_tab' },
-                                        { label: 'Popup Media', value: 'popup_media' },
+                                        { label: 'Modal Media', value: 'modal_media' },
                                     ]}
                                     onChange={(newValue) => props.setAttributes({ groupLinkType: newValue })}
                                 />

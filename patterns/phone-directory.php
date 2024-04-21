@@ -24,7 +24,7 @@
     <!-- /wp:paragraph -->
 
     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-    <div class="wp-block-buttons"><!-- wp:button {"enablePopup":true} -->
+    <div class="wp-block-buttons"><!-- wp:button {"enableModal":true} -->
         <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/schedule-a-tour-for-modal/">Schedule a tour</a></div>
         <!-- /wp:button -->
     </div>

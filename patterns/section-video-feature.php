@@ -9,7 +9,7 @@
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained","wideSize":"800px"},"metadata":{"name":"Video Feature and Buttons"}} -->
-<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+<div class="wp-block-group alignwide"><!-- wp:image {"id":362,"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow-light","enableModal":true,"modalMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
     <figure class="wp-block-image size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" /></figure>
     <!-- /wp:image -->
 
@@ -19,7 +19,7 @@ namespace FlexLine\flexline;
 
     <!-- wp:group {"layout":{"type":"constrained","wideSize":"600px"}} -->
     <div class="wp-block-group"><!-- wp:paragraph {"align":"center"} -->
-        <p class="has-text-align-center">This pattern utilizes the "Enable Media Popup" option for popping up a video in a modal. There are also buttons for action directly after.</p>
+        <p class="has-text-align-center">This pattern utilizes the "Enable Media Modal" option for popping up a video in a modal. There are also buttons for action directly after.</p>
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->

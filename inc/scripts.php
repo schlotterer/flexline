@@ -15,7 +15,7 @@ function flexline_enqueue_style_sheet() {
 	wp_enqueue_style( 'flexline', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 	// Styles
 	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/built/css/app.css', array(), []);
-	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
+	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), []);
 	
 	// Icons
 	wp_enqueue_style( 'flexline-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), []);
@@ -25,7 +25,7 @@ function flexline_enqueue_style_sheet() {
 	
 	// Scripts
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/built/js/global.js',  [], null, true );
-	wp_enqueue_script( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/js/lightbox.js',  [], null, true );
+	wp_enqueue_script( 'flexline-modal', get_template_directory_uri() . '/assets/built/js/modal.js',  [], null, true );
 	wp_enqueue_script( 'flexline-feature-links', get_template_directory_uri() . '/assets/built/js/feature-links.js',  [], null, true );
 
 	// Customized Scripts
@@ -39,7 +39,7 @@ function flexline_enqueue_style_sheet() {
 function flexline_admin_enqueue_scripts() {
 	// Styles
 	wp_enqueue_style( 'flexline-base-admin', get_template_directory_uri() . '/assets/built/css/app.css', array(), []);
-	wp_enqueue_style( 'flexline-lightbox', get_template_directory_uri() . '/assets/built/css/lightbox.css', array(), []);
+	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), []);
 	// Material Icons
 	//wp_enqueue_style( 'flexline-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', array(), []);
 }

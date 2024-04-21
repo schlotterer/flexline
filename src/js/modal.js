@@ -22,10 +22,10 @@ function getVideoEmbedUrl(mediaUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const enablePopup = (element, url) => {
-        element.classList.add('has-popup');
-        element.setAttribute('data-enable-popup', 'true');
-        element.setAttribute('data-popup-media-url', url);
+    const enableModal = (element, url) => {
+        element.classList.add('has-modal');
+        element.setAttribute('data-enable-modal', 'true');
+        element.setAttribute('data-modal-media-url', url);
         
         const iconPlay = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg"  height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M320-200v-560l440 280-440 280Z"/></svg></span>';
         const iconExpand = '<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg></span>';
@@ -41,25 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         element.addEventListener('click', e => {
             e.preventDefault();
-            displayLightbox(url); // Function to display the lightbox
+            displayModal(url); // Function to display the modal
         });
     };
 
-    document.querySelectorAll('.enable-lightbox').forEach(block => {
+    document.querySelectorAll('.enable-modal').forEach(block => {
         const mediaElement = block.querySelector('img, a');
         if (!mediaElement) return;
 
-        let mediaUrl = block.dataset.popupMediaUrl || mediaElement.getAttribute(mediaElement.tagName === 'A' ? 'href' : 'src');
-        if (mediaUrl) enablePopup(mediaElement, mediaUrl);
+        let mediaUrl = block.dataset.modalMediaUrl || mediaElement.getAttribute(mediaElement.tagName === 'A' ? 'href' : 'src');
+        if (mediaUrl) enableModal(mediaElement, mediaUrl);
     });
 
     document.querySelectorAll('.wp-block-group.group-link').forEach(block => {
         const mediaUrl = block.dataset.groupLinkUrl;
         if (!mediaUrl) return;
 
-        const triggerLightbox = e => {
+        const triggerModal = e => {
             e.preventDefault();
-            displayLightbox(mediaUrl);
+            displayModal(mediaUrl);
         };
 
         const openInNewTab = e => {
@@ -72,15 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = mediaUrl;
         };
 
-        const action = block.classList.contains('group-link-type-popup_media') ? triggerLightbox : 
+        const action = block.classList.contains('group-link-type-modal_media') ? triggerModal : 
                        block.classList.contains('group-link-type-new_tab') ? openInNewTab : redirectToUrl;
 
         block.addEventListener('click', action);
     });
 });
 
-function displayLightbox(mediaUrl) {
-    console.log('Displaying lightbox for:', mediaUrl);
+function displayModal(mediaUrl) {
+    console.log('Displaying modal for:', mediaUrl);
     let contentHtml = '';
 
     if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
@@ -97,23 +97,23 @@ function displayLightbox(mediaUrl) {
         contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
     }
 
-    // Create the lightbox container
-    const lightbox = document.createElement('div');
-    lightbox.id = 'flexline-lightbox';
-    lightbox.style.position = 'fixed';
-    lightbox.style.top = '0';
-    lightbox.style.left = '0';
-    lightbox.style.width = '100%';
-    lightbox.style.height = '100%';
-    lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    lightbox.style.display = 'flex';
-    lightbox.style.justifyContent = 'center';
-    lightbox.style.alignItems = 'center';
-    lightbox.style.zIndex = '10000000';
-    lightbox.style.cursor = 'pointer';
-    lightbox.setAttribute('role', 'dialog');
-    lightbox.setAttribute('aria-modal', 'true');
-    lightbox.setAttribute('aria-label', 'Media Lightbox');
+    // Create the modal container
+    const modal = document.createElement('div');
+    modal.id = 'flexline-modal';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '10000000';
+    modal.style.cursor = 'pointer';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Media Modal');
 
     // Create the close button
     const closeButton = document.createElement('span');
@@ -124,36 +124,36 @@ function displayLightbox(mediaUrl) {
     closeButton.style.fontSize = '24px';
     closeButton.style.color = '#fff';
     closeButton.style.cursor = 'pointer';
-    closeButton.setAttribute('aria-label', 'Close lightbox');
+    closeButton.setAttribute('aria-label', 'Close modal');
     closeButton.setAttribute('role', 'button');
     closeButton.setAttribute('tabindex', '0'); // Make it focusable
     closeButton.className = 'material-symbols-outlined';
 
-    // Append the media content and close button to the lightbox
-    lightbox.innerHTML = contentHtml;
-    lightbox.appendChild(closeButton);
+    // Append the media content and close button to the modal
+    modal.innerHTML = contentHtml;
+    modal.appendChild(closeButton);
 
-    // Append the lightbox to the body
-    document.body.appendChild(lightbox);
+    // Append the modal to the body
+    document.body.appendChild(modal);
 
     // Focus management for accessibility
     closeButton.focus();
 
     // Event listener for the close button
     closeButton.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent the lightbox click event from firing
-        lightbox.remove();
+        e.stopPropagation(); // Prevent the modal click event from firing
+        modal.remove();
     });
 
-    // Optional: Close the lightbox when clicking outside the media content
-    lightbox.addEventListener('click', () => {
-        lightbox.remove();
+    // Optional: Close the modal when clicking outside the media content
+    modal.addEventListener('click', () => {
+        modal.remove();
     });
 
-    // Close the lightbox with the Escape key
+    // Close the modal with the Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            lightbox.remove();
+            modal.remove();
         }
     }, { once: true }); // Use the `once` option to auto-remove this event listener
 }

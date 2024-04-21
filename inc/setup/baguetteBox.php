@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:  Lightbox for Gallery & Image Block
+ * Plugin Name:  Modal for Gallery & Image Block
  * Plugin URI:
- * Description:  Adds a Lightbox to the Block Editor (Gutenberg) Gallery & Image Block.
+ * Description:  Adds a Modal to the Block Editor (Gutenberg) Gallery & Image Block.
  * Author:       Johannes Kinast <johannes@travel-dealz.de>
  * Author URI:   https://go-around.de
  * Version:     1.13
