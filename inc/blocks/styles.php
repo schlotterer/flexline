@@ -26,6 +26,7 @@ function flexline_register_block_styles() {
 			'card-alt' => __( 'Card w/ Images that fill', 'flexline' ),
 			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
 			'glass' => __( 'Glass', 'flexline' ),
+			'glass-card' => __( 'Glass Card', 'flexline' ),
 		),
 		'core/image' => array(
 			'shadow-light' => __( 'Shadow', 'flexline' ),
@@ -59,6 +60,7 @@ function flexline_register_block_styles() {
 			'card-padded' => __( 'Card w/ Padding', 'flexline' ),
 			'outlined' => __( 'Outlined w/ Padding', 'flexline' ),
 			'glass' => __( 'Glass', 'flexline' ),
+			'glass-card' => __( 'Glass Card', 'flexline' ),
 		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'flexline' ),
@@ -77,6 +79,9 @@ function flexline_register_block_styles() {
 		),
 		'core/paragraph' => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/button' => array(
+			'glass-button' => __( 'Glass Button', 'flexline' ),
 		)
 	);
 

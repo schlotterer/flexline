@@ -693,10 +693,6 @@
 				}
 			},
 			"core/button": {
-				"color": {
-					"background": "var(--wp--preset--color--secondary)",
-					"text": "var(--wp--preset--color--base)"
-				},
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
 				},
@@ -728,7 +724,7 @@
 								"left": "calc( var(--wp--preset--spacing--large) - 1px )"
 							}
 						},
-						"css": "& a:hover {color: var(--wp--preset--color--alternate;}"
+						"css": "& a:hover {color: var(--wp--preset--color--alternate) !important;}"
 					}
 				}
 			},

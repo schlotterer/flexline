@@ -26,7 +26,7 @@ namespace FlexLine\flexline;
                 <div class="wp-block-query alignwide">
                     <!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
                     
-                    <!-- wp:pattern {"slug":"flexline/events-list-single-card"} /-->
+                    <!-- wp:pattern {"slug":"flexline/events-list-single-card-alt"} /-->
 
                     <!-- /wp:post-template -->
 

@@ -369,40 +369,12 @@ namespace FlexLine\flexline;
 <!-- wp:group {"align":"full","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Events List Loop Group"}} -->
 <div class="wp-block-group alignfull is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"neutral","focalPoint":{"x":0.5,"y":0.35},"contentPosition":"center center","isDark":false,"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}},"spacing":{"blockGap":"0"}},"textColor":"contrast","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull is-light has-contrast-color has-text-color has-link-color"><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:50% 35%" data-object-fit="cover" data-object-position="50% 35%" />
-        <div class="wp-block-cover__inner-container"><!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
-            <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
-                <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card/Outline"}} -->
-                <article class="wp-block-group alignwide is-style-default"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"base","className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-                    <div class="wp-block-group alignwide is-style-default has-base-background-color has-background"><!-- wp:group {"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"800"},"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:800;text-transform:uppercase"><!-- wp:image {"id":147,"width":"35px","height":"35px","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-                            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="object-fit:cover;width:35px;height:35px" /></figure>
-                            <!-- /wp:image -->
-
-                            <!-- wp:tribe/event-datetime /-->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"flex","flexWrap":"wrap"}} -->
-                        <div class="wp-block-group has-contrast-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
-                            <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                                <div class="wp-block-group"><!-- wp:group {"layout":{"type":"default"}} -->
-                                    <div class="wp-block-group"><!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->
-
-                                        <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":25,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
-
-                                        <!-- wp:read-more {"content":"RSVP","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"var:preset|spacing|small","bottom":"0"}}},"backgroundColor":"primary","textColor":"base"} /-->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:group -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </article>
-                <!-- /wp:group -->
+        <div class="wp-block-cover__inner-container">
+            <!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
+            <div class="wp-block-query alignwide">
+                <!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
+                
+                <!-- wp:pattern {"slug":"flexline/events-list-single-card"} /-->
                 <!-- /wp:post-template -->
 
                 <!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","layout":{"type":"flex","justifyContent":"space-between"}} -->
@@ -440,46 +412,16 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:paragraph -->
-<p>Shadow:</p>
+<p>Alt:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"full","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Events List Loop Group"}} -->
 <div class="wp-block-group alignfull is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"neutral","focalPoint":{"x":0.5,"y":0.35},"contentPosition":"center center","isDark":false,"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}},"spacing":{"blockGap":"0"}},"textColor":"contrast","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull is-light has-contrast-color has-text-color has-link-color"><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:50% 35%" data-object-fit="cover" data-object-position="50% 35%" />
         <div class="wp-block-cover__inner-container"><!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
-            <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
-                <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-shadow-diffused","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card/Outline"}} -->
-                <article class="wp-block-group alignwide is-style-shadow-diffused"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"base","className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-                    <div class="wp-block-group alignwide is-style-default has-base-background-color has-background"><!-- wp:group {"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"800"},"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:800;text-transform:uppercase"><!-- wp:image {"id":147,"width":"35px","height":"35px","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-                            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="object-fit:cover;width:35px;height:35px" /></figure>
-                            <!-- /wp:image -->
-
-                            <!-- wp:tribe/event-datetime /-->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"flex","flexWrap":"wrap"}} -->
-                        <div class="wp-block-group has-contrast-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
-                            <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                                <div class="wp-block-group"><!-- wp:group {"layout":{"type":"default"}} -->
-                                    <div class="wp-block-group"><!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->
-
-                                        <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":25,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
-
-                                        <!-- wp:read-more {"content":"RSVP","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"var:preset|spacing|small","bottom":"0"}}},"backgroundColor":"primary","textColor":"base"} /-->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:group -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </article>
-                <!-- /wp:group -->
+            <div class="wp-block-query alignwide">
+                <!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
+                <!-- wp:pattern {"slug":"flexline/events-list-single-card-alt"} /-->
                 <!-- /wp:post-template -->
 
                 <!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","layout":{"type":"flex","justifyContent":"space-between"}} -->
@@ -513,239 +455,5 @@ namespace FlexLine\flexline;
         </div>
     </div>
     <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph -->
-<p>Card:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"align":"full","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Events List Loop Group"}} -->
-<div class="wp-block-group alignfull is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"neutral","focalPoint":{"x":0.5,"y":0.35},"contentPosition":"center center","isDark":false,"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}},"spacing":{"blockGap":"0"}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-    <div class="wp-block-cover alignfull is-light has-contrast-color has-text-color has-link-color"><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:50% 35%" data-object-fit="cover" data-object-position="50% 35%" />
-        <div class="wp-block-cover__inner-container"><!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
-            <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
-                <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card/Outline"}} -->
-                <article class="wp-block-group alignwide is-style-card"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"base","className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-                    <div class="wp-block-group alignwide is-style-default has-base-background-color has-background"><!-- wp:group {"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"800"},"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:800;text-transform:uppercase"><!-- wp:image {"id":147,"width":"35px","height":"35px","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-                            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="object-fit:cover;width:35px;height:35px" /></figure>
-                            <!-- /wp:image -->
-
-                            <!-- wp:tribe/event-datetime /-->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"flex","flexWrap":"wrap"}} -->
-                        <div class="wp-block-group has-contrast-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
-                            <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                                <div class="wp-block-group"><!-- wp:group {"layout":{"type":"default"}} -->
-                                    <div class="wp-block-group"><!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->
-
-                                        <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":25,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
-
-                                        <!-- wp:read-more {"content":"RSVP","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"var:preset|spacing|small","bottom":"0"}}},"backgroundColor":"primary","textColor":"base"} /-->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:group -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </article>
-                <!-- /wp:group -->
-                <!-- /wp:post-template -->
-
-                <!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","layout":{"type":"flex","justifyContent":"space-between"}} -->
-                <!-- wp:query-pagination-previous /-->
-
-                <!-- wp:query-pagination-numbers /-->
-
-                <!-- wp:query-pagination-next /-->
-                <!-- /wp:query-pagination -->
-
-                <!-- wp:query-no-results -->
-                <!-- wp:heading {"textAlign":"center"} -->
-                <h2 class="wp-block-heading has-text-align-center">Check back soon to learn about future events!</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"align":"center"} -->
-                <p class="has-text-align-center">In the mean time find us on social media.</p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:social-links {"iconColor":"primary","iconColorValue":"#595f23","openInNewTab":true,"className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"}} -->
-                <ul class="wp-block-social-links has-icon-color is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"instagram"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"linkedin"} /-->
-                </ul>
-                <!-- /wp:social-links -->
-                <!-- /wp:query-no-results -->
-            </div>
-            <!-- /wp:query -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph -->
-<p>Outlined:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"align":"full","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Events List Loop Group"}} -->
-<div class="wp-block-group alignfull is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"neutral","focalPoint":{"x":0.5,"y":0.35},"contentPosition":"center center","isDark":false,"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}},"spacing":{"blockGap":"0"}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-    <div class="wp-block-cover alignfull is-light has-contrast-color has-text-color has-link-color"><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:50% 35%" data-object-fit="cover" data-object-position="50% 35%" />
-        <div class="wp-block-cover__inner-container"><!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
-            <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
-                <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-outlined","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card/Outline"}} -->
-                <article class="wp-block-group alignwide is-style-outlined"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"base","className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-                    <div class="wp-block-group alignwide is-style-default has-base-background-color has-background"><!-- wp:group {"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"800"},"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-small);padding-left:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:800;text-transform:uppercase"><!-- wp:image {"id":147,"width":"35px","height":"35px","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-                            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="object-fit:cover;width:35px;height:35px" /></figure>
-                            <!-- /wp:image -->
-
-                            <!-- wp:tribe/event-datetime /-->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"flex","flexWrap":"wrap"}} -->
-                        <div class="wp-block-group has-contrast-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
-                            <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                                <div class="wp-block-group"><!-- wp:group {"layout":{"type":"default"}} -->
-                                    <div class="wp-block-group"><!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->
-
-                                        <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":25,"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
-
-                                        <!-- wp:read-more {"content":"RSVP","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"var:preset|spacing|small","bottom":"0"}}},"backgroundColor":"primary","textColor":"base"} /-->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:group -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </article>
-                <!-- /wp:group -->
-                <!-- /wp:post-template -->
-
-                <!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","layout":{"type":"flex","justifyContent":"space-between"}} -->
-                <!-- wp:query-pagination-previous /-->
-
-                <!-- wp:query-pagination-numbers /-->
-
-                <!-- wp:query-pagination-next /-->
-                <!-- /wp:query-pagination -->
-
-                <!-- wp:query-no-results -->
-                <!-- wp:heading {"textAlign":"center"} -->
-                <h2 class="wp-block-heading has-text-align-center">Check back soon to learn about future events!</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"align":"center"} -->
-                <p class="has-text-align-center">In the mean time find us on social media.</p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:social-links {"iconColor":"primary","iconColorValue":"#595f23","openInNewTab":true,"className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"}} -->
-                <ul class="wp-block-social-links has-icon-color is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"instagram"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"linkedin"} /-->
-                </ul>
-                <!-- /wp:social-links -->
-                <!-- /wp:query-no-results -->
-            </div>
-            <!-- /wp:query -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph -->
-<p>Card Alternate:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"align":"full","className":"is-style-default","layout":{"type":"constrained"},"metadata":{"name":"Events List Loop Group"}} -->
-<div class="wp-block-group alignfull is-style-default"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"neutral","focalPoint":{"x":0.5,"y":0.35},"contentPosition":"center center","isDark":false,"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}},"spacing":{"blockGap":"0"}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-    <div class="wp-block-cover alignfull is-light has-contrast-color has-text-color has-link-color"><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:50% 35%" data-object-fit="cover" data-object-position="50% 35%" />
-        <div class="wp-block-cover__inner-container"><!-- wp:query {"queryId":5,"query":{"perPage":10,"pages":0,"offset":0,"postType":"tribe_events","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained"}} -->
-            <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"constrained","wideSize":"","contentSize":"800px"},"fontSize":"x-small"} -->
-                <!-- wp:group {"tagName":"article","align":"wide","className":"is-style-card","layout":{"type":"constrained"},"metadata":{"name":"Event List Single Card"}} -->
-                <article class="wp-block-group alignwide is-style-card"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}}} -->
-                    <div class="wp-block-columns"><!-- wp:column {"width":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"0"}}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                                <div class="wp-block-group"><!-- wp:image {"id":147,"width":"40px","sizeSlug":"thumbnail","linkDestination":"none","style":{"color":{"duotone":"var:preset|duotone|primary"}}} -->
-                                    <figure class="wp-block-image size-thumbnail is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/icon-calendar.webp'; ?>" alt="Calendar Icon" class="wp-image-147" style="width:40px" /></figure>
-                                    <!-- /wp:image -->
-
-                                    <!-- wp:post-title {"isLink":true,"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"primary"} /-->
-                                </div>
-                                <!-- /wp:group -->
-
-                                <!-- wp:tribe/event-datetime /-->
-
-                                <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":20,"style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"0"}}}} /-->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"180px"} -->
-                        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:180px"><!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
-                            <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:read-more {"content":"RSVP","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"border":{"radius":"200px"}},"backgroundColor":"primary","textColor":"base","className":"wp-button-element"} /--></div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </article>
-                <!-- /wp:group -->
-                <!-- /wp:post-template -->
-
-                <!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","layout":{"type":"flex","justifyContent":"space-between"}} -->
-                <!-- wp:query-pagination-previous /-->
-
-                <!-- wp:query-pagination-numbers /-->
-
-                <!-- wp:query-pagination-next /-->
-                <!-- /wp:query-pagination -->
-
-                <!-- wp:query-no-results -->
-                <!-- wp:heading {"textAlign":"center"} -->
-                <h2 class="wp-block-heading has-text-align-center">Check back soon to learn about future events!</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"align":"center"} -->
-                <p class="has-text-align-center">In the mean time find us on social media.</p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:social-links {"iconColor":"primary","iconColorValue":"#595f23","openInNewTab":true,"className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"}} -->
-                <ul class="wp-block-social-links has-icon-color is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"instagram"} /-->
-
-                    <!-- wp:social-link {"url":"#","service":"linkedin"} /-->
-                </ul>
-                <!-- /wp:social-links -->
-                <!-- /wp:query-no-results -->
-            </div>
-            <!-- /wp:query -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
-
-    <!-- wp:paragraph -->
-    <p></p>
-    <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
