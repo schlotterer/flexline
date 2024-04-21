@@ -443,7 +443,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Using the custom "Enable poster gallery" option on the gallery block allows you to create a light box gallery with the first image in the gallery as the cover image.</p>
+<p>Using the custom "Enable poster gallery" option on the gallery block allows you to create a modal gallery with the first image in the gallery as the cover image.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Photo Poster"}} -->
@@ -616,7 +616,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Using the custom "Enable media modal" option on the image block allows you to create a light box modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<p>Using the custom "Enable media modal" option on the image block allows you to create a  modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Videos"}} -->
@@ -681,7 +681,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Using the custom "Enable media modal" option on the image block allows you to create a light box modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<p>Using the custom "Enable media modal" option on the image block allows you to create a  modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Media"}} -->

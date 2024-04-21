@@ -7,7 +7,7 @@ const { PanelBody, ToggleControl, ToolsPanel, SelectControl, ToolsPanelItem } = 
 const { URLInput } = wp.blockEditor;
 
 // Define custom attributes
-const customPopUpAttributes = {
+const customModalAttributes = {
     enableModal: {
         type: 'boolean',
         default: false,
@@ -24,7 +24,7 @@ function addCustomButtonAttributes(settings, name) {
     if (name === 'core/button') {
         settings.attributes = {
             ...settings.attributes,
-            ...customPopUpAttributes,
+            ...customModalAttributes,
             ...customVisibilityAttributes,
         };
     }
@@ -57,7 +57,7 @@ function addCustomImageAttributes(settings, name) {
     if (name === 'core/image') {
         settings.attributes = {
             ...settings.attributes,
-            ...customPopUpAttributes,
+            ...customModalAttributes,
             ...customLazyAttributes,
             ...customVisibilityAttributes,
         };
