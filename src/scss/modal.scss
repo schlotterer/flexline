@@ -1,17 +1,17 @@
-#flexline-lightbox {
+#flexline-modal {
     box-sizing: border-box;
     
 }
 
-#flexline-lightbox img,
-#flexline-lightbox video,
-#flexline-lightbox iframe {
+#flexline-modal img,
+#flexline-modal video,
+#flexline-modal iframe {
     /* Adjustments for better responsiveness */
     max-width: 90%;
     max-height: 80vh;
 }
 
-#flexline-lightbox span[role="button"] {
+#flexline-modal span[role="button"] {
     /* Enhancements for the close button */
     display: flex;
     justify-content: center;
@@ -23,8 +23,8 @@
     opacity: 0.7;
 }
 
-#flexline-lightbox span[role="button"]:hover,
-#flexline-lightbox span[role="button"]:focus {
+#flexline-modal span[role="button"]:hover,
+#flexline-modal span[role="button"]:focus {
     opacity: 1;
     outline: none; /* For focus, consider a more accessible outline style */
 }
@@ -56,7 +56,7 @@
     max-height: 100%;
 }
 
-figure.wp-block-image.enable-lightbox{
+figure.wp-block-image.enable-modal{
     position: relative;
     cursor: pointer;
     &::after{
@@ -86,12 +86,12 @@ figure.wp-block-image.enable-lightbox{
             opacity: 1;
         }
     }
-    &[data-popup-media-url*="youtube.com"],
-    &[data-popup-media-url*="youtu.be"],
-    &[data-popup-media-url*="vimeo.com"],
-    &[data-popup-media-url*=".mp4"],
-    &[data-popup-media-url*=".webm"],
-    &[data-popup-media-url*=".ogg"]
+    &[data-modal-media-url*="youtube.com"],
+    &[data-modal-media-url*="youtu.be"],
+    &[data-modal-media-url*="vimeo.com"],
+    &[data-modal-media-url*=".mp4"],
+    &[data-modal-media-url*=".webm"],
+    &[data-modal-media-url*=".ogg"]
      {
         &::after{
             content: "";
@@ -109,7 +109,7 @@ figure.wp-block-image.enable-lightbox{
     }
 }
 
-#flexline-lightbox .aspect-ratio-match-window {
+#flexline-modal .aspect-ratio-match-window {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -118,7 +118,7 @@ figure.wp-block-image.enable-lightbox{
     transform: translate(-50%, -50%);
 }
 
-#flexline-lightbox .aspect-ratio-match-window iframe {
+#flexline-modal .aspect-ratio-match-window iframe {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -128,7 +128,7 @@ figure.wp-block-image.enable-lightbox{
 }
 
 
-.enable-lightbox > a{
+.enable-modal > a{
     display: inline-flex;
 }
 

@@ -616,7 +616,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Using the custom "Enable media popup" option on the image block allows you to create a light box popup ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<p>Using the custom "Enable media modal" option on the image block allows you to create a light box modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Videos"}} -->
@@ -630,8 +630,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Modal - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -644,8 +644,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Modal - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -658,8 +658,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Popup - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"metadata":{"name":"Video Modal - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://youtu.be/X35iJBkwQeU"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -681,7 +681,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Using the custom "Enable media popup" option on the image block allows you to create a light box popup ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
+<p>Using the custom "Enable media modal" option on the image block allows you to create a light box modal ready for youTube, Vimeo, virtual tours, PDFs, and just about any URL in an iframe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Media"}} -->
@@ -695,13 +695,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"left","fontFamily":"brand"} -->
-                <p class="has-text-align-left has-brand-font-family">Media Popup</p>
+                <p class="has-text-align-left has-brand-font-family">Media Modal</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -709,13 +709,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"left","fontFamily":"brand"} -->
-                <p class="has-text-align-left has-brand-font-family">Media Popup</p>
+                <p class="has-text-align-left has-brand-font-family">Media Modal</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -723,13 +723,13 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Mixed Media Feature - Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://storage.googleapis.com/oaktracedg-prod-assets/virtual-tours/new/index.html#node12"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"left","fontFamily":"brand"} -->
-                <p class="has-text-align-left has-brand-font-family">Media Popup</p>
+                <p class="has-text-align-left has-brand-font-family">Media Modal</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -745,7 +745,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This version of the meida popup is the same as above but provides some preset extra lines for further details.</p>
+<p>This version of the meida modal is the same as above but provides some preset extra lines for further details.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"},"metadata":{"name":"Gallery Row - Media Detailed"}} -->
@@ -759,8 +759,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-padded","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-padded"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -784,8 +784,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -809,8 +809,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column -->
-        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enablePopup":true,"popupMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
+        <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"modal_media"} -->
+            <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
                 <figure class="wp-block-image size-large is-style-default"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 

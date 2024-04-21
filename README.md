@@ -3,7 +3,7 @@
 An FSE theme based on Frost and WD_s but extended for more advanced development and some custom features.
 
 ## Description
-Provide a more detailed introduction to your project. Explain the functionality added, such as custom fields for Gutenberg blocks, lightbox implementation, and any unique features or considerations like accessibility and responsiveness.
+Provide a more detailed introduction to your project. Explain the functionality added, such as custom fields for Gutenberg blocks, modal implementation, and any unique features or considerations like accessibility and responsiveness.
 
 ## Features
 ### Development Structure
@@ -11,10 +11,10 @@ Provide a more detailed introduction to your project. Explain the functionality 
 - Uses LaravelMix for an easily customizable output of files (webpack.mix.js).
 - Breaks the functions file out into smaller pieces in the inc folder and namespaces the project.
 - While generally a single site shouldn't require changes, if you want to make small changes without getting into the build process there is a customize.js and customize.css in the assets folder for small basic CSS and JS or jQuery.
-### Popup Media
-- Custom Gutenberg block fields for enabling popups and specifying media URLs
-- Custom-built lightbox functionality for images and videos
-- Fully responsive and accessible lightbox design
+### Modal Media
+- Custom Gutenberg block fields for enabling modals and specifying media URLs
+- Custom-built modal functionality for images and videos
+- Fully responsive and accessible modal design
 - Support for autoplay of embedded videos upon user interaction
 ### Style Variations
 - Expanding on the Frost style variations to think about more than colors to create a larger shift in design than just colors
@@ -40,9 +40,9 @@ Provide a more detailed introduction to your project. Explain the functionality 
    - Activate the plugin through the 'Plugins' screen in WordPress.
 
 ## Usage
-### Popup Media extension
-1. Toggle on the "Popup Media" toggle.
-2. Add the full url to the youtube, vimeo, mp4, or image in the Popup Media URL field
+### Modal Media extension
+1. Toggle on the "Modal Media" toggle.
+2. Add the full url to the youtube, vimeo, mp4, or image in the Modal Media URL field
 
 ## Building From Source
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Set up the block customizations for media popups.
+ * Set up the block customizations for media modals.
  *
  * @package flexline
  */
@@ -14,7 +14,7 @@ namespace FlexLine\flexline;
  * @return Some_Return_Value
  */
 function flexline_enqueue_block_editor_assets() {
-    // Popup addons to core button and image blocks.
+    // Modal addons to core button and image blocks.
     wp_enqueue_script(
         'flexline-block-extensions',
         get_theme_file_uri('/assets/built/js/block-extensions.js'),
@@ -26,7 +26,7 @@ add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_blo
 
 
 /**
- * Renders the flexline block popup.
+ * Renders the flexline block modal.
  *
  * @param mixed $block_content The content of the block.
  * @param array $block The block settings.
@@ -53,9 +53,9 @@ function flexline_block_customizations_render($block_content, $block) {
     }
     if ( $block['blockName'] === 'core/button') {
         $addedClasses = '';
-        if (isset($block['attrs']['enablePopup']) && $block['attrs']['enablePopup']) {
+        if (isset($block['attrs']['enableModal']) && $block['attrs']['enableModal']) {
             // Add a class
-            $addedClasses .= 'enable-lightbox ';
+            $addedClasses .= 'enable-modal ';
         }
         if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
             // Add a class
@@ -83,19 +83,19 @@ function flexline_block_customizations_render($block_content, $block) {
             $replaceString = '<img loading="lazy" ';
             $block_content = str_replace($searchString, $replaceString, $block_content);
         }
-        if (isset($block['attrs']['enablePopup']) && $block['attrs']['enablePopup']) {
+        if (isset($block['attrs']['enableModal']) && $block['attrs']['enableModal']) {
             // Add a class
-            // $block_content = str_replace('class="', 'class="enable-lightbox ', $block_content);
+            // $block_content = str_replace('class="', 'class="enable-modal ', $block_content);
             $searchString = 'class="';
-            $replaceString = 'class="enable-lightbox ';
+            $replaceString = 'class="enable-modal ';
             $block_content = str_replace_first($searchString, $replaceString, $block_content);
             // Add the media URL as a data attribute if it exists
-            if (!empty($block['attrs']['popupMediaURL'])) {
+            if (!empty($block['attrs']['modalMediaURL'])) {
                 // Insert your data attribute just before the closing tag of the element.
                 // This is a basic string replacement and might need to be adjusted based on the block markup.
-                //$block_content = str_replace('>', ' data-popup-media-url="' . esc_attr($block['attrs']['popupMediaURL']) . '">', $block_content);
+                //$block_content = str_replace('>', ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">', $block_content);
                 $searchString = '>';
-                $replaceString = ' data-popup-media-url="' . esc_attr($block['attrs']['popupMediaURL']) . '">';
+                $replaceString = ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">';
                 $block_content = str_replace_first($searchString, $replaceString, $block_content);
             }
         }

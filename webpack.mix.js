@@ -4,7 +4,7 @@ const mix = require('laravel-mix');
 // Individual JavaScript files
 const jsFiles = [
     'src/js/block-extensions.js',
-    'src/js/lightbox.js',
+    'src/js/modal.js',
     'src/js/global.js',
     'src/js/feature-links.js',
 ];
@@ -12,7 +12,7 @@ const jsFiles = [
 // Individual SASS files
 const sassFiles = [
     'src/scss/app.scss',
-    'src/scss/lightbox.scss'
+    'src/scss/modal.scss'
 ];
 
 // Compile each JavaScript file to its own output
