@@ -93,13 +93,13 @@ body{
     .is-style-glass,
     .is-style-glass-card,
     .wp-block-button.is-style-glass-button .wp-element-button{
-        background: rgba( 255, 255, 255, 0.40 );
+        background: var(--wp--preset--color--base)66;
         backdrop-filter: blur( 10px ) saturate( 85% );
         -webkit-backdrop-filter: blur( 10px ) saturate( 85% );
         transition: var(--wp--custom--transition-time);
         &.group-link{
             &:hover{
-                background: rgba( 255, 255, 255, 0.65 );
+                background: var(--wp--preset--color--base)A6;
                 box-shadow: var(--wp--preset--shadow--diffused);
                 backdrop-filter: blur( 15px )saturate( 70% );
                  -webkit-backdrop-filter: blur(15px )saturate( 70% );
@@ -115,9 +115,9 @@ body{
     .wp-block-button.is-style-glass-button .wp-element-button{
         color: var(--wp--preset--color--primary);
         border-radius: var(--wp--custom--button-border-radius);
-        border: 1px solid rgba( 255, 255, 255, .25 );
+        border: var(--wp--preset--color--base)40;
         &:hover{
-            background: rgba( 255, 255, 255, 0.65 );
+            background: var(--wp--preset--color--base)A6;
             box-shadow: var(--wp--preset--shadow--diffused);
             backdrop-filter: blur( 15px )saturate( 70% );
             -webkit-backdrop-filter: blur(15px )saturate( 70% );
