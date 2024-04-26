@@ -13,14 +13,15 @@ function getVideoEmbedUrl(mediaUrl) {
 
     for (let parser of urlParsers) {
         const match = mediaUrl.match(parser.match);
-        if (match && match[2]) {
-            return parser.embedUrl(match[2]);
+        if (match && match[1]) {
+            // For Vimeo the ID is in match[1], same for YouTube as match[2] is the second group.
+            const videoId = match[2] || match[1]; // Fallback to match[1] if match[2] is undefined.
+            return parser.embedUrl(videoId);
         }
     }
 
     return '';
 }
-
 document.addEventListener('DOMContentLoaded', () => {
     const enableModal = (element, url) => {
         element.classList.add('has-modal');
