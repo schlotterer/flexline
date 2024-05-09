@@ -24,15 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (customizerSettings.hideOnDesktop) link.classList.add('flexline-hide-on-desktop');
         if (customizerSettings.hideOnTablet) link.classList.add('flexline-hide-on-tablet');
         if (customizerSettings.hideOnMobile) link.classList.add('flexline-hide-on-mobile');
+        
         return link;
     }
     // Only initiate the button if the phone link is set.
     if (customizerSettings.phoneLink && siteHeader) {
-        // Phone Link, Only if set.
-        const phoneLink = createPhoneLink();
-        // Add it to the header
-        siteHeader.parentNode.insertBefore(phoneLink, siteHeader);
-        centerButtonInHeader(phoneLink);
+        if (customizerSettings.hideOnMobile && customizerSettings.hideOnTablet && customizerSettings.hideOnDesktop) {
+            
+        } else {
+            // Phone Link, Only if set.
+            const phoneLink = createPhoneLink();
+            // Add it to the header
+            siteHeader.parentNode.insertBefore(phoneLink, siteHeader);
+            centerButtonInHeader(phoneLink);
+        }
+       
     }
    
     
