@@ -611,49 +611,43 @@
 			"h1": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--brand)",
-					"fontSize": "var(--wp--preset--font-size--max-48)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--max-48)"
 				}
 			},
 			"h2": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--brand)",
-					"fontSize": "var(--wp--preset--font-size--max-36)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--max-36)"
 				}
 			},
 			"h3": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--display)",
-					"fontSize": "var(--wp--preset--font-size--large)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--large)"
 				}
 			},
 			"h4": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--display)",
-					"fontSize": "var(--wp--preset--font-size--medium)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--medium)"
 				}
 			},
 			"h5": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--display)",
-					"fontSize": "var(--wp--preset--font-size--small)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--small)"
 				}
 			},
 			"h6": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--display)",
-					"fontSize": "var(--wp--preset--font-size--small)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"fontSize": "var(--wp--preset--font-size--small)"
 				}
 			},
 			"heading": {
 				"typography": {
-					"fontWeight": "var(--wp--custom--font-weight--bold)",
-					"lineHeight": "var(--wp--custom--line-height--heading)"
+					"lineHeight": "var(--wp--custom--line-height--heading)",
+					"fontWeight": "var(--wp--custom--font-weight--extra-light)"
 				},
 				"css": "text-wrap: balance; & a {color: var(--wp--preset--color--primary);} & a:hover {color: var(--wp--preset--color--alternate);}"
 			},
