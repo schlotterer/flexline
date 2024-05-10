@@ -1,5 +1,5 @@
 {
-	"version": 2,
+	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"settings": {
 		"appearanceTools": true,
@@ -261,6 +261,7 @@
 		"typography": {
 			"dropCap": false,
 			"fluid": true,
+			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
 					"fontFamily": "'REM', sans-serif",
