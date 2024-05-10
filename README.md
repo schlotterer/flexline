@@ -1,59 +1,19 @@
+## Building from Source
 
-# Flexline
-An FSE theme based on Frost and WD_s but extended for more advanced development and some custom features.
+If you intend to clone the repository for custom development or contributions, please:
+[Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)
+[Review the Coding Standards](CODING_STANDARDS.md)
+[Review the Code of Conduct](CODE_OF_CONDUCT.md)
 
-## Description
-Provide a more detailed introduction to your project. Explain the functionality added, such as custom fields for Gutenberg blocks, modal implementation, and any unique features or considerations like accessibility and responsiveness.
-
-## Features
-### Development Structure
-- Adds LaravelMix and a build process to allow for easy custom feature additions (builds files from src - see webpack.mix.js). 
-- Uses LaravelMix for an easily customizable output of files (webpack.mix.js).
-- Breaks the functions file out into smaller pieces in the inc folder and namespaces the project.
-- While generally a single site shouldn't require changes, if you want to make small changes without getting into the build process there is a customize.js and customize.css in the assets folder for small basic CSS and JS or jQuery.
-### Modal Media
-- Custom Gutenberg block fields for enabling modals and specifying media URLs
-- Custom-built modal functionality for images and videos
-- Fully responsive and accessible modal design
-- Support for autoplay of embedded videos upon user interaction
-### Style Variations
-- Expanding on the Frost style variations to think about more than colors to create a larger shift in design than just colors
-### Patterns and Templates
-- Patterns and templates have been extended from Frost as well.
-
-## Installation
+Then you can follow these instructions:
 
 ### Prerequisites
 
-- WordPress 5.x or later
-- PHP 7.4 or later
+- Node.js (LTS version recommended)
+- npm (Node Package Manager)
+- nvm (Node Version Manager) – recommended for managing multiple Node.js versions
 
-### Installing
-
-1. **Download the Theme/Plugin**: Download the ZIP file from the repository or the release section.
-   
-2. **Upload to WordPress**:
-   - For a theme, go to `Appearance > Themes > Add New > Upload Theme`. Choose the ZIP file you downloaded.
-   
-3. **Activate**:
-   - Activate the theme through the 'Themes' screen in WordPress.
-   - Activate the plugin through the 'Plugins' screen in WordPress.
-
-## Usage
-### Modal Media extension
-1. Toggle on the "Modal Media" toggle.
-2. Add the full url to the youtube, vimeo, mp4, or image in the Modal Media URL field
-
-## Building From Source
-
-If you're cloning the repository and want to make custom changes or contributions, follow these build instructions.
-
-### Prerequisites
-
-- Node.js (LTS version)
-- npm
-
-### Steps
+### Build Instructions
 
 1. **Clone the Repository**:
    ```bash
@@ -61,25 +21,32 @@ If you're cloning the repository and want to make custom changes or contribution
    cd flexline
    ```
 
-2. **Install Dependencies**:
+2. **Switch to the Recommended Node.js Version**:
+   - Ensure you are using the correct version of Node.js as specified in the `.nvmrc` file.
+   ```bash
+   nvm use
+   ```
+   - If the required version is not installed, nvm will prompt you to install it.
+
+3. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. **Build for Development**:
-   - This will compile your assets without minifying them, making debugging easier.
+4. **Development Build**:
+   - Compiles assets without minification for easier debugging.
    ```bash
    npm run dev
    ```
 
-4. **Watch for Changes**:
-   - Useful during development to automatically rebuild assets when files are changed.
+5. **Watch Mode**:
+   - Automatically rebuilds assets when files change, useful during active development.
    ```bash
    npm run watch
    ```
 
-5. **Build for Production**:
-   - This will minify your assets and prepare them for production use.
+6. **Production Build**:
+   - Minifies assets for production use.
    ```bash
    npm run prod
    ```

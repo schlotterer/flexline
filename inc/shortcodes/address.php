@@ -2,10 +2,13 @@
 namespace FlexLine\flexline;
 
 /**
- * Shortcode to display contact information, excluding phone numbers with a #.
+ * Renders an address block with contact information. This shortcode dynamically fetches address and phone number details from the theme customizer, allowing for easy updates through the WordPress admin panel.
  *
- * @return string The formatted contact information.
- * @usage [flexline_contact_info]
+ * The function respects privacy settings by not displaying phone numbers marked with a '#'. It also provides a link for direct calling if the phone number is available, enhancing accessibility and user experience.
+ *
+ * @return string The formatted HTML content containing the contact information and Google Maps link.
+ * @usage [flexline_contact_info] - Place this shortcode in any post, page, or widget area to display the contact information.
+ * @note Ensure the 'flexline_main_phone_number', 'flexline_main_phone_title', 'flexline_address_street', 'flexline_address_city', 'flexline_address_state', and 'flexline_address_zip' are properly set in the WordPress Customizer to see the effects.
  */
 function flexline_contact_info_shortcode() {
     // Retrieve customizer settings for phone link and phone title

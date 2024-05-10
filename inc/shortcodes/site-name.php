@@ -5,7 +5,7 @@ namespace FlexLine\flexline;
  * Shortcode to display contact information, excluding phone numbers with a #.
  *
  * @return string The formatted contact information.
- * @usage [flexline_site_name]
+ * @usage [flexline_site_name] this is for use primarily in starter content.
  */    
 function flexline_site_name_shortcode() {
     // Get the site name

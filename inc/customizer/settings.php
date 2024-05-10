@@ -77,7 +77,14 @@ function customize_main_phone_title( $wp_customize ) {
 		'flexline_main_phone_title',
 		[
 			'label'       => esc_attr__( 'Main Phone Link Text', 'flexline' ),
-			'description' => esc_attr__( 'This optional text will the text in alt tag and for the link text in the phone and address shortcodes as well as the alt text in the header phone link.', 'flexline' ),
+			'description' => esc_attr__( 'This optional text will the text in alt tag and for the link text in the phone and address shortcodes as well as the alt text in the header phone link. Default usage pulling from Customizer settings:
+				[flexline_phone_number]
+				Custom telephone link:
+				[flexline_phone_number link="tel:6665554444"]
+				Custom link text:
+				[flexline_phone_number text="Custom Text"]
+				Both custom link and text:
+				[flexline_phone_number link="http://example.com" text="Custom Text"]', 'flexline' ),
 			'section'     => 'flexline_phone_section',
 			'type'        => 'text',
 		]
@@ -238,6 +245,7 @@ add_action( 'customize_register', __NAMESPACE__ . '\customize_address_city' );
  * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
  */
 function customize_address_state( $wp_customize ) {
+	
 	// Register a setting.
 	$wp_customize->add_setting(
 		'flexline_address_state',
