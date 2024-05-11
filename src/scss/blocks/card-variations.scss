@@ -1,8 +1,8 @@
-.editor-styles-wrapper,
-body {
+body,
+.editor-styles-wrapper {
 
 	// All
-    .is-style-card,
+	.is-style-card,
 	.is-style-card-alt,
 	.is-style-card-padded,
 	.is-style-outlined,
@@ -13,7 +13,7 @@ body {
 	}
 
 	// Cards
-    .is-style-card,
+	.is-style-card,
 	.is-style-card-alt,
 	.is-style-card-padded {
 		overflow: clip;
@@ -71,13 +71,13 @@ body {
 	}
 
 	// Outlines
-    .is-style-outlined {
+	.is-style-outlined {
 		border-radius: var(--wp--custom--border-radius);
 		border: 1px solid var(--wp--custom--deco-color);
 	}
 
 	// Shadows
-    .is-style-shadow-light {
+	.is-style-shadow-light {
 		box-shadow: var(--wp--preset--shadow--light);
 
 		&.group-link {

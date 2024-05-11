@@ -1,5 +1,5 @@
-.editor-styles-wrapper,
-body {
+body,
+.editor-styles-wrapper {
 
 	.wp-block-image {
 		overflow: clip;
@@ -13,7 +13,7 @@ body {
 	}
 
 	// Text Shadow
-    .is-style-text-shadow {
+	.is-style-text-shadow {
 		text-shadow: var(--wp--custom--text-shadow);
 	}
 
@@ -21,7 +21,7 @@ body {
 
 		/* -- Navigation Link -- */
 		// TODO: why is this like this?
-        .wp-block-navigation-item.is-style-outline a {
+		.wp-block-navigation-item.is-style-outline a {
 			border: 1px solid currentcolor;
 			padding: 8px 15px;
 		}

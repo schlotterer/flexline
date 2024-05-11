@@ -11,9 +11,8 @@ html {
 	scroll-behavior: smooth;
 }
 
-
-.editor-styles-wrapper,
-body {
+body,
+.editor-styles-wrapper {
 
 	&.safari {
 
@@ -256,7 +255,7 @@ body {
 	}
 
 	// Phone link
-	@media only screen and (max-width:781.98px) {
+	@media only screen and (max-width: 781.98px) {
 
 		#phonelink > a {
 			padding: 8px 5px !important;
