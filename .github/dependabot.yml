@@ -11,7 +11,6 @@ updates:
     schedule:
       interval: "weekly" # How often to check for updates
     target-branch: "dependabot-releases" # Target branch for PRs
-    security-updates: "only" # Only update for security vulnerabilities
     open-pull-requests-limit: 10
 
   # Configuration for Composer
@@ -20,5 +19,4 @@ updates:
     schedule:
       interval: "weekly" # How often to check for updates
     target-branch: "dependabot-releases" # Target branch for PRs
-    security-updates: "only" # Only update for security vulnerabilities
     open-pull-requests-limit: 10
