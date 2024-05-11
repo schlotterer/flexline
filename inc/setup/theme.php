@@ -44,18 +44,17 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		 */
 		add_theme_support(
 			'html5',
-			[
+			array(
 				'search-form',
 				'comment-form',
 				'comment-list',
 				'gallery',
 				'caption',
-			]
+			)
 		);
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
-
 	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\flexline_setup' );

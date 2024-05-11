@@ -37,11 +37,11 @@ final class Text_Editor_Custom_Control extends \WP_Customize_Control {
 		<div class="flexline-customize-text-editor">
 			<?php
 			// Setttings for the editor.
-			$settings = [
+			$settings = array(
 				'textarea_name' => $this->id,
 				'textarea_rows' => 4,
 				'media_buttons' => true,
-			];
+			);
 
 			// Add the editor.
 			wp_editor( $this->value(), $this->id, $settings );
@@ -65,7 +65,7 @@ final class Text_Editor_Custom_Control extends \WP_Customize_Control {
 	 */
 	protected function enqueue_scripts() {
 		wp_enqueue_script( 'tiny_mce' );
-		wp_enqueue_script( 'flexline-customize-editor-js', get_template_directory_uri() . '/inc/customizer/assets/scripts/tinymce.js', [ 'jquery' ], '1.0.0', true );
+		wp_enqueue_script( 'flexline-customize-editor-js', get_template_directory_uri() . '/inc/customizer/assets/scripts/tinymce.js', array( 'jquery' ), '1.0.0', true );
 	}
 
 	/**

@@ -27,10 +27,10 @@ namespace FlexLine\flexline;
 function create_shortcode_copyright_year( $atts ) {
 	// Setup defaults.
 	$args = shortcode_atts(
-		[
+		array(
 			'starting_year' => '',
 			'separator'     => ' - ',
-		],
+		),
 		$atts
 	);
 

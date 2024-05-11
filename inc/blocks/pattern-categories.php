@@ -119,8 +119,6 @@ function flexline_register_block_pattern_categories() {
 			'description' => __( 'Samples of patterns and configurations for testing and training.', 'flexline' ),
 		)
 	);
-	
-
 }
 
 add_action( 'init', __NAMESPACE__ . '\flexline_register_block_pattern_categories' );

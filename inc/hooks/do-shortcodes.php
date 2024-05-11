@@ -11,8 +11,6 @@ namespace FlexLine\flexline;
  * Allows shortcodes for meta
  *
  * @author Joel Schlotterer
- *
- * 
  */
 // Activate shortcode function in Post Title.
 add_filter( 'the_title', 'do_shortcode' );

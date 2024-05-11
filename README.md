@@ -1,9 +1,9 @@
 ## Building from Source
 
 If you intend to clone the repository for custom development or contributions, please:
-[Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)
-[Review the Coding Standards](CODING_STANDARDS.md)
-[Review the Code of Conduct](CODE_OF_CONDUCT.md)
+- [Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)
+- [Review the Coding Standards](CODING_STANDARDS.md)
+- [Review the Code of Conduct](CODE_OF_CONDUCT.md)
 
 Then you can follow these instructions:
 
@@ -50,3 +50,43 @@ Then you can follow these instructions:
    ```bash
    npm run prod
    ```
+
+### Linting and Pre-commit Hooks
+
+To maintain code quality and ensure consistency across contributions, our project utilizes linting tools for PHP, JavaScript, and SCSS, and enforces these standards through pre-commit hooks managed by Husky.
+
+#### Pre-commit Hooks
+
+Pre-commit hooks are set up to run automatically on every commit to ensure that changes adhere to our coding standards. When you attempt to commit changes, the following linting processes are triggered:
+
+- **PHP files** are automatically fixed and checked with PHP_CodeSniffer.
+- **JavaScript files** are linted and automatically fixed with ESLint.
+- **SCSS files** are linted and automatically fixed with Stylelint.
+
+If there are any linting errors that cannot be automatically fixed, the commit will be aborted, and you will need to manually resolve these issues.
+
+#### Manually Running Linters
+
+If you wish to manually lint your files prior to committing, you can use the following commands:
+
+- **Lint PHP files**:
+  ```bash
+  npm run lint-php
+  ```
+
+- **Automatically fix PHP files**:
+  ```bash
+  npm run fix-php
+  ```
+
+- **Lint JavaScript files**:
+  ```bash
+  npm run lint-js
+  ```
+
+- **Lint SCSS files**:
+  ```bash
+  npm run lint-style
+  ```
+
+These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.

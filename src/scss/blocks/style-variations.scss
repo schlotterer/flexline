@@ -1,31 +1,31 @@
-.editor-styles-wrapper,
-body{
+body,
+.editor-styles-wrapper {
 
-    .wp-block-image{
-        overflow: clip;
+	.wp-block-image {
+		overflow: clip;
 
-    }
+	}
 
-    /* -- List -- */
-    .is-style-no-disc {
-        list-style-type: none;
-        padding-left: 0;
-    }
+	/* -- List -- */
+	.is-style-no-disc {
+		list-style-type: none;
+		padding-left: 0;
+	}
 
-    // Text Shadow
-    .is-style-text-shadow{
-        text-shadow: var(--wp--custom--text-shadow);
-    }
+	// Text Shadow
+	.is-style-text-shadow {
+		text-shadow: var(--wp--custom--text-shadow);
+	}
 
-    @media only screen and (min-width: 782px ) {
+	@media only screen and (min-width: 782px ) {
 
-        /* -- Navigation Link -- */
-// TODO: why is this like this?
-        .wp-block-navigation-item.is-style-outline a {
-            border: 1px solid currentColor;
-            padding: 8px 15px;
-        }
+		/* -- Navigation Link -- */
+		// TODO: why is this like this?
+		.wp-block-navigation-item.is-style-outline a {
+			border: 1px solid currentcolor;
+			padding: 8px 15px;
+		}
 
-    }
+	}
 
 }

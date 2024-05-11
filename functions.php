@@ -7,7 +7,7 @@
  * @package flexline
  */
 
- namespace FlexLine\flexline;
+namespace FlexLine\flexline;
 
 /**
  * Get all the include files for the theme.
@@ -15,7 +15,7 @@
  * @author Joel Schlotterer
  */
 function include_inc_files() {
-	$files = [
+	$files = array(
 		// If a new folder is added please do it in alphabetical order.
 		'inc/blocks/', // Block Customizations.
 		'inc/customizer/customizer.php', // Customizer additions for global custom fields.
@@ -24,7 +24,7 @@ function include_inc_files() {
 		'inc/setup/', // Theme setup.
 		'inc/scripts.php', // Scripts and Styles loading.
 		'inc/shortcodes/', // Load shortcodes.
-	];
+	);
 
 	foreach ( $files as $include ) {
 		$include = trailingslashit( get_template_directory() ) . $include;
@@ -41,4 +41,3 @@ function include_inc_files() {
 }
 
 include_inc_files();
-

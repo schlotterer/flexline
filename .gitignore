@@ -50,3 +50,4 @@ styles/*
 !styles/whiskey.json
 
 !styles/customize.json
+/vendor/

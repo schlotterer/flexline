@@ -10,8 +10,8 @@
 namespace FlexLine\flexline;
 
 function register_assets() {
-	wp_register_style( 'baguettebox-css', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.css', [], '1.11.1' );
-	wp_register_script( 'baguettebox', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.js', [], '1.11.1', true );
+	wp_register_style( 'baguettebox-css', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.css', array(), '1.11.1' );
+	wp_register_script( 'baguettebox', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.js', array(), '1.11.1', true );
 
 	/**
 	 * Filters the CSS selector of baguetteBox.js
@@ -29,10 +29,9 @@ function register_assets() {
 	 *
 	 * @param string  $value  The RegExp Pattern to match image files. Applied to the a.href attribute
 	 */
-	$baguettebox_filter = apply_filters( 'baguettebox_filter',  '/.+\.(gif|jpe?g|png|webp|svg|avif|heif|heic|tif?f|)($|\?)/i' );
+	$baguettebox_filter = apply_filters( 'baguettebox_filter', '/.+\.(gif|jpe?g|png|webp|svg|avif|heif|heic|tif?f|)($|\?)/i' );
 
 	wp_add_inline_script( 'baguettebox', 'window.addEventListener("load", function() {baguetteBox.run("' . $baguettebox_selector . '",{captions:function(t){var e=t.parentElement.classList.contains("wp-block-image")||t.parentElement.classList.contains("wp-block-media-text__media")?t.parentElement.querySelector("figcaption"):t.parentElement.parentElement.querySelector("figcaption,dd");return!!e&&e.innerHTML},filter:' . $baguettebox_filter . '});});' );
-
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_assets' );
 
@@ -45,7 +44,8 @@ function enqueue_assets() {
 	 *
 	 * @param bool  $value  Whether baguettebox assets have to be enqueued.
 	 */
-	$baguettebox_enqueue_assets = apply_filters( 'baguettebox_enqueue_assets',
+	$baguettebox_enqueue_assets = apply_filters(
+		'baguettebox_enqueue_assets',
 		has_block( 'core/gallery' ) ||
 		has_block( 'core/media-text' ) ||
 		get_post_gallery()

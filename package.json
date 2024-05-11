@@ -8,7 +8,12 @@
     "development": "cross-env NODE_ENV=development webpack --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
     "prod": "npm run production",
-    "production": "mix --production"
+    "production": "mix --production",
+    "lint-staged": "lint-staged",
+    "lint-php": "vendor/bin/phpcs --standard=WordPress inc",
+    "fix-php": "vendor/bin/phpcbf --standard=WordPress inc",
+    "lint-js": "wp-scripts lint-js src/js",
+    "lint-style": "wp-scripts lint-style src/scss"
   },
   "keywords": [],
   "author": "",
@@ -16,12 +21,33 @@
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-react": "^7.23.3",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@wordpress/eslint-plugin": "^18.0.0",
+    "@wordpress/scripts": "^27.8.0",
+    "@wordpress/stylelint-config": "^21.40.0",
     "autoprefixer": "^10.4.17",
     "cross-env": "^7.0.3",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.0.11",
     "laravel-mix": "^6.0.49",
+    "lint-staged": "^15.2.2",
+    "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.70.0",
     "sass-loader": "^12.6.0"
+  },
+  "lint-staged": {
+    "*.php": "vendor/bin/phpcbf --standard=WordPress",
+    "*.js": "wp-scripts lint-js",
+    "*.scss": "wp-scripts lint-style"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "react": "^18.2.0",

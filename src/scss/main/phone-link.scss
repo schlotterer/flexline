@@ -1,54 +1,59 @@
 
-      
-    #flexline-call-button{
-        position: fixed;
-        display: flex;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        left: 10px;
-        transition: var(--wp--custom--transition-time);
-        z-index: 12;
-        padding: 0;
-        border-radius: 200px;
-        background-color: var(--wp--custom--search-menu-icon-color);
-        box-shadow: var(--wp--preset--shadow--light);
-        margin-top: 0;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        color: var(--wp--preset--color--base);
-        border: none;
-        font-size: var(--wp--preset--font-size--large);
-        line-height: 1;
-        > span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-        &:hover{
-            box-shadow: var(--wp--preset--shadow--dark);
-            background-color: var(--wp--custom--search-menu-icon-hover-color);
-        }
-    }
 
-    .admin-bar{
-        #flexline-call-button[style*="fixed"] {
-            transform: translate(0,var(--wp-admin--admin-bar--height));
-        }
-    }
+#flexline-call-button {
+	position: fixed;
+	display: flex;
+	width: 40px;
+	height: 40px;
+	left: 10px;
+	transition: var(--wp--custom--transition-time);
+	z-index: 12;
+	padding: 0;
+	border-radius: 200px;
+	background-color: var(--wp--custom--search-menu-icon-color);
+	box-shadow: var(--wp--preset--shadow--light);
+	margin-top: 0;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	color: var(--wp--preset--color--base);
+	border: none;
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1;
 
-    @media screen and (max-width: 1325px) {
-        #flexline-call-button {
-            width: 35px;
-            height: 35px;
-            left: 5px;
-            > span{
-                &::before{
-                    font-size: 25px;
-                }
-            }
-        }
-    }
+	> span {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	&:hover {
+		box-shadow: var(--wp--preset--shadow--dark);
+		background-color: var(--wp--custom--search-menu-icon-hover-color);
+	}
+}
+
+.admin-bar {
+
+	#flexline-call-button[style*="fixed"] {
+		transform: translate(0, var(--wp-admin--admin-bar--height));
+	}
+}
+
+@media screen and (max-width: 1325px) {
+
+	#flexline-call-button {
+		width: 35px;
+		height: 35px;
+		left: 5px;
+
+		> span {
+
+			&::before {
+				font-size: 25px;
+			}
+		}
+	}
+}
