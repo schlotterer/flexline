@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Project">
+  <description>WordPress Coding Standards for the project.</description>
+  
+  <!-- Run against the WordPress coding standards -->
+  <rule ref="WordPress"/>
+  <file>.</file>
+  <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>
