@@ -1,0 +1,43 @@
+name: Lint Code
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/js/*.js'
+      - 'src/scss/*.scss'
+      - 'inc/**/*.php'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      name: Check out repository code
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'  # Specify the Node.js version you use
+
+    - name: Install Node.js dependencies
+      run: npm install
+
+    - name: Lint JavaScript
+      run: npm run ci-lint-js  # Your custom script in package.json
+
+    - name: Lint SCSS
+      run: npm run ci-lint-style  # Your custom script in package.json
+
+    # Optional: Add a step for PHP linting if php is not setup
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'  # Specify the PHP version
+
+    - name: Install PHP dependencies
+      run: composer install
+
+    - name: Lint PHP
+      run: npm run lint-php  # Your custom script in package.json
