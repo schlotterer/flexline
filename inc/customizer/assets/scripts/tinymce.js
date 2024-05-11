@@ -39,7 +39,6 @@ window.flexlineAdditionalTinyMCE = window.flexlineAdditionalTinyMCE || {};
 		// Rebind editors when a control section is clicked.
 		$( '.control-section' ).on( 'click', app.bindEditors );
 
-
 	};
 
 	/**
@@ -47,19 +46,27 @@ window.flexlineAdditionalTinyMCE = window.flexlineAdditionalTinyMCE || {};
 	 */
 	app.bindEditors = function () {
 		// Was needed a timeout since RTE is not initialized when this code run.
-		setTimeout( function () {
-			for ( let i = 0; i < tinymce.editors.length; i++ ) {
-				tinymce.editors[ i ].onChange.add( function ( ed ) {
-					// Update HTML view textarea (that is the one used to send the data to server).
-					ed.save();
+		setTimeout(
+			function () {
+				for ( let i = 0; i < tinymce.editors.length; i++ ) {
+						tinymce.editors[ i ].onChange.add(
+							function ( ed ) {
+								// Update HTML view textarea (that is the one used to send the data to server).
+								ed.save();
 
-					// Update the customize option.
-					wp.customize( ed.id, function ( obj ) {
-						obj.set( ed.getContent() );
-					} );
-				} );
-			}
-		}, 1000 );
+								// Update the customize option.
+								wp.customize(
+									ed.id,
+									function ( obj ) {
+											obj.set( ed.getContent() );
+									}
+								);
+							}
+						);
+				}
+			},
+			1000
+		);
 	};
 
 	/**
@@ -69,9 +76,12 @@ window.flexlineAdditionalTinyMCE = window.flexlineAdditionalTinyMCE || {};
 		const $me = $( this );
 
 		// Update the customize option.
-		wp.customize( this.id, function ( obj ) {
-			obj.set( $me.val() );
-		} );
+		wp.customize(
+			this.id,
+			function ( obj ) {
+				obj.set( $me.val() );
+			}
+		);
 	};
 
 	/**

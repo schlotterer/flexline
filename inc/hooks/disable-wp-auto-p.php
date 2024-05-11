@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Disables wpautop to remove empty p tags in rendered Gutenberg blocks.
  *

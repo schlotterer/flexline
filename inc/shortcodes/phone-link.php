@@ -16,38 +16,42 @@ namespace FlexLine\flexline;
  * @param array $atts Shortcode attributes - 'link' for custom URL, 'text' for custom link text.
  * @return string HTML content for the phone number link.
  */
-function flexline_phone_number_shortcode($atts) {
-    // Define default attributes for the shortcode
-    $atts = shortcode_atts(array(
-        'link' => '', // Optional custom link
-        'text' => '', // Optional custom text
-    ), $atts, 'flexline_phone_number');
+function flexline_phone_number_shortcode( $atts ) {
+	// Define default attributes for the shortcode
+	$atts = shortcode_atts(
+		array(
+			'link' => '', // Optional custom link
+			'text' => '', // Optional custom text
+		),
+		$atts,
+		'flexline_phone_number'
+	);
 
-    // Use the custom link if provided, otherwise use the default phone link logic
-    $href = !empty($atts['link']) ? esc_url($atts['link']) : flexline_get_phone_button_link();
-    if($href == '') {
-        return '';
-    }
-    // Fetch the "Main Phone Title" if set, otherwise fallback to the phone number itself
-    $mainPhoneTitle = get_theme_mod('flexline_main_phone_title', '');
-    $defaultLinkText = get_theme_mod('flexline_main_phone_number', '');
+	// Use the custom link if provided, otherwise use the default phone link logic
+	$href = ! empty( $atts['link'] ) ? esc_url( $atts['link'] ) : flexline_get_phone_button_link();
+	if ( $href == '' ) {
+		return '';
+	}
+	// Fetch the "Main Phone Title" if set, otherwise fallback to the phone number itself
+	$mainPhoneTitle  = get_theme_mod( 'flexline_main_phone_title', '' );
+	$defaultLinkText = get_theme_mod( 'flexline_main_phone_number', '' );
 
-    // Use custom text if provided, otherwise determine the appropriate text
-    $linkText = !empty($atts['text']) ? $atts['text'] : (!empty($mainPhoneTitle) ? $mainPhoneTitle : $defaultLinkText);
+	// Use custom text if provided, otherwise determine the appropriate text
+	$linkText = ! empty( $atts['text'] ) ? $atts['text'] : ( ! empty( $mainPhoneTitle ) ? $mainPhoneTitle : $defaultLinkText );
 
-    // Determine the appropriate aria-label
-    $aria_label = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call us";
-    if (empty($atts['text']) && strpos($href, 'tel:') !== false) {
-        // If it's a tel link and no custom text is set, and Main Phone Title is set, use it; otherwise, use the phone number
-        $linkText = !empty($mainPhoneTitle) ? $mainPhoneTitle : $linkText;
-    } else if (empty($atts['text'])) {
-        // For non-tel links or custom links without custom text, use the Main Phone Title as the link text if available
-        $linkText = $aria_label;
-    }
-    
-    // Build the link HTML with accessibility attributes
-    $link_html = sprintf('<a href="%s" aria-label="%s">%s</a>', $href, esc_attr($aria_label), esc_html($linkText));
+	// Determine the appropriate aria-label
+	$aria_label = ! empty( $mainPhoneTitle ) ? $mainPhoneTitle : 'Call us';
+	if ( empty( $atts['text'] ) && strpos( $href, 'tel:' ) !== false ) {
+		// If it's a tel link and no custom text is set, and Main Phone Title is set, use it; otherwise, use the phone number
+		$linkText = ! empty( $mainPhoneTitle ) ? $mainPhoneTitle : $linkText;
+	} elseif ( empty( $atts['text'] ) ) {
+		// For non-tel links or custom links without custom text, use the Main Phone Title as the link text if available
+		$linkText = $aria_label;
+	}
 
-    return $link_html;
+	// Build the link HTML with accessibility attributes
+	$link_html = sprintf( '<a href="%s" aria-label="%s">%s</a>', $href, esc_attr( $aria_label ), esc_html( $linkText ) );
+
+	return $link_html;
 }
-add_shortcode('flexline_phone_number', __NAMESPACE__ . '\flexline_phone_number_shortcode');
+add_shortcode( 'flexline_phone_number', __NAMESPACE__ . '\flexline_phone_number_shortcode' );

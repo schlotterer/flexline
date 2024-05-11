@@ -18,7 +18,7 @@ namespace FlexLine\flexline;
  */
 function main_classes( $new_classes ) {
 
-	$classes = [ 'site-main' ];
+	$classes = array( 'site-main' );
 
 	if ( ! empty( $new_classes ) ) {
 		$classes = array_merge( $classes, $new_classes );

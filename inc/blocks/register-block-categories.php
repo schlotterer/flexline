@@ -16,12 +16,12 @@ namespace FlexLine\flexline;
  * @since  2023-05-30
  */
 function register_flexline_category( $categories ) {
-	$custom_block_category = [
+	$custom_block_category = array(
 		'slug'  => __( 'flexline-blocks-category', 'flexline' ),
 		'title' => __( 'FlexLine Blocks', 'flexline' ),
-	];
+	);
 
-	$categories_sorted    = [];
+	$categories_sorted    = array();
 	$categories_sorted[0] = $custom_block_category;
 
 	foreach ( $categories as $category ) {

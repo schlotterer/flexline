@@ -8,7 +8,9 @@
     "development": "cross-env NODE_ENV=development webpack --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
     "prod": "npm run production",
-    "production": "mix --production"
+    "production": "mix --production",
+    "lint-staged": "lint-staged",
+    "lint-php": "vendor/bin/phpcs --standard=WordPress inc"
   },
   "keywords": [],
   "author": "",
@@ -34,9 +36,9 @@
     "sass-loader": "^12.6.0"
   },
   "lint-staged": {
-    "*.php": "vendor/bin/phpcbf --standard=WordPress --fix",
-    "*.js": "wp-scripts lint-js --fix",
-    "*.scss": "wp-scripts lint-style --fix"
+    "*.php": "vendor/bin/phpcbf --standard=WordPress",
+    "*.js": "wp-scripts lint-js",
+    "*.scss": "wp-scripts lint-style"
   },
   "husky": {
     "hooks": {

@@ -5,7 +5,7 @@
  * @package flexline
  */
 
- namespace FlexLine\flexline;
+namespace FlexLine\flexline;
 
 /**
  * Removes the core Pull Quote block.
