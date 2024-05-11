@@ -13,17 +13,20 @@ html {
 
 
 .editor-styles-wrapper,
-body{
-	&.safari{
-		.wp-block-image .aligncenter, 
-		.wp-block-image .alignleft, 
-		.wp-block-image .alignright, 
-		.wp-block-image.aligncenter, 
-		.wp-block-image.alignleft, 
-		.wp-block-image.alignright{
+body {
+
+	&.safari {
+
+		.wp-block-image .aligncenter,
+		.wp-block-image .alignleft,
+		.wp-block-image .alignright,
+		.wp-block-image.aligncenter,
+		.wp-block-image.alignleft,
+		.wp-block-image.alignright {
 			display: block;
 		}
 	}
+
 	a,
 	button,
 	input:focus,
@@ -111,7 +114,6 @@ body{
 	}
 
 
-
 	/* -- Navigation -- */
 
 	.wp-block-navigation__responsive-container.is-menu-open {
@@ -124,7 +126,7 @@ body{
 
 	.wp-block-navigation__responsive-container-close,
 	.wp-block-navigation__responsive-container-open {
-		border: 1px solid currentColor;
+		border: 1px solid currentcolor;
 		padding: 2px;
 	}
 
@@ -145,142 +147,167 @@ body{
 		padding: 2px 10px;
 	}
 
-	.wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-container{
-		padding-top: 0px !important;
+	.wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-container {
+		padding-top: 0 !important;
 		padding-right: 10px !important;
 		padding-left: 10px !important;
 	}
 
-	.wp-block-navigation{
+	.wp-block-navigation {
+
 		&.is-style-main-header-nav .wp-block-navigation-item {
-			*:not(.wp-element-button):not(span){
-				color:var(--wp--custom--nav-main-color);
-				&:hover{
-					color:var(--wp--custom--nav-main-hover-color);
+
+			*:not(.wp-element-button):not(span) {
+				color: var(--wp--custom--nav-main-color);
+
+				&:hover {
+					color: var(--wp--custom--nav-main-hover-color);
 				}
 			}
+
 			&.current-menu-item > a:not(.wp-element-button),
 			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button{
-				color:var(--wp--custom--nav-main-hover-color);
+			> a.current-menu-ancestor + button {
+				color: var(--wp--custom--nav-main-hover-color);
 			}
 		}
-		&.is-style-light-over-dark .wp-block-navigation-item{
+
+		&.is-style-light-over-dark .wp-block-navigation-item {
+
 			*:not(.wp-element-button):not(span) {
-				color:var(--wp--custom--nav-light-over-dark-color);
-				&:hover{
-					color:var(--wp--custom--nav-light-over-dark-hover-color);
+				color: var(--wp--custom--nav-light-over-dark-color);
+
+				&:hover {
+					color: var(--wp--custom--nav-light-over-dark-hover-color);
 				}
 			}
+
 			&.current-menu-item > *:not(.wp-element-button),
 			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button{
-				color:var(--wp--custom--nav-light-over-dark-hover-color);
+			> a.current-menu-ancestor + button {
+				color: var(--wp--custom--nav-light-over-dark-hover-color);
 			}
-		} 
-		&.is-style-dark-over-light .wp-block-navigation-item{
-			a:not(.wp-element-button){ 
-				color:var(--wp--custom--nav-dark-over-light-color);
-				&:hover{
-					color:var(--wp--custom--nav-dark-over-light-hover-color);
+		}
+
+		&.is-style-dark-over-light .wp-block-navigation-item {
+
+			a:not(.wp-element-button) {
+				color: var(--wp--custom--nav-dark-over-light-color);
+
+				&:hover {
+					color: var(--wp--custom--nav-dark-over-light-hover-color);
 				}
 			}
+
 			&.current-menu-item > *:not(.wp-element-button),
 			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button{
-				color:var(--wp--custom--nav-dark-over-light-hover-color);
+			> a.current-menu-ancestor + button {
+				color: var(--wp--custom--nav-dark-over-light-hover-color);
 			}
 		}
 	}
 
 
-	.site-header .wp-block-navigation__container{
-		.wp-block-navigation__submenu-container{
+	.site-header .wp-block-navigation__container {
+
+		.wp-block-navigation__submenu-container {
 			min-width: 250px !important;
 			transition: var(--wp--custom--transition-time);
 			align-items: center;
 			gap: 12px;
-			a{
+
+			a {
 				text-align: center;
 			}
-			.wp-block-navigation-item__label{
+
+			.wp-block-navigation-item__label {
 				line-height: 1.1;
 				text-align: center;
 			}
 		}
 	}
-	.site-header .wp-block-navigation__container.items-justified-center{
-		.wp-block-navigation__submenu-container{
+
+	.site-header .wp-block-navigation__container.items-justified-center {
+
+		.wp-block-navigation__submenu-container {
 			left: 50%;
-			transform: translate(-50%,0);
+			transform: translate(-50%, 0);
 		}
 	}
 
 
+	#flexline-call-button ~ .site-header #header_container {
 
-
-	#flexline-call-button ~ .site-header #header_container{
-		@media (max-width:781.98px) {
+		@media (max-width: 781.98px) {
 			justify-content: center !important;
 		}
 	}
 
 
-
 	// Gravity Forms
-	&.flexline .gform-theme--foundation.gform_wrapper{
+	&.flexline .gform-theme--foundation.gform_wrapper {
 		--gf-form-gap-y: 16px;
 	}
 
 	// Group Link
 	&.flexline .wp-block-group.group-link,
-	&.flexline .wp-block-group.group-link *{
+	&.flexline .wp-block-group.group-link * {
 		cursor: pointer;
 	}
 
 	// Phone link
 	@media only screen and (max-width:781.98px) {
-		#phonelink > a{
+
+		#phonelink > a {
 			padding: 8px 5px !important;
 			font-size: 14px !important;
 		}
 	}
 
 	// Address
-	address{
+	address {
 		font-style: normal;
-		&.contact-info{
-			a{
+
+		&.contact-info {
+
+			a {
 				display: inline-flex;
 				align-items: center;
-				path{
+
+				path {
 					fill: var(--wp--preset--color--contrast);
 				}
 			}
 		}
 	}
-	.site-footer{
+
+	.site-footer {
 		// Address
-		address{
-			&.contact-info{
-				a{
-					path{
+		address {
+
+			&.contact-info {
+
+				a {
+
+					path {
 						fill: var(--wp--preset--color--base);
 					}
 				}
 			}
 		}
 	}
+
 	.material-symbols-outlined {
 		line-height: 1;
 	}
 
 	// Scroll to button
-	.wp-block-button.scrollTo{
+	.wp-block-button.scrollTo {
 		position: absolute;
 		margin-top: -18px;
 		z-index: 1;
-		> a{
+
+		> a {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -288,13 +315,13 @@ body{
 	}
 
 	// Header - keep above sticky navigation
-	header.site-header{
+	header.site-header {
 		z-index: 11;
 		position: relative;
 	}
 
-	// Fix cover images 
-	img[style*="cover"]{
+	// Fix cover images
+	img[style*="cover"] {
 		width: 100%;
 	}
 }

@@ -16,8 +16,16 @@
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-react": "^7.23.3",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@wordpress/eslint-plugin": "^18.0.0",
+    "@wordpress/scripts": "^27.8.0",
+    "@wordpress/stylelint-config": "^21.40.0",
     "autoprefixer": "^10.4.17",
     "cross-env": "^7.0.3",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^9.0.11",
     "laravel-mix": "^6.0.49",
     "lint-staged": "^15.2.2",
@@ -26,9 +34,9 @@
     "sass-loader": "^12.6.0"
   },
   "lint-staged": {
-    "*.php": "vendor/bin/phpcbf --standard=WordPress inc",
-    "*.js": "vendor/bin/phpcbf --standard=WordPress src",
-    "*.scss": "vendor/bin/phpcbf --standard=WordPress src"
+    "*.php": "vendor/bin/phpcbf --standard=WordPress --fix",
+    "*.js": "wp-scripts lint-js --fix",
+    "*.scss": "wp-scripts lint-style --fix"
   },
   "husky": {
     "hooks": {

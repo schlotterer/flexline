@@ -1,59 +1,63 @@
 
 
-    @media only screen and (max-width:781.98px) {
+@media only screen and (max-width: 781.98px) {
 
-        /* -- Columns -- */
+	/* -- Columns -- */
 
-        .is-style-columns-reverse {
-            flex-direction: column-reverse;
-        }
+	.is-style-columns-reverse {
+		flex-direction: column-reverse;
+	}
 
-        .is-style-row-reverse > * {
-            flex-direction: row-reverse;
-        }
+	.is-style-row-reverse > * {
+		flex-direction: row-reverse;
+	}
 
-    }
+}
 
-    
-    /* Media Queries
+
+/* Media Queries
     ---------------------------------------- */
 
-    /* Large screens (desktops,992pxand up) */
-    @media ( min-width:992px) {
-        .block-visibility-hide-large-screen,
-        .flexline-hide-on-desktop,
-        .is-style-hide-on-desktop {
-            display: none !important;
-        }
-    }
+/* Large screens (desktops,992pxand up) */
+@media ( min-width: 992px) {
 
-    /* Medium screens (tablets, between 768px and992px) */
-    @media ( min-width:782px ) and ( max-width:991.98px) {
-        .block-visibility-hide-medium-screen,
-        .flexline-hide-on-tablet {
-            display: none !important;
-        }
-        .wp-block-columns.flexline-stack-at-tablet {
-            flex-wrap: wrap !important;
-            >.wp-block-column{
-                flex-basis: 100% !important;
-            }
-        }
-    }
+	.block-visibility-hide-large-screen,
+	.flexline-hide-on-desktop,
+	.is-style-hide-on-desktop {
+		display: none !important;
+	}
+}
 
-    /* Small screens (mobile devices, less than 768px) */
-    @media (max-width:781.98px) {
-        .block-visibility-hide-small-screen,
-        .flexline-hide-on-mobile,
-        .is-style-hide-on-mobile,
-        .is-style-hidden-mobile  {
-            display: none !important;
-        }
+/* Medium screens (tablets, between 768px and992px) */
+@media ( min-width: 782px ) and ( max-width: 991.98px) {
+
+	.block-visibility-hide-medium-screen,
+	.flexline-hide-on-tablet {
+		display: none !important;
+	}
+
+	.wp-block-columns.flexline-stack-at-tablet {
+		flex-wrap: wrap !important;
+
+		>.wp-block-column {
+			flex-basis: 100% !important;
+		}
+	}
+}
+
+/* Small screens (mobile devices, less than 768px) */
+@media (max-width: 781.98px) {
+
+	.block-visibility-hide-small-screen,
+	.flexline-hide-on-mobile,
+	.is-style-hide-on-mobile,
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
 
 
-        .is-justify-content-center-mobile {
-            justify-content: center !important;
-        }
-    }
-
+	.is-justify-content-center-mobile {
+		justify-content: center !important;
+	}
+}
 

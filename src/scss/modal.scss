@@ -1,157 +1,168 @@
 #flexline-modal {
-    box-sizing: border-box;
-    
+	box-sizing: border-box;
+
 }
 
 #flexline-modal img,
 #flexline-modal video,
 #flexline-modal iframe {
-    /* Adjustments for better responsiveness */
-    max-width: 90%;
-    max-height: 80vh;
+
+	/* Adjustments for better responsiveness */
+	max-width: 90%;
+	max-height: 80vh;
 }
 
 #flexline-modal span[role="button"] {
-    /* Enhancements for the close button */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #000;
-    opacity: 0.7;
+
+	/* Enhancements for the close button */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background-color: #000;
+	opacity: 0.7;
 }
 
 #flexline-modal span[role="button"]:hover,
 #flexline-modal span[role="button"]:focus {
-    opacity: 1;
-    outline: none; /* For focus, consider a more accessible outline style */
+	opacity: 1;
+	outline: none; /* For focus, consider a more accessible outline style */
 }
 
 /* Aspect Ratio Box */
 .aspect-ratio-16-9 {
-    position: absolute;
-    width: 90%;
-    padding-top: 56.25%;
-    margin: auto;
-    top: 50%;
-    transform: translate(0, -50%);
+	position: absolute;
+	width: 90%;
+	padding-top: 56.25%;
+	margin: auto;
+	top: 50%;
+	transform: translate(0, -50%);
 }
-@media only screen and (max-width:781.98px) {
-    .aspect-ratio-16-9 {
-        width: calc(100% - 10px);
-    }
+
+@media only screen and (max-width: 781.98px) {
+
+	.aspect-ratio-16-9 {
+		width: calc(100% - 10px);
+	}
 }
 
 /* Make the iframe fill the aspect ratio box */
 .aspect-ratio-16-9 iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
-figure.wp-block-image.enable-modal{
-    position: relative;
-    cursor: pointer;
-    &::after{
-        content: "";
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        background-color:var(--wp--custom--deco-color);
-        border-radius: 200px;
-        opacity: 0.7;
-        transition: all 0.3s ease-in-out;
-        pointer-events: none;
-        line-height: 1;
-        text-align: center;
-        top: 5px;
-        right: 5px;
-        font-size: 25px;
-        width: 40px;
-        height: 40px;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    &:hover{
-        &::after{
-            opacity: 1;
-        }
-    }
-    &[data-modal-media-url*="youtube.com"],
-    &[data-modal-media-url*="youtu.be"],
-    &[data-modal-media-url*="vimeo.com"],
-    &[data-modal-media-url*=".mp4"],
-    &[data-modal-media-url*=".webm"],
-    &[data-modal-media-url*=".ogg"]
-     {
-        &::after{
-            content: "";
-            right: unset;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 30px;
-            width: 50px;
-            height: 50px;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-    }
+figure.wp-block-image.enable-modal {
+	position: relative;
+	cursor: pointer;
+
+	&::after {
+		content: "";
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		background-color: var(--wp--custom--deco-color);
+		border-radius: 200px;
+		opacity: 0.7;
+		transition: all 0.3s ease-in-out;
+		pointer-events: none;
+		line-height: 1;
+		text-align: center;
+		top: 5px;
+		right: 5px;
+		font-size: 25px;
+		width: 40px;
+		height: 40px;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	&:hover {
+
+		&::after {
+			opacity: 1;
+		}
+	}
+
+	&[data-modal-media-url*="youtube.com"],
+	&[data-modal-media-url*="youtu.be"],
+	&[data-modal-media-url*="vimeo.com"],
+	&[data-modal-media-url*=".mp4"],
+	&[data-modal-media-url*=".webm"],
+	&[data-modal-media-url*=".ogg"] {
+
+		&::after {
+			content: "";
+			right: unset;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 30px;
+			width: 50px;
+			height: 50px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+	}
 }
 
 #flexline-modal .aspect-ratio-match-window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    height: 90%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90%;
+	height: 90%;
+	transform: translate(-50%, -50%);
 }
 
 #flexline-modal .aspect-ratio-match-window iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	transform: translate(-50%, -50%);
 }
 
 
-.enable-modal > a{
-    display: inline-flex;
+.enable-modal > a {
+	display: inline-flex;
 }
 
 // Poster Gallery
-figure.poster-gallery.has-nested-images{
-    position: relative;
-	> figure{
+figure.poster-gallery.has-nested-images {
+	position: relative;
+
+	> figure {
 		position: absolute !important;
 		visibility: hidden;
-        max-width: 100%;
+		max-width: 100%;
 	}
-	> figure:first-of-type{
+
+	> figure:first-of-type {
 		position: relative !important;
 		z-index: 1;
-		visibility:visible;
-		&::after{
+		visibility: visible;
+
+		&::after {
 			content: "";
 			position: absolute;
 			display: inline-block;
 			justify-content: center;
 			align-items: center;
 			color: #fff;
-			background-color:var(--wp--custom--deco-color);
+			background-color: var(--wp--custom--deco-color);
 			border-radius: 200px;
 			opacity: 0.7;
 			transition: all 0.3s ease-in-out;
@@ -163,11 +174,13 @@ figure.poster-gallery.has-nested-images{
 			font-size: 30px;
 			width: 40px;
 			height: 40px;
-            background-position: center;
-            background-repeat: no-repeat;
+			background-position: center;
+			background-repeat: no-repeat;
 		}
-		&:hover{
-			&::after{
+
+		&:hover {
+
+			&::after {
 				opacity: 1;
 			}
 		}
