@@ -225,19 +225,15 @@ function flexline_block_customizations_render($block_content, $block) {
     if ( $block['blockName'] === 'core/columns') {
         $addedClasses = '';
         if (isset($block['attrs']['stackAtTablet']) && $block['attrs']['stackAtTablet']) {
-            // Add a class
             $addedClasses .= 'flexline-stack-at-tablet ';
         }
         if (isset($block['attrs']['hideOnMobile']) && $block['attrs']['hideOnMobile']) {
-            // Add a class
             $addedClasses .= 'flexline-hide-on-mobile ';
         }
-        if (isset($block['attrs']['hideOnTablet']) && $block['attrs']['hideOnTablet']) {
-            // Add a class
+        if (isset($block['attrs']['hideOnTablet']) && $block['attrs']['hideOnTablet']) { 
             $addedClasses .= 'flexline-hide-on-tablet ';
         }
         if (isset($block['attrs']['hideOnDesktop']) && $block['attrs']['hideOnDesktop']) {
-            // Add a class
             $addedClasses .= 'flexline-hide-on-desktop ';
         }
         $searchString = 'class="';
