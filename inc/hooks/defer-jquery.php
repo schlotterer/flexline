@@ -20,4 +20,4 @@ function defer_jquery() {
       wp_enqueue_script('jquery');
     }
   }
-  add_action('wp_enqueue_scripts', __NAMESPACE__ . '\defer_jquery',100);
+//add_action('wp_enqueue_scripts', __NAMESPACE__ . '\defer_jquery',100);
