@@ -1,7 +1,9 @@
 <?php
 /**
  * Defer jQuery.
- *
+ * If you're not using something like GravityForms you can use this function to defer the loading of jQuery and drastically improve performance. 
+ * WPRocket actually handles jQuery correctly so this is not needed if you're using WPRocket.
+ * TODO: Add admin switch for this function.
  * @package flexline
  */
 
