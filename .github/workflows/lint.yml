@@ -1,43 +1,72 @@
-name: Lint Code
+name: CI
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
-    paths:
-      - 'src/js/*.js'
-      - 'src/scss/*.scss'
-      - 'inc/**/*.php'
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
-  lint:
+  build:
+
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v2
-      name: Check out repository code
+    - uses: actions/checkout@v4
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: 'lts/*'  # Specify the Node.js version you use
+        node-version: 'node'  # This uses the latest Node.js version
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v3
+      id: npm-cache
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
     - name: Install Node.js dependencies
       run: npm install
 
-    - name: Lint JavaScript
-      run: npm run ci-lint-js  # Your custom script in package.json
+    - name: Run PHP lint
+      run: |
+        composer require --dev squizlabs/php_codesniffer
+        vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
+        vendor/bin/phpcs --standard=WordPress .
 
-    - name: Lint SCSS
-      run: npm run ci-lint-style  # Your custom script in package.json
+    - name: Run JS lint
+      run: |
+        npm install eslint eslint-plugin-wordpress --save-dev
+        npx eslint . --ext .js --ext .jsx --config .eslintrc.json
 
-    # Optional: Add a step for PHP linting if php is not setup
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'  # Specify the PHP version
+    - name: Run CSS lint
+      run: |
+        npm install stylelint stylelint-config-wordpress --save-dev
+        npx stylelint "**/*.css"
 
-    - name: Install PHP dependencies
-      run: composer install
+    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+    # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-    - name: Lint PHP
-      run: npm run lint-php  # Your custom script in package.json
+    # - name: Run test suite
+    #   run: composer run-script test

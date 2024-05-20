@@ -81,11 +81,11 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$replaceString  = '';
 			$block_content  = str_replace( $searchString, $replaceString, $block_content );
 			$searchString2  = 'decoding="async"';
-			$replaceString2 = 'decoding="sync"';
+			$replaceString2 = '';
 			$block_content  = str_replace( $searchString2, $replaceString2, $block_content );
 		} else {
 			$searchString  = '<img ';
-			$replaceString = '<img loading="lazy" ';
+			$replaceString = '<img decoding="async" loading="lazy" ';
 			$block_content = str_replace( $searchString, $replaceString, $block_content );
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {

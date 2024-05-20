@@ -31,6 +31,9 @@ npm-debug.log*
 # Laravel Mix files
 mix-manifest.json
 
+# Husky linting files
+.husky/
+
 # Yarn
 yarn-error.log
 .yarn-integrity
