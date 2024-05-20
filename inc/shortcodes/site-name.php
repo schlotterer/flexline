@@ -1,20 +1,26 @@
 <?php
+/**
+ * Shortcode for displaying the site name.
+ *
+ * @package flexline
+ */
+
 namespace FlexLine\flexline;
 
 /**
- * Shortcode to display contact information, excluding phone numbers with a #.
+ * Shortcode to display the site name.
  *
- * @return string The formatted contact information.
+ * @return string The formatted site name.
  * @usage [flexline_site_name] this is for use primarily in starter content.
  */
 function flexline_site_name_shortcode() {
-	// Get the site name
-	$siteName = get_bloginfo( 'name' ) ? '<span class="site-name">' . esc_html( get_bloginfo( 'name' ) ) . '</span>' : '<span class="site-name">Flexline</span>';
+	// Get the site name.
+	$site_name = get_bloginfo( 'name' ) ? '<span class="site-name">' . esc_html( get_bloginfo( 'name' ) ) . '</span>' : '<span class="site-name">Flexline</span>';
 
-	// Start output buffering
+	// Start output buffering.
 	ob_start();
-	echo $siteName;
-	// Return the buffered content
+	echo esc_html( $site_name ); // Escaped earlier.
+	// Return the buffered content.
 	return ob_get_clean();
 }
 add_shortcode( 'flexline_site_name', __NAMESPACE__ . '\flexline_site_name_shortcode' );

@@ -6,28 +6,39 @@
  * Author:       Johannes Kinast <johannes@travel-dealz.de>
  * Author URI:   https://go-around.de
  * Version:     1.13
+ *
+ * @package flexline
  */
+
 namespace FlexLine\flexline;
 
+/**
+ * Registers the assets for baguetteBox.
+ *
+ * This function registers the CSS and JavaScript files required for baguetteBox.
+ * It also adds an inline script to initialize baguetteBox with custom selectors and filters.
+ *
+ * @return void
+ */
 function register_assets() {
 	wp_register_style( 'baguettebox-css', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.css', array(), '1.11.1' );
 	wp_register_script( 'baguettebox', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.js', array(), '1.11.1', true );
 
 	/**
-	 * Filters the CSS selector of baguetteBox.js
+	 * Filters the CSS selector of baguetteBox.js.
 	 *
 	 * @since 1.10.0
 	 *
-	 * @param string  $value  The CSS selector to a gallery (or galleries) containing a tags
+	 * @param string  $value  The CSS selector to a gallery (or galleries) containing a tags.
 	 */
 	$baguettebox_selector = apply_filters( 'baguettebox_selector', '.wp-block-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery' );
 
 	/**
-	 * Filters the image files filter of baguetteBox.js
+	 * Filters the image files filter of baguetteBox.js.
 	 *
 	 * @since 1.10.0
 	 *
-	 * @param string  $value  The RegExp Pattern to match image files. Applied to the a.href attribute
+	 * @param string  $value  The RegExp Pattern to match image files. Applied to the a.href attribute.
 	 */
 	$baguettebox_filter = apply_filters( 'baguettebox_filter', '/.+\.(gif|jpe?g|png|webp|svg|avif|heif|heic|tif?f|)($|\?)/i' );
 
@@ -35,6 +46,14 @@ function register_assets() {
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_assets' );
 
+/**
+ * Enqueues the assets for baguetteBox if necessary.
+ *
+ * This function enqueues the CSS and JavaScript files for baguetteBox if the current post
+ * contains a gallery or media-text block.
+ *
+ * @return void
+ */
 function enqueue_assets() {
 
 	/**

@@ -7,6 +7,15 @@
 
 namespace FlexLine\flexline;
 
+/**
+ * Outputs JavaScript settings for customizing the search menu.
+ *
+ * This function generates a script block with settings for the search menu,
+ * based on theme customizer options. These settings control the visibility
+ * of the search feature and the use of a menu icon on desktop.
+ *
+ * @return void
+ */
 function flexline_customize_search_menu_js_settings() {
 	?>
 	<script type="text/javascript">
