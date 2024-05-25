@@ -2,7 +2,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 	// Attempt to find the .slide-in div in the document.
 	const slideInDiv = document.querySelector('.slide-in');
+	// eslint-disable-next-line no-undef
 	const customizerSettings = FlexlineCustomizerSettings;
+	// eslint-disable-next-line no-undef
 	const customizerSearchMenuSettings = FlexlineCustomizerSearchMenuSettings;
 	const siteHeader = document.querySelector('.site-header');
 	// Define SVG icons for menu, search, and close actions.
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Check if the .slide-in div exists, log an error if not.
 	if (!slideInDiv) {
+		// eslint-disable-next-line no-console
 		console.error('The .slide-in div was not found.');
 		return;
 	}
@@ -109,10 +112,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			initialIcon +
 			'</span>';
 		button.addEventListener('click', toggleMenu);
-		if (customizerSearchMenuSettings.hideSearchOnDesktop == true) {
+		if (customizerSearchMenuSettings.hideSearchOnDesktop === true) {
 			button.classList.add('flexline-hide-on-desktop');
 		}
-		if (customizerSearchMenuSettings.hideSearchOnTablet == true) {
+		if (customizerSearchMenuSettings.hideSearchOnTablet === true) {
 			button.classList.add('flexline-hide-on-tablet');
 		}
 		return button;
@@ -137,11 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	function toggleButtonPosition(buttonToPosition) {
 		const isScrolled = window.scrollY > 0;
 		// buttonToPosition.style.position = isScrolled ? 'fixed' : 'absolute';
-		buttonToPosition.style.top = isScrolled
-			? window.matchMedia('(max-width: 781.98px)').matches
-				? '12px'
-				: '6px'
-			: '';
+		if (isScrolled) {
+			const isSmallScreen = window.matchMedia(
+				'(max-width: 781.98px)'
+			).matches;
+			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
+		} else {
+			buttonToPosition.style.top = '';
+		}
 		if (!isScrolled) {
 			centerButtonInHeader(buttonToPosition);
 		}
@@ -179,12 +185,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			if (e.shiftKey) {
 				/* shift + tab */
-				if (document.activeElement === firstFocusableElement) {
+				if (
+					e.target.ownerDocument.activeElement ===
+					firstFocusableElement
+				) {
 					lastFocusableElement.focus(); // move focus to the last focusable element
 					e.preventDefault();
 				}
-			} /* tab */ else if (
-				document.activeElement === lastFocusableElement
+			} else if (
+				e.target.ownerDocument.activeElement === lastFocusableElement
 			) {
 				firstFocusableElement.focus(); // move focus to the first focusable element
 				e.preventDefault();
