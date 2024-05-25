@@ -22,7 +22,7 @@ jobs:
 
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -33,12 +33,12 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v3
       with:
         node-version: '20'  # This uses the latest Node.js version
 
     - name: Cache Node.js modules
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       id: npm-cache
       with:
         path: ~/.npm
@@ -52,6 +52,7 @@ jobs:
     - name: Run PHP lint
       run: |
         composer require --dev squizlabs/php_codesniffer
+        composer require --dev wp-coding-standards/wpcs
         vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
         vendor/bin/phpcs --standard=WordPress .
 
