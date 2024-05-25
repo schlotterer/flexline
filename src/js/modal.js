@@ -85,17 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			window.location.href = mediaUrl;
 		};
 
-		const action = block.classList.contains('group-link-type-modal_media')
-			? triggerModal
-			: block.classList.contains('group-link-type-new_tab')
-				? openInNewTab
-				: redirectToUrl;
+		let action;
+		if (block.classList.contains('group-link-type-modal_media')) {
+			action = triggerModal;
+		} else if (block.classList.contains('group-link-type-new_tab')) {
+			action = openInNewTab;
+		} else {
+			action = redirectToUrl;
+		}
 
 		block.addEventListener('click', action);
 	});
 });
 
 function displayModal(mediaUrl) {
+	// eslint-disable-next-line no-console
 	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
 

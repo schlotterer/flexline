@@ -2,11 +2,33 @@
 /**
  * Register block styles.
  *
+ * @package flexline
  * @since 0.9.2
  */
 
 namespace FlexLine\flexline;
 
+	/**
+	 * Registers block styles for various core blocks.
+	 *
+	 * This function registers block styles for various core blocks in WordPress.
+	 * The registered block styles include:
+	 * - 'horizontal-scroll' for 'core/post-template'
+	 * - 'columns-reverse' and 'horizontal-scroll' for 'core/columns'
+	 * - Various styles for 'core/group'
+	 * - Various styles for 'core/image'
+	 * - Various styles for 'core/post-featured-image'
+	 * - 'no-disc' for 'core/list'
+	 * - 'main-header-nav', 'dark-over-light', and 'light-over-dark' for 'core/navigation'
+	 * - 'outline' and 'text-shadow' for 'core/navigation-link'
+	 * - Various styles for 'core/quote'
+	 * - 'outline' for 'core/social-links'
+	 * - 'text-shadow' for 'core/heading', 'core/site-title', 'core/post-title', and 'core/post-terms'
+	 * - 'text-shadow' for 'core/paragraph'
+	 * - 'glass-button' for 'core/button'
+	 *
+	 * @return void
+	 */
 function flexline_register_block_styles() {
 
 	$block_styles = array(
