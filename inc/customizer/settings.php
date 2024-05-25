@@ -19,7 +19,7 @@ use WP_Customize_Image_Control;
  */
 function customize_search_menu( $wp_customize ) {
 
-	// Use Menu Icon at all breakpoints
+	// Use Menu Icon at all breakpoints.
 	$wp_customize->add_setting(
 		'flexline_use_menu_icon',
 		array(
@@ -38,7 +38,7 @@ function customize_search_menu( $wp_customize ) {
 		)
 	);
 
-	// Hide on Tablet
+	// Hide on Tablet.
 	$wp_customize->add_setting(
 		'flexline_hide_search_tablet',
 		array(
@@ -57,7 +57,7 @@ function customize_search_menu( $wp_customize ) {
 		)
 	);
 
-	// Hide on Desktop
+	// Hide on Desktop.
 	$wp_customize->add_setting(
 		'flexline_hide_search_desktop',
 		array(
@@ -78,6 +78,12 @@ function customize_search_menu( $wp_customize ) {
 }
 add_action( 'customize_register', __NAMESPACE__ . '\customize_search_menu' );
 
+/**
+ * Registers a setting and control for the main phone link text in the Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Instance of WP_Customize_Manager.
+ * @return void
+ */
 function customize_main_phone_title( $wp_customize ) {
 	// Register a setting.
 	$wp_customize->add_setting(
@@ -148,7 +154,7 @@ add_action( 'customize_register', __NAMESPACE__ . '\customize_main_phone_number'
  */
 function customize_header_phone_display_options( $wp_customize ) {
 
-	// Hide on Desktop
+	// Hide on Desktop.
 	$wp_customize->add_setting(
 		'flexline_hide_phone_desktop',
 		array(
@@ -168,8 +174,8 @@ function customize_header_phone_display_options( $wp_customize ) {
 		)
 	);
 
-	// Repeat for Tablet and Mobile
-	// Hide on Tablet
+	// Repeat for Tablet and Mobile.
+	// Hide on Tablet.
 	$wp_customize->add_setting(
 		'flexline_hide_phone_tablet',
 		array(
@@ -189,7 +195,7 @@ function customize_header_phone_display_options( $wp_customize ) {
 		)
 	);
 
-	// Hide on Mobile
+	// Hide on Mobile.
 	$wp_customize->add_setting(
 		'flexline_hide_phone_mobile',
 		array(

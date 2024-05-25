@@ -1,4 +1,8 @@
-/* globals tinymce */
+/**
+ *  Globals tinymce
+ *
+ * @package flexline
+ * */
 
 /**
  * File editor.js.
@@ -46,9 +50,10 @@ window.flexlineAdditionalTinyMCE = window.flexlineAdditionalTinyMCE || {};
 	 */
 	app.bindEditors = function () {
 		// Was needed a timeout since RTE is not initialized when this code run.
+		const editorsLength = tinymce.editors.length;
 		setTimeout(
 			function () {
-				for ( let i = 0; i < tinymce.editors.length; i++ ) {
+				for ( let i = 0; i < editorsLength; i++ ) {
 						tinymce.editors[ i ].onChange.add(
 							function ( ed ) {
 								// Update HTML view textarea (that is the one used to send the data to server).
