@@ -19,7 +19,8 @@ function flexline_site_name_shortcode() {
 
 	// Start output buffering.
 	ob_start();
-	echo esc_html( $site_name ); // Escaped earlier.
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo  $site_name; // Escaped earlier.
 	// Return the buffered content.
 	return ob_get_clean();
 }

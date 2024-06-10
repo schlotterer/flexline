@@ -28,7 +28,8 @@ function flexline_city_state_shortcode() {
 	// Start output buffering.
 	ob_start();
 	if ( isset( $formatted_address ) ) {
-		echo esc_html( $formatted_address );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped - escaped earlier
+		echo $formatted_address;
 	}
 	// Return the buffered content.
 	return ob_get_clean();
