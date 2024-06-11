@@ -47,57 +47,58 @@ function flexline_theme_options_page() {
             padding: 5px;
         }
     </style>
-    
     <script>
+        function openTab(event, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("nav-tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("nav-tab-active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            event.currentTarget.classList.add("nav-tab-active");
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            var uploadButton = document.getElementById('upload-button');
-            var featureFallbackInput = document.getElementById('feature-fallback-input');
-            var featureFallbackImage = document.getElementById('feature-fallback-image');
-            
-            uploadButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Create the media frame
-                var imageFrame = wp.media({
-                    title: 'Upload Image',
-                    multiple: false,
-                    library: {
-                        type: 'image'
-                    },
-                    button: {
-                        text: 'Use this image'
-                    }
-                });
-
-                // When an image is selected, run a callback
-                imageFrame.on('select', function() {
-                    var attachment = imageFrame.state().get('selection').first().toJSON();
-                    featureFallbackInput.value = attachment.url;
-                    featureFallbackImage.src = attachment.url;
-                });
-
-                // Finally, open the modal
-                imageFrame.open();
-            });
-
-            // Tab functionality
-            function openTab(event, tabId) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tab-content");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("nav-tab");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" nav-tab-active", "");
-                }
-                document.getElementById(tabId).style.display = "block";
-                event.currentTarget.className += " nav-tab-active";
+            var defaultTab = document.querySelector('.nav-tab');
+            if (defaultTab) {
+                defaultTab.click();
             }
 
-            // Default to the first tab
-            document.querySelector('.nav-tab').classList.add('nav-tab-active');
-            document.querySelector('.tab-content').style.display = 'block';
+            var uploadButton = document.getElementById('upload-button');
+            if (uploadButton) {
+                var featureFallbackInput = document.getElementById('feature-fallback-input');
+                var featureFallbackImage = document.getElementById('feature-fallback-image');
+                
+                uploadButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create the media frame
+                    var imageFrame = wp.media({
+                        title: 'Upload Image',
+                        multiple: false,
+                        library: {
+                            type: 'image'
+                        },
+                        button: {
+                            text: 'Use this image'
+                        }
+                    });
+
+                    // When an image is selected, run a callback
+                    imageFrame.on('select', function() {
+                        var attachment = imageFrame.state().get('selection').first().toJSON();
+                        featureFallbackInput.value = attachment.url;
+                        featureFallbackImage.src = attachment.url;
+                    });
+
+                    // Finally, open the modal
+                    imageFrame.open();
+                });
+            }
         });
     </script>
     <?php
