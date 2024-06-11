@@ -22,6 +22,7 @@ function flexline_render_settings_tab() {
         <?php do_settings_sections( 'flexline_theme_options_group' ); ?>
         
         <h2>Menu Settings</h2>
+        <hr />
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Use menu icon at all breakpoints</th>
@@ -38,6 +39,7 @@ function flexline_render_settings_tab() {
         </table>
         
         <h2>Phone Settings</h2>
+        <hr />
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Main Phone Link Text</th>
@@ -62,6 +64,7 @@ function flexline_render_settings_tab() {
         </table>
         
         <h2>Address Settings</h2>
+        <hr />
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Street</th>
@@ -82,6 +85,7 @@ function flexline_render_settings_tab() {
         </table>
         
         <h2>Fallback Settings</h2>
+        <hr />
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Feature Image Fallback</th>
