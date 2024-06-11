@@ -24,6 +24,7 @@ function include_inc_files() {
 		'inc/setup/', // Theme setup.
 		'inc/scripts.php', // Scripts and Styles loading.
 		'inc/shortcodes/', // Load shortcodes.
+		'inc/theme-options/', // Load theme options.
 	);
 
 	foreach ( $files as $include ) {

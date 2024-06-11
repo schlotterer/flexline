@@ -13,7 +13,7 @@ namespace FlexLine\flexline;
  * @return string Href value for the phone link.
  */
 function flexline_get_phone_button_link() {
-	$phone_number = get_theme_mod( 'flexline_main_phone_number', '' );
+	$phone_number = get_option( 'flexline_main_phone_number', '' );
 
 	// Early return if the phone number field is empty.
 	if ( empty( $phone_number ) ) {

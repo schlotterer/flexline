@@ -17,10 +17,10 @@ namespace FlexLine\flexline;
  */
 function flexline_city_state_shortcode() {
 
-	if ( get_theme_mod( 'flexline_address_city', '' ) && get_theme_mod( 'flexline_address_state', '' ) ) {
+	if ( get_option( 'flexline_address_city', '' ) && get_option( 'flexline_address_state', '' ) ) {
 		// Retrieve customizer settings for address.
-		$city  = get_theme_mod( 'flexline_address_city', '' );
-		$state = get_theme_mod( 'flexline_address_state', '' );
+		$city  = get_option( 'flexline_address_city', '' );
+		$state = get_option( 'flexline_address_state', '' );
 		// Format the address.
 		$formatted_address = '<span>' . esc_html( $city ) . ', ' . esc_html( $state ) . '</span>';
 	}

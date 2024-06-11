@@ -24,18 +24,18 @@ function flexline_contact_info_shortcode() {
 	// Retrieve customizer settings for phone link and phone title.
 	$href = flexline_get_phone_button_link();
 
-	$main_phone_title = get_theme_mod( 'flexline_main_phone_title', '' );
-	$phone_number     = get_theme_mod( 'flexline_main_phone_number', '' );
+	$main_phone_title = get_option( 'flexline_main_phone_title', '' );
+	$phone_number     = get_option( 'flexline_main_phone_number', '' );
 	$phone_link_text  = ! empty( $main_phone_title ) ? $main_phone_title : $phone_number;
 	$aria_label       = ! empty( $main_phone_title ) ? $main_phone_title : 'Call us';
 
 	// Determine whether to show the phone link.
 	$show_phone_link = ! ( false !== strpos( $phone_number, '#' ) && false === strpos( $phone_number, '/' ) );
 
-	$street = get_theme_mod( 'flexline_address_street', '' );
-	$city   = get_theme_mod( 'flexline_address_city', '' );
-	$state  = get_theme_mod( 'flexline_address_state', '' );
-	$zip    = get_theme_mod( 'flexline_address_zip', '' );
+	$street = get_option( 'flexline_address_street', '' );
+	$city   = get_option( 'flexline_address_city', '' );
+	$state  = get_option( 'flexline_address_state', '' );
+	$zip    = get_option( 'flexline_address_zip', '' );
 
 	// Format the address.
 	$formatted_address = '<span>' . esc_html( $street ) . '</span><br><span>' . esc_html( $city ) . ', ' . esc_html( $state ) . ' ' . esc_html( $zip ) . '</span>';

@@ -20,9 +20,9 @@ function flexline_customize_search_menu_js_settings() {
 	?>
 	<script type="text/javascript">
 		var FlexlineCustomizerSearchMenuSettings = {
-			useMenuIconOnDesktop: <?php echo get_theme_mod( 'flexline_use_menu_icon', false ) ? 'true' : 'false'; ?>,
-			hideSearchOnTablet: <?php echo get_theme_mod( 'flexline_hide_search_tablet', false ) ? 'true' : 'false'; ?>,
-			hideSearchOnDesktop: <?php echo get_theme_mod( 'flexline_hide_search_desktop', false ) ? 'true' : 'false'; ?>,
+			useMenuIconOnDesktop: <?php echo get_option( 'flexline_use_menu_icon', false ) ? 'true' : 'false'; ?>,
+			hideSearchOnTablet: <?php echo get_option( 'flexline_hide_search_tablet', false ) ? 'true' : 'false'; ?>,
+			hideSearchOnDesktop: <?php echo get_option( 'flexline_hide_search_desktop', false ) ? 'true' : 'false'; ?>,
 		};
 	</script>
 	<?php
