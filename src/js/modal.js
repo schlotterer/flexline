@@ -112,10 +112,10 @@ function displayModal(mediaUrl) {
 	) {
 		// Extract the YouTube video ID and construct the embed URL with autoplay
 		const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
-		contentHtml = `<div class="aspect-ratio-16-9"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+		contentHtml = `<div class="aspect-ratio-16-9 iframe"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
 	} else if (mediaUrl.match(/\.(mp4|webm|ogg)$/)) {
 		// For native video elements, add the autoplay attribute
-		contentHtml = `<div class="aspect-ratio-16-9"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
+		contentHtml = `<div class="aspect-ratio-16-9 video"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
 	} else {
 		// other domains try to put them in an iframe
 		contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
@@ -160,6 +160,7 @@ function displayModal(mediaUrl) {
 
 	// Append the modal to the body
 	document.body.appendChild(modal);
+	document.body.classList.add('no-scroll');
 
 	// Focus management for accessibility
 	closeButton.focus();
@@ -168,11 +169,13 @@ function displayModal(mediaUrl) {
 	closeButton.addEventListener('click', (e) => {
 		e.stopPropagation(); // Prevent the modal click event from firing
 		modal.remove();
+		document.body.classList.remove('no-scroll');
 	});
 
 	// Optional: Close the modal when clicking outside the media content
 	modal.addEventListener('click', () => {
 		modal.remove();
+		document.body.classList.remove('no-scroll');
 	});
 
 	// Close the modal with the Escape key
@@ -181,6 +184,7 @@ function displayModal(mediaUrl) {
 		function (e) {
 			if (e.key === 'Escape') {
 				modal.remove();
+				document.body.classList.remove('no-scroll');
 			}
 		},
 		{ once: true }

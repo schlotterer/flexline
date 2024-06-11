@@ -11,6 +11,11 @@ html {
 	scroll-behavior: smooth;
 }
 
+body.no-scroll,
+body.baguetteBox-open {
+    overflow: hidden;
+}
+
 body,
 .editor-styles-wrapper {
 
