@@ -20,13 +20,9 @@ body.flexline {
 	.gform-theme--framework.gform-theme.gform_wrapper input:is([type="submit"], [type="button"], [type="reset"]):where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
 	.gform-theme--framework.gform-theme.gform_wrapper input[type="submit"].button.gform_button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
 		--gf-local-radius: var(--wp--custom--button-border-radius);
-
-	}
-
-	.gform-theme--framework.gform-theme.gform_wrapper input[type="submit"].button.gform_button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
 		transition: var(--wp--custom--transition-time);
-		--gf-local-shadow: var(--wp--preset--shadow--light);
-
+		--gf-local-shadow: var(--wp--custom--button-shadow);
+		
 		&:hover {
 			--gf-local-shadow: var(--wp--preset--shadow--dark);
 		}
