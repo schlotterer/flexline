@@ -1,11 +1,4 @@
-// Slide in menu
-body.no-scroll {
-	overflow: hidden; /* Hide scrollbars and disable scrolling */
-	height: 100%; /* Optional: to ensure full page height */
-	width: 100%; /* Optional: to ensure full page width */
-	position: fixed; /* Optional: to lock the position */
-}
-
+// Slide In Menu
 .wp-block-template-part.slide-in {
 
 	> aside {
@@ -31,7 +24,6 @@ body.no-scroll {
 }
 
 button {
-
 	&#slide-in-menu-button {
 
 		position: fixed;
