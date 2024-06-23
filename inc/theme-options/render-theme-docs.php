@@ -48,13 +48,13 @@ function flexline_render_documentation_tab()
                     <h3>Site Name - [flexline_site_name]</h3>
                     <p>Tenders a formatted address displaying the city and state as set in the theme options. This shortcode specifically outputs the city and state in a simple inline format which can be easily inserted into posts, pages, or widgets. It only displays the address if both city and state are configured in the theme's theme settings.</p>
                 </section>
-
+                <hr />
                 <section id="flexline_city_state">
                     <h3>Site Name - [flexline_city_state]</h3>
                     <p>This shortcode dynamically fetches the site name from the WordPress settings, allowing for easy updates through the WordPress admin panel.<br>
                         Place this shortcode in any post, page, or widget area to display the site name.</p>
                 </section>
-
+                <hr />
                 <section id="flexline_phone_number">
                     <h3>Phone Link - [flexline_phone_number]</h3>
                     <p>This shortcode generates a telephone link or an anchor link based on the presence of a "#" symbol in the phone number. It utilizes the "Main Phone Title" from the Flexline theme options for the link text and aria-label by default. Users can override the link URL and text via shortcode attributes for custom usage.</p>
@@ -66,7 +66,15 @@ function flexline_render_documentation_tab()
                         <li>[flexline_phone_number link="http://example.com" text="Custom Text"] - Overrides both the link and text.</li>
                     </ul>
                 </section>
-
+                <hr />
+                <section id="flexline_contact_info">
+                    <h3>Contact info - [flexline_contact_info]</h3>
+                    <p>This shortcode dynamically fetches address and phone number details from the theme settings, allowing for easy updates through the WordPress admin panel.<br>
+                        Place this shortcode in any post, page, or widget area to display the contact information.<br>
+                        <b>Note:</b> Ensure the 'flexline_main_phone_number', 'flexline_main_phone_title', 'flexline_address_street', 'flexline_address_city', 'flexline_address_state', and 'flexline_address_zip' are properly set in the Flexline theme settings to see the effects.
+                    </p>
+                </section>
+                <hr />
                 <section id="flexline_copyright_year">
                     <h3>Copyright Year - [flexline_copyright_year]</h3>
                     <p>
@@ -78,26 +86,7 @@ function flexline_render_documentation_tab()
                         <li>[flexline_copyright_year starting_year="2015"] - Displays a range from the starting year to the current year.</li>
                         <li>[flexline_copyright_year starting_year="2010" separator=" to "] - Customizes the separator in the range.</li>
                     </ul>
-                    <h4>Parameters</h4>
-                    <ul>
-                        <li>starting_year (string) - The year from which to start the range. If not specified, only the current year will be displayed.</li>
-                        <li>separator (string) - The character or string to separate the starting year and the current year. Default is ' - '.</li>
-                    </ul>
-                    <h4>Returns</h4>
-                    <p>
-                        The formatted copyright year text. If the starting year is specified and differs from the current year,
-                        it returns a range (e.g., "2015 - 2021"). If the starting year is the current year or not provided, it returns just the current year.
-                    </p>
                 </section>
-
-                <section id="flexline_contact_info">
-                    <h3>Contact info - [flexline_contact_info]</h3>
-                    <p>This shortcode dynamically fetches address and phone number details from the theme settings, allowing for easy updates through the WordPress admin panel.<br>
-                        Place this shortcode in any post, page, or widget area to display the contact information.<br>
-                        <b>Note:</b> Ensure the 'flexline_main_phone_number', 'flexline_main_phone_title', 'flexline_address_street', 'flexline_address_city', 'flexline_address_state', and 'flexline_address_zip' are properly set in the Flexline theme settings to see the effects.
-                    </p>
-                </section>
-
             </section>
 
 

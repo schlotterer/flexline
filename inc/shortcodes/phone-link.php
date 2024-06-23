@@ -3,13 +3,13 @@
  * Shortcode for displaying the main phone number with optional custom link and text.
  *
  * This shortcode generates a telephone link or an anchor link based on the presence of a "#" symbol in the phone number.
- * It utilizes the "Main Phone Title" from the WordPress Customizer for the link text and aria-label by default.
+ * It utilizes the "Main Phone Title" from the Flexline theme options for the link text and aria-label by default.
  * Users can override the link URL and text via shortcode attributes for custom usage.
  *
  * Usage:
- * [flexline_phone_number] - Uses the phone number and "Main Phone Title" from the Customizer settings.
- * [flexline_phone_number link="tel:6665554444"] - Overrides the default or Customizer-defined link with a custom link - make sure to include the "tel:" prefix if it's a phone number.
- * [flexline_phone_number text="Custom Text"] - Overrides the default or Customizer-defined link text with custom text.
+ * [flexline_phone_number] - Uses the phone number and "Main Phone Title" from the Flexline theme options settings.
+ * [flexline_phone_number link="tel:6665554444"] - Overrides the default or Flexline theme options-defined link with a custom link - make sure to include the "tel:" prefix if it's a phone number.
+ * [flexline_phone_number text="Custom Text"] - Overrides the default or Flexline theme options-defined link text with custom text.
  * [flexline_phone_number link="http://example.com" text="Custom Text"] - Overrides both the link and text.
  *
  * @param array $atts Shortcode attributes - 'link' for custom URL, 'text' for custom link text.
