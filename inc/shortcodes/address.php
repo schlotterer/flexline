@@ -22,7 +22,7 @@ namespace FlexLine\flexline;
  * @return string The formatted HTML content containing the contact information and Google Maps link.
  */
 function flexline_contact_info_shortcode() {
-	// Retrieve customizer settings for phone link and phone title.
+	// Retrieve theme options settings for phone link and phone title.
 	$href = flexline_get_phone_button_link();
 
 	$main_phone_title = get_option( 'flexline_main_phone_title', '' );

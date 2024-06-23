@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for rendering a formatted address displaying the city and state as set in the WordPress Customizer.
+ * Shortcode for rendering a formatted address displaying the city and state as set in the Flexline theme options.
  *
  * @package flexline
  */
@@ -8,17 +8,17 @@
 namespace FlexLine\flexline;
 
 /**
- * Renders a formatted address displaying the city and state as set in the WordPress Customizer.
+ * Renders a formatted address displaying the city and state as set in the theme options.
  * This shortcode specifically outputs the city and state in a simple inline format which can be easily inserted into posts, pages, or widgets.
- * It only displays the address if both city and state are configured in the theme's customizer settings.
+ * It only displays the address if both city and state are configured in the theme's theme settings.
  *
  * @return string The HTML formatted string of the city and state, or an empty string if not set.
- * @usage Use the shortcode [flexline_city_state] anywhere in your content to display the location. Ensure the 'flexline_address_city' and 'flexline_address_state' are set in the Customizer under the address settings.
+ * @usage Use the shortcode [flexline_city_state] anywhere in your content to display the location. Ensure the 'flexline_address_city' and 'flexline_address_state' are set in the Flexline theme settings under the address settings.
  */
 function flexline_city_state_shortcode() {
 
 	if ( get_option( 'flexline_address_city', '' ) && get_option( 'flexline_address_state', '' ) ) {
-		// Retrieve customizer settings for address.
+		// Retrieve theme options settings for address.
 		$city  = get_option( 'flexline_address_city', '' );
 		$state = get_option( 'flexline_address_state', '' );
 		// Format the address.
