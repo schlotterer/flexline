@@ -43,8 +43,8 @@ function flexline_phone_number_shortcode( $atts ) {
 		return '';
 	}
 	// Fetch the "Main Phone Title" if set, otherwise fallback to the phone number itself.
-	$main_phone_title  = get_theme_mod( 'flexline_main_phone_title', '' );
-	$default_link_text = get_theme_mod( 'flexline_main_phone_number', '' );
+	$main_phone_title  = get_option( 'flexline_main_phone_title', '' );
+	$default_link_text = get_option( 'flexline_main_phone_number', '' );
 
 	// Use custom text if provided, otherwise determine the appropriate text.
 	$link_text = ! empty( $atts['text'] ) ? $atts['text'] : ( ! empty( $main_phone_title ) ? $main_phone_title : $default_link_text );

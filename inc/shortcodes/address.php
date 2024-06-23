@@ -2,15 +2,16 @@
 /**
  * Shortcode for displaying contact information.
  *
- * This shortcode dynamically fetches address and phone number details from the theme customizer,
+ * This shortcode dynamically fetches address and phone number details from the theme settings,
  * allowing for easy updates through the WordPress admin panel.
- * It respects privacy settings by not displaying phone numbers marked with a '#'.
- * It also provides a link for direct calling if the phone number is available, enhancing accessibility and user experience.
  *
- * @package flexline
+ * 
  * @usage [flexline_contact_info] - Place this shortcode in any post, page, or widget area to display the contact information.
  * @note Ensure the 'flexline_main_phone_number', 'flexline_main_phone_title', 'flexline_address_street', 'flexline_address_city',
- * 'flexline_address_state', and 'flexline_address_zip' are properly set in the WordPress Customizer to see the effects.
+ * 'flexline_address_state', and 'flexline_address_zip' are properly set in the Flexline theme settings to see the effects.
+ * 
+ * 
+ * @package flexline
  */
 
 namespace FlexLine\flexline;
@@ -24,18 +25,18 @@ function flexline_contact_info_shortcode() {
 	// Retrieve customizer settings for phone link and phone title.
 	$href = flexline_get_phone_button_link();
 
-	$main_phone_title = get_theme_mod( 'flexline_main_phone_title', '' );
-	$phone_number     = get_theme_mod( 'flexline_main_phone_number', '' );
+	$main_phone_title = get_option( 'flexline_main_phone_title', '' );
+	$phone_number     = get_option( 'flexline_main_phone_number', '' );
 	$phone_link_text  = ! empty( $main_phone_title ) ? $main_phone_title : $phone_number;
 	$aria_label       = ! empty( $main_phone_title ) ? $main_phone_title : 'Call us';
 
 	// Determine whether to show the phone link.
 	$show_phone_link = ! ( false !== strpos( $phone_number, '#' ) && false === strpos( $phone_number, '/' ) );
 
-	$street = get_theme_mod( 'flexline_address_street', '' );
-	$city   = get_theme_mod( 'flexline_address_city', '' );
-	$state  = get_theme_mod( 'flexline_address_state', '' );
-	$zip    = get_theme_mod( 'flexline_address_zip', '' );
+	$street = get_option( 'flexline_address_street', '' );
+	$city   = get_option( 'flexline_address_city', '' );
+	$state  = get_option( 'flexline_address_state', '' );
+	$zip    = get_option( 'flexline_address_zip', '' );
 
 	// Format the address.
 	$formatted_address = '<span>' . esc_html( $street ) . '</span><br><span>' . esc_html( $city ) . ', ' . esc_html( $state ) . ' ' . esc_html( $zip ) . '</span>';

@@ -21,9 +21,9 @@ namespace FlexLine\flexline;
 function flexline_schema_fix( $data ) {
 	$site_name         = get_bloginfo( 'name' ) ? '<span class="site-name">' . esc_html( get_bloginfo( 'name' ) ) . '</span>' : '<span class="site-name">Flexline</span>';
 	$formatted_address = '';
-	if ( get_theme_mod( 'flexline_address_city', '' ) && get_theme_mod( 'flexline_address_state', '' ) ) {
-		$city              = get_theme_mod( 'flexline_address_city', '' );
-		$state             = get_theme_mod( 'flexline_address_state', '' );
+	if ( get_option( 'flexline_address_city', '' ) && get_option( 'flexline_address_state', '' ) ) {
+		$city              = get_option( 'flexline_address_city', '' );
+		$state             = get_option( 'flexline_address_state', '' );
 		$formatted_address = '<span>' . esc_html( $city ) . ', ' . esc_html( $state ) . '</span>';
 	}
 
