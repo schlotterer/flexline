@@ -6,11 +6,11 @@
 
 	.is-style-columns-reverse {
 		&.flexline-stack-at-tablet {
-			@media only screen and ( min-width: 782px ) and ( max-width: 991.98px) {
-			flex-direction: column-reverse;
+			@include screen($tablet){
+				flex-direction: column-reverse;
+			}
 		}
-		}
-		@media only screen and (max-width: 781.98px) {
+		@include screen($mobile){
 			flex-direction: column-reverse;
 		}
 	}
@@ -21,8 +21,8 @@
 /* Media Queries
     ---------------------------------------- */
 
-/* Large screens (desktops,992pxand up) */
-@media only screen and ( min-width: 992px) {
+/* Large screens (desktops,992px and up) */
+@include screen($desktop){
 
 	.block-visibility-hide-large-screen,
 	.flexline-hide-on-desktop,
@@ -32,7 +32,7 @@
 }
 
 /* Medium screens (tablets, between 768px and992px) */
-@media only screen and ( min-width: 782px ) and ( max-width: 991.98px) {
+@include screen($tablet){
 
 	.block-visibility-hide-medium-screen,
 	.flexline-hide-on-tablet {
@@ -49,7 +49,7 @@
 }
 
 /* Small screens (mobile devices, less than 768px) */
-@media only screen and (max-width: 781.98px) {
+@include screen($mobile){
 
 	.block-visibility-hide-small-screen,
 	.flexline-hide-on-mobile,

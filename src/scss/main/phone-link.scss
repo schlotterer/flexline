@@ -42,7 +42,7 @@
 	}
 }
 
-@media screen and (max-width: 1325px) {
+@include screen($desktop-large-down){
 
 	#flexline-call-button {
 		width: 35px;
