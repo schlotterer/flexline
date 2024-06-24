@@ -96,7 +96,7 @@ button {
 	}
 }
 
-@media screen and (max-width: 1325px) {
+@include screen($desktop-large-down){
 
 	button#slide-in-menu-button {
 		width: 35px;

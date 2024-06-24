@@ -1,3 +1,5 @@
+@import "main/variables";
+
 #flexline-modal {
 	box-sizing: border-box;
 
@@ -51,7 +53,7 @@
 	transform: translate(0, -50%);
 }
 
-@media only screen and (max-width: 781.98px) {
+@include screen($mobile){
 
 	.aspect-ratio-16-9 {
 		width: calc(100% - 10px);
