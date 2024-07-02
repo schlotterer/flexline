@@ -216,6 +216,21 @@
 					"slug": "alternate"
 				},
 				{
+					"color": "#DADADA",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
+				},
+				{
+					"color": "#BCB9B2",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#949494",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
+				},
+				{
 					"color": "#985594",
 					"name": "Highlight",
 					"slug": "highlight"
@@ -234,21 +249,6 @@
 					"color": "#F0F0F0",
 					"name": "Base",
 					"slug": "base"
-				},
-				{
-					"color": "#DADADA",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#BCB9B2",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#949494",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
 				},
 				{
 					"color": "#212021",
@@ -440,7 +440,6 @@
 			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
 			"decoColor": "var(--wp--preset--color--highlight)",
 			"gradientAngle": "300deg",
-			
 			"color":{
 				"primary": {
 					"light" : "#1A5896",
