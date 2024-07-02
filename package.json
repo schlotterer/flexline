@@ -23,17 +23,10 @@
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
-<<<<<<< HEAD
     "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@wordpress/eslint-plugin": "^19.1.0",
     "@wordpress/stylelint-config": "^22.2.0",
     "@wordpress/scripts": "^28.2.0",
-=======
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@wordpress/eslint-plugin": "^19.2.0",
-    "@wordpress/scripts": "^28.1.0",
-    "@wordpress/stylelint-config": "^22.0.0",
->>>>>>> origin/6d46dependabot/npm_and_yarn/dependabot-releases/wordpress/eslint-plugin-19.2.0
     "autoprefixer": "^10.4.17",
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.29.1",
