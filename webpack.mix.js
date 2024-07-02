@@ -1,29 +1,24 @@
 const mix = require('laravel-mix');
 
-
 // Individual JavaScript files
 const jsFiles = [
-    'src/js/block-extensions.js',
-    'src/js/modal.js',
-    'src/js/global.js',
-    'src/js/feature-links.js',
+	'src/js/block-extensions.js',
+	'src/js/modal.js',
+	'src/js/global.js',
+	'src/js/feature-links.js',
 ];
 
 // Individual SASS files
-const sassFiles = [
-    'src/scss/app.scss',
-    'src/scss/modal.scss'
-];
+const sassFiles = ['src/scss/app.scss', 'src/scss/modal.scss'];
 
 // Compile each JavaScript file to its own output
-jsFiles.forEach(file => {
-    mix.js(file, 'js')
-       .react(); // If you're using React. Remove this line if not.
+jsFiles.forEach((file) => {
+	mix.js(file, 'js').react(); // If you're using React. Remove this line if not.
 });
 
 // Compile each SASS file to its own output
-sassFiles.forEach(file => {
-    mix.sass(file, 'css');
+sassFiles.forEach((file) => {
+	mix.sass(file, 'css');
 });
 
 // Copy images from a source directory to an output directory
