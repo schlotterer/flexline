@@ -176,27 +176,27 @@
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#5E5D53", "#CAC8B2" ],
+					"colors": [ "#5E5D53", "#DADADA" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
 				{
-					"colors": [ "#1E1F1C", "#CAC8B2" ],
+					"colors": [ "#212021", "#DADADA" ],
 					"slug": "dark",
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#002241", "#4D3562" ],
+					"colors": [ "#33515B", "#B66E1C" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": [ "#002241", "#985594" ],
+					"colors": [ "#33515B", "#CC6D00" ],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": [ "#002241", "#1895CC" ],
+					"colors": [ "#33515B", "#0F6185" ],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
@@ -218,26 +218,6 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#CC6D00",
-					"name": "Highlight",
-					"slug": "highlight"
-				},
-				{
-					"color": "#FFDD38",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#18A957",
-					"name": "Success",
-					"slug": "success"
-				},
-				{
-					"color": "#FBFAEA",
-					"name": "Base",
-					"slug": "base"
-				},
-				{
 					"color": "#CAC8B2",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
@@ -253,12 +233,31 @@
 					"slug": "neutral-dark"
 				},
 				{
+					"color": "#CC6D00",
+					"name": "Highlight",
+					"slug": "highlight"
+				},
+				{
+					"color": "#FFDD38",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#18A957",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#FCFBF4",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
 					"color": "#1E1F1C",
 					"name": "Contrast",
 					"slug": "contrast"
 				}
 			]
-			
 		},
 		"typography": {
 			"dropCap": false,

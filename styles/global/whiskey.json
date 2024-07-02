@@ -156,47 +156,47 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#0F4E63", "#ffffff" ],
-					"slug": "primary",
-					"name": "Primary"
+				"colors": ["#0F4E63", "#ffffff"],
+				"slug": "primary",
+				"name": "Primary"
 				},
 				{
-					"colors": [ "#277C49", "#ffffff" ],
+					"colors": ["#277C49", "#ffffff"],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#C33400", "#ffffff" ],
+					"colors": ["#C33400", "#ffffff"],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#277C49", "#c5e063" ],
+					"colors": ["#277C49", "#c5e063"],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#8A8A8A", "#ffffff" ],
+					"colors": ["#8A8A8A", "#ffffff"],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
 				{
-					"colors": [ "#000000", "#ffffff" ],
+					"colors": ["#000000", "#ffffff"],
 					"slug": "dark",
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#002241", "#4D3562" ],
+					"colors": ["#0F4E63", "#277C49"],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": [ "#002241", "#985594" ],
+					"colors": ["#0F4E63", "#c5e063"],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": [ "#002241", "#1895CC" ],
+					"colors": ["#0F4E63", "#C33400"],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
@@ -218,6 +218,21 @@
 					"slug": "alternate"
 				},
 				{
+					"color": "#FEFAE0",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
+				},
+				{
+					"color": "#B8B8B8",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#8A8A8A",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
+				},
+				{
 					"color": "#c5e063",
 					"name": "Highlight",
 					"slug": "highlight"
@@ -236,21 +251,6 @@
 					"color": "#ffffff",
 					"name": "Base",
 					"slug": "base"
-				},
-				{
-					"color": "#FEFAE0",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#B8B8B8",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#8A8A8A",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
 				},
 				{
 					"color": "#000000",
