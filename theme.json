@@ -1026,6 +1026,10 @@
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
 		}
 	],
 	"templateParts": [
