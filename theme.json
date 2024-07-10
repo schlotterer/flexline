@@ -1030,6 +1030,10 @@
 		{
 			"name": "events-single",
 			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [

@@ -28,5 +28,18 @@ body.flexline {
 		}
 
 	}
+	.gform-theme--framework{
+		--gf-local-radius: var(--wp--custom--border-radius);
+		--gf-color-primary: var(--wp--preset--color--primary);
+		--gf-color-primary-darker: var(--wp--custom--color--primary--dark);
+		--gf-color-primary-lighter: var(--wp--custom--color--primary--light);
+		--gf-ctrl-border-color: var(--wp--preset--color--neutral);
+		--gf-ctrl-choice-check-color: var(--wp--preset--color--primary);
+		--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary);
+		--gf-ctrl-checkbox-check-size: 16px;
+		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate);
+		--gf-ctrl-btn-color-primary: var(--wp--preset--color--base);
+
+	}
 
 }
