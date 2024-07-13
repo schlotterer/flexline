@@ -59,7 +59,9 @@ body.flexline {
 
 	}
 
-	.em.em-item.em-item-single.size-medium .em-item-header .em-item-image img, .em.em-item.em-item-single.size-small .em-item-header .em-item-image img {
+	.em.em-item.em-item-single.size-medium .em-item-header .em-item-image img, 
+	.em.em-item.em-item-single.size-small .em-item-header .em-item-image img,
+	.em.em-item.em-item-single .em-item-image img {
 		border: none;
 	}
 
