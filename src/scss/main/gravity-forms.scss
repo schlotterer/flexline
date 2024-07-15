@@ -10,6 +10,19 @@ body.flexline {
 	.gform-theme--framework select[multiple]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
 	.gform-theme--framework textarea:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
 		--gf-local-radius: var(--wp--custom--border-radius);
+
+		--gf-color-primary: var(--wp--preset--color--primary) !important;
+		--gf-color-primary-darker: var(--wp--custom--color--primary--dark) !important;
+		--gf-color-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
+		--gf-color-in-ctrl-primary-darker: var(--wp--custom--color--primary--dark) !important;
+		--gf-color-in-ctrl-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		
+		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
+		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
+		//--gf-ctrl-btn-color-primary: var(--wp--preset--color--base) !important;
+		--gf-ctrl-border-color:var(--wp--preset--color--neutral) !important;
+		--gf-ctrl-accent-color: var(--wp--preset--color--alternate) !important;
 	}
 
 	.gform-theme--framework.gform-theme.gform_wrapper .button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
@@ -22,11 +35,39 @@ body.flexline {
 		--gf-local-radius: var(--wp--custom--button-border-radius);
 		transition: var(--wp--custom--transition-time);
 		--gf-local-shadow: var(--wp--custom--button-shadow);
+
+		
 		
 		&:hover {
 			--gf-local-shadow: var(--wp--preset--shadow--dark);
 		}
 
+	}
+	.gform-theme--framework.gform-theme.gform_wrapper{
+		--gf-color-primary: var(--wp--preset--color--primary) !important;
+		--gf-color-primary-darker: var(--wp--custom--color--primary--dark) !important;
+		--gf-color-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
+		--gf-color-in-ctrl-primary-darker: var(--wp--custom--color--primary--dark) !important;
+		--gf-color-in-ctrl-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		
+		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
+		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
+		//--gf-ctrl-btn-color-primary: var(--wp--preset--color--base) !important;
+		--gf-ctrl-border-color:var(--wp--preset--color--neutral) !important;
+		--gf-ctrl-accent-color: var(--wp--preset--color--alternate) !important;
+
+	}
+
+	.em.em-item.em-item-single.size-medium .em-item-header .em-item-image img, 
+	.em.em-item.em-item-single.size-small .em-item-header .em-item-image img,
+	.em.em-item.em-item-single .em-item-image img {
+		border: none;
+	}
+
+	.em-event-add-to-calendar-content,
+	.tippy-box{
+		min-width: 150px !important;
 	}
 
 }

@@ -53,11 +53,12 @@
             text-align: center;
         }
 
-        &.items-justified-center{
-            .wp-block-navigation__submenu-container {
-                left: 50%;
-                transform: translate(-50%, 0);
-            }
+        
+    }
+    &.items-justified-center{
+        .wp-block-navigation__submenu-container {
+            left: 50%;
+            transform: translate(-50%, 0);
         }
     }
 }
