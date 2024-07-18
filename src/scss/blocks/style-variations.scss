@@ -17,6 +17,20 @@ body,
 		text-shadow: var(--wp--custom--text-shadow);
 	}
 
+	.is-style-eyebrow{
+		font-size: var(--wp--custom--eyebrow-size);
+		font-family: var(--wp--custom--eyebrow-font);
+		color: var(--wp--custom--eyebrow-color);
+		text-transform: var(--wp--custom--eyebrow-text-transform);
+	}
+
+	.is-style-creative{
+		font-size: var(--wp--custom--creative-size);
+		font-family: var(--wp--custom--creative-font);
+		color: var(--wp--custom--creative-color);
+		text-transform: var(--wp--custom--creative-text-transform);
+	}
+
 	@include screen($tablet-up){
 
 		/* -- Navigation Link -- */

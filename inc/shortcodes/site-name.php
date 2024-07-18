@@ -15,7 +15,7 @@ namespace FlexLine\flexline;
  */
 function flexline_site_name_shortcode() {
 	// Get the site name.
-	$site_name = get_bloginfo( 'name' ) ? '<span class="site-name">' . esc_html( get_bloginfo( 'name' ) ) . '</span>' : '<span class="site-name">Flexline</span>';
+	$site_name = get_bloginfo( 'name' ) ? esc_html( get_bloginfo( 'name' ) ): 'Flexline';
 
 	// Start output buffering.
 	ob_start();

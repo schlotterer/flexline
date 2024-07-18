@@ -216,6 +216,21 @@
 					"slug": "alternate"
 				},
 				{
+					"color": "#DADADA",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
+				},
+				{
+					"color": "#BCB9B2",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#949494",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
+				},
+				{
 					"color": "#985594",
 					"name": "Highlight",
 					"slug": "highlight"
@@ -234,21 +249,6 @@
 					"color": "#F0F0F0",
 					"name": "Base",
 					"slug": "base"
-				},
-				{
-					"color": "#DADADA",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#BCB9B2",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#949494",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
 				},
 				{
 					"color": "#212021",
@@ -427,6 +427,14 @@
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
 			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
+			"eyebrowSize": "var(--wp--preset--font-size--small)",
+			"eyebrowColor": "var(--wp--preset--color--neutral)",
+			"eyebrowFont": "var(--wp--preset--font-family--display)",
+			"eyebrowTextTransform": "uppercase",
+			"creativeSize": "var(--wp--preset--font-size--max-72)",
+			"creativeColor": "var(--wp--preset--color--contrast)",
+			"creativeFont": "var(--wp--preset--font-family--brand)",
+			"creativeTextTransform": "none",
 			"textShadow": "0 .18rem .4rem rgba(0,0,0, 0.5)",
 			"borderRadius": "0 8px 0 8px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
@@ -440,7 +448,6 @@
 			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
 			"decoColor": "var(--wp--preset--color--highlight)",
 			"gradientAngle": "300deg",
-			
 			"color":{
 				"primary": {
 					"light" : "#1A5896",
@@ -948,6 +955,27 @@
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--brand)",
 					"fontSize": "var(--wp--preset--font-size--large)"
+				},
+				"variations": {
+					"eyebrow" : {
+						"color": {
+							"text": "var(--wp--preset--color--neutral)"
+						},
+						"typography": {
+							"fontFamily": "var(--wp--preset--font-family--display)",
+							"textTransform": "uppercase",
+							"fontSize": "var(--wp--preset--font-size--small)"
+						}
+					},
+					"creative": {
+						"color": {
+							"text": "var(--wp--preset--color--contrast)"
+						},
+						"typography": {
+							"fontFamily": "var(--wp--preset--font-family--brand)",
+							"fontSize": "var(--wp--preset--font-size--xlarge)"
+						}
+					}
 				}
 			},
 			"core/spacer": {
