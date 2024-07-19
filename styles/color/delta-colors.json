@@ -119,9 +119,9 @@
 					"name": "Highlight"
 				},
 				{
-					"colors": ["#464a4e", "#ffffff"],
+					"colors": ["#464a4e", "#F7E8D6"],
 					"slug": "neutral-dark",
-					"name": "Neutral Dark"
+					"name": "Neutral"
 				},
 				{
 					"colors": ["#010101", "#ffffff"],
