@@ -218,34 +218,14 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#F7E8D6",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#E3D8DE",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#464a4e",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
-				},
-				{
 					"color": "#BBA908",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#ebd40a",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#18A957",
-					"name": "Success",
-					"slug": "success"
+					"color": "#F7E8D6",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
 				},
 				{
 					"color": "#ffffff",
@@ -253,19 +233,9 @@
 					"slug": "base"
 				},
 				{
-					"color": "#010101",
-					"name": "Contrast",
-					"slug": "contrast"
-				},
-				{
 					"color": "#7AAF4B",
 					"name": "Primary Light",
 					"slug": "primary-light"
-				},
-				{
-					"color": "#223213",
-					"name": "Primary Dark",
-					"slug": "primary-dark"
 				},
 				{
 					"color": "#33E0E0",
@@ -273,19 +243,49 @@
 					"slug": "secondary-light"
 				},
 				{
-					"color": "#025454",
-					"name": "Secondary Dark",
-					"slug": "secondary-dark"
-				},
-				{
 					"color": "#FFC5C4",
 					"name": "Alternate Light",
 					"slug": "alternate-light"
 				},
 				{
+					"color": "#ebd40a",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#E3D8DE",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#010101",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#223213",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#025454",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
 					"color": "#b61916",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
+				},
+				{
+					"color": "#18A957",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#464a4e",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
 				}
 			]
 		},

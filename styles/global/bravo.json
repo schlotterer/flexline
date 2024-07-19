@@ -218,44 +218,19 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#ECE7E5",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#DFDFDF",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#8B807C",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
-				},
-				{
 					"color": "#A71B78",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#FFDD38",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#18A957",
-					"name": "Success",
-					"slug": "success"
+					"color": "#ECE7E5",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
 				},
 				{
 					"color": "#ffffff",
 					"name": "Base",
 					"slug": "base"
-				},
-				{
-					"color": "#0e161e",
-					"name": "Contrast",
-					"slug": "contrast"
 				},
 				{
 					"color": "#AC798D",
@@ -273,6 +248,21 @@
 					"slug": "secondary-light"
 				},
 				{
+					"color": "#FFDD38",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#DFDFDF",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#0e161e",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
 					"color": "#7B562C",
 					"name": "Secondary Dark",
 					"slug": "secondary-dark"
@@ -286,9 +276,18 @@
 					"color": "#5A4B3C",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
+				},
+				{
+					"color": "#18A957",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#8B807C",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
 				}
 			]
-			
 		},
 		"typography": {
 			"dropCap": false,

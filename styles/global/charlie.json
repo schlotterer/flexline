@@ -218,34 +218,14 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#EAEAE7",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#B8B8B8",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#8A8A8A",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
-				},
-				{
 					"color": "#606C38",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#FFDD38",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#18A957",
-					"name": "Success",
-					"slug": "success"
+					"color": "#EAEAE7",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
 				},
 				{
 					"color": "#ffffff",
@@ -253,19 +233,9 @@
 					"slug": "base"
 				},
 				{
-					"color": "#000000",
-					"name": "Contrast",
-					"slug": "contrast"
-				},
-				{
 					"color": "#4A5634",
 					"name": "Primary Light",
 					"slug": "primary-light"
-				},
-				{
-					"color": "#1C2612",
-					"name": "Primary Dark",
-					"slug": "primary-dark"
 				},
 				{
 					"color": "#D07F46",
@@ -273,20 +243,50 @@
 					"slug": "secondary-light"
 				},
 				{
-					"color": "#974A14",
-					"name": "Secondary Dark",
-					"slug": "secondary-dark"
-				},
-				{
 					"color": "#E8B789",
 					"name": "Alternate Light",
 					"slug": "alternate-light"
 				},
 				{
+					"color": "#FFDD38",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#B8B8B8",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#000000",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#1C2612",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#974A14",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
 					"color": "#B37E4E",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
-				}
+				},
+				{
+					"color": "#18A957",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#8A8A8A",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
+				}	
 			]
 		},
 		"typography": {
