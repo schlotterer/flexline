@@ -7,7 +7,7 @@
 		"color": {
 			"gradients": [
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary-dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
@@ -27,7 +27,7 @@
 					"slug": "primary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary-dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
@@ -47,7 +47,7 @@
 					"slug": "secondary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate-dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
@@ -99,32 +99,32 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#33515B", "#E8E6CC" ],
+					"colors": [ "#33515B", "#FCFBF4" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#B66E1C", "#E8E6CC" ],
+					"colors": [ "#B66E1C", "#FCFBF4" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#0F6185", "#E8E6CC" ],
+					"colors": [ "#0F6185", "#FCFBF4" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#CC6D00", "#E8E6CC" ],
+					"colors": [ "#CC6D00", "#FCFBF4" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#5E5D53", "#DADADA" ],
+					"colors": [ "#5E5D53", "#FCFBF4" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
 				{
-					"colors": [ "#212021", "#DADADA" ],
+					"colors": [ "#212021", "#FCFBF4" ],
 					"slug": "dark",
 					"name": "Dark"
 				},
@@ -199,6 +199,36 @@
 					"color": "#1E1F1C",
 					"name": "Contrast",
 					"slug": "contrast"
+				},
+				{
+					"color": "#61848F",
+					"name": "Primary Light",
+					"slug": "primary-light"
+				},
+				{
+					"color": "#1A4760",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#ECBB83",
+					"name": "Secondary Light",
+					"slug": "secondary-light"
+				},
+				{
+					"color": "#6E360C",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
+					"color": "#4791B1",
+					"name": "Alternate Light",
+					"slug": "alternate-light"
+				},
+				{
+					"color": "#133B50",
+					"name": "Alternate Dark",
+					"slug": "alternate-dark"
 				}
 			]
 		}

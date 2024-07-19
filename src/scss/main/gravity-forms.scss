@@ -12,11 +12,11 @@ body.flexline {
 		--gf-local-radius: var(--wp--custom--border-radius);
 
 		--gf-color-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-primary-darker: var(--wp--custom--color--primary--dark) !important;
-		--gf-color-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-primary-darker: var(--wp--preset--color--primary-dark) !important;
+		--gf-color-primary-lighter: var(--wp--preset--color--primary-light) !important;
 		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-in-ctrl-primary-darker: var(--wp--custom--color--primary--dark) !important;
-		--gf-color-in-ctrl-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark) !important;
+		--gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light) !important;
 		
 		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
 		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
@@ -45,11 +45,11 @@ body.flexline {
 	}
 	.gform-theme--framework.gform-theme.gform_wrapper{
 		--gf-color-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-primary-darker: var(--wp--custom--color--primary--dark) !important;
-		--gf-color-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-primary-darker: var(--wp--preset--color--primary-dark) !important;
+		--gf-color-primary-lighter: var(--wp--preset--color--primary-light) !important;
 		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-in-ctrl-primary-darker: var(--wp--custom--color--primary--dark) !important;
-		--gf-color-in-ctrl-primary-lighter: var(--wp--custom--color--primary--light) !important;
+		--gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark) !important;
+		--gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light) !important;
 		
 		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
 		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
