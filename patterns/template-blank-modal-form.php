@@ -3,7 +3,7 @@
 /**
  * Title: Blank Template - Modal Form
  * Slug: flexline/template-blank-modal-form
- * Categories: flexline-events
+ * Categories: flexline-utilities
  */
 ?>
 <!-- wp:group {"metadata":{"name":"Blank Template Modal Form"},"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}},"dimensions":{"minHeight":"100%"}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
