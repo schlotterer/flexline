@@ -161,7 +161,7 @@
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#9C723C", "#ffffff" ],
+					"colors": [ "#A56817", "#ffffff" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
@@ -186,7 +186,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#45324b", "#9C723C" ],
+					"colors": [ "#45324b", "#A56817" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
@@ -208,7 +208,7 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#9C723C",
+					"color": "#A56817",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -238,14 +238,14 @@
 					"slug": "primary-light"
 				},
 				{
-					"color": "#361735",
-					"name": "Primary Dark",
-					"slug": "primary-dark"
-				},
-				{
 					"color": "#CBA06B",
 					"name": "Secondary Light",
 					"slug": "secondary-light"
+				},
+				{
+					"color": "#B0BE67",
+					"name": "Alternate Light",
+					"slug": "alternate-light"
 				},
 				{
 					"color": "#FFDD38",
@@ -263,17 +263,17 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#7B562C",
+					"color": "#361735",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#764B12",
 					"name": "Secondary Dark",
 					"slug": "secondary-dark"
 				},
 				{
-					"color": "#9D8C72",
-					"name": "Alternate Light",
-					"slug": "alternate-light"
-				},
-				{
-					"color": "#5A4B3C",
+					"color": "#50562A",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
 				},

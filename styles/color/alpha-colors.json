@@ -104,7 +104,7 @@
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#B66E1C", "#FCFBF4" ],
+					"colors": [ "#B25F00", "#FCFBF4" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
@@ -119,7 +119,7 @@
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#5E5D53", "#FCFBF4" ],
+					"colors": [ "#7E8284", "#FCFBF4" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
@@ -129,7 +129,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#33515B", "#B66E1C" ],
+					"colors": [ "#33515B", "#B25F00" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
@@ -151,7 +151,7 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#B66E1C",
+					"color": "#B25F00",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -166,7 +166,7 @@
 					"slug": "highlight"
 				},
 				{
-					"color": "#CAC8B2",
+					"color": "#E0E3E3",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
@@ -181,7 +181,7 @@
 					"slug": "primary-light"
 				},
 				{
-					"color": "#ECBB83",
+					"color": "#E69333",
 					"name": "Secondary Light",
 					"slug": "secondary-light"
 				},
@@ -196,7 +196,7 @@
 					"slug": "warning"
 				},
 				{
-					"color": "#A0A08D",
+					"color": "#BCC0C3",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -210,9 +210,8 @@
 					"name": "Primary Dark",
 					"slug": "primary-dark"
 				},
-				
 				{
-					"color": "#6E360C",
+					"color": "#6D3D06",
 					"name": "Secondary Dark",
 					"slug": "secondary-dark"
 				},
@@ -227,7 +226,7 @@
 					"slug": "success"
 				},
 				{
-					"color": "#5E5D53",
+					"color": "#7E8284",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				}
