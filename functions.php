@@ -22,7 +22,6 @@ function include_inc_files() {
 		'inc/hooks/', // Load custom filters and hooks.
 		'inc/setup/', // Theme setup.
 		'inc/scripts.php', // Scripts and Styles loading.
-		'inc/shortcodes/', // Load shortcodes.
 		'inc/theme-options/', // Load theme options.
 	);
 
