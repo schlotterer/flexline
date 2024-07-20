@@ -7,49 +7,39 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "'Sulphur Point', sans-serif",
+					"fontFamily": "'Quattrocento', serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Sulphur Point'",
+							"fontFamily": "'Quattrocento'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Sulphur_Point/SulphurPoint-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/Quattrocento/Quattrocento-Regular.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Raleway', sans-serif",
+					"fontFamily": "'Lato', sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Raleway'",
+							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Raleway/static/Raleway-Regular.ttf" ]
+							"fontWeight": "300",
+							"src": [ "file:./assets/fonts/Lato/Lato-Light.ttf"]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Source Sans 3', sans-serif",
+					"fontFamily": "Tahoma, Verdana, Segoe, sans-serif",
 					"name": "Body",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "'Source Sans 3', sans-serif",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Source_Sans_3/static/SourceSans3-Medium.ttf" ]
-						}
-					]
+					"slug": "body"
 				},
 				{
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",

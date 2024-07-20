@@ -64,7 +64,7 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary-dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
@@ -84,7 +84,7 @@
 					"slug": "primary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary-dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
@@ -104,7 +104,7 @@
 					"slug": "secondary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate-dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
@@ -176,9 +176,9 @@
 					"name": "Highlight"
 				},
 				{
-					"colors": ["#464a4e", "#ffffff"],
+					"colors": ["#464a4e", "#F7E8D6"],
 					"slug": "neutral-dark",
-					"name": "Neutral Dark"
+					"name": "Neutral"
 				},
 				{
 					"colors": ["#010101", "#ffffff"],
@@ -218,34 +218,14 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#F7E8D6",
-					"name": "Neutral Light",
-					"slug": "neutral-light"
-				},
-				{
-					"color": "#E3D8DE",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#464a4e",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
-				},
-				{
 					"color": "#BBA908",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#ebd40a",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#18A957",
-					"name": "Success",
-					"slug": "success"
+					"color": "#F7E8D6",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
 				},
 				{
 					"color": "#ffffff",
@@ -253,9 +233,59 @@
 					"slug": "base"
 				},
 				{
+					"color": "#7AAF4B",
+					"name": "Primary Light",
+					"slug": "primary-light"
+				},
+				{
+					"color": "#33E0E0",
+					"name": "Secondary Light",
+					"slug": "secondary-light"
+				},
+				{
+					"color": "#FFC5C4",
+					"name": "Alternate Light",
+					"slug": "alternate-light"
+				},
+				{
+					"color": "#ebd40a",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#E3D8DE",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
 					"color": "#010101",
 					"name": "Contrast",
 					"slug": "contrast"
+				},
+				{
+					"color": "#223213",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#025454",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
+					"color": "#b61916",
+					"name": "Alternate Dark",
+					"slug": "alternate-dark"
+				},
+				{
+					"color": "#18A957",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#464a4e",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
 				}
 			]
 		},
@@ -436,23 +466,10 @@
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
-			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
+			"searchMenuIconHoverColor": "var(--wp--preset--color--secondary-dark)",
 			"decoColor": "var(--wp--preset--color--alternate)",
 			"gradientAngle": "300deg",
-			
 			"color":{
-				"primary": {
-					"light" : "#7AAF4B",
-					"dark": "#223213"
-				},
-				"secondary": {
-					"light" : "#33E0E0",
-					"dark": "#025454"
-				},
-				"alternate": {
-					"light" : "#FFC5C4",
-					"dark": "#b61916"
-				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
 					"success": "var(--wp--preset--color--success)",
