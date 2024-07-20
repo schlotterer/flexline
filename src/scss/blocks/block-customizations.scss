@@ -1,6 +1,5 @@
 body,
 .editor-styles-wrapper {
-
     .wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
     figure.wp-block-image.is-style-rounded {
         border-radius: var(--wp--custom--image-border-radius);
@@ -11,7 +10,7 @@ body,
             left: 0;
             right: 0;
             padding: 0 8px 8px;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 70%, transparent);
+            background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgb(0 0 0 / 30%) 70%, transparent);
             color: #fff;
             font-size: 13px;
         }

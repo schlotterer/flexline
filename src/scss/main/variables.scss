@@ -1,10 +1,9 @@
 // Screen size mixins
-$m : 781.98px;
-$tSmall : 782px;
-$tLarge : 991.98px;
-$d : 992px;
-$dLarge : 1325px;
-
+$m: 781.98px;
+$tSmall: 782px;
+$tLarge: 991.98px;
+$d: 992px;
+$dLarge: 1325px;
 $mobile: "only screen and (max-width:#{$m})";
 $tablet-down: "only screen and (max-width:#{$tLarge})";
 $tablet: "only screen and (min-width:#{$tSmall}) and (max-width:#{$tLarge})";
@@ -15,6 +14,7 @@ $desktop-large: "only screen and (min-width:#{$dLarge})";
 
 
 // Screen size Mixin
+
 /*
  * Usage:
  @include screen($mobile){

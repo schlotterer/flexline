@@ -1,6 +1,5 @@
 body,
 .editor-styles-wrapper {
-
     .is-position-fixed {
         position: fixed;
         width: 100%;
@@ -103,7 +102,6 @@ body,
     ---------------------------------------- */
 
     @include screen($mobile) {
-
         /* -- Order -- */
 
         .is-order-first-mobile {

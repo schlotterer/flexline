@@ -1,6 +1,5 @@
 body,
 .editor-styles-wrapper {
-
     .plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__basic,
     .plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__tabby {
         padding: 0 !important;
@@ -27,7 +26,6 @@ body,
     }
 
     @include screen($mobile) {
-
         .plethoraplugins-sidenavjump,
         .js-plethoraplugins-tab-panel,
         .plethoraplugins-sidenavjump-content {

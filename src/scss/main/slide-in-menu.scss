@@ -1,6 +1,5 @@
 // Slide In Menu
 .wp-block-template-part.slide-in {
-
     >aside {
         visibility: hidden;
         display: block;
@@ -14,10 +13,7 @@
         overflow: auto;
 
         &.active {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
+            inset: 0;
             visibility: visible;
         }
     }
@@ -25,7 +21,6 @@
 
 button {
     &#slide-in-menu-button {
-
         position: fixed;
         display: flex;
         width: 40px;
@@ -37,7 +32,6 @@ button {
         border-radius: 200px;
         background-color: var(--wp--custom--search-menu-icon-color);
         box-shadow: var(--wp--preset--shadow--light);
-
         text-align: center;
         justify-content: center;
         align-items: center;
@@ -81,7 +75,6 @@ button {
         box-shadow: none;
 
         >span {
-
             &::before {
                 font-size: 30px;
             }
@@ -90,21 +83,18 @@ button {
 }
 
 .admin-bar {
-
     #slide-in-menu-button[style*="fixed"] {
         transform: translate(0, var(--wp-admin--admin-bar--height));
     }
 }
 
 @include screen($desktop-large-down) {
-
     button#slide-in-menu-button {
         width: 35px;
         height: 35px;
         right: 5px;
 
         >span {
-
             &::before {
                 font-size: 25px;
             }

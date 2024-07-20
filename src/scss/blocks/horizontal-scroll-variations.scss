@@ -1,28 +1,33 @@
-/* Media Queries
----------------------------------------- */
 body,
 .editor-styles-wrapper {
 
     @include screen($tablet-down) {
-
         .is-style-horizontal-scroll-at-mobile:not(ul) {
-
             >ul {
                 position: relative;
-                overflow-y: hidden;
-                overflow-x: auto;
+                overflow: auto hidden;
                 -ms-overflow-style: none;
+
                 /* IE and Edge */
+
                 /* Firefox */
                 -webkit-overflow-scrolling: touch;
+
                 /* Smooth scrolling on touch devices */
                 white-space: nowrap;
+
                 /* Ensure items are laid out in a single line */
                 margin: 0 30px 0 0;
                 padding: 0;
                 scrollbar-width: thin;
+
                 /* "auto" or "thin" */
-                scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+                scrollbar-color: rgb(0 0 0 / 30%) transparent;
+                display: flex;
+                justify-content: flex-start;
+                margin: 0 35px 0 25px;
+                white-space: nowrap;
+
                 /* thumb and track color */
 
                 >* {
@@ -41,21 +46,22 @@ body,
 
                 &::-webkit-scrollbar {
                     height: 3px;
+
                     /* Height of the scrollbar */
-                    background-color: rgba(0, 0, 0, 0.3);
+                    background-color: rgb(0 0 0 / 30%);
+
                     /* Color of the scrollbar track */
                 }
 
                 &::-webkit-scrollbar-thumb {
                     background-color: transparent;
+
                     /* Color of the scroll thumb */
                     border-radius: 2px;
+
                     /* Roundness of the scroll thumb */
                 }
             }
-        }
-
-        .is-style-horizontal-scroll-at-mobile:not(ul) {
 
             &::after {
                 content: "";
@@ -73,20 +79,10 @@ body,
                 height: 50px;
                 width: 25px;
             }
-
-            >ul {
-                //padding-bottom: 4px;
-                display: flex;
-                justify-content: flex-start;
-                margin: 0 35px 0 25px;
-                white-space: nowrap;
-
-            }
         }
     }
 
     .is-style-horizontal-scroll {
-
         &.wp-block-columns,
         &.wp-block-group,
         &.wp-block-post-template {
@@ -94,12 +90,14 @@ body,
             display: flex !important;
             justify-content: flex-start;
             flex-wrap: nowrap;
-            overflow-y: hidden;
-            overflow-x: auto;
+            overflow: auto hidden;
             -ms-overflow-style: none;
+
             /* IE and Edge */
+
             /* Firefox */
             -webkit-overflow-scrolling: touch;
+
             /* Smooth scrolling on touch devices */
             padding: 10px var(--wp--preset--spacing--medium) 15px 0;
             max-height: 70vh;
@@ -119,7 +117,6 @@ body,
                 }
 
                 &[class*="is-style-card"] {
-
                     &.group-link {
                         max-width: 500px;
                     }
@@ -135,21 +132,26 @@ body,
             }
 
             scrollbar-width: thin;
+
             /* "auto" or "thin" */
             scrollbar-color: rgba(#000, 0.3) transparent;
 
             /* thumb and track color */
             &::-webkit-scrollbar {
                 height: 3px;
+
                 /* Height of the scrollbar */
                 background-color: rgba(#000, 0.3);
+
                 /* Color of the scrollbar track */
             }
 
             &::-webkit-scrollbar-thumb {
                 background-color: transparent;
+
                 /* Color of the scroll thumb */
                 border-radius: 2px;
+
                 /* Roundness of the scroll thumb */
             }
         }
@@ -157,22 +159,15 @@ body,
     }
 
     @include screen($mobile) {
-
         .is-style-horizontal-scroll {
-
             &.wp-block-columns,
             &.wp-block-group,
             &.wp-block-post-template {
-
                 >* {
-                    //flex: 0 0 auto;
                     max-width: 325px;
                 }
-
             }
-
         }
-
     }
 
     .is-horizontal-scroll-btn {

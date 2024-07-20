@@ -20,7 +20,6 @@
 
 /* Large screens (desktops,992px and up) */
 @include screen($desktop) {
-
     .block-visibility-hide-large-screen,
     .flexline-hide-on-desktop,
     .is-style-hide-on-desktop {
@@ -30,7 +29,6 @@
 
 /* Medium screens (tablets, between 768px and992px) */
 @include screen($tablet) {
-
     .block-visibility-hide-medium-screen,
     .flexline-hide-on-tablet {
         display: none !important;
@@ -47,7 +45,6 @@
 
 /* Small screens (mobile devices, less than 768px) */
 @include screen($mobile) {
-
     .block-visibility-hide-small-screen,
     .flexline-hide-on-mobile,
     .is-style-hide-on-mobile,

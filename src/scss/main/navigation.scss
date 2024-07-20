@@ -68,10 +68,8 @@
 
 // Style Variations
 .wp-block-navigation {
-
     &.is-style-main-header-nav .wp-block-navigation-item {
-
-        *:not(.wp-element-button):not(span) {
+        *:not(.wp-element-button, span) {
             color: var(--wp--custom--nav-main-color);
 
             &:hover {
@@ -87,8 +85,7 @@
     }
 
     &.is-style-light-over-dark .wp-block-navigation-item {
-
-        *:not(.wp-element-button):not(span) {
+        *:not(.wp-element-button, span) {
             color: var(--wp--custom--nav-light-over-dark-color);
 
             &:hover {
@@ -104,7 +101,6 @@
     }
 
     &.is-style-dark-over-light .wp-block-navigation-item {
-
         a:not(.wp-element-button) {
             color: var(--wp--custom--nav-dark-over-light-color);
 

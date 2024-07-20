@@ -14,20 +14,22 @@ html {
 body.baguetteBox-open,
 body.no-scroll {
     overflow: hidden;
+
     /* Hide scrollbars and disable scrolling */
     height: 100%;
+
     /* Optional: to ensure full page height */
     width: 100%;
+
     /* Optional: to ensure full page width */
     position: fixed;
+
     /* Optional: to lock the position */
 }
 
 body,
 .editor-styles-wrapper {
-
     &.safari {
-
         .wp-block-image .aligncenter,
         .wp-block-image .alignleft,
         .wp-block-image .alignright,
@@ -69,13 +71,11 @@ body,
         background-size: 100% 15%;
     }
 
-    /* -- Forms -- */
-
+    // Forms
     input,
     select,
     textarea {
         background-color: var(--wp--preset--color--base);
-        //border: 1px solid var(--wp--preset--color--contrast);
         border-radius: 0;
         color: var(--wp--preset--color--contrast);
         font-family: var(--wp--preset--font-family--body);
@@ -104,7 +104,7 @@ body,
     input[type="submit"],
     input[type="text"],
     textarea {
-        -webkit-appearance: none;
+        appearance: none;
     }
 
     ::placeholder {
@@ -134,7 +134,7 @@ body,
         }
     }
 
-    $buttonSpace : 40px;
+    $buttonSpace: 40px;
 
     #flexline-call-button {
         ~.site-header {
@@ -188,7 +188,7 @@ body,
         &.flexline-hide-on-tablet {
             @include screen($tablet) {
                 ~.site-header #header_container {
-                    padding-right: 0px;
+                    padding-right: 0;
                 }
             }
         }
@@ -196,7 +196,7 @@ body,
         &.flexline-hide-on-desktop {
             @include screen($desktop) {
                 ~.site-header #header_container {
-                    padding-right: 0px;
+                    padding-right: 0;
                 }
             }
         }
@@ -215,7 +215,6 @@ body,
 
     // Phone link
     @include screen($mobile) {
-
         #phonelink>a {
             padding: 8px 5px !important;
             font-size: 14px !important;
@@ -227,7 +226,6 @@ body,
         font-style: normal;
 
         &.contact-info {
-
             a {
                 display: inline-flex;
                 align-items: center;
@@ -240,14 +238,10 @@ body,
     }
 
     .site-footer {
-
         // Address
         address {
-
             &.contact-info {
-
                 a {
-
                     path {
                         fill: var(--wp--preset--color--base);
                     }

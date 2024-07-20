@@ -8,7 +8,6 @@
 #flexline-modal img,
 #flexline-modal video,
 #flexline-modal iframe {
-
     /* Adjustments for better responsiveness */
     max-width: 90%;
     max-height: 80vh;
@@ -21,7 +20,6 @@
 }
 
 #flexline-modal span[role="button"] {
-
     /* Enhancements for the close button */
     display: flex;
     justify-content: center;
@@ -37,6 +35,7 @@
 #flexline-modal span[role="button"]:focus {
     opacity: 1;
     outline: none;
+
     /* For focus, consider a more accessible outline style */
 }
 
@@ -55,7 +54,6 @@
 }
 
 @include screen($mobile) {
-
     .aspect-ratio-16-9 {
         width: calc(100% - 10px);
     }
@@ -107,7 +105,6 @@ figure.wp-block-image.enable-modal {
     }
 
     &:hover {
-
         &::after {
             opacity: 1;
         }
@@ -119,7 +116,6 @@ figure.wp-block-image.enable-modal {
     &[data-modal-media-url*=".mp4"],
     &[data-modal-media-url*=".webm"],
     &[data-modal-media-url*=".ogg"] {
-
         &::after {
             content: "";
             right: unset;
@@ -198,7 +194,6 @@ figure.poster-gallery.has-nested-images {
         }
 
         &:hover {
-
             &::after {
                 opacity: 1;
             }

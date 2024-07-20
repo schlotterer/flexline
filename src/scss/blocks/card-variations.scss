@@ -1,6 +1,5 @@
 body,
 .editor-styles-wrapper {
-
     // All
     .is-style-card,
     .is-style-card-alt,
@@ -22,7 +21,6 @@ body,
         box-shadow: var(--wp--preset--shadow--light);
 
         &.group-link {
-
             &:hover {
                 box-shadow: var(--wp--preset--shadow--dark);
             }
@@ -58,12 +56,11 @@ body,
             padding: 0 !important;
         }
 
-        >*:not(figure):not(.wp-block-cover) {
+        >*:not(figure, .wp-block-cover) {
             padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
         }
 
         &.has-global-padding {
-
             >*:not(figure) {
                 padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
             }
@@ -81,7 +78,6 @@ body,
         box-shadow: var(--wp--preset--shadow--light);
 
         &.group-link {
-
             &:hover {
                 box-shadow: none;
             }
@@ -92,7 +88,6 @@ body,
         box-shadow: var(--wp--preset--shadow--dark);
 
         &.group-link {
-
             &:hover {
                 box-shadow: var(--wp--preset--shadow--diffused);
             }
@@ -103,7 +98,6 @@ body,
         box-shadow: var(--wp--preset--shadow--diffused);
 
         &.group-link {
-
             &:hover {
                 box-shadow: var(--wp--preset--shadow--light);
             }
@@ -115,17 +109,15 @@ body,
     .wp-block-button.is-style-glass-button .wp-element-button {
         background: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
         backdrop-filter: blur(10px) saturate(75%);
-        -webkit-backdrop-filter: blur(10px) saturate(75%);
+        backdrop-filter: blur(10px) saturate(75%);
         transition: var(--wp--custom--transition-time);
 
         &.group-link {
-
             &:hover {
-
                 background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
                 box-shadow: var(--wp--preset--shadow--diffused);
                 backdrop-filter: blur(15px) saturate(60%);
-                -webkit-backdrop-filter: blur(15px) saturate(60%);
+                backdrop-filter: blur(15px) saturate(60%);
             }
         }
     }
@@ -145,7 +137,7 @@ body,
             background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
             box-shadow: var(--wp--preset--shadow--diffused);
             backdrop-filter: blur(15px) saturate(60%);
-            -webkit-backdrop-filter: blur(15px) saturate(60%);
+            backdrop-filter: blur(15px) saturate(60%);
         }
 
     }
