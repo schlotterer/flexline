@@ -1,113 +1,113 @@
 // Slide In Menu
 .wp-block-template-part.slide-in {
 
-	> aside {
-		visibility: hidden;
-		display: block;
-		position: fixed;
-		top: 0;
-		left: 100%;
-		bottom: 0;
-		transition: var(--wp--custom--transition-time);
-		z-index: 100000000;
-		width: 100%;
-		overflow: auto;
+    >aside {
+        visibility: hidden;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 100%;
+        bottom: 0;
+        transition: var(--wp--custom--transition-time);
+        z-index: 100000000;
+        width: 100%;
+        overflow: auto;
 
-		&.active {
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			visibility: visible;
-		}
-	}
+        &.active {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            visibility: visible;
+        }
+    }
 }
 
 button {
-	&#slide-in-menu-button {
+    &#slide-in-menu-button {
 
-		position: fixed;
-		display: flex;
-		width: 40px;
-		height: 40px;
-		right: 10px;
-		transition: var(--wp--custom--transition-time);
-		z-index: 12;
-		padding: 0;
-		border-radius: 200px;
-		background-color: var(--wp--custom--search-menu-icon-color);
-		box-shadow: var(--wp--preset--shadow--light);
+        position: fixed;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        transition: var(--wp--custom--transition-time);
+        z-index: 12;
+        padding: 0;
+        border-radius: 200px;
+        background-color: var(--wp--custom--search-menu-icon-color);
+        box-shadow: var(--wp--preset--shadow--light);
 
-		text-align: center;
-		justify-content: center;
-		align-items: center;
-		color: var(--wp--preset--color--base);
-		border: none;
-		font-size: var(--wp--preset--font-size--large);
-		line-height: 1;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: var(--wp--preset--color--base);
+        border: none;
+        font-size: var(--wp--preset--font-size--large);
+        line-height: 1;
 
-		> span {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 100%;
+        >span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
 
-			&::before {
-				line-height: 1.4;
-				font-size: 30px;
-			}
-		}
+            &::before {
+                line-height: 1.4;
+                font-size: 30px;
+            }
+        }
 
-		&:hover {
-			box-shadow: var(--wp--preset--shadow--dark);
-			background-color: var(--wp--custom--search-menu-icon-hover-color);
-		}
-	}
+        &:hover {
+            box-shadow: var(--wp--preset--shadow--dark);
+            background-color: var(--wp--custom--search-menu-icon-hover-color);
+        }
+    }
 
-	&#slide-in-menu-close {
-		z-index: 12;
-		border: none;
-		background-color: transparent;
-		color: var(--wp--preset--color--base);
-		font-size: var(--wp--preset--font-size--xlarge);
-		top: 5px;
-		right: 5px;
-		padding: 0;
-		position: absolute;
-		width: 30px;
-		height: 30px;
-		border-radius: 200px;
-		box-shadow: none;
+    &#slide-in-menu-close {
+        z-index: 12;
+        border: none;
+        background-color: transparent;
+        color: var(--wp--preset--color--base);
+        font-size: var(--wp--preset--font-size--xlarge);
+        top: 5px;
+        right: 5px;
+        padding: 0;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 200px;
+        box-shadow: none;
 
-		> span {
+        >span {
 
-			&::before {
-				font-size: 30px;
-			}
-		}
-	}
+            &::before {
+                font-size: 30px;
+            }
+        }
+    }
 }
 
 .admin-bar {
 
-	#slide-in-menu-button[style*="fixed"] {
-		transform: translate(0, var(--wp-admin--admin-bar--height));
-	}
+    #slide-in-menu-button[style*="fixed"] {
+        transform: translate(0, var(--wp-admin--admin-bar--height));
+    }
 }
 
-@include screen($desktop-large-down){
+@include screen($desktop-large-down) {
 
-	button#slide-in-menu-button {
-		width: 35px;
-		height: 35px;
-		right: 5px;
+    button#slide-in-menu-button {
+        width: 35px;
+        height: 35px;
+        right: 5px;
 
-		> span {
+        >span {
 
-			&::before {
-				font-size: 25px;
-			}
-		}
-	}
+            &::before {
+                font-size: 25px;
+            }
+        }
+    }
 }

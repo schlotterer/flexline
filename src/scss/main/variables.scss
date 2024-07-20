@@ -22,8 +22,7 @@ $desktop-large: "only screen and (min-width:#{$dLarge})";
  }
 */
 @mixin screen($class) {
-    @media #{$class} {
-      @content;
-    }
+  @media #{$class} {
+    @content;
+  }
 }
-

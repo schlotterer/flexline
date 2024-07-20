@@ -1,47 +1,47 @@
 body,
 .editor-styles-wrapper {
 
-	.wp-block-image {
-		overflow: clip;
+    .wp-block-image {
+        overflow: clip;
 
-	}
+    }
 
-	/* -- List -- */
-	.is-style-no-disc {
-		list-style-type: none;
-		padding-left: 0;
-	}
+    /* -- List -- */
+    .is-style-no-disc {
+        list-style-type: none;
+        padding-left: 0;
+    }
 
-	// Text Shadow
-	.is-style-text-shadow {
-		text-shadow: var(--wp--custom--text-shadow);
-	}
+    // Text Shadow
+    .is-style-text-shadow {
+        text-shadow: var(--wp--custom--text-shadow);
+    }
 
-	.is-style-eyebrow{
-		font-size: var(--wp--custom--eyebrow-size);
-		font-family: var(--wp--custom--eyebrow-font);
-		color: var(--wp--custom--eyebrow-color);
-		text-transform: var(--wp--custom--eyebrow-text-transform);
-		line-height: 1.05;
-	}
+    .is-style-eyebrow {
+        font-size: var(--wp--custom--eyebrow-size);
+        font-family: var(--wp--custom--eyebrow-font);
+        color: var(--wp--custom--eyebrow-color);
+        text-transform: var(--wp--custom--eyebrow-text-transform);
+        line-height: 1.05;
+    }
 
-	.is-style-creative{
-		font-size: var(--wp--custom--creative-size);
-		font-family: var(--wp--custom--creative-font);
-		color: var(--wp--custom--creative-color);
-		text-transform: var(--wp--custom--creative-text-transform);
-		line-height: 1.05;
-	}
+    .is-style-creative {
+        font-size: var(--wp--custom--creative-size);
+        font-family: var(--wp--custom--creative-font);
+        color: var(--wp--custom--creative-color);
+        text-transform: var(--wp--custom--creative-text-transform);
+        line-height: 1.05;
+    }
 
-	@include screen($tablet-up){
+    @include screen($tablet-up) {
 
-		/* -- Navigation Link -- */
-		// TODO: why is this like this?
-		.wp-block-navigation-item.is-style-outline a {
-			border: 1px solid currentcolor;
-			padding: 8px 15px;
-		}
+        /* -- Navigation Link -- */
+        // TODO: why is this like this?
+        .wp-block-navigation-item.is-style-outline a {
+            border: 1px solid currentcolor;
+            padding: 8px 15px;
+        }
 
-	}
+    }
 
 }

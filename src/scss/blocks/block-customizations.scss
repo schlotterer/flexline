@@ -1,25 +1,25 @@
 body,
 .editor-styles-wrapper {
 
-	.wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
-	figure.wp-block-image.is-style-rounded {
-		border-radius: var(--wp--custom--image-border-radius);
+    .wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
+    figure.wp-block-image.is-style-rounded {
+        border-radius: var(--wp--custom--image-border-radius);
 
-		figcaption {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			padding: 0 8px 8px;
-			background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 70%, transparent);
-			color: #fff;
-			font-size: 13px;
-		}
+        figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 8px 8px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 70%, transparent);
+            color: #fff;
+            font-size: 13px;
+        }
 
-	}
+    }
 
-	figure.wp-block-image.is-style-card {
-		border-radius: var(--wp--custom--image-border-radius);
-		box-shadow: var(--wp--custom--box-shadow);
-	}
+    figure.wp-block-image.is-style-card {
+        border-radius: var(--wp--custom--image-border-radius);
+        box-shadow: var(--wp--custom--box-shadow);
+    }
 }

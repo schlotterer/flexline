@@ -1,19 +1,16 @@
+/* -- Columns -- */
 
+.is-style-columns-reverse {
+    &.flexline-stack-at-tablet {
+        @include screen($tablet) {
+            flex-direction: column-reverse;
+        }
+    }
 
-
-
-	/* -- Columns -- */
-
-	.is-style-columns-reverse {
-		&.flexline-stack-at-tablet {
-			@include screen($tablet){
-				flex-direction: column-reverse;
-			}
-		}
-		@include screen($mobile){
-			flex-direction: column-reverse;
-		}
-	}
+    @include screen($mobile) {
+        flex-direction: column-reverse;
+    }
+}
 
 
 
@@ -22,45 +19,44 @@
     ---------------------------------------- */
 
 /* Large screens (desktops,992px and up) */
-@include screen($desktop){
+@include screen($desktop) {
 
-	.block-visibility-hide-large-screen,
-	.flexline-hide-on-desktop,
-	.is-style-hide-on-desktop {
-		display: none !important;
-	}
+    .block-visibility-hide-large-screen,
+    .flexline-hide-on-desktop,
+    .is-style-hide-on-desktop {
+        display: none !important;
+    }
 }
 
 /* Medium screens (tablets, between 768px and992px) */
-@include screen($tablet){
+@include screen($tablet) {
 
-	.block-visibility-hide-medium-screen,
-	.flexline-hide-on-tablet {
-		display: none !important;
-	}
+    .block-visibility-hide-medium-screen,
+    .flexline-hide-on-tablet {
+        display: none !important;
+    }
 
-	.wp-block-columns.flexline-stack-at-tablet {
-		flex-wrap: wrap !important;
+    .wp-block-columns.flexline-stack-at-tablet {
+        flex-wrap: wrap !important;
 
-		>.wp-block-column {
-			flex-basis: 100% !important;
-		}
-	}
+        >.wp-block-column {
+            flex-basis: 100% !important;
+        }
+    }
 }
 
 /* Small screens (mobile devices, less than 768px) */
-@include screen($mobile){
+@include screen($mobile) {
 
-	.block-visibility-hide-small-screen,
-	.flexline-hide-on-mobile,
-	.is-style-hide-on-mobile,
-	.is-style-hidden-mobile {
-		display: none !important;
-	}
+    .block-visibility-hide-small-screen,
+    .flexline-hide-on-mobile,
+    .is-style-hide-on-mobile,
+    .is-style-hidden-mobile {
+        display: none !important;
+    }
 
 
-	.is-justify-content-center-mobile {
-		justify-content: center !important;
-	}
+    .is-justify-content-center-mobile {
+        justify-content: center !important;
+    }
 }
-

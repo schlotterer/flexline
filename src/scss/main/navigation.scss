@@ -53,9 +53,10 @@
             text-align: center;
         }
 
-        
+
     }
-    &.items-justified-center{
+
+    &.items-justified-center {
         .wp-block-navigation__submenu-container {
             left: 50%;
             transform: translate(-50%, 0);
@@ -78,9 +79,9 @@
             }
         }
 
-        &.current-menu-item > a:not(.wp-element-button),
-        > a.current-menu-ancestor,
-        > a.current-menu-ancestor + button {
+        &.current-menu-item>a:not(.wp-element-button),
+        >a.current-menu-ancestor,
+        >a.current-menu-ancestor+button {
             color: var(--wp--custom--nav-main-hover-color);
         }
     }
@@ -95,9 +96,9 @@
             }
         }
 
-        &.current-menu-item > *:not(.wp-element-button),
-        > a.current-menu-ancestor,
-        > a.current-menu-ancestor + button {
+        &.current-menu-item>*:not(.wp-element-button),
+        >a.current-menu-ancestor,
+        >a.current-menu-ancestor+button {
             color: var(--wp--custom--nav-light-over-dark-hover-color);
         }
     }
@@ -112,9 +113,9 @@
             }
         }
 
-        &.current-menu-item > *:not(.wp-element-button),
-        > a.current-menu-ancestor,
-        > a.current-menu-ancestor + button {
+        &.current-menu-item>*:not(.wp-element-button),
+        >a.current-menu-ancestor,
+        >a.current-menu-ancestor+button {
             color: var(--wp--custom--nav-dark-over-light-hover-color);
         }
     }

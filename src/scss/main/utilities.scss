@@ -1,154 +1,159 @@
 body,
 .editor-styles-wrapper {
 
-	.is-position-fixed {
-		position: fixed;
-		width: 100%;
-		z-index: 10;
-	}
+    .is-position-fixed {
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+    }
 
-	.is-position-absolute {
-		position: absolute !important;
-		width: 100%;
-		z-index: 10 !important;
-	}
+    .is-position-absolute {
+        position: absolute !important;
+        width: 100%;
+        z-index: 10 !important;
+    }
 
-	.is-pull-left-20 {
-		margin-left: -20px !important;
-		position: relative !important;
-	}
+    .is-pull-left-20 {
+        margin-left: -20px !important;
+        position: relative !important;
+    }
 
-	.is-pull-right-20 {
-		margin-right: -20px !important;
-	}
-	// primary gradients
-	.has-primary-primaryDark-gradient-background {
-		background: var(--wp--preset--gradient--primary-primary-dark);
-	}
+    .is-pull-right-20 {
+        margin-right: -20px !important;
+    }
 
-	.has-primary-secondary-gradient-background {
-		background: var(--wp--preset--gradient--primary-secondary);
-	}
+    // primary gradients
+    .has-primary-primaryDark-gradient-background {
+        background: var(--wp--preset--gradient--primary-primary-dark);
+    }
 
-	.has-primary-alternate-gradient-background {
-		background: var(--wp--preset--gradient--primary-alternate);
-	}
+    .has-primary-secondary-gradient-background {
+        background: var(--wp--preset--gradient--primary-secondary);
+    }
 
-	.has-primary-highlight-gradient-background {
-		background: var(--wp--preset--gradient--primary-highlight);
-	}
-	// secondary gradients
-	.has-secondary-secondaryDark-gradient-background {
-		background: var(--wp--preset--gradient--secondary-secondary-dark);
-	}
+    .has-primary-alternate-gradient-background {
+        background: var(--wp--preset--gradient--primary-alternate);
+    }
 
-	.has-secondary-primary-gradient-background {
-		background: var(--wp--preset--gradient--secondary-primary);
-	}
+    .has-primary-highlight-gradient-background {
+        background: var(--wp--preset--gradient--primary-highlight);
+    }
 
-	.has-secondary-alternate-gradient-background {
-		background: var(--wp--preset--gradient--secondary-alternate);
-	}
+    // secondary gradients
+    .has-secondary-secondaryDark-gradient-background {
+        background: var(--wp--preset--gradient--secondary-secondary-dark);
+    }
 
-	.has-secondary-highlight-gradient-background {
-		background: var(--wp--preset--gradient--secondary-highlight);
-	}
-	// alternate gradients
-	.has-alternate-alternateDark-gradient-background {
-		background: var(--wp--preset--gradient--alternate-alternate-dark);
-	}
+    .has-secondary-primary-gradient-background {
+        background: var(--wp--preset--gradient--secondary-primary);
+    }
 
-	.has-alternate-primary-gradient-background {
-		background: var(--wp--preset--gradient--alternate-primary);
-	}
+    .has-secondary-alternate-gradient-background {
+        background: var(--wp--preset--gradient--secondary-alternate);
+    }
 
-	.has-alternate-secondary-gradient-background {
-		background: var(--wp--preset--gradient--alternate-secondary);
-	}
+    .has-secondary-highlight-gradient-background {
+        background: var(--wp--preset--gradient--secondary-highlight);
+    }
 
-	.has-alternate-highlight-gradient-background {
-		background: var(--wp--preset--gradient--alternate-highlight);
-	}
-	// neutral gradients
-	.has-neutral-neutralLight-gradient-background {
-		background: var(--wp--preset--gradient--neutral-neutral-light);
-	}
+    // alternate gradients
+    .has-alternate-alternateDark-gradient-background {
+        background: var(--wp--preset--gradient--alternate-alternate-dark);
+    }
 
-	.has-neutralDark-neutralLight-gradient-background {
-		background: var(--wp--preset--gradient--neutral-dark-neutral-light);
-	}
-	// dark to transparent gradients
-	.has-dark-transparent-top-to-bottom-gradient-background {
-		background: var(--wp--preset--gradient--dark-transparent-top-to-bottom);
-	}
+    .has-alternate-primary-gradient-background {
+        background: var(--wp--preset--gradient--alternate-primary);
+    }
 
-	.has-dark-transparent-bottom-to-top-gradient-background {
-		background: var(--wp--preset--gradient--dark-transparent-bottom-to-top);
-	}
+    .has-alternate-secondary-gradient-background {
+        background: var(--wp--preset--gradient--alternate-secondary);
+    }
 
-	.has-dark-transparent-left-to-right-gradient-background {
-		background: var(--wp--preset--gradient--dark-transparent-left-to-right);
-	}
+    .has-alternate-highlight-gradient-background {
+        background: var(--wp--preset--gradient--alternate-highlight);
+    }
 
-	.has-dark-transparent-right-to-left-gradient-background {
-		background: var(--wp--preset--gradient--dark-transparent-right-to-left);
-	}
+    // neutral gradients
+    .has-neutral-neutralLight-gradient-background {
+        background: var(--wp--preset--gradient--neutral-neutral-light);
+    }
 
-	/* Media Queries
+    .has-neutralDark-neutralLight-gradient-background {
+        background: var(--wp--preset--gradient--neutral-dark-neutral-light);
+    }
+
+    // dark to transparent gradients
+    .has-dark-transparent-top-to-bottom-gradient-background {
+        background: var(--wp--preset--gradient--dark-transparent-top-to-bottom);
+    }
+
+    .has-dark-transparent-bottom-to-top-gradient-background {
+        background: var(--wp--preset--gradient--dark-transparent-bottom-to-top);
+    }
+
+    .has-dark-transparent-left-to-right-gradient-background {
+        background: var(--wp--preset--gradient--dark-transparent-left-to-right);
+    }
+
+    .has-dark-transparent-right-to-left-gradient-background {
+        background: var(--wp--preset--gradient--dark-transparent-right-to-left);
+    }
+
+    /* Media Queries
     ---------------------------------------- */
 
-	@include screen($mobile){
+    @include screen($mobile) {
 
-		/* -- Order -- */
+        /* -- Order -- */
 
-		.is-order-first-mobile {
-			order: -1;
-		}
+        .is-order-first-mobile {
+            order: -1;
+        }
 
-		.is-order-0-mobile {
-			order: 0;
-		}
+        .is-order-0-mobile {
+            order: 0;
+        }
 
-		.is-order-1-mobile {
-			order: 1;
-		}
+        .is-order-1-mobile {
+            order: 1;
+        }
 
-		.is-order-2-mobile {
-			order: 2;
-		}
+        .is-order-2-mobile {
+            order: 2;
+        }
 
-		.is-order-3-mobile {
-			order: 3;
-		}
+        .is-order-3-mobile {
+            order: 3;
+        }
 
-		.is-order-4-mobile {
-			order: 4;
-		}
+        .is-order-4-mobile {
+            order: 4;
+        }
 
-		.is-order-5-mobile {
-			order: 5;
-		}
+        .is-order-5-mobile {
+            order: 5;
+        }
 
-		.is-order-6-mobile {
-			order: 6;
-		}
+        .is-order-6-mobile {
+            order: 6;
+        }
 
-		.is-order-7-mobile {
-			order: 7;
-		}
+        .is-order-7-mobile {
+            order: 7;
+        }
 
-		.is-order-8-mobile {
-			order: 8;
-		}
+        .is-order-8-mobile {
+            order: 8;
+        }
 
-		.is-order-9-mobile {
-			order: 9;
-		}
+        .is-order-9-mobile {
+            order: 9;
+        }
 
-		.is-order-last-mobile {
-			order: 99999;
-		}
+        .is-order-last-mobile {
+            order: 99999;
+        }
 
-	}
+    }
 
 }
