@@ -6,5 +6,4 @@
   <rule ref="WordPress"/>
   <file>.</file>
   <exclude-pattern>vendor/*</exclude-pattern>
-  <exclude-pattern>inc/customizer/assets/*</exclude-pattern>
 </ruleset>
