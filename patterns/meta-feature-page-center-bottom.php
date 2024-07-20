@@ -20,7 +20,7 @@ namespace FlexLine\flexline;
                 <!-- wp:group {"metadata":{"name":"SEO and Creative Headlines"},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
                 <div class="wp-block-group"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-light"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"spacing":{"blockGap":"0"}},"textColor":"base","fontSize":"x-small","layout":{"type":"constrained","contentSize":"","wideSize":""}} -->
                     <div class="wp-block-group has-base-color has-text-color has-link-color has-x-small-font-size"><!-- wp:heading {"textAlign":"center","level":1,"className":"is-style-eyebrow"} -->
-                        <h1 class="wp-block-heading has-text-align-center is-style-eyebrow">SEO Eyebrow Headline | [flexline_city_state]</h1>
+                        <h1 class="wp-block-heading has-text-align-center is-style-eyebrow">SEO Eyebrow Headline</h1>
                         <!-- /wp:heading -->
 
                         <!-- wp:heading {"textAlign":"center","className":"is-style-creative","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base"} -->
