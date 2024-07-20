@@ -145,6 +145,7 @@ function flexline_register_block_styles() {
 		),
 		'core/query-title'        => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
 		),
 		'core/read-more'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
@@ -156,6 +157,7 @@ function flexline_register_block_styles() {
 		),
 		'core/term-description'   => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
 		),
 		'core/button'              => array(
 			'glass-button' => __( 'Glass Button', 'flexline' ),
