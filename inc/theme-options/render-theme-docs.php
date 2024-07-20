@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Render theme settings tab.
  *
@@ -15,40 +14,39 @@
  *
  * @return void
  */
-function flexline_render_documentation_tab()
-{
-?>
-    <style>
-        .wrapper {
-            display: flex;
-            flex-wrap: nowrap;
-        }
+function flexline_render_documentation_tab() {
+	?>
+	<style>
+		.wrapper {
+			display: flex;
+			flex-wrap: nowrap;
+		}
 
-        .wrapper>* {
-            padding: 20px;
-        }
+		.wrapper>* {
+			padding: 20px;
+		}
 
-        .content-container {
-            flex-shrink: 1;
+		.content-container {
+			flex-shrink: 1;
 
-        }
+		}
 
-        .nav-container {
-            width: 200px;
-            flex-shrink: 0;
-        }
-    </style>
-    <div class="wrapper">
-        <div class="content-container">
-            <section id="section1">
-                <h2 style="font-size: 30px;">New Section</h2>
-                
-            </section>
-
+		.nav-container {
+			width: 200px;
+			flex-shrink: 0;
+		}
+	</style>
+	<div class="wrapper">
+		<div class="content-container">
+			<section id="section1">
+				<h2 style="font-size: 30px;">New Section</h2>
+				
+			</section>
 
 
-            <!-- Add more documentation content as needed -->
-        </div>
-    </div>
-<?php
+
+			<!-- Add more documentation content as needed -->
+		</div>
+	</div>
+	<?php
 }

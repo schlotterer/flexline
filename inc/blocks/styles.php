@@ -7,6 +7,7 @@
  */
 
 namespace FlexLine\flexline;
+
 /**
  * Register block styles.
  *
@@ -29,18 +30,17 @@ namespace FlexLine\flexline;
  *
  * @return void
  */
-
 function flexline_register_block_styles() {
 
 	$block_styles = array(
-		'core/post-template'       => array(
+		'core/post-template'         => array(
 			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
-		'core/columns'             => array(
+		'core/columns'               => array(
 			'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
 			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
-		'core/group'               => array(
+		'core/group'                 => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),
 			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
@@ -51,31 +51,31 @@ function flexline_register_block_styles() {
 			'glass'           => __( 'Glass', 'flexline' ),
 			'glass-card'      => __( 'Glass Card', 'flexline' ),
 		),
-		'core/image'               => array(
+		'core/image'                 => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),
 			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
 			'card'            => __( 'Card', 'flexline' ),
 		),
-		'core/post-featured-image' => array(
+		'core/post-featured-image'   => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),
 			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
 			'card'            => __( 'Card', 'flexline' ),
 		),
-		'core/list'                => array(
+		'core/list'                  => array(
 			'no-disc' => __( 'No Disc', 'flexline' ),
 		),
-		'core/navigation'          => array(
+		'core/navigation'            => array(
 			'main-header-nav' => __( 'Main Header Style', 'flexline' ),
 			'dark-over-light' => __( 'Dark on Light', 'flexline' ),
 			'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 		),
-		'core/navigation-link'     => array(
+		'core/navigation-link'       => array(
 			'outline'     => __( 'Outline', 'flexline' ),
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		'core/quote'               => array(
+		'core/quote'                 => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),
 			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
 			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
@@ -85,79 +85,74 @@ function flexline_register_block_styles() {
 			'glass'           => __( 'Glass', 'flexline' ),
 			'glass-card'      => __( 'Glass Card', 'flexline' ),
 		),
-		'core/social-links'        => array(
+		'core/social-links'          => array(
 			'outline' => __( 'Outline', 'flexline' ),
 		),
-		'core/heading'             => array(
+		'core/heading'               => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+			'creative'    => __( 'Creative', 'flexline' ),
 		),
-		'core/site-title'          => array(
+		'core/site-title'            => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+			'creative'    => __( 'Creative', 'flexline' ),
 		),
-		'core/post-title'          => array(
+		'core/post-title'            => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+			'creative'    => __( 'Creative', 'flexline' ),
 		),
-		'core/post-terms'          => array(
+		'core/post-terms'            => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 		),
-		'core/paragraph'           => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-		),
-		
-		'core/post-date'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-		),
-		'core/post-author'        => array(
+		'core/paragraph'             => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		
+
+		'core/post-date'             => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+		),
+		'core/post-author'           => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+
 		'core/post-author-biography' => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		
-		'core/post-author-name'   => array(
+
+		'core/post-author-name'      => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		
-		'core/post-excerpt'       => array(
+
+		'core/post-excerpt'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		
-		'core/post-navigation-link' => array(
+
+		'core/post-navigation-link'  => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 		),
-		
-		'core/post-terms'         => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-		),
-		'core/query-pagination'   => array(
+		'core/query-pagination'      => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		'core/query-title'        => array(
+		'core/query-title'           => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		'core/read-more'          => array(
+		'core/read-more'             => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		'core/site-tagline'       => array(
+		'core/site-tagline'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+			'creative'    => __( 'Creative', 'flexline' ),
 		),
-		'core/term-description'   => array(
+		'core/term-description'      => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
-		'core/button'              => array(
+		'core/button'                => array(
 			'glass-button' => __( 'Glass Button', 'flexline' ),
 		),
 	);
