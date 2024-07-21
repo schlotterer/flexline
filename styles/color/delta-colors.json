@@ -109,7 +109,7 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": ["#C35A1B", "#F4F1EB"],
+					"colors": ["#e46b67", "#F4F1EB"],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
@@ -139,7 +139,7 @@
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": ["#2B677A", "#C35A1B"],
+					"colors": ["#2B677A", "#e46b67"],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
@@ -156,12 +156,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#C35A1B",
+					"color": "#e46b67",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#FFC857",
+					"color": "#f3d18d",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -186,7 +186,7 @@
 					"slug": "secondary-light"
 				},
 				{
-					"color": "#E09D73",
+					"color": "#f8d68c",
 					"name": "Alternate Light",
 					"slug": "alternate-light"
 				},
@@ -196,7 +196,7 @@
 					"slug": "warning"
 				},
 				{
-					"color": "#DAD3CA",
+					"color": "#B0A380",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -206,7 +206,7 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#1F4B6E",
+					"color": "#313f57",
 					"name": "Primary Dark",
 					"slug": "primary-dark"
 				},
