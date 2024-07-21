@@ -2,6 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Charlie",
+	"slug": "charlie",
 	"description":  "Rounded and Rich Greens",
 	"settings": {
 		"appearanceTools": true,

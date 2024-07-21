@@ -2,6 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Delta",
+	"slug": "delta",
 	"description":  "Bold and Bright",
 	"settings": {
 		"appearanceTools": true,

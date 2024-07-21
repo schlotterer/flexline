@@ -2,6 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Alpha",
+	"slug": "alpha",
 	"description":  "Blues, Greens, and Sans Serif",
 	"settings": {
 		"appearanceTools": true,

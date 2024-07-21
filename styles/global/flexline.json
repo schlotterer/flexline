@@ -1,6 +1,8 @@
 {
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
+    "title": "Flexline",
+    "slug": "flexline",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -570,7 +572,7 @@
 		"elements": {
 			"button": {
 				"color": {
-
+					"gradient": "var(--wp--preset--gradient--primary-secondary)",
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
