@@ -1,6 +1,7 @@
 {
     "name": "joelschlotterer/flexline",
     "description": "A WordPress FSE Theme",
+    "version": "1.0.1",
     "type": "wordpress-theme",
     "license": "MIT",
     "authors": [
