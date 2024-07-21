@@ -104,7 +104,7 @@
 					"name": "Primary"
 				},
 				{
-					"colors": ["#BC6C25", "#ffffff"],
+					"colors": ["#A15B00", "#ffffff"],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
@@ -129,7 +129,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": ["#283618", "#BC6C25"],
+					"colors": ["#283618", "#A15B00"],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
@@ -151,7 +151,7 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#BC6C25",
+					"color": "#A15B00",
 					"name": "Secondary",
 					"slug": "secondary"
 				},

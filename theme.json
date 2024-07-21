@@ -169,7 +169,7 @@
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#735A71", "#E8E8E8" ],
+					"colors": [ "#BC9EBA", "#E8E8E8" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -189,7 +189,7 @@
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": [ "#243846", "#735A71" ],
+					"colors": [ "#243846", "#BC9EBA" ],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
@@ -216,7 +216,7 @@
 					"slug": "alternate"
 				},
 				{
-					"color": "#735A71",
+					"color": "#BC9EBA",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
