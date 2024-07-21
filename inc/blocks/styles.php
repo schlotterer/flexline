@@ -2,10 +2,33 @@
 /**
  * Register block styles.
  *
+ * @package flexline
  * @since 0.9.2
  */
 
 namespace FlexLine\flexline;
+/**
+ * Register block styles.
+ *
+ * This function registers block styles for various core blocks in WordPress.
+ * The registered block styles include:
+ * - 'horizontal-scroll' for 'core/post-template'
+ * - 'columns-reverse' and 'horizontal-scroll' for 'core/columns'
+ * - Various styles for 'core/group'
+ * - Various styles for 'core/image'
+ * - Various styles for 'core/post-featured-image'
+ * - 'no-disc' for 'core/list'
+ * - 'main-header-nav', 'dark-over-light', and 'light-over-dark' for 'core/navigation'
+ * - 'outline' and 'text-shadow' for 'core/navigation-link'
+ * - Various styles for 'core/quote'
+ * - 'outline' for 'core/social-links'
+ * - 'text-shadow' for 'core/heading', 'core/site-title', 'core/post-title', and 'core/post-terms'
+ * - 'text-shadow' for 'core/paragraph'
+ * - 'glass-button' for 'core/button'
+ * - 'text-shadow' for 'core/post-date', 'core/post-author', 'core/post-author-biography', 'core/post-author-name', 'core/post-excerpt', 'core/post-navigation-link', 'core/post-terms', 'core/query-pagination', 'core/query-title', 'core/read-more', 'core/site-tagline', and 'core/term-description'
+ *
+ * @return void
+ */
 
 function flexline_register_block_styles() {
 
@@ -14,7 +37,7 @@ function flexline_register_block_styles() {
 			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
 		'core/columns'             => array(
-			'columns-reverse'   => __( 'Reverse on Mobile', 'flexline' ),
+			'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
 			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
 		'core/group'               => array(
@@ -67,18 +90,74 @@ function flexline_register_block_styles() {
 		),
 		'core/heading'             => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
 		),
 		'core/site-title'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
 		),
 		'core/post-title'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
 		),
 		'core/post-terms'          => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
 		),
 		'core/paragraph'           => array(
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		
+		'core/post-date'          => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+		),
+		'core/post-author'        => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		
+		'core/post-author-biography' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		
+		'core/post-author-name'   => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		
+		'core/post-excerpt'       => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		
+		'core/post-navigation-link' => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+		),
+		
+		'core/post-terms'         => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+		),
+		'core/query-pagination'   => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/query-title'        => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
+		),
+		'core/read-more'          => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/site-tagline'       => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'creative' => __( 'Creative', 'flexline' ),
+		),
+		'core/term-description'   => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'eyebrow' => __( 'Eyebrow', 'flexline' ),
 		),
 		'core/button'              => array(
 			'glass-button' => __( 'Glass Button', 'flexline' ),

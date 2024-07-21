@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			for (const item of items) {
 				const itemStart = item.offsetLeft;
-				const itemEnd = itemStart + item.offsetWidth;
 
 				// If an item's start is beyond the current scroll position, it's our next target
 				if (itemStart > currentScrollPosition) {

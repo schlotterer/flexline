@@ -62,7 +62,7 @@
 			"defaultPalette": false,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--primary--dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary-dark) 0%, var(--wp--preset--color--primary) 100%)",
 					"name": "Primary to Primary Dark",
 					"slug": "primary-primaryDark"
 				},
@@ -82,7 +82,7 @@
 					"slug": "primary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--secondary--dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary-dark) 0%, var(--wp--preset--color--secondary) 100%)",
 					"name": "Secondary to Secondary Dark",
 					"slug": "secondary-secondaryDark"
 				},
@@ -102,7 +102,7 @@
 					"slug": "secondary-highlight"
 				},
 				{
-					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--custom--color--alternate--dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate-dark) 0%, var(--wp--preset--color--alternate) 100%)",
 					"name": "Alternate to Alternate Dark",
 					"slug": "alternate-alternateDark"
 				},
@@ -154,109 +154,138 @@
 			],
 			"duotone": [
 				{
-					"colors": [ "#0B325A", "#F0F0F0" ],
+					"colors": [ "#2C3E50", "#E8E8E8" ],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#553563", "#F0F0F0" ],
+					"colors": [ "#54495E", "#E8E8E8" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#1895CC", "#F0F0F0" ],
+					"colors": [ "#5A738E", "#E8E8E8" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#985594", "#F0F0F0" ],
+					"colors": [ "#BC9EBA", "#E8E8E8" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": [ "#5E5D53", "#DADADA" ],
+					"colors": [ "#7A7A7A", "#D3D3D3" ],
 					"slug": "neutral-dark",
 					"name": "Neutral Dark"
 				},
 				{
-					"colors": [ "#212021", "#DADADA" ],
+					"colors": [ "#1C1C1C", "#D3D3D3" ],
 					"slug": "dark",
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#002241", "#553563" ],
+					"colors": [ "#243846", "#54495E" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": [ "#002241", "#985594" ],
+					"colors": [ "#243846", "#BC9EBA" ],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": [ "#002241", "#1895CC" ],
+					"colors": [ "#243846", "#5A738E" ],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
-			],
+			],		
 			"palette": [
 				{
-					"color": "#0B325A",
+					"color": "#2C3E50",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#553563",
+					"color": "#54495E",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#1895CC",
+					"color": "#5A738E",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#985594",
+					"color": "#BC9EBA",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#D28914",
-					"name": "Warning",
-					"slug": "warning"
-				},
-				{
-					"color": "#34A187",
-					"name": "Success",
-					"slug": "success"
-				},
-				{
-					"color": "#F0F0F0",
-					"name": "Base",
-					"slug": "base"
-				},
-				{
-					"color": "#DADADA",
+					"color": "#D3D3D3",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
 				{
-					"color": "#BCB9B2",
+					"color": "#E8E8E8",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#455A77",
+					"name": "Primary Light",
+					"slug": "primary-light"
+				},
+				{
+					"color": "#6D5D75",
+					"name": "Secondary Light",
+					"slug": "secondary-light"
+				},
+				{
+					"color": "#7F9BB4",
+					"name": "Alternate Light",
+					"slug": "alternate-light"
+				},
+				{
+					"color": "#BF8E63",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#B5B5B5",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
 				{
-					"color": "#949494",
-					"name": "Neutral Dark",
-					"slug": "neutral-dark"
-				},
-				{
-					"color": "#212021",
+					"color": "#1C1C1C",
 					"name": "Contrast",
 					"slug": "contrast"
+				},
+				{
+					"color": "#243846",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#46374A",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
+					"color": "#4A6375",
+					"name": "Alternate Dark",
+					"slug": "alternate-dark"
+				},
+				{
+					"color": "#4A6B67",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#7A7A7A",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
 				}
 			]
-			
 		},
 		"typography": {
 			"dropCap": false,
@@ -427,6 +456,14 @@
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
 			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
+			"eyebrowSize": "var(--wp--preset--font-size--small)",
+			"eyebrowColor": "var(--wp--preset--color--neutral)",
+			"eyebrowFont": "var(--wp--preset--font-family--display)",
+			"eyebrowTextTransform": "uppercase",
+			"creativeSize": "var(--wp--preset--font-size--max-72)",
+			"creativeColor": "var(--wp--preset--color--contrast)",
+			"creativeFont": "var(--wp--preset--font-family--brand)",
+			"creativeTextTransform": "none",
 			"textShadow": "0 .18rem .4rem rgba(0,0,0, 0.5)",
 			"borderRadius": "0 8px 0 8px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
@@ -437,28 +474,10 @@
 			"boxHoverShadow": "var(--wp--preset--shadow--dark)",
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
-			"searchMenuIconHoverColor": "var(--wp--custom--color--secondary--dark)",
+			"searchMenuIconHoverColor": "var(--wp--preset--color--secondary-dark)",
 			"decoColor": "var(--wp--preset--color--highlight)",
 			"gradientAngle": "300deg",
-			"breakpoint": {
-				"mobile": "max-width:781.98px",
-				"tablet-down": "max-width:991.98px",
-				"tablet-up": "min-width:782px",
-				"desktop": "min-width:992px"
-			},
 			"color":{
-				"primary": {
-					"light" : "#1A5896",
-					"dark": "#041F3B"
-				},
-				"secondary": {
-					"light" : "#845697",
-					"dark": "#2D1F33"
-				},
-				"alternate": {
-					"light" : "#5CC6F4",
-					"dark": "#13678B"
-				},
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
 					"success": "var(--wp--preset--color--success)",
@@ -551,7 +570,7 @@
 		"elements": {
 			"button": {
 				"color": {
-					"gradient": "var(--wp--preset--gradient--primary-secondary)",
+
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
@@ -953,6 +972,27 @@
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--brand)",
 					"fontSize": "var(--wp--preset--font-size--large)"
+				},
+				"variations": {
+					"eyebrow" : {
+						"color": {
+							"text": "var(--wp--preset--color--neutral)"
+						},
+						"typography": {
+							"fontFamily": "var(--wp--preset--font-family--display)",
+							"textTransform": "uppercase",
+							"fontSize": "var(--wp--preset--font-size--small)"
+						}
+					},
+					"creative": {
+						"color": {
+							"text": "var(--wp--preset--color--contrast)"
+						},
+						"typography": {
+							"fontFamily": "var(--wp--preset--font-family--brand)",
+							"fontSize": "var(--wp--preset--font-size--xlarge)"
+						}
+					}
 				}
 			},
 			"core/spacer": {
@@ -1031,6 +1071,14 @@
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [

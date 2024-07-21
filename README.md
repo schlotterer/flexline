@@ -12,6 +12,7 @@ Then you can follow these instructions:
 - Node.js (LTS version recommended)
 - npm (Node Package Manager)
 - nvm (Node Version Manager) – recommended for managing multiple Node.js versions
+- **Composer** – required for managing PHP dependencies
 
 ### Build Instructions
 
@@ -28,24 +29,30 @@ Then you can follow these instructions:
    ```
    - If the required version is not installed, nvm will prompt you to install it.
 
-3. **Install Dependencies**:
+3. **Install Node.js Dependencies**:
    ```bash
    npm install
    ```
 
-4. **Development Build**:
+4. **Install PHP Dependencies**:
+   - Ensure Composer is installed on your system.
+   ```bash
+   composer install
+   ```
+
+5. **Development Build**:
    - Compiles assets without minification for easier debugging.
    ```bash
    npm run dev
    ```
 
-5. **Watch Mode**:
+6. **Watch Mode**:
    - Automatically rebuilds assets when files change, useful during active development.
    ```bash
    npm run watch
    ```
 
-6. **Production Build**:
+7. **Production Build**:
    - Minifies assets for production use.
    ```bash
    npm run prod

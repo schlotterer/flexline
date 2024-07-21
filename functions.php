@@ -18,12 +18,12 @@ function include_inc_files() {
 	$files = array(
 		// If a new folder is added please do it in alphabetical order.
 		'inc/blocks/', // Block Customizations.
-		'inc/customizer/customizer.php', // Customizer additions for global custom fields.
 		'inc/functions/', // Custom functions that act independently of the theme templates.
 		'inc/hooks/', // Load custom filters and hooks.
 		'inc/setup/', // Theme setup.
 		'inc/scripts.php', // Scripts and Styles loading.
-		'inc/shortcodes/', // Load shortcodes.
+		//'inc/shortcodes/', // Load shortcodes.
+		'inc/theme-options/', // Load theme options.
 	);
 
 	foreach ( $files as $include ) {

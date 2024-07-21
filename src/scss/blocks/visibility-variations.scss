@@ -1,25 +1,28 @@
 
 
-@media only screen and (max-width: 781.98px) {
+
 
 	/* -- Columns -- */
 
 	.is-style-columns-reverse {
-		flex-direction: column-reverse;
+		&.flexline-stack-at-tablet {
+			@include screen($tablet){
+				flex-direction: column-reverse;
+			}
+		}
+		@include screen($mobile){
+			flex-direction: column-reverse;
+		}
 	}
 
-	.is-style-row-reverse > * {
-		flex-direction: row-reverse;
-	}
 
-}
 
 
 /* Media Queries
     ---------------------------------------- */
 
-/* Large screens (desktops,992pxand up) */
-@media ( min-width: 992px) {
+/* Large screens (desktops,992px and up) */
+@include screen($desktop){
 
 	.block-visibility-hide-large-screen,
 	.flexline-hide-on-desktop,
@@ -29,7 +32,7 @@
 }
 
 /* Medium screens (tablets, between 768px and992px) */
-@media ( min-width: 782px ) and ( max-width: 991.98px) {
+@include screen($tablet){
 
 	.block-visibility-hide-medium-screen,
 	.flexline-hide-on-tablet {
@@ -46,7 +49,7 @@
 }
 
 /* Small screens (mobile devices, less than 768px) */
-@media (max-width: 781.98px) {
+@include screen($mobile){
 
 	.block-visibility-hide-small-screen,
 	.flexline-hide-on-mobile,

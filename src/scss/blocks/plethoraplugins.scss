@@ -26,7 +26,7 @@ body,
 		}
 	}
 
-	@media only screen and ( max-width: 781.98px) {
+	@include screen($mobile){
 
 		.plethoraplugins-sidenavjump,
 		.js-plethoraplugins-tab-panel,

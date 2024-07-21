@@ -15,10 +15,7 @@
                 <div class="wp-block-column is-justify-content-center-mobile" style="flex-basis:250px"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"className":"has-text-align-center","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group has-text-align-center"><!-- wp:site-logo {"width":200,"style":{"color":{"duotone":["#ffffff","#ffffff"]}}} /-->
 
-                        <!-- wp:shortcode -->
-                        [flexline_contact_info]
-                        <!-- /wp:shortcode -->
-
+                        
                         <!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#000","iconBackgroundColor":"base","iconBackgroundColorValue":"#fff","style":{"spacing":{"blockGap":"10px"}},"className":"is-style-default"} -->
                         <ul class="wp-block-social-links has-icon-color has-icon-background-color is-style-default"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
 
