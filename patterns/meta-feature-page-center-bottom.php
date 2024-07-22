@@ -7,7 +7,7 @@
  * Block Types: core/template-part/header
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"metadata":{"name":"Feature Page Meta - bottom centered."},"align":"full","style":{"spacing":{"margin":{"bottom":"0"}}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":60,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.53,"y":0.45},"minHeight":200,"isDark":false,"metadata":{"name":"Featured Image Cover"},"align":"full","style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":{}},"layout":{"type":"constrained"},"enableLazyLoad":false} -->

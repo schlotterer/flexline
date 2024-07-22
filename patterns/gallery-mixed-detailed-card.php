@@ -5,7 +5,7 @@
  * Slug: flexline/gallery-mixed-detailed-card
  * Categories: flexline-components, flexline-galleries
  */
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"metadata":{"name":"Gallery Mixed Detailed Card"},"groupLinkType":"modal_media"} -->
 <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default","enableModal":true,"modalMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->

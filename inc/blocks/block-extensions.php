@@ -2,17 +2,17 @@
 /**
  * Set up the block customizations for media modals.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Enqueue block editor assets for Flexline theme.
  *
  * @Throws Some_Exception_Class description of exception.
  */
-function flexline_enqueue_block_editor_assets() {
+function flexlinetheme_enqueue_block_editor_assets() {
 	// Modal addons to core button and image blocks.
 	wp_enqueue_script(
 		'flexline-block-extensions',
@@ -22,7 +22,7 @@ function flexline_enqueue_block_editor_assets() {
 		false
 	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexlinetheme_enqueue_block_editor_assets' );
 
 
 /**
@@ -32,7 +32,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_bl
  * @param array $block The block settings.
  * @return mixed The modified block content.
  */
-function flexline_block_customizations_render( $block_content, $block ) {
+function flexlinetheme_block_customizations_render( $block_content, $block ) {
 	if ( 'core/buttons' === $block['blockName'] ) {
 		$added_classes = '';
 		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
@@ -289,4 +289,4 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	return $block_content;
 }
-add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 2 );
+add_filter( 'render_block', __NAMESPACE__ . '\flexlinetheme_block_customizations_render', 10, 2 );

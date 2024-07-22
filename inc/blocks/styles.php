@@ -2,11 +2,11 @@
 /**
  * Register block styles.
  *
- * @package flexline
+ * @package flexlinetheme
  * @since 0.9.2
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 /**
  * Register block styles.
  *
@@ -30,137 +30,137 @@ namespace FlexLine\flexline;
  * @return void
  */
 
-function flexline_register_block_styles() {
+function flexlinetheme_register_block_styles() {
 
 	$block_styles = array(
 		'core/post-template'       => array(
-			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
+			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexlinetheme' ),
 		),
 		'core/columns'             => array(
-			'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
-			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
+			'columns-reverse'   => __( 'Reverse when stacked', 'flexlinetheme' ),
+			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexlinetheme' ),
 		),
 		'core/group'               => array(
-			'shadow-light'    => __( 'Shadow', 'flexline' ),
-			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-			'card'            => __( 'Card', 'flexline' ),
-			'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
-			'card-alt'        => __( 'Card w/ Images that fill', 'flexline' ),
-			'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
-			'glass'           => __( 'Glass', 'flexline' ),
-			'glass-card'      => __( 'Glass Card', 'flexline' ),
+			'shadow-light'    => __( 'Shadow', 'flexlinetheme' ),
+			'shadow-dark'     => __( 'Shadow Dark', 'flexlinetheme' ),
+			'shadow-diffused' => __( 'Shadow Diffused', 'flexlinetheme' ),
+			'card'            => __( 'Card', 'flexlinetheme' ),
+			'card-padded'     => __( 'Card w/ Padding', 'flexlinetheme' ),
+			'card-alt'        => __( 'Card w/ Images that fill', 'flexlinetheme' ),
+			'outlined'        => __( 'Outlined w/ Padding', 'flexlinetheme' ),
+			'glass'           => __( 'Glass', 'flexlinetheme' ),
+			'glass-card'      => __( 'Glass Card', 'flexlinetheme' ),
 		),
 		'core/image'               => array(
-			'shadow-light'    => __( 'Shadow', 'flexline' ),
-			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-			'card'            => __( 'Card', 'flexline' ),
+			'shadow-light'    => __( 'Shadow', 'flexlinetheme' ),
+			'shadow-dark'     => __( 'Shadow Dark', 'flexlinetheme' ),
+			'shadow-diffused' => __( 'Shadow Diffused', 'flexlinetheme' ),
+			'card'            => __( 'Card', 'flexlinetheme' ),
 		),
 		'core/post-featured-image' => array(
-			'shadow-light'    => __( 'Shadow', 'flexline' ),
-			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-			'card'            => __( 'Card', 'flexline' ),
+			'shadow-light'    => __( 'Shadow', 'flexlinetheme' ),
+			'shadow-dark'     => __( 'Shadow Dark', 'flexlinetheme' ),
+			'shadow-diffused' => __( 'Shadow Diffused', 'flexlinetheme' ),
+			'card'            => __( 'Card', 'flexlinetheme' ),
 		),
 		'core/list'                => array(
-			'no-disc' => __( 'No Disc', 'flexline' ),
+			'no-disc' => __( 'No Disc', 'flexlinetheme' ),
 		),
 		'core/navigation'          => array(
-			'main-header-nav' => __( 'Main Header Style', 'flexline' ),
-			'dark-over-light' => __( 'Dark on Light', 'flexline' ),
-			'light-over-dark' => __( 'Light on Dark', 'flexline' ),
+			'main-header-nav' => __( 'Main Header Style', 'flexlinetheme' ),
+			'dark-over-light' => __( 'Dark on Light', 'flexlinetheme' ),
+			'light-over-dark' => __( 'Light on Dark', 'flexlinetheme' ),
 		),
 		'core/navigation-link'     => array(
-			'outline'     => __( 'Outline', 'flexline' ),
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'outline'     => __( 'Outline', 'flexlinetheme' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		'core/quote'               => array(
-			'shadow-light'    => __( 'Shadow', 'flexline' ),
-			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-			'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-			'card'            => __( 'Card', 'flexline' ),
-			'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
-			'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
-			'glass'           => __( 'Glass', 'flexline' ),
-			'glass-card'      => __( 'Glass Card', 'flexline' ),
+			'shadow-light'    => __( 'Shadow', 'flexlinetheme' ),
+			'shadow-dark'     => __( 'Shadow Dark', 'flexlinetheme' ),
+			'shadow-diffused' => __( 'Shadow Diffused', 'flexlinetheme' ),
+			'card'            => __( 'Card', 'flexlinetheme' ),
+			'card-padded'     => __( 'Card w/ Padding', 'flexlinetheme' ),
+			'outlined'        => __( 'Outlined w/ Padding', 'flexlinetheme' ),
+			'glass'           => __( 'Glass', 'flexlinetheme' ),
+			'glass-card'      => __( 'Glass Card', 'flexlinetheme' ),
 		),
 		'core/social-links'        => array(
-			'outline' => __( 'Outline', 'flexline' ),
+			'outline' => __( 'Outline', 'flexlinetheme' ),
 		),
 		'core/heading'             => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
+			'creative' => __( 'Creative', 'flexlinetheme' ),
 		),
 		'core/site-title'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
+			'creative' => __( 'Creative', 'flexlinetheme' ),
 		),
 		'core/post-title'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
+			'creative' => __( 'Creative', 'flexlinetheme' ),
 		),
 		'core/post-terms'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
 		),
 		'core/paragraph'           => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		
 		'core/post-date'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
 		),
 		'core/post-author'        => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		
 		'core/post-author-biography' => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		
 		'core/post-author-name'   => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		
 		'core/post-excerpt'       => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		
 		'core/post-navigation-link' => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
 		),
 		
 		'core/post-terms'         => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
 		),
 		'core/query-pagination'   => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		'core/query-title'        => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'creative' => __( 'Creative', 'flexlinetheme' ),
 		),
 		'core/read-more'          => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
 		),
 		'core/site-tagline'       => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			'creative' => __( 'Creative', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
+			'creative' => __( 'Creative', 'flexlinetheme' ),
 		),
 		'core/term-description'   => array(
-			'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			'eyebrow' => __( 'Eyebrow', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexlinetheme' ),
+			'eyebrow' => __( 'Eyebrow', 'flexlinetheme' ),
 		),
 		'core/button'              => array(
-			'glass-button' => __( 'Glass Button', 'flexline' ),
+			'glass-button' => __( 'Glass Button', 'flexlinetheme' ),
 		),
 	);
 
@@ -176,4 +176,4 @@ function flexline_register_block_styles() {
 		}
 	}
 }
-add_action( 'init', __NAMESPACE__ . '\flexline_register_block_styles' );
+add_action( 'init', __NAMESPACE__ . '\flexlinetheme_register_block_styles' );

@@ -7,7 +7,7 @@
  * Block Types: core/template-part/header
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"metadata":{"name":"Feature Page Meta","categories":["flexline-heroes"],"patternName":"flexline/meta-feature-page"},"align":"full","style":{"spacing":{"margin":{"bottom":"0"}}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":200,"metadata":{"name":"Featured Image Background"},"align":"full","style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"},"enableLazyLoad":false} -->

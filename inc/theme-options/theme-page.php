@@ -1,15 +1,15 @@
 <?php
 
-function flexline_theme_options_page() {
+function flexlinetheme_theme_options_page() {
     // Define the tabs and their content
     $tabs = [
         'settings' => [
             'title' => 'Settings',
-            'content' => 'flexline_render_settings_tab'
+            'content' => 'flexlinetheme_render_settings_tab'
         ],
         'documentation' => [
             'title' => 'Documentation',
-            'content' => 'flexline_render_documentation_tab'
+            'content' => 'flexlinetheme_render_documentation_tab'
         ]
     ];
     ?>

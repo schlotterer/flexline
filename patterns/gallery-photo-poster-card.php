@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-galleries
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"},"dimensions":{"minHeight":"100%"}},"className":"is-style-default","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"space-between"},"enableGroupLink":true,"groupLinkURL":"#"} -->
 <div class="wp-block-group is-style-default" style="min-height:100%"><!-- wp:gallery {"columns":3,"linkTo":"media","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->

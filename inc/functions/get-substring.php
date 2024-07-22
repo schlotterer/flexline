@@ -2,10 +2,10 @@
 /**
  * Return Substring from between two strings.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Return Substring from between two strings.

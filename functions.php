@@ -4,10 +4,10 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Get all the include files for the theme.

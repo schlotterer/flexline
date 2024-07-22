@@ -2,10 +2,10 @@
 /**
  * Preload assets.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Preload assets.

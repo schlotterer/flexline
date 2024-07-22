@@ -4,10 +4,10 @@
  *
  * Enable or disable certain functionality to harden WordPress.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Remove generator meta tags.

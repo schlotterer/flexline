@@ -6,7 +6,7 @@
  * Categories: flexline-modules, flexline-components
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"metadata":{"name":"Subnav Sticky"},"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","className":"is-style-shadow-dark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-shadow-dark has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":54,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","style":{"spacing":{"padding":{"top":"17px","bottom":"17px","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"layout":{"type":"constrained"}} -->

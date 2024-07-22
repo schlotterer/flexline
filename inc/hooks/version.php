@@ -2,10 +2,10 @@
 /**
  * Setup Global Theme Version variable
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 	/**
 	 * Setup the global theme version variable.
@@ -15,8 +15,8 @@ namespace FlexLine\flexline;
 	 *
 	 * @return void
 	 */
-function flexline_theme_setup() {
+function flexlinetheme_theme_setup() {
 	$theme = wp_get_theme();
 	define( 'THEME_VERSION', $theme->get( 'Version' ) );
 }
-add_action( 'after_setup_theme', __NAMESPACE__ . '\flexline_theme_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\flexlinetheme_theme_setup' );

@@ -2,10 +2,10 @@
 /**
  * Adds custom classes to the array of body classes.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Adds custom classes to the array of body classes.
@@ -59,7 +59,7 @@ function body_classes( $classes ) {
 	$classes[] = 'no-js';
 
 	// Adds flexline class.
-	$classes[] = 'flexline';
+	$classes[] = 'flexlinetheme';
 
 	return $classes;
 }

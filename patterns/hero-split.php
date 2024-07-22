@@ -5,7 +5,7 @@
  * Slug: flexline/hero-split
  * Categories: flexline-heroes, flexline-sections
  */
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Hero - Split"}} -->
 <div class="wp-block-group alignfull"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0"}}},"className":"is-style-columns-reverse"} -->

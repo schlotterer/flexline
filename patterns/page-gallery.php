@@ -5,7 +5,7 @@
  * Slug: flexline/page-gallery
  * Categories: flexline-page
  */
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
 <!-- wp:pattern {"slug":"flexline/section-gallery"} /-->

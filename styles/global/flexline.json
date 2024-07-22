@@ -2,7 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Flexline",
-    "slug": "flexline",
+    "slug": "flexlinetheme",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {

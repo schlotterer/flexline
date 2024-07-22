@@ -2,10 +2,10 @@
 /**
  * Removes or Adjusts the prefix on category archive page titles.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Removes or Adjusts the prefix on category archive page titles.

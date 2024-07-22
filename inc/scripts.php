@@ -2,13 +2,13 @@
 /**
  * Set up the theme customizer.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 // Enqueue style sheet.
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_style_sheet' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexlinetheme_enqueue_style_sheet' );
 /**
  * Enqueues the necessary styles and scripts for the theme.
  *
@@ -18,10 +18,10 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_style_sheet
  *
  * @return void
  */
-function flexline_enqueue_style_sheet() {
+function flexlinetheme_enqueue_style_sheet() {
 
 	// Theme CSS.
-	wp_enqueue_style( 'flexline', get_template_directory_uri() . '/style.css', array(), THEME_VERSION );
+	wp_enqueue_style( 'flexlinetheme', get_template_directory_uri() . '/style.css', array(), THEME_VERSION );
 	// Styles.
 	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/built/css/app.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), THEME_VERSION );
@@ -44,10 +44,10 @@ function flexline_enqueue_style_sheet() {
 /**
  * Enqueue scripts for all admin pages.
  */
-function flexline_admin_enqueue_scripts() {
+function flexlinetheme_admin_enqueue_scripts() {
 	// Styles.
 	wp_enqueue_style( 'flexline-base-admin', get_template_directory_uri() . '/assets/built/css/app.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), THEME_VERSION );
 }
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexlinetheme_admin_enqueue_scripts' );

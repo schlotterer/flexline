@@ -6,7 +6,7 @@
  * Slug: flexline/testimonial-wide
  * Categories: flexline-components, flexline-misc
  */
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:quote {"align":"right","className":"is-style-default","fontFamily":"display"} -->
 <blockquote class="wp-block-quote has-text-align-right is-style-default has-display-font-family"><!-- wp:columns {"verticalAlignment":null} -->

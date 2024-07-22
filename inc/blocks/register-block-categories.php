@@ -2,23 +2,23 @@
 /**
  * Register custom block category(ies).
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
- * Register_flexline_category
+ * Register_flexlinetheme_category
  *
  * @param array $categories block categories.
  * @return array $categories block categories.
  * @author Inna Gutnik <inna.Gutnik@webdevstudios.com>
  * @since  2023-05-30
  */
-function register_flexline_category( $categories ) {
+function register_flexlinetheme_category( $categories ) {
 	$custom_block_category = array(
-		'slug'  => __( 'flexline-blocks-category', 'flexline' ),
-		'title' => __( 'FlexLine Blocks', 'flexline' ),
+		'slug'  => __( 'flexline-blocks-category', 'flexlinetheme' ),
+		'title' => __( 'FlexLine Blocks', 'flexlinetheme' ),
 	);
 
 	$categories_sorted    = array();
@@ -31,4 +31,4 @@ function register_flexline_category( $categories ) {
 	return $categories_sorted;
 }
 
-add_filter( 'block_categories_all', __NAMESPACE__ . '\register_flexline_category', 10, 1 );
+add_filter( 'block_categories_all', __NAMESPACE__ . '\register_flexlinetheme_category', 10, 1 );

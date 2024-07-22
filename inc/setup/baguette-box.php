@@ -7,10 +7,10 @@
  * Author URI:   https://go-around.de
  * Version:     1.13
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Registers the assets for baguetteBox.

@@ -2,10 +2,10 @@
 /**
  * Filters WYSIWYG content with the_content filter.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Filters WYSIWYG content with the_content filter.

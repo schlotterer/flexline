@@ -10,10 +10,10 @@
  * @param string $subject The string to search within.
  * @return string The modified string with the first occurrence of the search string replaced.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Replaces the first occurrence of a string in a string.

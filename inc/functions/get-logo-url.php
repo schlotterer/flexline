@@ -3,10 +3,10 @@
  * Get logo from Gutenberg logo block
  *
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 // Function to get the site logo URL from the Site Editor block
 function get_site_logo_from_block() {

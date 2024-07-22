@@ -2,10 +2,10 @@
 /**
  * Return Substring from between two strings.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Return Fallback image options.
@@ -14,6 +14,6 @@ namespace FlexLine\flexline;
  * @return string url for image.
  */
 function feature_image_fallback() {
-	$fallback_url = get_option( 'flexline_feature_fallback', '' ) ? get_option( 'flexline_feature_fallback', '' ) : get_theme_file_uri() . '/assets/built/images/fallback.webp';
+	$fallback_url = get_option( 'flexlinetheme_feature_fallback', '' ) ? get_option( 'flexlinetheme_feature_fallback', '' ) : get_theme_file_uri() . '/assets/built/images/fallback.webp';
 	return $fallback_url;
 }

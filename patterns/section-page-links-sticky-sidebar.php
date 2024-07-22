@@ -6,7 +6,7 @@
  * Categories: flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"metadata":{"name":"Page Links Sticky Sidebar"},"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"gradient":"secondary-primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-secondary-primary-gradient-background has-background" style="margin-top:0;margin-bottom:0"><!-- wp:cover {"hasParallax":true,"isRepeated":true,"dimRatio":80,"isUserOverlayColor":true,"gradient":"neutralDark-neutralLight","metadata":{"name":"Page Links Background"},"align":"full","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->

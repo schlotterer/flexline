@@ -5,7 +5,7 @@
  * Slug: flexline/section-gallery-by-title
  * Categories: flexline-sections, flexline-modules
  */
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","className":"is-style-shadow-light","layout":{"type":"constrained"},"metadata":{"name":"Gallery right of Title"}} -->
 <div class="wp-block-group alignfull is-style-shadow-light has-neutral-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0"}}}} -->

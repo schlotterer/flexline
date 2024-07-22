@@ -3,7 +3,7 @@
 /**
  * Render theme settings tab.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
 /**
@@ -15,7 +15,7 @@
  *
  * @return void
  */
-function flexline_render_documentation_tab()
+function flexlinetheme_render_documentation_tab()
 {
 ?>
     <style>

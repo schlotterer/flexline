@@ -6,12 +6,13 @@ Author: Joel Schlotterer
 Author URI: https://joelschlotterer.com/
 Description: Flexline is a theme derivative from Frost, and WD_s which are licensed under the GNU General Public License v3.0.
 With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites. FlexLine is a masterpiece of design and functionality. It features a range of valuable patterns, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials. Whether you’re building a website for your business, personal brand, or creative project, FlexLine is perfect for anyone looking to launch quickly and efficiently.
-Tags: accessibility-ready, block-patterns, block-styles, full-site-editing, template-editing, sticky-post, full-width-template
+Tags: block-patterns, block-styles, full-site-editing, template-editing, sticky-post, full-width-template
 Requires at least: 6.5
 Tested up to: 6.6
 Requires PHP: 7.0
 Version: 1.0.1
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: flexline
+Text Domain: flexlinetheme
+Domain Path: /languages
 */

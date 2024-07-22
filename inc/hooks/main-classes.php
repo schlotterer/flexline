@@ -2,10 +2,10 @@
 /**
  * Adds custom classes to apply to <main>
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Adds custom classes to apply to <main>
@@ -24,7 +24,7 @@ function main_classes( $new_classes ) {
 		$classes = array_merge( $classes, $new_classes );
 	}
 
-	$classes = apply_filters( 'flexline_main_classes', $classes );
+	$classes = apply_filters( 'flexlinetheme_main_classes', $classes );
 
 	return implode( ' ', $classes );
 }

@@ -2,12 +2,12 @@
 /**
  * Set up the theme.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
-if ( ! function_exists( 'flexline_setup' ) ) {
+if ( ! function_exists( 'flexlinetheme_setup' ) ) {
 
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -20,10 +20,10 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 	 *
 	 * @return void
 	 */
-	function flexline_setup() {
+	function flexlinetheme_setup() {
 
 		// Make theme available for translation.
-		load_theme_textdomain( 'flexline', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'flexlinetheme', get_template_directory() . '/languages' );
 
 		// Enqueue editor styles and fonts.
 		add_editor_style(
@@ -57,4 +57,4 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		add_theme_support( 'automatic-feed-links' );
 	}
 }
-add_action( 'after_setup_theme', __NAMESPACE__ . '\flexline_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\flexlinetheme_setup' );

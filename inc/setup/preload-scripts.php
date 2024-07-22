@@ -2,10 +2,10 @@
 /**
  * Preload styles and scripts.
  *
- * @package flexline
+ * @package flexlinetheme
  */
 
-namespace FlexLine\flexline;
+namespace Flexlinetheme\flexlinetheme;
 
 /**
  * Preload styles and scripts.
