@@ -3,8 +3,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, ToggleControl, ToolsPanel, SelectControl, ToolsPanelItem } =
-	wp.components;
+const { PanelBody, ToggleControl, SelectControl } = wp.components;
 const { URLInput } = wp.blockEditor;
 
 // Define custom attributes

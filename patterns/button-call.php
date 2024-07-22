@@ -7,7 +7,7 @@
  */
 // Retrieve the phone number from the customizer settings
 namespace FlexLine\flexline;
-$mainPhoneTitle = get_theme_mod('flexline_main_phone_title', '');
+$mainPhoneTitle = get_option('flexline_main_phone_title', '');
 $phoneLinkText = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call Now";
 $aria_label = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call Now";
 $tel_link_number = flexline_get_phone_button_link();

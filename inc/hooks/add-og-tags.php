@@ -44,9 +44,7 @@ function add_og_tags() {
 	$default_type = 'article';
 
 	// Get our custom logo URL. We'll use this on archives and when no featured image is found.
-	$logo_id    = get_theme_mod( 'custom_logo' );
-	$logo_image = ( $logo_id ) ? wp_get_attachment_image_src( $logo_id, 'full' ) : '';
-	$logo_url   = ( $logo_id ) ? $logo_image[0] : '';
+	$logo_url   = get_site_logo_from_block();
 
 	// Set our final defaults.
 	$card_title            = $default_title;
