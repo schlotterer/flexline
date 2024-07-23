@@ -157,22 +157,22 @@
 			],
 			"duotone": [
 				{
-					"colors": ["#2B677A", "#F4F1EB"],
+					"colors": ["#264653", "#F4F1EB"],
 					"slug": "primary",
 					"name": "Primary"
 				},
 				{
-					"colors": ["#4C8038", "#F4F1EB"],
+					"colors": ["#2a9d8f", "#F4F1EB"],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": ["#e46b67", "#F4F1EB"],
+					"colors": ["#B53C38", "#F4F1EB"],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": ["#BBA908", "#F4F1EB"],
+					"colors": ["#e9c46a", "#F4F1EB"],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -182,49 +182,49 @@
 					"name": "Neutral"
 				},
 				{
-					"colors": ["#010101", "#F4F1EB"],
+					"colors": ["#2B2B2B", "#F4F1EB"],
 					"slug": "dark",
 					"name": "Dark"
 				},
 				{
-					"colors": ["#2B677A", "#4C8038"],
+					"colors": ["#264653", "#2a9d8f"],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": ["#2B677A", "#FFC857"],
+					"colors": ["#264653", "#e9c46a"],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": ["#2B677A", "#e46b67"],
+					"colors": ["#264653", "#B53C38"],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
 			],
 			"palette": [
 				{
-					"color": "#2B677A",
+					"color": "#264653",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#4C8038",
+					"color": "#2a9d8f",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#e46b67",
+					"color": "#B53C38",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#f3d18d",
+					"color": "#e9c46a",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#F7D8B5",
+					"color": "#EFD0AE",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
@@ -239,7 +239,7 @@
 					"slug": "primary-light"
 				},
 				{
-					"color": "#84C061",
+					"color": "#52C9BB",
 					"name": "Secondary Light",
 					"slug": "secondary-light"
 				},
@@ -259,7 +259,7 @@
 					"slug": "neutral"
 				},
 				{
-					"color": "#333333",
+					"color": "#2B2B2B",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
@@ -269,7 +269,7 @@
 					"slug": "primary-dark"
 				},
 				{
-					"color": "#365824",
+					"color": "#1A6C63",
 					"name": "Secondary Dark",
 					"slug": "secondary-dark"
 				},

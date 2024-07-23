@@ -1,73 +1,65 @@
 .editor-styles-wrapper,
 body.flexline {
 
-	.gform-theme--framework .gfield:where(.gfield--type-multiselect, .gfield--input-type-multiselect) .chosen-container-multi:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework .gfield:where(.gfield--type-select, .gfield--input-type-select) .chosen-search input[type="text"]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework .gfield:where(.gfield--type-select, .gfield--input-type-select) .chosen-single:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework .gform-theme-field-control:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework input[type]:where(:not(.gform-text-input-reset):not([type="hidden"])):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework select:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework select[multiple]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework textarea:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
-		--gf-local-radius: var(--wp--custom--border-radius);
+    .gform-theme--framework .gfield:where(.gfield--type-multiselect, .gfield--input-type-multiselect) .chosen-container-multi:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework .gfield:where(.gfield--type-select, .gfield--input-type-select) .chosen-search input[type="text"]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework .gfield:where(.gfield--type-select, .gfield--input-type-select) .chosen-single:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework .gform-theme-field-control:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework input[type]:where(:not(.gform-text-input-reset):not([type="hidden"])):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework select:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework select[multiple]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework textarea:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
+        --gf-local-radius: var(--wp--custom--border-radius);
+        --gf-color-primary: var(--wp--preset--color--primary);
+        --gf-color-primary-darker: var(--wp--preset--color--primary-dark);
+        --gf-color-primary-lighter: var(--wp--preset--color--primary-light);
+        --gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
+        --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
+        --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
+        --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
+        --gf-ctrl-border-color: var(--wp--preset--color--neutral);
+        --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
+    }
 
-		--gf-color-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-primary-darker: var(--wp--preset--color--primary-dark) !important;
-		--gf-color-primary-lighter: var(--wp--preset--color--primary-light) !important;
-		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark) !important;
-		--gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light) !important;
-		
-		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
-		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
-		//--gf-ctrl-btn-color-primary: var(--wp--preset--color--base) !important;
-		--gf-ctrl-border-color:var(--wp--preset--color--neutral) !important;
-		--gf-ctrl-accent-color: var(--wp--preset--color--alternate) !important;
-	}
+    .gform-theme--framework.gform-theme.gform_wrapper .button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper .gform-theme-button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper :where(:not(.mce-splitbtn))>button:not([id*="mceu_"]):not(.mce-open):where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper button.button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper input:is([type="submit"], [type="button"], [type="reset"]).button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper input:is([type="submit"], [type="button"], [type="reset"]):where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
+    .gform-theme--framework.gform-theme.gform_wrapper input[type="submit"].button.gform_button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
+        transition: var(--wp--custom--transition-time);
+        --gf-local-radius: var(--wp--custom--button-border-radius);
+        --gf-local-shadow: var(--wp--custom--button-shadow);
 
-	.gform-theme--framework.gform-theme.gform_wrapper .button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper .gform-theme-button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper :where(:not(.mce-splitbtn)) > button:not([id*="mceu_"]):not(.mce-open):where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper button.button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper input:is([type="submit"], [type="button"], [type="reset"]).button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper input:is([type="submit"], [type="button"], [type="reset"]):where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
-	.gform-theme--framework.gform-theme.gform_wrapper input[type="submit"].button.gform_button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
-		--gf-local-radius: var(--wp--custom--button-border-radius);
-		transition: var(--wp--custom--transition-time);
-		--gf-local-shadow: var(--wp--custom--button-shadow);
+        &:hover {
+            --gf-local-shadow: var(--wp--preset--shadow--dark);
+        }
+    }
+	
 
-		
-		
-		&:hover {
-			--gf-local-shadow: var(--wp--preset--shadow--dark);
-		}
+    .gform-theme--framework.gform-theme.gform_wrapper {
+        --gf-color-primary: var(--wp--preset--color--primary);
+        --gf-color-primary-darker: var(--wp--preset--color--primary-dark);
+        --gf-color-primary-lighter: var(--wp--preset--color--primary-light);
+        --gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
+        --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
+        --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
+        --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
+		--gf-ctrl-btn-bg-color-hover-primary: var(--wp--preset--color--alternate);
+        --gf-ctrl-border-color: var(--wp--preset--color--neutral);
+        --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
+    }
 
-	}
-	.gform-theme--framework.gform-theme.gform_wrapper{
-		--gf-color-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-primary-darker: var(--wp--preset--color--primary-dark) !important;
-		--gf-color-primary-lighter: var(--wp--preset--color--primary-light) !important;
-		--gf-color-in-ctrl-primary: var(--wp--preset--color--primary) !important;
-		--gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark) !important;
-		--gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light) !important;
-		
-		//--gf-icon-ctrl-checkbox: var(--wp--preset--color--primary) !important;
-		--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--alternate) !important;
-		//--gf-ctrl-btn-color-primary: var(--wp--preset--color--base) !important;
-		--gf-ctrl-border-color:var(--wp--preset--color--neutral) !important;
-		--gf-ctrl-accent-color: var(--wp--preset--color--alternate) !important;
+    .em.em-item.em-item-single.size-medium .em-item-header .em-item-image img,
+    .em.em-item.em-item-single.size-small .em-item-header .em-item-image img,
+    .em.em-item.em-item-single .em-item-image img {
+        border: none;
+    }
 
-	}
-
-	.em.em-item.em-item-single.size-medium .em-item-header .em-item-image img, 
-	.em.em-item.em-item-single.size-small .em-item-header .em-item-image img,
-	.em.em-item.em-item-single .em-item-image img {
-		border: none;
-	}
-
-	.em-event-add-to-calendar-content,
-	.tippy-box{
-		min-width: 150px !important;
-	}
+    .em-event-add-to-calendar-content,
+    .tippy-box {
+        min-width: 150px;
+    }
 
 }
