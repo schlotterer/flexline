@@ -36,6 +36,7 @@ body.flexline {
             --gf-local-shadow: var(--wp--preset--shadow--dark);
         }
     }
+	
 
     .gform-theme--framework.gform-theme.gform_wrapper {
         --gf-color-primary: var(--wp--preset--color--primary);
@@ -45,6 +46,7 @@ body.flexline {
         --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
         --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
         --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
+		--gf-ctrl-btn-bg-color-hover-primary: var(--wp--preset--color--alternate);
         --gf-ctrl-border-color: var(--wp--preset--color--neutral);
         --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
     }
