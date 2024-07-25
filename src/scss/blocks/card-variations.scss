@@ -113,7 +113,7 @@ body,
 	.is-style-glass,
 	.is-style-glass-card,
 	.wp-block-button.is-style-glass-button .wp-element-button {
-		background: color-mix(in srgb, var(--wp--preset--color--base), transparent 50%);
+		background: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
 		backdrop-filter: blur(10px) saturate(70%);
 		-webkit-backdrop-filter: blur(10px) saturate(70%);
 		transition: var(--wp--custom--transition-time);
