@@ -1048,12 +1048,24 @@
 			"title": "Page - Menu Over Hero"
 		},
 		{
+			"name": "page-hero-title-no-form",
+			"title": "Page - Menu Over Hero & No Form"
+		},
+		{
 			"name": "page-no-title",
 			"title": "Page No Title"
 		},
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [

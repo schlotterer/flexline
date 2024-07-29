@@ -244,7 +244,7 @@
 					"slug": "secondary-light"
 				},
 				{
-					"color": "#E8B789",
+					"color": "#AAC128",
 					"name": "Alternate Light",
 					"slug": "alternate-light"
 				},
@@ -274,7 +274,7 @@
 					"slug": "secondary-dark"
 				},
 				{
-					"color": "#B37E4E",
+					"color": "#3F4904",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
 				},
@@ -1046,12 +1046,24 @@
 			"title": "Page - Menu Over Hero"
 		},
 		{
+			"name": "page-hero-title-no-form",
+			"title": "Page - Menu Over Hero & No Form"
+		},
+		{
 			"name": "page-no-title",
 			"title": "Page No Title"
 		},
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [
