@@ -136,7 +136,7 @@ body,
 				padding-left: $buttonSpace;
 			}
 		}
-		&:not(.flexline-hide-on-mobile) {
+		&:not(.web4sl-hide-on-mobile) {
 			@include screen($mobile){
 				~ .site-header{
 					#header_container {
@@ -145,7 +145,7 @@ body,
 				}
 			}
 		}
-		&.flexline-hide-on-mobile {
+		&.web4sl-hide-on-mobile {
 			@include screen($mobile){
 				~ .site-header{
 					#header_container {
@@ -154,14 +154,14 @@ body,
 				}
 			}
 		}
-		&.flexline-hide-on-tablet {
+		&.web4sl-hide-on-tablet {
 			@include screen($tablet){
 				~ .site-header  #header_container{
 					padding-left: 0;
 				}
 			}
 		}
-		&.flexline-hide-on-desktop {
+		&.web4sl-hide-on-desktop {
 			@include screen($desktop){
 				~ .site-header  #header_container{
 					padding-left: 0;
