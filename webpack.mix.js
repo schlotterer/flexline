@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const autoprefixer = require('autoprefixer');
 
 // Individual JavaScript files
 const jsFiles = [
@@ -18,7 +19,18 @@ jsFiles.forEach((file) => {
 
 // Compile each SASS file to its own output
 sassFiles.forEach((file) => {
-	mix.sass(file, 'css');
+	mix.sass(file, 'css').options({
+		postCss: [
+			autoprefixer({
+				overrideBrowserslist: [
+					'> 1%',
+					'last 2 versions',
+					'Firefox ESR',
+				],
+				grid: true,
+			}),
+		],
+	});
 });
 
 // Copy images from a source directory to an output directory
