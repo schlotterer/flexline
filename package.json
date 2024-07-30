@@ -1,6 +1,6 @@
 {
   "name": "flexline",
-  "version": "1.2.0",
+  "version": "1.0.2",
   "description": "WordPress FSE Theme",
   "main": "index.js",
   "scripts": {
