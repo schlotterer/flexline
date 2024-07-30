@@ -140,7 +140,8 @@ body,
 			@include screen($mobile){
 				~ .site-header{
 					#header_container {
-						justify-content: center !important;
+						display: flex;
+						justify-content: center;
 					}
 				}
 			}
