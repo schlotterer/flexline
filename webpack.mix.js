@@ -26,6 +26,7 @@ sassFiles.forEach((file) => {
 					'> 1%',
 					'last 2 versions',
 					'Firefox ESR',
+					'Safari >= 10',
 				],
 				grid: true,
 			}),
