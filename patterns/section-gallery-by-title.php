@@ -44,7 +44,6 @@ namespace FlexLine\flexline;
         </div>
         <!-- /wp:column -->
     </div>
-    </div>
     <!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
