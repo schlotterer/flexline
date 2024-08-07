@@ -1,6 +1,6 @@
 {
   "name": "flexline",
-  "version": "1.2.0",
+  "version": "1.0.2",
   "description": "WordPress FSE Theme",
   "main": "index.js",
   "scripts": {
@@ -23,11 +23,11 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-react": "^7.24.7",
-    "@wordpress/stylelint-config": "^22.4.0",
     "@wordpress/eslint-plugin": "^20.1.0",
     "autoprefixer": "^10.4.20",
     "@wordpress/scripts": "^28.4.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@wordpress/stylelint-config": "^22.4.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -55,5 +55,11 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR",
+    "Safari >= 10"
+  ]
 }

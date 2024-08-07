@@ -17,7 +17,7 @@ jsFiles.forEach((file) => {
 	mix.js(file, 'js').react(); // If you're using React. Remove this line if not.
 });
 
-// Compile each SASS file to its own output
+// Compile each SASS file to its own output with autoprefixer
 sassFiles.forEach((file) => {
 	mix.sass(file, 'css').options({
 		postCss: [
