@@ -30,9 +30,8 @@
                 <!-- /wp:column -->
 
                 <!-- wp:column {"width":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-                <div class="wp-block-column"><!-- wp:image {"align":"center","id":385,"width":"325px","height":"auto","aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"custom"} -->
-                    <figure class="wp-block-image aligncenter size-full is-resized"><a href="https://www.google.com/maps"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/map.webp'; ?>" alt="" class="wp-image-385" style="aspect-ratio:3/2;object-fit:cover;width:325px;height:auto" /></a></figure>
-                    <!-- /wp:image -->
+                <div class="wp-block-column">
+                    
                 </div>
                 <!-- /wp:column -->
 

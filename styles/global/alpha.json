@@ -162,7 +162,7 @@
 					"name": "Primary"
 				},
 				{
-					"colors": [ "#B25F00", "#FCFBF4" ],
+					"colors": [ "#A55800", "#FCFBF4" ],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
@@ -187,7 +187,7 @@
 					"name": "Dark"
 				},
 				{
-					"colors": [ "#33515B", "#B25F00" ],
+					"colors": [ "#33515B", "#A55800" ],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
@@ -209,7 +209,7 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#B25F00",
+					"color": "#A55800",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
@@ -321,7 +321,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Raleway/static/Raleway-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -336,7 +336,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Source_Sans_3/static/SourceSans3-Medium.ttf" ]
+							"src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -451,14 +451,14 @@
 		},
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
-			"linkHoverColor": "var(--wp--preset--color--highlight)",
+			"linkHoverColor": "var(--wp--preset--color--alternate)",
 			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--primary)",
-			"navMainHoverColor": "var(--wp--preset--color--highlight)",
+			"navMainHoverColor": "var(--wp--preset--color--alternate)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
-			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
+			"navDarkOverLightHoverColor": "var(--wp--preset--color--alternate-dark)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
-			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
+			"navLightOverDarkHoverColor": "var(--wp--preset--color--secondary-light)",
 			"eyebrowSize": "var(--wp--preset--font-size--small)",
 			"eyebrowColor": "var(--wp--preset--color--neutral)",
 			"eyebrowFont": "var(--wp--preset--font-family--display)",
@@ -1047,12 +1047,24 @@
 			"title": "Page - Menu Over Hero"
 		},
 		{
+			"name": "page-hero-title-no-form",
+			"title": "Page - Menu Over Hero & No Form"
+		},
+		{
 			"name": "page-no-title",
 			"title": "Page No Title"
 		},
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [

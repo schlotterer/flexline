@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		debounce(() => {
 			// Update the button icon and re-center it whenever the window is resized.
 			updateButtonIcon();
-			centerButtonInHeader(mainButton);
+			toggleButtonPosition(mainButton);
 		}, 100)
 	);
 	window.addEventListener(
@@ -100,8 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
 		} else {
 			buttonToPosition.style.top = '';
-		}
-		if (!isScrolled) {
 			centerButtonInHeader(buttonToPosition);
 		}
 	}

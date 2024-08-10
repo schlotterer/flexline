@@ -109,12 +109,12 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": ["#DDA15E", "#ffffff"],
+					"colors": ["#5B6A02", "#ffffff"],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": ["#91A943", "#ffffff"],
+					"colors": ["#E88617", "#ffffff"],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -134,12 +134,12 @@
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": ["#283618", "#91A943"],
+					"colors": ["#283618", "#E88617"],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": ["#283618", "#DDA15E"],
+					"colors": ["#283618", "#5B6A02"],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
@@ -156,12 +156,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#DDA15E",
+					"color": "#5B6A02",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#91A943",
+					"color": "#E88617",
 					"name": "Highlight",
 					"slug": "highlight"
 				},

@@ -238,7 +238,7 @@
 					"slug": "primary-light"
 				},
 				{
-					"color": "#845697",
+					"color": "#AF77C7",
 					"name": "Secondary Light",
 					"slug": "secondary-light"
 				},
@@ -450,14 +450,14 @@
 		},
 		"custom": {	
 			"linkColor": "var(--wp--preset--color--primary)",
-			"linkHoverColor": "var(--wp--preset--color--highlight)",
+			"linkHoverColor": "var(--wp--preset--color--secondary-light)",
 			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--primary)",
-			"navMainHoverColor": "var(--wp--preset--color--highlight)",
+			"navMainHoverColor": "var(--wp--preset--color--secondary-light)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
-			"navDarkOverLightHoverColor": "var(--wp--preset--color--highlight)",
+			"navDarkOverLightHoverColor": "var(--wp--preset--color--secondary-light)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
-			"navLightOverDarkHoverColor": "var(--wp--preset--color--highlight)",
+			"navLightOverDarkHoverColor": "var(--wp--preset--color--secondary-light)",
 			"eyebrowSize": "var(--wp--preset--font-size--small)",
 			"eyebrowColor": "var(--wp--preset--color--neutral)",
 			"eyebrowFont": "var(--wp--preset--font-family--display)",
@@ -1065,6 +1065,10 @@
 		{
 			"name": "page-hero-title",
 			"title": "Page - Menu Over Hero"
+		},
+		{
+			"name": "page-hero-title-no-form",
+			"title": "Page - Menu Over Hero & No Form"
 		},
 		{
 			"name": "page-no-title",

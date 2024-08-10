@@ -167,12 +167,12 @@
 					"name": "Secondary"
 				},
 				{
-					"colors": [ "#7A8442", "#ffffff" ],
+					"colors": [ "#596517", "#ffffff" ],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": [ "#ad4a83", "#ffffff" ],
+					"colors": [ "#AC407F", "#ffffff" ],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
@@ -192,12 +192,12 @@
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": [ "#45324b", "#A71B78" ],
+					"colors": [ "#45324b", "#AC407F" ],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": [ "#45324b", "#7A8442" ],
+					"colors": [ "#45324b", "#596517" ],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
@@ -214,12 +214,12 @@
 					"slug": "secondary"
 				},
 				{
-					"color": "#7A8442",
+					"color": "#596517",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#A71B78",
+					"color": "#AC407F",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
@@ -446,9 +446,9 @@
 			"navMainColor": "var(--wp--preset--color--primary)",
 			"navMainHoverColor": "var(--wp--preset--color--secondary)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
-			"navDarkOverLightHoverColor": "var(--wp--preset--color--secondary)",
+			"navDarkOverLightHoverColor": "var(--wp--preset--color--secondary-dark)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
-			"navLightOverDarkHoverColor": "var(--wp--preset--color--secondary)",
+			"navLightOverDarkHoverColor": "var(--wp--preset--color--secondary-light)",
 			"eyebrowSize": "var(--wp--preset--font-size--small)",
 			"eyebrowColor": "var(--wp--preset--color--neutral)",
 			"eyebrowFont": "var(--wp--preset--font-family--display)",
@@ -1037,12 +1037,24 @@
 			"title": "Page - Menu Over Hero"
 		},
 		{
+			"name": "page-hero-title-no-form",
+			"title": "Page - Menu Over Hero & No Form"
+		},
+		{
 			"name": "page-no-title",
 			"title": "Page No Title"
 		},
 		{
 			"name": "page-no-title-no-form",
 			"title": "Page No Title & No Form"
+		},
+		{
+			"name": "events-single",
+			"title": "Single Event"
+		},
+		{
+			"name": "events-list",
+			"title": "Events List"
 		}
 	],
 	"templateParts": [
