@@ -25,7 +25,7 @@ namespace FlexLine\flexline;
     <!-- /wp:gallery -->
 
     <!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
-    <p class="has-text-align-center has-display-font-family" style="text-transform:none">Community Events</p>
+    <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
