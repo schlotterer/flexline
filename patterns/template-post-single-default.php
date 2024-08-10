@@ -3,7 +3,7 @@
 /**
  * Title: Post Single Default.
  * Slug: flexline/template-post-single-default
- * Categories: flexline-posts, flexline-pages
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  * Inserter: false
  */

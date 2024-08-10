@@ -2,7 +2,7 @@
 /**
  * Title: Post list single Feature Post with cover left
  * Slug: flexline/post-list-single-feature-post
- * Categories: flexline-posts, flexline-components
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 ?>
