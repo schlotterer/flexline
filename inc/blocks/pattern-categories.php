@@ -71,6 +71,13 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
+		'flexline-posts-templates',
+		array(
+			'label'       => __( 'Template Parts - Posts', 'flexline' ),
+			'description' => __( 'Template parts used in posts', 'flexline' ),
+		)
+	);
+	register_block_pattern_category(
 		'flexline-headers',
 		array(
 			'label'       => __( 'Template Parts - Headers', 'flexline' ),
