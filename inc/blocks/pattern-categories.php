@@ -71,27 +71,6 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
-		'flexline-samples',
-		array(
-			'label'       => __( 'Content Samples', 'flexline' ),
-			'description' => __( 'Samples of patterns for review and testing.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'flexline-page',
-		array(
-			'label'       => __( 'Template - Pages', 'flexline' ),
-			'description' => __( 'Full pages with multiple sections that are grouped together.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'flexline-events',
-		array(
-			'label'       => __( 'Template - Events', 'flexline' ),
-			'description' => __( 'Events Templates.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
 		'flexline-headers',
 		array(
 			'label'       => __( 'Template Parts - Headers', 'flexline' ),
