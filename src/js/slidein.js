@@ -184,6 +184,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
+	// Add event listener to any anchor link with href="#openSlideIn"
+	document.querySelectorAll('a[href="#openSlideIn"]').forEach(anchor => {
+		anchor.addEventListener('click', function(event) {
+			event.preventDefault(); // Prevent default anchor behavior
+			toggleMenu();
+		});
+	});
+	
 	// Function to add a close button inside the slide-in menu.
 	function addCloseButton(menuContainer) {
 		let closeButton = document.getElementById('slide-in-menu-close');
