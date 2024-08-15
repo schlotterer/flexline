@@ -6,7 +6,8 @@ const { InspectorControls } = wp.blockEditor;
 const { PanelBody, ToggleControl, SelectControl } = wp.components;
 const { URLInput } = wp.blockEditor;
 
-// Define custom attributes
+// Set up custom attributes.
+// MediaModal - Define custom attributes
 const customModalAttributes = {
 	enableModal: {
 		type: 'boolean',
@@ -17,106 +18,28 @@ const customModalAttributes = {
 		default: '',
 	},
 };
-
-// Filter function to add custom attributes to blocks
-function addCustomButtonAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/button') {
-		settings.attributes = {
-			...settings.attributes,
-			...customModalAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Filter function to add custom attributes to blocks
-function addCustomButtonsAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/buttons') {
-		settings.attributes = {
-			...settings.attributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
-const customLazyAttributes = {
-	enableLazyLoad: {
-		type: 'boolean',
-		default: true,
-	},
-};
-// Filter function to add custom attributes to blocks
-function addCustomImageAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/image') {
-		settings.attributes = {
-			...settings.attributes,
-			...customModalAttributes,
-			...customLazyAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Filter function to add custom attributes to blocks
-function addCustomCoverAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/cover') {
-		settings.attributes = {
-			...settings.attributes,
-			...customLazyAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
+// Poster Gallery - Define custom attributes
 const customGalleryAttributes = {
 	enablePosterGallery: {
 		type: 'boolean',
 		default: false,
 	},
 };
-// Filter function to add custom attributes to blocks
-function addCustomGalleryAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/gallery') {
-		settings.attributes = {
-			...settings.attributes,
-			...customGalleryAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
+// Lazy Load - Define custom attributes
+const customLazyAttributes = {
+	enableLazyLoad: {
+		type: 'boolean',
+		default: true,
+	},
+};
+// Horizontal Scroll - Define custom attributes
 const customHorizontalScrollAttributes = {
 	enableHorizontalScroll: {
 		type: 'boolean',
 		default: false,
 	},
 };
-// Filter function to add custom attributes to blocks
-function addCustomNavigationAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/navigation') {
-		settings.attributes = {
-			...settings.attributes,
-			...customHorizontalScrollAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
+// Group - Define custom attributes
 const customGroupAttributes = {
 	enableGroupLink: {
 		type: 'boolean',
@@ -131,19 +54,7 @@ const customGroupAttributes = {
 		default: 'none', // Default to 'none' indicating no link or an unselected state
 	},
 };
-// Filter function to add custom attributes to blocks
-function addCustomGroupAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/group') {
-		settings.attributes = {
-			...settings.attributes,
-			...customGroupAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
+// Visibility - Define custom attributes
 const customVisibilityAttributes = {
 	stackAtTablet: {
 		type: 'boolean',
@@ -162,6 +73,152 @@ const customVisibilityAttributes = {
 		default: false,
 	},
 };
+// Button Icons - Define custom attributes
+const customIconAttributes = {
+    iconType: {
+        type: 'string',
+        default: 'none', // Default to 'none' indicating no icon selected
+    },
+};
+
+
+
+
+
+// Button - Filter function to add custom attributes to blocks
+function addCustomButtonAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/button') {
+		settings.attributes = {
+			...settings.attributes,
+			...customIconAttributes,
+			...customModalAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Button - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomButtonAttributes
+);
+
+// Buttons - Filter function to add custom attributes to blocks
+function addCustomButtonsAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/buttons') {
+		settings.attributes = {
+			...settings.attributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Buttons - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomButtonsAttributes
+);
+
+// Cover - Filter function to add custom attributes to blocks
+function addCustomCoverAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/cover') {
+		settings.attributes = {
+			...settings.attributes,
+			...customLazyAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Cover - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomCoverAttributes
+);
+
+// Gallery - Filter function to add custom attributes to blocks
+function addCustomGalleryAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/gallery') {
+		settings.attributes = {
+			...settings.attributes,
+			...customGalleryAttributes,
+		};
+	}
+	return settings;
+}
+// Gallery - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomGalleryAttributes
+);
+
+// Group - Filter function to add custom attributes to blocks
+function addCustomGroupAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/group') {
+		settings.attributes = {
+			...settings.attributes,
+			...customGroupAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Group - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomGroupAttributes
+);
+
+// Image - Filter function to add custom attributes to blocks
+function addCustomImageAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/image') {
+		settings.attributes = {
+			...settings.attributes,
+			...customModalAttributes,
+			...customLazyAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Image -Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomImageAttributes
+);
+
+// Navigation - Filter function to add custom attributes to blocks
+function addCustomNavigationAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/navigation') {
+		settings.attributes = {
+			...settings.attributes,
+			...customHorizontalScrollAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Navigation - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomNavigationAttributes
+);
+
+// Visibility - Filter function to add custom attributes to blocks
 function addCustomVisibilityAttributes(settings, name) {
 	if (
 		[
@@ -187,7 +244,17 @@ function addCustomVisibilityAttributes(settings, name) {
 	}
 	return settings;
 }
+// Visibility - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomVisibilityAttributes
+);
 
+
+
+
+// Set up the Fields
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
@@ -208,7 +275,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							<ToggleControl
-								label="Enable Mixed Media Modal"
+								label="Open a Modal"
 								checked={!!props.attributes.enableModal}
 								onChange={(newValue) =>
 									props.setAttributes({
@@ -352,8 +419,26 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					<BlockEdit {...props} />
 					<InspectorControls>
 						<PanelBody title="Flexline Options">
+							<SelectControl
+								label="Icon Type"
+								value={props.attributes.iconType}
+								options={[
+									{ label: 'None', value: 'none' },
+									{ label: 'Internal Link →', value: '→' },
+									{ label: 'Download ⤓', value: '⤓' },
+									{ label: 'Play Video ►', value: '►' },
+									{ label: 'Open Modal ⤢', value: '⤢' },
+									{ label: 'Link Out ↗', value: '↗' },
+									// Add more options as needed
+								]}
+								onChange={(newValue) =>
+									props.setAttributes({
+										iconType: newValue,
+									})
+								}
+							/>
 							<ToggleControl
-								label="Enable Mixed Media Modal"
+								label="Open Link in a Modal"
 								checked={!!props.attributes.enableModal}
 								onChange={(newValue) =>
 									props.setAttributes({
@@ -495,10 +580,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									options={[
 										{ label: 'Normal', value: 'none' },
 										{ label: 'New Tab', value: 'new_tab' },
-										{
-											label: 'Modal Media',
-											value: 'modal_media',
-										},
+										{ label: 'Modal Media', value: 'modal_media'},
 									]}
 									onChange={(newValue) =>
 										props.setAttributes({
@@ -608,63 +690,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		return <BlockEdit {...props} />;
 	};
 }, 'withCustomControls');
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomButtonAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomButtonsAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomImageAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomCoverAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomGalleryAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomNavigationAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomVisibilityAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomGroupAttributes
-);
-
+// Apply Controls filter
 addFilter(
 	'editor.BlockEdit',
 	'flexline/with-custom-controls',

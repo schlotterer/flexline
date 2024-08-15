@@ -47,9 +47,11 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			// Add a class.
 			$added_classes .= 'flexline-hide-on-desktop ';
 		}
+		
 		$search_string  = 'class="';
 		$replace_string = 'class="' . $added_classes;
 		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		
 	}
 	if ( 'core/button' === $block['blockName'] ) {
 		$added_classes = '';
@@ -69,9 +71,16 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			// Add a class.
 			$added_classes .= 'flexline-hide-on-desktop ';
 		}
+		$icon = '';
+		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] ) {
+			$icon = '<span class="button-icon">&nbsp;' . $block['attrs']['iconType'] . '</span></a>' ;
+		}
 		$search_string  = 'class="';
 		$replace_string = 'class="' . $added_classes;
 		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		$search_string_2 = '</a>';
+		$replace_string_2 = $icon . '</a>';
+		$block_content  = str_replace_first( $search_string_2, $replace_string_2, $block_content );
 	}
 	if ( 'core/image' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
@@ -184,7 +193,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$replace_string = 'class="' . $added_classes;
 		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 	}
-	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] ) {
+	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
 
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 
@@ -257,7 +266,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 	}
 	if (
-		'core/headline' === $block['blockName'] ||
+		'core/heading' === $block['blockName'] ||
 		'core/paragraph' === $block['blockName'] ||
 		'core/video' === $block['blockName'] ||
 		'core/site-logo' === $block['blockName'] ||
