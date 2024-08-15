@@ -1,7 +1,5 @@
-figure.wp-block-image.enable-modal{
-    &::after{
-        background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
-    }
+figure.wp-block-image.enable-modal::after {
+    background-image: url('../built/images/icon-expand_content_FILL0_wght400_GRAD0_opsz24.svg');
 }
 
 figure.wp-block-image.enable-modal[data-modal-media-url*="youtube.com"],
@@ -9,20 +7,19 @@ figure.wp-block-image.enable-modal[data-modal-media-url*="youtu.be"],
 figure.wp-block-image.enable-modal[data-modal-media-url*="vimeo.com"],
 figure.wp-block-image.enable-modal[data-modal-media-url*=".mp4"],
 figure.wp-block-image.enable-modal[data-modal-media-url*=".webm"],
-figure.wp-block-image.enable-modal[data-modal-media-url*=".ogg"]{
-    &::after{
+figure.wp-block-image.enable-modal[data-modal-media-url*=".ogg"] {
+    &::after {
         background-image: url('../built/images/icon-play_arrow_FILL1_wght400_GRAD0_opsz24.svg');
     }
 }
-figure.poster-gallery.has-nested-images > figure:first-of-type{
-    &::after{
-        background-image: url('../built/images/icon-photo_library_FILL0_wght400_GRAD0_opsz24.svg');
-    }
+
+figure.poster-gallery.has-nested-images>figure:first-of-type::after {
+    background-image: url('../built/images/icon-photo_library_FILL0_wght400_GRAD0_opsz24.svg');
 }
 
 
 @media only screen and (max-width:991.98px) {
-    .is-style-horizontal-scroll-at-mobile:not(ul)::after{
+    .is-style-horizontal-scroll-at-mobile:not(ul)::after {
         background-image: url('../built/images/icon-chevron_right_FILL0_wght400_GRAD0_opsz24.svg');
-    }  
+    }
 }

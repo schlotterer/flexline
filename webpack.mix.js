@@ -6,7 +6,7 @@ const jsFiles = [
 	'src/js/block-extensions.js',
 	'src/js/modal.js',
 	'src/js/global.js',
-	'src/js/feature-links.js',
+	'src/js/slidein.js',
 ];
 
 // Individual SASS files

@@ -25,17 +25,15 @@ function flexline_enqueue_style_sheet() {
 	// Styles.
 	wp_enqueue_style( 'flexline-base', get_template_directory_uri() . '/assets/built/css/app.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), THEME_VERSION );
-
-	// Icons.
+	// Icons Styles.
 	wp_enqueue_style( 'flexline-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), THEME_VERSION );
-
 	// Customized Styles.
 	wp_enqueue_style( 'flexline-custom', get_template_directory_uri() . '/assets/css/customize.css', array(), THEME_VERSION );
 
 	// Scripts.
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/built/js/global.js', array(), THEME_VERSION, true );
 	wp_enqueue_script( 'flexline-modal', get_template_directory_uri() . '/assets/built/js/modal.js', array(), THEME_VERSION, true );
-	wp_enqueue_script( 'flexline-feature-links', get_template_directory_uri() . '/assets/built/js/feature-links.js', array(), THEME_VERSION, true );
+	wp_enqueue_script( 'flexline-slidein', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, true );
 
 	// Customized Scripts.
 	wp_enqueue_script( 'flexline-customize', get_template_directory_uri() . '/assets/js/customize.js', array(), THEME_VERSION, true );
@@ -48,6 +46,10 @@ function flexline_admin_enqueue_scripts() {
 	// Styles.
 	wp_enqueue_style( 'flexline-base-admin', get_template_directory_uri() . '/assets/built/css/app.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), THEME_VERSION );
+	// Icons.
+	wp_enqueue_style( 'flexline-icons', get_template_directory_uri() . '/assets/css/icons.css', array(), THEME_VERSION );
+	// Customized Styles.
+	wp_enqueue_style( 'flexline-custom', get_template_directory_uri() . '/assets/css/customize.css', array(), THEME_VERSION );
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
