@@ -161,6 +161,7 @@ function flexline_register_block_styles() {
 		),
 		'core/button'              => array(
 			'glass-button' => __( 'Glass Button', 'flexline' ),
+			'text-link' => __( 'Plain Text', 'flexline' ),
 		),
 	);
 

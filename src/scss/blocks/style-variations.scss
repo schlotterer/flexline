@@ -44,4 +44,11 @@ body,
 
 	}
 
+	.is-style-text-link .wp-element-button {
+		box-shadow: none !important;
+		padding: 0 !important;
+		background-color: transparent !important;
+		line-height: var(--wp--custom--body-line-height);
+	}
+
 }
