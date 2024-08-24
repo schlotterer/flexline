@@ -24,6 +24,43 @@ function flexline_enqueue_block_editor_assets() {
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
 
+/**
+ * Generate visibility classes based on block attributes.
+ *
+ * @param array $attrs The block attributes.
+ * @return string The generated visibility classes.
+ */
+function get_visibility_classes( $attrs ) {
+	$visibility_classes = '';
+
+	if ( ! empty( $attrs['hideOnMobile'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-mobile ';
+	}
+	if ( ! empty( $attrs['hideOnTablet'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-tablet ';
+	}
+	if ( ! empty( $attrs['hideOnDesktop'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-desktop ';
+	}
+
+	return $visibility_classes;
+}
+
+/**
+ * Replace or append classes to a block's content.
+ *
+ * @param string $block_content The original block content.
+ * @param string $added_classes The classes to be added.
+ * @return string The modified block content with the new classes.
+ */
+function add_classes_to_block_content( $block_content, $added_classes ) {
+    $search_string  = 'class="';
+    $replace_string = 'class="' . esc_attr( $added_classes );
+
+    // Use str_replace_first to ensure only the first occurrence is replaced.
+    return str_replace_first( $search_string, $replace_string, $block_content );
+}
+
 
 /**
  * Renders the flexline block modal.
@@ -35,23 +72,9 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_bl
 function flexline_block_customizations_render( $block_content, $block ) {
 	if ( 'core/buttons' === $block['blockName'] ) {
 		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
-		
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 	if ( 'core/button' === $block['blockName'] ) {
 		$added_classes = '';
@@ -59,32 +82,17 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			// Add a class.
 			$added_classes .= 'enable-modal ';
 		}
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$icon = '';
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
 		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] ) {
-			$icon = '<span class="button-icon">&nbsp;' . $block['attrs']['iconType'] . '</span></a>' ;
+			$added_classes .= 'flexline-icon-' . $block['attrs']['iconType'] . ' ';
 		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
-		$search_string_2 = '</a>';
-		$replace_string_2 = $icon . '</a>';
-		$block_content  = str_replace_first( $search_string_2, $replace_string_2, $block_content );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+
 	}
 	if ( 'core/image' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
-
+		$added_classes = '';
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
 			$search_string   = 'loading="lazy"';
 			$replace_string  = '';
@@ -99,9 +107,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
 			// Add a class.
-			$search_string  = 'class="';
-			$replace_string = 'class="enable-modal ';
-			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			$added_classes .= 'enable-modal ';
 			// Add the media URL as a data attribute if it exists.
 			if ( ! empty( $block['attrs']['modalMediaURL'] ) ) {
 				// Insert your data attribute just before the closing tag of the element.
@@ -112,25 +118,12 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
-		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
-
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 	if ( 'core/cover' === $block['blockName'] ) {
+		$added_classes = '';
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
 			$search_string   = 'loading="lazy"';
@@ -145,28 +138,16 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$block_content  = str_replace( $search_string, $replace_string, $block_content );
 		}
 		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+
 	}
 	if ( 'core/gallery' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enablePosterGallery'] ) && $block['attrs']['enablePosterGallery'] ) {
 			// Add a class.
-			$search_string  = 'class="';
-			$replace_string = 'class="poster-gallery ';
+			$added_classes = 'poster-gallery ';
 			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 		}
 	}
@@ -177,31 +158,18 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			// Add a class.
 			$added_classes .= 'is-style-horizontal-scroll-at-mobile ';
 		}
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+
 	}
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
-
+		$added_classes = '';
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 
 			$link_type      = isset( $block['attrs']['groupLinkType'] ) ? $block['attrs']['groupLinkType'] : 'self';
 			$aria_label     = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-			$search_string  = 'class="';
-			$replace_string = 'class="group-link group-link-type-' . esc_attr( $link_type ) . ' ';
-			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			$added_classes = 'group-link group-link-type-' . esc_attr( $link_type ) . ' ';
 
 			// Add a class.
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
@@ -212,58 +180,26 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
-		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+
 	}
 	if ( 'core/columns' === $block['blockName'] ) {
 		$added_classes = '';
 		if ( isset( $block['attrs']['stackAtTablet'] ) && $block['attrs']['stackAtTablet'] ) {
 			$added_classes .= 'flexline-stack-at-tablet ';
 		}
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 	if ( 'core/column' === $block['blockName'] ) {
 		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 	if (
 		'core/heading' === $block['blockName'] ||
@@ -279,21 +215,9 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		'core/spacer' === $block['blockName'] ||
 		'core/embed' === $block['blockName'] ) {
 		$added_classes = '';
-		if ( isset( $block['attrs']['hideOnMobile'] ) && $block['attrs']['hideOnMobile'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-mobile ';
-		}
-		if ( isset( $block['attrs']['hideOnTablet'] ) && $block['attrs']['hideOnTablet'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-tablet ';
-		}
-		if ( isset( $block['attrs']['hideOnDesktop'] ) && $block['attrs']['hideOnDesktop'] ) {
-			// Add a class.
-			$added_classes .= 'flexline-hide-on-desktop ';
-		}
-		$search_string  = 'class="';
-		$replace_string = 'class="' . $added_classes;
-		$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 
 	return $block_content;

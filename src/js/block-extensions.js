@@ -75,15 +75,11 @@ const customVisibilityAttributes = {
 };
 // Button Icons - Define custom attributes
 const customIconAttributes = {
-    iconType: {
-        type: 'string',
-        default: 'none', // Default to 'none' indicating no icon selected
-    },
+	iconType: {
+		type: 'string',
+		default: 'none', // Default to 'none' indicating no icon selected
+	},
 };
-
-
-
-
 
 // Button - Filter function to add custom attributes to blocks
 function addCustomButtonAttributes(settings, name) {
@@ -250,9 +246,6 @@ addFilter(
 	'flexline/add-custom-attributes',
 	addCustomVisibilityAttributes
 );
-
-
-
 
 // Set up the Fields
 // Higher Order Component to add custom controls
@@ -424,11 +417,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								value={props.attributes.iconType}
 								options={[
 									{ label: 'None', value: 'none' },
-									{ label: 'Internal Link →', value: '→' },
-									{ label: 'Download ⤓', value: '⤓' },
-									{ label: 'Play Video ►', value: '►' },
-									{ label: 'Open Modal ⤢', value: '⤢' },
-									{ label: 'Link Out ↗', value: '↗' },
+									{
+										label: 'Internal Link →',
+										value: 'internal-link',
+									},
+									{ label: 'Download ⤓', value: 'download' },
+									{
+										label: 'Play Video ►',
+										value: 'video-play',
+									},
+									{
+										label: 'Open Modal ⤢',
+										value: 'open-modal',
+									},
+									{ label: 'Link Out ↗', value: 'link-out' },
 									// Add more options as needed
 								]}
 								onChange={(newValue) =>
@@ -580,7 +582,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									options={[
 										{ label: 'Normal', value: 'none' },
 										{ label: 'New Tab', value: 'new_tab' },
-										{ label: 'Modal Media', value: 'modal_media'},
+										{
+											label: 'Modal Media',
+											value: 'modal_media',
+										},
 									]}
 									onChange={(newValue) =>
 										props.setAttributes({
