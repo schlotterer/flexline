@@ -22,4 +22,37 @@ body,
 		border-radius: var(--wp--custom--image-border-radius);
 		box-shadow: var(--wp--custom--box-shadow);
 	}
+
+
+	.flexline-icon-internal-link,
+	.flexline-icon-video-play{
+		.wp-element-button:after {
+			display: inline-flex;
+		}
+	}
+	.flexline-icon-internal-link {
+		.wp-element-button:after {
+			content: " →";
+		}
+	}
+	.flexline-icon-download {
+		.wp-element-button:after {
+			content: " ⤓";
+		}
+	}
+	.flexline-icon-open-modal {
+		.wp-element-button:after {
+			content: " ⤢";
+		}
+	}
+	.flexline-icon-video-play {
+		.wp-element-button:after {
+			content: " ►";
+		}
+	}
+	.flexline-icon-link-out {
+		.wp-element-button:after {
+			content: " ↗";
+		}
+	}
 }

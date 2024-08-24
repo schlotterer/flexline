@@ -148,7 +148,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['enablePosterGallery'] ) && $block['attrs']['enablePosterGallery'] ) {
 			// Add a class.
 			$added_classes = 'poster-gallery ';
-			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			$block_content = add_classes_to_block_content( $block_content, $added_classes );
 		}
 	}
 	if ( 'core/navigation' === $block['blockName'] ) {

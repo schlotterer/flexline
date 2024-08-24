@@ -8,29 +8,45 @@ const { URLInput } = wp.blockEditor;
 
 // Utility function to generate visibility classes based on attributes
 const getVisibilityClasses = (attrs) => {
-    let classes = '';
-    if (attrs.hideOnMobile) classes += 'flexline-hide-on-mobile ';
-    if (attrs.hideOnTablet) classes += 'flexline-hide-on-tablet ';
-    if (attrs.hideOnDesktop) classes += 'flexline-hide-on-desktop ';
-    return classes.trim();
+	let classes = '';
+	if (attrs.hideOnMobile) {
+		classes += 'flexline-hide-on-mobile ';
+	}
+	if (attrs.hideOnTablet) {
+		classes += 'flexline-hide-on-tablet ';
+	}
+	if (attrs.hideOnDesktop) {
+		classes += 'flexline-hide-on-desktop ';
+	}
+	return classes.trim();
 };
 
-
 // Utility function to manage class additions and removals
-const updateBlockClasses = (currentClasses, newClasses, removedClasses = []) => {
-    const classList = new Set(currentClasses.split(' ').filter(Boolean)); // Filter out empty strings
+const updateBlockClasses = (
+	currentClasses,
+	newClasses,
+	removedClasses = []
+) => {
+	let classList = currentClasses.split(' ').filter(Boolean); // Split classes into an array and filter out empty strings
 
-    // Remove each class from the list that needs to be removed
-    removedClasses.forEach((removedClass) => {
-        classList.delete(removedClass);
-    });
+	// Remove each class from the list that needs to be removed
+	removedClasses.forEach((removedClass) => {
+		// Handle specific logic for flexline-icon-* classes
+		if (removedClass === 'flexline-icon') {
+			classList = classList.filter(
+				(cls) => !cls.startsWith('flexline-icon-')
+			); // Remove all flexline-icon-* classes
+		} else {
+			classList = classList.filter((cls) => cls !== removedClass); // Remove the specific class
+		}
+	});
 
-    // Add the new classes
-    newClasses.split(' ').forEach((newClass) => {
-        classList.add(newClass.trim());
-    });
+	// Add the new classes
+	newClasses.split(' ').forEach((newClass) => {
+		classList.push(newClass.trim());
+	});
 
-    return [...classList].join(' ').trim();
+	return [...new Set(classList)].join(' ').trim(); // Ensure unique classes and join them back into a string
 };
 
 // Set up the Fields
@@ -38,73 +54,112 @@ const updateBlockClasses = (currentClasses, newClasses, removedClasses = []) => 
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		useEffect(() => {
-            // Determine which classes, if any, need to be removed
-            const removedClasses = [];
-            if (!props.attributes.hideOnMobile) removedClasses.push('flexline-hide-on-mobile');
-            if (!props.attributes.hideOnTablet) removedClasses.push('flexline-hide-on-tablet');
-            if (!props.attributes.hideOnDesktop) removedClasses.push('flexline-hide-on-desktop');
-            if (!props.attributes.enableModal) removedClasses.push('enable-modal');
-            if (!props.attributes.enableLazyLoad) removedClasses.push('no-lazy-load');
-            if (!props.attributes.enablePosterGallery) removedClasses.push('poster-gallery');
-            if (!props.attributes.enableHorizontalScroll) removedClasses.push('is-style-horizontal-scroll-at-mobile');
-            if (!props.attributes.enableGroupLink) removedClasses.push('group-link');
+			// Determine which classes, if any, need to be removed
+			const removedClasses = [];
+			if (!props.attributes.hideOnMobile) {
+				removedClasses.push('flexline-hide-on-mobile');
+			}
+			if (!props.attributes.hideOnTablet) {
+				removedClasses.push('flexline-hide-on-tablet');
+			}
+			if (!props.attributes.hideOnDesktop) {
+				removedClasses.push('flexline-hide-on-desktop');
+			}
+			if (!props.attributes.enableModal) {
+				removedClasses.push('enable-modal');
+			}
+			if (!props.attributes.enableLazyLoad) {
+				removedClasses.push('no-lazy-load');
+			}
+			if (!props.attributes.enablePosterGallery) {
+				removedClasses.push('poster-gallery');
+			}
+			if (!props.attributes.enableHorizontalScroll) {
+				removedClasses.push('is-style-horizontal-scroll-at-mobile');
+			}
+			if (!props.attributes.enableGroupLink) {
+				removedClasses.push('group-link');
+			}
 
-            // Generate the new visibility and other classes
-            let newClasses = getVisibilityClasses(props.attributes);
+			// Remove all existing flexline-icon-* classes when a new icon type is selected
+			if (props.name === 'core/button') {
+				removedClasses.push('flexline-icon'); // This triggers the logic to remove any flexline-icon-* class
+			}
 
-            // Block-specific logic
-            if (props.name === 'core/button' || props.name === 'core/image') {
-                if (props.attributes.enableModal) {
-                    newClasses += ' enable-modal';
-                }
-            }
+			// Generate the new visibility and other classes
+			let newClasses = getVisibilityClasses(props.attributes);
 
-            if (props.name === 'core/button' && props.attributes.iconType) {
-                newClasses += ` flexline-icon-${props.attributes.iconType}`;
-            }
+			// Block-specific logic
+			if (props.name === 'core/button' || props.name === 'core/image') {
+				if (props.attributes.enableModal) {
+					newClasses += ' enable-modal';
+				}
+			}
 
-            if (props.name === 'core/image' || props.name === 'core/cover') {
-                if (props.attributes.enableLazyLoad === false) {
-                    newClasses += ' no-lazy-load';
-                }
-            }
+			if (props.name === 'core/button' && props.attributes.iconType) {
+				newClasses += ` flexline-icon-${props.attributes.iconType}`;
+			}
 
-            if (props.name === 'core/gallery' && props.attributes.enablePosterGallery) {
-                newClasses += ' poster-gallery';
-            }
+			if (props.name === 'core/image' || props.name === 'core/cover') {
+				if (props.attributes.enableLazyLoad === false) {
+					newClasses += ' no-lazy-load';
+				}
+			}
 
-            if (props.name === 'core/navigation' && props.attributes.enableHorizontalScroll) {
-                newClasses += ' is-style-horizontal-scroll-at-mobile';
-            }
+			if (
+				props.name === 'core/gallery' &&
+				props.attributes.enablePosterGallery
+			) {
+				newClasses += ' poster-gallery';
+			}
 
-            if (['core/group', 'core/stack', 'core/row', 'core/grid'].includes(props.name)) {
-                if (props.attributes.enableGroupLink) {
-                    const linkType = props.attributes.groupLinkType || 'self';
-                    newClasses += ` group-link group-link-type-${linkType}`;
-                }
-            }
+			if (
+				props.name === 'core/navigation' &&
+				props.attributes.enableHorizontalScroll
+			) {
+				newClasses += ' is-style-horizontal-scroll-at-mobile';
+			}
 
-            if (props.name === 'core/columns' && props.attributes.stackAtTablet) {
-                newClasses += ' flexline-stack-at-tablet';
-            }
+			if (
+				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
+					props.name
+				)
+			) {
+				if (props.attributes.enableGroupLink) {
+					const linkType = props.attributes.groupLinkType || 'self';
+					newClasses += ` group-link group-link-type-${linkType}`;
+				}
+			}
 
-            // Combine current classes with updated ones, removing the unwanted classes
-            const combinedClasses = updateBlockClasses(props.attributes.className || '', newClasses, removedClasses);
-            props.setAttributes({ className: combinedClasses });
-        }, [
-            props.attributes.hideOnMobile,
-            props.attributes.hideOnTablet,
-            props.attributes.hideOnDesktop,
-            props.attributes.enableModal,
-            props.attributes.iconType,
-            props.attributes.enableLazyLoad,
-            props.attributes.enablePosterGallery,
-            props.attributes.enableHorizontalScroll,
-            props.attributes.enableGroupLink,
-            props.attributes.groupLinkType,
-            props.attributes.stackAtTablet,
-            props.name
-        ]);
+			if (
+				props.name === 'core/columns' &&
+				props.attributes.stackAtTablet
+			) {
+				newClasses += ' flexline-stack-at-tablet';
+			}
+
+			// Combine current classes with updated ones, removing the unwanted classes
+			const combinedClasses = updateBlockClasses(
+				props.attributes.className || '',
+				newClasses,
+				removedClasses
+			);
+			props.setAttributes({ className: combinedClasses });
+		}, [
+			props.attributes.hideOnMobile,
+			props.attributes.hideOnTablet,
+			props.attributes.hideOnDesktop,
+			props.attributes.enableModal,
+			props.attributes.iconType,
+			props.attributes.enableLazyLoad,
+			props.attributes.enablePosterGallery,
+			props.attributes.enableHorizontalScroll,
+			props.attributes.enableGroupLink,
+			props.attributes.groupLinkType,
+			props.attributes.stackAtTablet,
+			props.name,
+			props,
+		]);
 
 		// Only show on specific blocks
 		if (props.name === 'core/image') {
