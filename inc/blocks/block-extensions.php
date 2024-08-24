@@ -82,6 +82,12 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			// Add a class.
 			$added_classes .= 'enable-modal ';
 		}
+		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] === 'download' ) {
+			$search_string   = 'href="';
+			$replace_string  = 'download href="';
+			$block_content   = str_replace( $search_string, $replace_string, $block_content );
+		}
+
 		// Generate the visibility classes.
 		$added_classes .= get_visibility_classes( $block['attrs'] );
 		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] ) {
