@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer');
 
 // Individual JavaScript files
 const jsFiles = [
-	'src/js/block-extensions.js',
+	'src/js/blocks/block-extensions.js',
 	'src/js/modal.js',
 	'src/js/global.js',
 	'src/js/slidein.js',
