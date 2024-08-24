@@ -32,27 +32,27 @@ body,
 	}
 	.flexline-icon-internal-link {
 		.wp-element-button:after {
-			content: " →";
+			content: "&nbsp;→";
 		}
 	}
 	.flexline-icon-download {
 		.wp-element-button:after {
-			content: " ⤓";
+			content: "&nbsp;⤓";
 		}
 	}
 	.flexline-icon-open-modal {
 		.wp-element-button:after {
-			content: " ⤢";
+			content: "&nbsp;⤢";
 		}
 	}
 	.flexline-icon-video-play {
 		.wp-element-button:after {
-			content: " ►";
+			content: "&nbsp;►";
 		}
 	}
 	.flexline-icon-link-out {
 		.wp-element-button:after {
-			content: " ↗";
+			content: "&nbsp;↗";
 		}
 	}
 }
