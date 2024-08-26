@@ -1,196 +1,166 @@
 // Accessing WordPress packages from the 'wp' global object
 const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
-const { Fragment } = wp.element;
+const { Fragment, useEffect } = wp.element;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, ToggleControl, SelectControl } = wp.components;
 const { URLInput } = wp.blockEditor;
 
-// Define custom attributes
-const customModalAttributes = {
-	enableModal: {
-		type: 'boolean',
-		default: false,
-	},
-	modalMediaURL: {
-		type: 'string',
-		default: '',
-	},
+// Utility function to generate visibility classes based on attributes
+const getVisibilityClasses = (attrs) => {
+	let classes = '';
+	if (attrs.hideOnMobile) {
+		classes += 'flexline-hide-on-mobile ';
+	}
+	if (attrs.hideOnTablet) {
+		classes += 'flexline-hide-on-tablet ';
+	}
+	if (attrs.hideOnDesktop) {
+		classes += 'flexline-hide-on-desktop ';
+	}
+	return classes.trim();
 };
 
-// Filter function to add custom attributes to blocks
-function addCustomButtonAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/button') {
-		settings.attributes = {
-			...settings.attributes,
-			...customModalAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
+// Utility function to manage class additions and removals
+const updateBlockClasses = (
+	currentClasses,
+	newClasses,
+	removedClasses = []
+) => {
+	let classList = currentClasses.split(' ').filter(Boolean); // Split classes into an array and filter out empty strings
 
-// Filter function to add custom attributes to blocks
-function addCustomButtonsAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/buttons') {
-		settings.attributes = {
-			...settings.attributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
+	// Remove each class from the list that needs to be removed
+	removedClasses.forEach((removedClass) => {
+		// Handle specific logic for flexline-icon-* classes
+		if (removedClass === 'flexline-icon') {
+			classList = classList.filter(
+				(cls) => !cls.startsWith('flexline-icon-')
+			); // Remove all flexline-icon-* classes
+		} else {
+			classList = classList.filter((cls) => cls !== removedClass); // Remove the specific class
+		}
+	});
 
-// Define custom attributes
-const customLazyAttributes = {
-	enableLazyLoad: {
-		type: 'boolean',
-		default: true,
-	},
+	// Add the new classes
+	newClasses.split(' ').forEach((newClass) => {
+		classList.push(newClass.trim());
+	});
+
+	return [...new Set(classList)].join(' ').trim(); // Ensure unique classes and join them back into a string
 };
-// Filter function to add custom attributes to blocks
-function addCustomImageAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/image') {
-		settings.attributes = {
-			...settings.attributes,
-			...customModalAttributes,
-			...customLazyAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
 
-// Filter function to add custom attributes to blocks
-function addCustomCoverAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/cover') {
-		settings.attributes = {
-			...settings.attributes,
-			...customLazyAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
-const customGalleryAttributes = {
-	enablePosterGallery: {
-		type: 'boolean',
-		default: false,
-	},
-};
-// Filter function to add custom attributes to blocks
-function addCustomGalleryAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/gallery') {
-		settings.attributes = {
-			...settings.attributes,
-			...customGalleryAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
-const customHorizontalScrollAttributes = {
-	enableHorizontalScroll: {
-		type: 'boolean',
-		default: false,
-	},
-};
-// Filter function to add custom attributes to blocks
-function addCustomNavigationAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/navigation') {
-		settings.attributes = {
-			...settings.attributes,
-			...customHorizontalScrollAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-// Define custom attributes
-const customGroupAttributes = {
-	enableGroupLink: {
-		type: 'boolean',
-		default: false,
-	},
-	groupLinkURL: {
-		type: 'string',
-		default: '',
-	},
-	groupLinkType: {
-		type: 'string',
-		default: 'none', // Default to 'none' indicating no link or an unselected state
-	},
-};
-// Filter function to add custom attributes to blocks
-function addCustomGroupAttributes(settings, name) {
-	// Target specific blocks
-	if (name === 'core/group') {
-		settings.attributes = {
-			...settings.attributes,
-			...customGroupAttributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
-const customVisibilityAttributes = {
-	stackAtTablet: {
-		type: 'boolean',
-		default: false,
-	},
-	hideOnDesktop: {
-		type: 'boolean',
-		default: false,
-	},
-	hideOnTablet: {
-		type: 'boolean',
-		default: false,
-	},
-	hideOnMobile: {
-		type: 'boolean',
-		default: false,
-	},
-};
-function addCustomVisibilityAttributes(settings, name) {
-	if (
-		[
-			'core/column',
-			'core/columns',
-			'core/spacer',
-			'core/paragraph',
-			'core/heading',
-			'core/video',
-			'core/site-logo',
-			'core/post-featured-image',
-			'core/embed',
-			'core/html',
-			'core/social-link',
-			'core/social-links',
-		].includes(name)
-	) {
-		// Extend the existing attributes with custom visibility attributes
-		settings.attributes = {
-			...settings.attributes,
-			...customVisibilityAttributes,
-		};
-	}
-	return settings;
-}
-
+// Set up the Fields
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
+		useEffect(() => {
+			// Determine which classes, if any, need to be removed
+			const removedClasses = [];
+			if (!props.attributes.hideOnMobile) {
+				removedClasses.push('flexline-hide-on-mobile');
+			}
+			if (!props.attributes.hideOnTablet) {
+				removedClasses.push('flexline-hide-on-tablet');
+			}
+			if (!props.attributes.hideOnDesktop) {
+				removedClasses.push('flexline-hide-on-desktop');
+			}
+			if (!props.attributes.enableModal) {
+				removedClasses.push('enable-modal');
+			}
+			if (!props.attributes.enableLazyLoad) {
+				removedClasses.push('no-lazy-load');
+			}
+			if (!props.attributes.enablePosterGallery) {
+				removedClasses.push('poster-gallery');
+			}
+			if (!props.attributes.enableHorizontalScroll) {
+				removedClasses.push('is-style-horizontal-scroll-at-mobile');
+			}
+			if (!props.attributes.enableGroupLink) {
+				removedClasses.push('group-link');
+			}
+
+			// Remove all existing flexline-icon-* classes when a new icon type is selected
+			if (props.name === 'core/button') {
+				removedClasses.push('flexline-icon'); // This triggers the logic to remove any flexline-icon-* class
+			}
+
+			// Generate the new visibility and other classes
+			let newClasses = getVisibilityClasses(props.attributes);
+
+			// Block-specific logic
+			if (props.name === 'core/button' || props.name === 'core/image') {
+				if (props.attributes.enableModal) {
+					newClasses += ' enable-modal';
+				}
+			}
+
+			if (props.name === 'core/button' && props.attributes.iconType) {
+				newClasses += ` flexline-icon-${props.attributes.iconType}`;
+			}
+
+			if (props.name === 'core/image' || props.name === 'core/cover') {
+				if (props.attributes.enableLazyLoad === false) {
+					newClasses += ' no-lazy-load';
+				}
+			}
+
+			if (
+				props.name === 'core/gallery' &&
+				props.attributes.enablePosterGallery
+			) {
+				newClasses += ' poster-gallery';
+			}
+
+			if (
+				props.name === 'core/navigation' &&
+				props.attributes.enableHorizontalScroll
+			) {
+				newClasses += ' is-style-horizontal-scroll-at-mobile';
+			}
+
+			if (
+				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
+					props.name
+				)
+			) {
+				if (props.attributes.enableGroupLink) {
+					const linkType = props.attributes.groupLinkType || 'self';
+					newClasses += ` group-link group-link-type-${linkType}`;
+				}
+			}
+
+			if (
+				props.name === 'core/columns' &&
+				props.attributes.stackAtTablet
+			) {
+				newClasses += ' flexline-stack-at-tablet';
+			}
+
+			// Combine current classes with updated ones, removing the unwanted classes
+			const combinedClasses = updateBlockClasses(
+				props.attributes.className || '',
+				newClasses,
+				removedClasses
+			);
+			props.setAttributes({ className: combinedClasses });
+		}, [
+			props.attributes.hideOnMobile,
+			props.attributes.hideOnTablet,
+			props.attributes.hideOnDesktop,
+			props.attributes.enableModal,
+			props.attributes.iconType,
+			props.attributes.enableLazyLoad,
+			props.attributes.enablePosterGallery,
+			props.attributes.enableHorizontalScroll,
+			props.attributes.enableGroupLink,
+			props.attributes.groupLinkType,
+			props.attributes.stackAtTablet,
+			props.name,
+			props,
+		]);
+
 		// Only show on specific blocks
 		if (props.name === 'core/image') {
 			return (
@@ -208,7 +178,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							<ToggleControl
-								label="Enable Mixed Media Modal"
+								label="Open a Modal"
 								checked={!!props.attributes.enableModal}
 								onChange={(newValue) =>
 									props.setAttributes({
@@ -352,8 +322,35 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					<BlockEdit {...props} />
 					<InspectorControls>
 						<PanelBody title="Flexline Options">
+							<SelectControl
+								label="Icon Type"
+								value={props.attributes.iconType}
+								options={[
+									{ label: 'None', value: 'none' },
+									{
+										label: 'Internal Link →',
+										value: 'internal-link',
+									},
+									{ label: 'Download ⤓', value: 'download' },
+									{
+										label: 'Play Video ►',
+										value: 'video-play',
+									},
+									{
+										label: 'Open Modal ⤢',
+										value: 'open-modal',
+									},
+									{ label: 'Link Out ↗', value: 'link-out' },
+									// Add more options as needed
+								]}
+								onChange={(newValue) =>
+									props.setAttributes({
+										iconType: newValue,
+									})
+								}
+							/>
 							<ToggleControl
-								label="Enable Mixed Media Modal"
+								label="Open Link in a Modal"
 								checked={!!props.attributes.enableModal}
 								onChange={(newValue) =>
 									props.setAttributes({
@@ -608,63 +605,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		return <BlockEdit {...props} />;
 	};
 }, 'withCustomControls');
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomButtonAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomButtonsAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomImageAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomCoverAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomGalleryAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomNavigationAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomVisibilityAttributes
-);
-
-// Hook filters
-addFilter(
-	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
-	addCustomGroupAttributes
-);
-
+// Apply Controls filter
 addFilter(
 	'editor.BlockEdit',
 	'flexline/with-custom-controls',

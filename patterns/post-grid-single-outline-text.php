@@ -3,7 +3,7 @@
 /**
  * Title: Post Grid Single - Outline, Category, Title
  * Slug: flexline/post-grid-single-outline-text
- * Categories: flexline-posts, flexline-components
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 ?>

@@ -3,7 +3,7 @@
 /**
  * Title: Post List Single Image Text/Card
  * Slug: flexline/post-list-single-image-card
- * Categories: flexline-posts, flexline-components
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 ?>

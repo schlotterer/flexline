@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	};
 
-	document.querySelectorAll('.enable-modal').forEach((block) => {
+	document.querySelectorAll('.enable-modal:not(.wp-block-button)').forEach((block) => {
 		const mediaElement = block.querySelector('img, a');
 		if (!mediaElement) {
 			return;

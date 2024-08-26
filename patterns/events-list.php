@@ -3,7 +3,7 @@
 /**
  * Title: Events List
  * Slug: flexline/events-list
- * Categories: flexline-modules flexline-events
+ * Categories: flexline-posts-templates, flexline-sections
  */
 
 namespace FlexLine\flexline;
