@@ -58,3 +58,5 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\flexline_setup' );
+
+remove_filter('the_content', __NAMESPACE__ . '\wpautop');

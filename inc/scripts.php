@@ -53,6 +53,15 @@ function flexline_admin_enqueue_scripts() {
 	// Modal Scripts.
 	wp_enqueue_style( 'flexline-modal', get_template_directory_uri() . '/assets/built/css/modal.css', array(), THEME_VERSION );
 
+	wp_enqueue_script(
+        'custom-block-handler',
+        get_template_directory_uri() . '/assets/built/js/raw-handler.js', // Path to your custom JS file
+        array( 'wp-blocks', 'wp-hooks', 'wp-element' ), // Dependencies required for the script to work
+        '1.0',
+        true
+    );
+
+
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
