@@ -21,7 +21,7 @@
   "author": "Joel Schlotterer",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.25.8",
+    "@babel/core": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
     "@wordpress/eslint-plugin": "^21.3.0",
     "autoprefixer": "^10.4.20",
