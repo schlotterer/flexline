@@ -23,11 +23,11 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
-    "@wordpress/eslint-plugin": "^21.3.0",
+    "@wordpress/eslint-plugin": "^21.4.0",
     "autoprefixer": "^10.4.20",
-    "@wordpress/scripts": "^30.3.0",
-    "@wordpress/stylelint-config": "^23.2.0",
-    "@typescript-eslint/eslint-plugin": "^8.12.0",
+    "@wordpress/scripts": "^30.4.0",
+    "@wordpress/stylelint-config": "^23.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -39,8 +39,8 @@
     "postcss": "^8.4.47",
     "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.80.4",
-    "sass-loader": "^16.0.2"
+    "sass": "^1.80.6",
+    "sass-loader": "^16.0.3"
   },
   "lint-staged": {
     "*.php": "vendor/bin/phpcbf --standard=WordPress",
