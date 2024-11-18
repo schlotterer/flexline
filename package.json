@@ -39,7 +39,7 @@
     "postcss": "^8.4.48",
     "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.80.6",
+    "sass": "^1.81.0",
     "sass-loader": "^16.0.3"
   },
   "lint-staged": {
