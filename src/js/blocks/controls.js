@@ -563,7 +563,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									]}
 									onChange={(value) =>
 										props.setAttributes({
-											horizontalShiftAmount: value,
+											verticalShiftAmount: value,
 										})
 									}
 								/>
