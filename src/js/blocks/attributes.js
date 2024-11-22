@@ -78,3 +78,30 @@ export const customIconAttributes = {
 		default: 'none', // Default to 'none' indicating no icon selected
 	},
 };
+
+export const customShiftAttributes = {
+	horizontalShift: {
+		type: 'string', // none, left, right
+		default: 'none',
+	},
+	horizontalShiftAmount: {
+		type: 'string', // small, medium, large, etc.
+		default: '',
+	},
+	verticalShift: {
+		type: 'string', // none, top, bottom
+		default: 'none',
+	},
+	verticalShiftAmount: {
+		type: 'string',
+		default: '',
+	},
+	shiftToTop: {
+		type: 'boolean',
+		default: false,
+	},
+	resetMobile: {
+		type: 'boolean',
+		default: false,
+	},
+};

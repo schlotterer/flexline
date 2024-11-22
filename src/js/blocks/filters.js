@@ -8,6 +8,7 @@ import {
 	customGroupAttributes,
 	customHorizontalScrollAttributes,
 	customGalleryAttributes,
+	customShiftAttributes,
 } from './attributes';
 
 // Button - Filter function to add custom attributes to blocks
@@ -46,6 +47,25 @@ addFilter(
 	'blocks.registerBlockType',
 	'flexline/add-custom-attributes',
 	addCustomButtonsAttributes
+);
+
+// Column- Filter function to add custom attributes to blocks
+function addCustomColumnAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/column') {
+		settings.attributes = {
+			...settings.attributes,
+			...customVisibilityAttributes,
+			...customShiftAttributes,
+		};
+	}
+	return settings;
+}
+// Column - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-attributes',
+	addCustomColumnAttributes
 );
 
 // Cover - Filter function to add custom attributes to blocks
@@ -93,6 +113,7 @@ function addCustomGroupAttributes(settings, name) {
 			...settings.attributes,
 			...customGroupAttributes,
 			...customVisibilityAttributes,
+			...customShiftAttributes,
 		};
 	}
 	return settings;
@@ -147,7 +168,6 @@ addFilter(
 function addCustomVisibilityAttributes(settings, name) {
 	if (
 		[
-			'core/column',
 			'core/columns',
 			'core/spacer',
 			'core/paragraph',

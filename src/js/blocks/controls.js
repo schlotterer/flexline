@@ -464,7 +464,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="Flexline Group Link Options">
 							<ToggleControl
 								label="Enable Group Link"
 								checked={!!props.attributes.enableGroupLink}
@@ -504,6 +504,86 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									}
 								/>
 							)}
+						</PanelBody>
+						<PanelBody title="Flexline Content Shift">
+							<SelectControl
+								label="Horizontal Shift"
+								value={props.attributes.horizontalShift}
+								options={[
+									{ label: 'None', value: 'none' },
+									{ label: 'Left', value: 'left' },
+									{ label: 'Right', value: 'right' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										horizontalShift: value,
+									})
+								}
+							/>
+							{props.attributes.horizontalShift !== 'none' && (
+								<SelectControl
+									label="Horizontal Shift Amount"
+									value={
+										props.attributes.horizontalShiftAmount
+									}
+									options={[
+										{ label: 'Small', value: 'small' },
+										{ label: 'Medium', value: 'medium' },
+										{ label: 'Large', value: 'large' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShiftAmount: value,
+										})
+									}
+								/>
+							)}
+							<SelectControl
+								label="Vertical Shift"
+								value={props.attributes.verticalShift}
+								options={[
+									{ label: 'None', value: 'none' },
+									{ label: 'Top', value: 'top' },
+									{ label: 'Bottom', value: 'bottom' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										verticalShift: value,
+									})
+								}
+							/>
+							{props.attributes.verticalShift !== 'none' && (
+								<SelectControl
+									label="Vertical Shift Amount"
+									value={props.attributes.verticalShiftAmount}
+									options={[
+										{ label: 'Small', value: 'small' },
+										{ label: 'Medium', value: 'medium' },
+										{ label: 'Large', value: 'large' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShiftAmount: value,
+										})
+									}
+								/>
+							)}
+							<ToggleControl
+								label="Shift to Top (z-index)"
+								checked={props.attributes.shiftToTop}
+								onChange={(value) =>
+									props.setAttributes({ shiftToTop: value })
+								}
+							/>
+							<ToggleControl
+								label="Restore Normal on Mobile"
+								checked={props.attributes.resetMobile}
+								onChange={(value) =>
+									props.setAttributes({ resetMobile: value })
+								}
+							/>
+						</PanelBody>
+						<PanelBody title="Flexline Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
