@@ -86,7 +86,7 @@ export const customShiftAttributes = {
 	},
 	horizontalShiftAmount: {
 		type: 'string', // small, medium, large, etc.
-		default: '',
+		default: '0px',
 	},
 	verticalShift: {
 		type: 'string', // none, top, bottom
@@ -94,7 +94,7 @@ export const customShiftAttributes = {
 	},
 	verticalShiftAmount: {
 		type: 'string',
-		default: '',
+		default: '0px',
 	},
 	shiftToTop: {
 		type: 'boolean',

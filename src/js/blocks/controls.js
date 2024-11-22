@@ -3,7 +3,12 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment, useEffect } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, ToggleControl, SelectControl } = wp.components;
+const {
+	PanelBody,
+	ToggleControl,
+	SelectControl,
+	__experimentalUnitControl: UnitControl,
+} = wp.components;
 const { URLInput } = wp.blockEditor;
 
 // Utility function to generate visibility classes based on attributes
@@ -521,21 +526,24 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							{props.attributes.horizontalShift !== 'none' && (
-								<SelectControl
+								<UnitControl
 									label="Horizontal Shift Amount"
 									value={
 										props.attributes.horizontalShiftAmount
 									}
-									options={[
-										{ label: 'Small', value: 'small' },
-										{ label: 'Medium', value: 'medium' },
-										{ label: 'Large', value: 'large' },
-									]}
 									onChange={(value) =>
 										props.setAttributes({
 											horizontalShiftAmount: value,
 										})
 									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
 								/>
 							)}
 							<SelectControl
@@ -553,19 +561,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							{props.attributes.verticalShift !== 'none' && (
-								<SelectControl
+								<UnitControl
 									label="Vertical Shift Amount"
 									value={props.attributes.verticalShiftAmount}
-									options={[
-										{ label: 'Small', value: 'small' },
-										{ label: 'Medium', value: 'medium' },
-										{ label: 'Large', value: 'large' },
-									]}
 									onChange={(value) =>
 										props.setAttributes({
 											verticalShiftAmount: value,
 										})
 									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
 								/>
 							)}
 							<ToggleControl
