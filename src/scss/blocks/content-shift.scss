@@ -1,0 +1,16 @@
+.flexline-content-shift {
+    transform: translate(
+        var(--flexline-horizontal-shift, 0),
+        var(--flexline-vertical-shift, 0)
+    );
+}
+.flexline-shift-to-top {
+    position: relative;
+    z-index: 10; 
+}
+@include screen($mobile) {
+    .flexline-reset-mobile {
+        transform: none !important;
+        z-index: initial !important;
+    }
+}

@@ -202,6 +202,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									}
 								/>
 							)}
+						</PanelBody>
+						<PanelBody title="Flexline Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
@@ -229,6 +231,113 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									})
 								}
 							/>
+						</PanelBody>
+					</InspectorControls>
+					<InspectorControls group="styles">
+						<PanelBody title="Flexline Content Shift">
+							<ToggleControl
+								label="Use Content Shift"
+								checked={!!props.attributes.useContentShift}
+								onChange={(newValue) =>
+									props.setAttributes({
+										useContentShift: newValue,
+									})
+								}
+							/>
+							{props.attributes.useContentShift && (
+								<SelectControl
+									label="Horizontal Shift"
+									value={props.attributes.horizontalShift}
+									options={[
+										{ label: 'None', value: 'none' },
+										{ label: 'Left', value: 'left' },
+										{ label: 'Right', value: 'right' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShift: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.horizontalShift !== 'none' && (
+								<UnitControl
+									label="Horizontal Shift Amount"
+									value={
+										props.attributes.horizontalShiftAmount
+									}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShiftAmount: value,
+										})
+									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<SelectControl
+									label="Vertical Shift"
+									value={props.attributes.verticalShift}
+									options={[
+										{ label: 'None', value: 'none' },
+										{ label: 'Up', value: 'up' },
+										{ label: 'Down', value: 'down' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											verticalShift: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.verticalShift !== 'none' && (
+								<UnitControl
+									label="Vertical Shift Amount"
+									value={props.attributes.verticalShiftAmount}
+									onChange={(value) =>
+										props.setAttributes({
+											verticalShiftAmount: value,
+										})
+									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Shift to Top (z-index)"
+									checked={props.attributes.shiftToTop}
+									onChange={(value) =>
+										props.setAttributes({
+											shiftToTop: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Restore Normal on Mobile"
+									checked={props.attributes.resetMobile}
+									onChange={(value) =>
+										props.setAttributes({
+											resetMobile: value,
+										})
+									}
+								/>
+							)}
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>
@@ -510,90 +619,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 						</PanelBody>
-						<PanelBody title="Flexline Content Shift">
-							<SelectControl
-								label="Horizontal Shift"
-								value={props.attributes.horizontalShift}
-								options={[
-									{ label: 'None', value: 'none' },
-									{ label: 'Left', value: 'left' },
-									{ label: 'Right', value: 'right' },
-								]}
-								onChange={(value) =>
-									props.setAttributes({
-										horizontalShift: value,
-									})
-								}
-							/>
-							{props.attributes.horizontalShift !== 'none' && (
-								<UnitControl
-									label="Horizontal Shift Amount"
-									value={
-										props.attributes.horizontalShiftAmount
-									}
-									onChange={(value) =>
-										props.setAttributes({
-											horizontalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							<SelectControl
-								label="Vertical Shift"
-								value={props.attributes.verticalShift}
-								options={[
-									{ label: 'None', value: 'none' },
-									{ label: 'Top', value: 'top' },
-									{ label: 'Bottom', value: 'bottom' },
-								]}
-								onChange={(value) =>
-									props.setAttributes({
-										verticalShift: value,
-									})
-								}
-							/>
-							{props.attributes.verticalShift !== 'none' && (
-								<UnitControl
-									label="Vertical Shift Amount"
-									value={props.attributes.verticalShiftAmount}
-									onChange={(value) =>
-										props.setAttributes({
-											verticalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							<ToggleControl
-								label="Shift to Top (z-index)"
-								checked={props.attributes.shiftToTop}
-								onChange={(value) =>
-									props.setAttributes({ shiftToTop: value })
-								}
-							/>
-							<ToggleControl
-								label="Restore Normal on Mobile"
-								checked={props.attributes.resetMobile}
-								onChange={(value) =>
-									props.setAttributes({ resetMobile: value })
-								}
-							/>
-						</PanelBody>
 						<PanelBody title="Flexline Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
@@ -624,6 +649,113 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 						</PanelBody>
 					</InspectorControls>
+					<InspectorControls group="styles">
+						<PanelBody title="Flexline Content Shift">
+							<ToggleControl
+								label="Use Content Shift"
+								checked={!!props.attributes.useContentShift}
+								onChange={(newValue) =>
+									props.setAttributes({
+										useContentShift: newValue,
+									})
+								}
+							/>
+							{props.attributes.useContentShift && (
+								<SelectControl
+									label="Horizontal Shift"
+									value={props.attributes.horizontalShift}
+									options={[
+										{ label: 'None', value: 'none' },
+										{ label: 'Left', value: 'left' },
+										{ label: 'Right', value: 'right' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShift: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.horizontalShift !== 'none' && (
+								<UnitControl
+									label="Horizontal Shift Amount"
+									value={
+										props.attributes.horizontalShiftAmount
+									}
+									onChange={(value) =>
+										props.setAttributes({
+											horizontalShiftAmount: value,
+										})
+									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<SelectControl
+									label="Vertical Shift"
+									value={props.attributes.verticalShift}
+									options={[
+										{ label: 'None', value: 'none' },
+										{ label: 'Up', value: 'up' },
+										{ label: 'Down', value: 'down' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											verticalShift: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.verticalShift !== 'none' && (
+								<UnitControl
+									label="Vertical Shift Amount"
+									value={props.attributes.verticalShiftAmount}
+									onChange={(value) =>
+										props.setAttributes({
+											verticalShiftAmount: value,
+										})
+									}
+									units={[
+										{ value: 'px', label: 'px' },
+										{ value: '%', label: '%' },
+										{ value: 'em', label: 'em' },
+										{ value: 'rem', label: 'rem' },
+										{ value: 'vw', label: 'vw' },
+										{ value: 'vh', label: 'vh' },
+									]}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Shift to Top (z-index)"
+									checked={props.attributes.shiftToTop}
+									onChange={(value) =>
+										props.setAttributes({
+											shiftToTop: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Restore Normal on Mobile"
+									checked={props.attributes.resetMobile}
+									onChange={(value) =>
+										props.setAttributes({
+											resetMobile: value,
+										})
+									}
+								/>
+							)}
+						</PanelBody>
+					</InspectorControls>
 				</Fragment>
 			);
 		}
@@ -649,7 +781,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="Flexline Visibility">
 							{props.name === 'core/columns' && (
 								<ToggleControl
 									label="Stack at Tablet"

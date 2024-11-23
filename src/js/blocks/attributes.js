@@ -80,6 +80,10 @@ export const customIconAttributes = {
 };
 
 export const customShiftAttributes = {
+	useContentShift: {
+		type: 'boolean',
+		default: false,
+	},
 	horizontalShift: {
 		type: 'string', // none, left, right
 		default: 'none',
