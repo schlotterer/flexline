@@ -59,7 +59,15 @@ const updateBlockClasses = (
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
+
+		console.log(props);
+
 		useEffect(() => {
+
+			// Add the data attribute to the block's wrapper
+			// if (!props.wrapperProps) { props.wrapperProps = {}; }
+			// Add the custom data attribute
+			// props.wrapperProps[`data-unique-id`] = uniqueId;
 			
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
@@ -111,7 +119,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// New Classes
 			// Generate the new visibility and other classes
 			let newClasses = getVisibilityClasses(props.attributes);
-
+			newClasses += ' flexline-block-id-' + props.clientId;
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
