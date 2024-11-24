@@ -1,37 +1,15 @@
 .flexline-content-shift {
-    /* Base styles for content shift */
-}
-.flexline-content-shift-left {
-/* Styles for left shift */
-}
-.flexline-content-shift-right {
-/* Styles for right shift */
-}
-.flexline-content-shift-top {
-/* Styles for top shift */
-}
-.flexline-content-shift-bottom {
-/* Styles for bottom shift */
-}
-.flexline-content-shift-up {
-/* Styles for shift up (z-index) */
-}
-.flexline-content-shift-revert-mobile {
-/* Styles for reverting shift on mobile */
-}
-
-.flexline-content-shift {
     transform: translate(
-        var(--flexline-horizontal-shift, 0),
-        var(--flexline-vertical-shift, 0)
+        var(--flexline-shift-x, 0),
+        var(--flexline-shift-y, 0)
     );
 }
-.flexline-shift-to-top {
+.flexline-content-shift-up {
     position: relative;
     z-index: 10; 
 }
 @include screen($mobile) {
-    .flexline-reset-mobile {
+    .flexline-content-shift-revert-mobile {
         transform: none !important;
         z-index: initial !important;
     }

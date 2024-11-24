@@ -90,19 +90,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Remove content shift classes if not enabled
 			if (!props.attributes.useContentShift) {
 				removedClasses.push('flexline-content-shift');
-				removedClasses.push('flexline-content-shift-left', 'flexline-content-shift-right');
-				removedClasses.push('flexline-content-shift-top', 'flexline-content-shift-bottom');
 				removedClasses.push('flexline-content-shift-up');
 				removedClasses.push('flexline-content-shift-revert-mobile');
 			} else {
-				// Remove horizontal shift classes if 'none' is selected
-				if (props.attributes.horizontalShift === 'none') {
-					removedClasses.push('flexline-content-shift-left', 'flexline-content-shift-right');
-				}
-				// Remove vertical shift classes if 'none' is selected
-				if (props.attributes.verticalShift === 'none') {
-					removedClasses.push('flexline-content-shift-top', 'flexline-content-shift-bottom');
-				}
 				// Remove 'flexline-content-shift-up' if not enabled
 				if (!props.attributes.shiftToTop) {
 					removedClasses.push('flexline-content-shift-up');
@@ -125,16 +115,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
-			
-				// Add horizontal shift class
-				if (props.attributes.horizontalShift && props.attributes.horizontalShift !== 'none') {
-				newClasses += ` flexline-content-shift-${props.attributes.horizontalShift}`;
-				}
-			
-				// Add vertical shift class
-				if (props.attributes.verticalShift && props.attributes.verticalShift !== 'none') {
-				newClasses += ` flexline-content-shift-${props.attributes.verticalShift}`;
-				}
 			
 				// Add 'flexline-content-shift-up' if enabled
 				if (props.attributes.shiftToTop) {
