@@ -1,15 +1,16 @@
-// Accessing WordPress packages from the 'wp' global object
-const { addFilter } = wp.hooks;
-const { createHigherOrderComponent } = wp.compose;
-const { Fragment, useEffect } = wp.element;
-const { InspectorControls } = wp.blockEditor;
-const {
-	PanelBody,
-	ToggleControl,
-	SelectControl,
-	__experimentalUnitControl: UnitControl,
-} = wp.components;
-const { URLInput } = wp.blockEditor;
+// Importing WordPress packages using ES6 module syntax
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { Fragment, useEffect } from '@wordpress/element';
+import { InspectorControls, URLInput } from '@wordpress/block-editor';
+import {
+    PanelBody,
+    ToggleControl,
+    SelectControl,
+    __experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
+console.log(wp.components.UnitControl);
+
 
 // Utility function to generate visibility classes based on attributes
 const getVisibilityClasses = (attrs) => {
@@ -59,6 +60,7 @@ const updateBlockClasses = (
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		useEffect(() => {
+			
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
 			if (!props.attributes.hideOnMobile) {
@@ -85,14 +87,66 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.enableGroupLink) {
 				removedClasses.push('group-link');
 			}
-
+			// Remove content shift classes if not enabled
+			if (!props.attributes.useContentShift) {
+				removedClasses.push('flexline-content-shift');
+				removedClasses.push('flexline-content-shift-left', 'flexline-content-shift-right');
+				removedClasses.push('flexline-content-shift-top', 'flexline-content-shift-bottom');
+				removedClasses.push('flexline-content-shift-up');
+				removedClasses.push('flexline-content-shift-revert-mobile');
+			} else {
+				// Remove horizontal shift classes if 'none' is selected
+				if (props.attributes.horizontalShift === 'none') {
+					removedClasses.push('flexline-content-shift-left', 'flexline-content-shift-right');
+				}
+				// Remove vertical shift classes if 'none' is selected
+				if (props.attributes.verticalShift === 'none') {
+					removedClasses.push('flexline-content-shift-top', 'flexline-content-shift-bottom');
+				}
+				// Remove 'flexline-content-shift-up' if not enabled
+				if (!props.attributes.shiftToTop) {
+					removedClasses.push('flexline-content-shift-up');
+				}
+				// Remove 'flexline-content-shift-revert-mobile' if not enabled
+				if (!props.attributes.resetMobile) {
+					removedClasses.push('flexline-content-shift-revert-mobile');
+				}
+			}
+			// Block-specific logic
 			// Remove all existing flexline-icon-* classes when a new icon type is selected
 			if (props.name === 'core/button') {
 				removedClasses.push('flexline-icon'); // This triggers the logic to remove any flexline-icon-* class
 			}
 
+			// New Classes
 			// Generate the new visibility and other classes
 			let newClasses = getVisibilityClasses(props.attributes);
+
+			// Add content shift classes if enabled
+			if (props.attributes.useContentShift) {
+				newClasses += ' flexline-content-shift';
+			
+				// Add horizontal shift class
+				if (props.attributes.horizontalShift && props.attributes.horizontalShift !== 'none') {
+				newClasses += ` flexline-content-shift-${props.attributes.horizontalShift}`;
+				}
+			
+				// Add vertical shift class
+				if (props.attributes.verticalShift && props.attributes.verticalShift !== 'none') {
+				newClasses += ` flexline-content-shift-${props.attributes.verticalShift}`;
+				}
+			
+				// Add 'flexline-content-shift-up' if enabled
+				if (props.attributes.shiftToTop) {
+				newClasses += ' flexline-content-shift-up';
+				}
+			
+				// Add 'flexline-content-shift-revert-mobile' if enabled
+				if (props.attributes.resetMobile) {
+				newClasses += ' flexline-content-shift-revert-mobile';
+				}
+			}
+  
 
 			// Block-specific logic
 			if (props.name === 'core/button' || props.name === 'core/image') {
@@ -124,11 +178,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				newClasses += ' is-style-horizontal-scroll-at-mobile';
 			}
-
-			if (
-				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
-					props.name
-				)
+			if ([
+					'core/group', 
+					'core/stack', 
+					'core/row', 
+					'core/grid'
+				].includes(props.name)
 			) {
 				if (props.attributes.enableGroupLink) {
 					const linkType = props.attributes.groupLinkType || 'self';
@@ -162,6 +217,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			props.attributes.enableGroupLink,
 			props.attributes.groupLinkType,
 			props.attributes.stackAtTablet,
+			props.attributes.useContentShift,
+			props.attributes.horizontalShift,
+			props.attributes.verticalShift,
+			props.attributes.shiftToTop,
+			props.attributes.resetMobile,
 			props.name,
 			props,
 		]);
@@ -258,6 +318,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 											horizontalShift: value,
 										})
 									}
+									__nextHasNoMarginBottom={true}
 								/>
 							)}
 							{props.attributes.horizontalShift !== 'none' && (
@@ -295,6 +356,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 											verticalShift: value,
 										})
 									}
+									__nextHasNoMarginBottom={true}
 								/>
 							)}
 							{props.attributes.verticalShift !== 'none' && (
@@ -462,6 +524,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										iconType: newValue,
 									})
 								}
+								__nextHasNoMarginBottom={true}
 							/>
 							<ToggleControl
 								label="Open Link in a Modal"
@@ -616,6 +679,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 											groupLinkType: newValue,
 										})
 									}
+									__nextHasNoMarginBottom={true}
 								/>
 							)}
 						</PanelBody>
@@ -674,6 +738,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 											horizontalShift: value,
 										})
 									}
+									__nextHasNoMarginBottom={true}
 								/>
 							)}
 							{props.attributes.horizontalShift !== 'none' && (
@@ -711,6 +776,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 											verticalShift: value,
 										})
 									}
+									__nextHasNoMarginBottom={true}
 								/>
 							)}
 							{props.attributes.verticalShift !== 'none' && (

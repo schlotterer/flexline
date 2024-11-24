@@ -1,4 +1,26 @@
 .flexline-content-shift {
+    /* Base styles for content shift */
+}
+.flexline-content-shift-left {
+/* Styles for left shift */
+}
+.flexline-content-shift-right {
+/* Styles for right shift */
+}
+.flexline-content-shift-top {
+/* Styles for top shift */
+}
+.flexline-content-shift-bottom {
+/* Styles for bottom shift */
+}
+.flexline-content-shift-up {
+/* Styles for shift up (z-index) */
+}
+.flexline-content-shift-revert-mobile {
+/* Styles for reverting shift on mobile */
+}
+
+.flexline-content-shift {
     transform: translate(
         var(--flexline-horizontal-shift, 0),
         var(--flexline-vertical-shift, 0)
