@@ -1,7 +1,7 @@
 // Importing WordPress packages using ES6 module syntax
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { Fragment, useEffect } from '@wordpress/element';
+import { Fragment, useEffect, useRef } from '@wordpress/element';
 import { InspectorControls, URLInput } from '@wordpress/block-editor';
 import {
     PanelBody,
@@ -60,14 +60,14 @@ const updateBlockClasses = (
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 
-		console.log(props);
+		const { attributes, clientId } = props;
+		// Generate a unique class using clientId
+		const uniqueClass = `block-${clientId.replace(/[^a-zA-Z0-9\-_]/g, '')}`;
+		// Reference to keep track of the style element
+		const styleElementRef = useRef(null);
 
 		useEffect(() => {
 
-			// Add the data attribute to the block's wrapper
-			// if (!props.wrapperProps) { props.wrapperProps = {}; }
-			// Add the custom data attribute
-			// props.wrapperProps[`data-unique-id`] = uniqueId;
 			
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
@@ -103,7 +103,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			} else {
 				// Remove 'flexline-content-shift-up' if not enabled
 				if (!props.attributes.shiftToTop) {
-					removedClasses.push('flexline-content-shift-up');
+					removedClasses.push('flexline-content-shift-above');
 				}
 				// Remove 'flexline-content-shift-revert-mobile' if not enabled
 				if (!props.attributes.resetMobile) {
@@ -126,13 +126,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			
 				// Add 'flexline-content-shift-up' if enabled
 				if (props.attributes.shiftToTop) {
-				newClasses += ' flexline-content-shift-up';
+				newClasses += ' flexline-content-shift-above';
 				}
 			
 				// Add 'flexline-content-shift-revert-mobile' if enabled
 				if (props.attributes.resetMobile) {
 				newClasses += ' flexline-content-shift-revert-mobile';
 				}
+
+				
 			}
   
 
@@ -193,6 +195,68 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses
 			);
 			props.setAttributes({ className: combinedClasses });
+
+
+			// **Add the Unique Class to the Wrapper in the Editor**
+			if (!props.wrapperProps) {
+				props.wrapperProps = {};
+			  }
+		
+			  // Combine existing className with uniqueClass
+			  //const existingClassName = props.wrapperProps.className || '';
+			  //props.wrapperProps.className = `${existingClassName} ${uniqueClass}`.trim();
+		
+			  // **Generate and Inject Styles in the Editor**
+			  if (attributes.useContentShift) {
+				// Generate CSS based on attributes
+				let hShift = '0';
+				let vShift = '0';
+		
+				if (attributes.horizontalShift && attributes.horizontalShiftAmount && attributes.horizontalShift !== 'none') {
+				  const direction = attributes.horizontalShift === 'left' ? '-' : '';
+				  hShift = `${direction}${attributes.horizontalShiftAmount}`;
+				}
+		
+				if (attributes.verticalShift && attributes.verticalShiftAmount && attributes.verticalShift !== 'none') {
+					const direction = attributes.verticalShift === 'top' ? '-' : '';
+					vShift = `${direction}${attributes.verticalShiftAmount}`;
+				}
+		
+		
+				// Build the CSS
+				const styles = `
+				  #${uniqueClass} {
+					--flexline-shift-x: ${hShift};
+					--flexline-shift-y: ${vShift};
+
+				  }
+				`;
+		
+				// Inject the styles into the editor's head
+				if (!styleElementRef.current) {
+				  // Create a new style element
+				  styleElementRef.current = document.createElement('style');
+				  styleElementRef.current.setAttribute('type', 'text/css');
+				  document.head.appendChild(styleElementRef.current);
+				}
+		
+				// Update the style element's content
+				styleElementRef.current.textContent = styles;
+			  } else {
+				// If useContentShift is not enabled, remove the style element if it exists
+				if (styleElementRef.current) {
+				  styleElementRef.current.parentNode.removeChild(styleElementRef.current);
+				  styleElementRef.current = null;
+				}
+			  }
+		
+			  // Cleanup when the component unmounts or attributes change
+			  return () => {
+				if (styleElementRef.current) {
+				  styleElementRef.current.parentNode.removeChild(styleElementRef.current);
+				  styleElementRef.current = null;
+				}
+			  };
 		}, [
 			props.attributes.hideOnMobile,
 			props.attributes.hideOnTablet,
@@ -788,7 +852,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.useContentShift && (
 								<ToggleControl
-									label="Shift to Top (z-index)"
+									label="Shift above (z-index)"
 									checked={props.attributes.shiftToTop}
 									onChange={(value) =>
 										props.setAttributes({

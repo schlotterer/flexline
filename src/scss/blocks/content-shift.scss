@@ -1,10 +1,12 @@
 .flexline-content-shift {
+    transform: translateX(var(--flexline-shift-x, 0));
     transform: translate(
         var(--flexline-shift-x, 0),
         var(--flexline-shift-y, 0)
     );
 }
-.flexline-content-shift-up {
+
+.flexline-content-shift-above {
     position: relative;
     z-index: 10; 
 }

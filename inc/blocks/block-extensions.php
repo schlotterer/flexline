@@ -232,7 +232,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
         // Generate a unique class based on the block's attributes
         $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
         // Add the unique class to the block's classes
-        $added_classes .= $unique_class . ' ';
+        $added_classes .= ' ' . $unique_class . ' ';
         // Generate the styles
         $h_shift = '0';
         $v_shift = '0';
