@@ -109,3 +109,4 @@ export const customShiftAttributes = {
 		default: false,
 	},
 };
+

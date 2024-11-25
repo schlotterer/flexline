@@ -241,8 +241,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
             $h_shift = $direction . esc_attr( $block['attrs']['horizontalShiftAmount'] );
         }
         if ( isset( $block['attrs']['verticalShift'], $block['attrs']['verticalShiftAmount'] ) && $block['attrs']['verticalShift'] !== 'none' ) {
-            $direction = $block['attrs']['verticalShift'] === 'up' ? '-' : '';
-            $v_shift = $direction . esc_attr( $block['attrs']['verticalShiftAmount'] );
+            $v_shift = '-' . esc_attr( $block['attrs']['verticalShiftAmount'] );
         }
         // Build the CSS
         $styles = '.' . esc_attr( $unique_class ) . ' {';

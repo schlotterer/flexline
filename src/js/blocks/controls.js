@@ -62,7 +62,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 		const { attributes, clientId } = props;
 		// Generate a unique class using clientId
-		const uniqueClass = `block-${clientId.replace(/[^a-zA-Z0-9\-_]/g, '')}`;
+		const uniqueClass = `block-${clientId}`;
 		// Reference to keep track of the style element
 		const styleElementRef = useRef(null);
 
@@ -98,9 +98,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Remove content shift classes if not enabled
 			if (!props.attributes.useContentShift) {
 				removedClasses.push('flexline-content-shift');
+				removedClasses.push('flexline-content-shift-horizontal');
 				removedClasses.push('flexline-content-shift-up');
+				removedClasses.push('flexline-content-shift-down');
+				removedClasses.push('flexline-content-shift-above');
 				removedClasses.push('flexline-content-shift-revert-mobile');
 			} else {
+				if (props.attributes.horizontalShift === 'none') {
+					removedClasses.push('flexline-content-shift-horizontal');
+				}
+				if (props.attributes.verticalShift === 'up') {
+					removedClasses.push('flexline-content-shift-down');
+				} else if (props.attributes.verticalShift === 'down') {
+					removedClasses.push('flexline-content-shift-up');
+				}
 				// Remove 'flexline-content-shift-up' if not enabled
 				if (!props.attributes.shiftToTop) {
 					removedClasses.push('flexline-content-shift-above');
@@ -110,6 +121,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					removedClasses.push('flexline-content-shift-revert-mobile');
 				}
 			}
+
 			// Block-specific logic
 			// Remove all existing flexline-icon-* classes when a new icon type is selected
 			if (props.name === 'core/button') {
@@ -119,19 +131,26 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// New Classes
 			// Generate the new visibility and other classes
 			let newClasses = getVisibilityClasses(props.attributes);
-			newClasses += ' flexline-block-id-' + props.clientId;
+		
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
+
+				if (props.attributes.horizontalShift !== 'none') {
+					newClasses += ' flexline-content-shift-horizontal';
+				}
+				if (props.attributes.verticalShift !== 'none') {
+					newClasses += ' flexline-content-shift-' + props.attributes.verticalShift;
+				}
 			
 				// Add 'flexline-content-shift-up' if enabled
 				if (props.attributes.shiftToTop) {
-				newClasses += ' flexline-content-shift-above';
+					newClasses += ' flexline-content-shift-above';
 				}
 			
 				// Add 'flexline-content-shift-revert-mobile' if enabled
 				if (props.attributes.resetMobile) {
-				newClasses += ' flexline-content-shift-revert-mobile';
+					newClasses += ' flexline-content-shift-revert-mobile';
 				}
 
 				
@@ -202,10 +221,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				props.wrapperProps = {};
 			  }
 		
-			  // Combine existing className with uniqueClass
-			  //const existingClassName = props.wrapperProps.className || '';
-			  //props.wrapperProps.className = `${existingClassName} ${uniqueClass}`.trim();
-		
 			  // **Generate and Inject Styles in the Editor**
 			  if (attributes.useContentShift) {
 				// Generate CSS based on attributes
@@ -218,8 +233,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				}
 		
 				if (attributes.verticalShift && attributes.verticalShiftAmount && attributes.verticalShift !== 'none') {
-					const direction = attributes.verticalShift === 'top' ? '-' : '';
-					vShift = `${direction}${attributes.verticalShiftAmount}`;
+					vShift = `-${attributes.verticalShiftAmount}`;
 				}
 		
 		
@@ -271,7 +285,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			props.attributes.stackAtTablet,
 			props.attributes.useContentShift,
 			props.attributes.horizontalShift,
+			props.attributes.horizontalShiftAmount,
 			props.attributes.verticalShift,
+			props.attributes.verticalShiftAmount,
 			props.attributes.shiftToTop,
 			props.attributes.resetMobile,
 			props.name,
@@ -373,7 +389,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									__nextHasNoMarginBottom={true}
 								/>
 							)}
-							{props.attributes.horizontalShift !== 'none' && (
+							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Horizontal Shift Amount"
 									value={
@@ -411,7 +427,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									__nextHasNoMarginBottom={true}
 								/>
 							)}
-							{props.attributes.verticalShift !== 'none' && (
+							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Vertical Shift Amount"
 									value={props.attributes.verticalShiftAmount}

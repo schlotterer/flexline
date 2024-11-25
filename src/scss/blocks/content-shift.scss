@@ -1,11 +1,15 @@
 .flexline-content-shift {
-    transform: translateX(var(--flexline-shift-x, 0));
-    transform: translate(
-        var(--flexline-shift-x, 0),
-        var(--flexline-shift-y, 0)
-    );
+    
 }
-
+.flexline-content-shift-horizontal {
+    transform: translateX(var(--flexline-shift-x, 0));
+}
+.flexline-content-shift-up {
+    margin-top:var(--flexline-shift-y, 0);
+}
+.flexline-content-shift-down {
+    margin-bottom:var(--flexline-shift-y, 0);
+}
 .flexline-content-shift-above {
     position: relative;
     z-index: 10; 
@@ -13,6 +17,13 @@
 @include screen($mobile) {
     .flexline-content-shift-revert-mobile {
         transform: none !important;
+
         z-index: initial !important;
+        &.flexline-content-shift-up {
+            margin-top: initial;
+        }
+        &.flexline-content-shift-down {
+            margin-bottom: initial;
+        }
     }
 }
