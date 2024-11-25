@@ -269,4 +269,11 @@ body,
 		z-index: 11;
 		position: relative;
 	}
+
+
+
+	.wp-block-cover__background.has-background-dim{
+		margin: 0 !important;
+		max-width: 100%;
+	}
 }

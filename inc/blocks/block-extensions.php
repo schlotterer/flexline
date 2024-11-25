@@ -241,16 +241,16 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$slideX = '0';
 		$slideY = '0';
 		if ( isset( $block['attrs']['shiftLeft'] ) ) {
-			$shiftLeft = $block['attrs']['shiftLeft'];
+			$shiftLeft = '-'.$block['attrs']['shiftLeft'];
 		}
 		if ( isset( $block['attrs']['shiftRight'] ) ) {
-			$shiftRight = $block['attrs']['shiftRight'];
+			$shiftRight = '-'.$block['attrs']['shiftRight'];
 		}
 		if ( isset( $block['attrs']['shiftUp'] ) ) {
-			$shiftUp = $block['attrs']['shiftUp'];
+			$shiftUp = '-'.$block['attrs']['shiftUp'];
 		}
 		if ( isset( $block['attrs']['shiftDown'] ) ) {
-			$shiftDown = $block['attrs']['shiftDown'];
+			$shiftDown = '-'.$block['attrs']['shiftDown'];
 		}
 		if ( isset( $block['attrs']['slideHorizontal'] ) ) {
 			$slideX = $block['attrs']['slideHorizontal'];

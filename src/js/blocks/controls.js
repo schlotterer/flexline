@@ -100,7 +100,31 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('flexline-content-shift');
 				removedClasses.push('flexline-content-shift-above');
 				removedClasses.push('flexline-content-shift-revert-mobile');
+				removedClasses.push('flexline-content-shift-left');
+				removedClasses.push('flexline-content-shift-right');
+				removedClasses.push('flexline-content-shift-up');
+				removedClasses.push('flexline-content-shift-down');
+				removedClasses.push('flexline-content-slide-x');
+				removedClasses.push('flexline-content-slide-y');
 			} else {
+				if ('0px' === props.attributes.shiftLeft) {
+					removedClasses.push('flexline-content-shift-left');
+				}
+				if ('0px' === props.attributes.shiftRight) {
+					removedClasses.push('flexline-content-shift-right');
+				}
+				if ('0px' === props.attributes.shiftUp) {
+					removedClasses.push('flexline-content-shift-up');
+				}
+				if ('0px' === props.attributes.shiftDown) {
+					removedClasses.push('flexline-content-shift-down');
+				}
+				if ('0px' === props.attributes.slideX) {
+					removedClasses.push('flexline-content-slide-x');
+				}
+				if ('0px' === props.attributes.slideY) {
+					removedClasses.push('flexline-content-slide-y');
+				}
 				// Remove 'flexline-content-shift-up' if not enabled
 				if (!props.attributes.shiftToTop) {
 					removedClasses.push('flexline-content-shift-above');
@@ -124,7 +148,28 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
+				
+				if ('0px' !== props.attributes.shiftLeft) {
+					newClasses += ' flexline-content-shift-left';
+				}
+				if ('0px' !== props.attributes.shiftRight) {
+					newClasses += ' flexline-content-shift-right';
+				}
+				if ('0px' !== props.attributes.shiftUp) {
+					newClasses += ' flexline-content-shift-up';
+				}
+				if ('0px' !== props.attributes.shiftDown) {
+					newClasses += ' flexline-content-shift-down';
+				}
+				if ('0px' !== props.attributes.slideX) {
+					newClasses += ' flexline-content-slide-x';
+				}
+				if ('0px' !== props.attributes.slideY) {
+					newClasses += ' flexline-content-slide-y';
+				}
 				// Add 'flexline-content-shift-up' if enabled
+
+				console.log(props.attributes.shiftToTop);
 				if (props.attributes.shiftToTop) {
 					newClasses += ' flexline-content-shift-above';
 				}
@@ -211,16 +256,16 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				let slideY = '0';
 
 				if (attributes.shiftLeft) {
-					shiftLeft = attributes.shiftLeft;
+					shiftLeft = '-' + attributes.shiftLeft;
 				}
 				if (attributes.shiftRight) {
-					shiftRight = attributes.shiftRight;
+					shiftRight = '-' + attributes.shiftRight;
 				}
 				if (attributes.shiftUp) {
-					shiftUp = attributes.shiftUp;
+					shiftUp = '-' + attributes.shiftUp;
 				}
 				if (attributes.shiftDown) {
-					shiftDown = attributes.shiftDown;
+					shiftDown = '-' + attributes.shiftDown;
 				}
 				if (attributes.slideHorizontal) {
 					slideX = attributes.slideHorizontal;
@@ -961,9 +1006,200 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
+		if (props.name === 'core/column') {
+			<Fragment>
+					<BlockEdit {...props} />
+					<InspectorControls>
+						<PanelBody title="Flexline Visibility">
+							{props.name === 'core/columns' && (
+								<ToggleControl
+									label="Stack at Tablet"
+									checked={!!props.attributes.stackAtTablet}
+									onChange={(newValue) =>
+										props.setAttributes({
+											stackAtTablet: newValue,
+										})
+									}
+								/>
+							)}
+							<ToggleControl
+								label="Hide on Desktop"
+								checked={!!props.attributes.hideOnDesktop}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnDesktop: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Hide on Tablet"
+								checked={!!props.attributes.hideOnTablet}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnTablet: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Hide on Mobile"
+								checked={!!props.attributes.hideOnMobile}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnMobile: newValue,
+									})
+								}
+							/>
+						</PanelBody>
+					</InspectorControls>
+					<InspectorControls group="styles">
+						<PanelBody title="Flexline Content Shift">
+							<ToggleControl
+								label="Use Content Shift"
+								checked={!!props.attributes.useContentShift}
+								onChange={(newValue) =>
+									props.setAttributes({
+										useContentShift: newValue,
+									})
+								}
+							/>
+							<UnitControl
+								label="Shift Left"
+								value={
+									props.attributes.shiftLeft
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftLeft: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Right"
+								value={
+									props.attributes.shiftRight
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftRight: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Up"
+								value={
+									props.attributes.shiftUp
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftUp: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Down"
+								value={
+									props.attributes.shiftDown
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftDown: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Shift Above (z-index)"
+								checked={props.attributes.shiftToTop}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftToTop: value,
+									})
+								}
+							/>
+							<UnitControl
+								label="Slide Horizontal ( - to left, + to right )"
+								value={
+									props.attributes.slideHorizontal
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideHorizontal: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Slide Vertical ( - to top, + to bottom )"
+								value={
+									props.attributes.slideVertical
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideVertical: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Restore Normal on Mobile"
+								checked={props.attributes.resetMobile}
+								onChange={(value) =>
+									props.setAttributes({
+										resetMobile: value,
+									})
+								}
+							/>
+						</PanelBody>
+					</InspectorControls>
+				</Fragment>
+		}
 		if (
 			[
-				'core/column',
 				'core/columns',
 				'core/spacer',
 				'core/paragraph',
