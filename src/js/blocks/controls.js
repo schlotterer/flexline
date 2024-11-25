@@ -98,20 +98,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Remove content shift classes if not enabled
 			if (!props.attributes.useContentShift) {
 				removedClasses.push('flexline-content-shift');
-				removedClasses.push('flexline-content-shift-horizontal');
-				removedClasses.push('flexline-content-shift-up');
-				removedClasses.push('flexline-content-shift-down');
 				removedClasses.push('flexline-content-shift-above');
 				removedClasses.push('flexline-content-shift-revert-mobile');
 			} else {
-				if (props.attributes.horizontalShift === 'none') {
-					removedClasses.push('flexline-content-shift-horizontal');
-				}
-				if (props.attributes.verticalShift === 'up') {
-					removedClasses.push('flexline-content-shift-down');
-				} else if (props.attributes.verticalShift === 'down') {
-					removedClasses.push('flexline-content-shift-up');
-				}
 				// Remove 'flexline-content-shift-up' if not enabled
 				if (!props.attributes.shiftToTop) {
 					removedClasses.push('flexline-content-shift-above');
@@ -135,14 +124,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
-
-				if (props.attributes.horizontalShift !== 'none') {
-					newClasses += ' flexline-content-shift-horizontal';
-				}
-				if (props.attributes.verticalShift !== 'none') {
-					newClasses += ' flexline-content-shift-' + props.attributes.verticalShift;
-				}
-			
 				// Add 'flexline-content-shift-up' if enabled
 				if (props.attributes.shiftToTop) {
 					newClasses += ' flexline-content-shift-above';
@@ -152,8 +133,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				if (props.attributes.resetMobile) {
 					newClasses += ' flexline-content-shift-revert-mobile';
 				}
-
-				
 			}
   
 
@@ -224,25 +203,40 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			  // **Generate and Inject Styles in the Editor**
 			  if (attributes.useContentShift) {
 				// Generate CSS based on attributes
-				let hShift = '0';
-				let vShift = '0';
-		
-				if (attributes.horizontalShift && attributes.horizontalShiftAmount && attributes.horizontalShift !== 'none') {
-				  const direction = attributes.horizontalShift === 'left' ? '-' : '';
-				  hShift = `${direction}${attributes.horizontalShiftAmount}`;
+				let shiftLeft = '0';
+				let shiftRight = '0';
+				let shiftUp = '0';
+				let shiftDown = '0';
+				let slideX = '0';
+				let slideY = '0';
+
+				if (attributes.shiftLeft) {
+					shiftLeft = attributes.shiftLeft;
 				}
-		
-				if (attributes.verticalShift && attributes.verticalShiftAmount && attributes.verticalShift !== 'none') {
-					vShift = `-${attributes.verticalShiftAmount}`;
+				if (attributes.shiftRight) {
+					shiftRight = attributes.shiftRight;
 				}
-		
-		
+				if (attributes.shiftUp) {
+					shiftUp = attributes.shiftUp;
+				}
+				if (attributes.shiftDown) {
+					shiftDown = attributes.shiftDown;
+				}
+				if (attributes.slideHorizontal) {
+					slideX = attributes.slideHorizontal;
+				}
+				if (attributes.slideVertical) {
+					slideY = attributes.slideVertical;
+				}
 				// Build the CSS
 				const styles = `
 				  #${uniqueClass} {
-					--flexline-shift-x: ${hShift};
-					--flexline-shift-y: ${vShift};
-
+					--flexline-shift-left: ${shiftLeft};
+					--flexline-shift-right: ${shiftRight};
+					--flexline-shift-up: ${shiftUp};
+					--flexline-shift-down: ${shiftDown};
+					--flexline-slide-x: ${slideX};
+					--flexline-slide-y: ${slideY};
 				  }
 				`;
 		
@@ -284,10 +278,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			props.attributes.groupLinkType,
 			props.attributes.stackAtTablet,
 			props.attributes.useContentShift,
-			props.attributes.horizontalShift,
-			props.attributes.horizontalShiftAmount,
-			props.attributes.verticalShift,
-			props.attributes.verticalShiftAmount,
+			props.attributes.shiftLeft,
+			props.attributes.shiftRight,
+			props.attributes.shiftUp,
+			props.attributes.shiftDown,
+			props.attributes.slideHorizontal,
+			props.attributes.slideVertical,
 			props.attributes.shiftToTop,
 			props.attributes.resetMobile,
 			props.name,
@@ -372,102 +368,138 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									})
 								}
 							/>
-							{props.attributes.useContentShift && (
-								<SelectControl
-									label="Horizontal Shift"
-									value={props.attributes.horizontalShift}
-									options={[
-										{ label: 'None', value: 'none' },
-										{ label: 'Left', value: 'left' },
-										{ label: 'Right', value: 'right' },
-									]}
-									onChange={(value) =>
-										props.setAttributes({
-											horizontalShift: value,
-										})
-									}
-									__nextHasNoMarginBottom={true}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<UnitControl
-									label="Horizontal Shift Amount"
-									value={
-										props.attributes.horizontalShiftAmount
-									}
-									onChange={(value) =>
-										props.setAttributes({
-											horizontalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<SelectControl
-									label="Vertical Shift"
-									value={props.attributes.verticalShift}
-									options={[
-										{ label: 'None', value: 'none' },
-										{ label: 'Up', value: 'up' },
-										{ label: 'Down', value: 'down' },
-									]}
-									onChange={(value) =>
-										props.setAttributes({
-											verticalShift: value,
-										})
-									}
-									__nextHasNoMarginBottom={true}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<UnitControl
-									label="Vertical Shift Amount"
-									value={props.attributes.verticalShiftAmount}
-									onChange={(value) =>
-										props.setAttributes({
-											verticalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Shift to Top (z-index)"
-									checked={props.attributes.shiftToTop}
-									onChange={(value) =>
-										props.setAttributes({
-											shiftToTop: value,
-										})
-									}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Restore Normal on Mobile"
-									checked={props.attributes.resetMobile}
-									onChange={(value) =>
-										props.setAttributes({
-											resetMobile: value,
-										})
-									}
-								/>
-							)}
+							<UnitControl
+								label="Shift Left"
+								value={
+									props.attributes.shiftLeft
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftLeft: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Right"
+								value={
+									props.attributes.shiftRight
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftRight: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Up"
+								value={
+									props.attributes.shiftUp
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftUp: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Down"
+								value={
+									props.attributes.shiftDown
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftDown: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Shift Above (z-index)"
+								checked={props.attributes.shiftToTop}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftToTop: value,
+									})
+								}
+							/>
+							<UnitControl
+								label="Slide Horizontal ( - to left, + to right )"
+								value={
+									props.attributes.slideHorizontal
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideHorizontal: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Slide Vertical ( - to top, + to bottom )"
+								value={
+									props.attributes.slideVertical
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideVertical: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Restore Normal on Mobile"
+								checked={props.attributes.resetMobile}
+								onChange={(value) =>
+									props.setAttributes({
+										resetMobile: value,
+									})
+								}
+							/>
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>
@@ -792,102 +824,138 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									})
 								}
 							/>
-							{props.attributes.useContentShift && (
-								<SelectControl
-									label="Horizontal Shift"
-									value={props.attributes.horizontalShift}
-									options={[
-										{ label: 'None', value: 'none' },
-										{ label: 'Left', value: 'left' },
-										{ label: 'Right', value: 'right' },
-									]}
-									onChange={(value) =>
-										props.setAttributes({
-											horizontalShift: value,
-										})
-									}
-									__nextHasNoMarginBottom={true}
-								/>
-							)}
-							{props.attributes.horizontalShift !== 'none' && (
-								<UnitControl
-									label="Horizontal Shift Amount"
-									value={
-										props.attributes.horizontalShiftAmount
-									}
-									onChange={(value) =>
-										props.setAttributes({
-											horizontalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<SelectControl
-									label="Vertical Shift"
-									value={props.attributes.verticalShift}
-									options={[
-										{ label: 'None', value: 'none' },
-										{ label: 'Up', value: 'up' },
-										{ label: 'Down', value: 'down' },
-									]}
-									onChange={(value) =>
-										props.setAttributes({
-											verticalShift: value,
-										})
-									}
-									__nextHasNoMarginBottom={true}
-								/>
-							)}
-							{props.attributes.verticalShift !== 'none' && (
-								<UnitControl
-									label="Vertical Shift Amount"
-									value={props.attributes.verticalShiftAmount}
-									onChange={(value) =>
-										props.setAttributes({
-											verticalShiftAmount: value,
-										})
-									}
-									units={[
-										{ value: 'px', label: 'px' },
-										{ value: '%', label: '%' },
-										{ value: 'em', label: 'em' },
-										{ value: 'rem', label: 'rem' },
-										{ value: 'vw', label: 'vw' },
-										{ value: 'vh', label: 'vh' },
-									]}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Shift above (z-index)"
-									checked={props.attributes.shiftToTop}
-									onChange={(value) =>
-										props.setAttributes({
-											shiftToTop: value,
-										})
-									}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Restore Normal on Mobile"
-									checked={props.attributes.resetMobile}
-									onChange={(value) =>
-										props.setAttributes({
-											resetMobile: value,
-										})
-									}
-								/>
-							)}
+							<UnitControl
+								label="Shift Left"
+								value={
+									props.attributes.shiftLeft
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftLeft: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Right"
+								value={
+									props.attributes.shiftRight
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftRight: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Up"
+								value={
+									props.attributes.shiftUp
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftUp: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Shift Down"
+								value={
+									props.attributes.shiftDown
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftDown: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Shift Above (z-index)"
+								checked={props.attributes.shiftToTop}
+								onChange={(value) =>
+									props.setAttributes({
+										shiftToTop: value,
+									})
+								}
+							/>
+							<UnitControl
+								label="Slide Horizontal ( - to left, + to right )"
+								value={
+									props.attributes.slideHorizontal
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideHorizontal: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<UnitControl
+								label="Slide Vertical ( - to top, + to bottom )"
+								value={
+									props.attributes.slideVertical
+								}
+								onChange={(value) =>
+									props.setAttributes({
+										slideVertical: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<ToggleControl
+								label="Restore Normal on Mobile"
+								checked={props.attributes.resetMobile}
+								onChange={(value) =>
+									props.setAttributes({
+										resetMobile: value,
+									})
+								}
+							/>
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>

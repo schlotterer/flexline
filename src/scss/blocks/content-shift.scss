@@ -1,19 +1,15 @@
 .flexline-content-shift {
-    
-}
-.flexline-content-shift-horizontal {
-    transform: translateX(var(--flexline-shift-x, 0));
-}
-.flexline-content-shift-up {
-    margin-top:var(--flexline-shift-y, 0);
-}
-.flexline-content-shift-down {
-    margin-bottom:var(--flexline-shift-y, 0);
+    margin-left: var(--flexline-shift-left, 0) !important;
+    margin-right: var(--flexline-shift-right, 0) !important;
+    margin-top: var(--flexline-shift-up, 0) !important;
+    margin-bottom: var(--flexline-shift-down, 0) !important;
+    transform: translate(var(--flexline-slide-x, 0), var(--flexline-slide-y, 0)) !important;    
 }
 .flexline-content-shift-above {
     position: relative;
     z-index: 10; 
 }
+
 @include screen($mobile) {
     .flexline-content-shift-revert-mobile {
         transform: none !important;

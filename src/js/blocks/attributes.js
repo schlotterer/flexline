@@ -79,24 +79,25 @@ export const customIconAttributes = {
 	},
 };
 
+// Shift - Define custom attributes
 export const customShiftAttributes = {
 	useContentShift: {
 		type: 'boolean',
 		default: false,
 	},
-	horizontalShift: {
+	shiftLeft: {
 		type: 'string', // none, left, right
-		default: 'none',
+		default: '0px',
 	},
-	horizontalShiftAmount: {
+	shiftRight: {
 		type: 'string', // small, medium, large, etc.
 		default: '0px',
 	},
-	verticalShift: {
+	shiftUp: {
 		type: 'string', // none, top, bottom
-		default: 'none',
+		default: '0px',
 	},
-	verticalShiftAmount: {
+	shiftDown: {
 		type: 'string',
 		default: '0px',
 	},
@@ -104,9 +105,16 @@ export const customShiftAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	slideHorizontal: {
+		type: 'string', // small, medium, large, etc.
+		default: '0px',
+	},
+	slideVertical: {
+		type: 'string', // none, top, bottom
+		default: '0px',
+	},
 	resetMobile: {
 		type: 'boolean',
 		default: false,
 	},
 };
-
