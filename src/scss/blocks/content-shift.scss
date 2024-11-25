@@ -3,23 +3,20 @@
     margin-right: var(--flexline-shift-right, 0) !important;
     margin-top: var(--flexline-shift-up, 0) !important;
     margin-bottom: var(--flexline-shift-down, 0) !important;
-    transform: translate(var(--flexline-slide-x, 0), var(--flexline-slide-y, 0)) !important;    
-}
-.flexline-content-shift-above {
-    position: relative;
-    z-index: 10; 
-}
-
-@include screen($mobile) {
-    .flexline-content-shift-revert-mobile {
-        transform: none !important;
-
-        z-index: initial !important;
-        &.flexline-content-shift-up {
-            margin-top: initial;
-        }
-        &.flexline-content-shift-down {
-            margin-bottom: initial;
+    transform: translate(var(--flexline-slide-x, 0), var(--flexline-slide-y, 0)) !important;
+    &.flexline-content-shift-above {
+        position: relative;
+        z-index: 10; 
+    }
+    &.flexline-content-shift-revert-mobile {
+        @include screen($mobile) {
+            transform: none !important;
+            margin-left: initial !important;
+            margin-right: initial !important;
+            margin-top: initial !important;
+            margin-bottom: initial !important;
         }
     }
 }
+
+
