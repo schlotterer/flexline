@@ -8,6 +8,7 @@ import {
 	customGroupAttributes,
 	customHorizontalScrollAttributes,
 	customGalleryAttributes,
+	customShiftAttributes,
 } from './attributes';
 
 // Button - Filter function to add custom attributes to blocks
@@ -26,7 +27,7 @@ function addCustomButtonAttributes(settings, name) {
 // Button - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-button-attributes',
 	addCustomButtonAttributes
 );
 
@@ -44,8 +45,27 @@ function addCustomButtonsAttributes(settings, name) {
 // Buttons - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-buttons-attributes',
 	addCustomButtonsAttributes
+);
+
+// Column- Filter function to add custom attributes to blocks
+function addCustomColumnAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/column') {
+		settings.attributes = {
+			...settings.attributes,
+			...customVisibilityAttributes,
+			...customShiftAttributes,
+		};
+	}
+	return settings;
+}
+// Column - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-custom-column-attributes',
+	addCustomColumnAttributes
 );
 
 // Cover - Filter function to add custom attributes to blocks
@@ -63,7 +83,7 @@ function addCustomCoverAttributes(settings, name) {
 // Cover - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-cover-attributes',
 	addCustomCoverAttributes
 );
 
@@ -81,7 +101,7 @@ function addCustomGalleryAttributes(settings, name) {
 // Gallery - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-gallery-attributes',
 	addCustomGalleryAttributes
 );
 
@@ -93,6 +113,7 @@ function addCustomGroupAttributes(settings, name) {
 			...settings.attributes,
 			...customGroupAttributes,
 			...customVisibilityAttributes,
+			...customShiftAttributes,
 		};
 	}
 	return settings;
@@ -100,7 +121,7 @@ function addCustomGroupAttributes(settings, name) {
 // Group - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-group-attributes',
 	addCustomGroupAttributes
 );
 
@@ -120,7 +141,7 @@ function addCustomImageAttributes(settings, name) {
 // Image -Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-image-attributes',
 	addCustomImageAttributes
 );
 
@@ -139,7 +160,7 @@ function addCustomNavigationAttributes(settings, name) {
 // Navigation - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-navigation-attributes',
 	addCustomNavigationAttributes
 );
 
@@ -147,7 +168,6 @@ addFilter(
 function addCustomVisibilityAttributes(settings, name) {
 	if (
 		[
-			'core/column',
 			'core/columns',
 			'core/spacer',
 			'core/paragraph',
@@ -172,6 +192,6 @@ function addCustomVisibilityAttributes(settings, name) {
 // Visibility - Hook filters
 addFilter(
 	'blocks.registerBlockType',
-	'flexline/add-custom-attributes',
+	'flexline/add-custom-visibility-attributes',
 	addCustomVisibilityAttributes
 );
