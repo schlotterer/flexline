@@ -1,34 +1,71 @@
 .flexline-content-shift {
-    
-    &.flexline-content-shift-left {
-        margin-left: var(--flexline-shift-left, 0) !important;
-    }
-    &.flexline-content-shift-right {
-        margin-right: var(--flexline-shift-right, 0) !important;
-    }
-    &.flexline-content-shift-up {
-        margin-top: var(--flexline-shift-up, 0) !important;
-    }
-    &.flexline-content-shift-down {
-        margin-bottom: var(--flexline-shift-down, 0) !important;
-    }
-    &.flexline-content-slide-x {
-        transform: translateX(var(--flexline-slide-x, 0));
-    }
-    &.flexline-content-slide-y {
-        transform: translateY(var(--flexline-slide-y, 0));
-    }
+
     &.flexline-content-shift-above {
         position: relative;
-        z-index: 10 !important; 
+        z-index: 10; 
     }
-    &.flexline-content-shift-revert-mobile {
-        @include screen($mobile) {
-            transform: none !important;
-            margin-left: initial !important;
-            margin-right: initial !important;
-            margin-top: initial !important;
-            margin-bottom: initial !important;
+
+    &.flexline-content-shift-left {
+        @include screen($tablet-up) {
+            margin-left: var(--flexline-shift-left, 0);  
+        } 
+    }
+    &.flexline-content-shift-right {
+        @include screen($tablet-up) {
+            margin-right: var(--flexline-shift-right, 0);
+        }
+    }
+    &.flexline-content-shift-up {
+        @include screen($tablet-up) {
+            margin-top: var(--flexline-shift-up, 0);
+        }
+    }
+    &.flexline-content-shift-down {
+        @include screen($tablet-up) {
+            margin-bottom: var(--flexline-shift-down, 0);
+        }
+    }
+    &.flexline-content-slide-x {
+        @include screen($tablet-up) {
+            transform: translateX(var(--flexline-slide-x, 0));
+        }
+    }
+    &.flexline-content-slide-y {
+        @include screen($tablet-up) {
+            transform: translateY(var(--flexline-slide-y, 0));
+        }
+    }
+
+    &:not(.flexline-content-shift-revert-mobile) {
+        &.flexline-content-shift-left {
+            @include screen($mobile) {
+                margin-left: var(--flexline-shift-left, 0);  
+            } 
+        }
+        &.flexline-content-shift-right {
+            @include screen($mobile) {
+                margin-right: var(--flexline-shift-right, 0);
+            }
+        }
+        &.flexline-content-shift-up {
+            @include screen($mobile) {
+                margin-top: var(--flexline-shift-up, 0);
+            }
+        }
+        &.flexline-content-shift-down-no-mobile {
+            @include screen($mobile) {
+                margin-bottom: var(--flexline-shift-down, 0);
+            }
+        }
+        &.flexline-content-slide-x-no-mobile {
+            @include screen($mobile) {
+                transform: translateX(var(--flexline-slide-x, 0));
+            }
+        }
+        &.flexline-content-slide-y-no-mobile {
+            @include screen($mobile) {
+                transform: translateY(var(--flexline-slide-y, 0));
+            }
         }
     }
 }
