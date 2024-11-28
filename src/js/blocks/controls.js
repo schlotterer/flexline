@@ -4,13 +4,11 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment, useEffect, useRef } from '@wordpress/element';
 import { InspectorControls, URLInput } from '@wordpress/block-editor';
 import {
-    PanelBody,
-    ToggleControl,
-    SelectControl,
-    __experimentalUnitControl as UnitControl,
+	PanelBody,
+	ToggleControl,
+	SelectControl,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
-console.log(wp.components.UnitControl);
-
 
 // Utility function to generate visibility classes based on attributes
 const getVisibilityClasses = (attrs) => {
@@ -59,7 +57,6 @@ const updateBlockClasses = (
 // Higher Order Component to add custom controls
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
-
 		const { attributes, clientId } = props;
 		// Generate a unique class using clientId
 		const uniqueClass = `block-${clientId}`;
@@ -67,8 +64,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		const styleElementRef = useRef(null);
 
 		useEffect(() => {
-
-			
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
 			if (!props.attributes.hideOnMobile) {
@@ -144,11 +139,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// New Classes
 			// Generate the new visibility and other classes
 			let newClasses = getVisibilityClasses(props.attributes);
-		
+
 			// Add content shift classes if enabled
 			if (props.attributes.useContentShift) {
 				newClasses += ' flexline-content-shift';
-				
+
 				if ('0px' !== props.attributes.shiftLeft) {
 					newClasses += ' flexline-content-shift-left';
 				}
@@ -168,18 +163,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					newClasses += ' flexline-content-slide-y';
 				}
 				// Add 'flexline-content-shift-up' if enabled
-
-				console.log(props.attributes.shiftToTop);
 				if (props.attributes.shiftToTop) {
 					newClasses += ' flexline-content-shift-above';
 				}
-			
+
 				// Add 'flexline-content-shift-revert-mobile' if enabled
 				if (props.attributes.resetMobile) {
 					newClasses += ' flexline-content-shift-revert-mobile';
 				}
 			}
-  
 
 			// Block-specific logic
 			if (props.name === 'core/button' || props.name === 'core/image') {
@@ -211,12 +203,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				newClasses += ' is-style-horizontal-scroll-at-mobile';
 			}
-			if ([
-					'core/group', 
-					'core/stack', 
-					'core/row', 
-					'core/grid'
-				].includes(props.name)
+			if (
+				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
+					props.name
+				)
 			) {
 				if (props.attributes.enableGroupLink) {
 					const linkType = props.attributes.groupLinkType || 'self';
@@ -239,14 +229,13 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			);
 			props.setAttributes({ className: combinedClasses });
 
-
 			// **Add the Unique Class to the Wrapper in the Editor**
 			if (!props.wrapperProps) {
 				props.wrapperProps = {};
-			  }
-		
-			  // **Generate and Inject Styles in the Editor**
-			  if (attributes.useContentShift) {
+			}
+
+			// **Generate and Inject Styles in the Editor**
+			if (attributes.useContentShift) {
 				// Generate CSS based on attributes
 				let shiftLeft = '0';
 				let shiftRight = '0';
@@ -284,56 +273,37 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					--flexline-slide-y: ${slideY};
 				  }
 				`;
-		
+
 				// Inject the styles into the editor's head
 				if (!styleElementRef.current) {
-				  // Create a new style element
-				  styleElementRef.current = document.createElement('style');
-				  styleElementRef.current.setAttribute('type', 'text/css');
-				  document.head.appendChild(styleElementRef.current);
+					// Create a new style element
+					styleElementRef.current = document.createElement('style');
+					styleElementRef.current.setAttribute('type', 'text/css');
+					document.head.appendChild(styleElementRef.current);
 				}
-		
+
 				// Update the style element's content
 				styleElementRef.current.textContent = styles;
-			  } else {
+			} else if (false === attributes.useContentShift) {
 				// If useContentShift is not enabled, remove the style element if it exists
 				if (styleElementRef.current) {
-				  styleElementRef.current.parentNode.removeChild(styleElementRef.current);
-				  styleElementRef.current = null;
+					styleElementRef.current.parentNode.removeChild(
+						styleElementRef.current
+					);
+					styleElementRef.current = null;
 				}
-			  }
-		
-			  // Cleanup when the component unmounts or attributes change
-			  return () => {
+			}
+
+			// Cleanup when the component unmounts or attributes change
+			return () => {
 				if (styleElementRef.current) {
-				  styleElementRef.current.parentNode.removeChild(styleElementRef.current);
-				  styleElementRef.current = null;
+					styleElementRef.current.parentNode.removeChild(
+						styleElementRef.current
+					);
+					styleElementRef.current = null;
 				}
-			  };
-		}, [
-			props.attributes.hideOnMobile,
-			props.attributes.hideOnTablet,
-			props.attributes.hideOnDesktop,
-			props.attributes.enableModal,
-			props.attributes.iconType,
-			props.attributes.enableLazyLoad,
-			props.attributes.enablePosterGallery,
-			props.attributes.enableHorizontalScroll,
-			props.attributes.enableGroupLink,
-			props.attributes.groupLinkType,
-			props.attributes.stackAtTablet,
-			props.attributes.useContentShift,
-			props.attributes.shiftLeft,
-			props.attributes.shiftRight,
-			props.attributes.shiftUp,
-			props.attributes.shiftDown,
-			props.attributes.slideHorizontal,
-			props.attributes.slideVertical,
-			props.attributes.shiftToTop,
-			props.attributes.resetMobile,
-			props.name,
-			props,
-		]);
+			};
+		}, [attributes, props.attributes, props.name, props, uniqueClass]);
 
 		// Only show on specific blocks
 		if (props.name === 'core/image') {
@@ -415,9 +385,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Left"
-								value={
-									props.attributes.shiftLeft
-								}
+								value={props.attributes.shiftLeft}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftLeft: value,
@@ -434,9 +402,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Right"
-								value={
-									props.attributes.shiftRight
-								}
+								value={props.attributes.shiftRight}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftRight: value,
@@ -453,9 +419,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Up"
-								value={
-									props.attributes.shiftUp
-								}
+								value={props.attributes.shiftUp}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftUp: value,
@@ -472,9 +436,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Down"
-								value={
-									props.attributes.shiftDown
-								}
+								value={props.attributes.shiftDown}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftDown: value,
@@ -500,9 +462,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Horizontal ( - to left, + to right )"
-								value={
-									props.attributes.slideHorizontal
-								}
+								value={props.attributes.slideHorizontal}
 								onChange={(value) =>
 									props.setAttributes({
 										slideHorizontal: value,
@@ -519,9 +479,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Vertical ( - to top, + to bottom )"
-								value={
-									props.attributes.slideVertical
-								}
+								value={props.attributes.slideVertical}
 								onChange={(value) =>
 									props.setAttributes({
 										slideVertical: value,
@@ -871,9 +829,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Left"
-								value={
-									props.attributes.shiftLeft
-								}
+								value={props.attributes.shiftLeft}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftLeft: value,
@@ -890,9 +846,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Right"
-								value={
-									props.attributes.shiftRight
-								}
+								value={props.attributes.shiftRight}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftRight: value,
@@ -909,9 +863,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Up"
-								value={
-									props.attributes.shiftUp
-								}
+								value={props.attributes.shiftUp}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftUp: value,
@@ -928,9 +880,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Down"
-								value={
-									props.attributes.shiftDown
-								}
+								value={props.attributes.shiftDown}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftDown: value,
@@ -956,9 +906,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Horizontal ( - to left, + to right )"
-								value={
-									props.attributes.slideHorizontal
-								}
+								value={props.attributes.slideHorizontal}
 								onChange={(value) =>
 									props.setAttributes({
 										slideHorizontal: value,
@@ -975,9 +923,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Vertical ( - to top, + to bottom )"
-								value={
-									props.attributes.slideVertical
-								}
+								value={props.attributes.slideVertical}
 								onChange={(value) =>
 									props.setAttributes({
 										slideVertical: value,
@@ -1007,21 +953,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			);
 		}
 		if (props.name === 'core/column') {
-			<Fragment>
+			return (
+				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
 						<PanelBody title="Flexline Visibility">
-							{props.name === 'core/columns' && (
-								<ToggleControl
-									label="Stack at Tablet"
-									checked={!!props.attributes.stackAtTablet}
-									onChange={(newValue) =>
-										props.setAttributes({
-											stackAtTablet: newValue,
-										})
-									}
-								/>
-							)}
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
@@ -1064,9 +1000,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Left"
-								value={
-									props.attributes.shiftLeft
-								}
+								value={props.attributes.shiftLeft}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftLeft: value,
@@ -1083,9 +1017,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Right"
-								value={
-									props.attributes.shiftRight
-								}
+								value={props.attributes.shiftRight}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftRight: value,
@@ -1102,9 +1034,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Up"
-								value={
-									props.attributes.shiftUp
-								}
+								value={props.attributes.shiftUp}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftUp: value,
@@ -1121,9 +1051,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Shift Down"
-								value={
-									props.attributes.shiftDown
-								}
+								value={props.attributes.shiftDown}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftDown: value,
@@ -1149,9 +1077,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Horizontal ( - to left, + to right )"
-								value={
-									props.attributes.slideHorizontal
-								}
+								value={props.attributes.slideHorizontal}
 								onChange={(value) =>
 									props.setAttributes({
 										slideHorizontal: value,
@@ -1168,9 +1094,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<UnitControl
 								label="Slide Vertical ( - to top, + to bottom )"
-								value={
-									props.attributes.slideVertical
-								}
+								value={props.attributes.slideVertical}
 								onChange={(value) =>
 									props.setAttributes({
 										slideVertical: value,
@@ -1197,6 +1121,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>
+			);
 		}
 		if (
 			[

@@ -259,10 +259,6 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$slideY = $block['attrs']['slideVertical'];
 		}
 
-
-// Build the CSS
-
-
         // Build the CSS
         $styles = '.' . esc_attr( $unique_class ) . ' {';
         $styles .= ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
