@@ -114,10 +114,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				if ('0px' === props.attributes.shiftDown) {
 					removedClasses.push('flexline-content-shift-down');
 				}
-				if ('0px' === props.attributes.slideX) {
+				if ('0px' === props.attributes.slideHorizontal) {
 					removedClasses.push('flexline-content-slide-x');
 				}
-				if ('0px' === props.attributes.slideY) {
+				if ('0px' === props.attributes.slideVertical) {
 					removedClasses.push('flexline-content-slide-y');
 				}
 				// Remove 'flexline-content-shift-up' if not enabled
@@ -156,10 +156,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				if ('0px' !== props.attributes.shiftDown) {
 					newClasses += ' flexline-content-shift-down';
 				}
-				if ('0px' !== props.attributes.slideX) {
+				if ('0px' !== props.attributes.slideHorizontal) {
 					newClasses += ' flexline-content-slide-x';
 				}
-				if ('0px' !== props.attributes.slideY) {
+				if ('0px' !== props.attributes.slideVertical) {
 					newClasses += ' flexline-content-slide-y';
 				}
 				// Add 'flexline-content-shift-up' if enabled
