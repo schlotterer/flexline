@@ -56,7 +56,6 @@ function addCustomColumnAttributes(settings, name) {
 		settings.attributes = {
 			...settings.attributes,
 			...customVisibilityAttributes,
-			...customShiftAttributes,
 		};
 	}
 	return settings;
