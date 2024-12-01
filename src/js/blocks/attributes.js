@@ -78,3 +78,43 @@ export const customIconAttributes = {
 		default: 'none', // Default to 'none' indicating no icon selected
 	},
 };
+
+// Shift - Define custom attributes
+export const customShiftAttributes = {
+	useContentShift: {
+		type: 'boolean',
+		default: false,
+	},
+	shiftLeft: {
+		type: 'string', // none, left, right
+		default: '0px',
+	},
+	shiftRight: {
+		type: 'string', // small, medium, large, etc.
+		default: '0px',
+	},
+	shiftUp: {
+		type: 'string', // none, top, bottom
+		default: '0px',
+	},
+	shiftDown: {
+		type: 'string',
+		default: '0px',
+	},
+	shiftToTop: {
+		type: 'boolean',
+		default: false,
+	},
+	slideHorizontal: {
+		type: 'string', // small, medium, large, etc.
+		default: '0px',
+	},
+	slideVertical: {
+		type: 'string', // none, top, bottom
+		default: '0px',
+	},
+	resetMobile: {
+		type: 'boolean',
+		default: false,
+	},
+};

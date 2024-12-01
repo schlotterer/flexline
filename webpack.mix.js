@@ -37,5 +37,25 @@ sassFiles.forEach((file) => {
 // Copy images from a source directory to an output directory
 mix.copy('src/images', 'assets/built/images');
 
-// Optionally, set the public path if needed (useful for setting the correct absolute path for fonts and images referenced in CSS)
+// Set the public path if needed
 mix.setPublicPath('assets/built');
+
+// **Add Externalization Configuration**
+mix.webpackConfig({
+	externals: {
+		react: 'React',
+		'react-dom': 'ReactDOM',
+		'@wordpress/blocks': ['wp', 'blocks'],
+		'@wordpress/i18n': ['wp', 'i18n'],
+		'@wordpress/element': ['wp', 'element'],
+		'@wordpress/components': ['wp', 'components'],
+		'@wordpress/block-editor': ['wp', 'blockEditor'],
+		'@wordpress/data': ['wp', 'data'],
+		'@wordpress/hooks': ['wp', 'hooks'],
+		'@wordpress/plugins': ['wp', 'plugins'],
+		'@wordpress/edit-post': ['wp', 'editPost'],
+		'@wordpress/compose': ['wp', 'compose'],
+		'@wordpress/api-fetch': ['wp', 'apiFetch'],
+		// Add other @wordpress/* packages as needed
+	},
+});
