@@ -272,7 +272,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
         // Inject the styles
         $style_tag = '<style type="text/css">' . $styles . '</style>';
 		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-        $block_content = $block_content . $style_tag;
+        $block_content = $style_tag . $block_content;
     }
 
 
