@@ -392,9 +392,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									})
 								}
 							/>
+							<h4>Shift Margins</h4>
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Left"
+									type="number"
+									min={0}
 									value={props.attributes.shiftLeft}
 									onChange={(value) =>
 										props.setAttributes({
@@ -409,11 +412,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Right"
+									type="number"
+									min={0}
 									value={props.attributes.shiftRight}
 									onChange={(value) =>
 										props.setAttributes({
@@ -428,11 +434,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Up"
+									type="number"
+									min={0}
 									value={props.attributes.shiftUp}
 									onChange={(value) =>
 										props.setAttributes({
@@ -447,11 +456,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Down"
+									type="number"
+									min={0}
 									value={props.attributes.shiftDown}
 									onChange={(value) =>
 										props.setAttributes({
@@ -466,6 +478,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -485,6 +498,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter positive or negative values."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -504,6 +518,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
+									help="Enter positive or negative values."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -851,8 +866,32 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Restore Normal on Mobile"
+									checked={props.attributes.resetMobile}
+									onChange={(value) =>
+										props.setAttributes({
+											resetMobile: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<>
+									<hr />
+									<p>
+										SHIFT - NEGATIVE MARGINS <br />
+										<small>
+											Enter positive numbers only.
+										</small>
+									</p>
+								</>
+							)}
+							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Left"
+									type="number"
+									min={0}
 									value={props.attributes.shiftLeft}
 									onChange={(value) =>
 										props.setAttributes({
@@ -872,6 +911,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Right"
+									type="number"
+									min={0}
 									value={props.attributes.shiftRight}
 									onChange={(value) =>
 										props.setAttributes({
@@ -891,6 +932,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Up"
+									type="number"
+									min={0}
 									value={props.attributes.shiftUp}
 									onChange={(value) =>
 										props.setAttributes({
@@ -910,6 +953,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Down"
+									type="number"
+									min={0}
 									value={props.attributes.shiftDown}
 									onChange={(value) =>
 										props.setAttributes({
@@ -925,6 +970,17 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vh', label: 'vh' },
 									]}
 								/>
+							)}
+							{props.attributes.useContentShift && (
+								<>
+									<hr />
+									<p>
+										SLIDE - TRANSLATE <br />
+										<small>
+											Positive or negative numbers
+										</small>
+									</p>
+								</>
 							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
@@ -962,17 +1018,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Restore Normal on Mobile"
-									checked={props.attributes.resetMobile}
-									onChange={(value) =>
-										props.setAttributes({
-											resetMobile: value,
-										})
-									}
+									help="Enter positive or negative values."
 								/>
 							)}
 						</PanelBody>
