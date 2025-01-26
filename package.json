@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
-    "@wordpress/eslint-plugin": "^21.6.0",
+    "@wordpress/eslint-plugin": "^22.0.0",
     "autoprefixer": "^10.4.20",
     "@wordpress/scripts": "^30.6.0",
     "@wordpress/stylelint-config": "^23.6.0",
