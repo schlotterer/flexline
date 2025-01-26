@@ -31,7 +31,7 @@
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "husky": "^9.1.7",
     "laravel-mix": "^6.0.49",
