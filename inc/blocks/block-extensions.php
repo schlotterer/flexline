@@ -6,7 +6,7 @@
  */
 
 namespace FlexLine\flexline;
-
+use WP_HTML_Tag_Processor;
 /**
  * Enqueue block editor assets for Flexline theme.
  *
@@ -23,6 +23,37 @@ function flexline_enqueue_block_editor_assets() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+
+
+
+
+function flexline_merge_inline_style( $block_content, $new_style_rules ) {
+    // Create the processor.
+    $processor = new WP_HTML_Tag_Processor( $block_content );
+
+    // "Move" to the first tag – in many blocks, the wrapper is the first or second tag.
+    // If you know the block markup better, you might do while ($processor->next_tag()) ...
+    // Or you might specifically look for a <div> or a <figure>, etc.
+    if ( $processor->next_tag() ) {
+        // Get the existing style attribute, if any.
+        $existing_style = $processor->get_attribute( 'style' );
+
+        // If it already has some rules, append a semicolon & space before ours.
+        if ( ! empty( $existing_style ) ) {
+            $existing_style = rtrim( $existing_style, '; ' ) . '; ';
+        }
+
+        // Append the new style rules.
+        $combined_style = $existing_style . $new_style_rules;
+
+        // Set it back on the element.
+        $processor->set_attribute( 'style', $combined_style );
+    }
+
+    // Return the updated HTML markup.
+    return $processor->get_updated_html();
+}
+
 
 /**
  * Generate visibility classes based on block attributes.
@@ -232,7 +263,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
         // Generate a unique class based on the block's attributes
         $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
         // Add the unique class to the block's classes
-        $added_classes .= ' ' . $unique_class . ' ';
+        $added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
         // Generate the styles
 		$shiftLeft = '0';
 		$shiftRight = '0';
@@ -258,24 +289,15 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['slideVertical'] ) ) {
 			$slideY = $block['attrs']['slideVertical'];
 		}
-
         // Build the CSS
-        $styles = '.' . esc_attr( $unique_class ) . ' {';
-        $styles .= ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
+        $styles = ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
         $styles .= ' --flexline-shift-right: ' . esc_attr( $shiftRight ) . ';';
         $styles .= ' --flexline-shift-up: ' . esc_attr( $shiftUp ) . ';';
         $styles .= ' --flexline-shift-down: ' . esc_attr( $shiftDown ) . ';';
         $styles .= ' --flexline-slide-x: ' . esc_attr( $slideX ) . ';';
         $styles .= ' --flexline-slide-y: ' . esc_attr( $slideY ) . ';';
-        $styles .= '}';
-
-        // Inject the styles
-        $style_tag = '<style type="text/css">' . $styles . '</style>';
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-        $block_content = $style_tag . $block_content;
+		$block_content = flexline_merge_inline_style( $block_content, $styles );
     }
-
-
 	return $block_content;
 }
 add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 2 );
