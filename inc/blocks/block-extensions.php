@@ -24,9 +24,6 @@ function flexline_enqueue_block_editor_assets() {
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
 
-
-
-
 function flexline_merge_inline_style( $block_content, $new_style_rules ) {
     // Create the processor.
     $processor = new WP_HTML_Tag_Processor( $block_content );
@@ -53,7 +50,6 @@ function flexline_merge_inline_style( $block_content, $new_style_rules ) {
     // Return the updated HTML markup.
     return $processor->get_updated_html();
 }
-
 
 /**
  * Generate visibility classes based on block attributes.
@@ -264,7 +260,10 @@ function flexline_block_customizations_render( $block_content, $block ) {
         $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
         // Add the unique class to the block's classes
         $added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
-        // Generate the styles
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+        
+		
+		// Generate the styles
 		$shiftLeft = '0';
 		$shiftRight = '0';
 		$shiftUp = '0';
@@ -296,6 +295,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
         $styles .= ' --flexline-shift-down: ' . esc_attr( $shiftDown ) . ';';
         $styles .= ' --flexline-slide-x: ' . esc_attr( $slideX ) . ';';
         $styles .= ' --flexline-slide-y: ' . esc_attr( $slideY ) . ';';
+
 		$block_content = flexline_merge_inline_style( $block_content, $styles );
     }
 	return $block_content;
