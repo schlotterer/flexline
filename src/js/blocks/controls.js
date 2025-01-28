@@ -101,7 +101,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('flexline-content-shift-down');
 				removedClasses.push('flexline-content-slide-x');
 				removedClasses.push('flexline-content-slide-y');
-			} else {
+			}
+			if (props.attributes.useContentShift) {
 				if ('0px' === props.attributes.shiftLeft) {
 					removedClasses.push('flexline-content-shift-left');
 				}
@@ -234,8 +235,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				props.wrapperProps = {};
 			}
 
+
 			// **Generate and Inject Styles in the Editor**
-			if (attributes.useContentShift) {
+			if (props.attributes.useContentShift) {
 				// Generate CSS based on attributes
 				let shiftLeft = '0';
 				let shiftRight = '0';
@@ -385,14 +387,35 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<ToggleControl
 								label="Shift Above (z-index)"
-								checked={props.attributes.shiftToTop}
+								checked={!!props.attributes.shiftToTop}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftToTop: value,
 									})
 								}
 							/>
-							<h4>Shift Margins</h4>
+							{props.attributes.useContentShift && (
+								<ToggleControl
+									label="Restore Normal on Mobile"
+									checked={!!props.attributes.resetMobile}
+									onChange={(value) =>
+										props.setAttributes({
+											resetMobile: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.useContentShift && (
+								<>
+									<hr />
+									<p>
+										SHIFT - NEGATIVE MARGINS <br />
+										<small>
+											Enter positive numbers only.
+										</small>
+									</p>
+								</>
+							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
 									label="Shift Left"
@@ -412,7 +435,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -434,7 +456,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -456,7 +477,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-									help="Enter a positive value."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -478,8 +498,18 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-									help="Enter a positive value."
 								/>
+							)}
+							{props.attributes.useContentShift && (
+								<>
+									<hr />
+									<p>
+										SLIDE - TRANSLATE <br />
+										<small>
+											Positive or negative numbers
+										</small>
+									</p>
+								</>
 							)}
 							{props.attributes.useContentShift && (
 								<UnitControl
@@ -498,7 +528,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vw', label: 'vw' },
 										{ value: 'vh', label: 'vh' },
 									]}
-									help="Enter positive or negative values."
 								/>
 							)}
 							{props.attributes.useContentShift && (
@@ -519,17 +548,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'vh', label: 'vh' },
 									]}
 									help="Enter positive or negative values."
-								/>
-							)}
-							{props.attributes.useContentShift && (
-								<ToggleControl
-									label="Restore Normal on Mobile"
-									checked={props.attributes.resetMobile}
-									onChange={(value) =>
-										props.setAttributes({
-											resetMobile: value,
-										})
-									}
 								/>
 							)}
 						</PanelBody>
@@ -858,7 +876,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							/>
 							<ToggleControl
 								label="Shift Above (z-index)"
-								checked={props.attributes.shiftToTop}
+								checked={!!props.attributes.shiftToTop}
 								onChange={(value) =>
 									props.setAttributes({
 										shiftToTop: value,
@@ -868,7 +886,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.useContentShift && (
 								<ToggleControl
 									label="Restore Normal on Mobile"
-									checked={props.attributes.resetMobile}
+									checked={!!props.attributes.resetMobile}
 									onChange={(value) =>
 										props.setAttributes({
 											resetMobile: value,

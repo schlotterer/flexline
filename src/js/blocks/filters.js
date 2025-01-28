@@ -133,6 +133,7 @@ function addCustomImageAttributes(settings, name) {
 			...customModalAttributes,
 			...customLazyAttributes,
 			...customVisibilityAttributes,
+			...customShiftAttributes,
 		};
 	}
 	return settings;
