@@ -12,17 +12,17 @@ use WP_HTML_Tag_Processor;
  *
  * @Throws Some_Exception_Class description of exception.
  */
-function flexline_enqueue_block_editor_assets() {
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+ function flexline_enqueue_block_editor_assets() {
 	// Modal addons to core button and image blocks.
 	wp_enqueue_script(
 		'flexline-block-extensions',
 		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-		array( 'wp-blocks', 'wp-element', 'wp-editor' ),
+		[ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose' ],
 		THEME_VERSION,
 		false
 	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
 
 function flexline_merge_inline_style( $block_content, $new_style_rules ) {
     // Create the processor.

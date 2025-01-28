@@ -27,4 +27,5 @@ function flexline_customize_search_menu_js_settings() {
 	</script>
 	<?php
 }
-add_action( 'wp_head', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings' );
+add_action( 'wp_head', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 2);
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 2);
