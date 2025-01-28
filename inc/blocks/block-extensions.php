@@ -25,6 +25,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_bl
 }
 
 function flexline_merge_inline_style( $block_content, $new_style_rules ) {
+
     // Create the processor.
     $processor = new WP_HTML_Tag_Processor( $block_content );
 
@@ -124,6 +125,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	}
 	if ( 'core/image' === $block['blockName'] ) {
+
 		// Check if your custom attributes are set and not empty.
 		$added_classes = '';
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
@@ -256,6 +258,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	 // **Add Unique Class and Styles for Content Shift**
 	 if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
+
         // Generate a unique class based on the block's attributes
         $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
         // Add the unique class to the block's classes

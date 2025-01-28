@@ -12,6 +12,7 @@
         }
         &.flexline-content-shift-up {
             margin-top: var(--flexline-shift-up, 0);
+            margin-block-start: var(--flexline-shift-up, 0) !important;
         }
         &.flexline-content-shift-down {
             margin-bottom: var(--flexline-shift-down, 0);
@@ -31,6 +32,7 @@
             }
             &.flexline-content-shift-up {
                 margin-top: var(--flexline-shift-up, 0);
+                margin-block-start: var(--flexline-shift-up, 0) !important;
             }
             &.flexline-content-shift-down {
                 margin-bottom: var(--flexline-shift-down, 0);
