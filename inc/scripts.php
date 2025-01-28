@@ -53,19 +53,7 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_style( 'flexline-custom-admin', get_template_directory_uri() . '/assets/css/customize.css', array(), THEME_VERSION );
 
 	wp_enqueue_script( 'flexline-global-admin', get_template_directory_uri() . '/assets/built/js/global.js', array(), THEME_VERSION, true );
-	wp_enqueue_script( 'flexline-slidein-admin', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, args: true );
-
+	//wp_enqueue_script( 'flexline-slidein-admin', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, args: true );
 }
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
-
-add_action('after_setup_theme', __NAMESPACE__ . '\flexline_site_editor_styles');
-function flexline_site_editor_styles() {
-	add_theme_support('editor-styles');
-    // Enqueue editor-specific styles
-    add_editor_style('/assets/built/css/app.css');
-	add_editor_style('/assets/built/css/modal.css');
-	add_editor_style('/assets/css/icons.css');
-	add_editor_style('/assets/css/customize.css');
-	
-}
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts');
