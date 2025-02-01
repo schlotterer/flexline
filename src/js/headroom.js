@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-	console.log('Headroom initialized!');
 	// Grab the header element
 	const myHeader = document.querySelector('header.site-header');
 
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	// OPTIONAL: define some custom options
 	const options = {
-		offset: 50,
+		offset: 150,
 		tolerance: { up: 10, down: 0 },
 		classes: {
 			initial: 'headroom',
