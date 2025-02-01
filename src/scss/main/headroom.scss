@@ -9,8 +9,17 @@ body header.site-header {
     }
     &.headroom--unpinned {
         transform: translateY(-100%);
+        *{
+            margin-bottom: 0 !important;
+        }
     }
     &.headroom--not-top {
+        width: 100%;
         position: fixed !important;
+        .headroom-hide-on-scroll {
+            position: absolute;
+            transform-origin: top center;
+            transform: translateY(-100%);
+        }
     }
 }
