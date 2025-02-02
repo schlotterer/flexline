@@ -77,6 +77,18 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	buttonsTextColor: {
+		type: 'select',
+		default: 'white',
+	},
+	buttonsBackgroundColor: {
+		type: 'select',
+		default: 'secondary',
+	},
+	buttonsBorderColor: {
+		type: 'select',
+		default: 'none',
+	},
 };
 
 // Group - Define custom attributes

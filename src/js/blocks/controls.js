@@ -102,6 +102,31 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('horizontal-scroller-buttons-vertical-top');
 				removedClasses.push('horizontal-scroller-buttons-vertical-bottom');
 				removedClasses.push('horizontal-scroller-buttons-over');
+				// Button Backgrounds
+				removedClasses.push('scroller-buttons-background-transparent');
+				removedClasses.push('scroller-buttons-background-white');
+				removedClasses.push('scroller-buttons-background-black');
+				removedClasses.push('scroller-buttons-background-gray');
+				removedClasses.push('scroller-buttons-background-primary');
+				removedClasses.push('scroller-buttons-background-secondary');
+				removedClasses.push('scroller-buttons-background-alternate');
+				// Button Colors
+				removedClasses.push('scroller-buttons-color-white');
+				removedClasses.push('scroller-buttons-color-black');
+				removedClasses.push('scroller-buttons-color-gray');
+				removedClasses.push('scroller-buttons-color-primary');
+				removedClasses.push('scroller-buttons-color-secondary');
+				removedClasses.push('scroller-buttons-color-alternate');
+				// Buttons Borders
+				removedClasses.push('scroller-buttons-border-none');
+				removedClasses.push('scroller-buttons-border-white');
+				removedClasses.push('scroller-buttons-border-black');
+				removedClasses.push('scroller-buttons-border-gray');
+				removedClasses.push('scroller-buttons-border-primary');
+				removedClasses.push('scroller-buttons-border-secondary');
+				removedClasses.push('scroller-buttons-border-alternate');
+				// Button Over
+				removedClasses.push('scroller-buttons-over');
 			}
 			if (!props.attributes.scrollNav) {
 				removedClasses.push('horizontal-scroller-navigation');
@@ -122,23 +147,99 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('horizontal-scroller-buttons-over');
 			}
 			if (props.attributes.positionButtonsHorizontal !== 'left') {
-				removedClasses.push('horizontal-scroller-buttons-horizontal-left');
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-left'
+				);
 			}
 			if (props.attributes.positionButtonsHorizontal !== 'right') {
-				removedClasses.push('horizontal-scroller-buttons-horizontal-right');
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-right'
+				);
 			}
 			if (props.attributes.positionButtonsHorizontal !== 'center') {
-				removedClasses.push('horizontal-scroller-buttons-horizontal-center');
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-center'
+				);
 			}
 			if (props.attributes.positionButtonsVertical !== 'top') {
 				removedClasses.push('horizontal-scroller-buttons-vertical-top');
 			}
 			if (props.attributes.positionButtonsVertical !== 'bottom') {
-				removedClasses.push('horizontal-scroller-buttons-vertical-bottom');
+				removedClasses.push(
+					'horizontal-scroller-buttons-vertical-bottom'
+				);
 			}
+			// Scroller Button Backgrounds
+			if (props.attributes.buttonsBackgroundColor !== 'transparent') {
+				removedClasses.push('scroller-buttons-background-transparent');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'white') {
+				removedClasses.push('scroller-buttons-background-white');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'black') {
+				removedClasses.push('scroller-buttons-background-black');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'gray') {
+				removedClasses.push('scroller-buttons-background-gray');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'primary') {
+				removedClasses.push('scroller-buttons-background-primary');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'secondary') {
+				removedClasses.push('scroller-buttons-background-secondary');
+			}
+			if (props.attributes.buttonsBackgroundColor !== 'alternate') {
+				removedClasses.push('scroller-buttons-background-alternate');
+			}
+			// Scroller Button Colors
+			if (props.attributes.buttonColor !== 'white') {
+				removedClasses.push('scroller-buttons-color-white');
+			}
+			if (props.attributes.buttonColor !== 'black') {
+				removedClasses.push('scroller-buttons-color-black');
+			}
+			if (props.attributes.buttonColor !== 'gray') {
+				removedClasses.push('scroller-buttons-color-gray');
+			}
+			if (props.attributes.buttonColor !== 'primary') {
+				removedClasses.push('scroller-buttons-color-primary');
+			}
+			if (props.attributes.buttonColor !== 'secondary') {
+				removedClasses.push('scroller-buttons-color-secondary');
+			}
+			if (props.attributes.buttonColor !== 'alternate') {
+				removedClasses.push('scroller-buttons-color-alternate');
+			}
+			// Scroller Buttons Borders
+			if (props.attributes.buttonBorder !== 'none') {
+				removedClasses.push('scroller-buttons-border-none');
+			}
+			if (props.attributes.buttonBorder !== 'white') {
+				removedClasses.push('scroller-buttons-border-white');
+			}
+			if (props.attributes.buttonBorder !== 'black') {
+				removedClasses.push('scroller-buttons-border-black');
+			}
+			if (props.attributes.buttonBorder !== 'gray') {
+				removedClasses.push('scroller-buttons-border-gray');
+			}
+			if (props.attributes.buttonBorder !== 'primary') {
+				removedClasses.push('scroller-buttons-border-primary');
+			}
+			if (props.attributes.buttonBorder !== 'secondary') {
+				removedClasses.push('scroller-buttons-border-secondary');
+			}
+			if (props.attributes.buttonBorder !== 'alternate') {
+				removedClasses.push('scroller-buttons-border-alternate');
+			}
+			// Scroller Button Over
+			if (!props.attributes.buttonOver) {
+				removedClasses.push('scroller-buttons-over');
+			}
+			// Group Link
 			if (!props.attributes.enableGroupLink) {
 				removedClasses.push('group-link');
-			}			
+			}
 			// Remove content shift classes if not enabled
 			if (!props.attributes.useContentShift) {
 				removedClasses.push('flexline-content-shift');
@@ -301,7 +402,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				props.attributes.enableHorizontalScroller
 			) {
 				const horPosition = props.attributes.positionButtonsHorizontal;
-				newClasses += ' horizontal-scroller-buttons-horizontal-' + horPosition;
+				newClasses +=
+					' horizontal-scroller-buttons-horizontal-' + horPosition;
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
@@ -309,7 +411,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				props.attributes.enableHorizontalScroller
 			) {
 				const vertPosition = props.attributes.positionButtonsVertical;
-				newClasses += ' horizontal-scroller-buttons-vertical-' + vertPosition;
+				newClasses +=
+					' horizontal-scroller-buttons-vertical-' + vertPosition;
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
@@ -318,6 +421,31 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				newClasses += ' horizontal-scroller-buttons-over';
 			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.buttonsBackgroundColor &&
+				props.attributes.enableHorizontalScroller
+			) {
+				const backgroundColor = props.attributes.buttonsBackgroundColor;
+				newClasses += ' scroller-buttons-background-' + backgroundColor;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.buttonsTextColor &&
+				props.attributes.enableHorizontalScroller
+			) {
+				const textColor = props.attributes.buttonsTextColor;
+				newClasses += ' scroller-buttons-text-' + textColor;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.buttonsBorderColor &&
+				props.attributes.enableHorizontalScroller
+			) {
+				const borderColor = props.attributes.buttonsBorderColor;
+				newClasses += ' scroller-buttons-border-' + borderColor;
+			}
+			// Group
 			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
 					props.name
@@ -1242,17 +1370,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
-									label="Auto Scroll"
-									checked={!!props.attributes.scrollAuto}
-									onChange={(newValue) =>
-										props.setAttributes({
-											scrollAuto: newValue,
-										})
-									}
-								/>
-							)}
-							{props.attributes.enableHorizontalScroller && (
-								<ToggleControl
 									label="Position Buttons Over Scroller"
 									checked={
 										!!props.attributes.positionButtonsOver
@@ -1260,6 +1377,79 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									onChange={(newValue) =>
 										props.setAttributes({
 											positionButtonsOver: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Buttons Text Color"
+									value={props.attributes.buttonsTextColor}
+									options={[
+										{ value: 'default', label: 'Default' },
+										{ value: 'white', label: 'White' },
+										{ value: 'black', label: 'Black' },
+										{ value: 'primary', label: 'Primary' },
+										{ value: 'secondary', label: 'Secondary' },
+										{ value: 'alternate', label: 'Alternate' },
+										{ value: 'gray', label: 'Gray' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											buttonsTextColor: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Buttons Background Color"
+									value={props.attributes.buttonsBackgroundColor}
+									options={[
+										{ value: 'default', label: 'Default' },
+										{ value: 'transparent', label: 'Transparent' },
+										{ value: 'white', label: 'White' },
+										{ value: 'black', label: 'Black' },
+										{ value: 'primary', label: 'Primary' },
+										{ value: 'secondary', label: 'Secondary' },
+										{ value: 'alternate', label: 'Alternate' },
+										{ value: 'gray', label: 'Gray' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											buttonsBackgroundColor: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Buttons Border Color"
+									value={props.attributes.buttonsBorderColor}
+									options={[
+										{ value: 'default', label: 'Default' },
+										{ value: 'none', label: 'None' },
+										{ value: 'white', label: 'White' },
+										{ value: 'black', label: 'Black' },
+										{ value: 'primary', label: 'Primary' },
+										{ value: 'secondary', label: 'Secondary' },
+										{ value: 'alternate', label: 'Alternate' },
+										{ value: 'gray', label: 'Gray' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											buttonsBorderColor: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Auto Scroll"
+									checked={!!props.attributes.scrollAuto}
+									onChange={(newValue) =>
+										props.setAttributes({
+											scrollAuto: newValue,
 										})
 									}
 								/>
