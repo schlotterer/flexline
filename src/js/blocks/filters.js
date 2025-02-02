@@ -7,6 +7,7 @@ import {
 	customLazyAttributes,
 	customGroupAttributes,
 	customHorizontalScrollAttributes,
+	customHorizontalScrollerAttributes,
 	customGalleryAttributes,
 	customShiftAttributes,
 } from './attributes';
@@ -164,11 +165,47 @@ addFilter(
 	addCustomNavigationAttributes
 );
 
+// Columns - Filter function to add custom attributes to blocks
+function addColumnsAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/columns') {
+		settings.attributes = {
+			...settings.attributes,
+			...customHorizontalScrollerAttributes,
+			...customVisibilityAttributes,
+		};
+	}
+	return settings;
+}
+// Columns - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-columns-attributes',
+	addColumnsAttributes
+);
+
+// Post Template - Filter function to add custom attributes to blocks
+function addPostTemplateAttributes(settings, name) {
+	// Target specific blocks
+	if (name === 'core/post-template') {
+		settings.attributes = {
+			...settings.attributes,
+			...customHorizontalScrollerAttributes,
+		};
+	}
+	return settings;
+}
+// Navigation - Hook filters
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-post-template-attributes',
+	addPostTemplateAttributes
+);
+
 // Visibility - Filter function to add custom attributes to blocks
 function addCustomVisibilityAttributes(settings, name) {
 	if (
 		[
-			'core/columns',
 			'core/spacer',
 			'core/paragraph',
 			'core/heading',
