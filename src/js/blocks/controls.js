@@ -8,6 +8,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	__experimentalUnitControl as UnitControl,
+	RangeControl,
 } from '@wordpress/components';
 
 // Utility function to generate visibility classes based on attributes
@@ -86,6 +87,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			if (!props.attributes.enableHorizontalScroll) {
 				removedClasses.push('is-style-horizontal-scroll-at-mobile');
+			}
+			// Scroller
+			if (!props.attributes.enableHorizontalScroller) {
+				removedClasses.push('is-style-horizontal-scroll');
+				removedClasses.push('horizontal-scroller-navigation');
+				removedClasses.push('horizontal-scroller-loop');
+				removedClasses.push('horizontal-scroller-auto');
+			}
+			if (!props.attributes.scrollNav) {
+				removedClasses.push('horizontal-scroller-navigation');
+			}
+			if (!props.attributes.scrollLoop) {
+				removedClasses.push('horizontal-scroller-loop');
+			}
+			if (!props.attributes.scrollAuto) {
+				removedClasses.push('horizontal-scroller-auto');
 			}
 			if (!props.attributes.enableGroupLink) {
 				removedClasses.push('group-link');
@@ -204,6 +221,31 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				newClasses += ' is-style-horizontal-scroll-at-mobile';
 			}
+			// Scroller
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.enableHorizontalScroller
+			) {
+				newClasses += ' is-style-horizontal-scroll';
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.scrollNav
+			) {
+				newClasses += ' horizontal-scroller-navigation';
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.scrollAuto
+			) {
+				newClasses += ' horizontal-scroller-auto';
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.scrollLoop
+			) {
+				newClasses += ' horizontal-scroller-loop';
+			}
 			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
 					props.name
@@ -234,7 +276,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.wrapperProps) {
 				props.wrapperProps = {};
 			}
-
 
 			// **Generate and Inject Styles in the Editor**
 			if (props.attributes.useContentShift) {
@@ -307,7 +348,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			};
 		}, [attributes, props.attributes, props.name, props, uniqueClass]);
 
-		// Only show on specific blocks
 		if (props.name === 'core/image') {
 			return (
 				<Fragment>
@@ -555,7 +595,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
-		// Only show on specific blocks
 		if (props.name === 'core/cover') {
 			return (
 				<Fragment>
@@ -603,7 +642,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
-		// Only show on specific blocks
 		if (props.name === 'core/buttons') {
 			return (
 				<Fragment>
@@ -1044,10 +1082,119 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
+		if (props.name === 'core/columns') {
+			return (
+				<Fragment>
+					<BlockEdit {...props} />
+					<InspectorControls>
+						<PanelBody title="Flexline Scroller Options">
+							<ToggleControl
+								label="Enable Horizontal Scroller"
+								checked={
+									!!props.attributes.enableHorizontalScroller
+								}
+								onChange={(newValue) =>
+									props.setAttributes({
+										enableHorizontalScroller: newValue,
+									})
+								}
+							/>
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Show Arrow Navigation"
+									checked={!!props.attributes.scrollNav}
+									onChange={(newValue) =>
+										props.setAttributes({
+											scrollNav: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Loop Scrolling"
+									checked={!!props.attributes.scrollLoop}
+									onChange={(newValue) =>
+										props.setAttributes({
+											scrollLoop: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Auto Scroll"
+									checked={!!props.attributes.scrollAuto}
+									onChange={(newValue) =>
+										props.setAttributes({
+											scrollAuto: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller &&
+								props.attributes.scrollAuto && (
+									// set the scroll speed in milliseconds (1000 = 1 second) - default is 5000 (5 seconds) - max is 10000 (10 seconds) number
+									<RangeControl
+										label="Scroll Interval in Milliseconds"
+										value={!!props.attributes.scrollSpeed}
+										onChange={(newInterval) =>
+											props.setAttributes({
+												scrollSpeed: newInterval,
+											})
+										}
+										defaultValue={5000}
+										min={1000}
+										max={10000}
+										step={500}
+									/>
+								)}
+						</PanelBody>
+						<PanelBody title="Flexline Visibility">
+							<ToggleControl
+								label="Stack at Tablet"
+								checked={!!props.attributes.stackAtTablet}
+								onChange={(newValue) =>
+									props.setAttributes({
+										stackAtTablet: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Hide on Desktop"
+								checked={!!props.attributes.hideOnDesktop}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnDesktop: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Hide on Tablet"
+								checked={!!props.attributes.hideOnTablet}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnTablet: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Hide on Mobile"
+								checked={!!props.attributes.hideOnMobile}
+								onChange={(newValue) =>
+									props.setAttributes({
+										hideOnMobile: newValue,
+									})
+								}
+							/>
+						</PanelBody>
+					</InspectorControls>
+				</Fragment>
+			);
+		}
 		if (
 			[
 				'core/column',
-				'core/columns',
 				'core/spacer',
 				'core/paragraph',
 				'core/heading',
@@ -1067,17 +1214,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					<BlockEdit {...props} />
 					<InspectorControls>
 						<PanelBody title="Flexline Visibility">
-							{props.name === 'core/columns' && (
-								<ToggleControl
-									label="Stack at Tablet"
-									checked={!!props.attributes.stackAtTablet}
-									onChange={(newValue) =>
-										props.setAttributes({
-											stackAtTablet: newValue,
-										})
-									}
-								/>
-							)}
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}

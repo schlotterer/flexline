@@ -35,6 +35,30 @@ export const customHorizontalScrollAttributes = {
 	},
 };
 
+// Horizontal Scroller - Define custom attributes
+export const customHorizontalScrollerAttributes = {
+	enableHorizontalScroller: {
+		type: 'boolean',
+		default: false,
+	},
+	scrollNav: {
+		type: 'boolean',
+		default: true,
+	},
+	scrollAuto: {
+		type: 'boolean',
+		default: false,
+	},
+	scrollSpeed: {
+		type: 'number',
+		default: 4000,
+	},
+	scrollLoop: {
+		type: 'boolean',
+		default: true,
+	},
+};
+
 // Group - Define custom attributes
 export const customGroupAttributes = {
 	enableGroupLink: {
