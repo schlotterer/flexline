@@ -57,6 +57,14 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	hideScrollbar: {
+		type: 'boolean',
+		default: false,
+	},
+	hidePauseButton: {
+		type: 'boolean',
+		default: false,
+	},
 };
 
 // Group - Define custom attributes

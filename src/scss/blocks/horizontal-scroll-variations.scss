@@ -131,6 +131,18 @@ body,
 				background-color: transparent;/* Color of the scroll thumb */
 				border-radius: 2px; /* Roundness of the scroll thumb */
 			}
+			
+		}
+		// New styles for hiding the scrollbar.
+		&.horizontal-scroller-hide-scrollbar {
+			// Firefox:
+			scrollbar-width: none;
+			// IE & Edge:
+			-ms-overflow-style: none;
+			// WebKit browsers:
+			&::-webkit-scrollbar {
+				display: none;
+			}
 		}
 
 	}

@@ -94,6 +94,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('horizontal-scroller-navigation');
 				removedClasses.push('horizontal-scroller-loop');
 				removedClasses.push('horizontal-scroller-auto');
+				removedClasses.push('horizontal-scroller-hide-scrollbar');
+				removedClasses.push('horizontal-scroller-hide-pause-button');
 			}
 			if (!props.attributes.scrollNav) {
 				removedClasses.push('horizontal-scroller-navigation');
@@ -103,6 +105,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			if (!props.attributes.scrollAuto) {
 				removedClasses.push('horizontal-scroller-auto');
+			}
+			if (!props.attributes.hideScrollbar) {
+				removedClasses.push('horizontal-scroller-hide-scrollbar');
+			}
+			if (!props.attributes.hidePauseButton) {
+				removedClasses.push('horizontal-scroller-hide-pause-button');
 			}
 			if (!props.attributes.enableGroupLink) {
 				removedClasses.push('group-link');
@@ -245,6 +253,18 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				props.attributes.scrollLoop
 			) {
 				newClasses += ' horizontal-scroller-loop';
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.hideScrollbar
+			) {
+				newClasses += ' horizontal-scroller-hide-scrollbar';
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.hidePauseButton
+			) {
+				newClasses += ' horizontal-scroller-hide-pause-button';
 			}
 			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
@@ -1123,6 +1143,17 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
+									label="Hide Scrollbar"
+									checked={!!props.attributes.hideScrollbar}
+									onChange={(newValue) =>
+										props.setAttributes({
+											hideScrollbar: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
 									label="Auto Scroll"
 									checked={!!props.attributes.scrollAuto}
 									onChange={(newValue) =>
@@ -1134,10 +1165,24 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.enableHorizontalScroller &&
 								props.attributes.scrollAuto && (
+									<ToggleControl
+										label="Hide Pause Button"
+										checked={
+											!!props.attributes.hidePauseButton
+										}
+										onChange={(newValue) =>
+											props.setAttributes({
+												hidePauseButton: newValue,
+											})
+										}
+									/>
+								)}
+							{props.attributes.enableHorizontalScroller &&
+								props.attributes.scrollAuto && (
 									// set the scroll speed in milliseconds (1000 = 1 second) - default is 5000 (5 seconds) - max is 10000 (10 seconds) number
 									<RangeControl
 										label="Scroll Interval in Milliseconds"
-										value={!!props.attributes.scrollSpeed}
+										value={props.attributes.scrollSpeed}
 										onChange={(newInterval) =>
 											props.setAttributes({
 												scrollSpeed: newInterval,
