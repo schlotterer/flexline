@@ -96,6 +96,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('horizontal-scroller-auto');
 				removedClasses.push('horizontal-scroller-hide-scrollbar');
 				removedClasses.push('horizontal-scroller-hide-pause-button');
+				removedClasses.push('horizontal-scroller-buttons-horizontal-left');
+				removedClasses.push('horizontal-scroller-buttons-horizontal-center');
+				removedClasses.push('horizontal-scroller-buttons-horizontal-right');
+				removedClasses.push('horizontal-scroller-buttons-vertical-top');
+				removedClasses.push('horizontal-scroller-buttons-vertical-bottom');
+				removedClasses.push('horizontal-scroller-buttons-over');
 			}
 			if (!props.attributes.scrollNav) {
 				removedClasses.push('horizontal-scroller-navigation');
@@ -112,9 +118,27 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.hidePauseButton) {
 				removedClasses.push('horizontal-scroller-hide-pause-button');
 			}
+			if (!props.attributes.positionButtonsOver) {
+				removedClasses.push('horizontal-scroller-buttons-over');
+			}
+			if (props.attributes.positionButtonsHorizontal !== 'left') {
+				removedClasses.push('horizontal-scroller-buttons-horizontal-left');
+			}
+			if (props.attributes.positionButtonsHorizontal !== 'right') {
+				removedClasses.push('horizontal-scroller-buttons-horizontal-right');
+			}
+			if (props.attributes.positionButtonsHorizontal !== 'center') {
+				removedClasses.push('horizontal-scroller-buttons-horizontal-center');
+			}
+			if (props.attributes.positionButtonsVertical !== 'top') {
+				removedClasses.push('horizontal-scroller-buttons-vertical-top');
+			}
+			if (props.attributes.positionButtonsVertical !== 'bottom') {
+				removedClasses.push('horizontal-scroller-buttons-vertical-bottom');
+			}
 			if (!props.attributes.enableGroupLink) {
 				removedClasses.push('group-link');
-			}
+			}			
 			// Remove content shift classes if not enabled
 			if (!props.attributes.useContentShift) {
 				removedClasses.push('flexline-content-shift');
@@ -267,13 +291,33 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				newClasses += ' horizontal-scroller-hide-pause-button';
 			}
 			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.positionButtonsHorizontal
+			) {
+				const horPosition = props.attributes.positionButtonsHorizontal;
+				newClasses += ' horizontal-scroller-buttons-horizontal-' + horPosition;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.positionButtonsVertical
+			) {
+				const vertPosition = props.attributes.positionButtonsVertical;
+				newClasses += ' horizontal-scroller-buttons-vertical-' + vertPosition;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.positionButtonsOver
+			) {
+				newClasses += ' horizontal-scroller-buttons-over';
+			}
+			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
 					props.name
 				)
 			) {
 				if (props.attributes.enableGroupLink) {
 					const linkType = props.attributes.groupLinkType || 'self';
-					newClasses += ` group-link group-link-type-${linkType}`;
+					newClasses += ' group-link group-link-type-' + linkType;
 				}
 			}
 
@@ -1132,17 +1176,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
-									label="Loop Scrolling"
-									checked={!!props.attributes.scrollLoop}
-									onChange={(newValue) =>
-										props.setAttributes({
-											scrollLoop: newValue,
-										})
-									}
-								/>
-							)}
-							{props.attributes.enableHorizontalScroller && (
-								<ToggleControl
 									label="Hide Scrollbar"
 									checked={!!props.attributes.hideScrollbar}
 									onChange={(newValue) =>
@@ -1154,11 +1187,71 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							)}
 							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
+									label="Loop Scrolling"
+									checked={!!props.attributes.scrollLoop}
+									onChange={(newValue) =>
+										props.setAttributes({
+											scrollLoop: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Buttons Horizontal Position"
+									value={
+										props.attributes
+											.positionButtonsHorizontal
+									}
+									options={[
+										{ value: 'left', label: 'Left' },
+										{ value: 'center', label: 'Center' },
+										{ value: 'right', label: 'Right' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											positionButtonsHorizontal: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Buttons Vertical Position"
+									value={
+										props.attributes.positionButtonsVertical
+									}
+									options={[
+										{ value: 'top', label: 'Top' },
+										{ value: 'bottom', label: 'Bottom' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											positionButtonsVertical: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
 									label="Auto Scroll"
 									checked={!!props.attributes.scrollAuto}
 									onChange={(newValue) =>
 										props.setAttributes({
 											scrollAuto: newValue,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Position Buttons Over Scroller"
+									checked={
+										!!props.attributes.positionButtonsOver
+									}
+									onChange={(newValue) =>
+										props.setAttributes({
+											positionButtonsOver: newValue,
 										})
 									}
 								/>

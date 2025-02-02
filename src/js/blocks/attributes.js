@@ -65,6 +65,18 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	positionButtonsHorizontal: {
+		type: 'select',
+		default: 'left',
+	},
+	positionButtonsVertical: {
+		type: 'select',
+		default: 'bottom',
+	},
+	positionButtonsOver: {
+		type: 'boolean',
+		default: false,
+	},
 };
 
 // Group - Define custom attributes

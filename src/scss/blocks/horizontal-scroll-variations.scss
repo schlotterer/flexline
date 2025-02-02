@@ -189,4 +189,46 @@ body,
 			margin-left: 5px !important;
 		}
 	}
+	/* -----------------------------------------------------------------
+   New Styles for Horizontal Scroller Navigation Buttons Positioning
+------------------------------------------------------------------ */
+.horizontal-scroller-nav-buttons {
+	display: flex;
+	gap: 5px;
+	pointer-events: auto;
+  
+	/* Horizontal Alignment */
+	&.horizontal-scroller-buttons-horizontal-left {
+	  left: 0;
+	  right: auto;
+	  margin-left: 10px;
+	}
+	&.horizontal-scroller-buttons-horizontal-center {
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+	&.horizontal-scroller-buttons-horizontal-right {
+	  right: 0;
+	  left: auto;
+	  margin-right: 10px;
+	}
+  
+	/* Vertical Alignment Outside (default) */
+	&.horizontal-scroller-buttons-vertical-bottom {
+	  bottom: -40px;
+	}
+	&.horizontal-scroller-buttons-vertical-top {
+	  top: -40px;
+	}
+  
+	/* When Positioned Over (inside the container) */
+	&.horizontal-scroller-buttons-over {
+	  &.horizontal-scroller-buttons-vertical-bottom {
+		bottom: 10px;
+	  }
+	  &.horizontal-scroller-buttons-vertical-top {
+		top: 10px;
+	  }
+	}
+  }  
 }
