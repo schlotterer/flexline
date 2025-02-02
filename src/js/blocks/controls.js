@@ -262,51 +262,59 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.scrollNav
+				props.attributes.scrollNav &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-navigation';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.scrollAuto
+				props.attributes.scrollAuto &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-auto';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.scrollLoop
+				props.attributes.scrollLoop &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-loop';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.hideScrollbar
+				props.attributes.hideScrollbar &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-hide-scrollbar';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.hidePauseButton
+				props.attributes.hidePauseButton &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-hide-pause-button';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.positionButtonsHorizontal
+				props.attributes.positionButtonsHorizontal &&
+				props.attributes.enableHorizontalScroller
 			) {
 				const horPosition = props.attributes.positionButtonsHorizontal;
 				newClasses += ' horizontal-scroller-buttons-horizontal-' + horPosition;
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.positionButtonsVertical
+				props.attributes.positionButtonsVertical &&
+				props.attributes.enableHorizontalScroller
 			) {
 				const vertPosition = props.attributes.positionButtonsVertical;
 				newClasses += ' horizontal-scroller-buttons-vertical-' + vertPosition;
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.positionButtonsOver
+				props.attributes.positionButtonsOver &&
+				props.attributes.enableHorizontalScroller
 			) {
 				newClasses += ' horizontal-scroller-buttons-over';
 			}
