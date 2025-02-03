@@ -88,9 +88,7 @@ body,
 			overflow-x: auto;
 			-ms-overflow-style: none; /* IE and Edge */ /* Firefox */
 			-webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-			padding: 10px var(--wp--preset--spacing--medium) 15px 0;
-			max-height: 70vh;
-
+			max-height: 100vh;
 			> *:not(button) {
 				max-height: calc(70vh - 40px);
 				min-width: 300px;
@@ -157,7 +155,7 @@ body,
 
 				> * {
 					//flex: 0 0 auto;
-					max-width: 325px;
+					max-width: 100%;
 				}
 
 			}
@@ -231,7 +229,7 @@ body,
 		}
 	}
 	
-	//.is-style-horizontal-scroll {
+
 		/* Scroller Button Backgrounds */
 		.scroller-buttons-background-transparent + .horizontal-scroller-nav-buttons{
 		  .is-horizontal-scroll-btn {
@@ -343,6 +341,6 @@ body,
 			border: 1px solid var(--wp--preset--color--alternate);
 		  }
 		}
-	 // }
+
 	  
 }

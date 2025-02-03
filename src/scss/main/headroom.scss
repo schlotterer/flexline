@@ -20,6 +20,7 @@ body header.site-header {
             position: absolute;
             transform-origin: top center;
             transform: translateY(-100%);
+            opacity: 0;
         }
     }
 }
