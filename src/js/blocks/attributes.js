@@ -89,6 +89,14 @@ export const customHorizontalScrollerAttributes = {
 		type: 'select',
 		default: 'none',
 	},
+	buttonsBoxShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	transitionType: {
+		type: 'select',
+		default: 'fade',
+	},
 };
 
 // Group - Define custom attributes
