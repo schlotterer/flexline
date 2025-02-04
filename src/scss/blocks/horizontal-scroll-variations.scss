@@ -192,6 +192,7 @@ body,
 		display: flex;
 		gap: 5px;
 		pointer-events: auto;
+		z-index: 10;
 	
 		/* Horizontal Alignment */
 		&.horizontal-scroller-buttons-horizontal-left {
