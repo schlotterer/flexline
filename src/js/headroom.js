@@ -7,6 +7,36 @@ document.addEventListener('DOMContentLoaded', function () {
 		return; // No header element, so bail out
 	}
 
+    
+	// Function to adjust the position of the main button based on scroll position.
+	function toggleButtonPosition(buttonToPosition) {
+		let isScrolled = window.scrollY > 0;
+		const headerSiteHeader = document.querySelector('header.site-header');
+
+		// If headersiteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+		if (
+			headerSiteHeader.classList.contains('headroom') &&
+			headerSiteHeader.classList.contains('headroom--unpinned')
+		) {
+			isScrolled = true;
+		} else if (
+			headerSiteHeader.classList.contains('headroom') &&
+			headerSiteHeader.classList.contains('headroom--pinned')
+		) {
+			isScrolled = false;
+		}
+
+		if (isScrolled) {
+			const isSmallScreen = window.matchMedia(
+				'(max-width: 781.98px)'
+			).matches;
+			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
+		} else {
+			buttonToPosition.style.top = '';
+			centerButtonInHeader(buttonToPosition);
+		}
+	}
+
 	// Function to center the main button within the header.
 	function centerButtonInHeader(buttonToCenter) {
 		const headerContainer = document.querySelector('#header_container');
@@ -22,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	// OPTIONAL: define some custom options
 	const options = {
-		offset: 150,
-		tolerance: { up: 10, down: 0 },
+		offset: 100,
+		tolerance: { up: 3, down: 0 },
 		classes: {
 			initial: 'headroom',
 			pinned: 'headroom--pinned',
@@ -32,11 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		onPin() {
 			const menuButton = document.querySelector('#slide-in-menu-button');
 			const phoneButton = document.querySelector('#web4sl-call-button');
-			centerButtonInHeader(menuButton);
-			centerButtonInHeader(phoneButton);
+			toggleButtonPosition(menuButton);
+			toggleButtonPosition(phoneButton);
 		},
 		onUnpin() {
-			
+			const menuButton = document.querySelector('#slide-in-menu-button');
+			const phoneButton = document.querySelector('#web4sl-call-button');
+			toggleButtonPosition(menuButton);
+			toggleButtonPosition(phoneButton);
 		},
 	};
 
