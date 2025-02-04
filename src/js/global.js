@@ -135,22 +135,20 @@ document.addEventListener('DOMContentLoaded', function () {
 		// 5. Teleport logic to keep user in [realWidth - firstItemOffset, realWidth*2 - firstItemOffset].
 		scroller.addEventListener('scroll', () => {
 			const current = scroller.scrollLeft;
-			const leftBoundary = realWidth - firstItemOffset; // start of real set
-			const rightBoundary = realWidth * 2 - firstItemOffset; // end of real set
+			const leftBoundary = realWidth - firstItemOffset;
+			const rightBoundary = realWidth * 2 - firstItemOffset;
 
 			// If scrolled beyond the real set at the right
 			if (current > rightBoundary) {
 				scroller.scrollLeft = current - realWidth;
-			}
-			// If scrolled before the real set at the left
-			else if (current < leftBoundary) {
+			} else if (current < leftBoundary) {
 				scroller.scrollLeft = current + realWidth;
 			}
 		});
 	}
 
 	//----------------------------------------------------------------------
-	// 4. Set up controls (navigation, auto-scroll, etc.) as before
+	// 4. Set up controls (navigation, auto-scroll, etc.)
 	//----------------------------------------------------------------------
 	function setupScrollerButtons(scroller) {
 		// 1. Wrap the scroller in a new container.
@@ -160,32 +158,45 @@ document.addEventListener('DOMContentLoaded', function () {
 		scroller.parentNode.insertBefore(wrapper, scroller);
 		wrapper.appendChild(scroller);
 
-		// 2. Set up auto–scroll if enabled.
+		// 2. Variables for auto–scroll if enabled.
 		let autoScrollInterval;
 		let isPaused = false;
-		if (scroller.classList.contains('horizontal-scroller-auto')) {
+
+		// ADDED: A helper that resets the auto-scroll timer from scratch
+		function resetAutoScrollTimer() {
+			if (autoScrollInterval) {
+				clearInterval(autoScrollInterval);
+			}
+			if (!isPaused) {
+				startAutoScroll(); // start fresh
+			}
+		}
+
+		// The existing start/stop logic
+		function startAutoScroll() {
 			const intervalAttr = scroller.getAttribute('data-scroll-interval');
 			const intervalDuration = intervalAttr
 				? parseInt(intervalAttr, 10)
 				: 4000;
+			autoScrollInterval = setInterval(function () {
+				scrollToNext(scroller);
+			}, intervalDuration);
+		}
+		function stopAutoScroll() {
+			clearInterval(autoScrollInterval);
+		}
 
-			function startAutoScroll() {
-				if (!isPaused) {
-					autoScrollInterval = setInterval(function () {
-						scrollToNext(scroller);
-					}, intervalDuration);
-				}
-			}
-			function stopAutoScroll() {
-				clearInterval(autoScrollInterval);
-			}
-			scroller.addEventListener('mouseenter', stopAutoScroll);
-			scroller.addEventListener('mouseleave', function () {
+		// If auto-scroll class is present, set up the interval & events.
+		if (scroller.classList.contains('horizontal-scroller-auto')) {
+			scroller.addEventListener('mouseenter', () => {
+				stopAutoScroll();
+			});
+			scroller.addEventListener('mouseleave', () => {
 				if (!isPaused) {
 					startAutoScroll();
 				}
 			});
-			startAutoScroll();
+			startAutoScroll(); // start immediately on load
 		}
 
 		// 3. Create the controls container if navigation/pause are enabled.
@@ -201,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (hasNav || showPause) {
 			const controlContainer = document.createElement('div');
 			controlContainer.classList.add('horizontal-scroller-nav-buttons');
-			Array.from(scroller.classList).forEach(function (cls) {
+			Array.from(scroller.classList).forEach((cls) => {
 				if (cls.indexOf('horizontal-scroller-buttons-') === 0) {
 					controlContainer.classList.add(cls);
 					scroller.classList.remove(cls);
@@ -212,10 +223,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			controlContainer.style.gap = '0px';
 			controlContainer.style.pointerEvents = 'auto';
 
-			// 4. Create navigation buttons if enabled.
 			let scrollToPrevBtn, scrollToNextBtn;
+
+			// 4. Create navigation buttons if enabled.
 			if (hasNav) {
-				// Previous Button.
 				scrollToPrevBtn = document.createElement('button');
 				scrollToPrevBtn.classList.add(
 					'is-horizontal-scroll-btn',
@@ -234,9 +245,11 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				scrollToPrevBtn.addEventListener('click', function () {
 					scrollToPrev(scroller);
+
+					// ADDED: Reset the timer when user clicks prev
+					resetAutoScrollTimer();
 				});
 
-				// Next Button.
 				scrollToNextBtn = document.createElement('button');
 				scrollToNextBtn.classList.add(
 					'is-horizontal-scroll-btn',
@@ -255,6 +268,9 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				scrollToNextBtn.addEventListener('click', function () {
 					scrollToNext(scroller);
+
+					// ADDED: Reset the timer when user clicks next
+					resetAutoScrollTimer();
 				});
 			}
 
@@ -276,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				pausePlayBtn.addEventListener('click', function () {
 					if (isPaused) {
+						// Was paused -> now resume
 						isPaused = false;
 						pausePlayBtn.setAttribute(
 							'aria-label',
@@ -286,21 +303,11 @@ document.addEventListener('DOMContentLoaded', function () {
 							'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
 							'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/>' +
 							'</svg></span>';
-						// Resume auto-scroll.
-						if (
-							scroller.classList.contains(
-								'horizontal-scroller-auto'
-							)
-						) {
-							autoScrollInterval = setInterval(
-								function () {
-									scrollToNext(scroller);
-								},
-								scroller.getAttribute('data-scroll-interval') ||
-									4000
-							);
-						}
+
+						// Resume auto-scroll
+						resetAutoScrollTimer(); // ADDED: effectively restarts auto-scroll
 					} else {
+						// Was playing -> now pause
 						isPaused = true;
 						pausePlayBtn.setAttribute(
 							'aria-label',
