@@ -88,9 +88,7 @@ body,
 			overflow-x: auto;
 			-ms-overflow-style: none; /* IE and Edge */ /* Firefox */
 			-webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-			max-height: 100vh;
 			> *:not(button) {
-				max-height: calc(70vh - 40px);
 				min-width: 300px;
 				flex-shrink: 0;
 				flex-grow: 0;
@@ -177,6 +175,7 @@ body,
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		z-index: 10;
 
 		&:hover {
 			box-shadow: var(--wp--custom--button-shadow-hover);
