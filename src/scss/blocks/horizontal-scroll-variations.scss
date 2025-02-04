@@ -88,9 +88,7 @@ body,
 			overflow-x: auto;
 			-ms-overflow-style: none; /* IE and Edge */ /* Firefox */
 			-webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-			max-height: 100vh;
 			> *:not(button) {
-				max-height: calc(70vh - 40px);
 				min-width: 300px;
 				flex-shrink: 0;
 				flex-grow: 0;
@@ -115,7 +113,7 @@ body,
 				}
 
 				&.wp-block-image img {
-					max-width: 500px;
+					//max-width: 500px;
 				}
 			}
 			scrollbar-width: thin; /* "auto" or "thin" */
@@ -177,7 +175,7 @@ body,
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-
+		z-index: 10;
 		&:hover {
 			box-shadow: var(--wp--custom--button-shadow-hover);
 			background-color: color-mix(in lab, var(--wp--custom--deco-color), #000 20%);
@@ -230,117 +228,215 @@ body,
 	}
 	
 
-		/* Scroller Button Backgrounds */
-		.scroller-buttons-background-transparent + .horizontal-scroller-nav-buttons{
-		  .is-horizontal-scroll-btn {
-			background-color: transparent;
-		  }
+	/* Scroller Button Backgrounds */
+	.scroller-buttons-background-transparent + .horizontal-scroller-nav-buttons{
+		.is-horizontal-scroll-btn {
+		background-color: transparent;
 		}
-		.scroller-buttons-background-white + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--base);
-		  }
+	}
+	.scroller-buttons-background-white + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--base);
 		}
-		.scroller-buttons-background-black + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--contrast);
-		  }
+	}
+	.scroller-buttons-background-black + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--contrast);
 		}
-		.scroller-buttons-background-gray + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--neutral);
-		  }
+	}
+	.scroller-buttons-background-gray + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--neutral);
 		}
-		.scroller-buttons-background-primary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--primary);
-		  }
+	}
+	.scroller-buttons-background-primary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--primary);
 		}
-		.scroller-buttons-background-secondary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--secondary);
-		  }
+	}
+	.scroller-buttons-background-secondary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--secondary);
 		}
-		.scroller-buttons-background-alternate + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--alternate);
-		  }
+	}
+	.scroller-buttons-background-alternate + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		background-color: var(--wp--preset--color--alternate);
 		}
-	  
-		/* Scroller Button Colors (Text) */
-		.scroller-buttons-text-white + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--base);
-			svg path { fill: var(--wp--preset--color--base) !important;}
-		  }
+	}
+
+	/* Scroller Button Colors (Text) */
+	.scroller-buttons-text-white + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--base);
+		svg path { fill: var(--wp--preset--color--base) !important;}
 		}
-		.scroller-buttons-text-black + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--contrast);
-			svg path { fill: var(--wp--preset--color--contrast) !important;}
-		  }
+	}
+	.scroller-buttons-text-black + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--contrast);
+		svg path { fill: var(--wp--preset--color--contrast) !important;}
 		}
-		.scroller-buttons-text-gray + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--neutral);
-			svg path { fill: var(--wp--preset--color--neutral) !important;}
-		  }
+	}
+	.scroller-buttons-text-gray + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--neutral);
+		svg path { fill: var(--wp--preset--color--neutral) !important;}
 		}
-		.scroller-buttons-text-primary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--primary);
-			svg path { fill: var(--wp--preset--color--primary) !important;}
-		  }
+	}
+	.scroller-buttons-text-primary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--primary);
+		svg path { fill: var(--wp--preset--color--primary) !important;}
 		}
-		.scroller-buttons-text-secondary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--secondary);
-			svg path { fill: var(--wp--preset--color--secondary) !important;}
-		  }
+	}
+	.scroller-buttons-text-secondary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--secondary);
+		svg path { fill: var(--wp--preset--color--secondary) !important;}
 		}
-		.scroller-buttons-text-alternate + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--alternate);
-			svg path { fill: var(--wp--preset--color--alternate) !important;}
-		  }
+	}
+	.scroller-buttons-text-alternate + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		color: var(--wp--preset--color--alternate);
+		svg path { fill: var(--wp--preset--color--alternate) !important;}
 		}
-	  
-		/* Scroller Buttons Borders */
-		.scroller-buttons-border-none + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: none;
-		  }
+	}
+
+	/* Scroller Buttons Borders */
+	.scroller-buttons-border-none + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: none;
 		}
-		.scroller-buttons-border-white + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--base);
-		  }
+	}
+	.scroller-buttons-border-white + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--base);
 		}
-		.scroller-buttons-border-black + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--contrast);
-		  }
+	}
+	.scroller-buttons-border-black + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--contrast);
 		}
-		.scroller-buttons-border-gray + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--neutral);
-		  }
+	}
+	.scroller-buttons-border-gray + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--neutral);
 		}
-		.scroller-buttons-border-primary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--primary);
-		  }
+	}
+	.scroller-buttons-border-primary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--primary);
 		}
-		.scroller-buttons-border-secondary + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--secondary);
-		  }
+	}
+	.scroller-buttons-border-secondary + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--secondary);
 		}
-		.scroller-buttons-border-alternate + .horizontal-scroller-nav-buttons {
-		  .is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--alternate);
-		  }
+	}
+	.scroller-buttons-border-alternate + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+		border: 1px solid var(--wp--preset--color--alternate);
+		}
+	}
+
+
+	/* ====================================================
+   	Slide Transition
+  	==================================================== */
+	.scroller-transition-slide >* {
+		/* Animate both horizontal position and opacity */
+		//transition: transform 0.5s ease, opacity 0.5s ease;
+		/* Default state (should be the "in-view" state) */
+		transform: translateX(0);
+		opacity: 1;
+  	}
+  
+	/* When an item is entering (coming in from the right) */
+	.scroller-transition-slide >*.entering {
+		//transform: translateX(100%);
+		//opacity: 0;
+	}
+	
+	/* When an item is exiting (leaving to the left) */
+	.scroller-transition-slide >*.exiting {
+		//transform: translateX(-100%);
+		//opacity: 0;
+	}
+	
+	/* Fully in view */
+	.scroller-transition-slide >*.in-view {
+		//transform: translateX(0);
+		//opacity: 1;
+	}
+	
+	/* Completely off-screen (optional override) */
+	.scroller-transition-slide >*.out-of-view {
+		//opacity: 0;
+	}
+	
+	
+	/* ====================================================
+		Fade Transition
+		==================================================== */
+	.scroller-transition-fade >* {
+		transition: opacity 0.5s ease;
+		opacity: 1;
+	}
+	
+	/* While transitioning in or out, fade from 0 to 1 or vice versa */
+	.scroller-transition-fade >*.entering,
+	.scroller-transition-fade >*.exiting,
+	.scroller-transition-fade >*.out-of-view {
+		opacity: 0;
+	}
+	
+	/* Fully visible */
+	.scroller-transition-fade >*.in-view {
+		opacity: 1;
+	}
+  
+  
+  	/* ====================================================
+	 Zoom Transition
+	 ==================================================== */
+	.scroller-transition-zoom {
+		overflow-x: visible !important;
+		transition: all 0.7s ease-in-out;
+		>* {
+			transition: all 0.7s ease-in-out;
+			//transform: scale(1);
+			//opacity: 1;
+		}
+		>*.in-view {
+			//transition: transform 0.5s ease, opacity 0.5s ease;
+			//transform-origin: right center;
+			transform: scale(1);
+			opacity: 1;
+		}
+		>*.out-of-view {
+			//transition: transform 0.5s ease, opacity 0.5s ease;
+			//transform-origin: left center;
+			transform: scale(.6);
+			opacity: 0;
+		}
+		>*.entering {
+
+			transform-origin: left center;
+			transform: scale(1);
+			opacity: 1;
+			
+			
+		}
+		>*.exiting {
+
+			transform-origin: right center;
+			transform: scale(.6);
+			opacity: 0;
+			
+			
 		}
 
-	  
+	}
+  	  
 }

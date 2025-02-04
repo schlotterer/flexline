@@ -248,7 +248,73 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	// Find all scrollers with the "is-style-horizontal-scroll" class.
+	// Helper function to build a threshold list (from 0 to 1 in increments)
+	function buildThresholdList() {
+		const thresholds = [];
+		for (let i = 0; i <= 1.0; i += 0.05) {
+			thresholds.push(i);
+		}
+		return thresholds;
+	}
+
+	// Set up an IntersectionObserver on each child item of the scroller.
+	function setupStatusObserver(scroller) {
+		// Create an observer with a callback for visibility changes.
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const item = entry.target;
+					// Retrieve the previous intersection ratio (default to 0).
+					const previousRatio = parseFloat(
+						item.dataset.previousRatio || 0
+					);
+					const currentRatio = entry.intersectionRatio;
+
+					if (currentRatio > 0) {
+						// When any part is visible, remove the out-of-view class.
+						item.classList.remove('out-of-view');
+
+						// If almost fully visible (you can tweak the threshold, here 0.9)
+						if (currentRatio >= 0.5) {
+							item.classList.add('in-view');
+							item.classList.remove('entering', 'exiting');
+						} else {
+							// Not yet fully in view.
+							item.classList.remove('in-view');
+							// Determine if it’s entering (increasing ratio) or exiting (decreasing).
+							if (currentRatio > previousRatio) {
+								item.classList.add('entering');
+								item.classList.remove('exiting');
+							} else if (currentRatio < previousRatio) {
+								item.classList.add('exiting');
+								item.classList.remove('entering');
+							}
+						}
+					} else {
+						// Completely off-screen: remove any transitional classes.
+						item.classList.add('out-of-view');
+						item.classList.remove('in-view', 'entering', 'exiting');
+					}
+					// Store the current ratio for the next comparison.
+					item.dataset.previousRatio = currentRatio;
+				});
+			},
+			{
+				root: scroller,
+				threshold: buildThresholdList(),
+			}
+		);
+
+		// Observe each child item.
+		Array.from(scroller.children).forEach((child) => {
+			observer.observe(child);
+		});
+	}
+
+	// Call the setupStatusObserver for each scroller.
 	const scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
-	scrollers.forEach(setupScrollerButtons);
+	scrollers.forEach((scroller) => {
+		setupScrollerButtons(scroller);
+		setupStatusObserver(scroller);
+	});
 });
