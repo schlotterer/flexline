@@ -130,6 +130,7 @@ body,
 			
 		}
 		// New styles for hiding the scrollbar.
+		&.horizontal-scroller-loop,
 		&.horizontal-scroller-hide-scrollbar {
 			// Firefox:
 			scrollbar-width: none;
@@ -179,10 +180,6 @@ body,
 		&:hover {
 			box-shadow: var(--wp--custom--button-shadow-hover);
 			background-color: color-mix(in lab, var(--wp--custom--deco-color), #000 20%);
-		}
-
-		&:last-of-type {
-			margin-left: 5px !important;
 		}
 	}
 	/* -----------------------------------------------------------------
@@ -349,8 +346,8 @@ body,
 		/* Animate both horizontal position and opacity */
 		//transition: transform 0.5s ease, opacity 0.5s ease;
 		/* Default state (should be the "in-view" state) */
-		transform: translateX(0);
-		opacity: 1;
+		//transform: translateX(0);
+		//opacity: 1;
   	}
   
 	/* When an item is entering (coming in from the right) */
