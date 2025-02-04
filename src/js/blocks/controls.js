@@ -96,11 +96,19 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('horizontal-scroller-auto');
 				removedClasses.push('horizontal-scroller-hide-scrollbar');
 				removedClasses.push('horizontal-scroller-hide-pause-button');
-				removedClasses.push('horizontal-scroller-buttons-horizontal-left');
-				removedClasses.push('horizontal-scroller-buttons-horizontal-center');
-				removedClasses.push('horizontal-scroller-buttons-horizontal-right');
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-left'
+				);
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-center'
+				);
+				removedClasses.push(
+					'horizontal-scroller-buttons-horizontal-right'
+				);
 				removedClasses.push('horizontal-scroller-buttons-vertical-top');
-				removedClasses.push('horizontal-scroller-buttons-vertical-bottom');
+				removedClasses.push(
+					'horizontal-scroller-buttons-vertical-bottom'
+				);
 				removedClasses.push('horizontal-scroller-buttons-over');
 				// Button Backgrounds
 				removedClasses.push('scroller-buttons-background-transparent');
@@ -1360,6 +1368,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 							{props.attributes.enableHorizontalScroller && (
+								// set the scroll speed in milliseconds (1000 = 1 second) - default is 5000 (5 seconds) - max is 10000 (10 seconds) number
+								<RangeControl
+									label="Scroll transition in Milliseconds"
+									value={props.attributes.transitionDuration}
+									onChange={(newInterval) =>
+										props.setAttributes({
+											transitionDuration: newInterval,
+										})
+									}
+									defaultValue={500}
+									min={100}
+									max={1500}
+									step={50}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
 									label="Hide Scrollbar"
 									checked={!!props.attributes.hideScrollbar}
@@ -1439,8 +1463,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'white', label: 'White' },
 										{ value: 'black', label: 'Black' },
 										{ value: 'primary', label: 'Primary' },
-										{ value: 'secondary', label: 'Secondary' },
-										{ value: 'alternate', label: 'Alternate' },
+										{
+											value: 'secondary',
+											label: 'Secondary',
+										},
+										{
+											value: 'alternate',
+											label: 'Alternate',
+										},
 										{ value: 'gray', label: 'Gray' },
 									]}
 									onChange={(value) =>
@@ -1453,15 +1483,26 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.enableHorizontalScroller && (
 								<SelectControl
 									label="Buttons Background Color"
-									value={props.attributes.buttonsBackgroundColor}
+									value={
+										props.attributes.buttonsBackgroundColor
+									}
 									options={[
 										{ value: 'default', label: 'Default' },
-										{ value: 'transparent', label: 'Transparent' },
+										{
+											value: 'transparent',
+											label: 'Transparent',
+										},
 										{ value: 'white', label: 'White' },
 										{ value: 'black', label: 'Black' },
 										{ value: 'primary', label: 'Primary' },
-										{ value: 'secondary', label: 'Secondary' },
-										{ value: 'alternate', label: 'Alternate' },
+										{
+											value: 'secondary',
+											label: 'Secondary',
+										},
+										{
+											value: 'alternate',
+											label: 'Alternate',
+										},
 										{ value: 'gray', label: 'Gray' },
 									]}
 									onChange={(value) =>
@@ -1481,8 +1522,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										{ value: 'white', label: 'White' },
 										{ value: 'black', label: 'Black' },
 										{ value: 'primary', label: 'Primary' },
-										{ value: 'secondary', label: 'Secondary' },
-										{ value: 'alternate', label: 'Alternate' },
+										{
+											value: 'secondary',
+											label: 'Secondary',
+										},
+										{
+											value: 'alternate',
+											label: 'Alternate',
+										},
 										{ value: 'gray', label: 'Gray' },
 									]}
 									onChange={(value) =>
@@ -1495,7 +1542,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
 									label="Show Buttons Box Shadow"
-									checked={!!props.attributes.buttonsBoxShadow}
+									checked={
+										!!props.attributes.buttonsBoxShadow
+									}
 									onChange={(newValue) =>
 										props.setAttributes({
 											buttonsBoxShadow: newValue,

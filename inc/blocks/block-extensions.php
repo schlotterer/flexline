@@ -226,9 +226,15 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['stackAtTablet'] ) && $block['attrs']['stackAtTablet'] ) {
 			$added_classes .= 'flexline-stack-at-tablet ';
 		}
-		
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['scrollAuto'] ) {
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
 			$data_scroll_interval = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
+			$search_string  = '>';
+			$replace_string = ' '.$data_scroll_interval.'>';
+			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset($block['attrs']['transitionDuration'])  ) {
+			$data_scroll_interval = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
 			$search_string  = '>';
 			$replace_string = ' '.$data_scroll_interval.'>';
 			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
