@@ -1,12 +1,47 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// Shared function: scroll to the next slide.
+	//----------------------------------------------------------------------
+	// 1. A helper for manual smooth scrolling with a configurable duration.
+	//----------------------------------------------------------------------
+	function smoothScrollTo(scroller, targetScrollLeft, duration) {
+		const start = scroller.scrollLeft;
+		const distance = targetScrollLeft - start;
+		const startTime = performance.now();
+
+		function step(currentTime) {
+			const elapsed = currentTime - startTime;
+			const progress = Math.min(elapsed / duration, 1); // clamp 0..1
+
+			scroller.scrollLeft = start + distance * easeInOutQuad(progress);
+
+			if (progress < 1) {
+				requestAnimationFrame(step);
+			}
+		}
+
+		function easeInOutQuad(t) {
+			return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+		}
+
+		requestAnimationFrame(step);
+	}
+
+	//----------------------------------------------------------------------
+	// 2. Replace your scrollToNext/scrollToPrev with ones that use clones.
+	//----------------------------------------------------------------------
 	function scrollToNext(scroller) {
+		const epsilon = 5; // small tolerance
+		// Use custom duration, if specified
+		const durationAttr = scroller.getAttribute('data-scroll-speed');
+		const duration = durationAttr ? parseInt(durationAttr, 10) : 600; // default 600ms
+
 		const currentScrollPosition = scroller.scrollLeft;
 		let targetScrollPosition = currentScrollPosition;
-		const epsilon = 5; // small tolerance value in pixels
 
-		// Only consider slide elements (assumes controls have been moved out of the scroller)
+		// We consider only "real" slides (the middle set). But since we've
+		// now cloned items, we store them with a class or data-flag. We'll
+		// just consider all scroller.children if you want each "slide" to be scrollable.
 		const items = Array.from(scroller.children);
+
 		for (const item of items) {
 			const itemStart = item.offsetLeft;
 			if (itemStart > currentScrollPosition + epsilon) {
@@ -15,24 +50,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		}
 
-		// If at the end and looping is enabled, loop back to the start.
-		if (
-			scroller.scrollLeft + scroller.offsetWidth >=
-				scroller.scrollWidth - epsilon &&
-			scroller.classList.contains('horizontal-scroller-loop')
-		) {
-			targetScrollPosition = 0;
-		}
-
-		scroller.scrollTo({
-			left: targetScrollPosition,
-			behavior: 'smooth',
-		});
+		// Animate the scroll
+		smoothScrollTo(scroller, targetScrollPosition, duration);
 	}
 
-	// Shared function: scroll to the previous slide.
 	function scrollToPrev(scroller) {
 		const epsilon = 5;
+		const durationAttr = scroller.getAttribute('data-scroll-speed');
+		const duration = durationAttr ? parseInt(durationAttr, 10) : 600; // default 600ms
+
 		const items = Array.from(scroller.children);
 		let targetScrollPosition = scroller.scrollLeft;
 		let firstVisibleItemFound = false;
@@ -55,22 +81,83 @@ document.addEventListener('DOMContentLoaded', function () {
 			targetScrollPosition = items[0].offsetLeft;
 		}
 
-		scroller.scrollTo({
-			left: targetScrollPosition,
-			behavior: 'smooth',
+		smoothScrollTo(scroller, targetScrollPosition, duration);
+	}
+
+	//----------------------------------------------------------------------
+	// 3. Function to set up the "infinite loop" with cloned slides
+	//----------------------------------------------------------------------
+	function setupInfiniteLoop(scroller) {
+		if (!scroller.classList.contains('horizontal-scroller-loop')) {
+			return; // only apply if loop is desired
+		}
+
+		const originalItems = Array.from(scroller.children);
+		if (!originalItems.length) {
+			return;
+		}
+
+		// 1. Measure the "real" width with no clones
+		//    Scroll to 0 so we measure from left to right fully
+		const savedScrollLeft = scroller.scrollLeft;
+		scroller.scrollLeft = 0;
+		const realWidth = scroller.scrollWidth;
+
+		// Also capture how far the first item is from the scroller's left,
+		// in case there's a small offset (e.g. a leftover margin or partial gap).
+		const firstItemOffset = originalItems[0].offsetLeft;
+
+		// 2. Restore the original scroll temporarily
+		scroller.scrollLeft = savedScrollLeft;
+
+		// 3. Clone items at the start and end
+		const clonedStart = originalItems.map((item) => {
+			const clone = item.cloneNode(true);
+			clone.classList.add('cloned-slide');
+			return clone;
+		});
+		const clonedEnd = originalItems.map((item) => {
+			const clone = item.cloneNode(true);
+			clone.classList.add('cloned-slide');
+			return clone;
+		});
+		clonedStart.forEach((c) =>
+			scroller.insertBefore(c, scroller.firstChild)
+		);
+		clonedEnd.forEach((c) => scroller.appendChild(c));
+
+		// 4. Position user in the real (middle) set.
+		//    We'll scroll left by "realWidth" minus any offset for the first item
+		//    so the first real item lines up exactly at the container's left edge.
+		//    If your firstItemOffset is 0 (no margin/padding), this just becomes "realWidth".
+		scroller.scrollLeft = realWidth - firstItemOffset;
+
+		// 5. Teleport logic to keep user in [realWidth - firstItemOffset, realWidth*2 - firstItemOffset].
+		scroller.addEventListener('scroll', () => {
+			const current = scroller.scrollLeft;
+			const leftBoundary = realWidth - firstItemOffset; // start of real set
+			const rightBoundary = realWidth * 2 - firstItemOffset; // end of real set
+
+			// If scrolled beyond the real set at the right
+			if (current > rightBoundary) {
+				scroller.scrollLeft = current - realWidth;
+			}
+			// If scrolled before the real set at the left
+			else if (current < leftBoundary) {
+				scroller.scrollLeft = current + realWidth;
+			}
 		});
 	}
 
-	// Set up controls (navigation and auto-scroll pause/play) for one scroller.
+	//----------------------------------------------------------------------
+	// 4. Set up controls (navigation, auto-scroll, etc.) as before
+	//----------------------------------------------------------------------
 	function setupScrollerButtons(scroller) {
 		// 1. Wrap the scroller in a new container.
 		const wrapper = document.createElement('div');
 		wrapper.classList.add('horizontal-scroll-wrapper');
-		// Ensure the wrapper is relatively positioned.
 		wrapper.style.position = 'relative';
-		// Insert the wrapper in place of the scroller...
 		scroller.parentNode.insertBefore(wrapper, scroller);
-		// ...and then move the scroller inside the wrapper.
 		wrapper.appendChild(scroller);
 
 		// 2. Set up auto–scroll if enabled.
@@ -92,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			function stopAutoScroll() {
 				clearInterval(autoScrollInterval);
 			}
-			// Pause on mouse enter; resume on mouse leave.
 			scroller.addEventListener('mouseenter', stopAutoScroll);
 			scroller.addEventListener('mouseleave', function () {
 				if (!isPaused) {
@@ -102,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			startAutoScroll();
 		}
 
-		// 3. Create the controls container if navigation is enabled or if the pause button should appear.
+		// 3. Create the controls container if navigation/pause are enabled.
 		const hasNav = scroller.classList.contains(
 			'horizontal-scroller-navigation'
 		);
@@ -111,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			!scroller.classList.contains(
 				'horizontal-scroller-hide-pause-button'
 			);
+
 		if (hasNav || showPause) {
 			const controlContainer = document.createElement('div');
 			controlContainer.classList.add('horizontal-scroller-nav-buttons');
@@ -120,11 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
 					scroller.classList.remove(cls);
 				}
 			});
-			// Position the controls absolutely at the bottom center of the wrapper.
 			controlContainer.style.position = 'absolute';
 			controlContainer.style.display = 'flex';
 			controlContainer.style.gap = '0px';
-			// (Allow button clicks.)
 			controlContainer.style.pointerEvents = 'auto';
 
 			// 4. Create navigation buttons if enabled.
@@ -207,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function () {
 								'horizontal-scroller-auto'
 							)
 						) {
-							// Restart auto-scroll.
 							autoScrollInterval = setInterval(
 								function () {
 									scrollToNext(scroller);
@@ -243,12 +327,14 @@ document.addEventListener('DOMContentLoaded', function () {
 				controlContainer.appendChild(pausePlayBtn);
 			}
 
-			// 7. Append the control container to the wrapper (outside the scroller).
+			// 7. Append the control container.
 			wrapper.appendChild(controlContainer);
 		}
 	}
 
-	// Helper function to build a threshold list (from 0 to 1 in increments)
+	//----------------------------------------------------------------------
+	// 5. IntersectionObserver logic (unchanged)
+	//----------------------------------------------------------------------
 	function buildThresholdList() {
 		const thresholds = [];
 		for (let i = 0; i <= 1.0; i += 0.05) {
@@ -257,31 +343,24 @@ document.addEventListener('DOMContentLoaded', function () {
 		return thresholds;
 	}
 
-	// Set up an IntersectionObserver on each child item of the scroller.
 	function setupStatusObserver(scroller) {
-		// Create an observer with a callback for visibility changes.
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
 					const item = entry.target;
-					// Retrieve the previous intersection ratio (default to 0).
 					const previousRatio = parseFloat(
 						item.dataset.previousRatio || 0
 					);
 					const currentRatio = entry.intersectionRatio;
 
 					if (currentRatio > 0) {
-						// When any part is visible, remove the out-of-view class.
+						// visible
 						item.classList.remove('out-of-view');
-
-						// If almost fully visible (you can tweak the threshold, here 0.9)
 						if (currentRatio >= 0.5) {
 							item.classList.add('in-view');
 							item.classList.remove('entering', 'exiting');
 						} else {
-							// Not yet fully in view.
 							item.classList.remove('in-view');
-							// Determine if it’s entering (increasing ratio) or exiting (decreasing).
 							if (currentRatio > previousRatio) {
 								item.classList.add('entering');
 								item.classList.remove('exiting');
@@ -291,11 +370,10 @@ document.addEventListener('DOMContentLoaded', function () {
 							}
 						}
 					} else {
-						// Completely off-screen: remove any transitional classes.
+						// off-screen
 						item.classList.add('out-of-view');
 						item.classList.remove('in-view', 'entering', 'exiting');
 					}
-					// Store the current ratio for the next comparison.
 					item.dataset.previousRatio = currentRatio;
 				});
 			},
@@ -305,16 +383,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		);
 
-		// Observe each child item.
 		Array.from(scroller.children).forEach((child) => {
 			observer.observe(child);
 		});
 	}
 
-	// Call the setupStatusObserver for each scroller.
+	//----------------------------------------------------------------------
+	// 6. Initialize everything on each .is-style-horizontal-scroll
+	//----------------------------------------------------------------------
 	const scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
 	scrollers.forEach((scroller) => {
+		// First clone slides & set infinite loop (only if .horizontal-scroller-loop present).
+		setupInfiniteLoop(scroller);
+
+		// Then set up your nav buttons, pause/play, etc.
 		setupScrollerButtons(scroller);
+
+		// Then set up IntersectionObserver stuff (for "in-view", etc.).
 		setupStatusObserver(scroller);
 	});
 });
