@@ -127,9 +127,23 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('scroller-buttons-border-alternate');
 				// Button Over
 				removedClasses.push('scroller-buttons-over');
+				removedClasses.push('scroller-buttons-box-shadow');
+				// Transitions
+				removedClasses.push('scroller-transition-slide');
+				removedClasses.push('scroller-transition-fade');
+				removedClasses.push('scroller-transition-zoom');
 			}
 			if (!props.attributes.scrollNav) {
 				removedClasses.push('horizontal-scroller-navigation');
+			}
+			if (props.attributes.transitionType !== 'slide') {
+				removedClasses.push('scroller-transition-slide');
+			}
+			if (props.attributes.transitionType !== 'fade') {
+				removedClasses.push('scroller-transition-fade');
+			}
+			if (props.attributes.transitionType !== 'zoom') {
+				removedClasses.push('scroller-transition-zoom');
 			}
 			if (!props.attributes.scrollLoop) {
 				removedClasses.push('horizontal-scroller-loop');
@@ -235,6 +249,9 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// Scroller Button Over
 			if (!props.attributes.buttonOver) {
 				removedClasses.push('scroller-buttons-over');
+			}
+			if (!props.attributes.transitionType) {
+				removedClasses.push('scroller-buttons-box-shadow');
 			}
 			// Group Link
 			if (!props.attributes.enableGroupLink) {
@@ -391,6 +408,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.transitionType &&
+				props.attributes.enableHorizontalScroller
+			) {
+				const transType = props.attributes.transitionType;
+				newClasses += ' scroller-transition-' + transType;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
 				props.attributes.hidePauseButton &&
 				props.attributes.enableHorizontalScroller
 			) {
@@ -444,6 +469,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				const borderColor = props.attributes.buttonsBorderColor;
 				newClasses += ' scroller-buttons-border-' + borderColor;
+			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.transitionType &&
+				props.attributes.enableHorizontalScroller
+			) {
+				const borderColor = props.attributes.transitionType;
+				newClasses += ' scroller-transition-' + borderColor;
 			}
 			// Group
 			if (
@@ -1311,6 +1344,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 							{props.attributes.enableHorizontalScroller && (
+								<SelectControl
+									label="Transition Type"
+									value={props.attributes.transitionType}
+									options={[
+										{ value: 'slide', label: 'Slide' },
+										{ value: 'fade', label: 'Fade' },
+										{ value: 'zoom', label: 'Zoom' },
+									]}
+									onChange={(value) =>
+										props.setAttributes({
+											transitionType: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
 								<ToggleControl
 									label="Hide Scrollbar"
 									checked={!!props.attributes.hideScrollbar}
@@ -1439,6 +1488,17 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									onChange={(value) =>
 										props.setAttributes({
 											buttonsBorderColor: value,
+										})
+									}
+								/>
+							)}
+							{props.attributes.enableHorizontalScroller && (
+								<ToggleControl
+									label="Show Buttons Box Shadow"
+									checked={!!props.attributes.buttonsBoxShadow}
+									onChange={(newValue) =>
+										props.setAttributes({
+											buttonsBoxShadow: newValue,
 										})
 									}
 								/>
