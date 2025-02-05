@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					if (currentRatio > 0) {
 						// visible
 						item.classList.remove('out-of-view');
-						if (currentRatio >= 0.5) {
+						if (currentRatio >= 0.1) {
 							item.classList.add('in-view');
 							item.classList.remove('entering', 'exiting');
 						} else {
