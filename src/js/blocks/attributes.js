@@ -97,9 +97,9 @@ export const customHorizontalScrollerAttributes = {
 		type: 'number',
 		default: 500,
 	},
-	transitionType: {
-		type: 'select',
-		default: 'fade',
+	pauseOnHover: {
+		type: 'boolean',
+		default: true,
 	},
 };
 
