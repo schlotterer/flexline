@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		// 2. Variables for auto–scroll if enabled.
 		let autoScrollInterval;
 		let isPaused = false;
+		let hasStarted = false; // NEW: flag to track if auto-scroll has been started
 
 		// ADDED: A helper that resets the auto-scroll timer from scratch
 		function resetAutoScrollTimer() {
@@ -168,12 +169,15 @@ document.addEventListener('DOMContentLoaded', function () {
 				clearInterval(autoScrollInterval);
 			}
 			if (!isPaused) {
-				startAutoScroll(); // start fresh
+				startAutoScroll(); // start fresh if not paused
 			}
 		}
 
 		// The existing start/stop logic
 		function startAutoScroll() {
+			if (hasStarted) {
+				return; // Prevent multiple starts
+			}
 			const intervalAttr = scroller.getAttribute('data-scroll-interval');
 			const intervalDuration = intervalAttr
 				? parseInt(intervalAttr, 10)
@@ -181,12 +185,32 @@ document.addEventListener('DOMContentLoaded', function () {
 			autoScrollInterval = setInterval(function () {
 				scrollToNext(scroller);
 			}, intervalDuration);
+			hasStarted = true; // Mark as started
 		}
+
 		function stopAutoScroll() {
 			clearInterval(autoScrollInterval);
 		}
 
-		// If auto-scroll class is present, set up the interval & events.
+		// NEW: Observer to detect when the scroller is on screen
+		function observeVisibility() {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting && !hasStarted) {
+							startAutoScroll(); // Start only when visible
+							observer.disconnect(); // Stop observing after first trigger
+						}
+					});
+				},
+				{ threshold: 0.3 } // Adjust threshold as needed
+			);
+
+			observer.observe(scroller);
+		}
+
+		// Check if auto-scroll is enabled, but instead of starting immediately,
+		// we now wait until the scroller is visible
 		if (scroller.classList.contains('horizontal-scroller-auto')) {
 			scroller.addEventListener('mouseenter', () => {
 				stopAutoScroll();
@@ -196,7 +220,8 @@ document.addEventListener('DOMContentLoaded', function () {
 					startAutoScroll();
 				}
 			});
-			startAutoScroll(); // start immediately on load
+			// Instead of calling startAutoScroll() immediately, we use the observer.
+			observeVisibility();
 		}
 
 		// 3. Create the controls container if navigation/pause are enabled.
@@ -245,8 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				scrollToPrevBtn.addEventListener('click', function () {
 					scrollToPrev(scroller);
-
-					// ADDED: Reset the timer when user clicks prev
+					// Reset the timer when user clicks previous
 					resetAutoScrollTimer();
 				});
 
@@ -268,8 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				scrollToNextBtn.addEventListener('click', function () {
 					scrollToNext(scroller);
-
-					// ADDED: Reset the timer when user clicks next
+					// Reset the timer when user clicks next
 					resetAutoScrollTimer();
 				});
 			}
@@ -292,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'</svg></span>';
 				pausePlayBtn.addEventListener('click', function () {
 					if (isPaused) {
-						// Was paused -> now resume
+						// Was paused → now resume
 						isPaused = false;
 						pausePlayBtn.setAttribute(
 							'aria-label',
@@ -305,9 +328,9 @@ document.addEventListener('DOMContentLoaded', function () {
 							'</svg></span>';
 
 						// Resume auto-scroll
-						resetAutoScrollTimer(); // ADDED: effectively restarts auto-scroll
+						resetAutoScrollTimer(); // effectively restarts auto-scroll
 					} else {
-						// Was playing -> now pause
+						// Was playing → now pause
 						isPaused = true;
 						pausePlayBtn.setAttribute(
 							'aria-label',
