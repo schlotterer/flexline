@@ -212,14 +212,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Check if auto-scroll is enabled, but instead of starting immediately,
 		// we now wait until the scroller is visible
 		if (scroller.classList.contains('horizontal-scroller-auto')) {
-			scroller.addEventListener('mouseenter', () => {
-				stopAutoScroll();
-			});
-			scroller.addEventListener('mouseleave', () => {
-				if (!isPaused) {
-					startAutoScroll();
-				}
-			});
+			if (scroller.classList.contains('scroller-pause-on-hover')) {
+				scroller.addEventListener('mouseenter', () => {
+					stopAutoScroll();
+				});
+				scroller.addEventListener('mouseleave', () => {
+					if (!isPaused) {
+						startAutoScroll();
+					}
+				});
+			}
 			// Instead of calling startAutoScroll() immediately, we use the observer.
 			observeVisibility();
 		}

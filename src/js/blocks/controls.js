@@ -137,21 +137,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('scroller-buttons-over');
 				removedClasses.push('scroller-buttons-box-shadow');
 				// Transitions
-				removedClasses.push('scroller-transition-slide');
-				removedClasses.push('scroller-transition-fade');
-				removedClasses.push('scroller-transition-zoom');
+				removedClasses.push('scroller-pause-on-hover');
 			}
 			if (!props.attributes.scrollNav) {
 				removedClasses.push('horizontal-scroller-navigation');
-			}
-			if (props.attributes.transitionType !== 'slide') {
-				removedClasses.push('scroller-transition-slide');
-			}
-			if (props.attributes.transitionType !== 'fade') {
-				removedClasses.push('scroller-transition-fade');
-			}
-			if (props.attributes.transitionType !== 'zoom') {
-				removedClasses.push('scroller-transition-zoom');
 			}
 			if (!props.attributes.scrollLoop) {
 				removedClasses.push('horizontal-scroller-loop');
@@ -258,8 +247,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.buttonOver) {
 				removedClasses.push('scroller-buttons-over');
 			}
-			if (!props.attributes.transitionType) {
+			if (!props.attributes.buttonsBoxShadow) {
 				removedClasses.push('scroller-buttons-box-shadow');
+			}
+			if (!props.attributes.pauseOnHover) {
+				removedClasses.push('scroller-pause-on-hover');
 			}
 			// Group Link
 			if (!props.attributes.enableGroupLink) {
@@ -416,11 +408,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.transitionType &&
+				props.attributes.pauseOnHover &&
 				props.attributes.enableHorizontalScroller
 			) {
-				const transType = props.attributes.transitionType;
-				newClasses += ' scroller-transition-' + transType;
+				newClasses += ' scroller-pause-on-hover';
 			}
 			if (
 				['core/columns', 'core/post-template'].includes(props.name) &&
@@ -477,14 +468,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			) {
 				const borderColor = props.attributes.buttonsBorderColor;
 				newClasses += ' scroller-buttons-border-' + borderColor;
-			}
-			if (
-				['core/columns', 'core/post-template'].includes(props.name) &&
-				props.attributes.transitionType &&
-				props.attributes.enableHorizontalScroller
-			) {
-				const borderColor = props.attributes.transitionType;
-				newClasses += ' scroller-transition-' + borderColor;
 			}
 			// Group
 			if (
@@ -1352,22 +1335,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 							{props.attributes.enableHorizontalScroller && (
-								<SelectControl
-									label="Transition Type"
-									value={props.attributes.transitionType}
-									options={[
-										{ value: 'slide', label: 'Slide' },
-										{ value: 'fade', label: 'Fade' },
-										{ value: 'zoom', label: 'Zoom' },
-									]}
-									onChange={(value) =>
-										props.setAttributes({
-											transitionType: value,
-										})
-									}
-								/>
-							)}
-							{props.attributes.enableHorizontalScroller && (
 								// set the scroll speed in milliseconds (1000 = 1 second) - default is 5000 (5 seconds) - max is 10000 (10 seconds) number
 								<RangeControl
 									label="Scroll transition in Milliseconds"
@@ -1573,6 +1540,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 										onChange={(newValue) =>
 											props.setAttributes({
 												hidePauseButton: newValue,
+											})
+										}
+									/>
+								)}
+							{props.attributes.enableHorizontalScroller &&
+								props.attributes.scrollAuto && (
+									<ToggleControl
+										label="Pause on Hover"
+										checked={
+											!!props.attributes.pauseOnHover
+										}
+										onChange={(newValue) =>
+											props.setAttributes({
+												pauseOnHover: newValue,
 											})
 										}
 									/>
