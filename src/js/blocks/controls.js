@@ -1306,7 +1306,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
-		if (props.name === 'core/columns' || props.name === 'core/post-template') {
+		if (
+			props.name === 'core/columns' ||
+			props.name === 'core/post-template'
+		) {
 			return (
 				<Fragment>
 					<BlockEdit {...props} />
@@ -1361,17 +1364,18 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									}
 								/>
 							)}
-							{props.attributes.enableHorizontalScroller && (
-								<ToggleControl
-									label="Loop Scrolling"
-									checked={!!props.attributes.scrollLoop}
-									onChange={(newValue) =>
-										props.setAttributes({
-											scrollLoop: newValue,
-										})
-									}
-								/>
-							)}
+							{props.attributes.enableHorizontalScroller &&
+								props.name !== 'core/post-template' && (
+									<ToggleControl
+										label="Loop Scrolling"
+										checked={!!props.attributes.scrollLoop}
+										onChange={(newValue) =>
+											props.setAttributes({
+												scrollLoop: newValue,
+											})
+										}
+									/>
+								)}
 							{props.attributes.enableHorizontalScroller && (
 								<SelectControl
 									label="Buttons Horizontal Position"
