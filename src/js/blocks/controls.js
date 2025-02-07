@@ -119,12 +119,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('scroller-buttons-background-secondary');
 				removedClasses.push('scroller-buttons-background-alternate');
 				// Button Colors
-				removedClasses.push('scroller-buttons-color-white');
-				removedClasses.push('scroller-buttons-color-black');
-				removedClasses.push('scroller-buttons-color-gray');
-				removedClasses.push('scroller-buttons-color-primary');
-				removedClasses.push('scroller-buttons-color-secondary');
-				removedClasses.push('scroller-buttons-color-alternate');
+				removedClasses.push('scroller-buttons-text-white');
+				removedClasses.push('scroller-buttons-text-black');
+				removedClasses.push('scroller-buttons-text-gray');
+				removedClasses.push('scroller-buttons-text-primary');
+				removedClasses.push('scroller-buttons-text-secondary');
+				removedClasses.push('scroller-buttons-text-alternate');
 				// Buttons Borders
 				removedClasses.push('scroller-buttons-border-none');
 				removedClasses.push('scroller-buttons-border-white');
@@ -204,22 +204,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 			// Scroller Button Colors
 			if (props.attributes.buttonsTextColor !== 'white') {
-				removedClasses.push('scroller-buttons-color-white');
+				removedClasses.push('scroller-buttons-text-white');
 			}
 			if (props.attributes.buttonsTextColor !== 'black') {
-				removedClasses.push('scroller-buttons-color-black');
+				removedClasses.push('scroller-buttons-text-black');
 			}
 			if (props.attributes.buttonsTextColor !== 'gray') {
-				removedClasses.push('scroller-buttons-color-gray');
+				removedClasses.push('scroller-buttons-text-gray');
 			}
 			if (props.attributes.buttonsTextColor !== 'primary') {
-				removedClasses.push('scroller-buttons-color-primary');
+				removedClasses.push('scroller-buttons-text-primary');
 			}
 			if (props.attributes.buttonsTextColor !== 'secondary') {
-				removedClasses.push('scroller-buttons-color-secondary');
+				removedClasses.push('scroller-buttons-text-secondary');
 			}
 			if (props.attributes.buttonsTextColor !== 'alternate') {
-				removedClasses.push('scroller-buttons-color-alternate');
+				removedClasses.push('scroller-buttons-text-alternate');
 			}
 			// Scroller Buttons Borders
 			if (props.attributes.buttonsBorderColor !== 'none') {
