@@ -91,28 +91,16 @@ body,
 				min-width: 300px;
 				flex-shrink: 0;
 				flex-grow: 0;
-
-				&:first-child {
-					margin-left: 0;
-				}
-
-				&:last-child {
-					margin-right: 0;
-				}
-
 				&[class*="is-style-card"] {
 
 					&.group-link {
-						max-width: 500px;
+						max-width: 100%;
 					}
 				}
 
 				&.wp-block-post {
 					max-width: 325px;
-				}
-
-				&.wp-block-image img {
-					//max-width: 500px;
+					padding-right: var(--wp--preset--spacing--small);
 				}
 			}
 			scrollbar-width: thin; /* "auto" or "thin" */
@@ -139,6 +127,9 @@ body,
 			&::-webkit-scrollbar {
 				display: none;
 			}
+		}
+		&.horizontal-scroller-loop{
+			gap: 0px;
 		}
 
 	}
