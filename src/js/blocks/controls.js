@@ -1306,7 +1306,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				</Fragment>
 			);
 		}
-		if (props.name === 'core/columns') {
+		if (props.name === 'core/columns' || props.name === 'core/post-template') {
 			return (
 				<Fragment>
 					<BlockEdit {...props} />
