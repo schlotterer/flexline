@@ -55,7 +55,7 @@ export const customHorizontalScrollerAttributes = {
 	},
 	scrollLoop: {
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 	hideScrollbar: {
 		type: 'boolean',

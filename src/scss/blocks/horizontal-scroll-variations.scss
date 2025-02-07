@@ -78,7 +78,6 @@ body,
 	.is-style-horizontal-scroll {
 
 		&.wp-block-columns,
-		&.wp-block-group,
 		&.wp-block-post-template {
 			position: relative;
 			display: flex !important;
@@ -92,28 +91,16 @@ body,
 				min-width: 300px;
 				flex-shrink: 0;
 				flex-grow: 0;
-
-				&:first-child {
-					margin-left: 0;
-				}
-
-				&:last-child {
-					margin-right: 0;
-				}
-
 				&[class*="is-style-card"] {
 
 					&.group-link {
-						max-width: 500px;
+						max-width: 100%;
 					}
 				}
 
 				&.wp-block-post {
 					max-width: 325px;
-				}
-
-				&.wp-block-image img {
-					//max-width: 500px;
+					padding-right: var(--wp--preset--spacing--small);
 				}
 			}
 			scrollbar-width: thin; /* "auto" or "thin" */
@@ -141,6 +128,9 @@ body,
 				display: none;
 			}
 		}
+		&.horizontal-scroller-loop{
+			gap: 0px;
+		}
 
 	}
 
@@ -149,7 +139,6 @@ body,
 		.is-style-horizontal-scroll {
 
 			&.wp-block-columns,
-			&.wp-block-group,
 			&.wp-block-post-template {
 
 				> * {
@@ -336,105 +325,6 @@ body,
 		.is-horizontal-scroll-btn {
 		border: 1px solid var(--wp--preset--color--alternate);
 		}
-	}
-
-
-	/* ====================================================
-   	Slide Transition
-  	==================================================== */
-	.scroller-transition-slide >* {
-		/* Animate both horizontal position and opacity */
-		//transition: transform 0.5s ease, opacity 0.5s ease;
-		/* Default state (should be the "in-view" state) */
-		//transform: translateX(0);
-		//opacity: 1;
-  	}
-  
-	/* When an item is entering (coming in from the right) */
-	.scroller-transition-slide >*.entering {
-		//transform: translateX(100%);
-		//opacity: 0;
-	}
-	
-	/* When an item is exiting (leaving to the left) */
-	.scroller-transition-slide >*.exiting {
-		//transform: translateX(-100%);
-		//opacity: 0;
-	}
-	
-	/* Fully in view */
-	.scroller-transition-slide >*.in-view {
-		//transform: translateX(0);
-		//opacity: 1;
-	}
-	
-	/* Completely off-screen (optional override) */
-	.scroller-transition-slide >*.out-of-view {
-		//opacity: 0;
-	}
-	
-	
-	/* ====================================================
-		Fade Transition
-		==================================================== */
-	.scroller-transition-fade >* {
-		//transition: opacity 0.5s ease;
-		//opacity: 1;
-	}
-	
-	/* While transitioning in or out, fade from 0 to 1 or vice versa */
-	.scroller-transition-fade >*.entering,
-	.scroller-transition-fade >*.exiting,
-	.scroller-transition-fade >*.out-of-view {
-		//opacity: 0;
-	}
-	
-	/* Fully visible */
-	.scroller-transition-fade >*.in-view {
-		//opacity: 1;
-	}
-  
-  
-  	/* ====================================================
-	 Zoom Transition
-	 ==================================================== */
-	.scroller-transition-zoom {
-		//overflow-x: visible !important;
-		//transition: all 0.7s ease-in-out;
-		>* {
-			transition: all 0.7s ease-in-out;
-			//transform: scale(1);
-			//opacity: 1;
-		}
-		>*.in-view {
-			//transition: transform 0.5s ease, opacity 0.5s ease;
-			//transform-origin: right center;
-			transform: scale(1);
-			opacity: 1;
-		}
-		>*.out-of-view {
-			//transition: transform 0.5s ease, opacity 0.5s ease;
-			//transform-origin: left center;
-			transform: scale(.6);
-			opacity: 0;
-		}
-		>*.entering {
-
-			transform-origin: left center;
-			transform: scale(1);
-			opacity: 1;
-			
-			
-		}
-		>*.exiting {
-
-			transform-origin: right center;
-			transform: scale(.6);
-			opacity: 0;
-			
-			
-		}
-
 	}
   	  
 }
