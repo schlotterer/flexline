@@ -203,44 +203,44 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				removedClasses.push('scroller-buttons-background-alternate');
 			}
 			// Scroller Button Colors
-			if (props.attributes.buttonColor !== 'white') {
+			if (props.attributes.buttonsTextColor !== 'white') {
 				removedClasses.push('scroller-buttons-color-white');
 			}
-			if (props.attributes.buttonColor !== 'black') {
+			if (props.attributes.buttonsTextColor !== 'black') {
 				removedClasses.push('scroller-buttons-color-black');
 			}
-			if (props.attributes.buttonColor !== 'gray') {
+			if (props.attributes.buttonsTextColor !== 'gray') {
 				removedClasses.push('scroller-buttons-color-gray');
 			}
-			if (props.attributes.buttonColor !== 'primary') {
+			if (props.attributes.buttonsTextColor !== 'primary') {
 				removedClasses.push('scroller-buttons-color-primary');
 			}
-			if (props.attributes.buttonColor !== 'secondary') {
+			if (props.attributes.buttonsTextColor !== 'secondary') {
 				removedClasses.push('scroller-buttons-color-secondary');
 			}
-			if (props.attributes.buttonColor !== 'alternate') {
+			if (props.attributes.buttonsTextColor !== 'alternate') {
 				removedClasses.push('scroller-buttons-color-alternate');
 			}
 			// Scroller Buttons Borders
-			if (props.attributes.buttonBorder !== 'none') {
+			if (props.attributes.buttonsBorderColor !== 'none') {
 				removedClasses.push('scroller-buttons-border-none');
 			}
-			if (props.attributes.buttonBorder !== 'white') {
+			if (props.attributes.buttonsBorderColor !== 'white') {
 				removedClasses.push('scroller-buttons-border-white');
 			}
-			if (props.attributes.buttonBorder !== 'black') {
+			if (props.attributes.buttonsBorderColor !== 'black') {
 				removedClasses.push('scroller-buttons-border-black');
 			}
-			if (props.attributes.buttonBorder !== 'gray') {
+			if (props.attributes.buttonsBorderColor !== 'gray') {
 				removedClasses.push('scroller-buttons-border-gray');
 			}
-			if (props.attributes.buttonBorder !== 'primary') {
+			if (props.attributes.buttonsBorderColor !== 'primary') {
 				removedClasses.push('scroller-buttons-border-primary');
 			}
-			if (props.attributes.buttonBorder !== 'secondary') {
+			if (props.attributes.buttonsBorderColor !== 'secondary') {
 				removedClasses.push('scroller-buttons-border-secondary');
 			}
-			if (props.attributes.buttonBorder !== 'alternate') {
+			if (props.attributes.buttonsBorderColor !== 'alternate') {
 				removedClasses.push('scroller-buttons-border-alternate');
 			}
 			// Scroller Button Over
