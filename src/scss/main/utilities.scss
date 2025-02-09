@@ -13,6 +13,10 @@ body,
 		z-index: 10 !important;
 	}
 
+	.extra-z-index {
+		z-index: 1000 !important;
+	}
+
 	// primary gradients
 	.has-primary-primaryDark-gradient-background {
 		background: var(--wp--preset--gradient--primary-primary-dark);
