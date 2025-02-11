@@ -27,7 +27,7 @@
     "autoprefixer": "^10.4.20",
     "@wordpress/scripts": "^30.10.0",
     "@wordpress/stylelint-config": "^23.9.0",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
