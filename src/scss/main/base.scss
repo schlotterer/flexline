@@ -10,6 +10,10 @@
 html {
 	scroll-behavior: smooth;
 }
+html,
+body {
+    scroll-padding-top: 100px; /* set to the height of your header */
+}
 
 body.baguetteBox-open,
 body.no-scroll {

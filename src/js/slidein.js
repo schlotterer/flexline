@@ -91,8 +91,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Function to adjust the position of the main button based on scroll position.
 	function toggleButtonPosition(buttonToPosition) {
-		const isScrolled = window.scrollY > 0;
-		// buttonToPosition.style.position = isScrolled ? 'fixed' : 'absolute';
+		let isScrolled = window.scrollY > 0;
+		const headerSiteHeader = document.querySelector('header.site-header');
+
+		// If headersiteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+		if (
+			headerSiteHeader.classList.contains('headroom') &&
+			headerSiteHeader.classList.contains('headroom--unpinned')
+		) {
+			isScrolled = true;
+		} else if (
+			headerSiteHeader.classList.contains('headroom') &&
+			headerSiteHeader.classList.contains('headroom--pinned')
+		) {
+			isScrolled = false;
+		}
+
 		if (isScrolled) {
 			const isSmallScreen = window.matchMedia(
 				'(max-width: 781.98px)'
@@ -166,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (!expanded) {
 				addCloseButton(slideInMenu);
 				const focusableElements = slideInMenu.querySelectorAll(
-					'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+					'bubuttonToPositiontton, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 				);
 				if (focusableElements.length) {
 					focusableElements[0].focus();
@@ -185,13 +199,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// Add event listener to any anchor link with href="#openSlideIn"
-	document.querySelectorAll('a[href="#openSlideIn"]').forEach(anchor => {
-		anchor.addEventListener('click', function(event) {
+	document.querySelectorAll('a[href="#openSlideIn"]').forEach((anchor) => {
+		anchor.addEventListener('click', function (event) {
 			event.preventDefault(); // Prevent default anchor behavior
 			toggleMenu();
 		});
 	});
-	
+
 	// Function to add a close button inside the slide-in menu.
 	function addCloseButton(menuContainer) {
 		let closeButton = document.getElementById('slide-in-menu-close');

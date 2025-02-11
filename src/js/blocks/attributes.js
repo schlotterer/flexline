@@ -35,6 +35,74 @@ export const customHorizontalScrollAttributes = {
 	},
 };
 
+// Horizontal Scroller - Define custom attributes
+export const customHorizontalScrollerAttributes = {
+	enableHorizontalScroller: {
+		type: 'boolean',
+		default: false,
+	},
+	scrollNav: {
+		type: 'boolean',
+		default: true,
+	},
+	scrollAuto: {
+		type: 'boolean',
+		default: false,
+	},
+	scrollSpeed: {
+		type: 'number',
+		default: 4000,
+	},
+	scrollLoop: {
+		type: 'boolean',
+		default: false,
+	},
+	hideScrollbar: {
+		type: 'boolean',
+		default: false,
+	},
+	hidePauseButton: {
+		type: 'boolean',
+		default: false,
+	},
+	positionButtonsHorizontal: {
+		type: 'select',
+		default: 'left',
+	},
+	positionButtonsVertical: {
+		type: 'select',
+		default: 'bottom',
+	},
+	positionButtonsOver: {
+		type: 'boolean',
+		default: false,
+	},
+	buttonsTextColor: {
+		type: 'select',
+		default: 'white',
+	},
+	buttonsBackgroundColor: {
+		type: 'select',
+		default: 'secondary',
+	},
+	buttonsBorderColor: {
+		type: 'select',
+		default: 'none',
+	},
+	buttonsBoxShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	transitionDuration: {
+		type: 'number',
+		default: 500,
+	},
+	pauseOnHover: {
+		type: 'boolean',
+		default: true,
+	},
+};
+
 // Group - Define custom attributes
 export const customGroupAttributes = {
 	enableGroupLink: {

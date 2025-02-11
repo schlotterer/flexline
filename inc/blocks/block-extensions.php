@@ -6,23 +6,51 @@
  */
 
 namespace FlexLine\flexline;
-
+use WP_HTML_Tag_Processor;
 /**
  * Enqueue block editor assets for Flexline theme.
  *
  * @Throws Some_Exception_Class description of exception.
  */
-function flexline_enqueue_block_editor_assets() {
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+ function flexline_enqueue_block_editor_assets() {
 	// Modal addons to core button and image blocks.
 	wp_enqueue_script(
 		'flexline-block-extensions',
 		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-		array( 'wp-blocks', 'wp-element', 'wp-editor' ),
+		[ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose' ],
 		THEME_VERSION,
 		false
 	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+
+function flexline_merge_inline_style( $block_content, $new_style_rules ) {
+
+    // Create the processor.
+    $processor = new WP_HTML_Tag_Processor( $block_content );
+
+    // "Move" to the first tag – in many blocks, the wrapper is the first or second tag.
+    // If you know the block markup better, you might do while ($processor->next_tag()) ...
+    // Or you might specifically look for a <div> or a <figure>, etc.
+    if ( $processor->next_tag() ) {
+        // Get the existing style attribute, if any.
+        $existing_style = $processor->get_attribute( 'style' );
+
+        // If it already has some rules, append a semicolon & space before ours.
+        if ( ! empty( $existing_style ) ) {
+            $existing_style = rtrim( $existing_style, '; ' ) . '; ';
+        }
+
+        // Append the new style rules.
+        $combined_style = $existing_style . $new_style_rules;
+
+        // Set it back on the element.
+        $processor->set_attribute( 'style', $combined_style );
+    }
+
+    // Return the updated HTML markup.
+    return $processor->get_updated_html();
+}
 
 /**
  * Generate visibility classes based on block attributes.
@@ -97,6 +125,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	}
 	if ( 'core/image' === $block['blockName'] ) {
+
 		// Check if your custom attributes are set and not empty.
 		$added_classes = '';
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
@@ -197,6 +226,20 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['stackAtTablet'] ) && $block['attrs']['stackAtTablet'] ) {
 			$added_classes .= 'flexline-stack-at-tablet ';
 		}
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
+			$data_scroll_interval = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
+			$search_string  = '>';
+			$replace_string = ' '.$data_scroll_interval.'>';
+			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset($block['attrs']['transitionDuration'])  ) {
+			$data_scroll_interval = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
+			$search_string  = '>';
+			$replace_string = ' '.$data_scroll_interval.'>';
+			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+
 		// Generate the visibility classes.
 		$added_classes .= get_visibility_classes( $block['attrs'] );
 		$block_content = add_classes_to_block_content( $block_content, $added_classes );
@@ -229,11 +272,15 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	 // **Add Unique Class and Styles for Content Shift**
 	 if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
+
         // Generate a unique class based on the block's attributes
         $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
         // Add the unique class to the block's classes
-        $added_classes .= ' ' . $unique_class . ' ';
-        // Generate the styles
+        $added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+        
+		
+		// Generate the styles
 		$shiftLeft = '0';
 		$shiftRight = '0';
 		$shiftUp = '0';
@@ -258,24 +305,16 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['slideVertical'] ) ) {
 			$slideY = $block['attrs']['slideVertical'];
 		}
-
         // Build the CSS
-        $styles = '.' . esc_attr( $unique_class ) . ' {';
-        $styles .= ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
+        $styles = ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
         $styles .= ' --flexline-shift-right: ' . esc_attr( $shiftRight ) . ';';
         $styles .= ' --flexline-shift-up: ' . esc_attr( $shiftUp ) . ';';
         $styles .= ' --flexline-shift-down: ' . esc_attr( $shiftDown ) . ';';
         $styles .= ' --flexline-slide-x: ' . esc_attr( $slideX ) . ';';
         $styles .= ' --flexline-slide-y: ' . esc_attr( $slideY ) . ';';
-        $styles .= '}';
 
-        // Inject the styles
-        $style_tag = '<style type="text/css">' . $styles . '</style>';
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-        $block_content = $style_tag . $block_content;
+		$block_content = flexline_merge_inline_style( $block_content, $styles );
     }
-
-
 	return $block_content;
 }
 add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 2 );
