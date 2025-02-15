@@ -1,5 +1,24 @@
 .editor-styles-wrapper,
 body.flexline {
+
+	// Search In Header
+	.site-header .wp-block-search__inside-wrapper{
+		padding: 0;
+	}
+	.site-header .wp-block-search__button{
+		padding:var(--wp--custom--header-search-button-padding);
+	}
+	.site-header .wp-block-search__input{
+		background: var(--wp--custom--header-search-input-background);
+		border: none;
+		color: var(--wp--custom--header-search-color);
+		padding: 4px 16px;
+	}
+	.site-header .wp-block-search__input::placeholder {
+		color: var(--wp--preset--color--neutral-dark);
+		opacity: 1;
+	}
+
 	// Events Single ( Tribe Events )
 	// h2.tribe-events-schedule__datetime,
 	// .tribe-events-schedule__datetime {

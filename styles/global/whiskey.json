@@ -477,6 +477,9 @@
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"searchMenuIconHoverColor": "var(--wp--preset--color--secondary-dark)",
+			"headerSearchColor": "var(--wp--preset--color--contrast)",
+			"headerSearchInputBackground": "var(--wp--preset--color--base)",
+			"headerSearchButtonPadding": "4px",
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"gradientAngle": "300deg",
 			
