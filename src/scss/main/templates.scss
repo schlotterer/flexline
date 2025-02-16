@@ -14,17 +14,8 @@ body.flexline {
 		color: var(--wp--custom--header-search-color);
 		padding: 4px 16px;
 	}
-	
-
-	// Events Single ( Tribe Events )
-	// h2.tribe-events-schedule__datetime,
-	// .tribe-events-schedule__datetime {
-		// font-family: var(--wp--preset--font-family--display);
-		// font-size: var(--wp--preset--font-size--small);
-		// font-weight: var(--wp--custom--font-weight--regular);
-	//}
-}
-.site-header .wp-block-search__input::placeholder {
-	color: var(--wp--preset--color--neutral-dark);
-	opacity: 1;
+	.site-header .wp-block-search__input::placeholder {
+		color: var(--wp--preset--color--neutral-dark);
+		opacity: 1;
+	}
 }
