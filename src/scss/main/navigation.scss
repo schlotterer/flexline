@@ -83,6 +83,16 @@
         > a.current-menu-ancestor + button {
             color: var(--wp--custom--nav-main-hover-color);
         }
+
+        .wp-block-navigation-submenu{
+            *:not(.wp-element-button):not(span) {
+                color: var(--wp--custom--nav-main-sub-color);
+    
+                &:hover {
+                    color: var(--wp--custom--nav-main-sub-hover-color);
+                }
+            }
+        }
     }
 
     &.is-style-light-over-dark .wp-block-navigation-item {
