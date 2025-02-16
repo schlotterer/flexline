@@ -92,7 +92,7 @@
                     color: var(--wp--custom--nav-main-sub-hover-color);
                 }
             }
-            &.current-menu-item > a:not(.wp-element-button){
+            .current-menu-item > a:not(.wp-element-button){
                 color: var(--wp--custom--nav-main-sub-hover-color);
             }
         }
