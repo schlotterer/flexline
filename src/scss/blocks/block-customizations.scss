@@ -55,4 +55,10 @@ body,
 			content: "\00A0↗";
 		}
 	}
+
+	.wp-block-image img[style*="object-fit:"] {
+		width: 100%;
+		object-position: center center;
+	}
+
 }
