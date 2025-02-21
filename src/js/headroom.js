@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	const headerSiteHeader = document.querySelector('header.site-header');
 	const headroomOffset = headerSiteHeader.offsetHeight + 20;
+console.log(headroomOffset);
 	// OPTIONAL: define some custom options
 	const options = {
 		offset: headroomOffset,

@@ -4,8 +4,9 @@ body header.site-header {
         will-change: transform;
         transition: transform 200ms linear;
     }
-    &.headroom--pinned {
+    &.headroom--pinned.headroom--not-bottom.headroom--not-top {
         transform: translateY(0%);
+        opacity: 1;
     }
     &.headroom--unpinned {
         transform: translateY(-100%);
@@ -20,6 +21,7 @@ body header.site-header {
         }
     }
     &.headroom--not-top {
+        opacity: 0;
         width: 100%;
         position: fixed !important;
         .headroom-hide-on-scroll {
