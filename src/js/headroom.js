@@ -56,7 +56,7 @@ console.log(headroomOffset);
 	// OPTIONAL: define some custom options
 	const options = {
 		offset: headroomOffset,
-		tolerance: { up: 3, down: 0 },
+		tolerance: { up: 3, down: 2 },
 		classes: {
 			initial: 'headroom',
 			pinned: 'headroom--pinned',
