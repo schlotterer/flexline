@@ -1,12 +1,12 @@
 body header.site-header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     &.headroom {
         z-index: 12;
         will-change: transform;
-        transition: transform 200ms linear;
+        transition: all 200ms linear;
     }
-    &.headroom--pinned.headroom--not-bottom.headroom--not-top {
+    &.headroom--pinned {
         transform: translateY(0%);
         opacity: 1;
         
@@ -28,6 +28,7 @@ body header.site-header {
     &.headroom--not-top {
         width: 100%;
         position: fixed !important;
+        
         .headroom-hide-on-scroll {
             position: absolute;
             transform-origin: top center;
