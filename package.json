@@ -21,12 +21,12 @@
   "author": "Joel Schlotterer",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.26.8",
+    "@babel/core": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
-    "@wordpress/eslint-plugin": "^22.3.0",
+    "@wordpress/eslint-plugin": "^22.4.0",
     "autoprefixer": "^10.4.20",
-    "@wordpress/scripts": "^30.10.0",
-    "@wordpress/stylelint-config": "^23.9.0",
+    "@wordpress/scripts": "^30.11.0",
+    "@wordpress/stylelint-config": "^23.10.0",
     "@typescript-eslint/eslint-plugin": "^8.23.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-import": "^2.31.0",
@@ -39,8 +39,8 @@
     "postcss": "^8.4.49",
     "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.84.0",
-    "sass-loader": "^16.0.4"
+    "sass": "^1.85.0",
+    "sass-loader": "^16.0.5"
   },
   "lint-staged": {
     "*.php": "vendor/bin/phpcbf --standard=WordPress",
