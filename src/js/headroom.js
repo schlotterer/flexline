@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 	// Grab the header element
 	const myHeader = document.querySelector('header.site-header');
-
 	// Guard check
 	if (!myHeader) {
 		return; // No header element, so bail out
 	}
 
-    
 	// Function to adjust the position of the main button based on scroll position.
 	function toggleButtonPosition(buttonToPosition) {
 		let isScrolled = window.scrollY > 0;
@@ -51,12 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 	const headerSiteHeader = document.querySelector('header.site-header');
-	const headroomOffset = headerSiteHeader.offsetHeight + 20;
-console.log(headroomOffset);
+	const headroomOffset = headerSiteHeader.offsetHeight;
+
 	// OPTIONAL: define some custom options
 	const options = {
-		offset: headroomOffset,
-		tolerance: { up: 3, down: 2 },
+		offset: {
+			up: 0,
+			down: headroomOffset,
+		},
+		tolerance: { up: 3, down: 0 },
 		classes: {
 			initial: 'headroom',
 			pinned: 'headroom--pinned',

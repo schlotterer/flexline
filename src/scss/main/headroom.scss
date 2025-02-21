@@ -1,4 +1,6 @@
 body header.site-header {
+    position: absolute;
+    width: 100%;
     &.headroom {
         z-index: 12;
         will-change: transform;
@@ -7,9 +9,12 @@ body header.site-header {
     &.headroom--pinned.headroom--not-bottom.headroom--not-top {
         transform: translateY(0%);
         opacity: 1;
+        
     }
     &.headroom--unpinned {
+      
         transform: translateY(-100%);
+        opacity: 0;
         *{
             margin-bottom: 0 !important;
         }
@@ -21,7 +26,6 @@ body header.site-header {
         }
     }
     &.headroom--not-top {
-        opacity: 0;
         width: 100%;
         position: fixed !important;
         .headroom-hide-on-scroll {
@@ -39,6 +43,7 @@ body header.site-header {
         
     }
     &.headroom--top{
+        
         .headroom-hide-at-top{ 
             position: absolute;
             transform-origin: top center;

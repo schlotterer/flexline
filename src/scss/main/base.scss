@@ -124,11 +124,6 @@ body,
 		padding: 5px 8px;
 	}
 
-
-	main.wp-block-group{
-		transition: var(--wp--custom--transition-time);
-	}
-
 	/* -- Headers -- */
 	@include screen($mobile){
 		.site-header{

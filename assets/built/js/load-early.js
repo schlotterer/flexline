@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){var e=document.querySelector("header.site-header"),t=document.querySelector("main.site-content");e.classList.contains("is-position-absolute")||(t.style.paddingTop="".concat(e.offsetHeight,"px"))}));
