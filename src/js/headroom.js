@@ -50,9 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
 		}
 	}
+	const headerSiteHeader = document.querySelector('header.site-header');
+	const headroomOffset = headerSiteHeader.offsetTop;
 	// OPTIONAL: define some custom options
 	const options = {
-		offset: 100,
+		offset: headroomOffset,
 		tolerance: { up: 3, down: 0 },
 		classes: {
 			initial: 'headroom',
