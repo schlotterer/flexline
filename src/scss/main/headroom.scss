@@ -12,6 +12,12 @@ body header.site-header {
         *{
             margin-bottom: 0 !important;
         }
+        .headroom-hide-at-top{ 
+            position: absolute;
+            transform-origin: top center;
+            transform: translateY(-100%);
+            opacity: 0;
+        }
     }
     &.headroom--not-top {
         width: 100%;
