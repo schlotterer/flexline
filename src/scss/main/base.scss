@@ -273,4 +273,14 @@ body,
 		z-index: 11;
 		position: relative;
 	}
+	&.web4sl-phone-liink-show-on-mobile{
+		@include screen($mobile){
+			.site-header{
+				#header_container {
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+	}
 }
