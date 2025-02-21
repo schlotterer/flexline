@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	// OPTIONAL: define some custom options
 	const options = {
 		offset: {
-			up: 0,
+			up: 50,
 			down: headroomOffset,
 		},
 		tolerance: { up: 3, down: 0 },

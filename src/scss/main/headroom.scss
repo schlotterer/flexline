@@ -8,13 +8,13 @@ body header.site-header {
     }
     &.headroom--pinned {
         transform: translateY(0%);
-        opacity: 1;
+        
         
     }
     &.headroom--unpinned {
       
         transform: translateY(-100%);
-        opacity: 0;
+        
         *{
             margin-bottom: 0 !important;
         }
