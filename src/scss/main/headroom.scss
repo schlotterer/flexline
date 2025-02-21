@@ -22,6 +22,12 @@ body header.site-header {
             transform: translateY(-100%);
             opacity: 0;
         }
+        .headroom-hide-at-top{ 
+            position: relative;
+            transform-origin: top center;
+            transform: translateY(0);
+            opacity: 1;
+        }
         
     }
     &.headroom--top{
@@ -31,5 +37,11 @@ body header.site-header {
             transform: translateY(-100%);
             opacity: 0;
         }
+    }
+    .headroom-hide-at-top{ 
+        position: absolute;
+        transform-origin: top center;
+        transform: translateY(-100%);
+        opacity: 0;
     }
 }
