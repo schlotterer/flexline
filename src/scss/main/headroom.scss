@@ -26,8 +26,6 @@ body header.site-header {
         }
     }
     &.headroom--not-top {
-        width: 100%;
-        position: fixed !important;
         
         .headroom-hide-on-scroll {
             position: absolute;

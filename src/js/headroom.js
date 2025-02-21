@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	// OPTIONAL: define some custom options
 	const options = {
 		offset: {
-			up: 50,
+			up: headroomOffset - 75,
 			down: headroomOffset,
 		},
-		tolerance: { up: 3, down: 0 },
+		tolerance: { up: 5, down: 5 },
 		classes: {
 			initial: 'headroom',
 			pinned: 'headroom--pinned',
