@@ -21,12 +21,12 @@ namespace FlexLine\flexline;
 
 function auto_insert_pattern_based_on_template( $content, $post ) {
   
-    var_dump($content);
+
     // Only run on empty content (i.e., brand-new posts).
     if ("" !== $content  ) {
         return $content;
     }
-    echo 'are we here?';
+
     // Only proceed if the post has a valid template set.
     $template_file = get_page_template_slug( get_the_ID() );
     var_dump($template_file);
