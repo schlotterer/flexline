@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		button.setAttribute('aria-controls', 'slide-in-menu');
 		button.setAttribute('aria-expanded', 'false');
 		button.setAttribute('tabindex', '0');
+		button.style.position = 'fixed';
 		button.innerHTML =
 			'<span class="material-symbols-outlined">' +
 			initialIcon +
@@ -113,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			).matches;
 			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
 		} else {
-			buttonToPosition.style.top = '';
 			centerButtonInHeader(buttonToPosition);
 		}
 	}
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const offset =
 				(headerContainer.offsetHeight - buttonToCenter.offsetHeight) /
 				2;
-			buttonToCenter.style.position = 'fixed';
+
 			// Use offsetTop for a more stable reference point from the document's start
 			buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
 		}
