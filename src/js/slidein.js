@@ -93,9 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Function to adjust the position of the main button based on scroll position.
 	function toggleButtonPosition(buttonToPosition) {
 		let isScrolled = window.scrollY > 0;
+		const body = document.body;
 		const headerSiteHeader = document.querySelector('header.site-header');
 
-		// If headersiteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+		// If header siteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
 		if (
 			headerSiteHeader.classList.contains('headroom') &&
 			headerSiteHeader.classList.contains('headroom--unpinned')
@@ -108,7 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			isScrolled = false;
 		}
 
-		if (isScrolled) {
+		if (
+			isScrolled &&
+			!body.classList.contains('headroom--fixed-all-the-time')
+		) {
 			const isSmallScreen = window.matchMedia(
 				'(max-width: 781.98px)'
 			).matches;

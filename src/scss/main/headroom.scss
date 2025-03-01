@@ -1,4 +1,4 @@
-body header.site-header {
+body header.site-header.headroom {
     position: fixed;
     width: 100%;
     &.headroom {
@@ -8,13 +8,9 @@ body header.site-header {
     }
     &.headroom--pinned {
         transform: translateY(0%);
-        
-        
     }
     &.headroom--unpinned {
-      
         transform: translateY(-100%);
-        
         *{
             margin-bottom: 0 !important;
         }
@@ -55,5 +51,24 @@ body header.site-header {
         transform-origin: top center;
         transform: translateY(-100%);
         opacity: 0;
+    }
+}
+
+
+body.headroom--fixed-all-the-time{
+    header.site-header.headroom {
+        &.headroom--pinned {
+            transform: translateY(0%);
+        }
+        &.headroom--unpinned {
+            transform: translateY(0%);
+        }
+        &.headroom--not-top {
+            transform: translateY(0%);
+        }
+        &.headroom--top{
+            transform: translateY(0%);
+            
+        }
     }
 }
