@@ -6,7 +6,13 @@ body,
 		width: 100%;
 		z-index: 10;
 	}
-
+	&:not(.headroom-in-use){
+		.is-position-absolute {
+			position: absolute !important;
+			width: 100%;
+			z-index: 10 !important;
+		}
+	}
 	.is-position-absolute {
 		position: absolute;
 		width: 100%;
