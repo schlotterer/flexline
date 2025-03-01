@@ -8,9 +8,13 @@ body,
 	}
 
 	.is-position-absolute {
-		position: absolute !important;
+		position: absolute;
 		width: 100%;
-		z-index: 10 !important;
+		z-index: 10;
+	}
+
+	.extra-z-index {
+		z-index: 11 !important;
 	}
 
 	// primary gradients

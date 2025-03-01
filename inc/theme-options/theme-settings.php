@@ -24,6 +24,7 @@ function flexline_register_settings() {
     register_setting( 'flexline_theme_options_group', 'flexline_hide_search_desktop' );
     register_setting( 'flexline_theme_options_group', 'flexline_feature_fallback' );
     register_setting( 'flexline_theme_options_group', 'flexline_show_menu_on_scroll_up' );
+    register_setting( 'flexline_theme_options_group', 'flexline_show_menu_all_the_time' );
 }
 add_action( 'admin_init', __NAMESPACE__ . '\flexline_register_settings' );
 

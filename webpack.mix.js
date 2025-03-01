@@ -8,6 +8,7 @@ const jsFiles = [
 	'src/js/global.js',
 	'src/js/slidein.js',
 	'src/js/headroom.js',
+	'src/js/load-early.js',
 ];
 
 // Individual SASS files

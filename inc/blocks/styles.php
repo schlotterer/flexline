@@ -33,12 +33,8 @@ namespace FlexLine\flexline;
 function flexline_register_block_styles() {
 
 	$block_styles = array(
-		'core/post-template'       => array(
-			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
-		),
 		'core/columns'             => array(
 			'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
-			'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 		),
 		'core/group'               => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),

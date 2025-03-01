@@ -37,8 +37,12 @@ function flexline_render_settings_tab() {
                 <td><input type="checkbox" name="flexline_hide_search_desktop" value="1" <?php checked(1, get_option('flexline_hide_search_desktop'), true); ?> /></td>
             </tr>
             <tr valign="top">
-                <th scope="row"><strong>Show main navigation when scrolling up.</strong></th>
-                <td><input type="checkbox" name="flexline_show_menu_on_scroll_up" value="1" <?php checked(1, get_option('flexline_show_menu_on_scroll_up'), true); ?> /></td>
+                <th scope="row"><strong>Use Headroom</strong></th>
+                <td><input type="checkbox" name="flexline_show_menu_on_scroll_up" value="1" <?php checked(1, get_option('flexline_show_menu_on_scroll_up', 0), true); ?> /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><strong>Headroom - always show menu. (requires Headroom)</strong></th>
+                <td><input type="checkbox" name="flexline_show_menu_all_the_time" value="1" <?php checked(1, get_option('flexline_show_menu_all_the_time', 0), true); ?> /></td>
             </tr>
         </table>
         

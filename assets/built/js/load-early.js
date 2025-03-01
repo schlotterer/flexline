@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){var e=document.querySelector("header.site-header"),t=document.querySelector(".wp-site-blocks > main"),o=document.body;!e.classList.contains("is-position-absolute")&&o.classList.contains("headroom-in-use")&&(t.style.paddingTop="".concat(e.offsetHeight,"px"))}));
