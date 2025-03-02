@@ -9,12 +9,9 @@
  * 
  * 
  */
-// Retrieve the phone number from the customizer settings
+
 namespace FlexLine\flexline;
-$mainPhoneTitle = get_theme_mod('flexline_main_phone_title', '');
-$phoneLinkText = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call Now";
-$aria_label = !empty($mainPhoneTitle) ? $mainPhoneTitle : "Call Now";
-$tel_link_number = flexline_get_phone_button_link();
+
 ?>
 <!-- wp:group {"tagName":"aside","lock":{"move":false,"remove":false},"metadata":{"name":"Slide In Menu"},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <aside id="slide-in-menu" class="wp-block-group has-primary-background-color has-background"><!-- wp:cover {"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"vh","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
@@ -26,10 +23,6 @@ $tel_link_number = flexline_get_phone_button_link();
                     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
                     <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
                         <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/contact/" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--x-large)">Contact</a></div>
-                        <!-- /wp:button -->
-
-                        <!-- wp:button {"textColor":"base","style":{"spacing":{"padding":{"left":"var:preset|spacing|x-large","right":"var:preset|spacing|x-large","top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"className":"is-style-outline","hideOnDesktop":true,"hideOnTablet":true} -->
-                        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="<?php echo $tel_link_number; ?>" aria-label="<?php echo $aria_label; ?>" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--x-large)"><?php echo $phoneLinkText; ?></a></div>
                         <!-- /wp:button -->
                     </div>
                     <!-- /wp:buttons -->
@@ -66,7 +59,7 @@ $tel_link_number = flexline_get_phone_button_link();
 
                         <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
                         <div class="wp-block-buttons"><!-- wp:button -->
-                            <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://bravo.websitesforseniorliving.com/careers/">Careers</a></div>
+                            <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/careers/">Careers</a></div>
                             <!-- /wp:button -->
                         </div>
                         <!-- /wp:buttons -->
@@ -78,7 +71,7 @@ $tel_link_number = flexline_get_phone_button_link();
 
                         <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
                         <div class="wp-block-buttons"><!-- wp:button {"textColor":"alternate","style":{"elements":{"link":{"color":{"text":"var:preset|color|alternate"}}}},"className":"is-style-outline"} -->
-                            <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-alternate-color has-text-color has-link-color wp-element-button" href="https://charlie.websitesforseniorliving.com/schedule-a-tour">Schedule a Tour</a></div>
+                            <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-alternate-color has-text-color has-link-color wp-element-button" href="/schedule-a-tour">Schedule a Tour</a></div>
                             <!-- /wp:button -->
                         </div>
                         <!-- /wp:buttons -->

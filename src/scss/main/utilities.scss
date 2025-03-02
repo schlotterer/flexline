@@ -6,21 +6,23 @@ body,
 		width: 100%;
 		z-index: 10;
 	}
-
+	&:not(.headroom-in-use){
+		.is-position-absolute {
+			position: absolute !important;
+			width: 100%;
+			z-index: 10 !important;
+		}
+	}
 	.is-position-absolute {
-		position: absolute !important;
+		position: absolute;
 		width: 100%;
-		z-index: 10 !important;
+		z-index: 10;
 	}
 
-	.is-pull-left-20 {
-		margin-left: -20px !important;
-		position: relative !important;
+	.extra-z-index {
+		z-index: 11 !important;
 	}
 
-	.is-pull-right-20 {
-		margin-right: -20px !important;
-	}
 	// primary gradients
 	.has-primary-primaryDark-gradient-background {
 		background: var(--wp--preset--gradient--primary-primary-dark);
@@ -94,10 +96,11 @@ body,
 		background: var(--wp--preset--gradient--dark-transparent-right-to-left);
 	}
 
+
 	/* Media Queries
     ---------------------------------------- */
 
-	@media only screen and (max-width: 781.98px) {
+	@include screen($mobile){
 
 		/* -- Order -- */
 

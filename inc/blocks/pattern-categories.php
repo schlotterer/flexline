@@ -50,13 +50,6 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
-		'flexline-posts',
-		array(
-			'label'       => __( 'Components - Posts', 'flexline' ),
-			'description' => __( 'Components for posts and post lists.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
 		'flexline-modules',
 		array(
 			'label'       => __( 'Modules', 'flexline' ),
@@ -71,24 +64,10 @@ function flexline_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
-		'flexline-samples',
+		'flexline-posts-templates',
 		array(
-			'label'       => __( 'Content Samples', 'flexline' ),
-			'description' => __( 'Samples of patterns for review and testing.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'flexline-page',
-		array(
-			'label'       => __( 'Template - Pages', 'flexline' ),
-			'description' => __( 'Full pages with multiple sections that are grouped together.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'flexline-events',
-		array(
-			'label'       => __( 'Template - Events', 'flexline' ),
-			'description' => __( 'Events Templates.', 'flexline' ),
+			'label'       => __( 'Template Parts - Posts', 'flexline' ),
+			'description' => __( 'Template parts used in posts', 'flexline' ),
 		)
 	);
 	register_block_pattern_category(
@@ -110,13 +89,6 @@ function flexline_register_block_pattern_categories() {
 		array(
 			'label'       => __( 'Template Parts - Utilities', 'flexline' ),
 			'description' => __( 'Small pre-configured parts for templates.', 'flexline' ),
-		)
-	);
-	register_block_pattern_category(
-		'flexline-samples',
-		array(
-			'label'       => __( 'Testing Samples', 'flexline' ),
-			'description' => __( 'Samples of patterns and configurations for testing and training.', 'flexline' ),
 		)
 	);
 }

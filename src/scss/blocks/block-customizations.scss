@@ -22,4 +22,43 @@ body,
 		border-radius: var(--wp--custom--image-border-radius);
 		box-shadow: var(--wp--custom--box-shadow);
 	}
+
+
+	.flexline-icon-internal-link,
+	.flexline-icon-video-play{
+		.wp-element-button:after {
+			display: inline-flex;
+		}
+	}
+	.flexline-icon-internal-link {
+		.wp-element-button:after {
+			content: "\00A0→";
+		}
+	}
+	.flexline-icon-download {
+		.wp-element-button:after {
+			content: "\00A0⤓";
+		}
+	}
+	.flexline-icon-open-modal {
+		.wp-element-button:after {
+			content: "\00A0⤢";
+		}
+	}
+	.flexline-icon-video-play {
+		.wp-element-button:after {
+			content: "\00A0►";
+		}
+	}
+	.flexline-icon-link-out {
+		.wp-element-button:after {
+			content: "\00A0↗";
+		}
+	}
+
+	.wp-block-image img[style*="object-fit:"] {
+		//width: 100%;
+		object-position: center center;
+	}
+
 }

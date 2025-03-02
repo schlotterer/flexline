@@ -1,3 +1,5 @@
+@import "main/variables";
+
 #flexline-modal {
 	box-sizing: border-box;
 
@@ -10,6 +12,12 @@
 	/* Adjustments for better responsiveness */
 	max-width: 90%;
 	max-height: 80vh;
+}
+
+#flexline-modal img,
+#flexline-modal video {
+	object-fit: contain;
+	object-position: center center;
 }
 
 #flexline-modal span[role="button"] {
@@ -32,16 +40,20 @@
 }
 
 /* Aspect Ratio Box */
+.aspect-ratio-16-9.iframe {
+	padding-top: 56.25%;
+}
+
+/* Aspect Ratio Box */
 .aspect-ratio-16-9 {
 	position: absolute;
 	width: 90%;
-	padding-top: 56.25%;
 	margin: auto;
 	top: 50%;
 	transform: translate(0, -50%);
 }
 
-@media only screen and (max-width: 781.98px) {
+@include screen($mobile){
 
 	.aspect-ratio-16-9 {
 		width: calc(100% - 10px);
@@ -58,6 +70,12 @@
 	height: 100%;
 	max-width: 100%;
 	max-height: 100%;
+}
+
+.aspect-ratio-16-9 video {
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 figure.wp-block-image.enable-modal {
@@ -133,11 +151,6 @@ figure.wp-block-image.enable-modal {
 	width: 100%;
 	height: 100%;
 	transform: translate(-50%, -50%);
-}
-
-
-.enable-modal > a {
-	display: inline-flex;
 }
 
 // Poster Gallery

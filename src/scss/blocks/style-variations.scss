@@ -17,7 +17,23 @@ body,
 		text-shadow: var(--wp--custom--text-shadow);
 	}
 
-	@media only screen and (min-width: 782px ) {
+	.is-style-eyebrow{
+		font-size: var(--wp--custom--eyebrow-size);
+		font-family: var(--wp--custom--eyebrow-font);
+		color: var(--wp--custom--eyebrow-color);
+		text-transform: var(--wp--custom--eyebrow-text-transform);
+		line-height: 1.05;
+	}
+
+	.is-style-creative{
+		font-size: var(--wp--custom--creative-size);
+		font-family: var(--wp--custom--creative-font);
+		color: var(--wp--custom--creative-color);
+		text-transform: var(--wp--custom--creative-text-transform);
+		line-height: 1.05;
+	}
+
+	@include screen($tablet-up){
 
 		/* -- Navigation Link -- */
 		// TODO: why is this like this?
@@ -26,6 +42,17 @@ body,
 			padding: 8px 15px;
 		}
 
+	}
+
+	.is-style-text-link .wp-element-button {
+		border-radius: 0;
+		padding: 0 !important;
+		background-color: transparent !important;
+		line-height: var(--wp--custom--body-line-height);
+		box-shadow: 0px 0px 0px currentColor !important;
+		&:hover {
+			box-shadow: 0px 3px 0px currentColor !important;
+		}
 	}
 
 }

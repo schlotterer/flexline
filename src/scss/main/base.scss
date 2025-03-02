@@ -10,6 +10,18 @@
 html {
 	scroll-behavior: smooth;
 }
+html,
+body {
+    scroll-padding-top: 100px; /* set to the height of your header */
+}
+
+body.baguetteBox-open,
+body.no-scroll {
+	overflow: hidden; /* Hide scrollbars and disable scrolling */
+	height: 100%; /* Optional: to ensure full page height */
+	width: 100%; /* Optional: to ensure full page width */
+	position: fixed; /* Optional: to lock the position */
+}
 
 body,
 .editor-styles-wrapper {
@@ -62,21 +74,21 @@ body,
 	input,
 	select,
 	textarea {
-		background-color: var(--wp--preset--color--base);
+		//background-color: var(--wp--preset--color--base);
 		//border: 1px solid var(--wp--preset--color--contrast);
-		border-radius: 0;
+		//border-radius: 0;
 		color: var(--wp--preset--color--contrast);
 		font-family: var(--wp--preset--font-family--body);
 		font-size: var(--wp--preset--font-size--medium);
 		font-weight: var(--wp--custom--font-weight--light);
 		line-height: var(--wp--custom--line-height--body);
-		padding: 10px 20px;
+		//padding: 10px 20px;
 		width: 100%;
 	}
 
 	input:focus,
 	textarea:focus {
-		background-color: var(--wp--preset--color--base);
+		//background-color: var(--wp--preset--color--base);
 		outline: none;
 	}
 
@@ -96,9 +108,9 @@ body,
 	}
 
 	::placeholder {
-		color: var(--wp--preset--color--contrast);
-		font-size: var(--wp--preset--font-size--small);
-		opacity: 0.5;
+		//color: var(--wp--preset--color--contrast);
+		//font-size: var(--wp--preset--font-size--small);
+		//opacity: 0.5;
 	}
 
 	/* Blocks
@@ -112,136 +124,75 @@ body,
 		padding: 5px 8px;
 	}
 
-
-	/* -- Navigation -- */
-
-	.wp-block-navigation__responsive-container.is-menu-open {
-		padding: var(--wp--custom--spacing--gap);
+	/* -- Headers -- */
+	@include screen($mobile){
+		.site-header{
+			#header_container {
+				justify-content: flex-start;
+			}
+		}
 	}
-
-	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
-		padding-top: var(--wp--custom--spacing--gap);
-	}
-
-	.wp-block-navigation__responsive-container-close,
-	.wp-block-navigation__responsive-container-open {
-		border: 1px solid currentcolor;
-		padding: 2px;
-	}
-
-	.has-background .wp-block-navigation__responsive-container-open:focus,
-	.has-background .wp-block-navigation__responsive-container-open:hover {
-		color: var(--wp--preset--color--base);
-	}
-
-	/* -- Navigation Submenu -- */
-	.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
-		background-color: var(--wp--preset--color--base);
-		border: var(--wp--preset--color--base);
-		//color: var(--wp--preset--color--contrast);
-		padding: 10px;
-	}
-
-	.wp-block-navigation :where(.wp-block-navigation__submenu-container) a {
-		padding: 2px 10px;
-	}
-
-	.wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-container {
-		padding-top: 0 !important;
-		padding-right: 10px !important;
-		padding-left: 10px !important;
-	}
-
-	.wp-block-navigation {
-
-		&.is-style-main-header-nav .wp-block-navigation-item {
-
-			*:not(.wp-element-button):not(span) {
-				color: var(--wp--custom--nav-main-color);
-
-				&:hover {
-					color: var(--wp--custom--nav-main-hover-color);
+	$buttonSpace : 40px;
+	#web4sl-call-button{
+		~ .site-header{
+			#header_container {
+				padding-left: $buttonSpace;
+			}
+		}
+		&:not(.web4sl-hide-on-mobile) {
+			@include screen($mobile){
+				~ .site-header{
+					#header_container {
+						display: flex;
+						justify-content: center;
+					}
 				}
 			}
-
-			&.current-menu-item > a:not(.wp-element-button),
-			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button {
-				color: var(--wp--custom--nav-main-hover-color);
-			}
 		}
-
-		&.is-style-light-over-dark .wp-block-navigation-item {
-
-			*:not(.wp-element-button):not(span) {
-				color: var(--wp--custom--nav-light-over-dark-color);
-
-				&:hover {
-					color: var(--wp--custom--nav-light-over-dark-hover-color);
+		&.web4sl-hide-on-mobile {
+			@include screen($mobile){
+				~ .site-header{
+					#header_container {
+						padding-left: 0;
+					}
 				}
 			}
-
-			&.current-menu-item > *:not(.wp-element-button),
-			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button {
-				color: var(--wp--custom--nav-light-over-dark-hover-color);
-			}
 		}
-
-		&.is-style-dark-over-light .wp-block-navigation-item {
-
-			a:not(.wp-element-button) {
-				color: var(--wp--custom--nav-dark-over-light-color);
-
-				&:hover {
-					color: var(--wp--custom--nav-dark-over-light-hover-color);
+		&.web4sl-hide-on-tablet {
+			@include screen($tablet){
+				~ .site-header  #header_container{
+					padding-left: 0;
 				}
 			}
+		}
+		&.web4sl-hide-on-desktop {
+			@include screen($desktop){
+				~ .site-header  #header_container{
+					padding-left: 0;
+				}
+			}
+		}
+	} 
 
-			&.current-menu-item > *:not(.wp-element-button),
-			> a.current-menu-ancestor,
-			> a.current-menu-ancestor + button {
-				color: var(--wp--custom--nav-dark-over-light-hover-color);
+	#slide-in-menu-button{
+		~ .site-header #header_container{
+			padding-right: $buttonSpace;
+		}
+		&.flexline-hide-on-tablet{
+			@include screen($tablet){
+				~ .site-header #header_container{
+					padding-right: 0px;
+				}
+			}
+		}
+		&.flexline-hide-on-desktop{
+			@include screen($desktop){
+				~ .site-header #header_container{
+					padding-right: 0px;
+				}
 			}
 		}
 	}
-
-
-	.site-header .wp-block-navigation__container {
-
-		.wp-block-navigation__submenu-container {
-			min-width: 250px !important;
-			transition: var(--wp--custom--transition-time);
-			align-items: center;
-			gap: 12px;
-
-			a {
-				text-align: center;
-			}
-
-			.wp-block-navigation-item__label {
-				line-height: 1.1;
-				text-align: center;
-			}
-		}
-	}
-
-	.site-header .wp-block-navigation__container.items-justified-center {
-
-		.wp-block-navigation__submenu-container {
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
-	}
-
-
-	#flexline-call-button ~ .site-header #header_container {
-
-		@media (max-width: 781.98px) {
-			justify-content: center !important;
-		}
-	}
-
 
 	// Gravity Forms
 	&.flexline .gform-theme--foundation.gform_wrapper {
@@ -255,7 +206,7 @@ body,
 	}
 
 	// Phone link
-	@media only screen and (max-width: 781.98px) {
+	@include screen($mobile){
 
 		#phonelink > a {
 			padding: 8px 5px !important;
@@ -280,6 +231,9 @@ body,
 		}
 	}
 
+	header.site-header {
+		margin-block-start: 0;
+	}
 	.site-footer {
 		// Address
 		address {
@@ -318,9 +272,14 @@ body,
 		z-index: 11;
 		position: relative;
 	}
-
-	// Fix cover images
-	img[style*="cover"] {
-		width: 100%;
+	&.web4sl-phone-liink-show-on-mobile{
+		@include screen($mobile){
+			.site-header{
+				#header_container {
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
 	}
 }

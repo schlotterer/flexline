@@ -3,7 +3,7 @@
 /**
  * Title: Post Grid Single - Card Image, Category, Title
  * Slug: flexline/post-grid-single-card-alt
- * Categories: flexline-posts, flexline-components
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 

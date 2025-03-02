@@ -15,10 +15,7 @@
                 <div class="wp-block-column is-justify-content-center-mobile" style="flex-basis:250px"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"className":"has-text-align-center","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group has-text-align-center"><!-- wp:site-logo {"width":200,"style":{"color":{"duotone":["#ffffff","#ffffff"]}}} /-->
 
-                        <!-- wp:shortcode -->
-                        [flexline_contact_info]
-                        <!-- /wp:shortcode -->
-
+                        
                         <!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#000","iconBackgroundColor":"base","iconBackgroundColorValue":"#fff","style":{"spacing":{"blockGap":"10px"}},"className":"is-style-default"} -->
                         <ul class="wp-block-social-links has-icon-color has-icon-background-color is-style-default"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
 
@@ -33,9 +30,8 @@
                 <!-- /wp:column -->
 
                 <!-- wp:column {"width":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-                <div class="wp-block-column"><!-- wp:image {"align":"center","id":385,"width":"325px","height":"auto","aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"custom"} -->
-                    <figure class="wp-block-image aligncenter size-full is-resized"><a href="https://www.google.com/maps"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/map.webp'; ?>" alt="" class="wp-image-385" style="aspect-ratio:3/2;object-fit:cover;width:325px;height:auto" /></a></figure>
-                    <!-- /wp:image -->
+                <div class="wp-block-column">
+                    
                 </div>
                 <!-- /wp:column -->
 

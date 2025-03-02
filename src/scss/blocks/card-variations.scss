@@ -38,34 +38,34 @@ body,
 		}
 
 	}
-
+	.is-style-glass-card,
 	.is-style-card-padded,
 	.is-style-outlined {
-		padding: var(--wp--preset--spacing--small) !important;
+		padding: var(--wp--preset--spacing--small);
 
 		&.has-global-padding,
 		&.has-global-padding:where(.has-global-padding:not(.wp-block-block)) {
-			padding: var(--wp--preset--spacing--small) !important;
+			padding: var(--wp--preset--spacing--small);
 		}
 
 	}
 
 	.is-style-card-alt {
-		padding: 0 !important;
+		padding: 0;
 
 		&.has-global-padding,
 		&.has-global-padding :where(.has-global-padding:not(.wp-block-block)) {
-			padding: 0 !important;
+			padding: 0;
 		}
 
 		> *:not(figure):not(.wp-block-cover) {
-			padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
+			padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
 		}
 
 		&.has-global-padding {
 
 			> *:not(figure) {
-				padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) !important;
+				padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
 			}
 		}
 	}
@@ -114,8 +114,8 @@ body,
 	.is-style-glass-card,
 	.wp-block-button.is-style-glass-button .wp-element-button {
 		background: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
-		backdrop-filter: blur(10px) saturate(75%);
-		-webkit-backdrop-filter: blur(10px) saturate(75%);
+		backdrop-filter: blur(10px) saturate(70%);
+		-webkit-backdrop-filter: blur(10px) saturate(70%);
 		transition: var(--wp--custom--transition-time);
 
 		&.group-link {
@@ -124,8 +124,8 @@ body,
 
 				background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
 				box-shadow: var(--wp--preset--shadow--diffused);
-				backdrop-filter: blur(15px) saturate(60%);
-				-webkit-backdrop-filter: blur(15px) saturate(60%);
+				backdrop-filter: blur(15px) saturate(55%);
+				-webkit-backdrop-filter: blur(15px) saturate(55%);
 			}
 		}
 	}
