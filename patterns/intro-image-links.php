@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Feature Image Links
+ * Title: Intro Text and Feature Image Links
  * Slug: flexline/feature-image-links
  * Categories: flexline-modules
  */

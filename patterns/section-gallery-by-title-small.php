@@ -29,13 +29,13 @@ namespace FlexLine\flexline;
         <!-- wp:column {"verticalAlignment":"center","width":"65%","metadata":{"name":"Galleries Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%"><!-- wp:group {"metadata":{"name":"Galleries Container"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
             <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"grid","minimumColumnWidth":"250px"}} -->
-                <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card","categories":["flexline-components","flexline-galleries"],"patternName":"flexline/gallery-photo-poster-card"},"className":"group-link group-link-type-none is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"enableGroupLink":true,"groupLinkURL":"#"} -->
+                <div class="wp-block-group">
                     
                     <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
                     <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
                     <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
                     <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
-                
+
                 </div>
                 <!-- /wp:group -->
             </div>
