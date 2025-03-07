@@ -44,7 +44,7 @@ namespace FlexLine\flexline;
     </figure>
     <!-- /wp:gallery -->
 
-    <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"constrained"}} -->
+    <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"default"}} -->
     <div class="wp-block-group"><!-- wp:paragraph {"align":"center","metadata":{"name":"Poster Gallery Title"},"className":"","style":{"typography":{"textTransform":"none","lineHeight":"1.1"}},"fontFamily":"display"} -->
         <p class="has-text-align-center has-display-font-family" style="line-height:1.1;text-transform:none">Poster Gallery Title</p>
         <!-- /wp:paragraph -->

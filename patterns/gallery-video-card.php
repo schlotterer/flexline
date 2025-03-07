@@ -13,7 +13,7 @@ namespace FlexLine\flexline;
     <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
     <!-- /wp:image -->
 
-    <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"constrained"}} -->
+    <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"default"}} -->
     <div class="wp-block-group"><!-- wp:paragraph {"align":"center","metadata":{"name":"Video Title"},"className":"","fontFamily":"brand"} -->
         <p class="has-text-align-center has-brand-font-family">Video Title</p>
         <!-- /wp:paragraph -->
