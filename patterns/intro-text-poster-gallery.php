@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Text and Poster Gallery.
+ * Title: Intro Text and Poster Gallery.
  * Slug: flexline/text-poster-gallery
  * Categories: flexline-modules
  */

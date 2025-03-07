@@ -8,7 +8,7 @@
 
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"metadata":{"name":"Gallery Modal - Wide"},"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"Gallery Modal - Wide"},"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"}} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-card-alt","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->

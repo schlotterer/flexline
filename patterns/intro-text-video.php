@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Text and Video.
+ * Title: Intro Text and Video.
  * Slug: flexline/text-video
  * Categories: flexline-modules
  */
