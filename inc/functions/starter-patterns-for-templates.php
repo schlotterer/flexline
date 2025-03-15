@@ -1,59 +1,61 @@
 <?php
 /**
- * Dynamically insert starter patterns based on template.
- *
+ * Dynamically insert starter patterns based on template. 
+ * The theme also comes with page and post starter starter patterns.
+ * Duplicate them and name them Page Starter and Post Starter to have them auto insert when a new page or post is created.
+ * theme-page-starter-starter.php and theme-post-starter-starter.php
+ * 
  * @package flexline
  */
 namespace FlexLine\flexline;
 
-
 /**
- * Auto-insert different starter patterns based on the assigned template.
+ * Auto-insert a block pattern stored in the database into new posts.
  *
- * For pages (or other post types that allow custom templates),
- * this function checks the chosen template file name,
- * then looks up a wp_block pattern with the same slug (minus the .html).
+ * This function retrieves a block pattern (stored as a post of type 'wp_block')
+ * based on the new post’s type. If found, its post content is returned
+ * as the default content.
  *
  * @param string  $content The default post content.
  * @param WP_Post $post    The post object.
- * @return string          Modified post content.
+ * @return string Modified post content.
  */
-
-function auto_insert_pattern_based_on_template( $content, $post ) {
-  
-
-    // Only run on empty content (i.e., brand-new posts).
-    if ("" !== $content  ) {
+function auto_insert_pattern_from_db( $content, $post ) {
+    // Only modify content if it's empty (i.e. for new posts).
+    if ( ! empty( $content ) ) {
         return $content;
     }
 
-    // Only proceed if the post has a valid template set.
-    $template_file = get_page_template_slug( get_the_ID() );
-    var_dump($template_file);
-    if ( ! $template_file ) {
+    // Map each post type to its corresponding block pattern slug.
+    $pattern_slugs = array(
+        'post' => 'post-starter',  // Replace with your actual slug for posts.
+        'page' => 'page-starter',  // Replace with your actual slug for pages.
+        // Add additional mappings for other custom post types if needed.
+    );
+
+    $post_type = $post->post_type;
+    if ( empty( $post_type ) || ! isset( $pattern_slugs[ $post_type ] ) ) {
         return $content;
     }
 
+    $pattern_slug = $pattern_slugs[ $post_type ];
 
-    // Example: if $template_file = 'page-hero-title.html', remove the extension and add '-starter' to get 'page-hero-title-starter'.
-    // This becomes the pattern slug we'll look for in wp_block.
-    $pattern_slug = pathinfo( $template_file, PATHINFO_FILENAME ) . '-starter';
-
-    // Query the database for a wp_block with that slug.
-    $args  = array(
+    // Query the block pattern from the database using WP_Query.
+    $args = array(
         'post_type'      => 'wp_block',
-        'name'           => $pattern_slug,  // 'name' matches the post slug
+        'name'           => $pattern_slug,
         'post_status'    => 'publish',
         'posts_per_page' => 1,
     );
     $query = new \WP_Query( $args );
 
     if ( ! $query->have_posts() ) {
-        return $content; // No matching pattern found
+        return $content;
     }
 
-    // Retrieve the pattern's post_content and use it as the default content.
-    $pattern_post = $query->posts[0];
-    return $pattern_post->post_content;
+    $pattern = $query->posts[0];
+
+    // Return the post_content of the retrieved block pattern.
+    return $pattern->post_content;
 }
-add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_based_on_template', 10, 2 );
+add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_from_db', 10, 2 );

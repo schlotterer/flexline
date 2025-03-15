@@ -482,6 +482,7 @@
 			"headerSearchButtonPadding": "4px",
 			"decoColor": "var(--wp--preset--color--highlight)",
 			"gradientAngle": "300deg",
+			"placeholderColor": "var(--wp--preset--color--neutral-dark)",
 			"color":{
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
@@ -1197,7 +1198,7 @@
 	"customTemplates": [
 		{
 			"name": "blank",
-			"title": "Blank"
+			"title": "Blank - No Header or Footer"
 		},
 		{
 			"name": "page-hero-title",
@@ -1208,12 +1209,16 @@
 			"title": "Page - Menu Over Hero & No Form"
 		},
 		{
-			"name": "page-no-title",
-			"title": "Page No Title"
+			"name": "page-no-form",
+			"title": "Page with no form"
 		},
 		{
-			"name": "page-no-title-no-form",
-			"title": "Page No Title & No Form"
+			"name": "page-no-hero",
+			"title": "Page No Hero - Page title included automatically"
+		},
+		{
+			"name": "page-no-hero-no-form",
+			"title": "Page No Hero & No Form  - Page title included automatically"
 		},
 		{
 			"name": "events-single",
@@ -1229,6 +1234,11 @@
 			"area": "topbar",
 			"name": "slide-in",
 			"title": "Slide In"
+		},
+		{
+			"area": "topbar",
+			"name": "notification-bar",
+			"title": "Notification Bar"
 		},
 		{
 			"area": "header",
