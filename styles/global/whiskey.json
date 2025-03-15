@@ -454,6 +454,8 @@
 			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--primary)",
 			"navMainHoverColor": "var(--wp--preset--color--secondary)",
+			"navMainSubColor": "var(--wp--preset--color--base)",
+			"navMainSubHoverColor": "var(--wp--preset--color--alternate)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--secondary)",
 			"navLightOverDarkColor": "var(--wp--preset--color--base)",
@@ -477,6 +479,9 @@
 			"transitionTime": "0.35s ease-in-out",	
 			"searchMenuIconColor": "var(--wp--preset--color--secondary)",
 			"searchMenuIconHoverColor": "var(--wp--preset--color--secondary-dark)",
+			"headerSearchColor": "var(--wp--preset--color--contrast)",
+			"headerSearchInputBackground": "var(--wp--preset--color--base)",
+			"headerSearchButtonPadding": "4px",
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"gradientAngle": "300deg",
 			

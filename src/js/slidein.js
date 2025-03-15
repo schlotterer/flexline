@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		button.setAttribute('aria-controls', 'slide-in-menu');
 		button.setAttribute('aria-expanded', 'false');
 		button.setAttribute('tabindex', '0');
+		button.style.position = 'fixed';
 		button.innerHTML =
 			'<span class="material-symbols-outlined">' +
 			initialIcon +
@@ -92,9 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Function to adjust the position of the main button based on scroll position.
 	function toggleButtonPosition(buttonToPosition) {
 		let isScrolled = window.scrollY > 0;
+		const body = document.body;
 		const headerSiteHeader = document.querySelector('header.site-header');
 
-		// If headersiteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+		// If header siteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
 		if (
 			headerSiteHeader.classList.contains('headroom') &&
 			headerSiteHeader.classList.contains('headroom--unpinned')
@@ -107,13 +109,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			isScrolled = false;
 		}
 
-		if (isScrolled) {
+		if (
+			isScrolled &&
+			!body.classList.contains('headroom--fixed-all-the-time')
+		) {
 			const isSmallScreen = window.matchMedia(
 				'(max-width: 781.98px)'
 			).matches;
 			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
 		} else {
-			buttonToPosition.style.top = '';
 			centerButtonInHeader(buttonToPosition);
 		}
 	}
@@ -126,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const offset =
 				(headerContainer.offsetHeight - buttonToCenter.offsetHeight) /
 				2;
-			buttonToCenter.style.position = 'fixed';
+
 			// Use offsetTop for a more stable reference point from the document's start
 			buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
 		}

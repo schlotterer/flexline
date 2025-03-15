@@ -24,7 +24,7 @@
 .wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
     background-color: var(--wp--preset--color--base);
     border: var(--wp--preset--color--base);
-    padding: 10px;
+    padding: 20px 10px;
 }
 
 .wp-block-navigation :where(.wp-block-navigation__submenu-container) a {
@@ -82,6 +82,19 @@
         > a.current-menu-ancestor,
         > a.current-menu-ancestor + button {
             color: var(--wp--custom--nav-main-hover-color);
+        }
+
+        .wp-block-navigation-submenu{
+            *:not(.wp-element-button):not(span) {
+                color: var(--wp--custom--nav-main-sub-color);
+    
+                &:hover {
+                    color: var(--wp--custom--nav-main-sub-hover-color);
+                }
+            }
+            .current-menu-item > a:not(.wp-element-button){
+                color: var(--wp--custom--nav-main-sub-hover-color);
+            }
         }
     }
 

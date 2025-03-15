@@ -10,15 +10,15 @@ body.flexline {
     .gform-theme--framework select[multiple]:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
     .gform-theme--framework textarea:where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)) {
         --gf-local-radius: var(--wp--custom--border-radius);
-        --gf-color-primary: var(--wp--preset--color--primary);
-        --gf-color-primary-darker: var(--wp--preset--color--primary-dark);
-        --gf-color-primary-lighter: var(--wp--preset--color--primary-light);
-        --gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
-        --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
-        --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
-        --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
-        --gf-ctrl-border-color: var(--wp--preset--color--neutral);
-        --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
+        //--gf-color-primary: var(--wp--preset--color--primary);
+        //--gf-color-primary-darker: var(--wp--preset--color--primary-dark);
+        //--gf-color-primary-lighter: var(--wp--preset--color--primary-light);
+        //--gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
+        //--gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
+        //--gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
+        //--gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
+        //--gf-ctrl-border-color: var(--wp--preset--color--neutral);
+        //--gf-ctrl-accent-color: var(--wp--preset--color--secondary);
     }
 
     .gform-theme--framework.gform-theme.gform_wrapper .button:where(:not(.gform-theme-no-framework)):where(:not(.gform-theme__disable):not(.gform-theme__disable *):not(.gform-theme__disable-framework):not(.gform-theme__disable-framework *)),
@@ -38,28 +38,21 @@ body.flexline {
     }
 	
 
-    .gform-theme--framework.gform-theme.gform_wrapper {
-        --gf-color-primary: var(--wp--preset--color--primary);
-        --gf-color-primary-darker: var(--wp--preset--color--primary-dark);
-        --gf-color-primary-lighter: var(--wp--preset--color--primary-light);
-        --gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
-        --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
-        --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
-        --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
-		--gf-ctrl-btn-bg-color-hover-primary: var(--wp--preset--color--alternate);
-        --gf-ctrl-border-color: var(--wp--preset--color--neutral);
-        --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
-    }
+    //.gform-theme--framework.gform-theme.gform_wrapper {
+    //    --gf-color-primary: var(--wp--preset--color--primary);
+    //    --gf-color-primary-darker: var(--wp--preset--color--primary-dark);
+    //    --gf-color-primary-lighter: var(--wp--preset--color--primary-light);
+    //    --gf-color-in-ctrl-primary: var(--wp--preset--color--primary);
+    //    --gf-color-in-ctrl-primary-darker: var(--wp--preset--color--primary-dark);
+    //    --gf-color-in-ctrl-primary-lighter: var(--wp--preset--color--primary-light);
+    //    --gf-ctrl-btn-bg-color-primary: var(--wp--preset--color--secondary);
+	//	--gf-ctrl-btn-bg-color-hover-primary: var(--wp--preset--color--alternate);
+    //    --gf-ctrl-border-color: var(--wp--preset--color--neutral);
+    //    --gf-ctrl-accent-color: var(--wp--preset--color--secondary);
+    //}
 
-    .em.em-item.em-item-single.size-medium .em-item-header .em-item-image img,
-    .em.em-item.em-item-single.size-small .em-item-header .em-item-image img,
-    .em.em-item.em-item-single .em-item-image img {
-        border: none;
-    }
+    
 
-    .em-event-add-to-calendar-content,
-    .tippy-box {
-        min-width: 150px;
-    }
+    
 
 }

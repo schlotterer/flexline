@@ -33,10 +33,12 @@ function flexline_enqueue_styles() {
 	// Scripts.
 	wp_enqueue_script( 'flexline-global', get_template_directory_uri() . '/assets/built/js/global.js', array(), THEME_VERSION, true );
 	$show_menu_on_scroll = get_option( 'flexline_show_menu_on_scroll_up', false );
-	if ( $show_menu_on_scroll == true ) {
+	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
+	if ( $show_menu_on_scroll == true || $show_menu_all_the_time == true ) {
 		wp_enqueue_script( 'flexline-headroom', get_template_directory_uri() . '/assets/js/headroom.min.js', array(), THEME_VERSION, true );
 		wp_enqueue_script( 'flexline-headroom-init', get_template_directory_uri() . '/assets/built/js/headroom.js', array(), THEME_VERSION, true );
 	}
+	wp_enqueue_script( 'flexline-load-early', get_template_directory_uri() . '/assets/built/js/load-early.js', array(), THEME_VERSION, false );
 	wp_enqueue_script( 'flexline-modal', get_template_directory_uri() . '/assets/built/js/modal.js', array(), THEME_VERSION, true );
 	wp_enqueue_script( 'flexline-slidein', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, args: true );
 
