@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-misc
  */
 ?>
-<!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Testimonial Card"}} -->
+<!-- wp:group {"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Testimonial Card"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->
     <p class="has-text-align-center has-primary-color has-text-color has-link-color has-max-72-font-size" style="line-height:1">“</p>
     <!-- /wp:paragraph -->
