@@ -484,7 +484,7 @@
 			"headerSearchButtonPadding": "4px",
 			"decoColor": "var(--wp--preset--color--secondary)",
 			"gradientAngle": "300deg",
-			
+			"placeholderColor": "var(--wp--preset--color--neutral-dark)",
 			"color":{
 				"deco": "var(--wp--preset--color--secondary)",
 				"alert": {
