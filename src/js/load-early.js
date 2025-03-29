@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	const headerSiteHeader = document.querySelector('header.site-header');
 	const mainContent = document.querySelector('.wp-site-blocks > main');
 	const body = document.body;
-	if (body.classList.contains('headroom-in-use')) {
+	if (
+		!headerSiteHeader.classList.contains('is-position-absolute') &&
+		body.classList.contains('headroom-in-use')
+	) {
 		mainContent.style.paddingTop = `${headerSiteHeader.offsetHeight}px`;
 	}
 });
