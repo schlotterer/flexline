@@ -268,11 +268,13 @@ body,
 	}
 
 	// Header - keep above sticky navigation
-	header.site-header {
-		z-index: 11;
-		position: relative;
+	&:not(.headroom-in-use) {
+		header.site-header {
+			z-index: 11;
+			position: relative;
+		}
 	}
-	&.web4sl-phone-liink-show-on-mobile{
+	&.web4sl-phone-link-show-on-mobile{
 		@include screen($mobile){
 			.site-header{
 				#header_container {
