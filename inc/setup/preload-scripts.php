@@ -13,9 +13,6 @@ namespace FlexLine\flexline;
  * @author Joel Schlotterer
  */
 function preload_scripts() {
-	/*
-	* There isn't really anything to preload right now, but it's set up for it.
-	* echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style"/>';
-	*/
+	echo '<link rel="preload" href="' . get_template_directory_uri() . '/wp-content/themes/flexline/assets/built/js/load-early.js" as="javascript"/>';
 }
 add_action( 'wp_head', __NAMESPACE__ . '\preload_scripts', 1 );
