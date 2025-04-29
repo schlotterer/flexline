@@ -66,14 +66,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		onPin() {
 			const menuButton = document.querySelector('#slide-in-menu-button');
 			const phoneButton = document.querySelector('#web4sl-call-button');
-			toggleButtonPosition(menuButton);
-			toggleButtonPosition(phoneButton);
+			if (menuButton) {
+				toggleButtonPosition(menuButton);
+			}
+			if (phoneButton) {
+				toggleButtonPosition(phoneButton);
+			}
 		},
 		onUnpin() {
 			const menuButton = document.querySelector('#slide-in-menu-button');
 			const phoneButton = document.querySelector('#web4sl-call-button');
-			toggleButtonPosition(menuButton);
-			toggleButtonPosition(phoneButton);
+			if (menuButton) {
+				toggleButtonPosition(menuButton);
+			}
+			if (phoneButton) {
+				toggleButtonPosition(phoneButton);
+			}
 		},
 	};
 
