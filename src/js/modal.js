@@ -48,21 +48,40 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	};
 
-	document.querySelectorAll('.enable-modal:not(.wp-block-button)').forEach((block) => {
-		const mediaElement = block.querySelector('img, a');
-		if (!mediaElement) {
-			return;
-		}
+	document
+		.querySelectorAll('.enable-modal:not(.wp-block-button)')
+		.forEach((block) => {
+			const mediaElement = block.querySelector('img, a');
+			if (!mediaElement) {
+				return;
+			}
 
-		const mediaUrl =
-			block.dataset.modalMediaUrl ||
-			mediaElement.getAttribute(
-				mediaElement.tagName === 'A' ? 'href' : 'src'
-			);
-		if (mediaUrl) {
-			enableModal(mediaElement, mediaUrl);
-		}
-	});
+			const mediaUrl =
+				block.dataset.modalMediaUrl ||
+				mediaElement.getAttribute(
+					mediaElement.tagName === 'A' ? 'href' : 'src'
+				);
+			if (mediaUrl) {
+				enableModal(mediaElement, mediaUrl);
+			}
+		});
+
+	// find all .enable-modal.wp-block-button elements
+	document
+		.querySelectorAll('.enable-modal.wp-block-button a')
+		.forEach((element) => {
+			const url = element.href;
+			if (!url) {
+				return;
+			}
+
+			if (url) {
+				element.addEventListener('click', (e) => {
+					e.preventDefault();
+					displayModal(url); // Function to display the modal
+				});
+			}
+		});
 
 	document.querySelectorAll('.wp-block-group.group-link').forEach((block) => {
 		const mediaUrl = block.dataset.groupLinkUrl;
