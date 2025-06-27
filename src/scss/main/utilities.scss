@@ -24,6 +24,13 @@ body,
 		z-index: 11 !important;
 	}
 
+	.pointer-events-none {
+		pointer-events: none;
+	}
+	.pointer-events-auto {
+		pointer-events: auto;
+	}
+
 	// primary gradients
 	.has-primary-primaryDark-gradient-background {
 		background: var(--wp--preset--gradient--primary-primary-dark);
