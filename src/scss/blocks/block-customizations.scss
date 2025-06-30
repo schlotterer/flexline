@@ -1,6 +1,13 @@
 body,
 .editor-styles-wrapper {
 
+	.nowrap{
+		white-space: nowrap;
+		.wp-block-button__link{
+			white-space: nowrap;
+		}
+	}
+
 	.wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
 	figure.wp-block-image.is-style-rounded {
 		border-radius: var(--wp--custom--image-border-radius);

@@ -98,36 +98,18 @@ function add_classes_to_block_content( $block_content, $added_classes ) {
  * @return mixed The modified block content.
  */
 function flexline_block_customizations_render( $block_content, $block ) {
-	if ( 'core/buttons' === $block['blockName'] ) {
-		$added_classes = '';
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-	}
+	
 	if ( 'core/button' === $block['blockName'] ) {
-		$added_classes = '';
-		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
-			// Add a class.
-			$added_classes .= 'enable-modal ';
-		}
 		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] === 'download' ) {
 			$search_string   = 'href="';
 			$replace_string  = 'download href="';
 			$block_content   = str_replace( $search_string, $replace_string, $block_content );
 		}
-
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] ) {
-			$added_classes .= 'flexline-icon-' . $block['attrs']['iconType'] . ' ';
-		}
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-
 	}
+
 	if ( 'core/image' === $block['blockName'] ) {
 
 		// Check if your custom attributes are set and not empty.
-		$added_classes = '';
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
 			$search_string   = 'loading="lazy"';
 			$replace_string  = '';
@@ -142,7 +124,6 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
 			// Add a class.
-			$added_classes .= 'enable-modal ';
 			// Add the media URL as a data attribute if it exists.
 			if ( ! empty( $block['attrs']['modalMediaURL'] ) ) {
 				// Insert your data attribute just before the closing tag of the element.
@@ -153,12 +134,8 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
 	if ( 'core/cover' === $block['blockName'] ) {
-		$added_classes = '';
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
 			$search_string   = 'loading="lazy"';
@@ -172,39 +149,14 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$replace_string = '<img loading="lazy" ';
 			$block_content  = str_replace( $search_string, $replace_string, $block_content );
 		}
-		$added_classes = '';
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 
 	}
-	if ( 'core/gallery' === $block['blockName'] ) {
-		// Check if your custom attributes are set and not empty.
-		if ( isset( $block['attrs']['enablePosterGallery'] ) && $block['attrs']['enablePosterGallery'] ) {
-			// Add a class.
-			$added_classes = 'poster-gallery ';
-			$block_content = add_classes_to_block_content( $block_content, $added_classes );
-		}
-	}
-	if ( 'core/navigation' === $block['blockName'] ) {
-		$added_classes = '';
-		// Check if your custom attributes are set and not empty.
-		if ( isset( $block['attrs']['enableHorizontalScroll'] ) && $block['attrs']['enableHorizontalScroll'] ) {
-			// Add a class.
-			$added_classes .= 'is-style-horizontal-scroll-at-mobile ';
-		}
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 
-	}
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
-		$added_classes = '';
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 
 			$link_type      = isset( $block['attrs']['groupLinkType'] ) ? $block['attrs']['groupLinkType'] : 'self';
 			$aria_label     = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-			$added_classes = 'group-link group-link-type-' . esc_attr( $link_type ) . ' ';
 
 			// Add a class.
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
@@ -215,17 +167,9 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
-		
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 
 	}
 	if ( 'core/columns' === $block['blockName'] ) {
-		$added_classes = '';
-		if ( isset( $block['attrs']['stackAtTablet'] ) && $block['attrs']['stackAtTablet'] ) {
-			$added_classes .= 'flexline-stack-at-tablet ';
-		}
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
 			$data_scroll_interval = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
 			$search_string  = '>';
@@ -239,47 +183,11 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$replace_string = ' '.$data_scroll_interval.'>';
 			$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 		}
-
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
 	}
-	if ( 'core/column' === $block['blockName'] ) {
-		$added_classes = '';
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-	}
-	if (
-		'core/heading' === $block['blockName'] ||
-		'core/paragraph' === $block['blockName'] ||
-		'core/video' === $block['blockName'] ||
-		'core/site-logo' === $block['blockName'] ||
-		'core/post-featured-image' === $block['blockName'] ||
-		'core/navigation-submenu' === $block['blockName'] ||
-		'core/navigation-link' === $block['blockName'] ||
-		'core/html' === $block['blockName'] ||
-		'core/social-link' === $block['blockName'] ||
-		'core/social-links' === $block['blockName'] ||
-		'core/spacer' === $block['blockName'] ||
-		'core/embed' === $block['blockName'] ) {
-		$added_classes = '';
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-	}
-
 
 	 // **Add Unique Class and Styles for Content Shift**
 	 if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
 
-        // Generate a unique class based on the block's attributes
-        $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
-        // Add the unique class to the block's classes
-        $added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
-		$block_content = add_classes_to_block_content( $block_content, $added_classes );
-        
-		
 		// Generate the styles
 		$shiftLeft = '0';
 		$shiftRight = '0';
