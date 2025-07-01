@@ -82,11 +82,18 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.enableLazyLoad) {
 				removedClasses.push('no-lazy-load');
 			}
+			if (!props.attributes.noWrap) {
+				removedClasses.push('nowrap');
+			}
 			if (!props.attributes.enablePosterGallery) {
 				removedClasses.push('poster-gallery');
 			}
 			if (!props.attributes.enableHorizontalScroll) {
 				removedClasses.push('is-style-horizontal-scroll-at-mobile');
+			}
+			if (!props.attributes.stackAtTablet
+			) {
+				removedClasses.push('flexline-stack-at-tablet');
 			}
 			// Scroller
 			if (!props.attributes.enableHorizontalScroller) {
@@ -350,6 +357,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 			if (props.name === 'core/button' && props.attributes.iconType) {
 				newClasses += ` flexline-icon-${props.attributes.iconType}`;
+			}
+
+			if (props.name === 'core/button' && props.attributes.noWrap === true) {
+				newClasses += ' nowrap';
 			}
 
 			if (props.name === 'core/image' || props.name === 'core/cover') {
@@ -944,6 +955,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								onChange={(newValue) =>
 									props.setAttributes({
 										enableModal: newValue,
+									})
+								}
+							/>
+							<ToggleControl
+								label="Do not allow text to wrap"
+								checked={!!props.attributes.noWrap}
+								onChange={(newValue) =>
+									props.setAttributes({
+										noWrap: newValue,
 									})
 								}
 							/>

@@ -23,6 +23,7 @@ namespace FlexLine\flexline;
 function register_assets() {
 	wp_register_style( 'baguettebox-css', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.css', array(), '1.11.1' );
 	wp_register_script( 'baguettebox', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.js', array(), '1.11.1', true );
+	wp_register_script( 'poster-gallery-helper', get_template_directory_uri() . '/assets/js/poster-gallery-helper.js', array(), '', true );
 
 	/**
 	 * Filters the CSS selector of baguetteBox.js.
@@ -72,6 +73,7 @@ function enqueue_assets() {
 
 	if ( $baguettebox_enqueue_assets ) {
 		wp_enqueue_script( 'baguettebox' );
+		wp_enqueue_script( 'poster-gallery-helper' );
 		wp_enqueue_style( 'baguettebox-css' );
 	}
 }

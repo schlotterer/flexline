@@ -83,38 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 
-	document.querySelectorAll('.wp-block-group.group-link').forEach((block) => {
-		const mediaUrl = block.dataset.groupLinkUrl;
-		if (!mediaUrl) {
-			return;
-		}
-
-		const triggerModal = (e) => {
-			e.preventDefault();
-			displayModal(mediaUrl);
-		};
-
-		const openInNewTab = (e) => {
-			e.preventDefault();
-			window.open(mediaUrl, '_blank').focus();
-		};
-
-		const redirectToUrl = (e) => {
-			e.preventDefault();
-			window.location.href = mediaUrl;
-		};
-
-		let action;
-		if (block.classList.contains('group-link-type-modal_media')) {
-			action = triggerModal;
-		} else if (block.classList.contains('group-link-type-new_tab')) {
-			action = openInNewTab;
-		} else {
-			action = redirectToUrl;
-		}
-
-		block.addEventListener('click', action);
-	});
+	document
+		.querySelectorAll('.group-link-type-modal_media .flexline-group-link-anchor')
+		.forEach((block) => {
+			const mediaUrl = block.href;
+			if (!mediaUrl) {
+				return;
+			}
+			const triggerModal = (e) => {
+				e.preventDefault();
+				displayModal(mediaUrl);
+			};
+			block.addEventListener('click', triggerModal);
+		});
 });
 
 function displayModal(mediaUrl) {
