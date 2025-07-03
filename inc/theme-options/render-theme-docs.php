@@ -219,6 +219,207 @@ function flexline_render_documentation_tab() {
                     </tbody>
                 </table>
             </section>
+
+
+            <!-- ✨ STYLE VARIATIONS -->
+            <section id="style-variations">
+    <h3>Style Variations (Block Styles)</h3>
+    <p>Select these from the block’s <strong>Styles ►</strong> menu to instantly change appearance—no custom CSS needed.</p>
+
+    <table class="flexline-docs-table">
+        <thead>
+            <tr>
+                <th style="width:22%">Block</th>
+                <th style="width:20%">Style&nbsp;Slug</th>
+                <th style="width:22%">Label in Editor</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+/* -----------------------------------------------------------------------
+ * 1.  Source-of-truth array you already register with
+ * -------------------------------------------------------------------- */
+$block_styles = [
+    'core/columns' => [
+        'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
+    ],
+    'core/group' => [
+        'shadow-light'    => __( 'Shadow', 'flexline' ),
+        'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
+        'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+        'card'            => __( 'Card', 'flexline' ),
+        'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
+        'card-alt'        => __( 'Card w/ Images that fill', 'flexline' ),
+        'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
+        'glass'           => __( 'Glass', 'flexline' ),
+        'glass-card'      => __( 'Glass Card', 'flexline' ),
+    ],
+    'core/image' => [
+        'shadow-light'    => __( 'Shadow', 'flexline' ),
+        'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
+        'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+        'card'            => __( 'Card', 'flexline' ),
+    ],
+    'core/post-featured-image' => [
+        'shadow-light'    => __( 'Shadow', 'flexline' ),
+        'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
+        'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+        'card'            => __( 'Card', 'flexline' ),
+    ],
+    'core/list' => [
+        'no-disc' => __( 'No Disc', 'flexline' ),
+    ],
+    'core/navigation' => [
+        'main-header-nav' => __( 'Main Header Style', 'flexline' ),
+        'dark-over-light' => __( 'Dark on Light', 'flexline' ),
+        'light-over-dark' => __( 'Light on Dark', 'flexline' ),
+    ],
+    'core/navigation-link' => [
+        'outline'     => __( 'Outline', 'flexline' ),
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/quote' => [
+        'shadow-light'    => __( 'Shadow', 'flexline' ),
+        'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
+        'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
+        'card'            => __( 'Card', 'flexline' ),
+        'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
+        'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
+        'glass'           => __( 'Glass', 'flexline' ),
+        'glass-card'      => __( 'Glass Card', 'flexline' ),
+    ],
+    'core/social-links' => [
+        'outline' => __( 'Outline', 'flexline' ),
+    ],
+    'core/heading' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+        'creative'    => __( 'Creative', 'flexline' ),
+    ],
+    'core/site-title' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+        'creative'    => __( 'Creative', 'flexline' ),
+    ],
+    'core/post-title' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+        'creative'    => __( 'Creative', 'flexline' ),
+    ],
+    'core/post-terms' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+    ],
+    'core/paragraph' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/post-date' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+    ],
+    'core/post-author' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/post-author-biography' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/post-author-name' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/post-excerpt' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/post-navigation-link' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+    ],
+    'core/query-pagination' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/query-title' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'creative'    => __( 'Creative', 'flexline' ),
+    ],
+    'core/read-more' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+    ],
+    'core/site-tagline' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+        'creative'    => __( 'Creative', 'flexline' ),
+    ],
+    'core/term-description' => [
+        'text-shadow' => __( 'Text Shadow', 'flexline' ),
+        'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+    ],
+    'core/button' => [
+        'glass-button' => __( 'Glass Button', 'flexline' ),
+        'text-link'    => __( 'Plain Text', 'flexline' ),
+    ],
+];
+
+/* -----------------------------------------------------------------------
+ * 2.  Rich descriptions keyed by same slug
+ * -------------------------------------------------------------------- */
+$style_descriptions = [
+    // Columns
+    'columns-reverse'   => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
+    // Box / layout styles
+    'card'              => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
+    'card-padded'       => 'Same as Card but with theme-small padding baked in.',
+    'card-alt'          => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
+    'outlined'          => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
+    'shadow-light'      => 'Subtle, soft shadow for slight elevation.',
+    'shadow-dark'       => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
+    'shadow-diffused'   => 'Wide, feathered shadow—great behind covers or hero quotes.',
+    'glass'             => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
+    'glass-card'        => 'Glass background plus card border-radius & light shadow—ideal over photography.',
+    // Lists
+    'no-disc'           => 'Strips bullets & left-padding for clean checklist or icon lists.',
+    // Nav
+    'main-header-nav'   => 'Opinionated spacing & weight for primary site navigation.',
+    'dark-over-light'   => 'Dark text color set atop light backgrounds; pairs with transparent links.',
+    'light-over-dark'   => 'Light text on dark backgrounds for hero/footers.',
+    'outline'           => 'Navigation links gain a 1 px outline & pill padding on desktop-up.',
+    // Text styles
+    'text-shadow'       => 'Applies the theme’s subtle text shadow variable for soft lift.',
+    'eyebrow'           => 'Small uppercase “eyebrow” heading with custom font/size/color.',
+    'creative'          => 'Large decorative headline style using the site’s creative font.',
+    // Buttons
+    'glass-button'      => 'Transparent glass button with blur & subtle border that intensifies on hover.',
+    'text-link'         => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
+];
+
+/* -----------------------------------------------------------------------
+ * 3.  Render table rows
+ * -------------------------------------------------------------------- */
+foreach ( $block_styles as $block => $styles ) {
+    $rowspan = count( $styles );
+    $first   = true;
+
+    foreach ( $styles as $slug => $label ) {
+        echo '<tr>';
+
+        // Block name only once
+        if ( $first ) {
+            echo '<td rowspan="' . esc_attr( $rowspan ) . '"><code>' . esc_html( $block ) . '</code></td>';
+            $first = false;
+        }
+
+        echo '<td><code>' . esc_html( $slug ) . '</code></td>';
+        echo '<td>' . esc_html( $label ) . '</td>';
+        echo '<td>' . esc_html( $style_descriptions[ $slug ] ?? '' ) . '</td>';
+        echo '</tr>';
+    }
+}
+?>
+        </tbody>
+    </table>
+</section>
+
+
+
             <!-- ✨ UTILITY CLASSES -->
             <section id="utility-classes">
                 <h3>Admin &amp; Front‑end Utility Classes</h3>
@@ -312,6 +513,37 @@ function flexline_render_documentation_tab() {
 
             
 
+            <!-- ✨ DEMO PATTERNS -->
+            <section id="demo-patterns">
+                <h3>Demo Patterns</h3>
+                <p>
+                    Want to explore every Flexline pattern in one place? Create a
+                    blank Page or Post, switch the editor to <strong>Code view</strong>,
+                    and paste the snippet below. Hit “Update/Publish” and you’ll get a
+                    fully-built demo page showcasing all pattern groups.
+                </p>
+
+                <pre>
+                    <code>
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;
+                    </code>
+                </pre>
+
+                <p class="notice">
+                    <em>Tip:</em> After previewing the page, you can delete sections you
+                    don’t need or copy individual patterns into other pages.
+                </p>
+            </section>
+
+
+
+
+            
+
         </div><!-- /.content-container -->
 
         <!-- ✨ SIDEBAR NAV -->
@@ -321,6 +553,7 @@ function flexline_render_documentation_tab() {
                 <ul>
                     <li><a href="#intro">Introduction</a></li>
                     <li><a href="#block-options">Flexline Block Options</a></li>
+                    <li><a href="#style-variations">Style Variations</a></li>
                     <li><a href="#utility-classes">Utility Classes</a>
                         <ul>
                             <li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
@@ -328,6 +561,7 @@ function flexline_render_documentation_tab() {
                             <li><a href="#flexbox-order">Flexbox Order</a></li>
                         </ul>
                     </li>
+                    <li><a href="#demo-patterns">Demo Patterns</a></li>
                     
                 </ul>
             </nav>
