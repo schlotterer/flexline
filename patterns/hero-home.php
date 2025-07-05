@@ -33,8 +33,8 @@ namespace FlexLine\flexline;
                         <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#quickForm">Contact Us</a></div>
                         <!-- /wp:button -->
 
-                        <!-- wp:button {"textColor":"base","className":"is-style-outline","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"enableModal":true,"modalMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-                        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.youtube.com/watch?v=qZ0_aa6RxvQ">Watch video</a></div>
+                        <!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/491423e87fb74c4a99e2e7c889badd98?sid=9d6ea3ff-f31c-4acb-a13b-e851936e5740"} -->
+                        <div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/491423e87fb74c4a99e2e7c889badd98?sid=9d6ea3ff-f31c-4acb-a13b-e851936e5740">Watch video</a></div>
                         <!-- /wp:button -->
                     </div>
                     <!-- /wp:buttons -->
