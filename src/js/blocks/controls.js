@@ -91,8 +91,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.enableHorizontalScroll) {
 				removedClasses.push('is-style-horizontal-scroll-at-mobile');
 			}
-			if (!props.attributes.stackAtTablet
-			) {
+			if (!props.attributes.stackAtTablet) {
 				removedClasses.push('flexline-stack-at-tablet');
 			}
 			// Scroller
@@ -359,7 +358,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				newClasses += ` flexline-icon-${props.attributes.iconType}`;
 			}
 
-			if (props.name === 'core/button' && props.attributes.noWrap === true) {
+			if (
+				props.name === 'core/button' &&
+				props.attributes.noWrap === true
+			) {
 				newClasses += ' nowrap';
 			}
 
@@ -505,7 +507,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				newClasses,
 				removedClasses
 			);
-			props.setAttributes({ className: combinedClasses });
+
+			const shouldUpdate = attributes.className !== combinedClasses;
+			if (shouldUpdate) {
+				props.setAttributes({ className: combinedClasses });
+			}
 
 			// **Add the Unique Class to the Wrapper in the Editor**
 			if (!props.wrapperProps) {
@@ -581,7 +587,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					styleElementRef.current = null;
 				}
 			};
-		}, [attributes, props.attributes, props.name, props, uniqueClass]);
+		}, [attributes, attributes.className, props.name, uniqueClass]);
 
 		if (props.name === 'core/image') {
 			return (
