@@ -3,7 +3,7 @@
 /**
  * Title: Hero for Home Page ( no breadcrumbs ).
  * Slug: flexline/hero-home
- * Categories: flexline-heroes, flexline-sections
+ * Categories: flexline-heroes
  */
 
 namespace FlexLine\flexline;
@@ -34,7 +34,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:button -->
 
                         <!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true,"modalMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-                        <div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/491423e87fb74c4a99e2e7c889badd98?sid=9d6ea3ff-f31c-4acb-a13b-e851936e5740">Watch video</a></div>
+                        <div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=74b6db6a-c0e1-47e7-9db9-0b560a002b1f">Watch video</a></div>
                         <!-- /wp:button -->
                     </div>
                     <!-- /wp:buttons -->
@@ -49,7 +49,7 @@ namespace FlexLine\flexline;
     <!-- wp:group {"metadata":{"name":"Scroll-to button"},"className":"flexline-content-shift flexline-content-shift-above flexline-content-shift-up","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"useContentShift":true,"shiftUp":"18px","shiftToTop":true} -->
     <div id="home-hero-next" class="wp-block-group flexline-content-shift flexline-content-shift-above flexline-content-shift-up" style="margin-top:0;margin-bottom:0"><!-- wp:buttons {"className":"","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"top"}} -->
         <div class="wp-block-buttons" style="margin-top:0px;margin-bottom:0px"><!-- wp:button {"backgroundColor":"secondary","className":"animated bounce delay-2s slow  flexline-icon-none","style":{"border":{"radius":"100px"},"spacing":{"padding":{"left":"var:preset|spacing|medium","right":"var:preset|spacing|medium","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}}} -->
-            <div class="wp-block-button animated bounce delay-2s slow  flexline-icon-none"><a class="wp-block-button__link has-secondary-background-color has-background wp-element-button" href="#scrollTo" style="border-radius:100px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">↓</a></div>
+            <div class="wp-block-button animated bounce delay-2s slow  flexline-icon-none"><a class="wp-block-button__link has-secondary-background-color has-background wp-element-button" href="#home-hero-next" style="border-radius:100px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">↓</a></div>
             <!-- /wp:button -->
         </div>
         <!-- /wp:buttons -->

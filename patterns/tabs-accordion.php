@@ -4,7 +4,7 @@
  * Title: Tabs Accordion
  * Dependencies: Plethora Tabs + Accordions - https://plethoraplugins.com/tabs-accordions/
  * Slug: flexline/tabs-accordion
- * Categories: flexline-modules, flexline-components, flexline-misc
+ * Categories: flexline-components, flexline-misc
  */
 ?>
 <!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null],"className":"","metadata":{"name":"Accordion","categories":["flexline-misc"],"patternName":"flexline/tabs-accordion"}} -->

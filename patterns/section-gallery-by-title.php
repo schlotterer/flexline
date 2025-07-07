@@ -3,7 +3,7 @@
 /**
  * Title: Section Gallery next to title
  * Slug: flexline/section-gallery-by-title
- * Categories: flexline-sections, flexline-modules
+ * Categories: flexline-sections
  */
 
 namespace FlexLine\flexline;

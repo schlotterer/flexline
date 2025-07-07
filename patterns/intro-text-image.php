@@ -12,7 +12,7 @@ namespace FlexLine\flexline;
 <div class="wp-block-group alignfull welcome"><!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Text and Image Columns"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"textAlign":"left","className":"wp-block-heading","style":{"spacing":{"margin":{"bottom":"0px"}}},"fontSize":"max-36"} -->
-            <h2 class="wp-block-heading has-text-align-left has-max-36-font-size" style="margin-bottom:0px">Text and Poster Gallery</h2>
+            <h2 class="wp-block-heading has-text-align-left has-max-36-font-size" style="margin-bottom:0px">Text and Image</h2>
             <!-- /wp:heading -->
 
             <!-- wp:paragraph {"align":"left","className":"","fontSize":"small"} -->
