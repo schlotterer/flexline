@@ -3,7 +3,7 @@
 /**
  * Title: Section - Latest Posts
  * Slug: flexline/section-latest-posts
- * Categories: flexline-sections, flexline-modules, flexline-posts-templates
+ * Categories: flexline-sections
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"className":"latests-posts-3-card","layout":{"type":"constrained"},"metadata":{"name":"Latests Posts - 3 card"}} -->

@@ -3,7 +3,7 @@
 /**
  * Title: Columns with multiple rows
  * Slug: flexline/columns-multirow
- * Categories: flexline-modules, flexline-sections
+ * Categories: flexline-modules
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"},"metadata":{"name":"Columns with multiple rows"}} -->

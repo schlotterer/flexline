@@ -3,7 +3,7 @@
 /**
  * Title: List of posts in one column.
  * Slug: flexline/posts
- * Categories: flexline-posts-templates, flexline-sections
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 ?>

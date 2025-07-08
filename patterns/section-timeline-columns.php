@@ -3,7 +3,7 @@
 /**
  * Title: Timeline Columns
  * Slug: flexline/section-timeline-columns
- * Categories: flexline-sections, flexline-modules
+ * Categories: flexline-sections
  */
 
 namespace FlexLine\flexline;

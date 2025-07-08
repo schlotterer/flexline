@@ -3,7 +3,7 @@
 /**
  * Title: Posts - Sticky.
  * Slug: flexline/posts-sticky-feature
- * Categories: flexline-modules, flexline-posts-templates
+ * Categories: flexline-modules
  * Block Types: core/query
  */
 ?>

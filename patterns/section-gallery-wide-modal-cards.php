@@ -3,7 +3,7 @@
 /**
  * Title: Section Gallery Wide Modal Cards
  * Slug: flexline/section-gallery-wide-modal-cards
- * Categories: flexline-sections, flexline-modules
+ * Categories: flexline-sections
  */
 
 namespace FlexLine\flexline;

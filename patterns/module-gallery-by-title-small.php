@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Title: Section Gallery next to title - Small
- * Slug: flexline/section-gallery-by-title-small
- * Categories: flexline-sections, flexline-modules
+ * Title: Module Gallery next to title - Small
+ * Slug: flexline/module-gallery-by-title-small
+ * Categories: flexline-modules
  */
 
 namespace FlexLine\flexline;
