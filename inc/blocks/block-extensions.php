@@ -168,8 +168,12 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 
 	}
+	
 	if ( 'core/columns' === $block['blockName'] ) {
+
+		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
+			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
 			$data_scroll_interval = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
 			$search_string  = '>';
 			$replace_string = ' '.$data_scroll_interval.'>';
@@ -177,6 +181,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset($block['attrs']['transitionDuration'])  ) {
+			$block['attrs']['transitionDuration'] = isset($block['attrs']['transitionDuration']) ? $block['attrs']['transitionDuration'] : 500;
 			$data_scroll_interval = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
 			$search_string  = '>';
 			$replace_string = ' '.$data_scroll_interval.'>';

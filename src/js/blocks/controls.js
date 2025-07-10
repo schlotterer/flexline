@@ -1599,7 +1599,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 												scrollSpeed: newInterval,
 											})
 										}
-										defaultValue={5000}
+										defaultValue={4000}
 										min={1000}
 										max={10000}
 										step={500}

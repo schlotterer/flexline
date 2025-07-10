@@ -8,83 +8,26 @@
 
 namespace FlexLine\flexline;
 ?>
+<!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
+    <p><strong>Heroes</strong> are the bold, eye-catching sections at the top of a page that grab your visitor’s attention and set the tone for your content. They’re designed to showcase your most important message, image, or call to action right up front.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p>This page collects all of our hero patterns in one place, with videos to show how they work in real layouts. Use these demos to explore different hero styles, see how they adapt on various screen sizes, and choose the pattern that best fits your content.</p>
+    <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
 <!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"is-style-shadow-light","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-shadow-light has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
-        <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.1"}},"textColor":"base","fontFamily":"display"} -->
-            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.1">Patterns: <a href="#call-to-action">Home Hero</a> | <a href="#sticky-cta">Hero Split</a> | <a href="#heroes">Feature Page Bottom</a> | <a href="#page-link-ctas">Feature Page Centered</a></p>
+        <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.3"}},"textColor":"base","fontFamily":"display"} -->
+            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#call-to-action">Home Hero</a> | <a href="#sticky-cta">Hero Split</a> | <a href="#heroes">Feature Page Bottom</a> | <a href="#page-link-ctas">Feature Page Centered</a></p>
             <!-- /wp:paragraph -->
         </div>
     </div>
     <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:group {"metadata":{"name":"Intro Content Container"},"align":"full","className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull is-style-default" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong>What they are</strong></summary><!-- wp:paragraph {"className":""} -->
-        <p>Components bundle a handful of core blocks (Button, Image, Group, etc.) plus theme styles into a reusable unit—e.g., a <strong>Video Pop Card</strong> that opens a lightbox, a <strong>Floor-Plan Download</strong> with icon and price tag, or a <strong>Testimonial Badge</strong> with author photo.</p>
-        <!-- /wp:paragraph -->
-    </details>
-    <!-- /wp:details -->
-
-    <!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong><strong>Why they matter</strong></strong></summary><!-- wp:paragraph {"className":""} -->
-        <p>They’re small enough to drop anywhere—inside a Column, alongside a paragraph, or nested inside a larger Module—without breaking your grid or typography.</p>
-        <!-- /wp:paragraph -->
-    </details>
-    <!-- /wp:details -->
-
-    <!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong><strong>How they differ from other pattern types</strong></strong></summary><!-- wp:table {"className":""} -->
-        <figure class="wp-block-table">
-            <table class="has-fixed-layout">
-                <thead>
-                    <tr>
-                        <th>Pattern Type</th>
-                        <th>Primary Purpose</th>
-                        <th>Typical Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Component</strong></td>
-                        <td>One functional nugget</td>
-                        <td>Video pop card</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Module</strong></td>
-                        <td>Curated row/cluster of content</td>
-                        <td>Logo strip carousel</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hero</strong></td>
-                        <td>Above-the-fold attention grabber; usually full-viewport height</td>
-                        <td>Big headline + background video</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Section</strong></td>
-                        <td>Full page slice that combines Modules and Components</td>
-                        <td>Services overview with heading &amp; 3 feature cards</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Template Part</strong></td>
-                        <td>Reusable site chrome shared across many templates</td>
-                        <td>Header, Footer, Off-canvas menu</td>
-                    </tr>
-                </tbody>
-            </table>
-        </figure>
-        <!-- /wp:table -->
-    </details>
-    <!-- /wp:details -->
-
-    <!-- wp:separator {"className":"is-style-dots"} -->
-    <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
-    <!-- /wp:separator -->
 </div>
 <!-- /wp:group -->
 
@@ -147,7 +90,7 @@ namespace FlexLine\flexline;
 <!-- /wp:spacer -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=74b6db6a-c0e1-47e7-9db9-0b560a002b1f"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/56f37570c2854166ab3d4da0e5ad32f6-80b332077323c194-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/56f37570c2854166ab3d4da0e5ad32f6-80b332077323c194-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -193,7 +136,7 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"stretch","width":"50%","className":"","backgroundColor":"primary"} -->
-        <div class="wp-block-column is-vertically-aligned-stretch has-primary-background-color has-background" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":657,"dimRatio":60,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","className":"","layout":{"type":"constrained"}} -->
+        <div class="wp-block-column is-vertically-aligned-stretch has-primary-background-color has-background" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":657,"dimRatio":60,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.94999999999999996,"y":0.54000000000000004},"minHeight":100,"minHeightUnit":"%","className":"","layout":{"type":"constrained"}} -->
             <div class="wp-block-cover" style="min-height:100%"><img class="wp-block-cover__image-background wp-image-657" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span>
                 <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"225px","className":""} -->
                     <div style="height:225px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -219,7 +162,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/e3b0ad3c624543d098e452d5ab9e29d8?sid=61586abe-8b2e-4bbc-b67e-d1362d365a5d"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/e3b0ad3c624543d098e452d5ab9e29d8-a1d44ec26ab4bc1b-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/e3b0ad3c624543d098e452d5ab9e29d8-a1d44ec26ab4bc1b-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -235,7 +178,7 @@ namespace FlexLine\flexline;
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Feature Page Meta - bottom centered.","categories":["flexline-heroes"],"patternName":"flexline/meta-feature-page-center-bottom"},"align":"full","className":"","style":{"spacing":{"margin":{"bottom":"0"}}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":70,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.53,"y":0.45},"minHeight":200,"metadata":{"name":"Featured Image Cover"},"align":"full","className":"no-lazy-load","style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":[]},"layout":{"type":"constrained"},"enableLazyLoad":false} -->
+<div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":70,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.53000000000000003,"y":0.45000000000000001},"minHeight":200,"metadata":{"name":"Featured Image Cover"},"align":"full","className":"no-lazy-load","style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":[]},"layout":{"type":"constrained"},"enableLazyLoad":false} -->
     <div class="wp-block-cover alignfull no-lazy-load" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--x-small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);min-height:200px"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-70 has-background-dim"></span>
         <div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Content Stack"},"className":"","style":{"dimensions":{"minHeight":"425px"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"space-between","justifyContent":"stretch"}} -->
             <div class="wp-block-group" style="min-height:425px"><!-- wp:group {"metadata":{"name":"Breadcrumbs"},"align":"wide","className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"spacing":{"margin":{"bottom":"0"}},"typography":{"fontStyle":"normal","fontWeight":"200"}},"textColor":"neutral-light","fontSize":"x-small","fontFamily":"display","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
@@ -264,7 +207,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"is-style-dots enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/cc6cdb749f284629842eed0d34f7c2a0?sid=d06b20a8-b875-43f3-9956-d91a43985fe0"} -->
-<figure class="wp-block-image aligncenter size-large is-style-dots enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/cc6cdb749f284629842eed0d34f7c2a0-fcc0a8ebbba50720-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large is-style-dots enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/cc6cdb749f284629842eed0d34f7c2a0-fcc0a8ebbba50720-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -310,5 +253,5 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"is-style-dots enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/1e5abc0ca7a14332853da5f9b7d29b22?sid=4fb9fa78-5cb5-497c-a21a-8151acef7a76"} -->
-<figure class="wp-block-image aligncenter size-large is-style-dots enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/1e5abc0ca7a14332853da5f9b7d29b22-7500bbd9b3d0a39d-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large is-style-dots enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/1e5abc0ca7a14332853da5f9b7d29b22-7500bbd9b3d0a39d-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->

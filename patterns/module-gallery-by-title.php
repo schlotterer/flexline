@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Module Gallery next to title - Small
+ * Title: Module Gallery next to title
  * Slug: flexline/module-gallery-by-title-small
  * Categories: flexline-modules
  */

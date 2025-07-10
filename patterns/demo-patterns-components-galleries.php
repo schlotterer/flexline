@@ -1,87 +1,34 @@
 <?php
 
 /**
- * Title: Demo Patterns - Components CTAs
- * Slug: flexline/demo-patterns-components-ctas
+ * Title: Demo Patterns - Components Galleries
+ * Slug: flexline/demo-patterns-components-galleries
  * Categories: flexline-demos 
  * Inserter: false
  */
 
 namespace FlexLine\flexline;
 ?>
+<!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
+    <p>Our <strong>Gallery Patterns</strong> are flexible building blocks for showcasing rich media — whether it’s photos, videos, or other embedded content. These patterns help you tell a more visual story and keep visitors engaged.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p>Use these patterns to highlight portfolios, media libraries, product shots, or any collection of visuals. Each one is designed to be flexible and easy to adapt — just drop in your media, adjust the layout as needed, and give your audience a smooth, immersive experience.</p>
+    <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
 <!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
-        <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.1"}},"textColor":"base","fontFamily":"display"} -->
-            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.1">Patterns: <a href="#poster-gallery">Poster Gallery</a> | <a href="#video-modal">Video Modal</a> | <a href="#gallery-media-detailed">Gallery Media Detailed</a> | <a href="#gallery-media-download">Gallery Media w/ Download</a> | <a href="#modal-link-card">Modal Link Card</a></p>
+        <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.3"}},"textColor":"base","fontFamily":"display"} -->
+            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#poster-gallery">Poster Gallery</a> | <a href="#video-modal">Video Modal</a> | <a href="#gallery-media-detailed">Gallery Media Detailed</a> | <a href="#gallery-media-download">Gallery Media w/ Download</a> | <a href="#modal-link-card">Modal Link Card</a></p>
             <!-- /wp:paragraph -->
         </div>
     </div>
     <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:group {"metadata":{"name":"Intro Content Container"},"align":"full","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong>What they are</strong></summary><!-- wp:paragraph {"className":""} -->
-        <p>Components bundle a handful of core blocks (Button, Image, Group, etc.) plus theme styles into a reusable unit—e.g., a <strong>Video Pop Card</strong> that opens a lightbox, a <strong>Floor-Plan Download</strong> with icon and price tag, or a <strong>Testimonial Badge</strong> with author photo.</p>
-        <!-- /wp:paragraph -->
-    </details>
-    <!-- /wp:details -->
-
-    <!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong><strong>Why they matter</strong></strong></summary><!-- wp:paragraph {"className":""} -->
-        <p>They’re small enough to drop anywhere—inside a Column, alongside a paragraph, or nested inside a larger Module—without breaking your grid or typography.</p>
-        <!-- /wp:paragraph -->
-    </details>
-    <!-- /wp:details -->
-
-    <!-- wp:details {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-    <details class="wp-block-details">
-        <summary><strong><strong>How they differ from other pattern types</strong></strong></summary><!-- wp:table {"className":""} -->
-        <figure class="wp-block-table">
-            <table class="has-fixed-layout">
-                <thead>
-                    <tr>
-                        <th>Pattern Type</th>
-                        <th>Primary Purpose</th>
-                        <th>Typical Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Component</strong></td>
-                        <td>One functional nugget</td>
-                        <td>Video pop card</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Module</strong></td>
-                        <td>Curated row/cluster of content</td>
-                        <td>Logo strip carousel</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hero</strong></td>
-                        <td>Above-the-fold attention grabber; usually full-viewport height</td>
-                        <td>Big headline + background video</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Section</strong></td>
-                        <td>Full page slice that combines Modules and Components</td>
-                        <td>Services overview with heading &amp; 3 feature cards</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Template Part</strong></td>
-                        <td>Reusable site chrome shared across many templates</td>
-                        <td>Header, Footer, Off-canvas menu</td>
-                    </tr>
-                </tbody>
-            </table>
-        </figure>
-        <!-- /wp:table -->
-    </details>
-    <!-- /wp:details -->
 </div>
 <!-- /wp:group -->
 
