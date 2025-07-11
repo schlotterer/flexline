@@ -84,62 +84,65 @@ document.addEventListener('DOMContentLoaded', function () {
 	// 3. Function to set up the "infinite loop" with cloned slides
 	//----------------------------------------------------------------------
 	function setupInfiniteLoop(scroller) {
+		// only if they opted in
 		if (!scroller.classList.contains('horizontal-scroller-loop')) {
-			return; // only apply if loop is desired
-		}
-
-		const originalItems = Array.from(scroller.children);
-		if (!originalItems.length) {
 			return;
 		}
 
-		// 1. Measure the "real" width with no clones
-		//    Scroll to 0 so we measure from left to right fully
-		const savedScrollLeft = scroller.scrollLeft;
-		scroller.scrollLeft = 0;
-		const realWidth = scroller.scrollWidth;
+		// 1) hide until after we’ve laid everything out and snapped it
+		scroller.style.visibility = 'hidden';
 
-		// Also capture how far the first item is from the scroller's left,
-		// in case there's a small offset (e.g. a leftover margin or partial gap).
-		const firstItemOffset = originalItems[0].offsetLeft;
+		// 2) grab the “real” slides (before we clone)
+		const realSlides = Array.from(scroller.children);
+		if (!realSlides.length) {
+			return;
+		}
 
-		// 2. Restore the original scroll temporarily
-		scroller.scrollLeft = savedScrollLeft;
-
-		// 3. Clone items at the start and end
-		const clonedStart = originalItems.map((item) => {
-			const clone = item.cloneNode(true);
-			clone.classList.add('cloned-slide');
-			return clone;
-		});
-		const clonedEnd = originalItems.map((item) => {
-			const clone = item.cloneNode(true);
-			clone.classList.add('cloned-slide');
-			return clone;
-		});
-		clonedStart.forEach((c) =>
-			scroller.insertBefore(c, scroller.firstChild)
+		// 3) compute the total width of the real slides *in border-box units*
+		const realWidth = realSlides.reduce(
+			(sum, slide) => sum + slide.offsetWidth,
+			0
 		);
-		clonedEnd.forEach((c) => scroller.appendChild(c));
 
-		// 4. Position user in the real (middle) set.
-		//    We'll scroll left by "realWidth" minus any offset for the first item
-		//    so the first real item lines up exactly at the container's left edge.
-		//    If your firstItemOffset is 0 (no margin/padding), this just becomes "realWidth".
-		scroller.scrollLeft = realWidth - firstItemOffset;
+		// 4) build our clones
+		const makeClone = (el) => {
+			const c = el.cloneNode(true);
+			c.classList.add('cloned-slide');
+			return c;
+		};
+		const frontClones = realSlides.map(makeClone);
+		const backClones = realSlides.map(makeClone);
 
-		// 5. Teleport logic to keep user in [realWidth - firstItemOffset, realWidth*2 - firstItemOffset].
-		scroller.addEventListener('scroll', () => {
-			const current = scroller.scrollLeft;
-			const leftBoundary = realWidth - firstItemOffset;
-			const rightBoundary = realWidth * 2 - firstItemOffset;
+		// 5) insert front clones *in the same left→right order*…
+		frontClones
+			.slice() // copy
+			.reverse() // so we can insert them one by one at the true front
+			.forEach((c) => scroller.insertBefore(c, scroller.firstChild));
 
-			// If scrolled beyond the real set at the right
-			if (current > rightBoundary) {
-				scroller.scrollLeft = current - realWidth;
-			} else if (current < leftBoundary) {
-				scroller.scrollLeft = current + realWidth;
-			}
+		// 6) …and append the back clones
+		backClones.forEach((c) => scroller.appendChild(c));
+
+		// 7) on the next paint, snap us into place and show
+		requestAnimationFrame(() => {
+			// jump forward by exactly the width of all clones (i.e. realWidth)
+			scroller.scrollLeft = realWidth + 1;
+
+			// now that everything is in the right spot, reveal it
+			scroller.style.visibility = '';
+
+			// 8) hook up wrap-around (“teleport”) so you never leave [realWidth, 2·realWidth)
+			scroller.addEventListener(
+				'scroll',
+				() => {
+					const s = scroller.scrollLeft;
+					if (s < realWidth) {
+						scroller.scrollLeft = s + realWidth;
+					} else if (s >= realWidth * 2) {
+						scroller.scrollLeft = s - realWidth;
+					}
+				},
+				{ passive: true }
+			);
 		});
 	}
 
@@ -378,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					);
 					const currentRatio = entry.intersectionRatio;
 
-					if (currentRatio > 0) {
+					if (currentRatio > 0.01) {
 						// visible
 						item.classList.remove('out-of-view');
 						if (currentRatio >= 0.1) {
@@ -412,19 +415,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			observer.observe(child);
 		});
 	}
-
 	//----------------------------------------------------------------------
 	// 6. Initialize everything on each .is-style-horizontal-scroll
 	//----------------------------------------------------------------------
 	const scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
 	scrollers.forEach((scroller) => {
-		// First clone slides & set infinite loop (only if .horizontal-scroller-loop present).
-		setupInfiniteLoop(scroller);
-
 		// Then set up your nav buttons, pause/play, etc.
 		setupScrollerButtons(scroller);
 
 		// Then set up IntersectionObserver stuff (for "in-view", etc.).
 		setupStatusObserver(scroller);
+	});
+
+	window.addEventListener('load', () => {
+		document
+			.querySelectorAll('.is-style-horizontal-scroll')
+			.forEach((scroller) => {
+				setupInfiniteLoop(scroller);
+			});
 	});
 });

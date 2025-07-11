@@ -74,8 +74,8 @@ body,
 			}
 		}
 	}
-
 	.is-style-horizontal-scroll {
+		
 
 		&.wp-block-columns,
 		&.wp-block-post-template {
@@ -136,6 +136,9 @@ body,
 		}
 		&.horizontal-scroller-loop{
 			gap: 0px;
+			.out-of-view{
+				visibility: hidden;
+			}
 		}
 
 	}
