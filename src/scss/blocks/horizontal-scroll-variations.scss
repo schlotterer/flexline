@@ -88,7 +88,7 @@ body,
 			-ms-overflow-style: none; /* IE and Edge */ /* Firefox */
 			-webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
 			> *:not(button) {
-				min-width: 300px;
+				min-width: 200px;
 				flex-shrink: 0;
 				flex-grow: 0;
 				&[class*="is-style-card"] {
@@ -113,6 +113,12 @@ body,
 			&::-webkit-scrollbar-thumb {
 				background-color: transparent;/* Color of the scroll thumb */
 				border-radius: 2px; /* Roundness of the scroll thumb */
+			}
+			> *:has(.is-style-glass-card),
+			> *:has(.is-style-card),
+			> *:has(.is-style-card-alt),
+			> *:has(.is-style-card-padded) {
+				margin-bottom: 20px;
 			}
 			
 		}

@@ -55,30 +55,26 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function scrollToPrev(scroller) {
-		const epsilon = 5;
-		const durationAttr = scroller.getAttribute('data-scroll-speed');
-		const duration = durationAttr ? parseInt(durationAttr, 10) : 600; // default 600ms
-
+		const epsilon = 5; // tolerance for tiny fractional scrolls
+		const duration = parseInt(
+			scroller.getAttribute('data-scroll-speed') || '600',
+			10
+		);
 		const items = Array.from(scroller.children);
-		let targetScrollPosition = scroller.scrollLeft;
-		let firstVisibleItemFound = false;
+		const current = scroller.scrollLeft;
 
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
-			const itemStart = item.offsetLeft;
-			const itemEnd = itemStart + item.offsetWidth;
-			if (
-				itemStart >= scroller.scrollLeft &&
-				itemEnd <= scroller.scrollLeft + scroller.offsetWidth
-			) {
-				firstVisibleItemFound = true;
-				targetScrollPosition = i > 0 ? items[i - 1].offsetLeft : 0;
-				break;
-			}
-		}
+		// collect all slide positions that are “behind” us
+		const prevOffsets = items
+			.map((item) => item.offsetLeft)
+			.filter((offset) => offset + epsilon < current);
 
-		if (!firstVisibleItemFound && items.length > 0) {
-			targetScrollPosition = items[0].offsetLeft;
+		let targetScrollPosition;
+		if (prevOffsets.length) {
+			// go to the nearest one behind us
+			targetScrollPosition = Math.max(...prevOffsets);
+		} else {
+			// wrap to the very end
+			targetScrollPosition = scroller.scrollWidth - scroller.offsetWidth;
 		}
 
 		smoothScrollTo(scroller, targetScrollPosition, duration);
@@ -161,35 +157,33 @@ document.addEventListener('DOMContentLoaded', function () {
 		// 2. Variables for auto–scroll if enabled.
 		let autoScrollInterval;
 		let isPaused = false;
-		let hasStarted = false; // NEW: flag to track if auto-scroll has been started
+		const hasStarted = false; // NEW: flag to track if auto-scroll has been started
 
 		// ADDED: A helper that resets the auto-scroll timer from scratch
 		function resetAutoScrollTimer() {
-			if (autoScrollInterval) {
-				clearInterval(autoScrollInterval);
-			}
+			stopAutoScroll();
 			if (!isPaused) {
-				startAutoScroll(); // start fresh if not paused
+				startAutoScroll();
 			}
 		}
 
-		// The existing start/stop logic
 		function startAutoScroll() {
-			if (hasStarted) {
-				return; // Prevent multiple starts
-			}
-			const intervalAttr = scroller.getAttribute('data-scroll-interval');
-			const intervalDuration = intervalAttr
-				? parseInt(intervalAttr, 10)
-				: 4000;
-			autoScrollInterval = setInterval(function () {
-				scrollToNext(scroller);
-			}, intervalDuration);
-			hasStarted = true; // Mark as started
+			if (autoScrollInterval) {
+				return;
+			} // already running
+			const intervalDur = parseInt(
+				scroller.getAttribute('data-scroll-interval') || '4000',
+				10
+			);
+			autoScrollInterval = setInterval(
+				() => scrollToNext(scroller),
+				intervalDur
+			);
 		}
 
 		function stopAutoScroll() {
 			clearInterval(autoScrollInterval);
+			autoScrollInterval = null;
 		}
 
 		// NEW: Observer to detect when the scroller is on screen
@@ -315,9 +309,10 @@ document.addEventListener('DOMContentLoaded', function () {
 					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
 					'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/>' +
 					'</svg></span>';
+
 				pausePlayBtn.addEventListener('click', function () {
 					if (isPaused) {
-						// Was paused → now resume
+						// Resume
 						isPaused = false;
 						pausePlayBtn.setAttribute(
 							'aria-label',
@@ -328,11 +323,9 @@ document.addEventListener('DOMContentLoaded', function () {
 							'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
 							'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/>' +
 							'</svg></span>';
-
-						// Resume auto-scroll
-						resetAutoScrollTimer(); // effectively restarts auto-scroll
+						resetAutoScrollTimer(); // which now calls stopAutoScroll() then startAutoScroll()
 					} else {
-						// Was playing → now pause
+						// Pause
 						isPaused = true;
 						pausePlayBtn.setAttribute(
 							'aria-label',
@@ -343,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
 							'<path fill="#ffffff" d="M320-720v480l400-240-400-240Z"/>' +
 							'</svg></span>';
-						clearInterval(autoScrollInterval);
+						stopAutoScroll();
 					}
 				});
 			}
