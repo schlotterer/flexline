@@ -525,7 +525,9 @@ foreach ( $block_styles as $block => $styles ) {
 
                 <pre>
                     <code>
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
