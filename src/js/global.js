@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	//----------------------------------------------------------------------
-	// 5. IntersectionObserver logic (unchanged)
+	// 5. IntersectionObserver logic
 	//----------------------------------------------------------------------
 	function buildThresholdList() {
 		const thresholds = [];
