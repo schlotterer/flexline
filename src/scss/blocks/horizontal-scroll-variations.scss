@@ -183,43 +183,57 @@ body,
 	/* -----------------------------------------------------------------
    	Styles for Horizontal Scroller Navigation Buttons Positioning
 	------------------------------------------------------------------ */
+
 	.horizontal-scroller-nav-buttons {
-		display: flex;
-		gap: 5px;
-		pointer-events: auto;
 		z-index: 10;
-	
-		/* Horizontal Alignment */
-		&.horizontal-scroller-buttons-horizontal-left {
+	}
+	/* Horizontal Alignment */
+	.horizontal-scroller-buttons-horizontal-left {
+		& + .horizontal-scroller-nav-buttons {
 			left: 0;
 			right: auto;
 			margin-left: 10px;
 		}
-		&.horizontal-scroller-buttons-horizontal-center {
+	}
+	.horizontal-scroller-buttons-horizontal-center {
+		& + .horizontal-scroller-nav-buttons {
 			left: 50%;
 			transform: translateX(-50%);
 		}
-		&.horizontal-scroller-buttons-horizontal-right {
-			right: 0;
+	}
+	.horizontal-scroller-buttons-horizontal-right {
+		& + .horizontal-scroller-nav-buttons {
 			left: auto;
+			right: 0;
 			margin-right: 10px;
 		}
-		/* Vertical Alignment Outside (default) */
-		&.horizontal-scroller-buttons-vertical-bottom {
+	}
+	/* Vertical Alignment Outside (default) */
+	.horizontal-scroller-buttons-vertical-bottom {
+		& + .horizontal-scroller-nav-buttons {
 			bottom: -40px;
 		}
-		&.horizontal-scroller-buttons-vertical-top {
+		
+	}
+	.horizontal-scroller-buttons-vertical-top {
+		& + .horizontal-scroller-nav-buttons {
 			top: -40px;
 		}
-	
-		/* When Positioned Over (inside the container) */
-		&.horizontal-scroller-buttons-over {
-			&.horizontal-scroller-buttons-vertical-bottom {
+	}
+
+	/* When Positioned Over (inside the container) */
+	.horizontal-scroller-buttons-over {
+		&.horizontal-scroller-buttons-vertical-bottom {
+			& + .horizontal-scroller-nav-buttons {
 				bottom: 10px;
 			}
-			&.horizontal-scroller-buttons-vertical-top {
+			
+		}
+		&.horizontal-scroller-buttons-vertical-top {
+			& + .horizontal-scroller-nav-buttons {
 				top: 10px;
 			}
+			
 		}
 	}
 	

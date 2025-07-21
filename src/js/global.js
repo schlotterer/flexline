@@ -145,19 +145,105 @@ document.addEventListener('DOMContentLoaded', () => {
 		scroller.dataset.loopInitialised = 'true';
 	}
 
+	/*───────────────────────────────────────────────────────────────────────
+	      A wrapper should exist *whenever* the block has the style-class and
+	      should be gone when it doesn’t.  These two helpers enforce that rule.
+	───────────────────────────────────────────────────────────────────────*/
+	function ensureWrapper(scroller) {
+		if (
+			scroller.parentNode &&
+			scroller.parentNode.classList.contains('horizontal-scroll-wrapper')
+		) {
+			return scroller.parentNode; // already wrapped
+		}
+		const w = document.createElement('div');
+		w.classList.add('horizontal-scroll-wrapper');
+		w.style.position = 'relative';
+		scroller.parentNode.insertBefore(w, scroller);
+		w.appendChild(scroller);
+		return w;
+	}
+
+	function removeWrapper(scroller) {
+		const parent = scroller.parentNode;
+		if (parent && parent.classList.contains('horizontal-scroll-wrapper')) {
+			parent.parentNode.insertBefore(scroller, parent);
+			parent.remove();
+		}
+	}
+
 	//------------------------------------------------------------------
 	// 4.  Nav / pause buttons (unchanged except for minor clean‑ups).
 	//------------------------------------------------------------------
 	function setupScrollerButtons(scroller) {
+		if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
+			new MutationObserver(() => setupScrollerButtons(scroller)).observe(
+				scroller,
+				{ attributes: true, attributeFilter: ['class'] }
+			);
+			scroller.dataset.classObserverAttached = 'true';
+		}
+		// ──────────────────────────────────────────────────────────────────────
+		// 0. Determine current option state *up‑front*
+		//    (We need this before any early‑exit based on buttonsInitialised.)
+		// ──────────────────────────────────────────────────────────────────────
+		const hasNav = scroller.classList.contains(
+			'horizontal-scroller-navigation'
+		);
+		const showPause =
+			scroller.classList.contains('horizontal-scroller-auto') &&
+			!scroller.classList.contains(
+				'horizontal-scroller-hide-pause-button'
+			);
+
+		// If the nav / pause state changed since the last run, force a rebuild
+		if (
+			scroller.dataset.buttonsInitialised === 'true' &&
+			(hasNav !== (scroller.dataset.prevHasNav === 'true') ||
+				showPause !== (scroller.dataset.prevShowPause === 'true'))
+		) {
+			const existing = scroller.parentNode.querySelector(
+				'.horizontal-scroller-nav-buttons'
+			);
+			if (existing) {
+				existing.remove();
+			}
+			delete scroller.dataset.buttonsInitialised; // let the function fall through and rebuild
+		}
+		// Remember current state for the next toggle
+		scroller.dataset.prevHasNav = hasNav;
+		scroller.dataset.prevShowPause = showPause;
+
+		// ──────────────────────────────────────────────────────────────────────
+		// 1.   Buttons were previously built → two possibilities:
+		//      • nav / pause still wanted  → keep them & exit early
+		//      • nav / pause now off       → remove container & *continue* so we
+		//                                    can rebuild pause‑only or nothing.
+		// ──────────────────────────────────────────────────────────────────────
 		if (scroller.dataset.buttonsInitialised === 'true') {
+			if (!hasNav && !showPause) {
+				const existing = scroller.parentNode.querySelector(
+					'.horizontal-scroller-nav-buttons'
+				);
+				if (existing) {
+					existing.remove();
+				}
+				delete scroller.dataset.buttonsInitialised; // reset so we can rebuild later
+			} else {
+				return; // nothing changed – keep existing buttons
+			}
+		}
+
+		// If neither nav nor pause is requested, we are done.
+		if (!hasNav && !showPause) {
 			return;
 		}
-		// wrapper around the scroller so buttons can be absolutely positioned
-		const wrapper = document.createElement('div');
-		wrapper.classList.add('horizontal-scroll-wrapper');
-		wrapper.style.position = 'relative';
-		scroller.parentNode.insertBefore(wrapper, scroller);
-		wrapper.appendChild(scroller);
+
+		// ──────────────────────────────────────────────────────────────────────
+		// 2. Build container + buttons (first time, or after tear‑down)
+		// ──────────────────────────────────────────────────────────────────────
+		// Make sure we have a wrapper first (created once, reused after)
+		const wrapper = ensureWrapper(scroller);
 
 		let autoScrollInterval;
 		let isPaused = false;
@@ -216,27 +302,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			observeVisibility();
 		}
 
-		const hasNav = scroller.classList.contains(
-			'horizontal-scroller-navigation'
-		);
-		const showPause =
-			scroller.classList.contains('horizontal-scroller-auto') &&
-			!scroller.classList.contains(
-				'horizontal-scroller-hide-pause-button'
-			);
-
 		if (!hasNav && !showPause) {
 			return;
 		}
 
 		const controlContainer = document.createElement('div');
 		controlContainer.classList.add('horizontal-scroller-nav-buttons');
-		Array.from(scroller.classList).forEach((cls) => {
-			if (cls.indexOf('horizontal-scroller-buttons-') === 0) {
-				controlContainer.classList.add(cls);
-				scroller.classList.remove(cls);
-			}
-		});
+		//Array.from(scroller.classList).forEach((cls) => {
+		//	if (cls.indexOf('horizontal-scroller-buttons-') === 0) {
+		//		controlContainer.classList.add(cls);
+		//		scroller.classList.remove(cls);
+		//	}
+		//});
 		controlContainer.style.position = 'absolute';
 		controlContainer.style.display = 'flex';
 		controlContainer.style.gap = '4px';
@@ -386,7 +463,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 6.  Public initialiser helpers so we can call them multiple times.
 	//------------------------------------------------------------------
 	function initScroller(scroller) {
-		setupScrollerButtons(scroller);
+		/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
+		if (scroller.classList.contains('is-style-horizontal-scroll')) {
+			ensureWrapper(scroller);
+		} else {
+			removeWrapper(scroller);
+		}
+
+		setupScrollerButtons(scroller); // may add / remove button UI
 		setupStatusObserver(scroller);
 	}
 
