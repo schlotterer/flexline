@@ -4,6 +4,7 @@
  * Title: Demo Patterns - Heroes
  * Slug: flexline/demo-patterns-heroes
  * Categories: flexline-demos
+ * Inserter: false
  */
 
 namespace FlexLine\flexline;
