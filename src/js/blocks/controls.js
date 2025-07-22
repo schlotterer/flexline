@@ -63,8 +63,39 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		const uniqueClass = `block-${clientId}`;
 		// Reference to keep track of the style element
 		const styleElementRef = useRef(null);
-
 		useEffect(() => {
+			// If we're in a columns or post-template block, and the user just turned on
+			// horizontal scroller, force isStackedOnMobile off.
+
+			if (
+				(props.name === 'core/columns' ||
+					props.name === 'core/post-template') &&
+				props.attributes.enableHorizontalScroller &&
+				props.attributes.isStackedOnMobile
+			) {
+				props.setAttributes({ isStackedOnMobile: false });
+			}
+			if (
+				props.name === 'core/columns' &&
+				props.attributes.enableHorizontalScroller
+			) {
+				// look for the notice in the Columns panel
+				document
+					.querySelectorAll('.components-notice.is-warning')
+					.forEach((notice) => {
+	console.log(notice);
+						const noticeTextContainer = notice.querySelector(
+							'.components-notice__content'
+						);
+						if (
+							noticeTextContainer.textContent.includes(
+								'exceeds the recommended amount'
+							)
+						) {
+							notice.style.display = 'none';
+						}
+					});
+			}
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
 			if (!props.attributes.hideOnMobile) {

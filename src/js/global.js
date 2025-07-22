@@ -308,12 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const controlContainer = document.createElement('div');
 		controlContainer.classList.add('horizontal-scroller-nav-buttons');
-		//Array.from(scroller.classList).forEach((cls) => {
-		//	if (cls.indexOf('horizontal-scroller-buttons-') === 0) {
-		//		controlContainer.classList.add(cls);
-		//		scroller.classList.remove(cls);
-		//	}
-		//});
 		controlContainer.style.position = 'absolute';
 		controlContainer.style.display = 'flex';
 		controlContainer.style.gap = '4px';
