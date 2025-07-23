@@ -63,39 +63,67 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		const uniqueClass = `block-${clientId}`;
 		// Reference to keep track of the style element
 		const styleElementRef = useRef(null);
-		useEffect(() => {
-			// If we're in a columns or post-template block, and the user just turned on
-			// horizontal scroller, force isStackedOnMobile off.
 
+		const {
+			name,
+			attributes: {
+				enableHorizontalScroller,
+				isStackedOnMobile,
+				className,
+				/* scroller flags… */
+			},
+			setAttributes,
+		} = props;
+
+		// 1) Force off stacking
+		useEffect(() => {
 			if (
-				(props.name === 'core/columns' ||
-					props.name === 'core/post-template') &&
-				props.attributes.enableHorizontalScroller &&
-				props.attributes.isStackedOnMobile
+				(name === 'core/columns' || name === 'core/post-template') &&
+				enableHorizontalScroller &&
+				isStackedOnMobile
 			) {
-				props.setAttributes({ isStackedOnMobile: false });
+				setAttributes({ isStackedOnMobile: false });
 			}
-			if (
-				props.name === 'core/columns' &&
-				props.attributes.enableHorizontalScroller
-			) {
-				// look for the notice in the Columns panel
-				document
-					.querySelectorAll('.components-notice.is-warning')
-					.forEach((notice) => {
-	console.log(notice);
-						const noticeTextContainer = notice.querySelector(
-							'.components-notice__content'
-						);
-						if (
-							noticeTextContainer.textContent.includes(
-								'exceeds the recommended amount'
-							)
-						) {
-							notice.style.display = 'none';
-						}
-					});
+		}, [name, enableHorizontalScroller, isStackedOnMobile]);
+
+		// 2) Hide/restore the too-many-columns notice
+		useEffect(() => {
+			// Only run in Columns when scroller is on
+			if (name === 'core/columns') {
+				const toggleWarning = () => {
+					document
+						.querySelectorAll('.components-notice.is-warning')
+
+						.forEach((notice) => {
+							// create var for inner div containing text
+							const textDiv = notice.querySelector(
+								'.components-notice__content'
+							);
+							if (
+								textDiv.textContent.includes(
+									'exceeds the recommended amount'
+								)
+							) {
+								notice.style.display = enableHorizontalScroller
+									? 'none'
+									: '';
+							}
+						});
+				};
+
+				// immediate + watch for panel re-renders
+				toggleWarning();
+				const observer = new MutationObserver(toggleWarning);
+				observer.observe(document.body, {
+					childList: true,
+					subtree: true,
+				});
+
+				return () => observer.disconnect();
 			}
+		}, [name, enableHorizontalScroller]);
+
+		useEffect(() => {
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
 			if (!props.attributes.hideOnMobile) {
