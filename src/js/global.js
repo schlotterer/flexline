@@ -472,17 +472,77 @@ document.addEventListener('DOMContentLoaded', () => {
 		document
 			.querySelectorAll('.is-style-horizontal-scroll')
 			.forEach(initScroller);
+		document
+			.querySelectorAll('.is-style-horizontal-scroll')
+			.forEach(watchLoopToggle);
 	}
 
 	// Initial run for front‑end (after DOMContentLoaded)
 	initScrollers();
 
+	/**
+	 * Remove any clones & reset state on a scroller that was once
+	 * loop-initialized but no longer has the loop class.
+	 * @param scroller
+	 */
+	function teardownInfiniteLoop(scroller) {
+		if (scroller.dataset.loopInitialised !== 'true') {
+			return;
+		}
+		Array.from(scroller.children)
+			.filter((el) => el.classList.contains('cloned-slide'))
+			.forEach((c) => c.remove());
+
+		// put things back to the “real” scroll position
+		scroller.scrollLeft = 0;
+		delete scroller.dataset.loopInitialised;
+	}
+
+	/**
+	 * Sets up a MutationObserver to watch for changes to the
+	 * horizontal-scroller-loop class on the given scroller element.
+	 * When the class is added, we set up infinite looping.
+	 * When the class is removed, we tear down the infinite loop.
+	 * @param scroller
+	 */
+	function watchLoopToggle(scroller) {
+		if (scroller.dataset.loopObserverAttached) {
+			return;
+		}
+		new MutationObserver(() => {
+			if (!scroller.classList.contains('horizontal-scroller-loop')) {
+				teardownInfiniteLoop(scroller);
+			} else {
+				setupInfiniteLoop(scroller);
+			}
+		}).observe(scroller, {
+			attributes: true,
+			attributeFilter: ['class'],
+		});
+		scroller.dataset.loopObserverAttached = 'true';
+	}
+
+	/**
+	 * Rebuild all loops: first tear down any stale ones,
+	 * then re-init the ones that actually still have the class.
+	 */
 	function initInfiniteLoops() {
+		if (isBlockEditor()) {
+			// 1) Cleanup any that lost their loop class:
+			document
+				.querySelectorAll('[data-loop-initialised="true"]')
+				.forEach((s) => {
+					if (!s.classList.contains('horizontal-scroller-loop')) {
+						teardownInfiniteLoop(s);
+					}
+				});
+		}
+		// 2) Now re-build only the ones that still want looping
 		document
-			.querySelectorAll('.is-style-horizontal-scroll')
-			.forEach((s) => {
-				setupInfiniteLoop(s);
-			});
+			.querySelectorAll(
+				'.is-style-horizontal-scroll.horizontal-scroller-loop'
+			)
+			.forEach(setupInfiniteLoop);
 	}
 
 	// Infinite loop clones once everything (images/fonts) is ready
@@ -496,23 +556,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	//------------------------------------------------------------------
 	if (isBlockEditor()) {
 		wp.domReady(() => {
-			const { subscribe, select } = wp.data;
-
-			// 1. Run the initialisers once the editor canvas is ready
-			initScrollers();
-			initInfiniteLoops();
-
-			// Keep current size so we only re-run when it actually changes
-			let lastCount = select('core/block-editor').getBlocks().length;
-
-			// 2. Re-initialise any time blocks are added/removed
+			const { subscribe } = wp.data;
+			// run on *any* editor change
 			subscribe(() => {
-				const count = select('core/block-editor').getBlocks().length;
-				if (count !== lastCount) {
-					lastCount = count;
-					initScrollers();
-					initInfiniteLoops();
-				}
+				initScrollers();
+				initInfiniteLoops();
 			});
 		});
 	}
