@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					const prev = parseFloat(item.dataset.prevRatio || 0);
 					const curr = entry.intersectionRatio;
 
-					if (curr > 0.01) {
+					if (curr > 0.05) {
 						item.classList.remove('out-of-view');
 						if (curr >= 0.1) {
 							item.classList.add('in-view');
@@ -461,10 +461,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	function initScrollers() {
 		document
 			.querySelectorAll('.is-style-horizontal-scroll')
-			.forEach(initScroller);
-		document
-			.querySelectorAll('.is-style-horizontal-scroll')
-			.forEach(watchLoopToggle);
+			.forEach((scroller) => {
+				initScroller(scroller);
+				watchLoopToggle(scroller);
+				watchChildrenForLoop(scroller);
+				//watchResizeForLoop(scroller);
+			});
 	}
 
 	// Initial run for front‑end (after DOMContentLoaded)
@@ -513,6 +515,107 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/**
+	 * Whenever the *content* of the scroller changes (columns added/removed),
+	 * and looping is on, tear down & rebuild the clones.
+	 * @param scroller
+	 */
+	/**
+	 * Whenever *real* children (columns) are added/removed,
+	 * tear down & rebuild the clones.  Ignore any mutations that
+	 * involve only cloned‐slides.
+	 * @param scroller
+	 */
+	function watchChildrenForLoop(scroller) {
+		if (scroller._childObserverAttached) {
+			return;
+		}
+		const mo = new MutationObserver((mutations) => {
+			// do any of these mutations add or remove a non‐clone?
+			const realChange = mutations.some((m) => {
+				return (
+					Array.from(m.addedNodes).some(
+						(n) =>
+							n.nodeType === 1 &&
+							!n.classList.contains('cloned-slide')
+					) ||
+					Array.from(m.removedNodes).some(
+						(n) =>
+							n.nodeType === 1 &&
+							!n.classList.contains('cloned-slide')
+					)
+				);
+			});
+
+			if (
+				realChange &&
+				scroller.classList.contains('horizontal-scroller-loop')
+			) {
+				teardownInfiniteLoop(scroller);
+				setupInfiniteLoop(scroller);
+			}
+		});
+
+		mo.observe(scroller, { childList: true });
+		scroller._childObserverAttached = true;
+	}
+
+	/**
+	 * On container-resize, snap the scroll position to the nearest real slide
+	 * in the middle copy (so your clones never move and you stay aligned).
+	 * @param scroller
+	 */
+	function watchResizeForLoop(scroller) {
+		if (scroller._resizeObserverAttached) {
+			return;
+		}
+		let resizeTimer = null;
+
+		const ro = new ResizeObserver(() => {
+			if (!scroller.classList.contains('horizontal-scroller-loop')) {
+				return; // only care when looping is enabled
+			}
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(() => {
+				// 1) grab only your “real” slides (ignore cloned-slide nodes)
+				const realSlides = Array.from(scroller.children).filter(
+					(el) => !el.classList.contains('cloned-slide')
+				);
+				if (realSlides.length === 0) {
+					return;
+				}
+
+				// 2) compute total width of one set
+				const realWidth = realSlides.reduce(
+					(sum, slide) => sum + slide.offsetWidth,
+					0
+				);
+
+				// 3) figure out where you are *within* that set (modulo)
+				const raw = scroller.scrollLeft;
+				const rel =
+					(((raw - realWidth) % realWidth) + realWidth) % realWidth;
+
+				// 4) snap to the nearest slide’s offsetLeft
+				let targetIndex = 0;
+				for (let i = 0; i < realSlides.length; i++) {
+					if (rel >= realSlides[i].offsetLeft) {
+						targetIndex = i;
+					} else {
+						break;
+					}
+				}
+
+				// 5) reposition into the middle copy at that exact slide
+				scroller.scrollLeft =
+					realWidth + realSlides[targetIndex].offsetLeft;
+			}, 400);
+		});
+
+		ro.observe(scroller);
+		scroller._resizeObserverAttached = true;
+	}
+
+	/**
 	 * Rebuild all loops: first tear down any stale ones,
 	 * then re-init the ones that actually still have the class.
 	 */
@@ -548,10 +651,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		wp.domReady(() => {
 			const { subscribe } = wp.data;
 			// run on *any* editor change
-			subscribe(() => {
-				initScrollers();
-				initInfiniteLoops();
-			});
+			setTimeout(() => {
+				subscribe(() => {
+					initScrollers();
+					initInfiniteLoops();
+				});
+			}, 500);
 		});
 	}
 });

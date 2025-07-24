@@ -9,7 +9,7 @@
 	.is-style-shadow-light,
 	.is-style-shadow-dark,
 	.is-style-shadow-diffused {
-		transition: var(--wp--custom--transition-time);
+		transition: shadow var(--wp--custom--transition-time);
 	}
 
 	// Cards
