@@ -1,12 +1,4 @@
 // Horizontal Scroll block behaviour – front‑end + block‑editor compatible
-// ---------------------------------------------------------------------------
-//  Changes from original version
-//  • Detect if we are inside the Gutenberg editor (block‑editor store exists).
-//  • Replace single‑shot query with reusable `initScrollers()` so we can
-//    re‑initialise when blocks are added / removed / edited.
-//  • Subscribe to the block‑editor’s data store *only* when we are in the
-//    editor. The front‑end keeps the leaner DOMContentLoaded + load logic.
-// ---------------------------------------------------------------------------
 
 // Helper ──────────────────────────────────────────────────────────────────────
 function isBlockEditor() {
@@ -47,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	//------------------------------------------------------------------
-	// 2.  Next / Prev helpers (unchanged).
+	// 2.  Next / Prev helpers.
 	//------------------------------------------------------------------
 	function scrollToNext(scroller) {
 		const epsilon = 5; // small tolerance
@@ -89,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	//------------------------------------------------------------------
-	// 3.  Infinite loop setup (unchanged).
+	// 3.  Infinite loop setup.
 	//------------------------------------------------------------------
 	function setupInfiniteLoop(scroller) {
 		if (scroller.dataset.loopInitialised === 'true') {
@@ -146,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/*───────────────────────────────────────────────────────────────────────
-	      A wrapper should exist *whenever* the block has the style-class and
-	      should be gone when it doesn’t.  These two helpers enforce that rule.
+	A wrapper should exist *whenever* the block has the style-class and
+	should be gone when it doesn’t.  These two helpers enforce that rule.
 	───────────────────────────────────────────────────────────────────────*/
 	function ensureWrapper(scroller) {
 		if (
@@ -173,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	//------------------------------------------------------------------
-	// 4.  Nav / pause buttons (unchanged except for minor clean‑ups).
+	// 4.  Nav / pause buttons.
 	//------------------------------------------------------------------
 	function setupScrollerButtons(scroller) {
 		if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
@@ -214,12 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		scroller.dataset.prevHasNav = hasNav;
 		scroller.dataset.prevShowPause = showPause;
 
-		// ──────────────────────────────────────────────────────────────────────
-		// 1.   Buttons were previously built → two possibilities:
-		//      • nav / pause still wanted  → keep them & exit early
-		//      • nav / pause now off       → remove container & *continue* so we
-		//                                    can rebuild pause‑only or nothing.
-		// ──────────────────────────────────────────────────────────────────────
 		if (scroller.dataset.buttonsInitialised === 'true') {
 			if (!hasNav && !showPause) {
 				const existing = scroller.parentNode.querySelector(
@@ -250,6 +236,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		const hasStarted = false;
 
 		function resetAutoScrollTimer() {
+			// only reset if we’re in “auto” mode
+			if (!scroller.classList.contains('horizontal-scroller-auto')) {
+				return;
+			}
 			stopAutoScroll();
 			if (!isPaused) {
 				startAutoScroll();
