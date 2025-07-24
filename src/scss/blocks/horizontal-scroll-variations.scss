@@ -165,7 +165,7 @@ body,
 		color: var(--wp--preset--color--base);
 		background-color: var(--wp--custom--deco-color);
 		border-radius: var(--wp--custom--button-border-radius);
-		box-shadow: var(--wp--custom--button-shadow);
+		
 		transition: var(--wp--custom--transition-time);
 		width: 30px;
 		height: 30px;
@@ -347,6 +347,11 @@ body,
 	.scroller-buttons-border-alternate + .horizontal-scroller-nav-buttons {
 		.is-horizontal-scroll-btn {
 		border: 1px solid var(--wp--preset--color--alternate);
+		}
+	}
+	.scroller-buttons-box-shadow + .horizontal-scroller-nav-buttons {
+		.is-horizontal-scroll-btn {
+			box-shadow: var(--wp--custom--button-shadow);
 		}
 	}
   	  

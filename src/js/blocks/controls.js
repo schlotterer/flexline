@@ -541,6 +541,13 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				const borderColor = props.attributes.buttonsBorderColor;
 				newClasses += ' scroller-buttons-border-' + borderColor;
 			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.buttonsBoxShadow &&
+				props.attributes.enableHorizontalScroller
+			) {
+				newClasses += ' scroller-buttons-box-shadow';
+			}
 			// Group
 			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
