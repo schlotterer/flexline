@@ -10,6 +10,7 @@ import {
 	customHorizontalScrollerAttributes,
 	customGalleryAttributes,
 	customShiftAttributes,
+	customNoWrapAttributes,
 } from './attributes';
 
 // Button - Filter function to add custom attributes to blocks
@@ -21,6 +22,7 @@ function addCustomButtonAttributes(settings, name) {
 			...customIconAttributes,
 			...customModalAttributes,
 			...customVisibilityAttributes,
+			...customNoWrapAttributes
 		};
 	}
 	return settings;

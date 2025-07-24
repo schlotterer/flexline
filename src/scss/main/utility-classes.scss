@@ -1,0 +1,153 @@
+body,
+.editor-styles-wrapper {
+    // Mostly for buttons.
+    .nowrap{
+		white-space: nowrap;
+		.wp-block-button__link{
+			white-space: nowrap;
+		}
+	}
+    // Position fixed
+    .is-position-fixed {
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+	}
+    .is-position-absolute {
+		position: absolute;
+		width: 100%;
+		z-index: 10;
+	}
+
+	.extra-z-index {
+		z-index: 11 !important;
+	}
+
+	.pointer-events-none {
+		pointer-events: none;
+	}
+	.pointer-events-auto {
+		pointer-events: auto;
+	}
+    
+    
+    
+    
+    
+    
+    /* Media Queries
+    ---------------------------------------- */
+
+    @include screen($tablet){
+
+		/* -- Order -- */
+
+		.is-order-first-tablet {
+			order: -1;
+		}
+
+		.is-order-0-tablet {
+			order: 0;
+		}
+
+		.is-order-1-tablet {
+			order: 1;
+		}
+
+		.is-order-2-tablet {
+			order: 2;
+		}
+
+		.is-order-3-tablet {
+			order: 3;
+		}
+
+		.is-order-4-tablet {
+			order: 4;
+		}
+
+		.is-order-5-tablet {
+			order: 5;
+		}
+
+		.is-order-6-tablet {
+			order: 6;
+		}
+
+		.is-order-7-tablet {
+			order: 7;
+		}
+
+		.is-order-8-tablet {
+			order: 8;
+		}
+
+		.is-order-9-tablet {
+			order: 9;
+		}
+
+		.is-order-last-tablet {
+			order: 99999;
+		}
+
+	}
+
+	@include screen($mobile){
+
+		/* -- Order -- */
+
+		.is-order-first-mobile {
+			order: -1;
+		}
+
+		.is-order-0-mobile {
+			order: 0;
+		}
+
+		.is-order-1-mobile {
+			order: 1;
+		}
+
+		.is-order-2-mobile {
+			order: 2;
+		}
+
+		.is-order-3-mobile {
+			order: 3;
+		}
+
+		.is-order-4-mobile {
+			order: 4;
+		}
+
+		.is-order-5-mobile {
+			order: 5;
+		}
+
+		.is-order-6-mobile {
+			order: 6;
+		}
+
+		.is-order-7-mobile {
+			order: 7;
+		}
+
+		.is-order-8-mobile {
+			order: 8;
+		}
+
+		.is-order-9-mobile {
+			order: 9;
+		}
+
+		.is-order-last-mobile {
+			order: 99999;
+		}
+
+        .is-justify-content-center-mobile {
+            justify-content: center !important;
+        }
+
+	}
+
+}

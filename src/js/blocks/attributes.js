@@ -27,6 +27,14 @@ export const customLazyAttributes = {
 	},
 };
 
+// NoWrap - Define custom attributes
+export const customNoWrapAttributes = {
+	noWrap: {
+		type: 'boolean',
+		default: false,
+	},
+};
+
 // Horizontal Scroll - Define custom attributes
 export const customHorizontalScrollAttributes = {
 	enableHorizontalScroll: {

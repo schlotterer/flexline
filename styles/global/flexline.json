@@ -616,7 +616,7 @@
 						"color": "var(--wp--custom--color--alert--focus)"
 					}
 				},
-				"css": "white-space: nowrap;display:block; transition: var(--wp--custom--transition-time);"
+				"css": "display:block; transition: var(--wp--custom--transition-time);"
 			},
 			"caption": {
 				"spacing": {
