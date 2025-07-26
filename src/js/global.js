@@ -515,11 +515,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/**
-	 * Whenever the *content* of the scroller changes (columns added/removed),
-	 * and looping is on, tear down & rebuild the clones.
-	 * @param scroller
-	 */
-	/**
 	 * Whenever *real* children (columns) are added/removed,
 	 * tear down & rebuild the clones.  Ignore any mutations that
 	 * involve only cloned‐slides.
@@ -560,62 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/**
-	 * On container-resize, snap the scroll position to the nearest real slide
-	 * in the middle copy (so your clones never move and you stay aligned).
-	 * @param scroller
-	 */
-	function watchResizeForLoop(scroller) {
-		if (scroller._resizeObserverAttached) {
-			return;
-		}
-		let resizeTimer = null;
-
-		const ro = new ResizeObserver(() => {
-			if (!scroller.classList.contains('horizontal-scroller-loop')) {
-				return; // only care when looping is enabled
-			}
-			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(() => {
-				// 1) grab only your “real” slides (ignore cloned-slide nodes)
-				const realSlides = Array.from(scroller.children).filter(
-					(el) => !el.classList.contains('cloned-slide')
-				);
-				if (realSlides.length === 0) {
-					return;
-				}
-
-				// 2) compute total width of one set
-				const realWidth = realSlides.reduce(
-					(sum, slide) => sum + slide.offsetWidth,
-					0
-				);
-
-				// 3) figure out where you are *within* that set (modulo)
-				const raw = scroller.scrollLeft;
-				const rel =
-					(((raw - realWidth) % realWidth) + realWidth) % realWidth;
-
-				// 4) snap to the nearest slide’s offsetLeft
-				let targetIndex = 0;
-				for (let i = 0; i < realSlides.length; i++) {
-					if (rel >= realSlides[i].offsetLeft) {
-						targetIndex = i;
-					} else {
-						break;
-					}
-				}
-
-				// 5) reposition into the middle copy at that exact slide
-				scroller.scrollLeft =
-					realWidth + realSlides[targetIndex].offsetLeft;
-			}, 400);
-		});
-
-		ro.observe(scroller);
-		scroller._resizeObserverAttached = true;
-	}
-
-	/**
 	 * Rebuild all loops: first tear down any stale ones,
 	 * then re-init the ones that actually still have the class.
 	 */
@@ -638,11 +577,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			.forEach(setupInfiniteLoop);
 	}
 
-	// Infinite loop clones once everything (images/fonts) is ready
-	window.addEventListener('load', () => {
-		initScrollers();
-		initInfiniteLoops();
-	});
+	if (!isBlockEditor()) {
+		// Infinite loop clones once everything (images/fonts) is ready
+		window.addEventListener('load', () => {
+			// initScrollers();
+			initInfiniteLoops();
+		});
+	}
 
 	//------------------------------------------------------------------
 	// 7.  Extra editor‑only logic (observer on block list)
@@ -650,8 +591,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (isBlockEditor()) {
 		wp.domReady(() => {
 			const { subscribe } = wp.data;
-			// run on *any* editor change
 			setTimeout(() => {
+				// run on *any* editor change
 				subscribe(() => {
 					initScrollers();
 					initInfiniteLoops();
