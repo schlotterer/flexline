@@ -32,8 +32,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"stretch","metadata":{"name":"Image Column"},"className":""} -->
-        <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":186,"dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span><img class="wp-block-cover__image-background wp-image-186" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" />
+        <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" />
                 <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"150px","metadata":{"name":"Mobile View Space Holder"},"className":""} -->
                     <div style="height:150px" aria-hidden="true" class="wp-block-spacer"></div>
                     <!-- /wp:spacer -->

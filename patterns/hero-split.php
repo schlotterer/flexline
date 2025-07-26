@@ -43,8 +43,8 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"stretch","width":"50%","className":"","backgroundColor":"primary"} -->
-        <div class="wp-block-column is-vertically-aligned-stretch has-primary-background-color has-background" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":657,"dimRatio":60,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","className":"","layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="min-height:100%"><img class="wp-block-cover__image-background wp-image-657" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span>
+        <div class="wp-block-column is-vertically-aligned-stretch has-primary-background-color has-background" style="flex-basis:50%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":60,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.95,"y":0.54},"minHeight":100,"minHeightUnit":"%","className":"","layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover" style="min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:95% 54%" data-object-fit="cover" data-object-position="95% 54%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-60 has-background-dim"></span>
                 <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"225px","className":""} -->
                     <div style="height:225px" aria-hidden="true" class="wp-block-spacer"></div>
                     <!-- /wp:spacer -->

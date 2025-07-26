@@ -22,7 +22,7 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image column"},"className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":999,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
             <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" style="aspect-ratio:4/3;object-fit:cover" /></a></figure>
             <!-- /wp:image -->
         </div>

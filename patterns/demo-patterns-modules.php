@@ -54,7 +54,7 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image column"},"className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":999,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
             <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" style="aspect-ratio:4/3;object-fit:cover" /></a></figure>
             <!-- /wp:image -->
         </div>
@@ -79,23 +79,23 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"linkTo":"media","metadata":{"name":"Poster Gallery"},"className":"poster-gallery","enablePosterGallery":true} -->
-            <figure class="wp-block-gallery has-nested-images columns-default is-cropped poster-gallery"><!-- wp:image {"id":999,"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+            <figure class="wp-block-gallery has-nested-images columns-default is-cropped poster-gallery"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
                 <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
                 <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
                 <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
                 <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
+                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
                 <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
                 <!-- /wp:image -->
             </figure>
@@ -158,25 +158,25 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Image Links Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","metadata":{"name":"Gallery with Links"},"align":"center","className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
-            <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|primary"}}} -->
+            <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|primary"}}} -->
                 <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|secondary"}}} -->
+                <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|secondary"}}} -->
                 <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|alternate"}}} -->
+                <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|alternate"}}} -->
                 <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"id":999,"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}}} -->
+                <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}}} -->
                 <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
@@ -223,8 +223,8 @@ namespace FlexLine\flexline;
             <!-- /wp:column -->
 
             <!-- wp:column {"verticalAlignment":"stretch","metadata":{"name":"Image Column"},"className":""} -->
-            <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":186,"dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51000000000000001},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
-                <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><img class="wp-block-cover__image-background wp-image-186" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span>
+            <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51000000000000001},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span>
                     <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"150px","metadata":{"name":"Mobile View Space Holder"},"className":""} -->
                         <div style="height:150px" aria-hidden="true" class="wp-block-spacer"></div>
                         <!-- /wp:spacer -->
@@ -711,8 +711,8 @@ namespace FlexLine\flexline;
 <!-- wp:group {"metadata":{"name":"Gallery by Title Small","categories":["flexline-modules"],"patternName":"flexline/module-gallery-by-title-small"},"className":"is-style-card","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-card has-neutral-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"metadata":{"name":"Text and Galleries Columns"},"align":"full","className":"","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
     <div class="wp-block-columns alignfull"><!-- wp:column {"verticalAlignment":"stretch","width":"35%","metadata":{"name":"Text Column"},"className":""} -->
-        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:35%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":356,"alt":"Sample Image","dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Container / Background"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background wp-image-356" alt="Sample Image" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
+        <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:35%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Sample Image","dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Container / Background"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover" style="padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background" alt="Sample Image" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
                 <div class="wp-block-cover__inner-container"><!-- wp:heading {"className":"is-style-text-shadow","style":{"typography":{"fontStyle":"normal","fontWeight":"500"}},"fontSize":"max-48"} -->
                     <h2 class="wp-block-heading is-style-text-shadow has-max-48-font-size" style="font-style:normal;font-weight:500">Exciting new gallery layout!</h2>
                     <!-- /wp:heading -->

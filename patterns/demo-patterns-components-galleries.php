@@ -106,7 +106,7 @@ namespace FlexLine\flexline;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Media Modal"},"className":"is-style-dots"} -->
     <div class="wp-block-columns are-vertically-aligned-center is-style-dots"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Video Modal","categories":["flexline-galleries"],"patternName":"flexline/gallery-video-card"},"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"groupLinkType":"modal_media"} -->
-            <div class="wp-block-group is-style-default"><!-- wp:image {"id":362,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://youtu.be/NsYHfdHTaGM"} -->
+            <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://youtu.be/NsYHfdHTaGM"} -->
                 <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -184,7 +184,7 @@ namespace FlexLine\flexline;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Media Download Group"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Gallery Media with Download","categories":["flexline-galleries"],"patternName":"flexline/gallery-media-download"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"id":765,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Image with Modal Link"},"className":"has-custom-border is-style-default enable-modal","style":{"color":[],"border":[]},"enableModal":true,"modalMediaURL":"https://designfloorplan.com/plan/?PlanID=3624"} -->
+            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Image with Modal Link"},"className":"has-custom-border is-style-default enable-modal","style":{"color":[],"border":[]},"enableModal":true,"modalMediaURL":"https://designfloorplan.com/plan/?PlanID=3624"} -->
                 <figure class="wp-block-image size-large has-custom-border is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="wp-image-765" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
@@ -247,7 +247,7 @@ namespace FlexLine\flexline;
     <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
         <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"},"className":""} -->
             <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"id":826,"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
+                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
                     <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="wp-image-826" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                     <!-- /wp:image -->
                 </div>
