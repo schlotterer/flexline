@@ -153,11 +153,6 @@ function ensureWrapper(scroller) {
 		return scroller.parentNode;
 	}
 
-	console.log('Scroller:', scroller);
-	console.log('Parent exists:', !!scroller.parentNode);
-	console.log('Element in DOM:', document.body.contains(scroller));
-	console.log(scroller);
-
 	const w = document.createElement('div');
 	w.classList.add('horizontal-scroll-wrapper');
 	w.style.position = 'relative';
@@ -573,7 +568,6 @@ function initInfiniteLoops() {
  */
 function initOneScroller(scroller) {
 	initScroller(scroller);
-	console.log('initOneScroller');
 	if (scroller.classList.contains('horizontal-scroller-loop')) {
 		setupInfiniteLoop(scroller);
 	}
@@ -590,14 +584,12 @@ function initOneScroller(scroller) {
 function scheduleScrollerInit(scroller) {
 	watchLoopToggle(scroller);
 	watchChildrenForLoop(scroller);
-	
 
 	if (
 		isBlockEditor() &&
 		scroller.classList.contains('wp-block-post-template')
 	) {
 		// Initial check for posts
-		console.log(scroller.querySelectorAll('.wp-block-post'));
 		if (scroller.querySelectorAll('.wp-block-post').length) {
 			initOneScroller(scroller);
 			return;
@@ -617,21 +609,18 @@ function scheduleScrollerInit(scroller) {
 
 				// Check if posts are loaded in the scroller
 				if (scroller.querySelectorAll('.wp-block-post').length) {
-					console.log('unsubscribe'.unsubscribe);
 					didInit = true;
 					unsubscribe();
 					requestAnimationFrame(() => initOneScroller(scroller));
 				}
 			});
 		} else {
-			console.log('wp failed');
 			// Fallback to MutationObserver if wp.data is not available
 			const obs = new MutationObserver(() => {
 				if (
 					!didInit &&
 					scroller.querySelectorAll('.wp-block-post').length
 				) {
-					console.log('If !didinit and has posts ');
 					didInit = true;
 					obs.disconnect();
 					requestAnimationFrame(() => initOneScroller(scroller));
@@ -643,7 +632,6 @@ function scheduleScrollerInit(scroller) {
 		// Fallback timeout as a last resort
 		setTimeout(() => {
 			if (!didInit) {
-				console.log('settimeout');
 				didInit = true;
 				requestAnimationFrame(() => initOneScroller(scroller));
 			}
@@ -669,7 +657,6 @@ function initScrollers() {
 document.addEventListener('DOMContentLoaded', initScrollers);
 window.addEventListener('load', initScrollers);
 
-
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
 	const bodyObserver = new MutationObserver((records) => {
@@ -692,27 +679,3 @@ if (isBlockEditor()) {
 		subtree: true,
 	});
 }
-
-// if (!isBlockEditor()) {
-// 	// Infinite loop clones once everything (images/fonts) is ready
-// 	window.addEventListener('load', () => {
-//		initScrollers();
-//		initInfiniteLoops();
-// 	});
-// }
-
-//------------------------------------------------------------------
-// 7.  Extra editor‑only logic (observer on block list)
-//------------------------------------------------------------------
-// if (isBlockEditor()) {
-// 	wp.domReady(() => {
-// 		const { subscribe } = wp.data;
-// 		setTimeout(() => {
-// 			// run on *any* editor change
-// 			subscribe(() => {
-// 				initScrollers();
-// 				initInfiniteLoops();
-// 			});
-// 		}, 500);
-// 	});
-// }
