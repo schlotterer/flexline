@@ -202,7 +202,7 @@ namespace FlexLine\flexline;
     <div class="wp-block-group stacked is-style-default" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"top":"0","left":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"35%","className":""} -->
             <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":""} -->
-                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-6001" /></figure>
+                <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
             </div>
             <!-- /wp:column -->

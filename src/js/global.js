@@ -611,7 +611,7 @@ function scheduleScrollerInit(scroller) {
 				if (scroller.querySelectorAll('.wp-block-post').length) {
 					didInit = true;
 					unsubscribe();
-					requestAnimationFrame(() => initOneScroller(scroller));
+					initOneScroller(scroller);
 				}
 			});
 		} else {
@@ -623,7 +623,7 @@ function scheduleScrollerInit(scroller) {
 				) {
 					didInit = true;
 					obs.disconnect();
-					requestAnimationFrame(() => initOneScroller(scroller));
+					initOneScroller(scroller);
 				}
 			});
 			obs.observe(scroller, { childList: true, subtree: true });
@@ -633,12 +633,12 @@ function scheduleScrollerInit(scroller) {
 		setTimeout(() => {
 			if (!didInit) {
 				didInit = true;
-				requestAnimationFrame(() => initOneScroller(scroller));
+				initOneScroller(scroller);
 			}
 		}, 3000);
 	} else {
 		// For non-block editor contexts, initialize immediately
-		requestAnimationFrame(() => initOneScroller(scroller));
+		initOneScroller(scroller);
 	}
 }
 
@@ -677,5 +677,12 @@ if (isBlockEditor()) {
 	bodyObserver.observe(document.body, {
 		childList: true,
 		subtree: true,
+	});
+	wp.domReady(() => {
+		let t;
+		wp.data.subscribe(() => {
+			clearTimeout(t);
+			t = setTimeout(() => initScrollers(), 200);
+		});
 	});
 }

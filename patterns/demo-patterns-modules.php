@@ -55,7 +55,7 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-            <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" style="aspect-ratio:4/3;object-fit:cover" /></a></figure>
+            <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" style="aspect-ratio:4/3;object-fit:cover" /></a></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->
@@ -80,23 +80,23 @@ namespace FlexLine\flexline;
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"linkTo":"media","metadata":{"name":"Poster Gallery"},"className":"poster-gallery","enablePosterGallery":true} -->
             <figure class="wp-block-gallery has-nested-images columns-default is-cropped poster-gallery"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
+                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
+                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
+                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
+                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="wp-image-185" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a></figure>
+                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
                 <!-- /wp:image -->
             </figure>
             <!-- /wp:gallery -->
@@ -159,25 +159,25 @@ namespace FlexLine\flexline;
         <!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Image Links Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"columns":2,"linkTo":"none","sizeSlug":"medium","metadata":{"name":"Gallery with Links"},"align":"center","className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
             <figure class="wp-block-gallery aligncenter has-nested-images columns-2 is-cropped"><!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|primary"}}} -->
-                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|secondary"}}} -->
-                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|alternate"}}} -->
-                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"sizeSlug":"medium","linkDestination":"custom","className":"is-style-card","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}}} -->
-                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-999" /></a>
+                <figure class="wp-block-image size-medium is-style-card"><a href="/contact/"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a>
                     <figcaption class="wp-element-caption">Page Link Image</figcaption>
                 </figure>
                 <!-- /wp:image -->
