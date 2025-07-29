@@ -5,7 +5,6 @@
  * Slug: flexline/team-leadership
  * Categories: flexline-components, flexline-misc
  */
-
 namespace FlexLine\flexline;
 ?>
 <!-- wp:group {"metadata":{"name":"Leadership Card"},"className":"is-style-card-padded","layout":{"type":"default"}} -->
@@ -33,7 +32,7 @@ namespace FlexLine\flexline;
 
         <!-- wp:column {"verticalAlignment":"center","width":"","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"full","linkDestination":"none","className":""} -->
-            <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-5592" style="aspect-ratio:3/2;object-fit:cover" /></figure>
+            <figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->

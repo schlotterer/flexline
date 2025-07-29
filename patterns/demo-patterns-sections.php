@@ -132,6 +132,10 @@ namespace FlexLine\flexline;
 </div>
 <!-- /wp:group -->
 
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/a0be14a17e634a688a4afeae8ca3f227?sid=62d211fa-a1d5-4169-b3af-deed1aaa3b21"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/a0be14a17e634a688a4afeae8ca3f227-67ba0fd9d867730f-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
+
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
@@ -147,7 +151,7 @@ namespace FlexLine\flexline;
 <!-- wp:group {"metadata":{"name":"Colored Image Cards with links","categories":["flexline-sections"],"patternName":"flexline/section-colored-image-box-links"},"align":"full","className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"var:preset|spacing|xxx-large","bottom":"0"}}},"layout":{"type":"constrained","wideSize":"1200px"}} -->
 <div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--xxx-large);margin-bottom:0;padding-top:0;padding-right:var(--wp--preset--spacing--medium);padding-bottom:0;padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Headline"},"className":"","layout":{"type":"constrained"}} -->
     <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","className":"wp-block-heading","style":{"typography":{"letterSpacing":"-1px"}},"fontSize":"max-60"} -->
-        <h2 class="wp-block-heading has-text-align-center has-max-60-font-size" id="text-on-left-image-on-right" style="letter-spacing:-1px">Colored Image Boxes</h2>
+        <h2 class="wp-block-heading has-text-align-center has-max-60-font-size" style="letter-spacing:-1px">Colored Image Cards with links</h2>
         <!-- /wp:heading -->
     </div>
     <!-- /wp:group -->
@@ -155,8 +159,8 @@ namespace FlexLine\flexline;
     <!-- wp:group {"metadata":{"name":"Image Cards"},"align":"full","className":"is-style-default","style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|secondary","width":"1px"},"right":{"width":"0px","style":"none"},"bottom":{"color":"var:preset|color|secondary","width":"1px"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"constrained"}} -->
     <div class="wp-block-group alignfull is-style-default" style="border-top-color:var(--wp--preset--color--secondary);border-top-width:1px;border-right-style:none;border-right-width:0px;border-bottom-color:var(--wp--preset--color--secondary);border-bottom-width:1px;border-left-style:none;border-left-width:0px;margin-bottom:0"><!-- wp:columns {"align":"full","className":"flexline-stack-at-tablet","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0"}}},"stackAtTablet":true} -->
         <div class="wp-block-columns alignfull flexline-stack-at-tablet" style="margin-top:0"><!-- wp:column {"width":"25%","className":"","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"blockGap":"var:preset|spacing|x-small"},"color":{"gradient":"linear-gradient(180deg,rgba(222,222,222,0.57) 3%,rgb(223,223,223) 79%)"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-            <div class="wp-block-column has-contrast-color has-text-color has-background has-link-color" style="background:linear-gradient(180deg,rgba(222,222,222,0.57) 3%,rgb(223,223,223) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","isUserOverlayColor":true,"focalPoint":{"x":0.82,"y":0.55},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|large","left":"var:preset|spacing|large","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
-                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center has-base-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:82% 55%" data-object-fit="cover" data-object-position="82% 55%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
+            <div class="wp-block-column has-contrast-color has-text-color has-background has-link-color" style="background:linear-gradient(180deg,rgba(222,222,222,0.57) 3%,rgb(223,223,223) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","isUserOverlayColor":true,"focalPoint":{"x":0.82,"y":0.55},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|primary"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
+                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center has-base-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:82% 55%" data-object-fit="cover" data-object-position="82% 55%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
                     <div class="wp-block-cover__inner-container"><!-- wp:spacer {"className":""} -->
                         <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
                         <!-- /wp:spacer -->
@@ -169,9 +173,12 @@ namespace FlexLine\flexline;
                         <p class="has-small-font-size" style="line-height:1.5">The foundation on which aesthetics, user experience, and functionality is built.</p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"secondary","fontSize":"small"} -->
-                        <p class="has-secondary-color has-text-color has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
-                        <!-- /wp:paragraph -->
+                        <!-- wp:buttons {"className":""} -->
+                        <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-text-link  flexline-icon-none"} -->
+                            <div class="wp-block-button is-style-text-link  flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#">Learn More →</a></div>
+                            <!-- /wp:button -->
+                        </div>
+                        <!-- /wp:buttons -->
                     </div>
                 </div>
                 <!-- /wp:cover -->
@@ -179,8 +186,8 @@ namespace FlexLine\flexline;
             <!-- /wp:column -->
 
             <!-- wp:column {"width":"25%","className":"","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"blockGap":"var:preset|spacing|x-small"}}} -->
-            <div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Delicious gourmet cheese topped with fresh berries and apricot jam.","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|large","left":"var:preset|spacing|large","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"color":{"duotone":"var:preset|duotone|secondary"}},"textColor":"base","layout":{"type":"constrained"}} -->
-                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center has-base-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background" alt="Delicious gourmet cheese topped with fresh berries and apricot jam." src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
+            <div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Delicious gourmet cheese topped with fresh berries and apricot jam.","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"color":{"duotone":"var:preset|duotone|secondary"}},"textColor":"base","layout":{"type":"constrained"}} -->
+                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center has-base-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);min-height:100%"><img class="wp-block-cover__image-background" alt="Delicious gourmet cheese topped with fresh berries and apricot jam." src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
                     <div class="wp-block-cover__inner-container"><!-- wp:spacer {"className":""} -->
                         <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
                         <!-- /wp:spacer -->
@@ -193,9 +200,12 @@ namespace FlexLine\flexline;
                         <p class="has-small-font-size" style="line-height:1.5">A preset bundle of blocks that empower builders and amplify their creativity.</p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"secondary","fontSize":"small"} -->
-                        <p class="has-secondary-color has-text-color has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
-                        <!-- /wp:paragraph -->
+                        <!-- wp:buttons {"className":""} -->
+                        <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-text-link  flexline-icon-none"} -->
+                            <div class="wp-block-button is-style-text-link  flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#">Learn More →</a></div>
+                            <!-- /wp:button -->
+                        </div>
+                        <!-- /wp:buttons -->
                     </div>
                 </div>
                 <!-- /wp:cover -->
@@ -203,8 +213,8 @@ namespace FlexLine\flexline;
             <!-- /wp:column -->
 
             <!-- wp:column {"width":"25%","className":"","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"blockGap":"var:preset|spacing|x-small"},"color":{"gradient":"linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%)"}}} -->
-            <div class="wp-block-column has-background" style="background:linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","focalPoint":{"x":0.19,"y":0.57},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","right":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|large"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|alternate"}}} -->
-                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:19% 57%" data-object-fit="cover" data-object-position="19% 57%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
+            <div class="wp-block-column has-background" style="background:linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","focalPoint":{"x":0.19,"y":0.57},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","right":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|alternate"}}} -->
+                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:19% 57%" data-object-fit="cover" data-object-position="19% 57%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
                     <div class="wp-block-cover__inner-container"><!-- wp:spacer {"className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|large","left":"var:preset|spacing|large","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"},"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}}} -->
                         <div style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--large);height:100px" aria-hidden="true" class="wp-block-spacer"></div>
                         <!-- /wp:spacer -->
@@ -217,9 +227,12 @@ namespace FlexLine\flexline;
                         <p class="has-small-font-size" style="line-height:1.5">A collection of full-page patterns used to showcase content or a message.</p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"secondary","fontSize":"small"} -->
-                        <p class="has-secondary-color has-text-color has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
-                        <!-- /wp:paragraph -->
+                        <!-- wp:buttons {"className":""} -->
+                        <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-text-link  flexline-icon-none"} -->
+                            <div class="wp-block-button is-style-text-link  flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#">Learn More →</a></div>
+                            <!-- /wp:button -->
+                        </div>
+                        <!-- /wp:buttons -->
                     </div>
                 </div>
                 <!-- /wp:cover -->
@@ -227,8 +240,8 @@ namespace FlexLine\flexline;
             <!-- /wp:column -->
 
             <!-- wp:column {"width":"25%","className":"","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"blockGap":"var:preset|spacing|x-small"},"color":{"gradient":"linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%)"}}} -->
-            <div class="wp-block-column has-background" style="background:linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Happy senior couple embracing on a cozy sofa.","focalPoint":{"x":0.34,"y":1},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","right":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|large"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|dark"}}} -->
-                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--large);min-height:100%"><img class="wp-block-cover__image-background" alt="Happy senior couple embracing on a cozy sofa." src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:34% 100%" data-object-fit="cover" data-object-position="34% 100%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
+            <div class="wp-block-column has-background" style="background:linear-gradient(177deg,rgba(176,132,76,0.31) 0%,rgb(175,132,75) 79%);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:25%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Happy senior couple embracing on a cozy sofa.","focalPoint":{"x":0.34,"y":1},"minHeight":100,"minHeightUnit":"%","gradient":"dark-transparent-bottom-to-top","contentPosition":"bottom center","align":"full","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","right":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"},"color":{"duotone":"var:preset|duotone|dark"}}} -->
+                <div class="wp-block-cover alignfull has-custom-content-position is-position-bottom-center" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium);min-height:100%"><img class="wp-block-cover__image-background" alt="Happy senior couple embracing on a cozy sofa." src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:34% 100%" data-object-fit="cover" data-object-position="34% 100%" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-dark-transparent-bottom-to-top-gradient-background"></span>
                     <div class="wp-block-cover__inner-container"><!-- wp:spacer {"className":""} -->
                         <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
                         <!-- /wp:spacer -->
@@ -241,9 +254,12 @@ namespace FlexLine\flexline;
                         <p class="has-small-font-size" style="line-height:1.5">An essential element of web design used to create a visually striking design.</p>
                         <!-- /wp:paragraph -->
 
-                        <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"secondary","fontSize":"small"} -->
-                        <p class="has-secondary-color has-text-color has-link-color has-small-font-size"><a href="#">Learn More →</a></p>
-                        <!-- /wp:paragraph -->
+                        <!-- wp:buttons {"className":""} -->
+                        <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-text-link  flexline-icon-none"} -->
+                            <div class="wp-block-button is-style-text-link  flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#">Learn More →</a></div>
+                            <!-- /wp:button -->
+                        </div>
+                        <!-- /wp:buttons -->
                     </div>
                 </div>
                 <!-- /wp:cover -->
@@ -255,6 +271,10 @@ namespace FlexLine\flexline;
     <!-- /wp:group -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/ce8445feda0a4d37bd3119411c1061f5?sid=71024f48-892f-4f39-bfe7-d96e844ec66c"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/ce8445feda0a4d37bd3119411c1061f5-eb8d62269ecf3a21-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -280,88 +300,23 @@ namespace FlexLine\flexline;
             <p class="has-text-align-center is-style-text-shadow">This pattern sets up a background with a cover block to feature sections of content. In this case we're using the Feature Page with cover image pattern as the feature.</p>
             <!-- /wp:paragraph -->
 
-            <!-- wp:group {"metadata":{"name":"Feature Page with cover image","categories":["flexline-modules"],"patternName":"flexline/feature-page-cover"},"className":"is-style-card group-link-type-none","layout":{"type":"default"}} -->
-            <div class="wp-block-group is-style-card group-link-type-none"><!-- wp:columns {"metadata":{"name":"Content Columns"},"className":"is-style-columns-reverse","style":{"spacing":{"blockGap":{"top":"0","left":"0"}}}} -->
-                <div class="wp-block-columns is-style-columns-reverse"><!-- wp:column {"metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
-                    <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","fontSize":"max-36"} -->
-                            <h2 class="wp-block-heading has-contrast-color has-text-color has-link-color has-max-36-font-size">Feature Page</h2>
-                            <!-- /wp:heading -->
+            <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->
+            
+            <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->
 
-                            <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
-                            <p class="has-contrast-color has-text-color has-link-color">This pattern can be used to tease site content. It uses a cover block and image to create visual interest and respond flexibly to variable content and breakpoints. You can also reverse the columns and choose if you want the image first on mobile in each use.</p>
-                            <!-- /wp:paragraph -->
-
-                            <!-- wp:buttons {"className":"","style":{"spacing":{"margin":{"bottom":"0"}}}} -->
-                            <div class="wp-block-buttons" style="margin-bottom:0"><!-- wp:button {"className":"enable-modal  flexline-icon-internal-link","iconType":"internal-link","enableModal":true} -->
-                                <div class="wp-block-button enable-modal  flexline-icon-internal-link"><a class="wp-block-button__link wp-element-button" href="#">View More</a></div>
-                                <!-- /wp:button -->
-                            </div>
-                            <!-- /wp:buttons -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:column -->
-
-                    <!-- wp:column {"verticalAlignment":"stretch","metadata":{"name":"Image Column"},"className":""} -->
-                    <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
-                        <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span>
-                            <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"150px","metadata":{"name":"Mobile View Space Holder"},"className":""} -->
-                                <div style="height:150px" aria-hidden="true" class="wp-block-spacer"></div>
-                                <!-- /wp:spacer -->
-                            </div>
-                        </div>
-                        <!-- /wp:cover -->
-                    </div>
-                    <!-- /wp:column -->
-                </div>
-                <!-- /wp:columns -->
-            </div>
-            <!-- /wp:group -->
-
-            <!-- wp:group {"metadata":{"name":"Feature Page with cover image","categories":["flexline-modules"],"patternName":"flexline/feature-page-cover"},"className":"is-style-card group-link-type-none","layout":{"type":"default"}} -->
-            <div class="wp-block-group is-style-card group-link-type-none"><!-- wp:columns {"metadata":{"name":"Content Columns"},"className":"is-style-default","style":{"spacing":{"blockGap":{"top":"0","left":"0"}}}} -->
-                <div class="wp-block-columns is-style-default"><!-- wp:column {"verticalAlignment":"stretch","metadata":{"name":"Image Column"},"className":""} -->
-                    <div class="wp-block-column is-vertically-aligned-stretch"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"overlayColor":"primary","isUserOverlayColor":true,"focalPoint":{"x":0.25,"y":0.51},"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Fill Image (Cover)"},"className":"","style":{"border":{"radius":"0px"}},"layout":{"type":"constrained"}} -->
-                        <div class="wp-block-cover" style="border-radius:0px;min-height:100%"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" style="object-position:25% 51%" data-object-fit="cover" data-object-position="25% 51%" /><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim"></span>
-                            <div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"150px","metadata":{"name":"Mobile View Space Holder"},"className":""} -->
-                                <div style="height:150px" aria-hidden="true" class="wp-block-spacer"></div>
-                                <!-- /wp:spacer -->
-                            </div>
-                        </div>
-                        <!-- /wp:cover -->
-                    </div>
-                    <!-- /wp:column -->
-
-                    <!-- wp:column {"metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}}} -->
-                    <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
-                        <div class="wp-block-group"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","fontSize":"max-36"} -->
-                            <h2 class="wp-block-heading has-contrast-color has-text-color has-link-color has-max-36-font-size">Feature Page</h2>
-                            <!-- /wp:heading -->
-
-                            <!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"textColor":"contrast"} -->
-                            <p class="has-contrast-color has-text-color has-link-color">This pattern can be used to tease site content. It uses a cover block and image to create visual interest and respond flexibly to variable content and breakpoints. You can also reverse the columns and choose if you want the image first on mobile in each use.</p>
-                            <!-- /wp:paragraph -->
-
-                            <!-- wp:buttons {"className":"","style":{"spacing":{"margin":{"bottom":"0"}}}} -->
-                            <div class="wp-block-buttons" style="margin-bottom:0"><!-- wp:button {"className":"enable-modal  flexline-icon-internal-link","iconType":"internal-link","enableModal":true} -->
-                                <div class="wp-block-button enable-modal  flexline-icon-internal-link"><a class="wp-block-button__link wp-element-button" href="#">View More</a></div>
-                                <!-- /wp:button -->
-                            </div>
-                            <!-- /wp:buttons -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:column -->
-                </div>
-                <!-- /wp:columns -->
-            </div>
-            <!-- /wp:group -->
         </div>
     </div>
     <!-- /wp:cover -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/80b62a580acf46ae91b851dbbcc6b9d5?sid=d91f9d32-c163-4049-aa98-4b28d3099523"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/80b62a580acf46ae91b851dbbcc6b9d5-38b713c026849512-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
 
 <!-- wp:heading {"level":3,"className":""} -->
 <h3 class="wp-block-heading" id="Page-Links">Page Links</h3>
@@ -375,145 +330,15 @@ namespace FlexLine\flexline;
 <div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:group {"metadata":{"name":"Page Links","categories":["flexline-sections"],"patternName":"flexline/section-page-links"},"align":"full","className":"","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0"><!-- wp:group {"metadata":{"name":"Subnav Sticky"},"align":"full","className":"extra-z-index is-style-shadow-dark","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
-    <div class="wp-block-group alignfull extra-z-index is-style-shadow-dark has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":54,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"top":"17px","bottom":"17px","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"layout":{"type":"constrained"}} -->
-        <div class="wp-block-cover alignfull" style="padding-top:17px;padding-right:var(--wp--preset--spacing--large);padding-bottom:17px;padding-left:var(--wp--preset--spacing--large);min-height:54px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
-            <div class="wp-block-cover__inner-container"><!-- wp:navigation {"ref":31,"overlayMenu":"never","align":"wide","className":"has-text-align-center is-style-horizontal-scroll-at-mobile is-style-light-over-dark","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"400","lineHeight":"1.1"}},"fontSize":"small","fontFamily":"display","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"},"enableHorizontalScroll":true} /--></div>
-        </div>
-        <!-- /wp:cover -->
-    </div>
-    <!-- /wp:group -->
+<!-- wp:pattern {"slug":"flexline/section-page-links"} /-->
 
-    <!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":90,"overlayColor":"neutral","isUserOverlayColor":true,"isDark":false,"align":"full","className":"","style":{"color":{"duotone":["#000000","#ffffff"]},"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-cover alignfull is-light" style="margin-top:0"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-neutral-background-color has-background-dim-90 has-background-dim"></span>
-        <div class="wp-block-cover__inner-container"><!-- wp:group {"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                    <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                            <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                <!-- /wp:heading -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/abcf77eee2ee44ce9f55569b87907cd7?sid=ff3a1ec4-3f3f-4202-8726-509e034794f0"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/abcf77eee2ee44ce9f55569b87907cd7-e7a3aa1c5148b459-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
-                                <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                            <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
-
-                <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                    <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                            <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                            <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
-
-                <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                    <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                            <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                            <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
-
-                <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                    <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                            <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                        <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                            <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
 
 <!-- wp:heading {"level":3,"className":""} -->
 <h3 class="wp-block-heading" id="Page-Links-with-Sticky-sidebar">Page Links with Sticky sidebar</h3>
@@ -527,292 +352,27 @@ namespace FlexLine\flexline;
 <div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:group {"metadata":{"name":"Page Links Sticky Sidebar","categories":["flexline-sections"],"patternName":"flexline/section-page-links-sticky-sidebar"},"align":"full","className":"","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"gradient":"secondary-primary","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-secondary-primary-gradient-background has-background" style="margin-top:0;margin-bottom:0"><!-- wp:cover {"hasParallax":true,"isRepeated":true,"dimRatio":80,"isUserOverlayColor":true,"gradient":"neutralDark-neutralLight","metadata":{"name":"Page Links Background"},"align":"full","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-cover alignfull has-parallax is-repeated" style="margin-top:0;margin-bottom:0"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim has-background-gradient has-neutralDark-neutralLight-gradient-background"></span>
-        <div class="wp-block-cover__inner-container"><!-- wp:columns {"metadata":{"name":"Sidebar Section"},"align":"wide","className":"flexline-stack-at-tablet","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}},"stackAtTablet":true} -->
-            <div class="wp-block-columns alignwide flexline-stack-at-tablet"><!-- wp:column {"width":"35%","metadata":{"name":"Small Column"},"className":""} -->
-                <div class="wp-block-column" style="flex-basis:35%"><!-- wp:group {"metadata":{"name":"Sticky Container"},"className":"","style":{"position":{"type":"sticky","top":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"0","right":"0","left":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"metadata":{"name":"Subnav Sticky"},"className":"is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"position":{"type":""},"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
-                        <div class="wp-block-group is-style-card has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"dimRatio":90,"minHeight":50,"gradient":"primary-primaryDark","contentPosition":"center center","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
-                            <div class="wp-block-cover" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-90 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
-                                <div class="wp-block-cover__inner-container"><!-- wp:heading {"className":"","fontSize":"max-48"} -->
-                                    <h2 class="wp-block-heading has-max-48-font-size"><strong>Page Links</strong></h2>
-                                    <!-- /wp:heading -->
+<!-- wp:pattern {"slug":"flexline/section-page-links-sticky-sidebar"} /-->
 
-                                    <!-- wp:paragraph {"className":""} -->
-                                    <p>This section uses a sticky sidebar to hold context while you continue to scroll through link cards.</p>
-                                    <!-- /wp:paragraph -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/f55fb756d46545dd8c77c4ef92582455?sid=5f015beb-6643-4443-8088-fb139a7853e0"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/f55fb756d46545dd8c77c4ef92582455-2f99f022101245b1-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
-                                    <!-- wp:paragraph {"className":""} -->
-                                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui.</p>
-                                    <!-- /wp:paragraph -->
-                                </div>
-                            </div>
-                            <!-- /wp:cover -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </div>
-                <!-- /wp:column -->
-
-                <!-- wp:column {"width":"65%","metadata":{"name":"Large Column"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}}} -->
-                <div class="wp-block-column" style="padding-top:0;padding-bottom:0;flex-basis:65%"><!-- wp:group {"metadata":{"name":"Content Group"},"align":"wide","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small","margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-
-                        <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
-                        <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
-                            <div class="wp-block-columns" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center","width":"","metadata":{"name":"Title and Text Column"},"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-contrast-color has-text-color has-link-color"><!-- wp:group {"metadata":{"name":"Title and Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"backgroundColor":"base","layout":{"type":"default"},"groupLinkURL":"/events","groupLinkType":"new_tab"} -->
-                                    <div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-                                        <h2 class="wp-block-heading has-primary-color has-text-color has-link-color">Page Link</h2>
-                                        <!-- /wp:heading -->
-
-                                        <!-- wp:paragraph {"lock":{"move":true,"remove":false},"className":"","style":{"typography":{"lineHeight":"1.5"},"layout":{"selfStretch":"fixed","flexSize":"720px"}},"fontSize":"small"} -->
-                                        <p class="has-small-font-size" style="line-height:1.5">The page link CTAs use the "Enable Group Link" option on the containing group allowing the entire CTA to be clickable.</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-
-                                <!-- wp:column {"verticalAlignment":"center","width":"125px","metadata":{"name":"Learn More Text Column"},"className":"","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary"} -->
-                                <div class="wp-block-column is-vertically-aligned-center has-primary-background-color has-background" style="flex-basis:125px"><!-- wp:group {"metadata":{"name":"Learn More Text"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"},"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
-                                    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small)"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.1","fontStyle":"normal","fontWeight":"600"}},"fontSize":"small"} -->
-                                        <p class="has-text-align-center has-small-font-size" style="font-style:normal;font-weight:600;line-height:1.1">Learn<br>More</p>
-                                        <!-- /wp:paragraph -->
-                                    </div>
-                                    <!-- /wp:group -->
-                                </div>
-                                <!-- /wp:column -->
-                            </div>
-                            <!-- /wp:columns -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:group -->
-                </div>
-                <!-- /wp:column -->
-            </div>
-            <!-- /wp:columns -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
-</div>
-<!-- /wp:group -->
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
 
 <!-- wp:heading {"level":3,"className":""} -->
 <h3 class="wp-block-heading" id="Section-with-Sidebar">Section with Sidebar (sticky)</h3>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":""} -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":""} -->
+<p></p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":""} -->
 <p>This section provides a layout with sticky left sidebar sub navigation. The right section feature a couple of sample content items but any combo of existing patterns could be used in the right column.</p>
@@ -845,88 +405,8 @@ namespace FlexLine\flexline;
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <!-- /wp:paragraph -->
 
-                <!-- wp:group {"metadata":{"name":"Columns with multiple rows"},"align":"wide","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-                <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide","className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
-                    <div class="wp-block-columns alignwide"><!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"Info Box"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->
-                                <h3 class="wp-block-heading">Info Box</h3>
-                                <!-- /wp:heading -->
+                <!-- wp:pattern {"slug":"flexline/columns-multirow"} /-->
 
-                                <!-- wp:paragraph {"className":"","fontSize":"small"} -->
-                                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"Info Box"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->
-                                <h3 class="wp-block-heading">Info Box</h3>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"className":"","fontSize":"small"} -->
-                                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"Info Box"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->
-                                <h3 class="wp-block-heading">Info Box</h3>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"className":"","fontSize":"small"} -->
-                                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-
-                    <!-- wp:columns {"align":"wide","className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
-                    <div class="wp-block-columns alignwide"><!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"Info Box"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->
-                                <h3 class="wp-block-heading">Info Box</h3>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"className":"","fontSize":"small"} -->
-                                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"><!-- wp:group {"metadata":{"name":"Info Box"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->
-                                <h3 class="wp-block-heading">Info Box</h3>
-                                <!-- /wp:heading -->
-
-                                <!-- wp:paragraph {"className":"","fontSize":"small"} -->
-                                <p class="has-small-font-size">A simple box with headline and content ready for use in columns with variable styles.</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"className":""} -->
-                        <div class="wp-block-column"></div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
             </div>
             <!-- /wp:group -->
 
@@ -938,43 +418,18 @@ namespace FlexLine\flexline;
             <h2 class="wp-block-heading has-text-align-center">Frequently Asked Questions</h2>
             <!-- /wp:heading -->
 
-            <!-- wp:plethoraplugins/tabs {"layout":"accordion","tabLabels":["Accordion 1","Accordion 2","Accordion 3"],"tabIds":[null,null,null],"className":"","metadata":{"name":"Accordion","categories":["flexline-misc"],"patternName":"flexline/tabs-accordion"}} -->
-            <!-- wp:plethoraplugins/tab {"label":"Accordion 1","parentLayout":"accordion","className":""} -->
-            <!-- wp:heading {"className":""} -->
-            <h2 class="wp-block-heading">Sample Section</h2>
-            <!-- /wp:heading -->
+            <!-- wp:pattern {"slug":"flexline/tabs-accordion"} /-->
 
-            <!-- wp:paragraph {"placeholder":"Tab content...","className":""} -->
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna.<br>Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            <!-- /wp:paragraph -->
-            <!-- /wp:plethoraplugins/tab -->
-
-            <!-- wp:plethoraplugins/tab {"label":"Accordion 2","parentLayout":"accordion","className":""} -->
-            <!-- wp:heading {"className":""} -->
-            <h2 class="wp-block-heading">Sample Section 2</h2>
-            <!-- /wp:heading -->
-
-            <!-- wp:paragraph {"placeholder":"Tab content...","className":""} -->
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna.<br>Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            <!-- /wp:paragraph -->
-            <!-- /wp:plethoraplugins/tab -->
-
-            <!-- wp:plethoraplugins/tab {"label":"Accordion 3","parentLayout":"accordion","className":""} -->
-            <!-- wp:heading {"className":""} -->
-            <h2 class="wp-block-heading">Sample Section 3</h2>
-            <!-- /wp:heading -->
-
-            <!-- wp:paragraph {"placeholder":"Tab content...","className":""} -->
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna.<br>Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            <!-- /wp:paragraph -->
-            <!-- /wp:plethoraplugins/tab -->
-            <!-- /wp:plethoraplugins/tabs -->
         </div>
         <!-- /wp:column -->
     </div>
     <!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/f7f5bfd3e1d944e8beca058fec5075fe?sid=b0227215-23ca-42cf-a604-f4695225cdc7"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/f7f5bfd3e1d944e8beca058fec5075fe-d2d0d3ffb3702d48-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -989,8 +444,8 @@ namespace FlexLine\flexline;
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Timeline Columns Container","categories":["flexline-sections"],"patternName":"flexline/section-timeline-columns"},"align":"wide","className":"is-style-card-padded","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"0"}},"shadow":"var:preset|shadow|diffused"},"gradient":"neutral-neutralLight","layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide is-style-card-padded has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small);box-shadow:var(--wp--preset--shadow--diffused)"><!-- wp:columns {"isStackedOnMobile":false,"metadata":{"name":"Timeline Columns Slider"},"align":"full","className":"scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-buttons-vertical-bottom horizontal-scroller-hide-scrollbar horizontal-scroller-buttons-horizontal-left horizontal-scroller-auto scroller-pause-on-hover scroller-buttons-border-none horizontal-scroller-loop scroller-buttons-text-white scroller-buttons-background-secondary","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"padding":{"left":"0"}}},"enableHorizontalScroller":true,"scrollAuto":true,"scrollLoop":true,"hideScrollbar":true,"buttonsBoxShadow":true,"transitionDuration":400} -->
-    <div class="wp-block-columns alignfull is-not-stacked-on-mobile scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-buttons-vertical-bottom horizontal-scroller-hide-scrollbar horizontal-scroller-buttons-horizontal-left horizontal-scroller-auto scroller-pause-on-hover scroller-buttons-border-none horizontal-scroller-loop scroller-buttons-text-white scroller-buttons-background-secondary" style="padding-left:0"><!-- wp:column {"verticalAlignment":"center","width":"275px","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}}} -->
+<div class="wp-block-group alignwide is-style-card-padded has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small);box-shadow:var(--wp--preset--shadow--diffused)"><!-- wp:columns {"isStackedOnMobile":false,"metadata":{"name":"Timeline Columns Slider"},"align":"full","className":"scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-buttons-vertical-bottom horizontal-scroller-hide-scrollbar horizontal-scroller-buttons-horizontal-left horizontal-scroller-auto scroller-pause-on-hover scroller-buttons-border-none horizontal-scroller-loop scroller-buttons-text-white scroller-buttons-background-secondary scroller-buttons-box-shadow","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"padding":{"left":"0"}}},"enableHorizontalScroller":true,"scrollAuto":true,"scrollLoop":true,"hideScrollbar":true,"buttonsBoxShadow":true,"transitionDuration":400} -->
+    <div class="wp-block-columns alignfull is-not-stacked-on-mobile scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-buttons-vertical-bottom horizontal-scroller-hide-scrollbar horizontal-scroller-buttons-horizontal-left horizontal-scroller-auto scroller-pause-on-hover scroller-buttons-border-none horizontal-scroller-loop scroller-buttons-text-white scroller-buttons-background-secondary scroller-buttons-box-shadow" style="padding-left:0"><!-- wp:column {"verticalAlignment":"center","width":"275px","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}}} -->
         <div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small);flex-basis:275px"><!-- wp:heading {"className":""} -->
             <h2 class="wp-block-heading">Timeline</h2>
             <!-- /wp:heading -->
@@ -1047,20 +502,10 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","width":"350px","className":"","style":{"spacing":{"padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="padding-right:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small);flex-basis:350px"><!-- wp:group {"metadata":{"name":"Testimonial Card"},"className":"is-style-card-padded","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group is-style-card-padded has-contrast-color has-text-color has-link-color"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->
-                <p class="has-text-align-center has-primary-color has-text-color has-link-color has-max-72-font-size" style="line-height:1">“</p>
-                <!-- /wp:paragraph -->
+        <div class="wp-block-column is-vertically-aligned-center" style="padding-right:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small);flex-basis:350px">
+            
+            <!-- wp:pattern {"slug":"flexline/testimonial-card"} /-->
 
-                <!-- wp:paragraph {"align":"center","className":"","style":{"spacing":{"margin":{"top":"0"}},"typography":{"lineHeight":1.4}},"fontSize":"large","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family has-large-font-size" style="margin-top:0;line-height:1.4"><em>With its clean, minimal design and powerful features, FlexLine enables agencies to build cool websites.</em></p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:paragraph {"align":"center","className":"","fontSize":"small","fontFamily":"display"} -->
-                <p class="has-text-align-center has-display-font-family has-small-font-size"><strong>—Allison Taylor, Designer</strong></p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
 
@@ -1078,7 +523,7 @@ namespace FlexLine\flexline;
         <!-- wp:column {"verticalAlignment":"center","width":"500px","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:500px"><!-- wp:group {"metadata":{"name":"Video Modal - Card"},"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"groupLinkType":"modal_media"} -->
             <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-                <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
+                <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:paragraph {"align":"center","className":"","fontFamily":"brand"} -->
@@ -1090,34 +535,20 @@ namespace FlexLine\flexline;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","width":"800px","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:800px"><!-- wp:quote {"textAlign":"right","className":"is-style-default","fontFamily":"display"} -->
-            <blockquote class="wp-block-quote has-text-align-right is-style-default has-display-font-family"><!-- wp:columns {"className":""} -->
-                <div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"center","width":"150px","className":"is-style-hide-on-mobile"} -->
-                    <div class="wp-block-column is-vertically-aligned-center is-style-hide-on-mobile" style="flex-basis:150px"><!-- wp:image {"width":"150px","aspectRatio":"1","scale":"cover","sizeSlug":"thumbnail","linkDestination":"none","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100px"}}} -->
-                        <figure class="wp-block-image aligncenter size-thumbnail is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" style="border-radius:100px;aspect-ratio:1;object-fit:cover;width:150px" /></figure>
-                        <!-- /wp:image -->
-                    </div>
-                    <!-- /wp:column -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:800px">
+            
+            <!-- wp:pattern {"slug":"flexline/testimonial-wide"} /-->
 
-                    <!-- wp:column {"verticalAlignment":"center","width":"","className":""} -->
-                    <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained","contentSize":"600px"}} -->
-                        <div class="wp-block-group"><!-- wp:paragraph {"className":"","style":{"typography":{"lineHeight":1.4}},"fontSize":"large","fontFamily":"brand"} -->
-                            <p class="has-brand-font-family has-large-font-size" style="line-height:1.4">"Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna."</p>
-                            <!-- /wp:paragraph -->
-                        </div>
-                        <!-- /wp:group -->
-                    </div>
-                    <!-- /wp:column -->
-                </div>
-                <!-- /wp:columns --><cite>Someone's Name</cite>
-            </blockquote>
-            <!-- /wp:quote -->
         </div>
         <!-- /wp:column -->
     </div>
     <!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/1453e1d8345248769ce63ee30c3c925a?sid=e4a63b6e-3f02-422d-959a-48bc2a0f94d9"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/1453e1d8345248769ce63ee30c3c925a-3830c07cc0ae3a46-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -1131,35 +562,11 @@ namespace FlexLine\flexline;
 <p>The <strong>Horizontal Posts Scroll</strong> pattern combines WordPress’s <strong>Query Loop</strong> block with Flexline’s custom scroller options to display your latest posts in a smooth, side-scrolling slider. It’s perfect for highlighting featured blog posts, news, or any repeatable post type in a more dynamic way. The Query Loop automatically pulls in your latest posts (or any post type you choose) and displays each one inside the Post Template block.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Horizontal Post Scroll","categories":["flexline-sections"],"patternName":"flexline/section-horizontal-posts-scroll"},"align":"wide","className":"is-style-card-padded","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|medium","right":"0"},"blockGap":"var:preset|spacing|small"}},"gradient":"neutral-neutralLight","layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide is-style-card-padded has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--large);padding-right:0;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"align":"wide","className":""} -->
-    <h2 class="wp-block-heading alignwide">Latest Posts Slider</h2>
-    <!-- /wp:heading -->
+<!-- wp:pattern {"slug":"flexline/section-horizontal-posts-scroll"} /-->
 
-    <!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]},"className":""} -->
-    <div class="wp-block-query"><!-- wp:post-template {"className":"scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-auto horizontal-scroller-hide-scrollbar scroller-pause-on-hover horizontal-scroller-buttons-horizontal-left horizontal-scroller-buttons-vertical-bottom scroller-buttons-background-primary scroller-buttons-text-white scroller-buttons-border-none","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"250px"},"enableHorizontalScroller":true,"scrollAuto":true,"hideScrollbar":true,"buttonsBackgroundColor":"primary","buttonsBoxShadow":true} -->
-        <!-- wp:group {"metadata":{"name":"Post Grid Single - Card Image, Category, Title"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"}},"dimensions":{"minHeight":"100%"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"}} -->
-        <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"url":"https://staging2.flexlinetheme.com/wp-content/themes/flexline/assets/built/images/fallback.webp","dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background" alt="" src="https://staging2.flexlinetheme.com/wp-content/themes/flexline/assets/built/images/fallback.webp" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
-                <div class="wp-block-cover__inner-container"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"auto","width":"100%","height":"200px","dimRatio":50,"gradient":"primary-primaryDark","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /--></div>
-            </div>
-            <!-- /wp:cover -->
-
-            <!-- wp:group {"className":"is-style-default","style":{"spacing":{"blockGap":"0","padding":{"right":"var:preset|spacing|small","left":"var:preset|spacing|small","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}},"dimensions":{"minHeight":""},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
-            <div class="wp-block-group is-style-default" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"},"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display","layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-display-font-family has-x-small-font-size" style="text-transform:uppercase"><!-- wp:post-terms {"term":"category","className":"","style":{"typography":{"lineHeight":"1"}}} /--></div>
-                <!-- /wp:group -->
-
-                <!-- wp:post-title {"isLink":true,"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|primary"}}}},"typography":{"lineHeight":"1.2"}},"fontSize":"large","fontFamily":"brand"} /-->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:group -->
-        <!-- /wp:post-template -->
-    </div>
-    <!-- /wp:query -->
-</div>
-<!-- /wp:group -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/e956bd7be50f4dfc993393fadc653ce3?sid=b47b3c74-b262-41a0-998c-cbab9de0c617"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/e956bd7be50f4dfc993393fadc653ce3-b78867b38975de13-full-play.gif" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -1173,41 +580,11 @@ namespace FlexLine\flexline;
 <p>Showing the 3 latest post.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Latests Posts - 3 card","categories":["flexline-sections"],"patternName":"flexline/section-latest-posts"},"align":"full","className":"latests-posts-3-card","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull latests-posts-3-card" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"textAlign":"center","className":""} -->
-    <h2 class="wp-block-heading has-text-align-center">Latest Posts</h2>
-    <!-- /wp:heading -->
+<!-- wp:pattern {"slug":"flexline/section-latest-posts"} /-->
 
-    <!-- wp:query {"queryId":4,"query":{"perPage":3,"pages":"3","offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"align":"wide","className":"","layout":{"type":"constrained"}} -->
-    <div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","className":"","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"grid","columnCount":3}} -->
-        <!-- wp:group {"metadata":{"name":"Post Grid Single - Card Image, Category, Title"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"dimensions":{"minHeight":"100%"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"}} -->
-        <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","metadata":{"name":"Featured \u0026 Fallback Images"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
-            <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
-                <div class="wp-block-cover__inner-container"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"auto","width":"100%","height":"200px","dimRatio":50,"gradient":"primary-primaryDark","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /--></div>
-            </div>
-            <!-- /wp:cover -->
-
-            <!-- wp:group {"metadata":{"name":"Title \u0026 Meta"},"className":"is-style-default","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}},"dimensions":{"minHeight":""},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
-            <div class="wp-block-group is-style-default" style="margin-top:0;margin-bottom:0"><!-- wp:group {"metadata":{"name":"Category"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"},"typography":{"textTransform":"uppercase"}},"fontSize":"x-small","fontFamily":"display","layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group has-display-font-family has-x-small-font-size" style="text-transform:uppercase"><!-- wp:post-terms {"term":"category","className":"","style":{"typography":{"lineHeight":"1"}}} /--></div>
-                <!-- /wp:group -->
-
-                <!-- wp:post-title {"isLink":true,"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|primary"}}}},"typography":{"lineHeight":"1.2"}},"fontSize":"large","fontFamily":"brand"} /-->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:group -->
-        <!-- /wp:post-template -->
-
-        <!-- wp:query-no-results {"className":""} -->
-        <!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results.","className":""} -->
-        <p></p>
-        <!-- /wp:paragraph -->
-        <!-- /wp:query-no-results -->
-    </div>
-    <!-- /wp:query -->
-</div>
-<!-- /wp:group -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/2a311f8afa6a4a97944c719f9c471b9d?sid=fe114c94-6aaf-4245-9e5b-a1bb582d10bf"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/2a311f8afa6a4a97944c719f9c471b9d-e700b516a9adf61a-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -1221,89 +598,11 @@ namespace FlexLine\flexline;
 <p>This section provides alternating layouts with images that click open modals for video or other web content in an iframe.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Media Modal Wide Cards","categories":["flexline-sections"],"patternName":"flexline/section-gallery-wide-modal-cards"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"default"}} -->
-<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Gallery Modal - Wide"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-    <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
-        <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"},"className":""} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
-                    <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                    <!-- /wp:image -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:column -->
+<!-- wp:pattern {"slug":"flexline/section-gallery-wide-modal-cards"} /-->
 
-            <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"className":""} -->
-                <h2 class="wp-block-heading">Modal Link Card</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"className":""} -->
-                <p>This pattern has a headline and paragraph on one side and image with a media in a modal link</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:column -->
-        </div>
-        <!-- /wp:columns -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:group {"metadata":{"name":"Gallery Modal - Wide","categories":["flexline-galleries"],"patternName":"flexline/gallery-media-card-wide"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-    <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
-        <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"className":""} -->
-                <h2 class="wp-block-heading">Modal Link Card</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"className":""} -->
-                <p>This pattern has a headline and paragraph on one side and image with a media in a modal link</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:column -->
-
-            <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"},"className":""} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
-                    <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                    <!-- /wp:image -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:column -->
-        </div>
-        <!-- /wp:columns -->
-    </div>
-    <!-- /wp:group -->
-
-    <!-- wp:group {"metadata":{"name":"Gallery Modal - Wide"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-    <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
-        <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"},"className":""} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
-                    <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                    <!-- /wp:image -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:column -->
-
-            <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"className":""} -->
-                <h2 class="wp-block-heading">Modal Link Card</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"className":""} -->
-                <p>This pattern has a headline and paragraph on one side and image with a media in a modal link</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:column -->
-        </div>
-        <!-- /wp:columns -->
-    </div>
-    <!-- /wp:group -->
-</div>
-<!-- /wp:group -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/ea62ee08772840489bc066d74ddb668f?sid=aca8fcce-2e99-44d4-b8cf-0bfb06d99ba4"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/ea62ee08772840489bc066d74ddb668f-69cc7871bef514d1-full-play.gif" alt="" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />

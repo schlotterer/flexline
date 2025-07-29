@@ -39,50 +39,10 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Poster Gallery"},"className":"is-style-dots"} -->
     <div class="wp-block-columns are-vertically-aligned-center is-style-dots"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card","categories":["flexline-galleries"],"patternName":"flexline/gallery-photo-poster-card"},"className":"group-link group-link-type-none is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-            <div class="wp-block-group group-link group-link-type-none is-style-card-alt"><!-- wp:gallery {"columns":3,"linkTo":"media","className":"poster-gallery","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
-                <figure class="wp-block-gallery has-nested-images columns-3 is-cropped poster-gallery"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+            
+            <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-                </figure>
-                <!-- /wp:gallery -->
-
-                <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"default"}} -->
-                <div class="wp-block-group"><!-- wp:paragraph {"align":"center","metadata":{"name":"Poster Gallery Title"},"className":"","style":{"typography":{"textTransform":"none","lineHeight":"1.1"}},"fontFamily":"display"} -->
-                    <p class="has-text-align-center has-display-font-family" style="line-height:1.1;text-transform:none">Poster Gallery Title</p>
-                    <!-- /wp:paragraph -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
 
@@ -105,19 +65,10 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Media Modal"},"className":"is-style-dots"} -->
     <div class="wp-block-columns are-vertically-aligned-center is-style-dots"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Video Modal","categories":["flexline-galleries"],"patternName":"flexline/gallery-video-card"},"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"groupLinkType":"modal_media"} -->
-            <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://youtu.be/NsYHfdHTaGM"} -->
-                <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="wp-image-362" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                <!-- /wp:image -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+            
+            <!-- wp:pattern {"slug":"flexline/gallery-video-card"} /-->
 
-                <!-- wp:group {"metadata":{"name":"Title Container"},"className":"","layout":{"type":"default"}} -->
-                <div class="wp-block-group"><!-- wp:paragraph {"align":"center","metadata":{"name":"Video Title"},"className":"","fontFamily":"brand"} -->
-                    <p class="has-text-align-center has-brand-font-family">Video Title</p>
-                    <!-- /wp:paragraph -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
 
@@ -140,27 +91,10 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Mixed Detailed"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Gallery Mixed Detailed","categories":["flexline-galleries"],"patternName":"flexline/gallery-mixed-detailed-card"},"className":"is-style-default","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"modal_media"} -->
-            <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Modal Link / Image"},"className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://aldersly.org/wp-content/uploads/2022/11/ALD_IL_FloorPlans_V3-Studio-Deluxe.pdf"} -->
-                <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                <!-- /wp:image -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+            
+            <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-card"} /-->
 
-                <!-- wp:group {"metadata":{"name":"Media Details"},"className":"","style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"default"}} -->
-                <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)"><!-- wp:paragraph {"align":"left","metadata":{"name":"Media Title"},"className":"","fontSize":"medium","fontFamily":"brand"} -->
-                    <p class="has-text-align-left has-brand-font-family has-medium-font-size">Media Title</p>
-                    <!-- /wp:paragraph -->
-
-                    <!-- wp:paragraph {"metadata":{"name":"Media Detail 1"},"className":"","style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small","fontFamily":"display"} -->
-                    <p class="has-display-font-family has-x-small-font-size" style="line-height:1.3">Media Detail 1</p>
-                    <!-- /wp:paragraph -->
-
-                    <!-- wp:paragraph {"metadata":{"name":"Media Detail 2"},"className":"","style":{"typography":{"lineHeight":"1.3"}},"fontSize":"x-small","fontFamily":"display"} -->
-                    <p class="has-display-font-family has-x-small-font-size" style="line-height:1.3">Media Detail 2</p>
-                    <!-- /wp:paragraph -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
 
@@ -183,46 +117,10 @@ namespace FlexLine\flexline;
 
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Media Download Group"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%"><!-- wp:group {"metadata":{"name":"Gallery Media with Download","categories":["flexline-galleries"],"patternName":"flexline/gallery-media-download"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-            <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Image with Modal Link"},"className":"has-custom-border is-style-default enable-modal","style":{"color":[],"border":[]},"enableModal":true,"modalMediaURL":"https://designfloorplan.com/plan/?PlanID=3624"} -->
-                <figure class="wp-block-image size-large has-custom-border is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="wp-image-765" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                <!-- /wp:image -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+            
+            <!-- wp:pattern {"slug":"flexline/gallery-media-download"} /-->
 
-                <!-- wp:group {"metadata":{"name":"Text and Download"},"className":"","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"center"}} -->
-                <div class="wp-block-group"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|x-small"},"padding":{"top":"0","bottom":"0"},"margin":{"top":"var:preset|spacing|x-small","bottom":"0"}}}} -->
-                    <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile" style="margin-top:var(--wp--preset--spacing--x-small);margin-bottom:0;padding-top:0;padding-bottom:0"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"}}} -->
-                        <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"0","margin":{"top":"0"},"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
-                            <div class="wp-block-group" style="margin-top:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"align":"left","metadata":{"name":"Title"},"className":"","style":{"typography":{"lineHeight":"1.1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"medium","fontFamily":"brand"} -->
-                                <p class="has-text-align-left has-primary-color has-text-color has-link-color has-brand-font-family has-medium-font-size" style="line-height:1.1">Title</p>
-                                <!-- /wp:paragraph -->
-
-                                <!-- wp:paragraph {"metadata":{"name":"Detail 1"},"className":"","style":{"typography":{"lineHeight":"1.3"},"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","fontSize":"x-small","fontFamily":"display"} -->
-                                <p class="has-neutral-dark-color has-text-color has-link-color has-display-font-family has-x-small-font-size" style="line-height:1.3">Detail 1.a | Detail 1.b</p>
-                                <!-- /wp:paragraph -->
-
-                                <!-- wp:paragraph {"metadata":{"name":"Detail 2"},"className":"","style":{"typography":{"lineHeight":"1.3"},"elements":{"link":{"color":{"text":"var:preset|color|neutral-dark"}}}},"textColor":"neutral-dark","fontSize":"x-small","fontFamily":"display"} -->
-                                <p class="has-neutral-dark-color has-text-color has-link-color has-display-font-family has-x-small-font-size" style="line-height:1.3">Detail 2</p>
-                                <!-- /wp:paragraph -->
-                            </div>
-                            <!-- /wp:group -->
-                        </div>
-                        <!-- /wp:column -->
-
-                        <!-- wp:column {"verticalAlignment":"center","width":"40px","metadata":{"name":"Download Column"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"}}} -->
-                        <div class="wp-block-column is-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:40px"><!-- wp:buttons {"metadata":{"name":"Download Button Group"},"className":"","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","justifyContent":"right"}} -->
-                            <div class="wp-block-buttons" style="margin-top:0;margin-bottom:0"><!-- wp:button {"metadata":{"name":"Download Button"},"className":"is-style-fill  flexline-icon-none","style":{"spacing":{"padding":{"left":"14px","right":"14px","top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-small"}},"border":{"radius":"200px"}},"fontSize":"x-large"} -->
-                                <div class="wp-block-button is-style-fill  flexline-icon-none"><a class="wp-block-button__link has-x-large-font-size has-custom-font-size wp-element-button" href="https://storage.googleapis.com/jkvswo-prod-assets/uploads/ce638028-jkv_greatroomapartment_studio_442_rev.pdf" style="border-radius:200px;padding-top:var(--wp--preset--spacing--x-small);padding-right:14px;padding-bottom:var(--wp--preset--spacing--x-small);padding-left:14px" target="_blank" rel="noreferrer noopener">⤓</a></div>
-                                <!-- /wp:button -->
-                            </div>
-                            <!-- /wp:buttons -->
-                        </div>
-                        <!-- /wp:column -->
-                    </div>
-                    <!-- /wp:columns -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
 
@@ -243,32 +141,7 @@ namespace FlexLine\flexline;
     <h3 class="wp-block-heading" id="modal-link-card">Modal Link Card</h3>
     <!-- /wp:heading -->
 
-    <!-- wp:group {"metadata":{"name":"Gallery Modal - Wide","categories":["flexline-galleries"],"patternName":"flexline/gallery-media-card-wide"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-    <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->
-        <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image Column"},"className":""} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Mixed Media Feature - Card"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
-                <div class="wp-block-group is-style-card-alt"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"#"} -->
-                    <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="wp-image-826" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                    <!-- /wp:image -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:column -->
-
-            <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-            <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"className":""} -->
-                <h2 class="wp-block-heading">Modal Link Card</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"className":""} -->
-                <p>This pattern has a headline and paragraph on one side and image with a media in a modal link</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:column -->
-        </div>
-        <!-- /wp:columns -->
-    </div>
-    <!-- /wp:group -->
+    <!-- wp:pattern {"slug":"flexline/gallery-media-card-wide"} /-->
 
     <!-- wp:image {"sizeSlug":"large","align":"center","className":"is-style-shadow-diffused enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/3be4cabf6d8b4d5e9ac095fcaa6da12b?sid=e17335dc-7c11-4d32-bf0e-cbdb3b92a9bf"} -->
     <figure class="wp-block-image aligncenter size-large is-style-shadow-diffused enable-modal" style="margin-top:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/3be4cabf6d8b4d5e9ac095fcaa6da12b-225821ec9ce62ee1-full-play.gif" alt="" /></figure>
