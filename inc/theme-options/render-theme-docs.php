@@ -131,7 +131,7 @@ function flexline_render_documentation_tab() {
                         <tr>
                             <td><strong>Enable Lazy&nbsp;Load</strong></td>
                             <td>Image, Cover</td>
-                            <td>When true (the default), the <img> gets loading="lazy". Set it to false to omit the attribute (so the browser loads the image immediately — ideal for hero images).</td>
+                            <td>When true (the default), the image gets loading="lazy". Set it to false to omit the attribute (so the browser loads the image immediately — ideal for hero images).</td>
                         </tr>
                         <tr>
                             <td><strong>Open in Modal</strong></td>
