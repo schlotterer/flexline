@@ -1198,31 +1198,31 @@
 	"customTemplates": [
 		{
 			"name": "blank",
-			"title": "Blank - No Header or Footer - Landing Pages and Modals"
+			"title": "Blank - No Header or Footer - Landing Pages and Modals - (blank)"
 		},
 		{
 			"name": "page-hero-title-no-form",
-			"title": "Page - Transparent Header & No Form"
+			"title": "Page - Transparent Header & No Form - (page-hero-title-no-form)"
 		},
 		{
 			"name": "page-hero-title",
-			"title": "Page - Transparent Header"
+			"title": "Page - Transparent Header - (page-hero-title)"
 		},
 		{
 			"name": "page-no-hero",
-			"title": "Page - with Page Title"
+			"title": "Page - with Page Title - (page-no-hero)"
 		},
 		{
 			"name": "page-no-hero-no-form",
-			"title": "Page - with Page Title & No Form"
+			"title": "Page - with Page Title & No Form - (page-no-hero-no-form)"
 		},
 		{
 			"name": "events-single",
-			"title": "Single Event"
+			"title": "Single Event - (events-single)"
 		},
 		{
 			"name": "events-list",
-			"title": "Events List"
+			"title": "Events List - (events-list)"
 		}
 	],
 	"templateParts": [
