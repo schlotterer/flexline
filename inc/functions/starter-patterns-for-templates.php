@@ -7,7 +7,7 @@
  * 
  * @package flexline
  */
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Auto-insert a block pattern stored in the database into new posts.

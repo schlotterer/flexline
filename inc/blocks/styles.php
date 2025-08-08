@@ -6,7 +6,7 @@
  * @since 0.9.2
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 /**
  * Register block styles.
  *

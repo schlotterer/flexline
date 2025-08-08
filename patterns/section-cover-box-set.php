@@ -6,7 +6,7 @@
  * Categories: flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Featured Section"}} -->
 <div class="wp-block-group alignfull"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":356,"hasParallax":true,"dimRatio":90,"overlayColor":"primary","align":"full","style":{"color":{"duotone":["#000000","#ffffff"]},"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"layout":{"type":"constrained"}} -->

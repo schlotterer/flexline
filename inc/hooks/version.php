@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 	/**
 	 * Setup the global theme version variable.

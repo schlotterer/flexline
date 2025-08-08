@@ -6,7 +6,7 @@
  * Categories: flexline-sections, flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Media Modal Wide Cards"},"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|medium"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull">

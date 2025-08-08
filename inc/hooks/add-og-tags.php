@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Adds OG tags to the head for better social sharing.

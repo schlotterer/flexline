@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 use WP_HTML_Tag_Processor;
 /**
  * Enqueue block editor assets for Flexline theme.

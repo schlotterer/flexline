@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-misc
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Testimonial with Picture"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->

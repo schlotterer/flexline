@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 // Enqueue style sheet.
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_styles' );

@@ -6,7 +6,7 @@
  * Categories: flexline-sections, flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Gallery Next to Title","categories":["flexline-sections","flexline-modules"],"patternName":"flexline/section-gallery-by-title"},"align":"full","className":"is-style-default","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral-light","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-default has-neutral-light-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"top":"0","left":"0"}}},"stackAtTablet":true} -->

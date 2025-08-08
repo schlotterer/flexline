@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-cta
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Large CTA Container"},"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Large CTA"},"align":"wide","className":"is-style-default","layout":{"type":"constrained"}} -->

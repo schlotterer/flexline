@@ -6,7 +6,7 @@
  * Categories: flexline-sections, flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Timeline Columns","categories":["flexline-modules"],"patternName":"flexline/section-timeline-columns"},"align":"wide","className":"is-style-outlined","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"0"}}},"gradient":"neutral-neutralLight","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide is-style-outlined has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small)"><!-- wp:columns {"isStackedOnMobile":false,"align":"full","className":"is-style-horizontal-scroll horizontal-scroller-navigation scroller-pause-on-hover horizontal-scroller-buttons-horizontal-left horizontal-scroller-buttons-vertical-bottom scroller-buttons-border-none horizontal-scroller-hide-scrollbar scroller-buttons-text-default scroller-buttons-background-default","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"padding":{"left":"0"}}},"enableHorizontalScroller":true,"scrollLoop":false,"hideScrollbar":true,"buttonsTextColor":"default","buttonsBackgroundColor":"default","buttonsBoxShadow":true} -->

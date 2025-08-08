@@ -10,7 +10,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Registers the assets for baguetteBox.

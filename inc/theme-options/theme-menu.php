@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Adds a theme page to the WordPress admin menu for managing FlexLine theme options.

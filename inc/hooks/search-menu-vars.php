@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Outputs JavaScript settings for customizing the search menu.

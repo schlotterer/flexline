@@ -7,7 +7,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Get all the include files for the theme.

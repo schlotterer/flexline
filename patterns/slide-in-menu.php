@@ -10,7 +10,7 @@
  * 
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 ?>
 <!-- wp:group {"tagName":"aside","lock":{"move":false,"remove":false},"metadata":{"name":"Slide In Menu"},"backgroundColor":"primary","layout":{"type":"constrained"}} -->

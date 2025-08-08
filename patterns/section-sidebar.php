@@ -6,7 +6,7 @@
  * Categories: flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Section with Sidebar (sticky)"},"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull">

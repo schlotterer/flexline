@@ -5,7 +5,7 @@
  * Slug: flexline/section-page-links
  * Categories: flexline-sections
  */
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Page Links"},"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0">

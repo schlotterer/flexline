@@ -6,7 +6,7 @@
  * Categories: flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Text and Video Modal","categories":["flexline-modules"],"patternName":"flexline/text-video"},"align":"full","className":"welcome","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull welcome"><!-- wp:columns {"verticalAlignment":"center"} -->

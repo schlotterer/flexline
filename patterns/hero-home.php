@@ -6,7 +6,7 @@
  * Categories: flexline-heroes, flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Home Hero","categories":["flexline-heroes"],"patternName":"flexline/hero-home"},"align":"full","style":{"spacing":{"blockGap":"0"}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","id":507,"dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeightUnit":"px","metadata":{"name":"Hero Background"},"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":[]},"layout":{"type":"constrained"},"enableLazyLoad":false} -->
