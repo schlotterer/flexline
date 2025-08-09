@@ -18,15 +18,15 @@
 
         <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
         <div class="wp-block-group"><!-- wp:image {"width":"auto","height":"40px","sizeSlug":"full","linkDestination":"none"} -->
-            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-eho.webp'; ?>" alt="" class="wp-image-727" style="width:auto;height:40px" /></figure>
+            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-eho.webp'; ?>" alt="" class="" style="width:auto;height:40px" /></figure>
             <!-- /wp:image -->
 
             <!-- wp:image {"width":"auto","height":"40px","sizeSlug":"full","linkDestination":"none"} -->
-            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-ada.png'; ?>" alt="" class="wp-image-726" style="width:auto;height:40px" /></figure>
+            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-ada.png'; ?>" alt="" class="" style="width:auto;height:40px" /></figure>
             <!-- /wp:image -->
 
             <!-- wp:image {"width":"auto","height":"40px","sizeSlug":"full","linkDestination":"none"} -->
-            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-pet-friendly.webp'; ?>" alt="" class="wp-image-728" style="width:auto;height:40px" /></figure>
+            <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url(get_theme_file_uri()) . '/assets/built/images/mand-pet-friendly.webp'; ?>" alt="" class="" style="width:auto;height:40px" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:group -->
