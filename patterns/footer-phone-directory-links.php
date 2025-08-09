@@ -51,7 +51,7 @@
                     <h2 class="wp-block-heading has-text-align-center">Explore</h2>
                     <!-- /wp:heading -->
 
-                    <!-- wp:navigation {"ref":93,"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /-->
+                    <!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /-->
                 </div>
                 <!-- /wp:column -->
 
@@ -60,7 +60,7 @@
                     <h2 class="wp-block-heading has-text-align-center">Learn</h2>
                     <!-- /wp:heading -->
 
-                    <!-- wp:navigation {"ref":95,"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /-->
+                    <!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /-->
 
                     <!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#000","iconBackgroundColor":"base","iconBackgroundColorValue":"#fff","style":{"spacing":{"blockGap":"10px"}},"className":"is-style-default","layout":{"type":"flex","justifyContent":"center"}} -->
                     <ul class="wp-block-social-links has-icon-color has-icon-background-color is-style-default"><!-- wp:social-link {"url":"#","service":"facebook"} /-->
