@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Header with site title, navigation.
+ * Title: Header - Left Logo.
  * Slug: flexline/header-default
  * Categories: flexline-headers
  * Block Types: core/template-part/header

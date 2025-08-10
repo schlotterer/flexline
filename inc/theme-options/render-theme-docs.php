@@ -520,7 +520,7 @@ foreach ( $block_styles as $block => $styles ) {
                     Want to explore every Flexline pattern in one place? Create a
                     blank Page or Post, switch the editor to <strong>Code view</strong>,
                     and paste the snippet below. Hit “Update/Publish” and you’ll get a
-                    fully-built demo page showcasing all pattern groups.
+                    fully-built demo page showcasing all pattern groups and templates.
                 </p>
 
                 <pre>
@@ -532,6 +532,9 @@ foreach ( $block_styles as $block => $styles ) {
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
                         &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;
                     </code>
                 </pre>
 

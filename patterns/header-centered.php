@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Header with Centered logo.
+ * Title: Header - Centered logo.
  * Slug: flexline/header-centered
  * Categories: flexline-headers
  * Block Types: core/template-part/header

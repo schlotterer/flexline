@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Title: Header with light on dark.
+ * Title: Header - Left Logo - Transparent.
  * Slug: flexline/header-light-on-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
  */
 ?>
-<!-- wp:group {"metadata":{"name":"Header Base - light over dark","categories":["flexline-headers"],"patternName":"flexline/header-light-on-dark"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"Header Base - transparent","categories":["flexline-headers"],"patternName":"flexline/header-light-on-dark"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-dark-transparent-top-to-bottom-gradient-background has-background" style="padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)">
     <!-- wp:template-part {"slug":"notification-bar","theme":"flexline","area":"uncategorized","align":"full","className":""} /-->
     <!-- wp:group {"metadata":{"name":"Header Container"},"align":"wide","className":"","style":{"spacing":{"padding":{"top":"8px","bottom":"8px","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"margin":{"top":"0px"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->

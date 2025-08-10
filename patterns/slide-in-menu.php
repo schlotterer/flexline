@@ -1,19 +1,17 @@
 <?php
 
 /**
- * Title: Slide In Navigation.
+ * Title: Slide In (Mobile Nav).
  * Slug: flexline/slide-in-menu
  * Categories: flexline-utilities
  * Block Types: core/template-part/header
  * Inserter: false
- * 
- * 
  */
 
 namespace FlexLine\flexline;
 
 ?>
-<!-- wp:group {"tagName":"aside","lock":{"move":false,"remove":false},"metadata":{"name":"Slide In Menu"},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
+<!-- wp:group {"tagName":"aside","lock":{"move":false,"remove":false},"metadata":{"name":"Slide In Mobile Navigation"},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <aside id="slide-in-menu" class="wp-block-group has-primary-background-color has-background"><!-- wp:cover {"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"vh","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--small);min-height:100vh"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-100 has-background-dim"></span>
         <div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Logo and Feature Buttons"},"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->

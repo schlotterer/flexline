@@ -1209,6 +1209,10 @@
 			"title": "Page - Transparent Header - (page-hero-title)"
 		},
 		{
+			"name": "page-no-form",
+			"title": "Page & No Form - (page-no-form)"
+		},
+		{
 			"name": "page-no-hero",
 			"title": "Page - with Page Title - (page-no-hero)"
 		},
@@ -1229,10 +1233,10 @@
 		{
 			"area": "topbar",
 			"name": "slide-in",
-			"title": "Slide In"
+			"title": "Slide In ( and Mobile navigation )"
 		},
 		{
-			"area": "topbar",
+			"area": "header",
 			"name": "notification-bar",
 			"title": "Notification Bar"
 		},

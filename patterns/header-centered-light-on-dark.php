@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Title: Header with Centered logo Light on Dark.
+ * Title: Header - Centered logo - Transparent.
  * Slug: flexline/header-centered-light-on-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
  */
 ?>
-<!-- wp:group {"metadata":{"name":"Header Centered - Light over Dark","categories":["flexline-headers"],"patternName":"flexline/header-centered-light-on-dark"},"className":"is-style-default","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"0"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"Header Centered - Transparent","categories":["flexline-headers"],"patternName":"flexline/header-centered-light-on-dark"},"className":"is-style-default","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"0"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-default has-dark-transparent-top-to-bottom-gradient-background has-background" style="margin-top:0;padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)"><!-- wp:template-part {"slug":"notification-bar","theme":"flexline","area":"uncategorized","align":"full","className":""} /-->
 
     <!-- wp:group {"metadata":{"name":"Anchor Navigation"},"align":"full","className":"flexline-hide-on-mobile headroom-hide-on-scroll","style":{"spacing":{"padding":{"top":"2px","bottom":"2px","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"gradient":"primary-primaryDark","layout":{"type":"constrained"},"hideOnMobile":true} -->
