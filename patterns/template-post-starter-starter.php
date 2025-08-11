@@ -7,8 +7,6 @@
  * Categories: flexline-utilities
  */
 ?>
-<!-- wp:pattern {"slug":" flexline/meta-post"} /-->
-
 <!-- wp:paragraph {"className":""} -->
 <p>Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.</p>
 <!-- /wp:paragraph -->
