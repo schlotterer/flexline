@@ -11,7 +11,7 @@
     <div class="wp-block-cover alignfull" style="min-height:100vh"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim has-background-gradient has-primary-alternate-gradient-background"></span>
         <div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Content Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
             <div class="wp-block-group"><!-- wp:heading {"className":""} -->
-                <h2 class="wp-block-heading">Schedule a tour.</h2>
+                <h2 class="wp-block-heading">Form in a Modal.</h2>
                 <!-- /wp:heading -->
 
                 <!-- wp:paragraph {"className":""} -->
