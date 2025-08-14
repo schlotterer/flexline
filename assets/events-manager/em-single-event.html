@@ -1,0 +1,119 @@
+<!-- wp:columns {"metadata":{"name":"Sidebar Section"},"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"},"margin":{"top":"0","bottom":"0"}}},"stackAtTablet":true} -->
+<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0">
+    <!-- wp:column {"width":"","metadata":{"name":"Large Column"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
+    <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);margin-bottom:75px;">
+        <!-- wp:group {"metadata":{"name":"Content Group"},"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+        <div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0">
+            
+            <section class="em-item-header"  style="--default-border:var(--wp--preset--color--secondary);">
+	
+                {is_cancelled}
+                <div class="em-event-cancelled em-notice em-notice-error em-notice-icon">
+                    <span class="em-icon em-icon-cross-circle"></span> This event has been cancelled.	
+                </div>
+                {/is_cancelled}
+                <div class="em-item-meta">
+                    <section class="em-event-when">
+                        <h3>When</h3>
+                        <div class="em-item-meta-line em-event-date em-event-meta-datetime">
+                            <span class="em-icon-calendar em-icon"></span>
+                            #_EVENTDATES    
+                        </div>
+                        <div class="em-item-meta-line em-event-time em-event-meta-datetime">
+                            <span class="em-icon-clock em-icon"></span>
+                            #_EVENTTIMES
+                        </div>
+                    </section>
+                    {has_taxonomy}
+                    <section class="em-item-taxonomies">
+                        <h3>Event Type</h3>
+                        {has_category}
+                        <div class="em-item-meta-line em-item-taxonomy em-event-categories">
+                            <span class="em-icon-category em-icon"></span>
+                            <div>#_EVENTCATEGORIES</div>
+                        </div>
+                        {/has_category}
+                        {has_tag}
+                        <div class="em-item-meta-line em-item-taxonomy em-event-tags">
+                            <span class="em-icon-tag em-icon"></span>
+                            <div>#_EVENTTAGS</div>
+                        </div>
+                        {/has_tag}
+                    </section>
+                    {/has_taxonomy}
+                </div>
+            </section>
+                
+            
+
+            <section class="em-event-content">
+                #_EVENTNOTES
+            </section>
+
+            <div class="em-item-meta">
+                <section class="em-item-meta-column">
+                    {has_location_venue}
+                    <section class="em-event-where">
+                        <h3>Where</h3>
+                        <div class="em-item-meta-line em-event-location">
+                            <span class="em-icon-location em-icon"></span>
+                            <div>
+                                #_LOCATIONLINK<br>
+                                #_LOCATIONFULLLINE
+                            </div>
+                        </div>
+                    </section>
+                    {/has_location_venue}
+                    {has_event_location}
+                    <section class="em-event-where">
+                        <h3>Where</h3>
+                        <div class="em-item-meta-line em-event-location">
+                            <span class="em-icon-at em-icon"></span>
+                            #_EVENTLOCATION
+                        </div>
+                    </section>
+                    {/has_event_location}
+                    
+                </section>
+            </div>
+           
+            {has_location_venue}
+            <section class="em-event-location">
+                #_LOCATIONMAP{100%,0}
+            </section>
+            {/has_location_venue}
+            #_EVENTADDTOCALENDAR
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+
+    <!-- wp:column {"width":"425px","metadata":{"name":"Small Column"},"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
+    <div class="wp-block-column" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;flex-basis:425px">
+        <!-- wp:group {"metadata":{"name":"Sticky Container"},"style":{"position":{"type":"sticky","top":"0px"}},"layout":{"type":"constrained"}} -->
+        <div class="wp-block-group">
+            <!-- wp:cover {"dimRatio":0,"minHeight":50,"gradient":"primary-primaryDark","isDark":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-cover is-light"
+                style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium);padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium);min-height:50px;overflow-y: visible;z-index:2;">
+                <span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
+                <div class="wp-block-cover__inner-container">
+                    {has_image}
+                    <div class="em-item-image {no_image}has-placeholder{/no_image}" style="margin-top:-100px;">
+                        #_EVENTIMAGE{medium}
+                    </div>
+                    {/has_image}
+                    <h3>
+						Registration
+					</h3>
+					<!-- wp:shortcode -->
+                    [gravityform id="7" title="false" description="false" ajax="false"                   field_values="event_name=#_EVENTNAME&event_id=#_EVENTPOSTID&event_start_date=#_EVENTSTARTDATE&event_recurrence=#_RECURRINGPATTERN&event_all_day=#_EVENTTIMES&event_formatted_date=#F #j, #Y #@_{ \u\n\t\i\l F j, Y}&event_formatted_time=#_12HSTARTTIME&event_category=#_EVENTCATEGORIES&event_virtual=#_EVENTLOCATION&event_virtual_url=#_LOCATIONURL"]
+                    <!-- /wp:shortcode -->
+                </div>
+            </div>
+            <!-- /wp:cover -->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
