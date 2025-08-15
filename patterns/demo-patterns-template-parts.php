@@ -9,8 +9,20 @@
 
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"className":""} -->
+<!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"flexline-icon-none","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull flexline-icon-none has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
+    <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
+        <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.3"}},"textColor":"base","fontFamily":"display"} -->
+            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Template Parts: <a href="#Headers">Headers</a> | <a href="#Notification-Bar">Notification Bar</a> | <a href="#Flexible-Footer-Options">Footer Options</a> | <a href="#Slide-In">Slide-In</a> | <a href="#General-Template-Part">General</a></p>
+            <!-- /wp:paragraph -->
+        </div>
+    </div>
+    <!-- /wp:cover -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small","margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:heading {"className":""} -->
     <h2 class="wp-block-heading"><strong>Modular Templates for Maximum Flexibility</strong></h2>
     <!-- /wp:heading -->
 
@@ -38,18 +50,14 @@ namespace FlexLine\flexline;
     <!-- /wp:list -->
 
     <!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/acf9de66a9fe47898691b7fb3515b0b7?sid=91309aaa-341c-4b59-8e20-0672ec533f67"} -->
-    <figure class="wp-block-image aligncenter size-large enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/acf9de66a9fe47898691b7fb3515b0b7-2f4ff6f2ae81a8ed-full-play.gif" /></figure>
+    <figure class="wp-block-image aligncenter size-large enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/acf9de66a9fe47898691b7fb3515b0b7-2f4ff6f2ae81a8ed-full-play.gif" alt="" /></figure>
     <!-- /wp:image -->
 </div>
 <!-- /wp:group -->
 
-<!-- wp:separator {"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
-<!-- /wp:separator -->
-
 <!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"className":""} -->
-    <h2 class="wp-block-heading">Headers</h2>
+    <h2 class="wp-block-heading" id="Headers">Headers</h2>
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
@@ -124,7 +132,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/97433373213f4d4e8dac00fe4dc08514?sid=f4ae7cf8-ed38-439d-9e31-1d254d48dfa8"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/97433373213f4d4e8dac00fe4dc08514-53437b8197ed6534-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/97433373213f4d4e8dac00fe4dc08514-53437b8197ed6534-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -133,7 +141,7 @@ namespace FlexLine\flexline;
 
 <!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"className":""} -->
-    <h2 class="wp-block-heading">Notification Bar</h2>
+    <h2 class="wp-block-heading" id="Notification-Bar">Notification Bar</h2>
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
@@ -154,7 +162,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/8b118671a7de44aaa76ab680eb81db2e?sid=3a738e15-293a-43c5-9687-d81341d2856d"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/8b118671a7de44aaa76ab680eb81db2e-4585dfeb5114f1e7-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/8b118671a7de44aaa76ab680eb81db2e-4585dfeb5114f1e7-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -163,7 +171,7 @@ namespace FlexLine\flexline;
 
 <!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"className":""} -->
-    <h2 class="wp-block-heading"><strong>Flexible Footer Options</strong></h2>
+    <h2 class="wp-block-heading" id="Flexible-Footer-Options"><strong>Flexible Footer Options</strong></h2>
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
@@ -234,7 +242,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/8af7448c0e8446a7a4f5bfb2fef862b1?sid=c1c81eb5-7ba8-4f1d-9c97-3736f4c83660"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/8af7448c0e8446a7a4f5bfb2fef862b1-a3a6d52138567b58-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/8af7448c0e8446a7a4f5bfb2fef862b1-a3a6d52138567b58-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -243,7 +251,7 @@ namespace FlexLine\flexline;
 
 <!-- wp:group {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"className":""} -->
-    <h2 class="wp-block-heading">Slide-In (Mobile Navigation)</h2>
+    <h2 class="wp-block-heading" id="Slide-In">Slide-In (Mobile Navigation)</h2>
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
@@ -268,7 +276,7 @@ namespace FlexLine\flexline;
 <!-- /wp:group -->
 
 <!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/f1b0dbb7531a43c385d490a6698f0d0d?sid=55e86d7d-5b54-4d71-81bd-a840a2232c18"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/f1b0dbb7531a43c385d490a6698f0d0d-a9481f10c448d37b-full-play.gif" /></figure>
+<figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/f1b0dbb7531a43c385d490a6698f0d0d-a9481f10c448d37b-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->

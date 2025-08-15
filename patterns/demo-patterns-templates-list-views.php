@@ -124,8 +124,8 @@ namespace FlexLine\flexline;
 
     <!-- wp:column {"verticalAlignment":"center","className":""} -->
     <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Post Grid Single - Card Image, Category, Title","categories":["flexline-posts-templates"],"patternName":"flexline/post-grid-single-card-alt"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"dimensions":{"minHeight":"100%"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"}} -->
-        <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%"><!-- wp:cover {"url":"https://alpha.local/wp-content/uploads/2024/09/alpha-9.0.001-pexels-sara-734725946-20310343-jpg.avif","id":527,"dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","metadata":{"name":"Fallback \u0026 Featured Images"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
-            <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background wp-image-527" alt="" src="https://alpha.local/wp-content/uploads/2024/09/alpha-9.0.001-pexels-sara-734725946-20310343-jpg.avif" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
+        <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","metadata":{"name":"Fallback \u0026 Featured Images"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
+            <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
                 <div class="wp-block-cover__inner-container"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"auto","width":"100%","height":"200px","dimRatio":50,"gradient":"primary-primaryDark","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /--></div>
             </div>
             <!-- /wp:cover -->
@@ -198,8 +198,8 @@ namespace FlexLine\flexline;
 <!-- wp:query {"queryId":9,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false,"taxQuery":null,"parents":[]},"enhancedPagination":true,"metadata":{"categories":["flexline-posts-templates"],"patternName":"flexline/posts-grid","name":"Grid of posts in three columns."},"className":"alignwide"} -->
 <div class="wp-block-query alignwide"><!-- wp:post-template {"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"grid","columnCount":3}} -->
     <!-- wp:group {"metadata":{"name":"Post Grid Single - Card Image, Category, Title"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"dimensions":{"minHeight":"100%"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"}} -->
-    <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%"><!-- wp:cover {"url":"https://alpha.local/wp-content/uploads/2024/09/alpha-9.0.001-pexels-sara-734725946-20310343-jpg.avif","id":527,"dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","metadata":{"name":"Featured \u0026 Fallback Images"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
-        <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background wp-image-527" alt="" src="https://alpha.local/wp-content/uploads/2024/09/alpha-9.0.001-pexels-sara-734725946-20310343-jpg.avif" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
+    <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":50,"minHeight":200,"minHeightUnit":"px","gradient":"primary-primaryDark","metadata":{"name":"Featured \u0026 Fallback Images"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
+        <div class="wp-block-cover" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:200px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url(feature_image_fallback()); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim wp-block-cover__gradient-background has-background-gradient has-primary-primaryDark-gradient-background"></span>
             <div class="wp-block-cover__inner-container"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"auto","width":"100%","height":"200px","dimRatio":50,"gradient":"primary-primaryDark","className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /--></div>
         </div>
         <!-- /wp:cover -->
@@ -226,10 +226,6 @@ namespace FlexLine\flexline;
     <!-- /wp:group -->
 </div>
 <!-- /wp:query -->
-
-<!-- wp:paragraph {"className":""} -->
-<p>video</p>
-<!-- /wp:paragraph -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -404,9 +400,9 @@ namespace FlexLine\flexline;
 </div>
 <!-- /wp:query -->
 
-<!-- wp:paragraph {"className":""} -->
-<p>video</p>
-<!-- /wp:paragraph -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/ef239a1aa7914bb6991385dea6d4a0f0?sid=ff1f4883-c6c3-4492-b344-6f11aac700eb"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/ef239a1aa7914bb6991385dea6d4a0f0-b82e973ab6403f2d-full-play.gif" /></figure>
+<!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
@@ -502,3 +498,11 @@ namespace FlexLine\flexline;
     <!-- /wp:group -->
 </div>
 <!-- /wp:query -->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":""} -->
+<p>Note: Each of these templates has a custom CTA that should be set to point to correct link, or remove the pattern. </p>
+<!-- /wp:paragraph -->

@@ -28,7 +28,7 @@ namespace FlexLine\flexline;
 <div class="wp-block-group alignfull flexline-icon-none has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
         <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.3"}},"textColor":"base","fontFamily":"display"} -->
-            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#call-to-action">CTA Box</a> | <a href="#sticky-cta">Sticky CTA</a> | <a href="#heroes">Page Link CTAs</a> | <a href="#page-link-ctas">CTA - Card with image</a> | <a href="#large-cta">Large CTA</a></p>
+            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#cta-box">CTA Box</a> | <a href="#sticky-cta">Sticky CTA</a> | <a href="#page-link-ctas">Page Link CTAs</a> | <a href="#cta-card-with-image">CTA - Card with image</a> | <a href="#large-cta">Large CTA</a></p>
             <!-- /wp:paragraph -->
         </div>
     </div>
@@ -43,7 +43,7 @@ namespace FlexLine\flexline;
 <!-- wp:columns {"verticalAlignment":"center","className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|small"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
     <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-        
+
         <!-- wp:pattern {"slug":"flexline/cta-box"} /-->
 
     </div>
