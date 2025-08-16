@@ -54,12 +54,24 @@ function flexline_render_settings_tab() {
                     <p>This image will be used as a fallback if there is no featured image for a post or page. It will be displayed on the post or page's featured image area.</p>
                 </th>
                 <td>
+                    <?php if (get_option('flexline_feature_fallback')) : ?>
+                        <a href="#" class="button" style="margin:10px 0;" id="remove-fallback-image">Remove Image</a>
+                    <?php endif; ?>
                     <img id="feature-fallback-image" src="<?php echo esc_url( get_option('flexline_feature_fallback') ); ?>" style="max-width: 100px; display: block; margin-bottom: 10px;">
                     <input type="hidden" name="flexline_feature_fallback" id="feature-fallback-input" value="<?php echo esc_url( get_option('flexline_feature_fallback') ); ?>">
                     <input type="button" class="button-primary" value="Upload Image" id="upload-button" />
                 </td>
             </tr>
         </table>
+        <script>
+            jQuery(document).ready(function($) {
+                $('#remove-fallback-image').click(function(e) {
+                    e.preventDefault();
+                    $('#feature-fallback-image').attr('src', '');
+                    $('#feature-fallback-input').val('');
+                });
+            });
+        </script>
         
         <?php submit_button(); ?>
     </form>
