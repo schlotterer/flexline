@@ -578,7 +578,6 @@
 		"elements": {
 			"button": {
 				"color": {
-					"gradient": "var(--wp--preset--gradient--primary-secondary)",
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
@@ -715,6 +714,9 @@
 				}
 			},
 			"core/button": {
+				"color": {
+					"gradient": "var(--wp--preset--gradient--primary-secondary)"
+				},
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
 				},
@@ -747,6 +749,11 @@
 							}
 						},
 						"css": "& a:hover {color: var(--wp--preset--color--alternate) !important;}"
+					},
+					"text-link" : {
+						"color": {
+							"background": "transparent"
+						}
 					}
 				}
 			},
