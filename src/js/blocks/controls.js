@@ -1031,7 +1031,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							<ToggleControl
-								label="Do not allow text to wrap"
+								label="Do not allow text to wrap unless there is a return or break"
 								checked={!!props.attributes.noWrap}
 								onChange={(newValue) =>
 									props.setAttributes({
