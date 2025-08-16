@@ -752,7 +752,7 @@
 					},
 					"text-link" : {
 						"color": {
-							"background": "transparent"
+							"background": "transparent !important"
 						}
 					}
 				}
