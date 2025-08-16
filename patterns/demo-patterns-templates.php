@@ -55,58 +55,6 @@ namespace FlexLine\flexline;
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
 <!-- /wp:separator -->
 
-
-
-<!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"className":""} -->
-    <h2 class="wp-block-heading" id="WordPress-List-Templates">WordPress List Templates</h2>
-    <!-- /wp:heading -->
-
-    <!-- wp:paragraph {"className":""} -->
-    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The Flexline theme includes the following key list templates:</p>
-    <!-- /wp:paragraph -->
-
-    <!-- wp:list {"className":""} -->
-    <ul class="wp-block-list"><!-- wp:list-item {"className":""} -->
-        <li><strong>Blog Home</strong> – Displays your most recent posts in reverse chronological order. Used for your main blog page when a static homepage is not set.</li>
-        <!-- /wp:list-item -->
-
-        <!-- wp:list-item {"className":""} -->
-        <li><strong>Index</strong> – The universal fallback template, used whenever WordPress can’t find a more specific template for the query type.</li>
-        <!-- /wp:list-item -->
-
-        <!-- wp:list-item {"className":""} -->
-        <li><strong>Archives</strong> – Handles date-based archives (year, month, day), author archives, and taxonomy archives like categories or tags.</li>
-        <!-- /wp:list-item -->
-
-        <!-- wp:list-item {"className":""} -->
-        <li><strong>Search</strong> – Displays search results based on the visitor’s query, showing matching posts or pages.</li>
-        <!-- /wp:list-item -->
-
-        <!-- wp:list-item {"className":""} -->
-        <li><strong>Pages &amp; Single Posts (Defaults)</strong> – The base templates for displaying individual posts or pages when no more specific template is available.</li>
-        <!-- /wp:list-item -->
-    </ul>
-    <!-- /wp:list -->
-
-    <!-- wp:paragraph {"className":""} -->
-    <p><strong>Note:</strong> Flexline also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
-    <!-- /wp:paragraph -->
-
-    <!-- wp:paragraph {"className":""} -->
-    <p>To view the dedicated documentation/demo for list view templates you can include this pattern code in a new page by clicking on edit in code view, once pasted return to visual editor and watch the magic.</p>
-    <!-- /wp:paragraph -->
-
-    <!-- wp:code {"className":""} -->
-    <pre class="wp-block-code"><code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code></pre>
-    <!-- /wp:code -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
-<!-- /wp:separator -->
-
 <!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"className":""} -->
     <h2 class="wp-block-heading" id="Primary-Page-Variations">Primary Page Variations</h2>
@@ -167,6 +115,56 @@ namespace FlexLine\flexline;
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/b1288f06a5164237b2a515337fb197d9?sid=07182181-2d51-462b-8e99-d43cf2dab4ec"} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/b1288f06a5164237b2a515337fb197d9-d9350ab9ec1a3014-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
+
+<!-- wp:separator {"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
+<!-- /wp:separator -->
+
+<!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"className":""} -->
+    <h2 class="wp-block-heading" id="WordPress-List-Templates">WordPress List Templates</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The Flexline theme includes the following key list templates:</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:list {"className":""} -->
+    <ul class="wp-block-list"><!-- wp:list-item {"className":""} -->
+        <li><strong>Blog Home</strong> – Displays your most recent posts in reverse chronological order. Used for your main blog page when a static homepage is not set.</li>
+        <!-- /wp:list-item -->
+
+        <!-- wp:list-item {"className":""} -->
+        <li><strong>Index</strong> – The universal fallback template, used whenever WordPress can’t find a more specific template for the query type.</li>
+        <!-- /wp:list-item -->
+
+        <!-- wp:list-item {"className":""} -->
+        <li><strong>Archives</strong> – Handles date-based archives (year, month, day), author archives, and taxonomy archives like categories or tags.</li>
+        <!-- /wp:list-item -->
+
+        <!-- wp:list-item {"className":""} -->
+        <li><strong>Search</strong> – Displays search results based on the visitor’s query, showing matching posts or pages.</li>
+        <!-- /wp:list-item -->
+
+        <!-- wp:list-item {"className":""} -->
+        <li><strong>Pages &amp; Single Posts (Defaults)</strong> – The base templates for displaying individual posts or pages when no more specific template is available.</li>
+        <!-- /wp:list-item -->
+    </ul>
+    <!-- /wp:list -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p><strong>Note:</strong> Flexline also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p>To view the dedicated documentation/demo for list view templates you can include this pattern code in a new page by clicking on edit in code view, once pasted return to visual editor and watch the magic.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:code {"className":""} -->
+    <pre class="wp-block-code"><code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code></pre>
+    <!-- /wp:code -->
+</div>
+<!-- /wp:group -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />
