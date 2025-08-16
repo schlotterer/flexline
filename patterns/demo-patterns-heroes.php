@@ -54,7 +54,7 @@ namespace FlexLine\flexline;
 <h3 class="wp-block-heading" id="hero-split">Hero Split</h3>
 <!-- /wp:heading -->
 
-<!-- wp:pattern {"slug":"flexline/flexline/hero-split"} /-->
+<!-- wp:pattern {"slug":"flexline/hero-split"} /-->
 
 <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal","style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/e3b0ad3c624543d098e452d5ab9e29d8?sid=61586abe-8b2e-4bbc-b67e-d1362d365a5d"} -->
 <figure class="wp-block-image aligncenter size-large enable-modal" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"><img src="https://cdn.loom.com/sessions/thumbnails/e3b0ad3c624543d098e452d5ab9e29d8-a1d44ec26ab4bc1b-full-play.gif" alt="" /></figure>
