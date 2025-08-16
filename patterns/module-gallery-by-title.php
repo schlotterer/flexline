@@ -8,7 +8,7 @@
 
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"metadata":{"name":"Gallery by Title Small"},"className":"is-style-card","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"Gallery by Title Small","patternName":"flexline/module-gallery-by-title-small"},"className":"is-style-card","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-card has-neutral-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"metadata":{"name":"Text and Galleries Columns"},"align":"full","className":"","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
     <div class="wp-block-columns alignfull"><!-- wp:column {"verticalAlignment":"stretch","width":"35%","metadata":{"name":"Text Column"},"className":""} -->
         <div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:35%"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","alt":"Sample Image","dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"%","metadata":{"name":"Container / Background"},"className":"","style":{"color":{"duotone":"var:preset|duotone|primary"},"spacing":{"padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
