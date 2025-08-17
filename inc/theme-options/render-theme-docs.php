@@ -98,6 +98,26 @@ function flexline_render_documentation_tab() {
             font-family: monospace;
             word-break: break-all;
         }
+
+        /* Simple tooltip styling */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 3px;
+            white-space: pre-wrap;
+            z-index: 10;
+            min-width: 120px;
+        }
     </style>
 
     <div class="wrapper">
@@ -264,6 +284,8 @@ $block_styles = \FlexLine\flexline\flexline_get_block_styles();
 
 /* -----------------------------------------------------------------------
  * 2.  Rich descriptions keyed by same slug
+ *     Update text here to change the tooltip and description shown
+ *     in the documentation table below.
  * -------------------------------------------------------------------- */
 $style_descriptions = [
     // Columns
@@ -310,9 +332,10 @@ foreach ( $block_styles as $block => $styles ) {
             $first = false;
         }
 
-        echo '<td><code>' . esc_html( $slug ) . '</code></td>';
-        echo '<td>' . esc_html( $label ) . '</td>';
-        echo '<td>' . esc_html( $style_descriptions[ $slug ] ?? '' ) . '</td>';
+        $desc = $style_descriptions[ $slug ] ?? '';
+        echo '<td data-tooltip="' . esc_attr( $desc ) . '" title="' . esc_attr( $desc ) . '"><code>' . esc_html( $slug ) . '</code></td>';
+        echo '<td data-tooltip="' . esc_attr( $desc ) . '" title="' . esc_attr( $desc ) . '">' . esc_html( $label ) . '</td>';
+        echo '<td>' . esc_html( $desc ) . '</td>';
         echo '</tr>';
     }
 }
@@ -489,6 +512,33 @@ foreach ( $block_styles as $block => $styles ) {
                     }
                 });
             });
+        })();
+
+        // Add tooltip attributes to docs tables using description cells.
+        // Editing the description text will automatically update tooltips.
+        (function () {
+            const addTooltips = (selector, descIndex) => {
+                const rows = document.querySelectorAll(`${selector} tbody tr`);
+                rows.forEach(row => {
+                    const descCell = row.querySelector(`td:nth-child(${descIndex})`);
+                    if (!descCell) {
+                        return;
+                    }
+                    const tooltip = descCell.textContent.trim();
+                    if (!tooltip) {
+                        return;
+                    }
+                    row.querySelectorAll('td').forEach((cell, idx) => {
+                        if (idx !== descIndex - 1) {
+                            cell.setAttribute('data-tooltip', tooltip);
+                            cell.setAttribute('title', tooltip);
+                        }
+                    });
+                });
+            };
+
+            addTooltips('#block-options .flexline-docs-table', 3);
+            addTooltips('#style-variations .flexline-docs-table', 4);
         })();
     </script>
     <?php
