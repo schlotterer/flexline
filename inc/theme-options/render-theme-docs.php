@@ -316,12 +316,43 @@ function flexline_render_documentation_tab() {
             background: #f7f7f7;
         }
 
+        .flexline-docs-table li {
+            position: relative;
+        }
+
         code {
             background: #f0f0f0;
             padding: 2px 4px;
             border-radius: 3px;
             font-family: monospace;
             word-break: break-all;
+        }
+
+        .flexline-info {
+            background: none;
+            border: 0;
+            padding: 0;
+            margin-left: 0.25rem;
+            cursor: pointer;
+            color: inherit;
+            vertical-align: middle;
+        }
+
+        .flexline-tooltip {
+            position: absolute;
+            z-index: 10;
+            background: #333;
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            max-width: 260px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .flexline-tooltip[hidden] {
+            display: none;
         }
     </style>
 
@@ -394,7 +425,8 @@ function flexline_render_documentation_tab() {
                                 foreach ( $attributes as $attr ) {
                                     echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
                                     if ( ! empty( $attr['description'] ) ) {
-                                        echo '<br>' . wp_kses_post( $attr['description'] );
+                                        echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+                                        echo '<div class="flexline-tooltip" role="tooltip" hidden>' . wp_kses_post( $attr['description'] ) . '</div>';
                                     }
                                     echo '</li>';
                                 }
@@ -408,7 +440,8 @@ function flexline_render_documentation_tab() {
                                 foreach ( $styles as $style ) {
                                     echo '<li><strong>' . esc_html( $style['label'] ) . ' -</strong> <code>' . esc_html( $style['slug'] ) . '</code>';
                                     if ( ! empty( $style['description'] ) ) {
-                                        echo '<br>' . esc_html( $style['description'] );
+                                        echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+                                        echo '<div class="flexline-tooltip" role="tooltip" hidden>' . esc_html( $style['description'] ) . '</div>';
                                     }
                                     echo '</li>';
                                 }
