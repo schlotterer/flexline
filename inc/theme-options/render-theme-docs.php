@@ -385,29 +385,42 @@ function flexline_render_documentation_tab() {
                     foreach ( $block_docs as $block => $data ) {
                         $attributes = $data['attributes'] ?? [];
                         $styles     = $data['styles'] ?? [];
-                        $rows       = max( count( $attributes ), count( $styles ) );
 
-                        for ( $i = 0; $i < $rows; $i++ ) {
-                            echo '<tr>';
-                            echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
+                        $attribute_names = array_column( $attributes, 'name' );
+                        $style_slugs     = array_column( $styles, 'slug' );
 
-                            echo '<td>';
-                            if ( isset( $attributes[ $i ] ) ) {
-                                echo '<strong>' . esc_html( $attributes[ $i ]['name'] ) . '</strong><br>' . wp_kses_post( $attributes[ $i ]['description'] );
-                            }
-                            echo '</td>';
+                        echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+                        echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
 
-                            echo '<td>';
-                            if ( isset( $styles[ $i ] ) ) {
-                                echo '<code>' . esc_html( $styles[ $i ]['slug'] ) . '</code> – ' . esc_html( $styles[ $i ]['label'] );
-                                if ( ! empty( $styles[ $i ]['description'] ) ) {
-                                    echo '<br>' . esc_html( $styles[ $i ]['description'] );
+                        echo '<td>';
+                        if ( $attributes ) {
+                            echo '<ul>';
+                            foreach ( $attributes as $attr ) {
+                                echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
+                                if ( ! empty( $attr['description'] ) ) {
+                                    echo '<br>' . wp_kses_post( $attr['description'] );
                                 }
+                                echo '</li>';
                             }
-                            echo '</td>';
-
-                            echo '</tr>';
+                            echo '</ul>';
                         }
+                        echo '</td>';
+
+                        echo '<td>';
+                        if ( $styles ) {
+                            echo '<ul>';
+                            foreach ( $styles as $style ) {
+                                echo '<li><code>' . esc_html( $style['slug'] ) . '</code> – ' . esc_html( $style['label'] );
+                                if ( ! empty( $style['description'] ) ) {
+                                    echo '<br>' . esc_html( $style['description'] );
+                                }
+                                echo '</li>';
+                            }
+                            echo '</ul>';
+                        }
+                        echo '</td>';
+
+                        echo '</tr>';
                     }
                     ?>
                     </tbody>
