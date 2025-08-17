@@ -179,6 +179,11 @@ function flexline_render_documentation_tab() {
                             <td>Displays prev/next arrow buttons overlaying the scroller.</td>
                         </tr>
                         <tr>
+                            <td class="pl-3">&nbsp;&mdash; Scroll transition in milliseconds</td>
+                            <td></td>
+                            <td>Controls slide animation speed (default 500; range 100–1500).</td>
+                        </tr>
+                        <tr>
                             <td class="pl-3">&nbsp;&mdash; Loop</td>
                             <td></td>
                             <td>Clones slides so scrolling never stops.</td>
@@ -187,6 +192,11 @@ function flexline_render_documentation_tab() {
                             <td class="pl-3">&nbsp;&mdash; Auto Scroll</td>
                             <td></td>
                             <td>Starts scrolling on page load (respecting the chosen interval).</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-3">&nbsp;&mdash; Scroll interval in milliseconds</td>
+                            <td></td>
+                            <td>Controls auto‑scroll timing (default 4000; range 1000‑10000).</td>
                         </tr>
                         <tr>
                             <td class="pl-3">&nbsp;&mdash; Hide Scrollbar</td>
