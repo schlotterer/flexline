@@ -71,6 +71,32 @@ function flexline_register_block_styles() {
 			'outline'     => __( 'Outline', 'flexline' ),
 			'text-shadow' => __( 'Text Shadow', 'flexline' ),
 		),
+		'core/page-link'     => array(
+			'outline'     => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/tag-link'     => array(
+			'outline'     => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/category-link'     => array(
+			'outline'     => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/home-link'     => array(
+			'outline'     => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/navigation-submenu'     => array(
+			'outline'     => __( 'Outline', 'flexline' ),
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/post-navigation-link'     => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
+		'core/page-list'     => array(
+			'text-shadow' => __( 'Text Shadow', 'flexline' ),
+		),
 		'core/quote'               => array(
 			'shadow-light'    => __( 'Shadow', 'flexline' ),
 			'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
