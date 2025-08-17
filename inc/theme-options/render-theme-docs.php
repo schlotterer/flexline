@@ -396,6 +396,18 @@ function flexline_render_documentation_tab() {
                 <p>The following custom attributes and style variations are available on various core blocks.</p>
 
                 <div id="flexline-docs-table-container">
+                    <style>
+                        #flexline-docs-table-container .flexline-docs-filters {
+                            display: flex;
+                            gap: 1rem;
+                            align-items: center;
+                            margin-bottom: 1rem;
+                            flex-wrap: wrap;
+                        }
+                        #flexline-docs-table-container .flexline-docs-filters label {
+                            margin-right: 0.5rem;
+                        }
+                    </style>
                     <div class="flexline-docs-filters">
                         <label for="flexline-attribute-filter">Filter by attribute</label>
                         <select id="flexline-attribute-filter">
