@@ -342,6 +342,15 @@ function flexline_render_documentation_tab() {
             font-weight: 600;
         }
 
+        .flexline-docs-table td.block-name {
+            background: #fdfdfd;
+            font-weight: 600;
+        }
+
+        .flexline-docs-table tbody tr:nth-child(even) td.block-name {
+            background: #f7f7f7;
+        }
+
         code {
             background: #f0f0f0;
             padding: 2px 4px;
@@ -380,9 +389,7 @@ function flexline_render_documentation_tab() {
 
                         for ( $i = 0; $i < $rows; $i++ ) {
                             echo '<tr>';
-                            if ( 0 === $i ) {
-                                echo '<td rowspan="' . esc_attr( $rows ) . '"><code>' . esc_html( $block ) . '</code></td>';
-                            }
+                            echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
 
                             echo '<td>';
                             if ( isset( $attributes[ $i ] ) ) {
