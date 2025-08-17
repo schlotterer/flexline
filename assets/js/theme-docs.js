@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	const styleFilter = document.getElementById('flexline-style-filter');
 	const rows = table ? table.querySelectorAll('tbody tr') : [];
 
-	if (table && window.Tablesort) {
-		new Tablesort(table);
-	}
+       if (table && window.Tablesort) {
+               Tablesort(table);
+       }
 
 	const filterRows = () => {
 		const selectedAttribute = attributeFilter
