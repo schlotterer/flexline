@@ -112,7 +112,7 @@ function flexline_render_documentation_tab() {
                 <h3>Block Options (Flexline&nbsp;Controls)</h3>
                 <p>The following extra toggles appear in various core blocks’ sidebars. Use them for quick layout and functionality customizations.</p>
 
-                <table class="flexline-docs-table">
+                <table id="flexline-docs-table" class="flexline-docs-table">
                     <thead>
                         <tr>
                             <th style="width:30%">Option / Attribute</th>
