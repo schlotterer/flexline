@@ -126,51 +126,22 @@ function flexline_render_documentation_tab() {
                 ],
             ],
         ],
-        'core/columns' => [
+        'core/columns'       => [
             'attributes' => [
                 [
                     'name'        => 'Horizontal Scroller',
-                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc.',
-                ],
-                [
-                    'name'        => 'Show Arrow Nav',
-                    'description' => 'Displays prev/next arrow buttons overlaying the scroller.',
-                ],
-                [
-                    'name'        => 'Position Buttons Over Scroller',
-                    'description' => 'Overlays arrow buttons over the scrolling content.',
-                ],
-                [
-                    'name'        => 'Scroll transition in milliseconds',
-                    'description' => 'Controls slide animation speed (default 500; range 100–1500).',
-                ],
-                [
-                    'name'        => 'Loop',
-                    'description' => 'Clones slides so scrolling never stops.',
-                ],
-                [
-                    'name'        => 'Auto Scroll',
-                    'description' => 'Starts scrolling on page load (respecting the chosen interval).',
-                ],
-                [
-                    'name'        => 'Hide Pause Button',
-                    'description' => 'Removes the pause button when auto‑scroll is active.',
-                ],
-                [
-                    'name'        => 'Scroll interval in milliseconds',
-                    'description' => 'Controls auto‑scroll timing (default 4000; range 1000‑10000).',
-                ],
-                [
-                    'name'        => 'Hide Scrollbar',
-                    'description' => 'Hides the native scrollbar for a cleaner look.',
-                ],
-                [
-                    'name'        => 'Pause on Hover',
-                    'description' => 'Pauses the auto‑scroll when the user hovers over the scroller.',
-                ],
-                [
-                    'name'        => 'Button Positions / Colors',
-                    'description' => 'Control arrow placement (top/bottom, left/right/center), background, text color, border, and box‑shadow.',
+                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+                        '<li>Show Arrow Nav</li>' .
+                        '<li>Position Buttons Over Scroller</li>' .
+                        '<li>Scroll transition in milliseconds</li>' .
+                        '<li>Loop</li>' .
+                        '<li>Auto Scroll</li>' .
+                        '<li>Hide Pause Button</li>' .
+                        '<li>Scroll interval in milliseconds</li>' .
+                        '<li>Hide Scrollbar</li>' .
+                        '<li>Pause on Hover</li>' .
+                        '<li>Button Positions / Colors</li>' .
+                        '</ul>',
                 ],
                 [
                     'name'        => 'Stack at Tablet',
@@ -186,47 +157,18 @@ function flexline_render_documentation_tab() {
             'attributes' => [
                 [
                     'name'        => 'Horizontal Scroller',
-                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc.',
-                ],
-                [
-                    'name'        => 'Show Arrow Nav',
-                    'description' => 'Displays prev/next arrow buttons overlaying the scroller.',
-                ],
-                [
-                    'name'        => 'Position Buttons Over Scroller',
-                    'description' => 'Overlays arrow buttons over the scrolling content.',
-                ],
-                [
-                    'name'        => 'Scroll transition in milliseconds',
-                    'description' => 'Controls slide animation speed (default 500; range 100–1500).',
-                ],
-                [
-                    'name'        => 'Loop',
-                    'description' => 'Clones slides so scrolling never stops.',
-                ],
-                [
-                    'name'        => 'Auto Scroll',
-                    'description' => 'Starts scrolling on page load (respecting the chosen interval).',
-                ],
-                [
-                    'name'        => 'Hide Pause Button',
-                    'description' => 'Removes the pause button when auto‑scroll is active.',
-                ],
-                [
-                    'name'        => 'Scroll interval in milliseconds',
-                    'description' => 'Controls auto‑scroll timing (default 4000; range 1000‑10000).',
-                ],
-                [
-                    'name'        => 'Hide Scrollbar',
-                    'description' => 'Hides the native scrollbar for a cleaner look.',
-                ],
-                [
-                    'name'        => 'Pause on Hover',
-                    'description' => 'Pauses the auto‑scroll when the user hovers over the scroller.',
-                ],
-                [
-                    'name'        => 'Button Positions / Colors',
-                    'description' => 'Control arrow placement (top/bottom, left/right/center), background, text color, border, and box‑shadow.',
+                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+                        '<li>Show Arrow Nav</li>' .
+                        '<li>Position Buttons Over Scroller</li>' .
+                        '<li>Scroll transition in milliseconds</li>' .
+                        '<li>Loop</li>' .
+                        '<li>Auto Scroll</li>' .
+                        '<li>Hide Pause Button</li>' .
+                        '<li>Scroll interval in milliseconds</li>' .
+                        '<li>Hide Scrollbar</li>' .
+                        '<li>Pause on Hover</li>' .
+                        '<li>Button Positions / Colors</li>' .
+                        '</ul>',
                 ],
             ],
         ],
