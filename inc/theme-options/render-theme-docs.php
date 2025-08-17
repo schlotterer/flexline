@@ -194,6 +194,11 @@ function flexline_render_documentation_tab() {
                             <td>Starts scrolling on page load (respecting the chosen interval).</td>
                         </tr>
                         <tr>
+                            <td class="pl-3">&nbsp;&mdash; Hide Pause Button</td>
+                            <td></td>
+                            <td>Removes the pause button when auto‑scroll is active.</td>
+                        </tr>
+                        <tr>
                             <td class="pl-3">&nbsp;&mdash; Scroll interval in milliseconds</td>
                             <td></td>
                             <td>Controls auto‑scroll timing (default 4000; range 1000‑10000).</td>
