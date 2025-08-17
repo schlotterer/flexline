@@ -452,7 +452,7 @@ function flexline_render_documentation_tab() {
                             if ( $styles ) {
                                 echo '<ul>';
                                 foreach ( $styles as $style ) {
-                                    echo '<li><code>' . esc_html( $style['slug'] ) . '</code> – ' . esc_html( $style['label'] );
+                                    echo '<li><strong>' . esc_html( $style['label'] ) . ' -</strong> <code>' . esc_html( $style['slug'] ) . '</code>';
                                     if ( ! empty( $style['description'] ) ) {
                                         echo '<br>' . esc_html( $style['description'] );
                                     }
