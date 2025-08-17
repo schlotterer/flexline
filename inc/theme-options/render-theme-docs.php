@@ -179,6 +179,11 @@ function flexline_render_documentation_tab() {
                             <td>Displays prev/next arrow buttons overlaying the scroller.</td>
                         </tr>
                         <tr>
+                            <td class="pl-3">&nbsp;&mdash; Position Buttons Over Scroller</td>
+                            <td></td>
+                            <td>Overlays arrow buttons over the scrolling content.</td>
+                        </tr>
+                        <tr>
                             <td class="pl-3">&nbsp;&mdash; Scroll transition in milliseconds</td>
                             <td></td>
                             <td>Controls slide animation speed (default 500; range 100–1500).</td>
