@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const rows = table ? table.querySelectorAll('tbody tr') : [];
 
        if (table && window.Tablesort) {
-               Tablesort(table);
+	       Tablesort(table);
        }
 
 	const filterRows = () => {
@@ -43,4 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (styleFilter) {
 		styleFilter.addEventListener('change', filterRows);
 	}
+
+	const tooltipPairs = [];
+	document.querySelectorAll('.flexline-info').forEach((button) => {
+		const tooltip =
+			button.nextElementSibling &&
+			button.nextElementSibling.classList.contains('flexline-tooltip')
+				? button.nextElementSibling
+				: null;
+
+		if (tooltip) {
+			tooltipPairs.push({ button, tooltip });
+		}
+	});
+
+	const closeAllTooltips = () => {
+		tooltipPairs.forEach(({ button, tooltip }) => {
+			tooltip.hidden = true;
+			button.setAttribute('aria-expanded', 'false');
+		});
+	};
+
+	tooltipPairs.forEach(({ button, tooltip }) => {
+		button.addEventListener('click', (event) => {
+			event.stopPropagation();
+			const isHidden = tooltip.hidden;
+
+			closeAllTooltips();
+
+			tooltip.hidden = !isHidden;
+			button.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+		});
+
+		tooltip.addEventListener('click', (event) => {
+			event.stopPropagation();
+		});
+	});
+
+	document.addEventListener('click', closeAllTooltips);
 });
