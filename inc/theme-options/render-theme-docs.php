@@ -179,6 +179,11 @@ function flexline_render_documentation_tab() {
                             <td>Displays prev/next arrow buttons overlaying the scroller.</td>
                         </tr>
                         <tr>
+                            <td class="pl-3">&nbsp;&mdash; Position Buttons Over Scroller</td>
+                            <td></td>
+                            <td>Overlays arrow buttons over the scrolling content.</td>
+                        </tr>
+                        <tr>
                             <td class="pl-3">&nbsp;&mdash; Loop</td>
                             <td></td>
                             <td>Clones slides so scrolling never stops.</td>
