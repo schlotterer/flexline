@@ -267,6 +267,29 @@ function flexline_render_documentation_tab() {
         }
     }
 
+    $all_attribute_names = [];
+    $all_style_slugs     = [];
+
+    foreach ( $block_docs as $data ) {
+        if ( ! empty( $data['attributes'] ) ) {
+            foreach ( $data['attributes'] as $attr ) {
+                $all_attribute_names[] = $attr['name'];
+            }
+        }
+
+        if ( ! empty( $data['styles'] ) ) {
+            foreach ( $data['styles'] as $style ) {
+                $all_style_slugs[] = $style['slug'];
+            }
+        }
+    }
+
+    $unique_attribute_names = array_unique( $all_attribute_names );
+    sort( $unique_attribute_names, SORT_NATURAL | SORT_FLAG_CASE );
+
+    $unique_style_slugs = array_unique( $all_style_slugs );
+    sort( $unique_style_slugs, SORT_NATURAL | SORT_FLAG_CASE );
+
     ?>
     <style>
         /* Layout */
@@ -372,59 +395,79 @@ function flexline_render_documentation_tab() {
                 <h3>Block Options &amp; Style Variations</h3>
                 <p>The following custom attributes and style variations are available on various core blocks.</p>
 
-                <table id="flexline-docs-table" class="flexline-docs-table">
-                    <thead>
-                        <tr>
-                            <th style="width:25%">Block Name</th>
-                            <th style="width:35%">Custom Attribute</th>
-                            <th>Style Variation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ( $block_docs as $block => $data ) {
-                        $attributes = $data['attributes'] ?? [];
-                        $styles     = $data['styles'] ?? [];
+                <div id="flexline-docs-table-container">
+                    <div class="flexline-docs-filters">
+                        <label for="flexline-attribute-filter">Filter by attribute</label>
+                        <select id="flexline-attribute-filter">
+                            <option value="">All</option>
+                            <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
+                                <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
 
-                        $attribute_names = array_column( $attributes, 'name' );
-                        $style_slugs     = array_column( $styles, 'slug' );
+                        <label for="flexline-style-filter">Filter by style</label>
+                        <select id="flexline-style-filter">
+                            <option value="">All</option>
+                            <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+                                <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
 
-                        echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
-                        echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
+                    <table id="flexline-docs-table" class="flexline-docs-table">
+                        <thead>
+                            <tr>
+                                <th style="width:25%">Block Name</th>
+                                <th style="width:35%">Custom Attribute</th>
+                                <th>Style Variation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ( $block_docs as $block => $data ) {
+                            $attributes = $data['attributes'] ?? [];
+                            $styles     = $data['styles'] ?? [];
 
-                        echo '<td>';
-                        if ( $attributes ) {
-                            echo '<ul>';
-                            foreach ( $attributes as $attr ) {
-                                echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
-                                if ( ! empty( $attr['description'] ) ) {
-                                    echo '<br>' . wp_kses_post( $attr['description'] );
+                            $attribute_names = array_column( $attributes, 'name' );
+                            $style_slugs     = array_column( $styles, 'slug' );
+
+                            echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+                            echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
+
+                            echo '<td>';
+                            if ( $attributes ) {
+                                echo '<ul>';
+                                foreach ( $attributes as $attr ) {
+                                    echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
+                                    if ( ! empty( $attr['description'] ) ) {
+                                        echo '<br>' . wp_kses_post( $attr['description'] );
+                                    }
+                                    echo '</li>';
                                 }
-                                echo '</li>';
+                                echo '</ul>';
                             }
-                            echo '</ul>';
-                        }
-                        echo '</td>';
+                            echo '</td>';
 
-                        echo '<td>';
-                        if ( $styles ) {
-                            echo '<ul>';
-                            foreach ( $styles as $style ) {
-                                echo '<li><code>' . esc_html( $style['slug'] ) . '</code> – ' . esc_html( $style['label'] );
-                                if ( ! empty( $style['description'] ) ) {
-                                    echo '<br>' . esc_html( $style['description'] );
+                            echo '<td>';
+                            if ( $styles ) {
+                                echo '<ul>';
+                                foreach ( $styles as $style ) {
+                                    echo '<li><code>' . esc_html( $style['slug'] ) . '</code> – ' . esc_html( $style['label'] );
+                                    if ( ! empty( $style['description'] ) ) {
+                                        echo '<br>' . esc_html( $style['description'] );
+                                    }
+                                    echo '</li>';
                                 }
-                                echo '</li>';
+                                echo '</ul>';
                             }
-                            echo '</ul>';
-                        }
-                        echo '</td>';
+                            echo '</td>';
 
-                        echo '</tr>';
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                            echo '</tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
 
