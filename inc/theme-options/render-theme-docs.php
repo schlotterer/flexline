@@ -363,7 +363,7 @@ function flexline_render_documentation_tab() {
                 <h3>Block Options &amp; Style Variations</h3>
                 <p>The following custom attributes and style variations are available on various core blocks.</p>
 
-                <table class="flexline-docs-table">
+                <table id="flexline-docs-table" class="flexline-docs-table">
                     <thead>
                         <tr>
                             <th style="width:25%">Block Name</th>
