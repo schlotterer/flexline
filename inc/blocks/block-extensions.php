@@ -18,7 +18,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_bl
 	wp_enqueue_script(
 		'flexline-block-extensions',
 		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-		[ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose' ],
+                [ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text' ],
 		THEME_VERSION,
 		false
 	);
