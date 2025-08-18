@@ -125,6 +125,7 @@ function flexline_get_block_styles() {
 	   $text_shadow_blocks = array(
 				// Titles & taglines
 				'core/post-title',
+				'core/archive-title',
 			    // Post metadata & excerpt
 				'core/post-date',
 				'core/post-time',
