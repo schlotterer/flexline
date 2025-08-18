@@ -354,6 +354,21 @@ function flexline_render_documentation_tab() {
         .flexline-tooltip[hidden] {
             display: none;
         }
+
+        /*
+        ## Customize CSS here to avoid dealing with a build.
+        */
+
+        .flexline-info { color: #767676; }           /* medium gray */
+        .flexline-info:hover,
+        .flexline-info:focus { color: #505050; }     /* darker on interaction */
+        .flexline-info svg { fill: currentcolor; }
+
+        .flexline-tooltip code {
+            color: inherit;             /* match tooltip text color */
+            background: transparent;    /* remove light background */
+        }
+
     </style>
 
     <div class="wrapper">
