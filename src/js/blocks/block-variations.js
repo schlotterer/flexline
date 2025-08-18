@@ -4,7 +4,7 @@ import { domReady } from '@wordpress/dom-ready';
 //domReady(() => {
 //	registerBlockVariation('core/columns', {
 //		name: 'flexline-columns-carousel',
-//		title: 'FlexlineColumns Carousel',
+//		title: 'FlexLineColumns Carousel',
 //		attributes: {
 //			className: 'is-style-primary',
 //			text: 'Click Me!',

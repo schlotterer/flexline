@@ -1,6 +1,6 @@
 <?php
 /**
- * Flexline functions and definitions.
+ * FlexLine functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *

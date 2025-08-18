@@ -18,7 +18,7 @@
 function flexline_render_documentation_tab() {
     // Unified block documentation.
     $block_docs = [
-        'All blocks with Flexline panel' => [
+        'All blocks with FlexLine panel' => [
             'attributes' => [
                 [
                     'name'        => 'Hide on Desktop / Tablet / Mobile',
@@ -375,7 +375,7 @@ function flexline_render_documentation_tab() {
         <div class="content-container">
             <!-- ✨ INTRO -->
             <section id="intro">
-                <h2>Flexline Theme&nbsp;Documentation</h2>
+                <h2>FlexLine Theme&nbsp;Documentation</h2>
                 <p>Below you’ll find a reference for the block‑level Inspector controls <em>and</em> utility classes that ship with the theme. Everything is <strong>opt‑in</strong>: nothing changes until you either (a)&nbsp;add a class in the block editor’s <em>Additional&nbsp;CSS&nbsp;Class(es)</em> field or (b)&nbsp;toggle an option inside the block’s sidebar. Use the nav on the right to jump around.</p>
             </section>
             <!-- ✨ BLOCK OPTIONS & STYLES -->
@@ -571,7 +571,7 @@ function flexline_render_documentation_tab() {
             <section id="demo-patterns">
                 <h3>Demo Patterns</h3>
                 <p>
-                    Want to explore every Flexline pattern in one place? Create a
+                    Want to explore every FlexLine pattern in one place? Create a
                     blank Page or Post, switch the editor to <strong>Code view</strong>,
                     and paste the snippet below. Hit “Update/Publish” and you’ll get a
                     fully-built demo page showcasing all pattern groups and templates.
@@ -611,7 +611,7 @@ function flexline_render_documentation_tab() {
                 <h4>On this page</h4>
                 <ul>
                     <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#block-options">Flexline Block Options &amp; Styles</a></li>
+                    <li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
                     <li><a href="#utility-classes">Utility Classes</a>
                         <ul>
                             <li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>

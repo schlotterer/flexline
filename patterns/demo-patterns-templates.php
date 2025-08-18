@@ -126,7 +126,7 @@ namespace FlexLine;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The Flexline theme includes the following key list templates:</p>
+    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The FlexLine theme includes the following key list templates:</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:list {"className":""} -->
@@ -153,7 +153,7 @@ namespace FlexLine;
     <!-- /wp:list -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p><strong>Note:</strong> Flexline also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
+    <p><strong>Note:</strong> FlexLine also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:paragraph {"className":""} -->

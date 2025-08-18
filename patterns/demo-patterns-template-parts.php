@@ -27,7 +27,7 @@ namespace FlexLine;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>The Flexline theme is designed with adaptability in mind—and that extends to its templates. Each template uses modular template parts for the header, footer, and slide-in panel, allowing you to mix, match, and customize layouts with ease.</p>
+    <p>The FlexLine theme is designed with adaptability in mind—and that extends to its templates. Each template uses modular template parts for the header, footer, and slide-in panel, allowing you to mix, match, and customize layouts with ease.</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:list {"className":""} -->
@@ -175,7 +175,7 @@ namespace FlexLine;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>The Flexline theme includes two core footer template parts designed to suit a variety of site needs:</p>
+    <p>The FlexLine theme includes two core footer template parts designed to suit a variety of site needs:</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:list {"className":""} -->

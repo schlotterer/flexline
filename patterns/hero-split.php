@@ -28,7 +28,7 @@ namespace FlexLine;
                     <!-- /wp:group -->
 
                     <!-- wp:paragraph {"className":""} -->
-                    <p>Heroes play a crucial role in grabbing attention and establishing the ambiance. The Flexline theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
+                    <p>Heroes play a crucial role in grabbing attention and establishing the ambiance. The FlexLine theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->

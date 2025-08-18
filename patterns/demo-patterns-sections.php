@@ -141,7 +141,7 @@ namespace FlexLine;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>The <strong>Timeline Columns Slider</strong> pattern uses Flexline’s powerful custom options for the Columns block to create a smooth, scrollable timeline layout. This turns a simple set of columns into an interactive horizontal content slider — perfect for showcasing steps in a process, milestones, or related content side by side. Each <strong>Column</strong> acts as a timeline item — just add your content blocks inside (like images, text, quotes, or media).</p>
+<p>The <strong>Timeline Columns Slider</strong> pattern uses FlexLine’s powerful custom options for the Columns block to create a smooth, scrollable timeline layout. This turns a simple set of columns into an interactive horizontal content slider — perfect for showcasing steps in a process, milestones, or related content side by side. Each <strong>Column</strong> acts as a timeline item — just add your content blocks inside (like images, text, quotes, or media).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"flexline/section-timeline-columns"} /-->
@@ -159,7 +159,7 @@ namespace FlexLine;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>The <strong>Horizontal Posts Scroll</strong> pattern combines WordPress’s <strong>Query Loop</strong> block with Flexline’s custom scroller options to display your latest posts in a smooth, side-scrolling slider. It’s perfect for highlighting featured blog posts, news, or any repeatable post type in a more dynamic way. The Query Loop automatically pulls in your latest posts (or any post type you choose) and displays each one inside the Post Template block.</p>
+<p>The <strong>Horizontal Posts Scroll</strong> pattern combines WordPress’s <strong>Query Loop</strong> block with FlexLine’s custom scroller options to display your latest posts in a smooth, side-scrolling slider. It’s perfect for highlighting featured blog posts, news, or any repeatable post type in a more dynamic way. The Query Loop automatically pulls in your latest posts (or any post type you choose) and displays each one inside the Post Template block.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"flexline/section-horizontal-posts-scroll"} /-->

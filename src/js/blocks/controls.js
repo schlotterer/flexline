@@ -660,7 +660,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<ToggleControl
 								label="Enable Lazy Load"
 								checked={!!props.attributes.enableLazyLoad}
@@ -691,7 +691,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 						</PanelBody>
-						<PanelBody title="Flexline Visibility">
+						<PanelBody title="FlexLine Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
@@ -722,7 +722,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 						</PanelBody>
 					</InspectorControls>
 					<InspectorControls group="styles">
-						<PanelBody title="Flexline Content Shift">
+						<PanelBody title="FlexLine Content Shift">
 							<ToggleControl
 								label="Use Content Shift"
 								checked={!!props.attributes.useContentShift}
@@ -907,7 +907,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<ToggleControl
 								label="Enable Lazy Load"
 								checked={!!props.attributes.enableLazyLoad}
@@ -954,7 +954,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
@@ -992,7 +992,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<SelectControl
 								label="Icon Type"
 								value={props.attributes.iconType}
@@ -1076,7 +1076,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<ToggleControl
 								label="Enable Poster Gallery"
 								checked={!!props.attributes.enablePosterGallery}
@@ -1096,7 +1096,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Options">
+						<PanelBody title="FlexLine Options">
 							<ToggleControl
 								label="Enable Horizontal Scroll at Mobile"
 								checked={
@@ -1145,7 +1145,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Group Link Options">
+						<PanelBody title="FlexLine Group Link Options">
 							<ToggleControl
 								label="Enable Group Link"
 								checked={!!props.attributes.enableGroupLink}
@@ -1187,7 +1187,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								/>
 							)}
 						</PanelBody>
-						<PanelBody title="Flexline Visibility">
+						<PanelBody title="FlexLine Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
@@ -1218,7 +1218,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 						</PanelBody>
 					</InspectorControls>
 					<InspectorControls group="styles">
-						<PanelBody title="Flexline Content Shift">
+						<PanelBody title="FlexLine Content Shift">
 							<ToggleControl
 								label="Use Content Shift"
 								checked={!!props.attributes.useContentShift}
@@ -1406,7 +1406,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Scroller Options">
+						<PanelBody title="FlexLine Scroller Options">
 							<ToggleControl
 								label="Enable Horizontal Scroller"
 								checked={
@@ -1672,7 +1672,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 									/>
 								)}
 						</PanelBody>
-						<PanelBody title="Flexline Visibility">
+						<PanelBody title="FlexLine Visibility">
 							<ToggleControl
 								label="Stack at Tablet"
 								checked={!!props.attributes.stackAtTablet}
@@ -1735,7 +1735,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				<Fragment>
 					<BlockEdit {...props} />
 					<InspectorControls>
-						<PanelBody title="Flexline Visibility">
+						<PanelBody title="FlexLine Visibility">
 							<ToggleControl
 								label="Hide on Desktop"
 								checked={!!props.attributes.hideOnDesktop}
