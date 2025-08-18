@@ -123,20 +123,27 @@ function flexline_get_block_styles() {
 		);
 
 	   $text_shadow_blocks = array(
-			   'core/navigation-link',
-			   'core/site-title',
-			   'core/post-title',
-			   'core/post-terms',
-			   'core/post-date',
-			   'core/post-author',
-			   'core/post-author-biography',
-			   'core/post-excerpt',
-			   'core/post-navigation-link',
-			   'core/query-pagination',
-			   'core/query-title',
-			   'core/read-more',
-			   'core/term-description',
-			   'core/site-tagline',
+			    // Post metadata & excerpt
+				'core/post-date',
+				'core/post-time',
+				'core/post-author',
+				'core/post-author-name',
+				'core/post-author-biography',
+				'core/post-terms',
+
+				// Navigation & lists
+				'core/post-navigation-link',
+				'core/page-list',
+				'core/query-pagination',
+				'core/query-pagination-previous',
+				'core/query-pagination-next',
+				'core/query-pagination-numbers',
+
+				// Comments & login
+				'core/comment-author-name',
+				'core/comment-date',
+				'core/comment-reply-link',
+				'core/loginout',
 	   );
 
 	   foreach ( $text_shadow_blocks as $block ) {
