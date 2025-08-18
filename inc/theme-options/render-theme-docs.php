@@ -265,7 +265,7 @@ function flexline_render_documentation_tab() {
         }
 
         .nav-container nav h4 {
-            margin-top: 0;
+            padding-top: 5rem;
             font-weight: 600;
         }
 
@@ -396,6 +396,9 @@ function flexline_render_documentation_tab() {
                             display: flex;
                             align-items: center;
                             gap: 0.5rem;
+                        }
+                        #flexline-docs-table-container .flexline-docs-filters .flexline-filter label{
+                            white-space: nowrap;
                         }
                     </style>
                     <div class="flexline-docs-filters">
