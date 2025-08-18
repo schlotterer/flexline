@@ -6,7 +6,7 @@
  * Categories: flexline-footers
  * Block Types: core/template-part/footer
  */
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"secondary","layout":{"type":"constrained"},"metadata":{"name":"Quick Form"}} -->
 <div id="quickForm" class="wp-block-group has-secondary-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:cover {"url":"<?php echo esc_url(feature_image_fallback()); ?>","dimRatio":80,"overlayColor":"secondary","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}},"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"}} -->

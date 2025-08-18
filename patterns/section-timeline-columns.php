@@ -6,7 +6,7 @@
  * Categories: flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Timeline Columns Container","categories":["flexline-sections"],"patternName":"flexline/section-timeline-columns"},"align":"wide","className":"is-style-card-padded","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"0"}},"shadow":"var:preset|shadow|diffused"},"gradient":"neutral-neutralLight","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide is-style-card-padded has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:0;padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small);box-shadow:var(--wp--preset--shadow--diffused)"><!-- wp:columns {"isStackedOnMobile":false,"metadata":{"name":"Timeline Columns Slider"},"align":"full","className":"scroller-buttons-text-default scroller-buttons-background-default is-style-horizontal-scroll horizontal-scroller-navigation horizontal-scroller-buttons-vertical-bottom horizontal-scroller-hide-scrollbar horizontal-scroller-buttons-horizontal-left horizontal-scroller-auto scroller-pause-on-hover scroller-buttons-border-none horizontal-scroller-loop scroller-buttons-text-white scroller-buttons-background-secondary scroller-buttons-box-shadow","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"padding":{"left":"0"}}},"enableHorizontalScroller":true,"scrollAuto":true,"scrollLoop":true,"hideScrollbar":true,"buttonsBoxShadow":true,"transitionDuration":400} -->

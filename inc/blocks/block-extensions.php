@@ -5,10 +5,10 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 use WP_HTML_Tag_Processor;
 /**
- * Enqueue block editor assets for Flexline theme.
+ * Enqueue block editor assets for FlexLine theme.
  *
  * @Throws Some_Exception_Class description of exception.
  */

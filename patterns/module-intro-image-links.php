@@ -6,7 +6,7 @@
  * Categories: flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Feature Image Links","categories":["flexline-modules"],"patternName":"flexline/feature-image-links"},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|medium","left":"var:preset|spacing|large"}}}} -->

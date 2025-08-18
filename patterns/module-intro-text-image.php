@@ -6,7 +6,7 @@
  * Categories: flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Text and Image","categories":["flexline-modules"],"patternName":"flexline/text-image"},"align":"full","className":"welcome","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull welcome"><!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Text and Image Columns"},"className":""} -->

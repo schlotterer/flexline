@@ -6,7 +6,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 // Function to get the site logo URL from the Site Editor block
 function get_site_logo_from_block() {

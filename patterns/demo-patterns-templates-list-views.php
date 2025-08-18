@@ -7,7 +7,7 @@
  * Inserter: false
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
@@ -42,7 +42,7 @@ namespace FlexLine\flexline;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>By default the Flexline blog template comes with a special feature sticky post pattern before the main list view. The sticky post pattern will display the latest blog post set as sticky.</p>
+    <p>By default the FlexLine blog template comes with a special feature sticky post pattern before the main list view. The sticky post pattern will display the latest blog post set as sticky.</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

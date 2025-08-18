@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-galleries
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Gallery Modal - Wide"},"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|medium"}}}} -->

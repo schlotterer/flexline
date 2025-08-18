@@ -13,7 +13,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Replaces the first occurrence of a string in a string.

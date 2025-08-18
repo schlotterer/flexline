@@ -5,8 +5,7 @@
  * Slug: flexline/hero-split
  * Categories: flexline-heroes
  */
-
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Hero - Split","categories":["flexline-heroes"],"patternName":"flexline/hero-split"},"align":"full","className":"is-style-dots","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-dots"><!-- wp:columns {"align":"full","className":"is-style-columns-reverse","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
@@ -29,7 +28,7 @@ namespace FlexLine\flexline;
                     <!-- /wp:group -->
 
                     <!-- wp:paragraph {"className":""} -->
-                    <p>Heroes play a crucial role in grabbing attention and establishing the ambiance. The Flexline theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
+                    <p>Heroes play a crucial role in grabbing attention and establishing the ambiance. The FlexLine theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->

@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Outputs JavaScript settings for customizing the search menu.
@@ -19,7 +19,7 @@ namespace FlexLine\flexline;
 function flexline_customize_search_menu_js_settings() {
 	?>
 	<script type="text/javascript">
-		var FlexlineCustomizerSearchMenuSettings = {
+		var FlexLineCustomizerSearchMenuSettings = {
 			useMenuIconOnDesktop: <?php echo get_option( 'flexline_use_menu_icon', false ) ? 'true' : 'false'; ?>,
 			hideSearchOnTablet: <?php echo get_option( 'flexline_hide_search_tablet', false ) ? 'true' : 'false'; ?>,
 			hideSearchOnDesktop: <?php echo get_option( 'flexline_hide_search_desktop', false ) ? 'true' : 'false'; ?>,

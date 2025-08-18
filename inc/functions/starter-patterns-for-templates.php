@@ -7,7 +7,7 @@
  * 
  * @package flexline
  */
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 function auto_insert_pattern_smart( $content, $post ) {
     if ( ! empty( $content ) ) {

@@ -6,7 +6,7 @@
  * Categories: flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Text and Video Modal","categories":["flexline-modules"],"patternName":"flexline/text-video"},"align":"full","className":"welcome","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull welcome"><!-- wp:columns {"verticalAlignment":"center"} -->
@@ -16,7 +16,7 @@ namespace FlexLine\flexline;
             <!-- /wp:heading -->
 
             <!-- wp:paragraph {"align":"left","fontSize":"small"} -->
-            <p class="has-text-align-left has-small-font-size">This pattern takes advantage of Flexline's custom "Enable Media Modal" option on images to modal up a video in a modal.</p>
+            <p class="has-text-align-left has-small-font-size">This pattern takes advantage of FlexLine's custom "Enable Media Modal" option on images to modal up a video in a modal.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->

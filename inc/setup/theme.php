@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 if ( ! function_exists( 'flexline_setup' ) ) {
 

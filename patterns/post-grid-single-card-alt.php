@@ -7,7 +7,7 @@
  * Block Types: core/query
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Post Grid Single - Card Image, Category, Title"},"className":"is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"dimensions":{"minHeight":"100%"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"}} -->
 <div class="wp-block-group is-style-card-alt has-base-background-color has-background" style="min-height:100%">

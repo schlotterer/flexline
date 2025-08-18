@@ -7,7 +7,7 @@
  * Block Types: core/template-part/footer
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Quick Form"},"style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"gradient":"alternate-primary","layout":{"type":"constrained"}} -->
 <div id="quickForm" class="wp-block-group has-alternate-primary-gradient-background has-background" style="padding-top:0;padding-bottom:0"><!-- wp:cover {"url":"https://alpha.test/wp-content/uploads/2024/07/pexels-wolfgang-weiser-467045605-24374220-jpg.avif","hasParallax":true,"dimRatio":90,"isUserOverlayColor":true,"gradient":"alternate-highlight","metadata":{"name":"Background"},"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|x-large"}},"color":{"duotone":"unset"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"border":{"top":{"color":"var:preset|color|primary","width":"8px"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"textColor":"base","layout":{"type":"constrained"}} -->

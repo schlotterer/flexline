@@ -1,5 +1,5 @@
 /**
- * Flexline – poster-gallery helper
+ * FlexLine – poster-gallery helper
  *
  * Ensures every image inside a `.poster-gallery` owns an <a> wrapper
  * so baguetteBox can bind reliably—even when the user neglected to

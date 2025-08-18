@@ -6,7 +6,7 @@
  * @since 0.9.2
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Get all registered block styles.

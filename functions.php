@@ -1,13 +1,13 @@
 <?php
 /**
- * Flexline functions and definitions.
+ * FlexLine functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Get all the include files for the theme.
