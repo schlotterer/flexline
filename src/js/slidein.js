@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Attempt to find the .slide-in div in the document.
 	const slideInDiv = document.querySelector('.slide-in');
 	// eslint-disable-next-line no-undef
-	// const customizerSettings = FlexlineCustomizerSettings;
+	// const customizerSettings = FlexLineCustomizerSettings;
 	// eslint-disable-next-line no-undef
-	const customizerSearchMenuSettings = FlexlineCustomizerSearchMenuSettings;
+	const customizerSearchMenuSettings = FlexLineCustomizerSearchMenuSettings;
 	// const siteHeader = document.querySelector('.site-header');
 	// Define SVG icons for menu, search, and close actions.
 	const iconMenu =

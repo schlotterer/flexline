@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Disables wpautop to remove empty p tags in rendered Gutenberg blocks.

@@ -6,7 +6,7 @@
  * Categories: flexline-modules
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Gallery by Title Small","patternName":"flexline/module-gallery-by-title-small"},"className":"is-style-card","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-card has-neutral-background-color has-background" style="padding-top:0;padding-bottom:0"><!-- wp:columns {"metadata":{"name":"Text and Galleries Columns"},"align":"full","className":"","style":{"spacing":{"blockGap":{"left":"0"}}}} -->

@@ -5,7 +5,7 @@
  * Slug: flexline/team-leadership
  * Categories: flexline-components, flexline-misc
  */
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Leadership Card"},"className":"is-style-card-padded","layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:columns {"verticalAlignment":"center","className":"is-style-columns-reverse"} -->

@@ -6,7 +6,7 @@
  * Categories: flexline-modules, flexline-components
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Feature Page with cover image","categories":["flexline-modules"],"patternName":"flexline/feature-page-cover"},"className":"is-style-card group-link-type-none","layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-card group-link-type-none"><!-- wp:columns {"metadata":{"name":"Content Columns"},"className":"is-style-columns-reverse","style":{"spacing":{"blockGap":{"top":"0","left":"0"}}}} -->

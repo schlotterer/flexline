@@ -7,7 +7,7 @@
  * Inserter: false
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
@@ -37,7 +37,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>The <strong>Scroll-to Button</strong> provides a simple way for users to scroll to the next section of the page. By default, the button targets its own position, and it uses a negative margin to remove itself from the normal document flow. This ensures it does not add unwanted spacing between sections.<br>The negative margin behavior is controlled by <strong>Flexline’s Content Shift</strong> options and can be adjusted as needed to fine-tune spacing.<br>Additionally, you can configure the button to scroll to a specific ID or anchor elsewhere on the page, rather than its default behavior of scrolling to itself.</p>
+<p>The <strong>Scroll-to Button</strong> provides a simple way for users to scroll to the next section of the page. By default, the button targets its own position, and it uses a negative margin to remove itself from the normal document flow. This ensures it does not add unwanted spacing between sections.<br>The negative margin behavior is controlled by <strong>FlexLine’s Content Shift</strong> options and can be adjusted as needed to fine-tune spacing.<br>Additionally, you can configure the button to scroll to a specific ID or anchor elsewhere on the page, rather than its default behavior of scrolling to itself.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Scroll-to - previous content"},"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|large","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"bottom":"0"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
@@ -213,7 +213,7 @@ namespace FlexLine\flexline;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>Flexline theme has created some custom styles to support the <a href="https://wordpress.org/plugins/plethora-tabs-accordions/" target="_blank" rel="noreferrer noopener">Plethora Plugins Tabs + Accordions plugin</a>. The following are some example use cases. </p>
+<p>FlexLine theme has created some custom styles to support the <a href="https://wordpress.org/plugins/plethora-tabs-accordions/" target="_blank" rel="noreferrer noopener">Plethora Plugins Tabs + Accordions plugin</a>. The following are some example use cases. </p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"flexline/tabs-accordion"} /-->

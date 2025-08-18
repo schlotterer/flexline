@@ -7,7 +7,7 @@
  * Inserter: false
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"flexline-icon-none","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull flexline-icon-none has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
@@ -126,7 +126,7 @@ namespace FlexLine\flexline;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The Flexline theme includes the following key list templates:</p>
+    <p>In WordPress, <em>list templates</em> control how collections of posts or other content are displayed. These are used for archive-style pages, search results, and other automatically generated listings. The FlexLine theme includes the following key list templates:</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:list {"className":""} -->
@@ -153,7 +153,7 @@ namespace FlexLine\flexline;
     <!-- /wp:list -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p><strong>Note:</strong> Flexline also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
+    <p><strong>Note:</strong> FlexLine also includes a full demo pattern dedicated to list views, making it easy to see and customize these templates in action.</p>
     <!-- /wp:paragraph -->
 
     <!-- wp:paragraph {"className":""} -->

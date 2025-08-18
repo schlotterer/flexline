@@ -1,7 +1,7 @@
-# Coding Standards for Flexline Theme
+# Coding Standards for FlexLine Theme
 
 ## Introduction
-This document provides the coding standards for the Flexline WordPress theme. Our goal is to maintain high-quality code and improve the development process by adhering to these standards. Following these guidelines will ensure consistency across the project and make the code easier to manage and collaborate on.
+This document provides the coding standards for the FlexLine WordPress theme. Our goal is to maintain high-quality code and improve the development process by adhering to these standards. Following these guidelines will ensure consistency across the project and make the code easier to manage and collaborate on.
 
 ## General Principles
 - **Readability**: Code should be written for people to read first and machines second.
@@ -9,7 +9,7 @@ This document provides the coding standards for the Flexline WordPress theme. Ou
 - **Adherence**: Follow WordPress' official coding standards wherever applicable.
 
 ## WordPress Coding Standards
-Flexline Theme strives to adhere to the WordPress Coding Standards. These include:
+FlexLine Theme strives to adhere to the WordPress Coding Standards. These include:
 
 ### PHP
 - **Indentation**: Use tabs for indentation, not spaces.
@@ -52,6 +52,6 @@ Flexline Theme strives to adhere to the WordPress Coding Standards. These includ
 - **Branches**: Use descriptive branch names that reflect the feature or fix being developed.
 
 ## Conclusion
-Adhering to these coding standards will help maintain the quality and consistency of the Flexline theme. Contributors are encouraged to review these guidelines regularly and integrate best practices into their development workflow.
+Adhering to these coding standards will help maintain the quality and consistency of the FlexLine theme. Contributors are encouraged to review these guidelines regularly and integrate best practices into their development workflow.
 
 [Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)

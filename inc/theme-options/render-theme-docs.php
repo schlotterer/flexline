@@ -18,7 +18,7 @@
 function flexline_render_documentation_tab() {
     // Unified block documentation.
     $block_docs = [
-        'All blocks with Flexline panel' => [
+        'All blocks with FlexLine panel' => [
             'attributes' => [
                 [
                     'name'        => 'Hide on Desktop / Tablet / Mobile',
@@ -175,7 +175,7 @@ function flexline_render_documentation_tab() {
     ];
 
     // Merge registered block styles.
-    $block_styles       = \FlexLine\flexline\flexline_get_block_styles();
+    $block_styles       = \FlexLine\flexline_get_block_styles();
     $style_descriptions = [
         'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
         'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
@@ -258,13 +258,14 @@ function flexline_render_documentation_tab() {
         .nav-container nav {
             position: sticky;
             top: 20px;
+            margin-top: 1rem;
             border-left: 3px solid #ececec;
             padding-left: 15px;
             font-size: 14px;
         }
 
         .nav-container nav h4 {
-            margin-top: 0;
+            padding-top: 5rem;
             font-weight: 600;
         }
 
@@ -375,7 +376,7 @@ function flexline_render_documentation_tab() {
         <div class="content-container">
             <!-- ✨ INTRO -->
             <section id="intro">
-                <h2>Flexline Theme&nbsp;Documentation</h2>
+                <h2>FlexLine Theme&nbsp;Documentation</h2>
                 <p>Below you’ll find a reference for the block‑level Inspector controls <em>and</em> utility classes that ship with the theme. Everything is <strong>opt‑in</strong>: nothing changes until you either (a)&nbsp;add a class in the block editor’s <em>Additional&nbsp;CSS&nbsp;Class(es)</em> field or (b)&nbsp;toggle an option inside the block’s sidebar. Use the nav on the right to jump around.</p>
             </section>
             <!-- ✨ BLOCK OPTIONS & STYLES -->
@@ -388,30 +389,38 @@ function flexline_render_documentation_tab() {
                         #flexline-docs-table-container .flexline-docs-filters {
                             display: flex;
                             gap: 1rem;
-                            align-items: center;
                             margin-bottom: 1rem;
                             flex-wrap: wrap;
                         }
-                        #flexline-docs-table-container .flexline-docs-filters label {
-                            margin-right: 0.5rem;
+                        #flexline-docs-table-container .flexline-docs-filters .flexline-filter {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        }
+                        #flexline-docs-table-container .flexline-docs-filters .flexline-filter label{
+                            white-space: nowrap;
                         }
                     </style>
                     <div class="flexline-docs-filters">
-                        <label for="flexline-attribute-filter">Filter by attribute</label>
-                        <select id="flexline-attribute-filter">
-                            <option value="">All</option>
-                            <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
-                                <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="flexline-filter">
+                            <label for="flexline-attribute-filter">Filter by attribute</label>
+                            <select id="flexline-attribute-filter">
+                                <option value="">All</option>
+                                <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
+                                    <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                        <label for="flexline-style-filter">Filter by style</label>
-                        <select id="flexline-style-filter">
-                            <option value="">All</option>
-                            <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
-                                <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="flexline-filter">
+                            <label for="flexline-style-filter">Filter by style</label>
+                            <select id="flexline-style-filter">
+                                <option value="">All</option>
+                                <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+                                    <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
 
                     <table id="flexline-docs-table" class="flexline-docs-table">
@@ -571,25 +580,23 @@ function flexline_render_documentation_tab() {
             <section id="demo-patterns">
                 <h3>Demo Patterns</h3>
                 <p>
-                    Want to explore every Flexline pattern in one place? Create a
+                    Want to explore every FlexLine pattern in one place? Create a
                     blank Page or Post, switch the editor to <strong>Code view</strong>,
                     and paste the snippet below. Hit “Update/Publish” and you’ll get a
                     fully-built demo page showcasing all pattern groups and templates.
                 </p>
 
                 <pre>
-                    <code>
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;
-                    </code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
                 </pre>
 
                 <p class="notice">
@@ -611,7 +618,7 @@ function flexline_render_documentation_tab() {
                 <h4>On this page</h4>
                 <ul>
                     <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#block-options">Flexline Block Options &amp; Styles</a></li>
+                    <li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
                     <li><a href="#utility-classes">Utility Classes</a>
                         <ul>
                             <li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>

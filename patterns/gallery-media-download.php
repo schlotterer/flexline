@@ -6,7 +6,7 @@
  * Categories: flexline-components, flexline-galleries
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Gallery Media with Download"},"style":{"spacing":{"blockGap":"0"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"popup_media"} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Image with Modal Link"},"style":{"color":{},"border":{}},"className":"is-style-default","enableModal":true,"modalMediaURL":"https://designfloorplan.com/plan/?PlanID=3624"} -->

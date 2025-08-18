@@ -6,7 +6,7 @@
  * Categories: flexline-heroes
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Home Hero","categories":["flexline-heroes"],"patternName":"flexline/hero-home"},"align":"full","className":"","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeightUnit":"px","metadata":{"name":"Hero Background"},"align":"full","className":"no-lazy-load","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":[]},"layout":{"type":"constrained"},"enableLazyLoad":false} -->
@@ -23,7 +23,7 @@ namespace FlexLine\flexline;
                         <!-- /wp:heading -->
 
                         <!-- wp:paragraph {"className":"is-style-default"} -->
-                        <p class="is-style-default">Heroes play a crucial role in grabbing attention and establishing the ambiance. The Flexline theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
+                        <p class="is-style-default">Heroes play a crucial role in grabbing attention and establishing the ambiance. The FlexLine theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->

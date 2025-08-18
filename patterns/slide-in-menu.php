@@ -8,7 +8,7 @@
  * Inserter: false
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 ?>
 <!-- wp:group {"tagName":"aside","lock":{"move":false,"remove":false},"metadata":{"name":"Slide In Mobile Navigation"},"backgroundColor":"primary","layout":{"type":"constrained"}} -->

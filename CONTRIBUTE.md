@@ -1,7 +1,7 @@
-# Contribution Guidelines for Flexline Theme
+# Contribution Guidelines for FlexLine Theme
 
 ## Welcome Contributors!
-Thank you for considering contributing to the Flexline theme. We appreciate your effort to make this project better and more effective for everyone. To ensure a smooth contribution process for everyone involved, please follow these guidelines.
+Thank you for considering contributing to the FlexLine theme. We appreciate your effort to make this project better and more effective for everyone. To ensure a smooth contribution process for everyone involved, please follow these guidelines.
 
 ## How to Contribute
 

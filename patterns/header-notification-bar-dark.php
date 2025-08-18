@@ -10,7 +10,7 @@
 <!-- wp:group {"metadata":{"name":"Notification Container"},"align":"full","className":"headroom-hide-on-scroll","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"right":"30px","left":"30px","top":"8px","bottom":"8px"},"margin":{"top":"0"}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull headroom-hide-on-scroll has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="margin-top:0;padding-top:8px;padding-right:30px;padding-bottom:8px;padding-left:30px"><!-- wp:group {"metadata":{"name":"Content Row"},"className":"","style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
     <div class="wp-block-group"><!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"lineHeight":"1.5"}},"fontSize":"x-small"} -->
-        <p class="has-text-align-center has-x-small-font-size" style="line-height:1.5">You can use the <em>Flexline Visibility</em> controls to hide or show this template part at all breakpoints.</p>
+        <p class="has-text-align-center has-x-small-font-size" style="line-height:1.5">You can use the <em>FlexLine Visibility</em> controls to hide or show this template part at all breakpoints.</p>
         <!-- /wp:paragraph -->
 
         <!-- wp:buttons {"className":""} -->
