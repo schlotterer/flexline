@@ -258,6 +258,7 @@ function flexline_render_documentation_tab() {
         .nav-container nav {
             position: sticky;
             top: 20px;
+            margin-top: 1rem;
             border-left: 3px solid #ececec;
             padding-left: 15px;
             font-size: 14px;
