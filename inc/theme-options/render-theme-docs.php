@@ -175,7 +175,7 @@ function flexline_render_documentation_tab() {
     ];
 
     // Merge registered block styles.
-    $block_styles       = \FlexLine\flexline\flexline_get_block_styles();
+    $block_styles       = \FlexLine\flexline_get_block_styles();
     $style_descriptions = [
         'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
         'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',

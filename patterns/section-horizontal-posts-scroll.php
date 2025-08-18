@@ -6,7 +6,7 @@
  * Categories: flexline-sections
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Horizontal Post Scroll","categories":["flexline-sections"],"patternName":"flexline/section-horizontal-posts-scroll"},"align":"wide","className":"is-style-card-padded","style":{"spacing":{"padding":{"top":"var:preset|spacing|large","bottom":"70px","left":"var:preset|spacing|medium","right":"0"},"blockGap":"var:preset|spacing|small"}},"gradient":"neutral-neutralLight","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide is-style-card-padded has-neutral-neutralLight-gradient-background has-background" style="padding-top:var(--wp--preset--spacing--large);padding-right:0;padding-bottom:70px;padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"align":"wide","className":""} -->
