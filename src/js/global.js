@@ -1,437 +1,688 @@
-document.addEventListener('DOMContentLoaded', function () {
-	//----------------------------------------------------------------------
-	// 1. A helper for manual smooth scrolling with a configurable duration.
-	//----------------------------------------------------------------------
-	function smoothScrollTo(scroller, targetScrollLeft, duration) {
-		const start = scroller.scrollLeft;
-		const distance = targetScrollLeft - start;
-		const startTime = performance.now();
+// Horizontal Scroll block behaviour – front‑end + block‑editor compatible
 
-		function step(currentTime) {
-			const elapsed = currentTime - startTime;
-			const progress = Math.min(elapsed / duration, 1); // clamp 0..1
+// Helper ──────────────────────────────────────────────────────────────────────
+function isBlockEditor() {
+	return (
+		typeof wp !== 'undefined' &&
+		wp.data &&
+		typeof wp.data.select === 'function' &&
+		wp.data.select('core/block-editor') !== undefined
+	);
+}
 
-			scroller.scrollLeft = start + distance * easeInOutQuad(progress);
+//------------------------------------------------------------------
+// 1.  A helper for manual smooth scrolling with a configurable duration.
+//------------------------------------------------------------------
+function smoothScrollTo(scroller, targetScrollLeft, duration) {
+	const start = scroller.scrollLeft;
+	const distance = targetScrollLeft - start;
+	const startTime = performance.now();
 
-			if (progress < 1) {
-				requestAnimationFrame(step);
-			}
+	function step(currentTime) {
+		const elapsed = currentTime - startTime;
+		const progress = Math.min(elapsed / duration, 1); // clamp 0..1
+
+		scroller.scrollLeft = start + distance * easeInOutQuad(progress);
+
+		if (progress < 1) {
+			requestAnimationFrame(step);
 		}
-
-		function easeInOutQuad(t) {
-			return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-		}
-
-		requestAnimationFrame(step);
 	}
 
-	//----------------------------------------------------------------------
-	// 2. Replace your scrollToNext/scrollToPrev with ones that use clones.
-	//----------------------------------------------------------------------
-	function scrollToNext(scroller) {
-		const epsilon = 5; // small tolerance
-		// Use custom duration, if specified
-		const durationAttr = scroller.getAttribute('data-scroll-speed');
-		const duration = durationAttr ? parseInt(durationAttr, 10) : 600; // default 600ms
-
-		const currentScrollPosition = scroller.scrollLeft;
-		let targetScrollPosition = currentScrollPosition;
-
-		// We consider only "real" slides (the middle set). But since we've
-		// now cloned items, we store them with a class or data-flag. We'll
-		// just consider all scroller.children if you want each "slide" to be scrollable.
-		const items = Array.from(scroller.children);
-
-		for (const item of items) {
-			const itemStart = item.offsetLeft;
-			if (itemStart > currentScrollPosition + epsilon) {
-				targetScrollPosition = itemStart;
-				break;
-			}
-		}
-
-		// Animate the scroll
-		smoothScrollTo(scroller, targetScrollPosition, duration);
+	function easeInOutQuad(t) {
+		return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
 	}
 
-	function scrollToPrev(scroller) {
-		const epsilon = 5;
-		const durationAttr = scroller.getAttribute('data-scroll-speed');
-		const duration = durationAttr ? parseInt(durationAttr, 10) : 600; // default 600ms
+	requestAnimationFrame(step);
+}
 
-		const items = Array.from(scroller.children);
-		let targetScrollPosition = scroller.scrollLeft;
-		let firstVisibleItemFound = false;
+//------------------------------------------------------------------
+// 2.  Next / Prev helpers.
+//------------------------------------------------------------------
+function scrollToNext(scroller) {
+	const epsilon = 5; // small tolerance
+	const durationAttr = scroller.getAttribute('data-scroll-speed');
+	const duration = durationAttr ? parseInt(durationAttr, 10) : 600;
 
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
-			const itemStart = item.offsetLeft;
-			const itemEnd = itemStart + item.offsetWidth;
-			if (
-				itemStart >= scroller.scrollLeft &&
-				itemEnd <= scroller.scrollLeft + scroller.offsetWidth
-			) {
-				firstVisibleItemFound = true;
-				targetScrollPosition = i > 0 ? items[i - 1].offsetLeft : 0;
-				break;
-			}
+	const current = scroller.scrollLeft;
+	let target = current;
+
+	const items = Array.from(scroller.children);
+	for (const item of items) {
+		const itemStart = item.offsetLeft;
+		if (itemStart > current + epsilon) {
+			target = itemStart;
+			break;
 		}
+	}
+	smoothScrollTo(scroller, target, duration);
+}
 
-		if (!firstVisibleItemFound && items.length > 0) {
-			targetScrollPosition = items[0].offsetLeft;
-		}
+function scrollToPrev(scroller) {
+	const epsilon = 5;
+	const duration = parseInt(
+		scroller.getAttribute('data-scroll-speed') || '600',
+		10
+	);
+	const items = Array.from(scroller.children);
+	const current = scroller.scrollLeft;
 
-		smoothScrollTo(scroller, targetScrollPosition, duration);
+	const prevOffsets = items
+		.map((item) => item.offsetLeft)
+		.filter((offset) => offset + epsilon < current);
+
+	const target = prevOffsets.length
+		? Math.max(...prevOffsets)
+		: scroller.scrollWidth - scroller.offsetWidth;
+
+	smoothScrollTo(scroller, target, duration);
+}
+
+//------------------------------------------------------------------
+// 3.  Infinite loop setup.
+//------------------------------------------------------------------
+function setupInfiniteLoop(scroller) {
+	if (scroller.dataset.loopInitialised === 'true') {
+		return;
 	}
 
-	//----------------------------------------------------------------------
-	// 3. Function to set up the "infinite loop" with cloned slides
-	//----------------------------------------------------------------------
-	function setupInfiniteLoop(scroller) {
-		if (!scroller.classList.contains('horizontal-scroller-loop')) {
-			return; // only apply if loop is desired
-		}
+	if (!scroller.classList.contains('horizontal-scroller-loop')) {
+		return;
+	}
 
-		const originalItems = Array.from(scroller.children);
-		if (!originalItems.length) {
+	scroller.style.visibility = 'hidden';
+	const realSlides = Array.from(scroller.children);
+	if (!realSlides.length) {
+		return;
+	}
+
+	const realWidth = realSlides.reduce(
+		(sum, slide) => sum + slide.offsetWidth,
+		0
+	);
+
+	const makeClone = (el) => {
+		const c = el.cloneNode(true);
+		c.classList.add('cloned-slide');
+		return c;
+	};
+	const frontClones = realSlides.map(makeClone);
+	const backClones = realSlides.map(makeClone);
+
+	frontClones
+		.slice()
+		.reverse()
+		.forEach((c) => scroller.insertBefore(c, scroller.firstChild));
+	backClones.forEach((c) => scroller.appendChild(c));
+
+	requestAnimationFrame(() => {
+		scroller.scrollLeft = realWidth + 1;
+		scroller.style.visibility = '';
+		scroller.addEventListener(
+			'scroll',
+			() => {
+				const s = scroller.scrollLeft;
+				if (s < realWidth) {
+					scroller.scrollLeft = s + realWidth;
+				} else if (s >= realWidth * 2) {
+					scroller.scrollLeft = s - realWidth;
+				}
+			},
+			{ passive: true }
+		);
+	});
+
+	scroller.dataset.loopInitialised = 'true';
+}
+
+/*───────────────────────────────────────────────────────────────────────
+A wrapper should exist *whenever* the block has the style-class and
+should be gone when it doesn’t.  These two helpers enforce that rule.
+───────────────────────────────────────────────────────────────────────*/
+function ensureWrapper(scroller) {
+	// First check if the element has a parent at all
+	if (!scroller.parentNode) {
+		console.warn('Cannot wrap element - no parent node found.');
+		return scroller; // Return the original element since we can't wrap it
+	}
+
+	if (
+		scroller.parentNode &&
+		scroller.parentNode.classList.contains('horizontal-scroll-wrapper')
+	) {
+		return scroller.parentNode;
+	}
+
+	const w = document.createElement('div');
+	w.classList.add('horizontal-scroll-wrapper');
+	w.style.position = 'relative';
+	scroller.parentNode.insertBefore(w, scroller);
+	w.appendChild(scroller);
+	return w;
+}
+
+function removeWrapper(scroller) {
+	const parent = scroller.parentNode;
+	if (parent && parent.classList.contains('horizontal-scroll-wrapper')) {
+		parent.parentNode.insertBefore(scroller, parent);
+		parent.remove();
+	}
+}
+
+//------------------------------------------------------------------
+// 4.  Nav / pause buttons.
+//------------------------------------------------------------------
+function setupScrollerButtons(scroller) {
+	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
+		new MutationObserver(() => setupScrollerButtons(scroller)).observe(
+			scroller,
+			{ attributes: true, attributeFilter: ['class'] }
+		);
+		scroller.dataset.classObserverAttached = 'true';
+	}
+	// ──────────────────────────────────────────────────────────────────────
+	// 0. Determine current option state *up‑front*
+	//    (We need this before any early‑exit based on buttonsInitialised.)
+	// ──────────────────────────────────────────────────────────────────────
+	const hasNav = scroller.classList.contains(
+		'horizontal-scroller-navigation'
+	);
+	const showPause =
+		scroller.classList.contains('horizontal-scroller-auto') &&
+		!scroller.classList.contains('horizontal-scroller-hide-pause-button');
+
+	// If the nav / pause state changed since the last run, force a rebuild
+	if (
+		scroller.dataset.buttonsInitialised === 'true' &&
+		(hasNav !== (scroller.dataset.prevHasNav === 'true') ||
+			showPause !== (scroller.dataset.prevShowPause === 'true'))
+	) {
+		const existing = scroller.parentNode.querySelector(
+			'.horizontal-scroller-nav-buttons'
+		);
+		if (existing) {
+			existing.remove();
+		}
+		delete scroller.dataset.buttonsInitialised; // let the function fall through and rebuild
+	}
+	// Remember current state for the next toggle
+	scroller.dataset.prevHasNav = hasNav;
+	scroller.dataset.prevShowPause = showPause;
+
+	if (scroller.dataset.buttonsInitialised === 'true') {
+		if (!hasNav && !showPause) {
+			const existing = scroller.parentNode.querySelector(
+				'.horizontal-scroller-nav-buttons'
+			);
+			if (existing) {
+				existing.remove();
+			}
+			delete scroller.dataset.buttonsInitialised; // reset so we can rebuild later
+		} else {
+			return; // nothing changed – keep existing buttons
+		}
+	}
+
+	// If neither nav nor pause is requested, we are done.
+	if (!hasNav && !showPause) {
+		return;
+	}
+
+	// ──────────────────────────────────────────────────────────────────────
+	// 2. Build container + buttons (first time, or after tear‑down)
+	// ──────────────────────────────────────────────────────────────────────
+	// Make sure we have a wrapper first (created once, reused after)
+	const wrapper = ensureWrapper(scroller);
+
+	let autoScrollInterval;
+	let isPaused = false;
+	const hasStarted = false;
+
+	function resetAutoScrollTimer() {
+		// only reset if we’re in “auto” mode
+		if (!scroller.classList.contains('horizontal-scroller-auto')) {
 			return;
 		}
+		stopAutoScroll();
+		if (!isPaused) {
+			startAutoScroll();
+		}
+	}
 
-		// 1. Measure the "real" width with no clones
-		//    Scroll to 0 so we measure from left to right fully
-		const savedScrollLeft = scroller.scrollLeft;
-		scroller.scrollLeft = 0;
-		const realWidth = scroller.scrollWidth;
-
-		// Also capture how far the first item is from the scroller's left,
-		// in case there's a small offset (e.g. a leftover margin or partial gap).
-		const firstItemOffset = originalItems[0].offsetLeft;
-
-		// 2. Restore the original scroll temporarily
-		scroller.scrollLeft = savedScrollLeft;
-
-		// 3. Clone items at the start and end
-		const clonedStart = originalItems.map((item) => {
-			const clone = item.cloneNode(true);
-			clone.classList.add('cloned-slide');
-			return clone;
-		});
-		const clonedEnd = originalItems.map((item) => {
-			const clone = item.cloneNode(true);
-			clone.classList.add('cloned-slide');
-			return clone;
-		});
-		clonedStart.forEach((c) =>
-			scroller.insertBefore(c, scroller.firstChild)
+	function startAutoScroll() {
+		if (autoScrollInterval) {
+			return;
+		}
+		const intervalDur = parseInt(
+			scroller.getAttribute('data-scroll-interval') || '4000',
+			10
 		);
-		clonedEnd.forEach((c) => scroller.appendChild(c));
-
-		// 4. Position user in the real (middle) set.
-		//    We'll scroll left by "realWidth" minus any offset for the first item
-		//    so the first real item lines up exactly at the container's left edge.
-		//    If your firstItemOffset is 0 (no margin/padding), this just becomes "realWidth".
-		scroller.scrollLeft = realWidth - firstItemOffset;
-
-		// 5. Teleport logic to keep user in [realWidth - firstItemOffset, realWidth*2 - firstItemOffset].
-		scroller.addEventListener('scroll', () => {
-			const current = scroller.scrollLeft;
-			const leftBoundary = realWidth - firstItemOffset;
-			const rightBoundary = realWidth * 2 - firstItemOffset;
-
-			// If scrolled beyond the real set at the right
-			if (current > rightBoundary) {
-				scroller.scrollLeft = current - realWidth;
-			} else if (current < leftBoundary) {
-				scroller.scrollLeft = current + realWidth;
-			}
-		});
-	}
-
-	//----------------------------------------------------------------------
-	// 4. Set up controls (navigation, auto-scroll, etc.)
-	//----------------------------------------------------------------------
-	function setupScrollerButtons(scroller) {
-		// 1. Wrap the scroller in a new container.
-		const wrapper = document.createElement('div');
-		wrapper.classList.add('horizontal-scroll-wrapper');
-		wrapper.style.position = 'relative';
-		scroller.parentNode.insertBefore(wrapper, scroller);
-		wrapper.appendChild(scroller);
-
-		// 2. Variables for auto–scroll if enabled.
-		let autoScrollInterval;
-		let isPaused = false;
-		let hasStarted = false; // NEW: flag to track if auto-scroll has been started
-
-		// ADDED: A helper that resets the auto-scroll timer from scratch
-		function resetAutoScrollTimer() {
-			if (autoScrollInterval) {
-				clearInterval(autoScrollInterval);
-			}
-			if (!isPaused) {
-				startAutoScroll(); // start fresh if not paused
-			}
-		}
-
-		// The existing start/stop logic
-		function startAutoScroll() {
-			if (hasStarted) {
-				return; // Prevent multiple starts
-			}
-			const intervalAttr = scroller.getAttribute('data-scroll-interval');
-			const intervalDuration = intervalAttr
-				? parseInt(intervalAttr, 10)
-				: 4000;
-			autoScrollInterval = setInterval(function () {
-				scrollToNext(scroller);
-			}, intervalDuration);
-			hasStarted = true; // Mark as started
-		}
-
-		function stopAutoScroll() {
-			clearInterval(autoScrollInterval);
-		}
-
-		// NEW: Observer to detect when the scroller is on screen
-		function observeVisibility() {
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting && !hasStarted) {
-							startAutoScroll(); // Start only when visible
-							observer.disconnect(); // Stop observing after first trigger
-						}
-					});
-				},
-				{ threshold: 0.3 } // Adjust threshold as needed
-			);
-
-			observer.observe(scroller);
-		}
-
-		// Check if auto-scroll is enabled, but instead of starting immediately,
-		// we now wait until the scroller is visible
-		if (scroller.classList.contains('horizontal-scroller-auto')) {
-			if (scroller.classList.contains('scroller-pause-on-hover')) {
-				scroller.addEventListener('mouseenter', () => {
-					stopAutoScroll();
-				});
-				scroller.addEventListener('mouseleave', () => {
-					if (!isPaused) {
-						startAutoScroll();
-					}
-				});
-			}
-			// Instead of calling startAutoScroll() immediately, we use the observer.
-			observeVisibility();
-		}
-
-		// 3. Create the controls container if navigation/pause are enabled.
-		const hasNav = scroller.classList.contains(
-			'horizontal-scroller-navigation'
+		autoScrollInterval = setInterval(
+			() => scrollToNext(scroller),
+			intervalDur
 		);
-		const showPause =
-			scroller.classList.contains('horizontal-scroller-auto') &&
-			!scroller.classList.contains(
-				'horizontal-scroller-hide-pause-button'
-			);
-
-		if (hasNav || showPause) {
-			const controlContainer = document.createElement('div');
-			controlContainer.classList.add('horizontal-scroller-nav-buttons');
-			Array.from(scroller.classList).forEach((cls) => {
-				if (cls.indexOf('horizontal-scroller-buttons-') === 0) {
-					controlContainer.classList.add(cls);
-					scroller.classList.remove(cls);
-				}
-			});
-			controlContainer.style.position = 'absolute';
-			controlContainer.style.display = 'flex';
-			controlContainer.style.gap = '0px';
-			controlContainer.style.pointerEvents = 'auto';
-
-			let scrollToPrevBtn, scrollToNextBtn;
-
-			// 4. Create navigation buttons if enabled.
-			if (hasNav) {
-				scrollToPrevBtn = document.createElement('button');
-				scrollToPrevBtn.classList.add(
-					'is-horizontal-scroll-btn',
-					'is-horizontal-scroll-prev'
-				);
-				scrollToPrevBtn.setAttribute(
-					'aria-label',
-					'Scroll to previous item'
-				);
-				scrollToPrevBtn.setAttribute('role', 'button');
-				scrollToPrevBtn.style.margin = '2px';
-				scrollToPrevBtn.innerHTML =
-					'<span class="material-symbols-outlined">' +
-					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
-					'<path fill="#ffffff" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>' +
-					'</svg></span>';
-				scrollToPrevBtn.addEventListener('click', function () {
-					scrollToPrev(scroller);
-					// Reset the timer when user clicks previous
-					resetAutoScrollTimer();
-				});
-
-				scrollToNextBtn = document.createElement('button');
-				scrollToNextBtn.classList.add(
-					'is-horizontal-scroll-btn',
-					'is-horizontal-scroll-next'
-				);
-				scrollToNextBtn.setAttribute(
-					'aria-label',
-					'Scroll to next item'
-				);
-				scrollToNextBtn.setAttribute('role', 'button');
-				scrollToNextBtn.style.margin = '2px';
-				scrollToNextBtn.innerHTML =
-					'<span class="material-symbols-outlined">' +
-					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
-					'<path fill="#ffffff" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>' +
-					'</svg></span>';
-				scrollToNextBtn.addEventListener('click', function () {
-					scrollToNext(scroller);
-					// Reset the timer when user clicks next
-					resetAutoScrollTimer();
-				});
-			}
-
-			// 5. Create the pause/play button if auto-scroll is enabled and not hidden.
-			let pausePlayBtn = null;
-			if (showPause) {
-				pausePlayBtn = document.createElement('button');
-				pausePlayBtn.classList.add(
-					'is-horizontal-scroll-btn',
-					'is-horizontal-scroll-pause'
-				);
-				pausePlayBtn.setAttribute('aria-label', 'Pause auto-scroll');
-				pausePlayBtn.setAttribute('role', 'button');
-				pausePlayBtn.style.margin = '2px';
-				pausePlayBtn.innerHTML =
-					'<span class="material-symbols-outlined">' +
-					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
-					'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/>' +
-					'</svg></span>';
-				pausePlayBtn.addEventListener('click', function () {
-					if (isPaused) {
-						// Was paused → now resume
-						isPaused = false;
-						pausePlayBtn.setAttribute(
-							'aria-label',
-							'Pause auto-scroll'
-						);
-						pausePlayBtn.innerHTML =
-							'<span class="material-symbols-outlined">' +
-							'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
-							'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/>' +
-							'</svg></span>';
-
-						// Resume auto-scroll
-						resetAutoScrollTimer(); // effectively restarts auto-scroll
-					} else {
-						// Was playing → now pause
-						isPaused = true;
-						pausePlayBtn.setAttribute(
-							'aria-label',
-							'Resume auto-scroll'
-						);
-						pausePlayBtn.innerHTML =
-							'<span class="material-symbols-outlined">' +
-							'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
-							'<path fill="#ffffff" d="M320-720v480l400-240-400-240Z"/>' +
-							'</svg></span>';
-						clearInterval(autoScrollInterval);
-					}
-				});
-			}
-
-			// 6. Append buttons in order: previous, pause (if any), next.
-			if (hasNav) {
-				controlContainer.appendChild(scrollToPrevBtn);
-				if (pausePlayBtn) {
-					controlContainer.appendChild(pausePlayBtn);
-				}
-				controlContainer.appendChild(scrollToNextBtn);
-			} else if (pausePlayBtn) {
-				controlContainer.appendChild(pausePlayBtn);
-			}
-
-			// 7. Append the control container.
-			wrapper.appendChild(controlContainer);
-		}
 	}
 
-	//----------------------------------------------------------------------
-	// 5. IntersectionObserver logic (unchanged)
-	//----------------------------------------------------------------------
-	function buildThresholdList() {
-		const thresholds = [];
-		for (let i = 0; i <= 1.0; i += 0.05) {
-			thresholds.push(i);
-		}
-		return thresholds;
+	function stopAutoScroll() {
+		clearInterval(autoScrollInterval);
+		autoScrollInterval = null;
 	}
 
-	function setupStatusObserver(scroller) {
+	function observeVisibility() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					const item = entry.target;
-					const previousRatio = parseFloat(
-						item.dataset.previousRatio || 0
-					);
-					const currentRatio = entry.intersectionRatio;
-
-					if (currentRatio > 0) {
-						// visible
-						item.classList.remove('out-of-view');
-						if (currentRatio >= 0.1) {
-							item.classList.add('in-view');
-							item.classList.remove('entering', 'exiting');
-						} else {
-							item.classList.remove('in-view');
-							if (currentRatio > previousRatio) {
-								item.classList.add('entering');
-								item.classList.remove('exiting');
-							} else if (currentRatio < previousRatio) {
-								item.classList.add('exiting');
-								item.classList.remove('entering');
-							}
-						}
-					} else {
-						// off-screen
-						item.classList.add('out-of-view');
-						item.classList.remove('in-view', 'entering', 'exiting');
+					if (entry.isIntersecting && !hasStarted) {
+						startAutoScroll();
+						observer.disconnect();
 					}
-					item.dataset.previousRatio = currentRatio;
 				});
 			},
-			{
-				root: scroller,
-				threshold: buildThresholdList(),
-			}
+			{ threshold: 0.3 }
 		);
+		observer.observe(scroller);
+	}
 
-		Array.from(scroller.children).forEach((child) => {
-			observer.observe(child);
+	if (scroller.classList.contains('horizontal-scroller-auto')) {
+		if (scroller.classList.contains('scroller-pause-on-hover')) {
+			scroller.addEventListener('mouseenter', stopAutoScroll);
+			scroller.addEventListener('mouseleave', () => {
+				if (!isPaused) {
+					startAutoScroll();
+				}
+			});
+		}
+		observeVisibility();
+	}
+
+	if (!hasNav && !showPause) {
+		return;
+	}
+
+	const controlContainer = document.createElement('div');
+	controlContainer.classList.add('horizontal-scroller-nav-buttons');
+	controlContainer.style.position = 'absolute';
+	controlContainer.style.display = 'flex';
+	controlContainer.style.gap = '4px';
+	controlContainer.style.pointerEvents = 'auto';
+
+	let scrollToPrevBtn, scrollToNextBtn, pausePlayBtn;
+
+	if (hasNav) {
+		scrollToPrevBtn = document.createElement('button');
+		scrollToPrevBtn.classList.add(
+			'is-horizontal-scroll-btn',
+			'is-horizontal-scroll-prev'
+		);
+		scrollToPrevBtn.setAttribute('aria-label', 'Scroll to previous item');
+		scrollToPrevBtn.innerHTML =
+			'<span class="material-symbols-outlined">' +
+			'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+			'<path fill="#ffffff" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>';
+		scrollToPrevBtn.addEventListener('click', () => {
+			scrollToPrev(scroller);
+			resetAutoScrollTimer();
+		});
+
+		scrollToNextBtn = document.createElement('button');
+		scrollToNextBtn.classList.add(
+			'is-horizontal-scroll-btn',
+			'is-horizontal-scroll-next'
+		);
+		scrollToNextBtn.setAttribute('aria-label', 'Scroll to next item');
+		scrollToNextBtn.innerHTML =
+			'<span class="material-symbols-outlined">' +
+			'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+			'<path fill="#ffffff" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>';
+		scrollToNextBtn.addEventListener('click', () => {
+			scrollToNext(scroller);
+			resetAutoScrollTimer();
 		});
 	}
 
-	//----------------------------------------------------------------------
-	// 6. Initialize everything on each .is-style-horizontal-scroll
-	//----------------------------------------------------------------------
-	const scrollers = document.querySelectorAll('.is-style-horizontal-scroll');
-	scrollers.forEach((scroller) => {
-		// First clone slides & set infinite loop (only if .horizontal-scroller-loop present).
-		setupInfiniteLoop(scroller);
+	if (showPause) {
+		pausePlayBtn = document.createElement('button');
+		pausePlayBtn.classList.add(
+			'is-horizontal-scroll-btn',
+			'is-horizontal-scroll-pause'
+		);
+		pausePlayBtn.setAttribute('aria-label', 'Pause auto-scroll');
+		pausePlayBtn.innerHTML =
+			'<span class="material-symbols-outlined">' +
+			'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+			'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
 
-		// Then set up your nav buttons, pause/play, etc.
-		setupScrollerButtons(scroller);
+		pausePlayBtn.addEventListener('click', () => {
+			if (isPaused) {
+				isPaused = false;
+				pausePlayBtn.setAttribute('aria-label', 'Pause auto-scroll');
+				pausePlayBtn.innerHTML =
+					'<span class="material-symbols-outlined">' +
+					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+					'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
+				resetAutoScrollTimer();
+			} else {
+				isPaused = true;
+				pausePlayBtn.setAttribute('aria-label', 'Resume auto-scroll');
+				pausePlayBtn.innerHTML =
+					'<span class="material-symbols-outlined">' +
+					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+					'<path fill="#ffffff" d="M320-720v480l400-240-400-240Z"/></svg></span>';
+				stopAutoScroll();
+			}
+		});
+	}
 
-		// Then set up IntersectionObserver stuff (for "in-view", etc.).
-		setupStatusObserver(scroller);
+	if (hasNav) {
+		controlContainer.appendChild(scrollToPrevBtn);
+		if (pausePlayBtn) {
+			controlContainer.appendChild(pausePlayBtn);
+		}
+		controlContainer.appendChild(scrollToNextBtn);
+	} else if (pausePlayBtn) {
+		controlContainer.appendChild(pausePlayBtn);
+	}
+
+	wrapper.appendChild(controlContainer);
+
+	scroller.dataset.buttonsInitialised = 'true';
+}
+
+//------------------------------------------------------------------
+// 5.  Visibility / status observer (unchanged).
+//------------------------------------------------------------------
+function buildThresholdList() {
+	const t = [];
+	for (let i = 0; i <= 1; i += 0.05) {
+		t.push(i);
+	}
+	return t;
+}
+
+function setupStatusObserver(scroller) {
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const item = entry.target;
+				const prev = parseFloat(item.dataset.prevRatio || 0);
+				const curr = entry.intersectionRatio;
+
+				if (curr > 0.05) {
+					item.classList.remove('out-of-view');
+					if (curr >= 0.1) {
+						item.classList.add('in-view');
+						item.classList.remove('entering', 'exiting');
+					} else {
+						item.classList.remove('in-view');
+						if (curr > prev) {
+							item.classList.add('entering');
+							item.classList.remove('exiting');
+						} else if (curr < prev) {
+							item.classList.add('exiting');
+							item.classList.remove('entering');
+						}
+					}
+				} else {
+					item.classList.add('out-of-view');
+					item.classList.remove('in-view', 'entering', 'exiting');
+				}
+				item.dataset.prevRatio = curr;
+			});
+		},
+		{ root: scroller, threshold: buildThresholdList() }
+	);
+
+	Array.from(scroller.children).forEach((child) => observer.observe(child));
+}
+
+//------------------------------------------------------------------
+// 6.  Public initialiser helpers so we can call them multiple times.
+//------------------------------------------------------------------
+function initScroller(scroller) {
+	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
+	if (scroller.classList.contains('is-style-horizontal-scroll')) {
+		ensureWrapper(scroller);
+	} else {
+		removeWrapper(scroller);
+	}
+
+	setupScrollerButtons(scroller); // may add / remove button UI
+	setupStatusObserver(scroller);
+}
+
+/**
+ * Remove any clones & reset state on a scroller that was once
+ * loop-initialized but no longer has the loop class.
+ * @param scroller
+ */
+function teardownInfiniteLoop(scroller) {
+	if (scroller.dataset.loopInitialised !== 'true') {
+		return;
+	}
+	Array.from(scroller.children)
+		.filter((el) => el.classList.contains('cloned-slide'))
+		.forEach((c) => {
+			try {
+				c.remove();
+			} catch (e) {
+				console.warn(
+					'Couldn’t remove clone – it may already be gone:',
+					e
+				);
+			}
+		});
+	scroller.scrollLeft = 0;
+	delete scroller.dataset.loopInitialised;
+}
+
+/**
+ * Sets up a MutationObserver to watch for changes to the
+ * horizontal-scroller-loop class on the given scroller element.
+ * When the class is added, we set up infinite looping.
+ * When the class is removed, we tear down the infinite loop.
+ * @param scroller
+ */
+function watchLoopToggle(scroller) {
+	if (scroller.dataset.loopObserverAttached) {
+		return;
+	}
+	new MutationObserver(() => {
+		if (!scroller.classList.contains('horizontal-scroller-loop')) {
+			teardownInfiniteLoop(scroller);
+		} else {
+			setupInfiniteLoop(scroller);
+		}
+	}).observe(scroller, {
+		attributes: true,
+		attributeFilter: ['class'],
 	});
-});
+	scroller.dataset.loopObserverAttached = 'true';
+}
+
+/**
+ * Whenever *real* children (columns) are added/removed,
+ * tear down & rebuild the clones.  Ignore any mutations that
+ * involve only cloned‐slides.
+ * @param scroller
+ */
+function watchChildrenForLoop(scroller) {
+	if (scroller._childObserverAttached) {
+		return;
+	}
+	const mo = new MutationObserver((mutations) => {
+		// do any of these mutations add or remove a non‐clone?
+		const realChange = mutations.some((m) => {
+			return (
+				Array.from(m.addedNodes).some(
+					(n) =>
+						n.nodeType === 1 &&
+						!n.classList.contains('cloned-slide')
+				) ||
+				Array.from(m.removedNodes).some(
+					(n) =>
+						n.nodeType === 1 &&
+						!n.classList.contains('cloned-slide')
+				)
+			);
+		});
+
+		if (
+			realChange &&
+			scroller.classList.contains('horizontal-scroller-loop')
+		) {
+			teardownInfiniteLoop(scroller);
+			setupInfiniteLoop(scroller);
+		}
+	});
+
+	mo.observe(scroller, { childList: true });
+	scroller._childObserverAttached = true;
+}
+
+/**
+ * Rebuild all loops: first tear down any stale ones,
+ * then re-init the ones that actually still have the class.
+ */
+function initInfiniteLoops() {
+	if (isBlockEditor()) {
+		// 1) Cleanup any that lost their loop class:
+		document
+			.querySelectorAll('[data-loop-initialised="true"]')
+			.forEach((s) => {
+				if (!s.classList.contains('horizontal-scroller-loop')) {
+					teardownInfiniteLoop(s);
+				}
+			});
+	}
+	// 2) Now re-build only the ones that still want looping
+	document
+		.querySelectorAll(
+			'.is-style-horizontal-scroll.horizontal-scroller-loop'
+		)
+		.forEach(setupInfiniteLoop);
+}
+
+/**
+ * Initialise one scroller (buttons, status, infinite loop).
+ * @param scroller
+ */
+function initOneScroller(scroller) {
+	initScroller(scroller);
+	if (scroller.classList.contains('horizontal-scroller-loop')) {
+		setupInfiniteLoop(scroller);
+	}
+}
+
+/**
+ * Schedule everything (watchers + first init) at the right time.
+ * @param scroller
+ */
+/**
+ * Schedule everything (watchers + first init) at the right time.
+ * @param scroller
+ */
+function scheduleScrollerInit(scroller) {
+	watchLoopToggle(scroller);
+	watchChildrenForLoop(scroller);
+
+	if (
+		isBlockEditor() &&
+		scroller.classList.contains('wp-block-post-template')
+	) {
+		// Initial check for posts
+		if (scroller.querySelectorAll('.wp-block-post').length) {
+			initOneScroller(scroller);
+			return;
+		}
+
+		// Set a flag to track if we've initialized
+		let didInit = false;
+
+		// Use wp.data to check for loaded posts
+		if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
+			const unsubscribe = wp.data.subscribe(() => {
+				// Skip if already initialized
+				if (didInit) {
+					unsubscribe();
+					return;
+				}
+
+				// Check if posts are loaded in the scroller
+				if (scroller.querySelectorAll('.wp-block-post').length) {
+					didInit = true;
+					unsubscribe();
+					initOneScroller(scroller);
+				}
+			});
+		} else {
+			// Fallback to MutationObserver if wp.data is not available
+			const obs = new MutationObserver(() => {
+				if (
+					!didInit &&
+					scroller.querySelectorAll('.wp-block-post').length
+				) {
+					didInit = true;
+					obs.disconnect();
+					initOneScroller(scroller);
+				}
+			});
+			obs.observe(scroller, { childList: true, subtree: true });
+		}
+
+		// Fallback timeout as a last resort
+		setTimeout(() => {
+			if (!didInit) {
+				didInit = true;
+				initOneScroller(scroller);
+			}
+		}, 3000);
+	} else {
+		// For non-block editor contexts, initialize immediately
+		initOneScroller(scroller);
+	}
+}
+
+/**
+ * Boot-strap: find every “.is-style-horizontal-scroll” and hand
+ * it off to our scheduler.
+ */
+function initScrollers() {
+	document
+		.querySelectorAll('.is-style-horizontal-scroll')
+		.forEach(scheduleScrollerInit);
+	initInfiniteLoops();
+}
+
+// on DOMContentLoaded / load you just call:
+document.addEventListener('DOMContentLoaded', initScrollers);
+window.addEventListener('load', initScrollers);
+
+// 2. Also watch for new scrollers popping into the editor
+if (isBlockEditor()) {
+	const bodyObserver = new MutationObserver((records) => {
+		for (const rec of records) {
+			for (const node of rec.addedNodes) {
+				if (
+					node.nodeType === 1 &&
+					node.classList.contains('is-style-horizontal-scroll') &&
+					!node.dataset._scrollerInitQueued
+				) {
+					node.dataset._scrollerInitQueued = 'true';
+					scheduleScrollerInit(node);
+				}
+			}
+		}
+	});
+
+	bodyObserver.observe(document.body, {
+		childList: true,
+		subtree: true,
+	});
+	wp.domReady(() => {
+		let t;
+		wp.data.subscribe(() => {
+			clearTimeout(t);
+			t = setTimeout(() => initScrollers(), 200);
+		});
+	});
+}

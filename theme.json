@@ -466,7 +466,7 @@
 			"creativeColor": "var(--wp--preset--color--contrast)",
 			"creativeFont": "var(--wp--preset--font-family--brand)",
 			"creativeTextTransform": "none",
-			"textShadow": "0 .18rem .4rem rgba(0,0,0, 0.5)",
+			"textShadow": "0 .1em .12em rgba(0,0,0, 0.4)",
 			"borderRadius": "0 8px 0 8px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
 			"buttonBorderRadius": "var(--wp--custom--border-radius)",
@@ -1198,45 +1198,45 @@
 	"customTemplates": [
 		{
 			"name": "blank",
-			"title": "Blank - No Header or Footer"
-		},
-		{
-			"name": "page-hero-title",
-			"title": "Page - Menu Over Hero"
+			"title": "Blank - No Header or Footer - Landing Pages and Modals - (blank)"
 		},
 		{
 			"name": "page-hero-title-no-form",
-			"title": "Page - Menu Over Hero & No Form"
+			"title": "Page - Transparent Header & No Form - (page-hero-title-no-form)"
+		},
+		{
+			"name": "page-hero-title",
+			"title": "Page - Transparent Header - (page-hero-title)"
 		},
 		{
 			"name": "page-no-form",
-			"title": "Page with no form"
+			"title": "Page & No Form - (page-no-form)"
 		},
 		{
 			"name": "page-no-hero",
-			"title": "Page No Hero - Page title included automatically"
+			"title": "Page - with Page Title - (page-no-hero)"
 		},
 		{
 			"name": "page-no-hero-no-form",
-			"title": "Page No Hero & No Form  - Page title included automatically"
+			"title": "Page - with Page Title & No Form - (page-no-hero-no-form)"
 		},
 		{
 			"name": "events-single",
-			"title": "Single Event"
+			"title": "Single Event - (events-single)"
 		},
 		{
 			"name": "events-list",
-			"title": "Events List"
+			"title": "Events List - (events-list)"
 		}
 	],
 	"templateParts": [
 		{
 			"area": "topbar",
 			"name": "slide-in",
-			"title": "Slide In"
+			"title": "Slide In ( and Mobile navigation )"
 		},
 		{
-			"area": "topbar",
+			"area": "header",
 			"name": "notification-bar",
 			"title": "Notification Bar"
 		},
@@ -1248,7 +1248,7 @@
 		{
 			"area": "header",
 			"name": "header-hero",
-			"title": "Header Overlapping Hero"
+			"title": "Header - Transparent"
 		},
 		{
 			"area": "footer",

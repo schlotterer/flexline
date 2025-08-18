@@ -22,7 +22,7 @@ function addCustomButtonAttributes(settings, name) {
 			...customIconAttributes,
 			...customModalAttributes,
 			...customVisibilityAttributes,
-			...customNoWrapAttributes
+			...customNoWrapAttributes,
 		};
 	}
 	return settings;

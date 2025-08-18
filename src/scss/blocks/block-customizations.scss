@@ -2,9 +2,11 @@ body,
 .editor-styles-wrapper {
 
 	.nowrap{
-		white-space: nowrap;
+		white-space: pre !important;
+		white-space-collapse: preserve-breaks;
 		.wp-block-button__link{
-			white-space: nowrap;
+			white-space: pre !important;
+			white-space-collapse: preserve-breaks;
 		}
 	}
 

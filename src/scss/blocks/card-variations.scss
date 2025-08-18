@@ -1,5 +1,5 @@
-body,
-.editor-styles-wrapper {
+//body,
+//.editor-styles-wrapper {
 
 	// All
 	.is-style-card,
@@ -9,7 +9,7 @@ body,
 	.is-style-shadow-light,
 	.is-style-shadow-dark,
 	.is-style-shadow-diffused {
-		transition: var(--wp--custom--transition-time);
+		transition: shadow var(--wp--custom--transition-time);
 	}
 
 	// Cards
@@ -149,4 +149,4 @@ body,
 		}
 
 	}
-}
+//}

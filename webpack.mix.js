@@ -9,6 +9,7 @@ const jsFiles = [
 	'src/js/slidein.js',
 	'src/js/headroom.js',
 	'src/js/load-early.js',
+	'src/js/template-pattern-inserter.js',
 ];
 
 // Individual SASS files

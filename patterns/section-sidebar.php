@@ -25,7 +25,7 @@ namespace FlexLine;
                     <div class="wp-block-cover" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--large);min-height:50px">
                         <span aria-hidden="true" class="wp-block-cover__background has-background-dim-90 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
                         <div class="wp-block-cover__inner-container">
-                            <!-- wp:navigation {"ref":78,"overlayMenu":"never","align":"wide","className":"has-text-align-center is-style-horizontal-scroll-at-mobile is-style-light-over-dark","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"500","lineHeight":"1.1"}},"fontSize":"x-small","fontFamily":"display","layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap","orientation":"vertical"}} /-->
+                            <!-- wp:navigation {"overlayMenu":"never","align":"wide","className":"has-text-align-center is-style-horizontal-scroll-at-mobile is-style-light-over-dark","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"500","lineHeight":"1.1"}},"fontSize":"x-small","fontFamily":"display","layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap","orientation":"vertical"}} /-->
                         </div>
                     </div>
                     <!-- /wp:cover -->

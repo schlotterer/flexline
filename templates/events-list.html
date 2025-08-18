@@ -4,15 +4,15 @@
 <main class="wp-block-group site-content" style="margin-top:0">
 
 	<!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
-	<!-- wp:paragraph -->
-	<p>Join us for a variety of events designed to entertain, educate, and connect our
-		community.</p>
-	<!-- /wp:paragraph -->
+	
+	<!-- wp:post-content /-->
 
 	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull has-neutral-background-color has-background"
-		style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
-		<!-- wp:post-content /--></div>
+	<div class="wp-block-group alignfull has-neutral-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
+		<!-- wp:shortcode -->
+			[events_list]
+		<!-- /wp:shortcode -->
+	</div>
 	<!-- /wp:group -->
 	<!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 

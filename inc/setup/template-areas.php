@@ -20,7 +20,7 @@ function flexline_template_part_areas( array $areas ) {
 	$areas[] = array(
 		'area'        => 'topbar',
 		'area_tag'    => 'section',
-		'label'       => __( 'Slide In Menu', 'flexline' ),
+		'label'       => __( 'Slide In Menu (Mobile Nav)', 'flexline' ),
 		'description' => __( 'Slide in search and menu area.', 'flexline' ),
 		'icon'        => 'tag',
 	);
