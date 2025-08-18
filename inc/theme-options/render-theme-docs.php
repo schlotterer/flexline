@@ -388,30 +388,35 @@ function flexline_render_documentation_tab() {
                         #flexline-docs-table-container .flexline-docs-filters {
                             display: flex;
                             gap: 1rem;
-                            align-items: center;
                             margin-bottom: 1rem;
                             flex-wrap: wrap;
                         }
-                        #flexline-docs-table-container .flexline-docs-filters label {
-                            margin-right: 0.5rem;
+                        #flexline-docs-table-container .flexline-docs-filters .flexline-filter {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
                         }
                     </style>
                     <div class="flexline-docs-filters">
-                        <label for="flexline-attribute-filter">Filter by attribute</label>
-                        <select id="flexline-attribute-filter">
-                            <option value="">All</option>
-                            <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
-                                <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="flexline-filter">
+                            <label for="flexline-attribute-filter">Filter by attribute</label>
+                            <select id="flexline-attribute-filter">
+                                <option value="">All</option>
+                                <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
+                                    <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                        <label for="flexline-style-filter">Filter by style</label>
-                        <select id="flexline-style-filter">
-                            <option value="">All</option>
-                            <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
-                                <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="flexline-filter">
+                            <label for="flexline-style-filter">Filter by style</label>
+                            <select id="flexline-style-filter">
+                                <option value="">All</option>
+                                <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+                                    <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
 
                     <table id="flexline-docs-table" class="flexline-docs-table">
