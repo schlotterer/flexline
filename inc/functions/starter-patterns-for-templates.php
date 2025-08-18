@@ -9,53 +9,46 @@
  */
 namespace FlexLine\flexline;
 
-/**
- * Auto-insert a block pattern stored in the database into new posts.
- *
- * This function retrieves a block pattern (stored as a post of type 'wp_block')
- * based on the new post’s type. If found, its post content is returned
- * as the default content.
- *
- * @param string  $content The default post content.
- * @param WP_Post $post    The post object.
- * @return string Modified post content.
- */
-function auto_insert_pattern_from_db( $content, $post ) {
-    // Only modify content if it's empty (i.e. for new posts).
+function auto_insert_pattern_smart( $content, $post ) {
     if ( ! empty( $content ) ) {
         return $content;
     }
 
-    // Map each post type to its corresponding block pattern slug.
-    $pattern_slugs = array(
-        'post' => 'post-starter',  // Replace with your actual slug for posts.
-        'page' => 'page-starter',  // Replace with your actual slug for pages.
-        // Add additional mappings for other custom post types if needed.
-    );
-
-    $post_type = $post->post_type;
-    if ( empty( $post_type ) || ! isset( $pattern_slugs[ $post_type ] ) ) {
-        return $content;
+    // 1. Template-specific pattern (if a template is selected and supports it)
+    $template_file = get_page_template_slug( $post->ID );
+    if ( $template_file ) {
+        $template_slug = pathinfo( $template_file, PATHINFO_FILENAME ) . '-starter';
+        if ( $pattern = get_block_pattern_by_slug( $template_slug ) ) {
+            return $pattern;
+        }
     }
 
-    $pattern_slug = $pattern_slugs[ $post_type ];
+    // 2. Fallback to post-type starter (old behaviour)
+    $fallback_map = array(
+        'post' => 'post-starter',
+        'page' => 'page-starter',
+    );
+    $post_type = $post->post_type;
+    if ( isset( $fallback_map[ $post_type ] ) ) {
+        if ( $pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] ) ) {
+            return $pattern;
+        }
+    }
 
-    // Query the block pattern from the database using WP_Query.
-    $args = array(
+    return $content;
+}
+add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_smart', 10, 2 );
+
+/**
+ * Convenience wrapper for fetching a published wp_block by slug.
+ */
+function get_block_pattern_by_slug( $slug ) {
+    $q = new \WP_Query( array(
         'post_type'      => 'wp_block',
-        'name'           => $pattern_slug,
+        'name'           => $slug,
         'post_status'    => 'publish',
         'posts_per_page' => 1,
-    );
-    $query = new \WP_Query( $args );
-
-    if ( ! $query->have_posts() ) {
-        return $content;
-    }
-
-    $pattern = $query->posts[0];
-
-    // Return the post_content of the retrieved block pattern.
-    return $pattern->post_content;
+        'no_found_rows'  => true,
+    ) );
+    return $q->have_posts() ? $q->posts[0]->post_content : false;
 }
-add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_from_db', 10, 2 );

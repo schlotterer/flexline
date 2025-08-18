@@ -468,7 +468,7 @@
 			"creativeColor": "var(--wp--preset--color--contrast)",
 			"creativeFont": "var(--wp--preset--font-family--brand)",
 			"creativeTextTransform": "none",
-			"textShadow": "0 .15rem .3rem rgba(0,0,0, 0.5)",
+			"textShadow": "0 .1em .12em rgba(0,0,0, 0.4)",
 			"borderRadius": "15px 5px 15px 5px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
 			"buttonBorderRadius": "10px 5px 10px 5px",

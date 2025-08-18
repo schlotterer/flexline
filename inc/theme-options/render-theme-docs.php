@@ -16,6 +16,222 @@
  * @return void
  */
 function flexline_render_documentation_tab() {
+    // Unified block documentation.
+    $block_docs = [
+        'All blocks with Flexline panel' => [
+            'attributes' => [
+                [
+                    'name'        => 'Hide on Desktop / Tablet / Mobile',
+                    'description' => 'Toggles block visibility at common breakpoints—adds the appropriate <code>flexline-hide‑on‑*</code> class under the hood.',
+                ],
+            ],
+        ],
+        'core/image' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Lazy Load',
+                    'description' => 'When true (the default), the image gets loading="lazy". Set it to false to omit the attribute so the browser loads the image immediately — ideal for hero images.',
+                ],
+                [
+                    'name'        => 'Open in Modal',
+                    'description' => 'Clicking the block opens a media‑modal (lightbox) instead of following its link.',
+                ],
+                [
+                    'name'        => 'Content Shift / Slide',
+                    'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+                ],
+            ],
+        ],
+        'core/cover' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Lazy Load',
+                    'description' => 'When true (the default), the image gets loading="lazy". Set it to false to omit the attribute so the browser loads the image immediately — ideal for hero images.',
+                ],
+            ],
+        ],
+        'core/button' => [
+            'attributes' => [
+                [
+                    'name'        => 'Open in Modal',
+                    'description' => 'Clicking the block opens a media‑modal (lightbox) instead of following its link.',
+                ],
+                [
+                    'name'        => 'Icon Type',
+                    'description' => 'Adds a small SVG icon (download arrow, play symbol, external‑link arrow, etc.) to the right of the label.',
+                ],
+                [
+                    'name'        => 'No Wrap',
+                    'description' => 'Prevents the label from breaking onto two lines.',
+                ],
+            ],
+        ],
+        'core/gallery' => [
+            'attributes' => [
+                [
+                    'name'        => 'Poster Gallery',
+                    'description' => 'Converts a tiled gallery into a film‑strip style with one large “poster” image.',
+                ],
+            ],
+        ],
+        'core/navigation' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Scroll @ Mobile',
+                    'description' => 'Makes the nav list swipeable below <em>$mobile</em>.',
+                ],
+            ],
+        ],
+        'core/group' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Group Link',
+                    'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+                ],
+                [
+                    'name'        => 'Content Shift / Slide',
+                    'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+                ],
+            ],
+        ],
+        'core/stack' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Group Link',
+                    'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+                ],
+                [
+                    'name'        => 'Content Shift / Slide',
+                    'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+                ],
+            ],
+        ],
+        'core/row' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Group Link',
+                    'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+                ],
+                [
+                    'name'        => 'Content Shift / Slide',
+                    'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+                ],
+            ],
+        ],
+        'core/grid' => [
+            'attributes' => [
+                [
+                    'name'        => 'Enable Group Link',
+                    'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+                ],
+            ],
+        ],
+        'core/columns'       => [
+            'attributes' => [
+                [
+                    'name'        => 'Horizontal Scroller',
+                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+                        '<li>Show Arrow Nav</li>' .
+                        '<li>Position Buttons Over Scroller</li>' .
+                        '<li>Scroll transition in milliseconds</li>' .
+                        '<li>Loop</li>' .
+                        '<li>Auto Scroll</li>' .
+                        '<li>Hide Pause Button</li>' .
+                        '<li>Scroll interval in milliseconds</li>' .
+                        '<li>Hide Scrollbar</li>' .
+                        '<li>Pause on Hover</li>' .
+                        '<li>Button Positions / Colors</li>' .
+                        '</ul>',
+                ],
+                [
+                    'name'        => 'Stack at Tablet',
+                    'description' => 'Switches from horizontal columns to a vertical stack at medium screens.',
+                ],
+                [
+                    'name'        => 'Content Shift / Slide',
+                    'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+                ],
+            ],
+        ],
+        'core/post-template' => [
+            'attributes' => [
+                [
+                    'name'        => 'Horizontal Scroller',
+                    'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+                        '<li>Show Arrow Nav</li>' .
+                        '<li>Position Buttons Over Scroller</li>' .
+                        '<li>Scroll transition in milliseconds</li>' .
+                        '<li>Loop</li>' .
+                        '<li>Auto Scroll</li>' .
+                        '<li>Hide Pause Button</li>' .
+                        '<li>Scroll interval in milliseconds</li>' .
+                        '<li>Hide Scrollbar</li>' .
+                        '<li>Pause on Hover</li>' .
+                        '<li>Button Positions / Colors</li>' .
+                        '</ul>',
+                ],
+            ],
+        ],
+    ];
+
+    // Merge registered block styles.
+    $block_styles       = \FlexLine\flexline\flexline_get_block_styles();
+    $style_descriptions = [
+        'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
+        'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
+        'card-padded'     => 'Same as Card but with theme-small padding baked in.',
+        'card-alt'        => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
+        'outlined'        => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
+        'shadow-light'    => 'Subtle, soft shadow for slight elevation.',
+        'shadow-dark'     => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
+        'shadow-diffused' => 'Wide, feathered shadow—great behind covers or hero quotes.',
+        'glass'           => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
+        'glass-card'      => 'Glass background plus card border-radius & light shadow—ideal over photography.',
+        'no-disc'         => 'Strips bullets & left-padding for clean checklist or icon lists.',
+        'main-header-nav' => 'Opinionated spacing & weight for primary site navigation.',
+        'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',
+        'light-over-dark' => 'Light text on dark backgrounds for hero/footers.',
+        'outline'         => 'Navigation links gain a 1 px outline & pill padding on desktop-up.',
+        'text-shadow'     => 'Applies the theme’s subtle text shadow variable for soft lift.',
+        'eyebrow'         => 'Small uppercase “eyebrow” heading with custom font/size/color.',
+        'creative'        => 'Large decorative headline style using the site’s creative font.',
+        'glass-button'    => 'Transparent glass button with blur & subtle border that intensifies on hover.',
+        'text-link'       => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
+    ];
+
+    foreach ( $block_styles as $block => $styles ) {
+        foreach ( $styles as $slug => $label ) {
+            $block_docs[ $block ]['styles'][] = [
+                'slug'        => $slug,
+                'label'       => $label,
+                'description' => $style_descriptions[ $slug ] ?? '',
+            ];
+        }
+    }
+
+    $all_attribute_names = [];
+    $all_style_slugs     = [];
+
+    foreach ( $block_docs as $data ) {
+        if ( ! empty( $data['attributes'] ) ) {
+            foreach ( $data['attributes'] as $attr ) {
+                $all_attribute_names[] = $attr['name'];
+            }
+        }
+
+        if ( ! empty( $data['styles'] ) ) {
+            foreach ( $data['styles'] as $style ) {
+                $all_style_slugs[] = $style['slug'];
+            }
+        }
+    }
+
+    $unique_attribute_names = array_unique( $all_attribute_names );
+    sort( $unique_attribute_names, SORT_NATURAL | SORT_FLAG_CASE );
+
+    $unique_style_slugs = array_unique( $all_style_slugs );
+    sort( $unique_style_slugs, SORT_NATURAL | SORT_FLAG_CASE );
+
     ?>
     <style>
         /* Layout */
@@ -91,6 +307,19 @@ function flexline_render_documentation_tab() {
             font-weight: 600;
         }
 
+        .flexline-docs-table td.block-name {
+            background: #fdfdfd;
+            font-weight: 600;
+        }
+
+        .flexline-docs-table tbody tr:nth-child(even) td.block-name {
+            background: #f7f7f7;
+        }
+
+        .flexline-docs-table li {
+            position: relative;
+        }
+
         code {
             background: #f0f0f0;
             padding: 2px 4px;
@@ -98,6 +327,48 @@ function flexline_render_documentation_tab() {
             font-family: monospace;
             word-break: break-all;
         }
+
+        .flexline-info {
+            background: none;
+            border: 0;
+            padding: 0;
+            margin-left: 0.25rem;
+            cursor: pointer;
+            color: inherit;
+            vertical-align: middle;
+        }
+
+        .flexline-tooltip {
+            position: absolute;
+            z-index: 10;
+            background: #333;
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            max-width: 260px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .flexline-tooltip[hidden] {
+            display: none;
+        }
+
+        /*
+        ## Customize CSS here to avoid dealing with a build.
+        */
+
+        .flexline-info { color: #767676; }           /* medium gray */
+        .flexline-info:hover,
+        .flexline-info:focus { color: #505050; }     /* darker on interaction */
+        .flexline-info svg { fill: currentcolor; }
+
+        .flexline-tooltip code {
+            color: inherit;             /* match tooltip text color */
+            background: transparent;    /* remove light background */
+        }
+
     </style>
 
     <div class="wrapper">
@@ -107,118 +378,102 @@ function flexline_render_documentation_tab() {
                 <h2>Flexline Theme&nbsp;Documentation</h2>
                 <p>Below you’ll find a reference for the block‑level Inspector controls <em>and</em> utility classes that ship with the theme. Everything is <strong>opt‑in</strong>: nothing changes until you either (a)&nbsp;add a class in the block editor’s <em>Additional&nbsp;CSS&nbsp;Class(es)</em> field or (b)&nbsp;toggle an option inside the block’s sidebar. Use the nav on the right to jump around.</p>
             </section>
-             <!-- ✨ BLOCK OPTIONS -->
-             <section id="block-options">
-                <h3>Block Options (Flexline&nbsp;Controls)</h3>
-                <p>The following extra toggles appear in various core blocks’ sidebars. Use them for quick layout and functionality customizations.</p>
+            <!-- ✨ BLOCK OPTIONS & STYLES -->
+            <section id="block-options">
+                <h3>Block Options &amp; Style Variations</h3>
+                <p>The following custom attributes and style variations are available on various core blocks.</p>
 
-                <table class="flexline-docs-table">
-                    <thead>
-                        <tr>
-                            <th style="width:30%">Option / Attribute</th>
-                            <th style="width:25%">Blocks</th>
-                            <th>What it does</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- ✦ VISIBILITY -->
-                        <tr>
-                            <td><strong>Hide on Desktop / Tablet / Mobile</strong></td>
-                            <td>All blocks with Flexline panel</td>
-                            <td>Toggles block visibility at common breakpoints—adds the appropriate <code>flexline-hide‑on‑*</code> class under the hood.</td>
-                        </tr>
-                        <!-- ✦ IMAGE / COVER -->
-                        <tr>
-                            <td><strong>Enable Lazy&nbsp;Load</strong></td>
-                            <td>Image, Cover</td>
-                            <td>Ensures the asset loads immediately (Flexline disables native lazy‑loading by default).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Open in Modal</strong></td>
-                            <td>Image, Button</td>
-                            <td>Clicking the block opens a media‑modal (lightbox) instead of following its link.</td>
-                        </tr>
-                        <!-- ✦ BUTTON -->
-                        <tr>
-                            <td><strong>Icon&nbsp;Type</strong></td>
-                            <td>Button</td>
-                            <td>Adds a small SVG icon (download arrow, play symbol, external‑link arrow, etc.) to the right of the label.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>No&nbsp;Wrap</strong></td>
-                            <td>Button</td>
-                            <td>Prevents the label from breaking onto two lines.</td>
-                        </tr>
-                        <!-- ✦ GALLERY -->
-                        <tr>
-                            <td><strong>Poster&nbsp;Gallery</strong></td>
-                            <td>Gallery</td>
-                            <td>Converts a tiled gallery into a film‑strip style with one large “poster” image.</td>
-                        </tr>
-                        <!-- ✦ NAVIGATION -->
-                        <tr>
-                            <td><strong>Enable Scroll&nbsp;@&nbsp;Mobile</strong></td>
-                            <td>Navigation</td>
-                            <td>Makes the nav list swipeable below <em><?= esc_html( '$mobile' ); ?></em>.</td>
-                        </tr>
-                        <!-- ✦ GROUP -->
-                        <tr>
-                            <td><strong>Enable Group Link</strong></td>
-                            <td>Group / Stack / Row / Grid</td>
-                            <td>Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.</td>
-                        </tr>
-                        <!-- ✦ COLUMNS / POST TEMPLATE: SCROLLER -->
-                        <tr>
-                            <td><strong>Horizontal Scroller</strong></td>
-                            <td>Columns, Post Template</td>
-                            <td>Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc.</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Show Arrow Nav</td>
-                            <td></td>
-                            <td>Displays prev/next arrow buttons overlaying the scroller.</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Loop</td>
-                            <td></td>
-                            <td>Clones slides so scrolling never stops.</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Auto Scroll</td>
-                            <td></td>
-                            <td>Starts scrolling on page load (respecting the chosen interval).</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Hide Scrollbar</td>
-                            <td></td>
-                            <td>Hides the native scrollbar for a cleaner look.</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Pause on Hover</td>
-                            <td></td>
-                            <td>Pauses the auto‑scroll when the user hovers over the scroller.</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3">&nbsp;&mdash; Button Positions / Colors</td>
-                            <td></td>
-                            <td>Control arrow placement (top/bottom, left/right/center), background, text color, border, and box‑shadow.
-                            </td>
-                        </tr>
-                        <!-- ✦ COLUMNS -->
-                        <tr>
-                            <td><strong>Stack at Tablet</strong></td>
-                            <td>Columns</td>
-                            <td>Switches from horizontal columns to a vertical stack at medium screens.</td>
-                        </tr>
-                        <!-- ✦ CONTENT SHIFT -->
-                        <tr>
-                            <td><strong>Content Shift / Slide</strong></td>
-                            <td>Image, Group, Column, etc.</td>
-                            <td>Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="flexline-docs-table-container">
+                    <style>
+                        #flexline-docs-table-container .flexline-docs-filters {
+                            display: flex;
+                            gap: 1rem;
+                            align-items: center;
+                            margin-bottom: 1rem;
+                            flex-wrap: wrap;
+                        }
+                        #flexline-docs-table-container .flexline-docs-filters label {
+                            margin-right: 0.5rem;
+                        }
+                    </style>
+                    <div class="flexline-docs-filters">
+                        <label for="flexline-attribute-filter">Filter by attribute</label>
+                        <select id="flexline-attribute-filter">
+                            <option value="">All</option>
+                            <?php foreach ( $unique_attribute_names as $attr_name ) : ?>
+                                <option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
+                        <label for="flexline-style-filter">Filter by style</label>
+                        <select id="flexline-style-filter">
+                            <option value="">All</option>
+                            <?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+                                <option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <table id="flexline-docs-table" class="flexline-docs-table">
+                        <thead>
+                            <tr>
+                                <th style="width:25%">Block Name</th>
+                                <th style="width:35%">Custom Attribute</th>
+                                <th>Style Variation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ( $block_docs as $block => $data ) {
+                            $attributes = $data['attributes'] ?? [];
+                            $styles     = $data['styles'] ?? [];
+
+                            $attribute_names = array_column( $attributes, 'name' );
+                            $style_slugs     = array_column( $styles, 'slug' );
+
+                            echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+                            echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
+
+                            echo '<td>';
+                            if ( $attributes ) {
+                                echo '<ul>';
+                                foreach ( $attributes as $attr ) {
+                                    echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
+                                    if ( ! empty( $attr['description'] ) ) {
+                                        echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+                                        echo '<div class="flexline-tooltip" role="tooltip" hidden>' . wp_kses_post( $attr['description'] ) . '</div>';
+                                    }
+                                    echo '</li>';
+                                }
+                                echo '</ul>';
+                            }
+                            echo '</td>';
+
+                            echo '<td>';
+                            if ( $styles ) {
+                                echo '<ul>';
+                                foreach ( $styles as $style ) {
+                                    echo '<li><strong>' . esc_html( $style['label'] ) . ' -</strong> <code>' . esc_html( $style['slug'] ) . '</code>';
+                                    if ( ! empty( $style['description'] ) ) {
+                                        echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+                                        echo '<div class="flexline-tooltip" role="tooltip" hidden>' . esc_html( $style['description'] ) . '</div>';
+                                    }
+                                    echo '</li>';
+                                }
+                                echo '</ul>';
+                            }
+                            echo '</td>';
+
+                            echo '</tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
             </section>
+
+
+
             <!-- ✨ UTILITY CLASSES -->
             <section id="utility-classes">
                 <h3>Admin &amp; Front‑end Utility Classes</h3>
@@ -312,6 +567,42 @@ function flexline_render_documentation_tab() {
 
             
 
+            <!-- ✨ DEMO PATTERNS -->
+            <section id="demo-patterns">
+                <h3>Demo Patterns</h3>
+                <p>
+                    Want to explore every Flexline pattern in one place? Create a
+                    blank Page or Post, switch the editor to <strong>Code view</strong>,
+                    and paste the snippet below. Hit “Update/Publish” and you’ll get a
+                    fully-built demo page showcasing all pattern groups and templates.
+                </p>
+
+                <pre>
+                    <code>
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;
+                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;
+                    </code>
+                </pre>
+
+                <p class="notice">
+                    <em>Tip:</em> After previewing the page, you can delete sections you
+                    don’t need or copy individual patterns into other pages.
+                </p>
+            </section>
+
+
+
+
+            
+
         </div><!-- /.content-container -->
 
         <!-- ✨ SIDEBAR NAV -->
@@ -320,7 +611,7 @@ function flexline_render_documentation_tab() {
                 <h4>On this page</h4>
                 <ul>
                     <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#block-options">Flexline Block Options</a></li>
+                    <li><a href="#block-options">Flexline Block Options &amp; Styles</a></li>
                     <li><a href="#utility-classes">Utility Classes</a>
                         <ul>
                             <li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
@@ -328,6 +619,7 @@ function flexline_render_documentation_tab() {
                             <li><a href="#flexbox-order">Flexbox Order</a></li>
                         </ul>
                     </li>
+                    <li><a href="#demo-patterns">Demo Patterns</a></li>
                     
                 </ul>
             </nav>

@@ -64,6 +64,65 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		// Reference to keep track of the style element
 		const styleElementRef = useRef(null);
 
+		const {
+			name,
+			attributes: {
+				enableHorizontalScroller,
+				isStackedOnMobile,
+				className,
+				/* scroller flags… */
+			},
+			setAttributes,
+		} = props;
+
+		// 1) Force off stacking
+		useEffect(() => {
+			if (
+				(name === 'core/columns' || name === 'core/post-template') &&
+				enableHorizontalScroller &&
+				isStackedOnMobile
+			) {
+				setAttributes({ isStackedOnMobile: false });
+			}
+		}, [name, enableHorizontalScroller, isStackedOnMobile]);
+
+		// 2) Hide/restore the too-many-columns notice
+		useEffect(() => {
+			// Only run in Columns when scroller is on
+			if (name === 'core/columns') {
+				const toggleWarning = () => {
+					document
+						.querySelectorAll('.components-notice.is-warning')
+
+						.forEach((notice) => {
+							// create var for inner div containing text
+							const textDiv = notice.querySelector(
+								'.components-notice__content'
+							);
+							if (
+								textDiv.textContent.includes(
+									'exceeds the recommended amount'
+								)
+							) {
+								notice.style.display = enableHorizontalScroller
+									? 'none'
+									: '';
+							}
+						});
+				};
+
+				// immediate + watch for panel re-renders
+				toggleWarning();
+				const observer = new MutationObserver(toggleWarning);
+				observer.observe(document.body, {
+					childList: true,
+					subtree: true,
+				});
+
+				return () => observer.disconnect();
+			}
+		}, [name, enableHorizontalScroller]);
+
 		useEffect(() => {
 			// Determine which classes, if any, need to be removed
 			const removedClasses = [];
@@ -91,8 +150,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.attributes.enableHorizontalScroll) {
 				removedClasses.push('is-style-horizontal-scroll-at-mobile');
 			}
-			if (!props.attributes.stackAtTablet
-			) {
+			if (!props.attributes.stackAtTablet) {
 				removedClasses.push('flexline-stack-at-tablet');
 			}
 			// Scroller
@@ -359,7 +417,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				newClasses += ` flexline-icon-${props.attributes.iconType}`;
 			}
 
-			if (props.name === 'core/button' && props.attributes.noWrap === true) {
+			if (
+				props.name === 'core/button' &&
+				props.attributes.noWrap === true
+			) {
 				newClasses += ' nowrap';
 			}
 
@@ -480,6 +541,13 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				const borderColor = props.attributes.buttonsBorderColor;
 				newClasses += ' scroller-buttons-border-' + borderColor;
 			}
+			if (
+				['core/columns', 'core/post-template'].includes(props.name) &&
+				props.attributes.buttonsBoxShadow &&
+				props.attributes.enableHorizontalScroller
+			) {
+				newClasses += ' scroller-buttons-box-shadow';
+			}
 			// Group
 			if (
 				['core/group', 'core/stack', 'core/row', 'core/grid'].includes(
@@ -505,7 +573,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				newClasses,
 				removedClasses
 			);
-			props.setAttributes({ className: combinedClasses });
+
+			const shouldUpdate = attributes.className !== combinedClasses;
+			if (shouldUpdate) {
+				props.setAttributes({ className: combinedClasses });
+			}
 
 			// **Add the Unique Class to the Wrapper in the Editor**
 			if (!props.wrapperProps) {
@@ -581,7 +653,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					styleElementRef.current = null;
 				}
 			};
-		}, [attributes, props.attributes, props.name, props, uniqueClass]);
+		}, [attributes, attributes.className, props.name, uniqueClass]);
 
 		if (props.name === 'core/image') {
 			return (
@@ -959,7 +1031,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 								}
 							/>
 							<ToggleControl
-								label="Do not allow text to wrap"
+								label="Do not allow text to wrap unless there is a return or break"
 								checked={!!props.attributes.noWrap}
 								onChange={(newValue) =>
 									props.setAttributes({
@@ -1593,7 +1665,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 												scrollSpeed: newInterval,
 											})
 										}
-										defaultValue={5000}
+										defaultValue={4000}
 										min={1000}
 										max={10000}
 										step={500}

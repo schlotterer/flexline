@@ -18,7 +18,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_bl
 	wp_enqueue_script(
 		'flexline-block-extensions',
 		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-		[ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose' ],
+                [ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text' ],
 		THEME_VERSION,
 		false
 	);
@@ -168,8 +168,12 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 
 	}
+	
 	if ( 'core/columns' === $block['blockName'] ) {
+
+		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
+			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
 			$data_scroll_interval = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
 			$search_string  = '>';
 			$replace_string = ' '.$data_scroll_interval.'>';
@@ -177,6 +181,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset($block['attrs']['transitionDuration'])  ) {
+			$block['attrs']['transitionDuration'] = isset($block['attrs']['transitionDuration']) ? $block['attrs']['transitionDuration'] : 500;
 			$data_scroll_interval = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
 			$search_string  = '>';
 			$replace_string = ' '.$data_scroll_interval.'>';
@@ -186,6 +191,15 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	 // **Add Unique Class and Styles for Content Shift**
 	 if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
+		$added_classes = '';
+		// Generate the visibility classes.
+		$added_classes .= get_visibility_classes( $block['attrs'] );
+		$block_content = add_classes_to_block_content( $block_content, $added_classes );
+		 // Generate a unique class based on the block's attributes
+		 $unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
+		 // Add the unique class to the block's classes
+		 $added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
+		 $block_content = add_classes_to_block_content( $block_content, $added_classes );
 
 		// Generate the styles
 		$shiftLeft = '0';
