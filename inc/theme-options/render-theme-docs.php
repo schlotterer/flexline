@@ -587,18 +587,16 @@ function flexline_render_documentation_tab() {
                 </p>
 
                 <pre>
-                    <code>
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;
-                        &lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;
-                    </code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
+                    <code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
                 </pre>
 
                 <p class="notice">
