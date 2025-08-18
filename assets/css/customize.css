@@ -1,3 +1,8 @@
 /*
 ## Customize CSS here to avoid dealing with a build.
 */
+
+.flexline-info { color: #767676; }           /* medium gray */
+.flexline-info:hover,
+.flexline-info:focus { color: #505050; }     /* darker on interaction */
+.flexline-info svg { fill: currentColor; }
