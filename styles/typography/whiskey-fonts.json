@@ -33,9 +33,9 @@
 							"fontDisplay": "block",
 							"fontFamily": "'Jost'",
 							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "200,400,600,800",
-							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.ttf" ]
+                                                        "fontStyle": "normal",
+                                                        "fontWeight": "200 900",
+                                                        "src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -48,8 +48,9 @@
 							"fontDisplay": "block",
 							"fontFamily": "'Source Sans 3', sans-serif",
 							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+                                                        "fontStyle": "normal",
+                                                        "fontWeight": "200 900",
+                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
 						}
 					]
 				},
