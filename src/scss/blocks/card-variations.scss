@@ -139,8 +139,7 @@
 	.wp-block-button.is-style-glass-button .wp-element-button {
 		color: var(--wp--preset--color--primary);
 		border-radius: var(--wp--custom--button-border-radius);
-		border-color: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
-
+		
 		&:hover {
 			background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
 			box-shadow: var(--wp--preset--shadow--diffused);
