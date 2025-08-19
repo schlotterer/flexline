@@ -19,7 +19,7 @@
 							"fontFamily": "'Cabin', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "500",
+							"fontWeight": "400 700",
 							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" ]
 						}
 					]
