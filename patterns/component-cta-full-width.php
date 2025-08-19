@@ -18,7 +18,7 @@
         <!-- wp:column {"verticalAlignment":"center","width":"","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:buttons {"className":"","layout":{"type":"flex","justifyContent":"center"}} -->
             <div class="wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-fill  flexline-icon-open-modal","fontSize":"small","iconType":"open-modal"} -->
-                <div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill  flexline-icon-open-modal"><a class="wp-block-button__link has-small-font-size has-custom-font-size wp-element-button" href="http://alpha.websitesforseniorliving.com/schedule-a-tour/">Get Started</a></div>
+                <div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill  flexline-icon-open-modal"><a class="wp-block-button__link has-small-font-size has-custom-font-size wp-element-button" href="/schedule-a-tour-modal/">Get Started</a></div>
                 <!-- /wp:button -->
             </div>
             <!-- /wp:buttons -->

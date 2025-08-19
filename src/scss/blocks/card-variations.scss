@@ -117,7 +117,7 @@
 		backdrop-filter: blur(10px) saturate(70%);
 		-webkit-backdrop-filter: blur(10px) saturate(70%);
 		transition: var(--wp--custom--transition-time);
-
+		border-color: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
 		&.group-link {
 
 			&:hover {
@@ -139,7 +139,7 @@
 	.wp-block-button.is-style-glass-button .wp-element-button {
 		color: var(--wp--preset--color--primary);
 		border-radius: var(--wp--custom--button-border-radius);
-		border: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
+		border-color: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
 
 		&:hover {
 			background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
