@@ -2,7 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Delta Fonts",
-	"slug": "delata-fonts",
+        "slug": "delta-fonts",
 	"settings": {
 		"typography": {
 			"dropCap": false,
