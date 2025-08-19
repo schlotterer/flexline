@@ -2,6 +2,54 @@
  * Utility functions for block controls.
  */
 
+// Import toggle for visibility controls.
+import { ToggleControl } from '@wordpress/components';
+
+/**
+ * Returns a JSX fragment containing ToggleControls for hiding an element on different screen sizes.
+ *
+ * @param {Object}   props                          - The component props.
+ * @param {Object}   props.attributes               - The element attributes.
+ * @param {boolean}  props.attributes.hideOnDesktop - Whether the element is hidden on desktop.
+ * @param {boolean}  props.attributes.hideOnTablet  - Whether the element is hidden on tablet.
+ * @param {boolean}  props.attributes.hideOnMobile  - Whether the element is hidden on mobile.
+ * @param {Function} props.setAttributes            - A function to update the element attributes.
+ * @return {JSX.Element} A JSX fragment containing the ToggleControls.
+ */
+export const getVisibilityControls = (props) => {
+	return (
+		<>
+			<ToggleControl
+				label="Hide on Desktop"
+				checked={!!props.attributes.hideOnDesktop}
+				onChange={(newValue) =>
+					props.setAttributes({
+						hideOnDesktop: newValue,
+					})
+				}
+			/>
+			<ToggleControl
+				label="Hide on Tablet"
+				checked={!!props.attributes.hideOnTablet}
+				onChange={(newValue) =>
+					props.setAttributes({
+						hideOnTablet: newValue,
+					})
+				}
+			/>
+			<ToggleControl
+				label="Hide on Mobile"
+				checked={!!props.attributes.hideOnMobile}
+				onChange={(newValue) =>
+					props.setAttributes({
+						hideOnMobile: newValue,
+					})
+				}
+			/>
+		</>
+	);
+};
+
 // Utility function to generate visibility classes based on attributes
 export const getVisibilityClasses = (attrs) => {
 	let classes = '';
