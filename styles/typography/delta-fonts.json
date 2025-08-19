@@ -2,7 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Delta Fonts",
-	"slug": "delata-fonts",
+        "slug": "delta-fonts",
 	"settings": {
 		"typography": {
 			"dropCap": false,
@@ -19,7 +19,7 @@
 							"fontFamily": "'Cabin', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "500",
+							"fontWeight": "400 700",
 							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" ]
 						}
 					]

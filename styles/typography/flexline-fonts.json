@@ -16,7 +16,7 @@
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
+							"fontWeight": "100 800",
 							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
@@ -31,7 +31,7 @@
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
+							"fontWeight": "100 800",
 							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
@@ -46,7 +46,7 @@
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
+							"fontWeight": "100 800",
 							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
 						}
 					]
