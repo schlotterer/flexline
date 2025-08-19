@@ -1,6 +1,7 @@
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, SelectControl } from '@wordpress/components';
+import { getVisibilityControls } from '../utils';
 
 export const controls = (BlockEdit, props) => (
     <Fragment>
@@ -35,27 +36,7 @@ export const controls = (BlockEdit, props) => (
                         props.setAttributes({ noWrap: newValue })
                     }
                 />
-                <ToggleControl
-                    label="Hide on Desktop"
-                    checked={!!props.attributes.hideOnDesktop}
-                    onChange={(newValue) =>
-                        props.setAttributes({ hideOnDesktop: newValue })
-                    }
-                />
-                <ToggleControl
-                    label="Hide on Tablet"
-                    checked={!!props.attributes.hideOnTablet}
-                    onChange={(newValue) =>
-                        props.setAttributes({ hideOnTablet: newValue })
-                    }
-                />
-                <ToggleControl
-                    label="Hide on Mobile"
-                    checked={!!props.attributes.hideOnMobile}
-                    onChange={(newValue) =>
-                        props.setAttributes({ hideOnMobile: newValue })
-                    }
-                />
+                {getVisibilityControls(props)}
             </PanelBody>
         </InspectorControls>
     </Fragment>
