@@ -34,7 +34,7 @@
 							"fontFamily": "'Jost'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "200,400,600,800",
+							"fontWeight": "200 800",
 							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.ttf" ]
 						}
 					]
