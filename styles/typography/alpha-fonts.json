@@ -16,7 +16,7 @@
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400",
+                                                        "fontWeight": "100 900",
 							"src": [ "file:./assets/fonts/Sulphur_Point/SulphurPoint-Regular.ttf" ]
 						}
 					]
@@ -28,11 +28,11 @@
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Raleway'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf" ]
+                                                        "fontFamily": "'Raleway'",
+                                                        "fontStretch": "normal",
+                                                        "fontStyle": "normal",
+                                                        "fontWeight": "100 900",
+                                                        "src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf" ]
 						}
 					]
 				},
@@ -43,11 +43,11 @@
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "'Source Sans 3', sans-serif",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+                                                        "fontFamily": "'Source Sans 3', sans-serif",
+                                                        "fontStretch": "normal",
+                                                        "fontStyle": "normal",
+                                                        "fontWeight": "200 900",
+                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
 						}
 					]
 				},
