@@ -31,12 +31,12 @@
 							"fontFamily": "'Quicksand'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-                                                        "fontWeight": "300 700",
-                                                        "src": [ "file:./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf" ]
-                                                }
-                                        ]
-                                },
-                                {
+							"fontWeight": "300 700",
+							"src": [ "file:./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf" ]
+							}
+					]
+				},
+				{
 					"fontFamily": "'Source Sans 3', sans-serif",
 					"name": "Body",
 					"slug": "body",
@@ -45,13 +45,13 @@
 							"fontDisplay": "block",
 							"fontFamily": "'Source Sans 3', sans-serif",
 							"fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "200 900",
-                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
-                                                }
-                                        ]
-                                },
-                                {
+							"fontStyle": "normal",
+							"fontWeight": "200 900",
+							"src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+						}
+					]
+				},
+				{
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
