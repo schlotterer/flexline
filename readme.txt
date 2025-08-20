@@ -12,6 +12,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites. FlexLine is a masterpiece of design and functionality. It features a range of valuable patterns, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials. Whether you’re building a website for your business, personal brand, or creative project, FlexLine is perfect for anyone looking to launch quickly and efficiently.
 
 
+
+== Bundled Assets and Licenses ==
+
+* Google Fonts (Cabin, Calistoga, Crimson Text, Jost, Lato, Quattrocento, Quicksand, REM, Raleway, Source Sans 3, Sulphur Point, Varela) - SIL Open Font License 1.1 (see assets/fonts/*/OFL.txt)
+* headroom.js - MIT License (assets/js/headroom.LICENSE.txt)
+* tablesort.js - MIT License (assets/js/tablesort.LICENSE.txt)
+* baguetteBox.js - MIT License (assets/baguetteBox/LICENSE)
+* Events Manager settings - GPLv2 or later (assets/events-manager/events-manager.zip)
+* Material Design icons - Apache License 2.0 (assets/built/images/LICENSE)
+
 == Changelog ==
 
 = 1.0.6 - 2023-10-16 =
