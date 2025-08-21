@@ -12,6 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites. FlexLine is a masterpiece of design and functionality. It features a range of valuable patterns, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials. Whether you’re building a website for your business, personal brand, or creative project, FlexLine is perfect for anyone looking to launch quickly and efficiently.
 
 
+== Installation Notes ==
+
+For additional helper features, install the optional **FlexLine Utilities Plugin**. It can be downloaded from https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip and provides shortcodes like `[flexline_year]` for the current year or `[flexline_loginout]` to output login and logout links.
 
 == Bundled Assets and Licenses ==
 

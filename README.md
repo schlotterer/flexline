@@ -97,3 +97,13 @@ If you wish to manually lint your files prior to committing, you can use the fol
   ```
 
 These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.
+
+## FlexLine Utilities Plugin
+
+The optional **FlexLine Utilities Plugin** adds helpful shortcodes and tools that extend the theme. After installing the plugin you can use utilities such as:
+
+- `[flexline_year]` – output the current year.
+- `[flexline_site_title]` – display the site title.
+- `[flexline_loginout]` – show a login or logout link depending on the visitor.
+
+[Download the FlexLine Utilities Plugin](https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip) and install it like any other WordPress plugin.
