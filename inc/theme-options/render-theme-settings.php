@@ -20,7 +20,11 @@ function flexline_render_settings_tab() {
     <form method="post" action="options.php">
         <?php settings_fields( 'flexline_theme_options_group' ); ?>
         <?php do_settings_sections( 'flexline_theme_options_group' ); ?>
-        
+
+        <p class="notice notice-info">
+            Enhance the theme with extra shortcodes and utilities by installing the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a>.
+        </p>
+
         <h2>Menu Settings</h2>
         <hr />
         <table class="form-table">
