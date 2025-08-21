@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/render-theme-docs.php';
 
 function flexline_theme_options_page() {
     // Define the tabs and their content
@@ -9,7 +10,7 @@ function flexline_theme_options_page() {
         ],
         'documentation' => [
             'title' => 'Documentation',
-            'content' => 'flexline_render_documentation_tab'
+            'content' => '\FlexLine\flexline_render_documentation_tab'
         ]
     ];
     ?>
