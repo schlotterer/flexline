@@ -37,7 +37,7 @@ function auto_insert_pattern_smart( $content, $post ) {
 		'post' => 'post-starter',
 		'page' => 'page-starter',
 	);
-	$post_type = $post->post_type;
+	$post_type    = $post->post_type;
 	if ( isset( $fallback_map[ $post_type ] ) ) {
 		$pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] );
 		if ( $pattern ) {

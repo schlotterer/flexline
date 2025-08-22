@@ -14,6 +14,7 @@
     "lint-php": "vendor/bin/phpcs --standard=WordPress inc",
     "fix-php": "vendor/bin/phpcbf --standard=WordPress inc",
     "lint-js": "wp-scripts lint-js src/js",
+    "lint-js:fix": "wp-scripts lint-js src/js --fix",
     "lint-style": "wp-scripts lint-style src/scss",
     "lint-style:fix": "wp-scripts lint-style src/scss --fix",
     "ci-lint-js": "wp-scripts lint-js src/js --max-warnings=0 .",
