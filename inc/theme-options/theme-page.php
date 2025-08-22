@@ -13,7 +13,7 @@ require_once __DIR__ . '/render-theme-docs.php';
  * @return void
  */
 function flexline_theme_options_page() {
-        // Define the tabs and their content.
+		// Define the tabs and their content.
 	$tabs = array(
 		'settings'      => array(
 			'title'   => 'Settings',
@@ -30,17 +30,17 @@ function flexline_theme_options_page() {
 		
 		<!-- Tabs -->
 		<h2 class="nav-tab-wrapper">
-                        <?php foreach ( $tabs as $tab_id => $tab ) : ?>
-                                <a href="#<?php echo esc_attr( $tab_id ); ?>" class="nav-tab" data-tab="<?php echo esc_attr( $tab_id ); ?>" onclick="openTab(event, '<?php echo esc_attr( $tab_id ); ?>')"><?php echo esc_html( $tab['title'] ); ?></a>
-                        <?php endforeach; ?>
-                </h2>
+						<?php foreach ( $tabs as $tab_id => $tab ) : ?>
+								<a href="#<?php echo esc_attr( $tab_id ); ?>" class="nav-tab" data-tab="<?php echo esc_attr( $tab_id ); ?>" onclick="openTab(event, '<?php echo esc_attr( $tab_id ); ?>')"><?php echo esc_html( $tab['title'] ); ?></a>
+						<?php endforeach; ?>
+				</h2>
 		
 		<!-- Tab Contents -->
-                <?php foreach ( $tabs as $tab_id => $tab ) : ?>
-                        <div id="<?php echo esc_attr( $tab_id ); ?>" class="tab-content">
-                                <?php call_user_func( $tab['content'] ); ?>
-                        </div>
-                <?php endforeach; ?>
+				<?php foreach ( $tabs as $tab_id => $tab ) : ?>
+						<div id="<?php echo esc_attr( $tab_id ); ?>" class="tab-content">
+								<?php call_user_func( $tab['content'] ); ?>
+						</div>
+				<?php endforeach; ?>
 	</div>
 	
 	<style>
@@ -88,7 +88,7 @@ function flexline_theme_options_page() {
 				uploadButton.addEventListener('click', function(e) {
 					e.preventDefault();
 					
-                                        // Create the media frame.
+										// Create the media frame.
 					var imageFrame = wp.media({
 						title: 'Upload Image',
 						multiple: false,
@@ -100,20 +100,20 @@ function flexline_theme_options_page() {
 						}
 					});
 
-                                        // When an image is selected, run a callback.
+										// When an image is selected, run a callback.
 					imageFrame.on('select', function() {
 						var attachment = imageFrame.state().get('selection').first().toJSON();
 						featureFallbackInput.value = attachment.url;
 						featureFallbackImage.src = attachment.url;
 					});
 
-                                        // Finally, open the modal.
+										// Finally, open the modal.
 					imageFrame.open();
 				});
 			}
 		});
 	</script>
-<?php
+	<?php
 }
 
 

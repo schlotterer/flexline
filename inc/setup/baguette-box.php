@@ -23,7 +23,7 @@ namespace FlexLine;
 function register_assets() {
 	wp_register_style( 'baguettebox-css', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.css', array(), '1.11.1' );
 	wp_register_script( 'baguettebox', get_template_directory_uri() . '/assets/baguetteBox/baguetteBox.min.js', array(), '1.11.1', true );
-        wp_register_script( 'poster-gallery-helper', get_template_directory_uri() . '/assets/js/poster-gallery-helper.js', array(), THEME_VERSION, true );
+		wp_register_script( 'poster-gallery-helper', get_template_directory_uri() . '/assets/js/poster-gallery-helper.js', array(), THEME_VERSION, true );
 
 	/**
 	 * Filters the CSS selector of baguetteBox.js.
