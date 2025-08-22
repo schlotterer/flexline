@@ -14,8 +14,8 @@ namespace FlexLine;
  */
 function flexline_add_admin_menu() {
     add_theme_page(
-        'FlexLine Theme Options', 
-        'FlexLineTheme Options', 
+        'FlexLine Options', 
+        'FlexLine Options', 
         'manage_options', 
         'flexline_theme_options', 
         'flexline_theme_options_page'
