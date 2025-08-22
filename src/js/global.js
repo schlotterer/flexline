@@ -1,3 +1,5 @@
+/* global requestAnimationFrame, MutationObserver, IntersectionObserver */
+
 // Horizontal Scroll block behaviour – front‑end + block‑editor compatible
 
 // Helper ──────────────────────────────────────────────────────────────────────
