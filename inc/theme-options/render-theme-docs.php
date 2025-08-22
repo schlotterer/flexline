@@ -379,9 +379,6 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
                 <!-- ✨ INTRO -->
                 <section id="intro">
                     <h2>FlexLine Theme&nbsp;Documentation</h2>
-                    <p class="notice notice-info">
-                        Grab the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code>.
-                    </p>
                     <p>Below you’ll find a reference for the block‑level Inspector controls <em>and</em> utility classes that ship with the theme. Everything is <strong>opt‑in</strong>: nothing changes until you either (a)&nbsp;add a class in the block editor’s <em>Additional&nbsp;CSS&nbsp;Class(es)</em> field or (b)&nbsp;toggle an option inside the block’s sidebar. Use the nav on the right to jump around.</p>
                 </section>
                 <!-- ✨ BLOCK OPTIONS & STYLES -->
@@ -634,6 +631,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
                         <li><a href="#demo-patterns">Demo Patterns</a></li>
                         
                     </ul>
+                    <p class="notice notice-info">
+                        Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.
+                    </p>
                 </nav>
             </div><!-- /.nav-container -->
         </div><!-- /.wrapper -->
