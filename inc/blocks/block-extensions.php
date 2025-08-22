@@ -13,6 +13,7 @@ use WP_HTML_Tag_Processor;
  *
  * @return void
  */
+
 function flexline_enqueue_block_editor_assets() {
         // Modal addons to core button and image blocks.
         wp_enqueue_script(
@@ -26,6 +27,16 @@ function flexline_enqueue_block_editor_assets() {
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
 
+/**
+ * Merge inline style rules into a block's markup.
+ *
+ * Appends additional CSS rules to the first HTML tag found in the provided
+ * block content.
+ *
+ * @param string $block_content The original block HTML.
+ * @param string $new_style_rules CSS rules to append to the existing style attribute.
+ * @return string Updated block HTML with merged inline styles.
+ */
 function flexline_merge_inline_style( $block_content, $new_style_rules ) {
 
 	// Create the processor.
