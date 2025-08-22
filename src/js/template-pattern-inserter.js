@@ -36,7 +36,7 @@
 
 	/**
 	 * Fetch a wp_block by slug (post_name).
-	 * @param slug
+	 * @param {string} slug
 	 */
 	const fetchStarter = async (slug) => {
 		const records = await resolveSelect('core').getEntityRecords(
@@ -49,7 +49,7 @@
 
 	/**
 	 * Canvas considered empty?
-	 * @param blocks
+	 * @param {Array} blocks
 	 */
 	const isPristine = (blocks) => {
 		if (!blocks || blocks.length === 0) {
@@ -68,7 +68,7 @@
 
 	/**
 	 * Modal prompt – returns 'replace' | 'prepend' | 'cancel'
-	 * @param starterSlug
+	 * @param {string} starterSlug
 	 */
 	const promptAction = (starterSlug) =>
 		new Promise((resolve) => {
