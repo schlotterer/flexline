@@ -1,3 +1,4 @@
+/* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
