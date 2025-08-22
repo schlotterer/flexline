@@ -123,10 +123,10 @@ function flexline_get_block_styles() {
 		);
 
 		$text_shadow_blocks = array(
-			// Titles & taglines
+			// Titles & taglines.
 			'core/post-title',
 			'core/query-title',
-			// Post metadata & excerpt
+			// Post metadata & excerpt.
 			'core/post-date',
 			'core/post-time',
 			'core/post-author',
@@ -134,7 +134,7 @@ function flexline_get_block_styles() {
 			'core/post-author-biography',
 			'core/post-terms',
 
-			// Navigation & lists
+			// Navigation & lists.
 			'core/post-navigation-link',
 			'core/page-list',
 			'core/query-pagination',
@@ -142,7 +142,7 @@ function flexline_get_block_styles() {
 			'core/query-pagination-next',
 			'core/query-pagination-numbers',
 
-			// Comments & login
+			// Comments & login.
 			'core/comment-author-name',
 			'core/comment-date',
 			'core/comment-reply-link',

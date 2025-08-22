@@ -4,20 +4,21 @@
  *
  * @package flexline
  */
+ 
 namespace FlexLine;
 
-/**
- * Renders the documentation tab for the flexline theme.
- *
- * Generates HTML for a two‑column layout: the docs content on the left and a sticky
- * “On this page” table‑of‑contents on the right. Each top‑level section headline
- * carries an <code>id</code>, which the nav anchors reference, giving users quick
- * jump‑links and smooth scrolling within the tab.
- *
- * @return void
- */
 if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) ) {
-	function flexline_render_documentation_tab() {
+        /**
+         * Renders the documentation tab for the flexline theme.
+         *
+         * Generates HTML for a two‑column layout: the docs content on the left and a sticky
+         * “On this page” table‑of‑contents on the right. Each top‑level section headline
+         * carries an <code>id</code>, which the nav anchors reference, giving users quick
+         * jump‑links and smooth scrolling within the tab.
+         *
+         * @return void
+         */
+        function flexline_render_documentation_tab() {
 		// Unified block documentation.
 		$block_docs = array(
 			'All blocks with FlexLine panel' => array(
@@ -554,7 +555,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.is-order-first-tablet</code></td><td><code>order: -1;</code></td></tr>
 							<tr><td><code>.is-order-0-tablet</code></td><td><code>order: 0;</code></td></tr>
 							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-								<tr><td><code>.is-order-<?php echo $i; ?>-tablet</code></td><td><code>order: <?php echo $i; ?>;</code></td></tr>
+									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
 							<?php endfor; ?>
 							<tr><td><code>.is-order-last-tablet</code></td><td><code>order: 99999;</code></td></tr>
 						</tbody>
@@ -567,9 +568,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<tbody>
 							<tr><td><code>.is-order-first-mobile</code></td><td><code>order: -1;</code></td></tr>
 							<tr><td><code>.is-order-0-mobile</code></td><td><code>order: 0;</code></td></tr>
-							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-								<tr><td><code>.is-order-<?php echo $i; ?>-mobile</code></td><td><code>order: <?php echo $i; ?>;</code></td></tr>
-							<?php endfor; ?>
+                                                       <?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+                                                               <tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-mobile</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
+                                                       <?php endfor; ?>
 							<tr><td><code>.is-order-last-mobile</code></td><td><code>order: 99999;</code></td></tr>
 							<tr><td><code>.is-justify-content-center-mobile</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container on mobile.</td></tr>
 						</tbody>
