@@ -1,2 +1,254 @@
-/*! For license information please see template-pattern-inserter.js.LICENSE.txt */
-!function(){function t(){var n,r,o="function"==typeof Symbol?Symbol:{},c=o.iterator||"@@iterator",a=o.toStringTag||"@@toStringTag";function i(t,o,c,a){var i=o&&o.prototype instanceof l?o:l,s=Object.create(i.prototype);return e(s,"_invoke",function(t,e,o){var c,a,i,l=0,s=o||[],p=!1,f={p:0,n:0,v:n,a:d,f:d.bind(n,4),d:function(t,e){return c=t,a=0,i=n,f.n=e,u}};function d(t,e){for(a=t,i=e,r=0;!p&&l&&!o&&r<s.length;r++){var o,c=s[r],d=f.p,v=c[2];t>3?(o=v===e)&&(i=c[(a=c[4])?5:(a=3,3)],c[4]=c[5]=n):c[0]<=d&&((o=t<2&&d<c[1])?(a=0,f.v=e,f.n=c[1]):d<v&&(o=t<3||c[0]>e||e>v)&&(c[4]=t,c[5]=e,f.n=v,a=0))}if(o||t>1)return u;throw p=!0,e}return function(o,s,v){if(l>1)throw TypeError("Generator is already running");for(p&&1===s&&d(s,v),a=s,i=v;(r=a<2?n:i)||!p;){c||(a?a<3?(a>1&&(f.n=-1),d(a,i)):f.n=i:f.v=i);try{if(l=2,c){if(a||(o="next"),r=c[o]){if(!(r=r.call(c,i)))throw TypeError("iterator result is not an object");if(!r.done)return r;i=r.value,a<2&&(a=0)}else 1===a&&(r=c.return)&&r.call(c),a<2&&(i=TypeError("The iterator does not provide a '"+o+"' method"),a=1);c=n}else if((r=(p=f.n<0)?i:t.call(e,f))!==u)break}catch(t){c=n,a=1,i=t}finally{l=1}}return{value:r,done:p}}}(t,c,a),!0),s}var u={};function l(){}function s(){}function p(){}r=Object.getPrototypeOf;var f=[][c]?r(r([][c]())):(e(r={},c,function(){return this}),r),d=p.prototype=l.prototype=Object.create(f);function v(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,p):(t.__proto__=p,e(t,a,"GeneratorFunction")),t.prototype=Object.create(d),t}return s.prototype=p,e(d,"constructor",p),e(p,"constructor",s),s.displayName="GeneratorFunction",e(p,a,"GeneratorFunction"),e(d),e(d,a,"Generator"),e(d,c,function(){return this}),e(d,"toString",function(){return"[object Generator]"}),(t=function(){return{w:i,m:v}})()}function e(t,n,r,o){var c=Object.defineProperty;try{c({},"",{})}catch(t){c=0}e=function(t,n,r,o){function a(n,r){e(t,n,function(t){return this._invoke(n,r,t)})}n?c?c(t,n,{value:r,enumerable:!o,configurable:!o,writable:!o}):t[n]=r:(a("next",0),a("throw",1),a("return",2))},e(t,n,r,o)}function n(t,e,n,r,o,c,a){try{var i=t[c](a),u=i.value}catch(t){return void n(t)}i.done?e(u):Promise.resolve(u).then(r,o)}function r(t){return function(){var e=this,r=arguments;return new Promise(function(o,c){var a=t.apply(e,r);function i(t){n(a,o,c,i,u,"next",t)}function u(t){n(a,o,c,i,u,"throw",t)}i(void 0)})}}!function(){console.log("[template-switcher] booting (with modal)…");var e=wp.data,n=e.select,o=e.resolveSelect,c=e.subscribe,a=e.dispatch,i=wp.blocks.parse,u=wp.element,l=u.createElement,s=u.createRoot,p=u.render,f=u.unmountComponentAtNode,d=wp.components,v=d.Modal,m=d.Button,h=d.Flex,y=function(){var t=n("core/edit-post");return!t||"function"!=typeof t.isEditorReady||t.isEditorReady()},b=function(){var t;return null===(t=n("core/editor").getPostEdits())||void 0===t?void 0:t.template},g=function(){return n("core/editor").getCurrentPostId()},w=function(){var e=r(t().m(function e(n){var r;return t().w(function(t){for(;;)switch(t.n){case 0:return t.n=1,o("core").getEntityRecords("postType","wp_block",{per_page:-1,status:"publish",slug:n});case 1:return r=t.v,t.a(2,null==r?void 0:r[0])}},e)}));return function(t){return e.apply(this,arguments)}}(),k=function(t){var e;return!t||0===t.length||(!(1!==t.length||"core/paragraph"!==t[0].name||null!==(e=t[0].attributes)&&void 0!==e&&e.content&&""!==String(t[0].attributes.content).trim())||t.every(function(t){return"core/null"===t.name}))},_=function(t){return new Promise(function(e){var n=document.createElement("div");document.body.appendChild(n);var r=function(t){try{s&&n._root?n._root.unmount():null==f||f(n)}catch(t){}n.remove(),e(t)},o=function(){return l(v,{title:"Apply the starter content?",onRequestClose:function(){return r("cancel")}},[l("p",{style:{marginTop:0}},"Pattern - ".concat(t)),l(h,{gap:"8px",style:{marginTop:"12px"}},[l(m,{variant:"primary",onClick:function(){return r("replace")}},"Replace"),l(m,{variant:"primary",onClick:function(){return r("prepend")}},"Prepend"),l(m,{variant:"secondary",onClick:function(){return r("cancel")}},"Don't insert")])])};s?(n._root=s(n),n._root.render(l(o))):(p||wp.element.render)(l(o),n)})},P=null,j=!1,O=new Set;c(r(t().m(function e(){var r,o,c,u,l,s,p,f,d,v,m,h;return t().w(function(t){for(;;)switch(t.n){case 0:if(y()){t.n=1;break}return t.a(2);case 1:if((c=b())&&c!==P&&!j){t.n=2;break}return t.a(2);case 2:if(P=c,u=g(),l="".concat(u,":").concat(c),!O.has(l)){t.n=3;break}return t.a(2);case 3:return j=!0,s="".concat(c,"-starter"),console.log("[template-switcher] user changed template →",c,"| starter →",s),t.n=4,w(s);case 4:if(p=t.v){t.n=5;break}return console.info("[template-switcher] starter pattern missing; leaving blocks."),O.add(l),j=!1,t.a(2);case 5:if(f="string"==typeof p.content?p.content:(null===(r=p.content)||void 0===r?void 0:r.raw)||(null===(o=p.content)||void 0===o?void 0:o.rendered)||p.post_content||""){t.n=6;break}return console.warn("[template-switcher] starter has no markup; aborting."),O.add(l),j=!1,t.a(2);case 6:if(d=i(f),v=n("core/block-editor").getBlocks(),m="replace",k(v)){t.n=8;break}return t.n=7,_(s);case 7:m=t.v;case 8:if("cancel"!==m){t.n=9;break}return console.log("[template-switcher] user cancelled; no changes made."),j=!1,t.a(2);case 9:"replace"===m?((h=v.map(function(t){return t.clientId})).length&&a("core/block-editor").removeBlocks(h,!0),a("core/block-editor").insertBlocks(d,0)):"prepend"===m&&a("core/block-editor").insertBlocks(d,0),O.add(l),console.log("[template-switcher] starter injected via",m,"✓"),j=!1;case 10:return t.a(2)}},e)})))}()}();
+/******/ (function() { // webpackBootstrap
+/*!*********************************************!*\
+  !*** ./src/js/template-pattern-inserter.js ***!
+  \*********************************************/
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+// assets/js/template-switcher.js
+// -----------------------------------------------------------------------------
+// Starter Pattern Injector – user-initiated only + modal: Replace / Prepend / Don't Insert
+// -----------------------------------------------------------------------------
+// • Listens only to *user edits* of the Template (getPostEdits().template),
+//   never the initial load.
+// • Fetches UI-created starters (wp_block CPT) via resolveSelect.
+// • If the canvas is pristine → auto Replace.
+// • If not pristine → show a wp.components.Modal asking: Replace / Prepend / Don't insert.
+// -----------------------------------------------------------------------------
+(function () {
+  var _wp$data = wp.data,
+    select = _wp$data.select,
+    resolveSelect = _wp$data.resolveSelect,
+    subscribe = _wp$data.subscribe,
+    dispatch = _wp$data.dispatch;
+  var parse = wp.blocks.parse;
+  var _wp$element = wp.element,
+    h = _wp$element.createElement,
+    createRoot = _wp$element.createRoot,
+    render = _wp$element.render,
+    unmountComponentAtNode = _wp$element.unmountComponentAtNode;
+  var _wp$components = wp.components,
+    Modal = _wp$components.Modal,
+    Button = _wp$components.Button,
+    Flex = _wp$components.Flex;
+  var isEditorReady = function isEditorReady() {
+    var ep = select('core/edit-post');
+    return ep && typeof ep.isEditorReady === 'function' ? ep.isEditorReady() : true;
+  };
+  var getEditedTemplate = function getEditedTemplate() {
+    var _select$getPostEdits;
+    return (_select$getPostEdits = select('core/editor').getPostEdits()) === null || _select$getPostEdits === void 0 ? void 0 : _select$getPostEdits.template;
+  }; // user edit only
+  var getCurrentTemplate = function getCurrentTemplate() {
+    return select('core/editor').getEditedPostAttribute('template');
+  };
+  var getPostId = function getPostId() {
+    return select('core/editor').getCurrentPostId();
+  };
+
+  /**
+   * Fetch a wp_block by slug (post_name).
+   * @param slug
+   */
+  var fetchStarter = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(slug) {
+      var records;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.n) {
+          case 0:
+            _context.n = 1;
+            return resolveSelect('core').getEntityRecords('postType', 'wp_block', {
+              per_page: -1,
+              status: 'publish',
+              slug: slug
+            });
+          case 1:
+            records = _context.v;
+            return _context.a(2, records === null || records === void 0 ? void 0 : records[0]);
+        }
+      }, _callee);
+    }));
+    return function fetchStarter(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Canvas considered empty?
+   * @param blocks
+   */
+  var isPristine = function isPristine(blocks) {
+    var _blocks$0$attributes;
+    if (!blocks || blocks.length === 0) {
+      return true;
+    }
+    if (blocks.length === 1 && blocks[0].name === 'core/paragraph' && (!((_blocks$0$attributes = blocks[0].attributes) !== null && _blocks$0$attributes !== void 0 && _blocks$0$attributes.content) || String(blocks[0].attributes.content).trim() === '')) {
+      return true;
+    }
+    return blocks.every(function (b) {
+      return b.name === 'core/null';
+    });
+  };
+
+  /**
+   * Modal prompt – returns 'replace' | 'prepend' | 'cancel'
+   * @param starterSlug
+   */
+  var promptAction = function promptAction(starterSlug) {
+    return new Promise(function (resolve) {
+      var container = document.createElement('div');
+      document.body.appendChild(container);
+      var close = function close(value) {
+        try {
+          if (createRoot && container._root) {
+            container._root.unmount();
+          } else {
+            unmountComponentAtNode === null || unmountComponentAtNode === void 0 || unmountComponentAtNode(container);
+          }
+        } catch (_unused) {}
+        container.remove();
+        resolve(value);
+      };
+      var UI = function UI() {
+        return h(Modal, {
+          title: 'Apply the starter content?',
+          onRequestClose: function onRequestClose() {
+            return close('cancel');
+          }
+        }, [h('p', {
+          style: {
+            marginTop: 0
+          }
+        }, "Pattern - ".concat(starterSlug)), h(Flex, {
+          gap: '8px',
+          style: {
+            marginTop: '12px'
+          }
+        }, [h(Button, {
+          variant: 'primary',
+          onClick: function onClick() {
+            return close('replace');
+          }
+        }, 'Replace'), h(Button, {
+          variant: 'primary',
+          onClick: function onClick() {
+            return close('prepend');
+          }
+        }, 'Prepend'), h(Button, {
+          variant: 'secondary',
+          onClick: function onClick() {
+            return close('cancel');
+          }
+        }, "Don't insert")])]);
+      };
+      if (createRoot) {
+        container._root = createRoot(container);
+        container._root.render(h(UI));
+      } else {
+        // Fallback for older WP where createRoot isn't available
+        (render || wp.element.render)(h(UI), container);
+      }
+    });
+  };
+
+  // ────────────────────────────────────────────────────────────────────────────
+  //  Subscriber – reacts only to *user* template edits
+  // ────────────────────────────────────────────────────────────────────────────
+  var lastEditedTemplate = null; // last value seen in getPostEdits().template
+  var busy = false;
+  var processed = new Set(); // per-session postId:template
+
+  subscribe(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+    var _starter$content, _starter$content2;
+    var editedTemplate, postId, key, starterSlug, starter, markup, newBlocks, blocksInEd, action, idsToRemove;
+    return _regenerator().w(function (_context2) {
+      while (1) switch (_context2.n) {
+        case 0:
+          if (isEditorReady()) {
+            _context2.n = 1;
+            break;
+          }
+          return _context2.a(2);
+        case 1:
+          editedTemplate = getEditedTemplate();
+          if (!(!editedTemplate || editedTemplate === lastEditedTemplate || busy)) {
+            _context2.n = 2;
+            break;
+          }
+          return _context2.a(2);
+        case 2:
+          lastEditedTemplate = editedTemplate; // lock to this user action
+          postId = getPostId();
+          key = "".concat(postId, ":").concat(editedTemplate);
+          if (!processed.has(key)) {
+            _context2.n = 3;
+            break;
+          }
+          return _context2.a(2);
+        case 3:
+          // already handled this exact edit
+
+          busy = true;
+          starterSlug = "".concat(editedTemplate, "-starter");
+          _context2.n = 4;
+          return fetchStarter(starterSlug);
+        case 4:
+          starter = _context2.v;
+          if (starter) {
+            _context2.n = 5;
+            break;
+          }
+          processed.add(key);
+          busy = false;
+          return _context2.a(2);
+        case 5:
+          markup = typeof starter.content === 'string' ? starter.content : ((_starter$content = starter.content) === null || _starter$content === void 0 ? void 0 : _starter$content.raw) || ((_starter$content2 = starter.content) === null || _starter$content2 === void 0 ? void 0 : _starter$content2.rendered) || starter.post_content || '';
+          if (markup) {
+            _context2.n = 6;
+            break;
+          }
+          processed.add(key);
+          busy = false;
+          return _context2.a(2);
+        case 6:
+          newBlocks = parse(markup);
+          blocksInEd = select('core/block-editor').getBlocks();
+          action = 'replace';
+          if (isPristine(blocksInEd)) {
+            _context2.n = 8;
+            break;
+          }
+          _context2.n = 7;
+          return promptAction(starterSlug);
+        case 7:
+          action = _context2.v;
+        case 8:
+          if (!(action === 'cancel')) {
+            _context2.n = 9;
+            break;
+          }
+          busy = false;
+          return _context2.a(2);
+        case 9:
+          if (action === 'replace') {
+            idsToRemove = blocksInEd.map(function (b) {
+              return b.clientId;
+            });
+            if (idsToRemove.length) {
+              dispatch('core/block-editor').removeBlocks(idsToRemove, true);
+            }
+            dispatch('core/block-editor').insertBlocks(newBlocks, 0);
+          } else if (action === 'prepend') {
+            dispatch('core/block-editor').insertBlocks(newBlocks, 0);
+          }
+          processed.add(key);
+          busy = false;
+        case 10:
+          return _context2.a(2);
+      }
+    }, _callee2);
+  })));
+})();
+/******/ })()
+;
