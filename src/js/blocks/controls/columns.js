@@ -447,7 +447,7 @@ export const useHooks = (props) => {
 		if (enableHorizontalScroller && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
 		}
-	}, [enableHorizontalScroller, isStackedOnMobile]);
+	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
 
 	useEffect(() => {
 		if (name === 'core/columns') {
