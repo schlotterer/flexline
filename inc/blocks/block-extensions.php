@@ -200,38 +200,38 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
 		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
 
-		// Generate the styles
-		$shiftLeft  = '0';
-		$shiftRight = '0';
-		$shiftUp    = '0';
-		$shiftDown  = '0';
-		$slideX     = '0';
-		$slideY     = '0';
-		if ( isset( $block['attrs']['shiftLeft'] ) ) {
-			$shiftLeft = '-' . $block['attrs']['shiftLeft'];
-		}
-		if ( isset( $block['attrs']['shiftRight'] ) ) {
-			$shiftRight = '-' . $block['attrs']['shiftRight'];
-		}
-		if ( isset( $block['attrs']['shiftUp'] ) ) {
-			$shiftUp = '-' . $block['attrs']['shiftUp'];
-		}
-		if ( isset( $block['attrs']['shiftDown'] ) ) {
-			$shiftDown = '-' . $block['attrs']['shiftDown'];
-		}
-		if ( isset( $block['attrs']['slideHorizontal'] ) ) {
-			$slideX = $block['attrs']['slideHorizontal'];
-		}
-		if ( isset( $block['attrs']['slideVertical'] ) ) {
-			$slideY = $block['attrs']['slideVertical'];
-		}
-		// Build the CSS
-		$styles  = ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
-		$styles .= ' --flexline-shift-right: ' . esc_attr( $shiftRight ) . ';';
-		$styles .= ' --flexline-shift-up: ' . esc_attr( $shiftUp ) . ';';
-		$styles .= ' --flexline-shift-down: ' . esc_attr( $shiftDown ) . ';';
-		$styles .= ' --flexline-slide-x: ' . esc_attr( $slideX ) . ';';
-		$styles .= ' --flexline-slide-y: ' . esc_attr( $slideY ) . ';';
+               // Generate the styles
+               $shift_left  = '0';
+               $shift_right = '0';
+               $shift_up    = '0';
+               $shift_down  = '0';
+               $slide_x     = '0';
+               $slide_y     = '0';
+               if ( isset( $block['attrs']['shiftLeft'] ) ) {
+                       $shift_left = '-' . $block['attrs']['shiftLeft'];
+               }
+               if ( isset( $block['attrs']['shiftRight'] ) ) {
+                       $shift_right = '-' . $block['attrs']['shiftRight'];
+               }
+               if ( isset( $block['attrs']['shiftUp'] ) ) {
+                       $shift_up = '-' . $block['attrs']['shiftUp'];
+               }
+               if ( isset( $block['attrs']['shiftDown'] ) ) {
+                       $shift_down = '-' . $block['attrs']['shiftDown'];
+               }
+               if ( isset( $block['attrs']['slideHorizontal'] ) ) {
+                       $slide_x = $block['attrs']['slideHorizontal'];
+               }
+               if ( isset( $block['attrs']['slideVertical'] ) ) {
+                       $slide_y = $block['attrs']['slideVertical'];
+               }
+               // Build the CSS
+               $styles  = ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
+               $styles .= ' --flexline-shift-right: ' . esc_attr( $shift_right ) . ';';
+               $styles .= ' --flexline-shift-up: ' . esc_attr( $shift_up ) . ';';
+               $styles .= ' --flexline-shift-down: ' . esc_attr( $shift_down ) . ';';
+               $styles .= ' --flexline-slide-x: ' . esc_attr( $slide_x ) . ';';
+               $styles .= ' --flexline-slide-y: ' . esc_attr( $slide_y ) . ';';
 
 		$block_content = flexline_merge_inline_style( $block_content, $styles );
 	}
