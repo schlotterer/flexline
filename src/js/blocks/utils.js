@@ -8,8 +8,26 @@ import { InspectorControls } from '@wordpress/block-editor';
 import {
 	ToggleControl,
 	PanelBody,
-	__experimentalUnitControl as UnitControl,
+	NumberControl,
+	SelectControl,
 } from '@wordpress/components';
+
+const unitOptions = [
+	{ value: 'px', label: 'px' },
+	{ value: '%', label: '%' },
+	{ value: 'em', label: 'em' },
+	{ value: 'rem', label: 'rem' },
+	{ value: 'vw', label: 'vw' },
+	{ value: 'vh', label: 'vh' },
+];
+
+const parseUnitValue = (val) => {
+	const match = /^(-?\d*\.?\d*)([a-z%]*)$/i.exec(val || '');
+	return {
+		value: match && match[1] ? match[1] : '',
+		unit: match && match[2] ? match[2] : 'px',
+	};
+};
 
 /**
  * Returns a JSX fragment containing ToggleControls for hiding an element on different screen sizes.
@@ -65,6 +83,23 @@ export const getVisibilityControls = (props) => {
  * @return {JSX.Element} A JSX fragment containing the Content Shift controls.
  */
 export const getContentShiftControls = (props) => {
+	const { value: shiftLeftValue, unit: shiftLeftUnit } = parseUnitValue(
+		props.attributes.shiftLeft
+	);
+	const { value: shiftRightValue, unit: shiftRightUnit } = parseUnitValue(
+		props.attributes.shiftRight
+	);
+	const { value: shiftUpValue, unit: shiftUpUnit } = parseUnitValue(
+		props.attributes.shiftUp
+	);
+	const { value: shiftDownValue, unit: shiftDownUnit } = parseUnitValue(
+		props.attributes.shiftDown
+	);
+	const { value: slideHorizontalValue, unit: slideHorizontalUnit } =
+		parseUnitValue(props.attributes.slideHorizontal);
+	const { value: slideVerticalValue, unit: slideVerticalUnit } =
+		parseUnitValue(props.attributes.slideVertical);
+
 	return (
 		<InspectorControls group="styles">
 			<PanelBody title="FlexLine Content Shift">
@@ -101,80 +136,124 @@ export const getContentShiftControls = (props) => {
 					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Shift Left"
-						type="number"
-						min={0}
-						value={props.attributes.shiftLeft}
-						onChange={(value) =>
-							props.setAttributes({ shiftLeft: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-					/>
+					<>
+						<NumberControl
+							label="Shift Left"
+							min={0}
+							value={shiftLeftValue}
+							onChange={(val) =>
+								props.setAttributes({
+									shiftLeft:
+										val === ''
+											? ''
+											: `${val}${shiftLeftUnit}`,
+								})
+							}
+						/>
+						<SelectControl
+							label="Unit"
+							value={shiftLeftUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									shiftLeft:
+										shiftLeftValue === ''
+											? ''
+											: `${shiftLeftValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Shift Right"
-						type="number"
-						min={0}
-						value={props.attributes.shiftRight}
-						onChange={(value) =>
-							props.setAttributes({ shiftRight: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-					/>
+					<>
+						<NumberControl
+							label="Shift Right"
+							min={0}
+							value={shiftRightValue}
+							onChange={(val) =>
+								props.setAttributes({
+									shiftRight:
+										val === ''
+											? ''
+											: `${val}${shiftRightUnit}`,
+								})
+							}
+						/>
+						<SelectControl
+							label="Unit"
+							value={shiftRightUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									shiftRight:
+										shiftRightValue === ''
+											? ''
+											: `${shiftRightValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Shift Up"
-						type="number"
-						min={0}
-						value={props.attributes.shiftUp}
-						onChange={(value) =>
-							props.setAttributes({ shiftUp: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-					/>
+					<>
+						<NumberControl
+							label="Shift Up"
+							min={0}
+							value={shiftUpValue}
+							onChange={(val) =>
+								props.setAttributes({
+									shiftUp:
+										val === ''
+											? ''
+											: `${val}${shiftUpUnit}`,
+								})
+							}
+						/>
+						<SelectControl
+							label="Unit"
+							value={shiftUpUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									shiftUp:
+										shiftUpValue === ''
+											? ''
+											: `${shiftUpValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Shift Down"
-						type="number"
-						min={0}
-						value={props.attributes.shiftDown}
-						onChange={(value) =>
-							props.setAttributes({ shiftDown: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-					/>
+					<>
+						<NumberControl
+							label="Shift Down"
+							min={0}
+							value={shiftDownValue}
+							onChange={(val) =>
+								props.setAttributes({
+									shiftDown:
+										val === ''
+											? ''
+											: `${val}${shiftDownUnit}`,
+								})
+							}
+						/>
+						<SelectControl
+							label="Unit"
+							value={shiftDownUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									shiftDown:
+										shiftDownValue === ''
+											? ''
+											: `${shiftDownValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 				{props.attributes.useContentShift && (
 					<>
@@ -186,39 +265,63 @@ export const getContentShiftControls = (props) => {
 					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Slide Horizontal ( - to left, + to right )"
-						value={props.attributes.slideHorizontal}
-						onChange={(value) =>
-							props.setAttributes({ slideHorizontal: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-					/>
+					<>
+						<NumberControl
+							label="Slide Horizontal ( - to left, + to right )"
+							value={slideHorizontalValue}
+							onChange={(val) =>
+								props.setAttributes({
+									slideHorizontal:
+										val === ''
+											? ''
+											: `${val}${slideHorizontalUnit}`,
+								})
+							}
+						/>
+						<SelectControl
+							label="Unit"
+							value={slideHorizontalUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									slideHorizontal:
+										slideHorizontalValue === ''
+											? ''
+											: `${slideHorizontalValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 				{props.attributes.useContentShift && (
-					<UnitControl
-						label="Slide Vertical ( - to top, + to bottom )"
-						value={props.attributes.slideVertical}
-						onChange={(value) =>
-							props.setAttributes({ slideVertical: value })
-						}
-						units={[
-							{ value: 'px', label: 'px' },
-							{ value: '%', label: '%' },
-							{ value: 'em', label: 'em' },
-							{ value: 'rem', label: 'rem' },
-							{ value: 'vw', label: 'vw' },
-							{ value: 'vh', label: 'vh' },
-						]}
-						help="Enter positive or negative values."
-					/>
+					<>
+						<NumberControl
+							label="Slide Vertical ( - to top, + to bottom )"
+							value={slideVerticalValue}
+							onChange={(val) =>
+								props.setAttributes({
+									slideVertical:
+										val === ''
+											? ''
+											: `${val}${slideVerticalUnit}`,
+								})
+							}
+							help="Enter positive or negative values."
+						/>
+						<SelectControl
+							label="Unit"
+							value={slideVerticalUnit}
+							options={unitOptions}
+							onChange={(newUnit) =>
+								props.setAttributes({
+									slideVertical:
+										slideVerticalValue === ''
+											? ''
+											: `${slideVerticalValue}${newUnit}`,
+								})
+							}
+						/>
+					</>
 				)}
 			</PanelBody>
 		</InspectorControls>
