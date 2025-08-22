@@ -5,7 +5,6 @@
  * @package flexline
  */
 
-
 /**
  * Renders the settings tab for the flexline theme.
  *
