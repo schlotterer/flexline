@@ -100,13 +100,13 @@ function add_classes_to_block_content( $block_content, $added_classes ) {
  */
 function flexline_block_customizations_render( $block_content, $block ) {
 
-	if ( 'core/button' === $block['blockName'] ) {
-		if ( isset( $block['attrs']['iconType'] ) && $block['attrs']['iconType'] === 'download' ) {
-			$search_string  = 'href="';
-			$replace_string = 'download href="';
-			$block_content  = str_replace( $search_string, $replace_string, $block_content );
-		}
-	}
+        if ( 'core/button' === $block['blockName'] ) {
+                if ( 'download' === $block['attrs']['iconType'] ) {
+                        $search_string  = 'href="';
+                        $replace_string = 'download href="';
+                        $block_content  = str_replace( $search_string, $replace_string, $block_content );
+                }
+        }
 
 	if ( 'core/image' === $block['blockName'] ) {
 
