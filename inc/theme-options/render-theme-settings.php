@@ -66,8 +66,8 @@ function flexline_render_settings_tab() {
         if ( ! function_exists( 'is_plugin_active' ) ) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) || ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
-            echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.</p>';
+        if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) && ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
+            echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display the theme docs on the front end.</p>';
         }
         ?>
         <script>
