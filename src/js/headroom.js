@@ -1,3 +1,5 @@
+import Headroom from 'headroom.js';
+
 document.addEventListener('DOMContentLoaded', function () {
 	// Grab the header element
 	const myHeader = document.querySelector('header.site-header');
