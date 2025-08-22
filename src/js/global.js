@@ -295,10 +295,6 @@ function setupScrollerButtons(scroller) {
 		observeVisibility();
 	}
 
-	if (!hasNav && !showPause) {
-		return;
-	}
-
 	const controlContainer = document.createElement('div');
 	controlContainer.classList.add('horizontal-scroller-nav-buttons');
 	controlContainer.style.position = 'absolute';
