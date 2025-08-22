@@ -195,7 +195,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$added_classes .= get_visibility_classes( $block['attrs'] );
 		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
 		// Generate a unique class based on the block's attributes
-                $unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $block['attrs'] ) ), 0, 8 );
+        $unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $block['attrs'] ) ), 0, 8 );
 		// Add the unique class to the block's classes
 		$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
 		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
