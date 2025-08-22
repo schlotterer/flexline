@@ -631,9 +631,14 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
                         <li><a href="#demo-patterns">Demo Patterns</a></li>
                         
                     </ul>
-                    <p class="notice notice-info">
-                        Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.
-                    </p>
+                    <?php
+                    if ( ! function_exists( 'is_plugin_active' ) ) {
+                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                    }
+                    if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) || ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
+                        echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.</p>';
+                    }
+                    ?>
                 </nav>
             </div><!-- /.nav-container -->
         </div><!-- /.wrapper -->
