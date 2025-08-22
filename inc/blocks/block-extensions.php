@@ -188,19 +188,19 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 	}
 
-	// **Add Unique Class and Styles for Content Shift**
+	// **Add Unique Class and Styles for Content Shift**.
 	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
 		$added_classes = '';
 		// Generate the visibility classes.
 		$added_classes .= get_visibility_classes( $block['attrs'] );
 		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
-		// Generate a unique class based on the block's attributes
+		// Generate a unique class based on the block's attributes.
 		$unique_class = 'flexline-content-shift-' . substr( md5( serialize( $block['attrs'] ) ), 0, 8 );
-		// Add the unique class to the block's classes
+		// Add the unique class to the block's classes.
 		$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
 		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
 
-		// Generate the styles
+		// Generate the styles.
 		$shiftLeft  = '0';
 		$shiftRight = '0';
 		$shiftUp    = '0';
@@ -225,7 +225,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['slideVertical'] ) ) {
 			$slideY = $block['attrs']['slideVertical'];
 		}
-		// Build the CSS
+		// Build the CSS.
 		$styles  = ' --flexline-shift-left: ' . esc_attr( $shiftLeft ) . ';';
 		$styles .= ' --flexline-shift-right: ' . esc_attr( $shiftRight ) . ';';
 		$styles .= ' --flexline-shift-up: ' . esc_attr( $shiftUp ) . ';';
