@@ -554,9 +554,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<tbody>
 							<tr><td><code>.is-order-first-tablet</code></td><td><code>order: -1;</code></td></tr>
 							<tr><td><code>.is-order-0-tablet</code></td><td><code>order: 0;</code></td></tr>
-                                                       <?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-                                                               <tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
-                                                       <?php endfor; ?>
+							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
+							<?php endfor; ?>
 							<tr><td><code>.is-order-last-tablet</code></td><td><code>order: 99999;</code></td></tr>
 						</tbody>
 					</table>
