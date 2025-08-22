@@ -174,13 +174,12 @@ function removeWrapper(scroller) {
 // 4.  Nav / pause buttons.
 //------------------------------------------------------------------
 function setupScrollerButtons(scroller) {
-	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
-		new MutationObserver(() => setupScrollerButtons(scroller)).observe(
-			scroller,
-			{ attributes: true, attributeFilter: ['class'] }
-		);
-		scroller.dataset.classObserverAttached = 'true';
-	}
+        if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
+                new window.MutationObserver(
+                        () => setupScrollerButtons(scroller)
+                ).observe(scroller, { attributes: true, attributeFilter: ['class'] });
+                scroller.dataset.classObserverAttached = 'true';
+        }
 	// ──────────────────────────────────────────────────────────────────────
 	// 0. Determine current option state *up‑front*
 	//    (We need this before any early‑exit based on buttonsInitialised.)
@@ -269,20 +268,20 @@ function setupScrollerButtons(scroller) {
 		autoScrollInterval = null;
 	}
 
-	function observeVisibility() {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting && !hasStarted) {
-						startAutoScroll();
-						observer.disconnect();
-					}
-				});
-			},
-			{ threshold: 0.3 }
-		);
-		observer.observe(scroller);
-	}
+        function observeVisibility() {
+                const observer = new window.IntersectionObserver(
+                        (entries) => {
+                                entries.forEach((entry) => {
+                                        if (entry.isIntersecting && !hasStarted) {
+                                                startAutoScroll();
+                                                observer.disconnect();
+                                        }
+                                });
+                        },
+                        { threshold: 0.3 }
+                );
+                observer.observe(scroller);
+        }
 
 	if (scroller.classList.contains('horizontal-scroller-auto')) {
 		if (scroller.classList.contains('scroller-pause-on-hover')) {
@@ -397,10 +396,10 @@ function buildThresholdList() {
 }
 
 function setupStatusObserver(scroller) {
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				const item = entry.target;
+        const observer = new window.IntersectionObserver(
+                (entries) => {
+                        entries.forEach((entry) => {
+                                const item = entry.target;
 				const prev = parseFloat(item.dataset.prevRatio || 0);
 				const curr = entry.intersectionRatio;
 
@@ -480,12 +479,12 @@ function watchLoopToggle(scroller) {
 	if (scroller.dataset.loopObserverAttached) {
 		return;
 	}
-	new MutationObserver(() => {
-		if (!scroller.classList.contains('horizontal-scroller-loop')) {
-			teardownInfiniteLoop(scroller);
-		} else {
-			setupInfiniteLoop(scroller);
-		}
+        new window.MutationObserver(() => {
+                if (!scroller.classList.contains('horizontal-scroller-loop')) {
+                        teardownInfiniteLoop(scroller);
+                } else {
+                        setupInfiniteLoop(scroller);
+                }
 	}).observe(scroller, {
 		attributes: true,
 		attributeFilter: ['class'],
@@ -503,10 +502,10 @@ function watchChildrenForLoop(scroller) {
 	if (scroller._childObserverAttached) {
 		return;
 	}
-	const mo = new MutationObserver((mutations) => {
-		// do any of these mutations add or remove a non‐clone?
-		const realChange = mutations.some((m) => {
-			return (
+        const mo = new window.MutationObserver((mutations) => {
+                // do any of these mutations add or remove a non‐clone?
+                const realChange = mutations.some((m) => {
+                        return (
 				Array.from(m.addedNodes).some(
 					(n) =>
 						n.nodeType === 1 &&
@@ -609,11 +608,11 @@ function scheduleScrollerInit(scroller) {
 				}
 			});
 		} else {
-			// Fallback to MutationObserver if wp.data is not available
-			const obs = new MutationObserver(() => {
-				if (
-					!didInit &&
-					scroller.querySelectorAll('.wp-block-post').length
+                        // Fallback to MutationObserver if wp.data is not available
+                        const obs = new window.MutationObserver(() => {
+                                if (
+                                        !didInit &&
+                                        scroller.querySelectorAll('.wp-block-post').length
 				) {
 					didInit = true;
 					obs.disconnect();
@@ -653,10 +652,10 @@ window.addEventListener('load', initScrollers);
 
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
-	const bodyObserver = new MutationObserver((records) => {
-		for (const rec of records) {
-			for (const node of rec.addedNodes) {
-				if (
+        const bodyObserver = new window.MutationObserver((records) => {
+                for (const rec of records) {
+                        for (const node of rec.addedNodes) {
+                                if (
 					node.nodeType === 1 &&
 					node.classList.contains('is-style-horizontal-scroll') &&
 					!node.dataset._scrollerInitQueued
