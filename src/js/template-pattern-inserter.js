@@ -9,8 +9,6 @@
 // • If not pristine → show a wp.components.Modal asking: Replace / Prepend / Don't insert.
 // -----------------------------------------------------------------------------
 (() => {
-	console.log('[template-switcher] booting (with modal)…');
-
 	const { select, resolveSelect, subscribe, dispatch } = wp.data;
 	const { parse } = wp.blocks;
 	const {
@@ -30,8 +28,6 @@
 
 	const getEditedTemplate = () =>
 		select('core/editor').getPostEdits()?.template; // user edit only
-	const getCurrentTemplate = () =>
-		select('core/editor').getEditedPostAttribute('template');
 	const getPostId = () => select('core/editor').getCurrentPostId();
 
 	/**
@@ -166,18 +162,9 @@
 		busy = true;
 
 		const starterSlug = `${editedTemplate}-starter`;
-		console.log(
-			'[template-switcher] user changed template →',
-			editedTemplate,
-			'| starter →',
-			starterSlug
-		);
 
 		const starter = await fetchStarter(starterSlug);
 		if (!starter) {
-			console.info(
-				'[template-switcher] starter pattern missing; leaving blocks.'
-			);
 			processed.add(key);
 			busy = false;
 			return;
@@ -192,9 +179,6 @@
 					'';
 
 		if (!markup) {
-			console.warn(
-				'[template-switcher] starter has no markup; aborting.'
-			);
 			processed.add(key);
 			busy = false;
 			return;
@@ -207,7 +191,6 @@
 		}
 
 		if (action === 'cancel') {
-			console.log('[template-switcher] user cancelled; no changes made.');
 			busy = false;
 			return;
 		}
@@ -225,7 +208,6 @@
 		}
 
 		processed.add(key);
-		console.log('[template-switcher] starter injected via', action, '✓');
 		busy = false;
 	});
 })();
