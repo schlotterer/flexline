@@ -200,8 +200,6 @@
 			return;
 		}
 
-		const newBlocks = parse(markup);
-
 		const blocksInEd = select('core/block-editor').getBlocks();
 		let action = 'replace';
 		if (!isPristine(blocksInEd)) {
@@ -213,6 +211,8 @@
 			busy = false;
 			return;
 		}
+
+		const newBlocks = parse(markup);
 
 		if (action === 'replace') {
 			const idsToRemove = blocksInEd.map((b) => b.clientId);
