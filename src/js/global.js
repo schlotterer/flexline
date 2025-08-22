@@ -142,7 +142,6 @@ should be gone when it doesn’t.  These two helpers enforce that rule.
 function ensureWrapper(scroller) {
 	// First check if the element has a parent at all
 	if (!scroller.parentNode) {
-		console.warn('Cannot wrap element - no parent node found.');
 		return scroller; // Return the original element since we can't wrap it
 	}
 
@@ -464,11 +463,8 @@ function teardownInfiniteLoop(scroller) {
 		.forEach((c) => {
 			try {
 				c.remove();
-			} catch (e) {
-				console.warn(
-					'Couldn’t remove clone – it may already be gone:',
-					e
-				);
+			} catch {
+				// Ignore removal errors.
 			}
 		});
 	scroller.scrollLeft = 0;
