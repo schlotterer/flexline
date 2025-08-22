@@ -4,7 +4,7 @@ import {
 	PanelBody,
 	ToggleControl,
 	SelectControl,
-	__experimentalUnitControl as UnitControl,
+	UnitControl,
 } from '@wordpress/components';
 import { getVisibilityControls } from '../utils';
 
