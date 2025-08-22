@@ -1,10 +1,6 @@
 import { Fragment } from '@wordpress/element';
 import { InspectorControls, URLInput } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	ToggleControl,
-	__experimentalUnitControl as UnitControl,
-} from '@wordpress/components';
+import { PanelBody, ToggleControl, UnitControl } from '@wordpress/components';
 import { getVisibilityControls } from '../utils';
 
 export const controls = (BlockEdit, props) => (
