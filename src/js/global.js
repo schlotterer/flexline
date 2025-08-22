@@ -453,7 +453,7 @@ function initScroller(scroller) {
 /**
  * Remove any clones & reset state on a scroller that was once
  * loop-initialized but no longer has the loop class.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function teardownInfiniteLoop(scroller) {
 	if (scroller.dataset.loopInitialised !== 'true') {
@@ -480,7 +480,7 @@ function teardownInfiniteLoop(scroller) {
  * horizontal-scroller-loop class on the given scroller element.
  * When the class is added, we set up infinite looping.
  * When the class is removed, we tear down the infinite loop.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function watchLoopToggle(scroller) {
 	if (scroller.dataset.loopObserverAttached) {
@@ -503,7 +503,7 @@ function watchLoopToggle(scroller) {
  * Whenever *real* children (columns) are added/removed,
  * tear down & rebuild the clones.  Ignore any mutations that
  * involve only cloned‐slides.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function watchChildrenForLoop(scroller) {
 	if (scroller._childObserverAttached) {
@@ -564,7 +564,7 @@ function initInfiniteLoops() {
 
 /**
  * Initialise one scroller (buttons, status, infinite loop).
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function initOneScroller(scroller) {
 	initScroller(scroller);
@@ -575,11 +575,11 @@ function initOneScroller(scroller) {
 
 /**
  * Schedule everything (watchers + first init) at the right time.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 /**
  * Schedule everything (watchers + first init) at the right time.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function scheduleScrollerInit(scroller) {
 	watchLoopToggle(scroller);
