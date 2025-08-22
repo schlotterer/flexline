@@ -1,3 +1,5 @@
+/* global requestAnimationFrame, MutationObserver, IntersectionObserver */
+
 // Horizontal Scroll block behaviour – front‑end + block‑editor compatible
 
 // Helper ──────────────────────────────────────────────────────────────────────
@@ -142,7 +144,6 @@ should be gone when it doesn’t.  These two helpers enforce that rule.
 function ensureWrapper(scroller) {
 	// First check if the element has a parent at all
 	if (!scroller.parentNode) {
-		console.warn('Cannot wrap element - no parent node found.');
 		return scroller; // Return the original element since we can't wrap it
 	}
 
@@ -173,13 +174,12 @@ function removeWrapper(scroller) {
 // 4.  Nav / pause buttons.
 //------------------------------------------------------------------
 function setupScrollerButtons(scroller) {
-	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
-		new MutationObserver(() => setupScrollerButtons(scroller)).observe(
-			scroller,
-			{ attributes: true, attributeFilter: ['class'] }
-		);
-		scroller.dataset.classObserverAttached = 'true';
-	}
+        if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
+                new window.MutationObserver(
+                        () => setupScrollerButtons(scroller)
+                ).observe(scroller, { attributes: true, attributeFilter: ['class'] });
+                scroller.dataset.classObserverAttached = 'true';
+        }
 	// ──────────────────────────────────────────────────────────────────────
 	// 0. Determine current option state *up‑front*
 	//    (We need this before any early‑exit based on buttonsInitialised.)
@@ -268,20 +268,20 @@ function setupScrollerButtons(scroller) {
 		autoScrollInterval = null;
 	}
 
-	function observeVisibility() {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting && !hasStarted) {
-						startAutoScroll();
-						observer.disconnect();
-					}
-				});
-			},
-			{ threshold: 0.3 }
-		);
-		observer.observe(scroller);
-	}
+        function observeVisibility() {
+                const observer = new window.IntersectionObserver(
+                        (entries) => {
+                                entries.forEach((entry) => {
+                                        if (entry.isIntersecting && !hasStarted) {
+                                                startAutoScroll();
+                                                observer.disconnect();
+                                        }
+                                });
+                        },
+                        { threshold: 0.3 }
+                );
+                observer.observe(scroller);
+        }
 
 	if (scroller.classList.contains('horizontal-scroller-auto')) {
 		if (scroller.classList.contains('scroller-pause-on-hover')) {
@@ -293,10 +293,6 @@ function setupScrollerButtons(scroller) {
 			});
 		}
 		observeVisibility();
-	}
-
-	if (!hasNav && !showPause) {
-		return;
 	}
 
 	const controlContainer = document.createElement('div');
@@ -400,10 +396,10 @@ function buildThresholdList() {
 }
 
 function setupStatusObserver(scroller) {
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				const item = entry.target;
+        const observer = new window.IntersectionObserver(
+                (entries) => {
+                        entries.forEach((entry) => {
+                                const item = entry.target;
 				const prev = parseFloat(item.dataset.prevRatio || 0);
 				const curr = entry.intersectionRatio;
 
@@ -453,7 +449,7 @@ function initScroller(scroller) {
 /**
  * Remove any clones & reset state on a scroller that was once
  * loop-initialized but no longer has the loop class.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function teardownInfiniteLoop(scroller) {
 	if (scroller.dataset.loopInitialised !== 'true') {
@@ -464,11 +460,8 @@ function teardownInfiniteLoop(scroller) {
 		.forEach((c) => {
 			try {
 				c.remove();
-			} catch (e) {
-				console.warn(
-					'Couldn’t remove clone – it may already be gone:',
-					e
-				);
+			} catch {
+				// Ignore removal errors.
 			}
 		});
 	scroller.scrollLeft = 0;
@@ -480,18 +473,18 @@ function teardownInfiniteLoop(scroller) {
  * horizontal-scroller-loop class on the given scroller element.
  * When the class is added, we set up infinite looping.
  * When the class is removed, we tear down the infinite loop.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function watchLoopToggle(scroller) {
 	if (scroller.dataset.loopObserverAttached) {
 		return;
 	}
-	new MutationObserver(() => {
-		if (!scroller.classList.contains('horizontal-scroller-loop')) {
-			teardownInfiniteLoop(scroller);
-		} else {
-			setupInfiniteLoop(scroller);
-		}
+        new window.MutationObserver(() => {
+                if (!scroller.classList.contains('horizontal-scroller-loop')) {
+                        teardownInfiniteLoop(scroller);
+                } else {
+                        setupInfiniteLoop(scroller);
+                }
 	}).observe(scroller, {
 		attributes: true,
 		attributeFilter: ['class'],
@@ -503,16 +496,16 @@ function watchLoopToggle(scroller) {
  * Whenever *real* children (columns) are added/removed,
  * tear down & rebuild the clones.  Ignore any mutations that
  * involve only cloned‐slides.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function watchChildrenForLoop(scroller) {
 	if (scroller._childObserverAttached) {
 		return;
 	}
-	const mo = new MutationObserver((mutations) => {
-		// do any of these mutations add or remove a non‐clone?
-		const realChange = mutations.some((m) => {
-			return (
+        const mo = new window.MutationObserver((mutations) => {
+                // do any of these mutations add or remove a non‐clone?
+                const realChange = mutations.some((m) => {
+                        return (
 				Array.from(m.addedNodes).some(
 					(n) =>
 						n.nodeType === 1 &&
@@ -564,7 +557,7 @@ function initInfiniteLoops() {
 
 /**
  * Initialise one scroller (buttons, status, infinite loop).
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function initOneScroller(scroller) {
 	initScroller(scroller);
@@ -575,11 +568,11 @@ function initOneScroller(scroller) {
 
 /**
  * Schedule everything (watchers + first init) at the right time.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 /**
  * Schedule everything (watchers + first init) at the right time.
- * @param scroller
+ * @param {HTMLElement} scroller
  */
 function scheduleScrollerInit(scroller) {
 	watchLoopToggle(scroller);
@@ -615,11 +608,11 @@ function scheduleScrollerInit(scroller) {
 				}
 			});
 		} else {
-			// Fallback to MutationObserver if wp.data is not available
-			const obs = new MutationObserver(() => {
-				if (
-					!didInit &&
-					scroller.querySelectorAll('.wp-block-post').length
+                        // Fallback to MutationObserver if wp.data is not available
+                        const obs = new window.MutationObserver(() => {
+                                if (
+                                        !didInit &&
+                                        scroller.querySelectorAll('.wp-block-post').length
 				) {
 					didInit = true;
 					obs.disconnect();
@@ -659,10 +652,10 @@ window.addEventListener('load', initScrollers);
 
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
-	const bodyObserver = new MutationObserver((records) => {
-		for (const rec of records) {
-			for (const node of rec.addedNodes) {
-				if (
+        const bodyObserver = new window.MutationObserver((records) => {
+                for (const rec of records) {
+                        for (const node of rec.addedNodes) {
+                                if (
 					node.nodeType === 1 &&
 					node.classList.contains('is-style-horizontal-scroll') &&
 					!node.dataset._scrollerInitQueued
