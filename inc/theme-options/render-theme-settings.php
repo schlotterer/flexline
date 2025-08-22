@@ -16,73 +16,73 @@
  * @return void
  */
 function flexline_render_settings_tab() {
-    ?>
-    <form method="post" action="options.php">
-        <?php settings_fields( 'flexline_theme_options_group' ); ?>
-        <?php do_settings_sections( 'flexline_theme_options_group' ); ?>
-        <h2>Menu Settings</h2>
-        <hr />
-        <table class="form-table">
-            <tr valign="top">
-                <th scope="row"><strong>Use menu icon at all breakpoints</strong></th>
-                <td><input type="checkbox" name="flexline_use_menu_icon" value="1" <?php checked(1, get_option('flexline_use_menu_icon'), true); ?> /></td>
-            </tr>
-            <tr valign="top">
-                <th scope="row"><strong>Hide search/menu at tablet</strong></th>
-                <td><input type="checkbox" name="flexline_hide_search_tablet" value="1" <?php checked(1, get_option('flexline_hide_search_tablet'), true); ?> /></td>
-            </tr>
-            <tr valign="top">
-                <th scope="row"><strong>Hide search/menu at desktop</strong></th>
-                <td><input type="checkbox" name="flexline_hide_search_desktop" value="1" <?php checked(1, get_option('flexline_hide_search_desktop'), true); ?> /></td>
-            </tr>
-            <tr valign="top">
-                <th scope="row"><strong>Use Headroom</strong></th>
-                <td><input type="checkbox" name="flexline_show_menu_on_scroll_up" value="1" <?php checked(1, get_option('flexline_show_menu_on_scroll_up', 0), true); ?> /></td>
-            </tr>
-            <tr valign="top">
-                <th scope="row"><strong>Headroom - always show menu. (requires Headroom)</strong></th>
-                <td><input type="checkbox" name="flexline_show_menu_all_the_time" value="1" <?php checked(1, get_option('flexline_show_menu_all_the_time', 0), true); ?> /></td>
-            </tr>
-        </table>
-        
-        <h2>Fallback Settings</h2>
-        <hr />
-        <table class="form-table">
-            <tr valign="top">
-                <th scope="row"><strong>Feature image fallback</strong>
-                    <p>This image will be used as a fallback if there is no featured image for a post or page. It will be displayed on the post or page's featured image area.</p>
-                </th>
-                <td>
-                    <?php if (get_option('flexline_feature_fallback')) : ?>
-                        <a href="#" class="button" style="margin:10px 0;" id="remove-fallback-image">Remove Image</a>
-                    <?php endif; ?>
-                    <img id="feature-fallback-image" src="<?php echo esc_url( get_option('flexline_feature_fallback') ); ?>" style="max-width: 100px; display: block; margin-bottom: 10px;">
-                    <input type="hidden" name="flexline_feature_fallback" id="feature-fallback-input" value="<?php echo esc_url( get_option('flexline_feature_fallback') ); ?>">
-                    <input type="button" class="button-primary" value="Upload Image" id="upload-button" />
-                </td>
-            </tr>
-        </table>
-        <?php
-        if ( ! function_exists( 'is_plugin_active' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/plugin.php';
-        }
-        if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) && ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
-            echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display the theme docs on the front end.</p>';
-        }
-        ?>
-        <script>
-            jQuery(document).ready(function($) {
-                $('#remove-fallback-image').click(function(e) {
-                    e.preventDefault();
-                    $('#feature-fallback-image').attr('src', '');
-                    $('#feature-fallback-input').val('');
-                });
-            });
-        </script>
-        
-        <?php submit_button(); ?>
-    </form>
-    <?php
+	?>
+	<form method="post" action="options.php">
+		<?php settings_fields( 'flexline_theme_options_group' ); ?>
+		<?php do_settings_sections( 'flexline_theme_options_group' ); ?>
+		<h2>Menu Settings</h2>
+		<hr />
+		<table class="form-table">
+			<tr valign="top">
+				<th scope="row"><strong>Use menu icon at all breakpoints</strong></th>
+				<td><input type="checkbox" name="flexline_use_menu_icon" value="1" <?php checked( 1, get_option( 'flexline_use_menu_icon' ), true ); ?> /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><strong>Hide search/menu at tablet</strong></th>
+				<td><input type="checkbox" name="flexline_hide_search_tablet" value="1" <?php checked( 1, get_option( 'flexline_hide_search_tablet' ), true ); ?> /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><strong>Hide search/menu at desktop</strong></th>
+				<td><input type="checkbox" name="flexline_hide_search_desktop" value="1" <?php checked( 1, get_option( 'flexline_hide_search_desktop' ), true ); ?> /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><strong>Use Headroom</strong></th>
+				<td><input type="checkbox" name="flexline_show_menu_on_scroll_up" value="1" <?php checked( 1, get_option( 'flexline_show_menu_on_scroll_up', 0 ), true ); ?> /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><strong>Headroom - always show menu. (requires Headroom)</strong></th>
+				<td><input type="checkbox" name="flexline_show_menu_all_the_time" value="1" <?php checked( 1, get_option( 'flexline_show_menu_all_the_time', 0 ), true ); ?> /></td>
+			</tr>
+		</table>
+		
+		<h2>Fallback Settings</h2>
+		<hr />
+		<table class="form-table">
+			<tr valign="top">
+				<th scope="row"><strong>Feature image fallback</strong>
+					<p>This image will be used as a fallback if there is no featured image for a post or page. It will be displayed on the post or page's featured image area.</p>
+				</th>
+				<td>
+					<?php if ( get_option( 'flexline_feature_fallback' ) ) : ?>
+						<a href="#" class="button" style="margin:10px 0;" id="remove-fallback-image">Remove Image</a>
+					<?php endif; ?>
+					<img id="feature-fallback-image" src="<?php echo esc_url( get_option( 'flexline_feature_fallback' ) ); ?>" style="max-width: 100px; display: block; margin-bottom: 10px;">
+					<input type="hidden" name="flexline_feature_fallback" id="feature-fallback-input" value="<?php echo esc_url( get_option( 'flexline_feature_fallback' ) ); ?>">
+					<input type="button" class="button-primary" value="Upload Image" id="upload-button" />
+				</td>
+			</tr>
+		</table>
+		<?php
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) && ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
+			echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display the theme docs on the front end.</p>';
+		}
+		?>
+		<script>
+			jQuery(document).ready(function($) {
+				$('#remove-fallback-image').click(function(e) {
+					e.preventDefault();
+					$('#feature-fallback-image').attr('src', '');
+					$('#feature-fallback-input').val('');
+				});
+			});
+		</script>
+		
+		<?php submit_button(); ?>
+	</form>
+	<?php
 }
 
 
