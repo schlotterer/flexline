@@ -98,6 +98,13 @@ If you wish to manually lint your files prior to committing, you can use the fol
 
 These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.
 
+## Block Utility Functions
+
+Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
+
+- `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
+- `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
+
 ## FlexLine Utilities Plugin
 
 The optional **FlexLine Utilities Plugin** adds helpful shortcodes and tools that extend the theme. After installing the plugin you can use utilities such as:
