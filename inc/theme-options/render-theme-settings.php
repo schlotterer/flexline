@@ -62,9 +62,14 @@ function flexline_render_settings_tab() {
                 </td>
             </tr>
         </table>
-        <p class="notice notice-info">
-            Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.
-        </p>
+        <?php
+        if ( ! function_exists( 'is_plugin_active' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+        if ( ! is_plugin_active( 'flexline-utilities/flexline-utilities.php' ) || ! is_plugin_active( 'web4sl/web4sl.php' ) ) {
+            echo '<p class="notice notice-info">Download the <a href="https://github.com/schlotterer/flexline-utilities/archive/refs/heads/main.zip">FlexLine Utilities plugin</a> for extra helpers and shortcodes like <code>[flexline_theme_docs]</code> to display these docs on the front end.</p>';
+        }
+        ?>
         <script>
             jQuery(document).ready(function($) {
                 $('#remove-fallback-image').click(function(e) {
