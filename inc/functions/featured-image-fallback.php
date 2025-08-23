@@ -1,6 +1,6 @@
 <?php
 /**
- * Return Substring from between two strings.
+ * Provides a fallback image URL when no featured image is set.
  *
  * @package flexline
  */
