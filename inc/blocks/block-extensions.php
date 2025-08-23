@@ -179,25 +179,37 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 	}
 
-	if ( 'core/columns' === $block['blockName'] ) {
+        if ( 'core/columns' === $block['blockName'] ) {
 
-		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
-			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
-			$data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
-			$search_string                 = '>';
-			$replace_string                = ' ' . $data_scroll_interval . '>';
-			$block_content                 = str_replace_first( $search_string, $replace_string, $block_content );
-		}
+                if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+                        $transition_type                = isset( $block['attrs']['transitionType'] ) ? $block['attrs']['transitionType'] : '';
+                        $block['attrs']['scrollAuto']   = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
+                        $container_height               = isset( $block['attrs']['containerHeight'] ) ? $block['attrs']['containerHeight'] : '';
 
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
-			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
-			$data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
-			$search_string                        = '>';
-			$replace_string                       = ' ' . $data_scroll_interval . '>';
-			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
-		}
-	}
+                        if ( 'fade' === $transition_type ) {
+                                $data_attributes = 'data-transition-type="fade"';
+
+                                if ( $container_height ) {
+                                        $data_attributes .= ' data-container-height="' . esc_attr( $container_height ) . '"';
+                                        $block_content   = flexline_merge_inline_style( $block_content, 'height:' . esc_attr( $container_height ) . ';' );
+                                }
+
+                                $block_content = str_replace_first( '>', ' ' . $data_attributes . '>', $block_content );
+                        } else {
+                                if ( $block['attrs']['scrollAuto'] ) {
+                                        $block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
+                                        $data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
+                                        $block_content                 = str_replace_first( '>', ' ' . $data_scroll_interval . '>', $block_content );
+                                }
+
+                                if ( isset( $block['attrs']['transitionDuration'] ) ) {
+                                        $block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
+                                        $data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
+                                        $block_content                        = str_replace_first( '>', ' ' . $data_scroll_interval . '>', $block_content );
+                                }
+                        }
+                }
+        }
 
 	// **Add Unique Class and Styles for Content Shift**.
 	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
