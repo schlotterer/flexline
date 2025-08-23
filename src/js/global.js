@@ -588,6 +588,31 @@ function watchChildrenForLoop(scroller) {
 }
 
 /**
+ * Watch for toggling of the horizontal-scroller-fade class and
+ * activate the first slide when the class is added.
+ * @param {HTMLElement} scroller
+ */
+function watchFadeToggle(scroller) {
+	if (scroller.dataset.fadeObserverAttached) {
+		return;
+	}
+	let hasFade = scroller.classList.contains('horizontal-scroller-fade');
+	new window.MutationObserver(() => {
+		const nowHasFade = scroller.classList.contains(
+			'horizontal-scroller-fade'
+		);
+		if (nowHasFade && !hasFade) {
+			fadeToIndex(scroller, 0);
+		}
+		hasFade = nowHasFade;
+	}).observe(scroller, {
+		attributes: true,
+		attributeFilter: ['class'],
+	});
+	scroller.dataset.fadeObserverAttached = 'true';
+}
+
+/**
  * Rebuild all loops: first tear down any stale ones,
  * then re-init the ones that actually still have the class.
  */
@@ -636,6 +661,7 @@ function initOneScroller(scroller) {
 function scheduleScrollerInit(scroller) {
 	watchLoopToggle(scroller);
 	watchChildrenForLoop(scroller);
+	watchFadeToggle(scroller);
 
 	if (
 		isBlockEditor() &&
