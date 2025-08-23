@@ -729,29 +729,29 @@ function scheduleScrollerInit(scroller) {
 	watchChildrenForLoop(scroller);
 	watchFadeToggle(scroller);
 
-        if (
-                isBlockEditor() &&
-                scroller.classList.contains('wp-block-post-template')
-        ) {
-                // Initial check for posts
-                if (scroller.querySelectorAll('.wp-block-post').length) {
-                        initOneScroller(scroller);
-                        return;
-                }
+	if (
+		isBlockEditor() &&
+		scroller.classList.contains('wp-block-post-template')
+	) {
+		// Initial check for posts
+		if (scroller.querySelectorAll('.wp-block-post').length) {
+			initOneScroller(scroller);
+			return;
+		}
 
-                // Set a flag to track if we've initialized
-                let didInit = false;
-                let unsubscribe;
-                let obs;
+		// Set a flag to track if we've initialized
+		let didInit = false;
+		let unsubscribe;
+		let obs;
 
-                // Use wp.data to check for loaded posts
-                if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
-                        unsubscribe = wp.data.subscribe(() => {
-                                // Skip if already initialized
-                                if (didInit) {
-                                        unsubscribe();
-                                        return;
-                                }
+		// Use wp.data to check for loaded posts
+		if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
+			unsubscribe = wp.data.subscribe(() => {
+				// Skip if already initialized
+				if (didInit) {
+					unsubscribe();
+					return;
+				}
 
 				// Check if posts are loaded in the scroller
 				if (scroller.querySelectorAll('.wp-block-post').length) {
@@ -762,7 +762,7 @@ function scheduleScrollerInit(scroller) {
 			});
 		} else {
 			// Fallback to MutationObserver if wp.data is not available
-			const obs = new window.MutationObserver(() => {
+			obs = new window.MutationObserver(() => {
 				if (
 					!didInit &&
 					scroller.querySelectorAll('.wp-block-post').length
@@ -775,23 +775,23 @@ function scheduleScrollerInit(scroller) {
 			obs.observe(scroller, { childList: true, subtree: true });
 		}
 
-                // Fallback timeout as a last resort
-                setTimeout(() => {
-                        if (!didInit) {
-                                didInit = true;
-                                if (unsubscribe) {
-                                        unsubscribe();
-                                }
-                                if (obs) {
-                                        obs.disconnect();
-                                }
-                                initOneScroller(scroller);
-                        }
-                }, 3000);
-        } else {
-                // For non-block editor contexts, initialize immediately
-                initOneScroller(scroller);
-        }
+		// Fallback timeout as a last resort
+		setTimeout(() => {
+			if (!didInit) {
+				didInit = true;
+				if (unsubscribe) {
+					unsubscribe();
+				}
+				if (obs) {
+					obs.disconnect();
+				}
+				initOneScroller(scroller);
+			}
+		}, 3000);
+	} else {
+		// For non-block editor contexts, initialize immediately
+		initOneScroller(scroller);
+	}
 }
 
 /**
