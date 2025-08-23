@@ -113,6 +113,10 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	scrollerHeight: {
+		type: 'string',
+		default: '',
+	},
 };
 
 // Group - Define custom attributes

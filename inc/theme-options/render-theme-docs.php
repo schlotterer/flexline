@@ -142,12 +142,13 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							'<li>Hide Pause Button</li>' .
 							'<li>Scroll interval in milliseconds</li>' .
 							'<li>Hide Scrollbar</li>' .
-							'<li>Pause on Hover</li>' .
-							'<li>Button Positions / Colors</li>' .
-							'</ul>',
-					),
-					array(
-						'name'        => 'Stack at Tablet',
+                                                        '<li>Pause on Hover</li>' .
+                                                        '<li>Button Positions / Colors</li>' .
+                                                        '<li>Scroller Height</li>' .
+                                                        '</ul>',
+                                        ),
+                                        array(
+                                                'name'        => 'Stack at Tablet',
 						'description' => 'Switches from horizontal columns to a vertical stack at medium screens.',
 					),
 					array(
@@ -169,12 +170,13 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							'<li>Hide Pause Button</li>' .
 							'<li>Scroll interval in milliseconds</li>' .
 							'<li>Hide Scrollbar</li>' .
-							'<li>Pause on Hover</li>' .
-							'<li>Button Positions / Colors</li>' .
-							'</ul>',
-					),
-				),
-			),
+                                                        '<li>Pause on Hover</li>' .
+                                                        '<li>Button Positions / Colors</li>' .
+                                                        '<li>Scroller Height</li>' .
+                                                        '</ul>',
+                                        ),
+                                ),
+                        ),
 		);
 
 		// Merge registered block styles.

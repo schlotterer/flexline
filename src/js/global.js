@@ -217,6 +217,56 @@ function removeWrapper(scroller) {
 	}
 }
 
+function setScrollerHeight(scroller) {
+	const custom = scroller.getAttribute('data-scroller-height');
+	if (custom) {
+		scroller.style.height = custom;
+		return;
+	}
+	let max = 0;
+	Array.from(scroller.children).forEach((child) => {
+		max = Math.max(max, child.offsetHeight);
+	});
+	scroller.style.height = max ? `${max}px` : '100svh';
+}
+
+function observeScrollerHeight(scroller) {
+	if (scroller.dataset.heightObserverAttached) {
+		return;
+	}
+	setScrollerHeight(scroller);
+	const ro =
+		typeof window.ResizeObserver !== 'undefined'
+			? new window.ResizeObserver(() => {
+					if (!scroller.getAttribute('data-scroller-height')) {
+						setScrollerHeight(scroller);
+					}
+				})
+			: null;
+	if (ro) {
+		Array.from(scroller.children).forEach((child) => ro.observe(child));
+	}
+	const mo = new window.MutationObserver(() => {
+		if (ro) {
+			Array.from(scroller.children).forEach((child) => ro.observe(child));
+		}
+		if (!scroller.getAttribute('data-scroller-height')) {
+			setScrollerHeight(scroller);
+		} else {
+			scroller.style.height = scroller.getAttribute(
+				'data-scroller-height'
+			);
+		}
+	});
+	mo.observe(scroller, {
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeFilter: ['data-scroller-height'],
+	});
+	scroller.dataset.heightObserverAttached = 'true';
+}
+
 //------------------------------------------------------------------
 // 4.  Nav / pause buttons.
 //------------------------------------------------------------------
@@ -493,6 +543,7 @@ function initScroller(scroller) {
 	if (!isFadeTransition(scroller)) {
 		setupStatusObserver(scroller);
 	}
+	observeScrollerHeight(scroller);
 }
 
 /**
