@@ -169,7 +169,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	}
 	
-	if ( 'core/columns' === $block['blockName'] ) {
+       if ( 'core/columns' === $block['blockName'] || 'core/post-template' === $block['blockName'] ) {
 
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
