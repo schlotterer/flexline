@@ -236,7 +236,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['slideVertical'] ) ) {
 				$slide_y = $block['attrs']['slideVertical'];
 		}
-               // Build the CSS.
+    	// Build the CSS.
 		$styles  = ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
 		$styles .= ' --flexline-shift-right: ' . esc_attr( $shift_right ) . ';';
 		$styles .= ' --flexline-shift-up: ' . esc_attr( $shift_up ) . ';';
