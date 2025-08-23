@@ -175,6 +175,12 @@ body,
                                         ease-in-out;
                         }
 
+                        &:not([data-active-index]) > :first-child {
+                                opacity: 1;
+                                position: relative;
+                                pointer-events: auto;
+                        }
+
                         >*.is-active {
                                 opacity: 1;
                                 position: relative;
