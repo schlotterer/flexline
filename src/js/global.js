@@ -1,5 +1,7 @@
 /* global requestAnimationFrame */
 
+import { initFadeScroller } from './fade-scroller';
+
 // Horizontal Scroll block behaviour – front‑end + block‑editor compatible
 
 // Helper ──────────────────────────────────────────────────────────────────────
@@ -643,6 +645,10 @@ function initScrollers() {
 	document
 		.querySelectorAll('.is-style-horizontal-scroll')
 		.forEach(scheduleScrollerInit);
+
+	document
+		.querySelectorAll('[data-flexline-transition="fade"]')
+		.forEach(initFadeScroller);
 	initInfiniteLoops();
 }
 
@@ -655,13 +661,34 @@ if (isBlockEditor()) {
 	const bodyObserver = new window.MutationObserver((records) => {
 		for (const rec of records) {
 			for (const node of rec.addedNodes) {
+				if (node.nodeType !== 1) {
+					continue;
+				}
+
 				if (
-					node.nodeType === 1 &&
 					node.classList.contains('is-style-horizontal-scroll') &&
 					!node.dataset._scrollerInitQueued
 				) {
 					node.dataset._scrollerInitQueued = 'true';
 					scheduleScrollerInit(node);
+				}
+
+				if (node.matches?.('[data-flexline-transition="fade"]')) {
+					initFadeScroller(node);
+				}
+
+				if (node.querySelectorAll) {
+					node.querySelectorAll(
+						'.is-style-horizontal-scroll'
+					).forEach((el) => {
+						if (!el.dataset._scrollerInitQueued) {
+							el.dataset._scrollerInitQueued = 'true';
+							scheduleScrollerInit(el);
+						}
+					});
+					node.querySelectorAll(
+						'[data-flexline-transition="fade"]'
+					).forEach(initFadeScroller);
 				}
 			}
 		}
