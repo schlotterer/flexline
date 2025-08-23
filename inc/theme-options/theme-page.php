@@ -2,7 +2,7 @@
 /**
  * Theme options page.
  *
- * @package FlexLine
+ * @package flexline
  */
 
 require_once __DIR__ . '/render-theme-docs.php';
