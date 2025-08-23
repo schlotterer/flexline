@@ -1,3 +1,4 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 /* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -6,6 +7,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	RangeControl,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 import { getVisibilityControls } from '../utils';
 
@@ -236,6 +238,25 @@ export const controls = (BlockEdit, props) => (
 							step={500}
 						/>
 					)}
+				{props.attributes.enableHorizontalScroller && (
+					<UnitControl
+						label="Scroller Height"
+						value={props.attributes.scrollerHeight}
+						onChange={(value) =>
+							props.setAttributes({
+								scrollerHeight: value,
+							})
+						}
+						units={[
+							{ value: 'px', label: 'px' },
+							{ value: '%', label: '%' },
+							{ value: 'em', label: 'em' },
+							{ value: 'rem', label: 'rem' },
+							{ value: 'vw', label: 'vw' },
+							{ value: 'vh', label: 'vh' },
+						]}
+					/>
+				)}
 			</PanelBody>
 			<PanelBody title="FlexLine Visibility">
 				<ToggleControl
