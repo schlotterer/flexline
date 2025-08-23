@@ -1,0 +1,25 @@
+body,
+.editor-styles-wrapper {
+	.is-style-fade-slider {
+		position: relative;
+		overflow: hidden;
+
+		> * {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+	}
+
+	.fade-media-fill {
+		object-fit: cover;
+	}
+
+	.fade-media-fit {
+		object-fit: contain;
+	}
+}
