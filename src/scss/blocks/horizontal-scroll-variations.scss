@@ -5,84 +5,73 @@ body,
 
 	@include screen($tablet-down) {
 
-		.is-style-horizontal-scroll-at-mobile:not(ul) {
+               .is-style-horizontal-scroll-at-mobile:not(ul) {
 
-			>ul {
-				position: relative;
-				overflow-y: hidden;
-				overflow-x: auto;
-				-ms-overflow-style: none;
-				/* IE and Edge */
-				/* Firefox */
-				-webkit-overflow-scrolling: touch;
-				/* Smooth scrolling on touch devices */
-				white-space: nowrap;
-				/* Ensure items are laid out in a single line */
-				margin: 0 30px 0 0;
-				padding: 0;
-				scrollbar-width: thin;
-				/* "auto" or "thin" */
-				scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
-				/* thumb and track color */
+                       >ul {
+                               position: relative;
+                               overflow-y: hidden;
+                               overflow-x: auto;
+                               -ms-overflow-style: none;
+                               /* IE and Edge */
+                               /* Firefox */
+                               -webkit-overflow-scrolling: touch;
+                               /* Smooth scrolling on touch devices */
+                               display: flex;
+                               justify-content: flex-start;
+                               white-space: nowrap;
+                               margin: 0 35px 0 25px;
+                               padding: 0;
+                               scrollbar-width: thin;
+                               /* "auto" or "thin" */
+                               scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+                               /* thumb and track color */
 
-				>* {
-					flex: 0 0 auto;
-					text-wrap: nowrap;
-					white-space: nowrap;
+                               >* {
+                                       flex: 0 0 auto;
+                                       text-wrap: nowrap;
+                                       white-space: nowrap;
 
-					&:first-child {
-						margin-left: 0;
-					}
+                                       &:first-child {
+                                               margin-left: 0;
+                                       }
 
-					&:last-child {
-						margin-right: 0;
-					}
-				}
+                                       &:last-child {
+                                               margin-right: 0;
+                                       }
+                               }
 
-				&::-webkit-scrollbar {
-					height: 3px;
-					/* Height of the scrollbar */
-					background-color: rgba(0, 0, 0, 0.3);
-					/* Color of the scrollbar track */
-				}
+                               &::-webkit-scrollbar {
+                                       height: 3px;
+                                       /* Height of the scrollbar */
+                                       background-color: rgba(0, 0, 0, 0.3);
+                                       /* Color of the scrollbar track */
+                               }
 
-				&::-webkit-scrollbar-thumb {
-					background-color: transparent;
-					/* Color of the scroll thumb */
-					border-radius: 2px;
-					/* Roundness of the scroll thumb */
-				}
-			}
-		}
+                               &::-webkit-scrollbar-thumb {
+                                       background-color: transparent;
+                                       /* Color of the scroll thumb */
+                                       border-radius: 2px;
+                                       /* Roundness of the scroll thumb */
+                               }
+                       }
 
-		.is-style-horizontal-scroll-at-mobile:not(ul) {
-
-			&::after {
-				content: "";
-				display: inline-flex;
-				position: absolute;
-				left: calc(100% - 35px);
-				color: inherit;
-				font-size: 30px;
-				top: 50%;
-				transform: translate(0, -50%);
-				opacity: 0.5;
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-				height: 50px;
-				width: 25px;
-			}
-
-			>ul {
-				//padding-bottom: 4px;
-				display: flex;
-				justify-content: flex-start;
-				margin: 0 35px 0 25px;
-				white-space: nowrap;
-
-			}
-		}
+                       &::after {
+                               content: "";
+                               display: inline-flex;
+                               position: absolute;
+                               left: calc(100% - 35px);
+                               color: inherit;
+                               font-size: 30px;
+                               top: 50%;
+                               transform: translate(0, -50%);
+                               opacity: 0.5;
+                               background-size: contain;
+                               background-position: center;
+                               background-repeat: no-repeat;
+                               height: 50px;
+                               width: 25px;
+                       }
+               }
 	}
 
 	.is-style-horizontal-scroll {
@@ -243,59 +232,59 @@ body,
 	}
 
 	/* Horizontal Alignment */
-	.horizontal-scroller-buttons-horizontal-left {
-		&+.horizontal-scroller-nav-buttons {
-			left: 0;
-			right: auto;
-			margin-left: 10px;
-		}
-	}
+.horizontal-scroller-buttons-horizontal-left {
+                + .horizontal-scroller-nav-buttons {
+                        left: 0;
+                        right: auto;
+                        margin-left: 10px;
+                }
+        }
 
-	.horizontal-scroller-buttons-horizontal-center {
-		&+.horizontal-scroller-nav-buttons {
-			left: 50%;
-			transform: translateX(-50%);
-		}
-	}
+.horizontal-scroller-buttons-horizontal-center {
+                + .horizontal-scroller-nav-buttons {
+                        left: 50%;
+                        transform: translateX(-50%);
+                }
+        }
 
-	.horizontal-scroller-buttons-horizontal-right {
-		&+.horizontal-scroller-nav-buttons {
-			left: auto;
-			right: 0;
-			margin-right: 10px;
-		}
-	}
+.horizontal-scroller-buttons-horizontal-right {
+                + .horizontal-scroller-nav-buttons {
+                        left: auto;
+                        right: 0;
+                        margin-right: 10px;
+                }
+        }
 
 	/* Vertical Alignment Outside (default) */
-	.horizontal-scroller-buttons-vertical-bottom {
-		&+.horizontal-scroller-nav-buttons {
-			bottom: -40px;
-		}
+.horizontal-scroller-buttons-vertical-bottom {
+                + .horizontal-scroller-nav-buttons {
+                        bottom: -40px;
+                }
 
-	}
+        }
 
-	.horizontal-scroller-buttons-vertical-top {
-		&+.horizontal-scroller-nav-buttons {
-			top: -40px;
-		}
-	}
+.horizontal-scroller-buttons-vertical-top {
+                + .horizontal-scroller-nav-buttons {
+                        top: -40px;
+                }
+        }
 
 	/* When Positioned Over (inside the container) */
-	.horizontal-scroller-buttons-over {
-		&.horizontal-scroller-buttons-vertical-bottom {
-			&+.horizontal-scroller-nav-buttons {
-				bottom: 10px;
-			}
+.horizontal-scroller-buttons-over {
+                &.horizontal-scroller-buttons-vertical-bottom {
+                        + .horizontal-scroller-nav-buttons {
+                                bottom: 10px;
+                        }
 
-		}
+                }
 
-		&.horizontal-scroller-buttons-vertical-top {
-			&+.horizontal-scroller-nav-buttons {
-				top: 10px;
-			}
+                &.horizontal-scroller-buttons-vertical-top {
+                        + .horizontal-scroller-nav-buttons {
+                                top: 10px;
+                        }
 
-		}
-	}
+                }
+        }
 
 
 	/* Scroller Button Backgrounds */
