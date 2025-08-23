@@ -1,0 +1,24 @@
+[data-flexline-transition="fade"] {
+    position: relative;
+    height: var(--fl-height, auto);
+
+    > * {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: var(--fl-media-fit, cover);
+        opacity: 0;
+        z-index: 0;
+        transition: opacity var(--fl-duration, .5s) var(--fl-easing, ease);
+    }
+
+    > *:not([aria-hidden="true"]) {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    > *[aria-hidden="true"] {
+        visibility: hidden;
+    }
+}
