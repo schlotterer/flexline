@@ -97,19 +97,19 @@ export const customHorizontalScrollerAttributes = {
 		type: 'select',
 		default: 'none',
 	},
-        buttonsBoxShadow: {
-                type: 'boolean',
-                default: false,
-        },
-        scrollTransition: {
-                type: 'string',
-                default: 'slide',
-        },
-        transitionDuration: {
-                type: 'number',
-                default: 500,
-        },
-        pauseOnHover: {
+	buttonsBoxShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	scrollTransition: {
+		type: 'string',
+		default: 'slide',
+	},
+	transitionDuration: {
+		type: 'number',
+		default: 500,
+	},
+	pauseOnHover: {
 		type: 'boolean',
 		default: true,
 	},

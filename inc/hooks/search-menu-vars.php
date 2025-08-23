@@ -17,21 +17,21 @@ namespace FlexLine;
  * @return void
  */
 function flexline_customize_search_menu_js_settings() {
-        if ( ! wp_script_is( 'flexline-slidein', 'enqueued' ) ) {
-                return;
-        }
+	if ( ! wp_script_is( 'flexline-slidein', 'enqueued' ) ) {
+			return;
+	}
 
-        $settings = array(
-                'useMenuIconOnDesktop' => (bool) get_option( 'flexline_use_menu_icon', false ),
-                'hideSearchOnTablet'   => (bool) get_option( 'flexline_hide_search_tablet', false ),
-                'hideSearchOnDesktop'  => (bool) get_option( 'flexline_hide_search_desktop', false ),
-        );
+		$settings = array(
+			'useMenuIconOnDesktop' => (bool) get_option( 'flexline_use_menu_icon', false ),
+			'hideSearchOnTablet'   => (bool) get_option( 'flexline_hide_search_tablet', false ),
+			'hideSearchOnDesktop'  => (bool) get_option( 'flexline_hide_search_desktop', false ),
+		);
 
-        wp_add_inline_script(
-                'flexline-slidein',
-                'var FlexLineCustomizerSearchMenuSettings = ' . wp_json_encode( $settings ) . ';',
-                'before'
-        );
+		wp_add_inline_script(
+			'flexline-slidein',
+			'var FlexLineCustomizerSearchMenuSettings = ' . wp_json_encode( $settings ) . ';',
+			'before'
+		);
 }
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 20 );
