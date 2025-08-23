@@ -101,6 +101,10 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	scrollTransition: {
+		type: 'string',
+		default: 'slide',
+	},
 	transitionDuration: {
 		type: 'number',
 		default: 500,
@@ -108,6 +112,14 @@ export const customHorizontalScrollerAttributes = {
 	pauseOnHover: {
 		type: 'boolean',
 		default: true,
+	},
+	scrollerHeight: {
+		type: 'string',
+		default: '',
+	},
+	imageFit: {
+		type: 'string',
+		default: 'cover',
 	},
 };
 

@@ -7,15 +7,20 @@
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development webpack --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
+    "build": "mix --production",
     "prod": "npm run production",
-    "production": "mix --production",
+    "production": "npm run fix-php && npm run lint-style:fix && npm run lint-js:fix && npm run build",
+    "lint": "npm run lint-js && npm run lint-style && npm run lint-php",
     "lint-staged": "lint-staged",
     "lint-php": "vendor/bin/phpcs --standard=WordPress inc",
     "fix-php": "vendor/bin/phpcbf --standard=WordPress inc",
     "lint-js": "wp-scripts lint-js src/js",
+    "lint-js:fix": "wp-scripts lint-js src/js --fix",
     "lint-style": "wp-scripts lint-style src/scss",
+    "lint-style:fix": "wp-scripts lint-style src/scss --fix",
     "ci-lint-js": "wp-scripts lint-js src/js --max-warnings=0 .",
-    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0"
+    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Joel Schlotterer",
@@ -46,11 +51,6 @@
     "*.php": "vendor/bin/phpcbf --standard=WordPress",
     "*.js": "wp-scripts lint-js",
     "*.scss": "wp-scripts lint-style"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "browserslist": [
     "> 1%",
