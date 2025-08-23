@@ -2,12 +2,42 @@
 
 // Helper ──────────────────────────────────────────────────────────────────────
 function isBlockEditor() {
-	return (
-		typeof wp !== 'undefined' &&
-		wp.data &&
-		typeof wp.data.select === 'function' &&
-		wp.data.select('core/block-editor') !== undefined
-	);
+        return (
+                typeof wp !== 'undefined' &&
+                wp.data &&
+                typeof wp.data.select === 'function' &&
+                wp.data.select('core/block-editor') !== undefined
+        );
+}
+
+function isFadeTransition(scroller) {
+        return (
+                scroller.getAttribute('data-transition') === 'fade' ||
+                scroller.classList.contains('horizontal-scroller-fade')
+        );
+}
+
+function fadeToIndex(scroller, index) {
+        const items = Array.from(scroller.children);
+        const count = items.length;
+        if (!count) {
+                return;
+        }
+        const durationAttr = scroller.getAttribute('data-scroll-speed');
+        const duration = durationAttr ? parseInt(durationAttr, 10) : 600;
+        scroller.style.setProperty(
+                '--horizontal-scroll-fade-duration',
+                `${duration}ms`
+        );
+        index = Math.max(0, Math.min(index, count - 1));
+        const current = parseInt(scroller.dataset.activeIndex || '0', 10);
+        if (current === index) {
+                return;
+        }
+        items.forEach((item, i) => {
+                item.classList.toggle('is-active', i === index);
+        });
+        scroller.dataset.activeIndex = index;
 }
 
 //------------------------------------------------------------------
@@ -40,51 +70,68 @@ function smoothScrollTo(scroller, targetScrollLeft, duration) {
 // 2.  Next / Prev helpers.
 //------------------------------------------------------------------
 function scrollToNext(scroller) {
-	const epsilon = 5; // small tolerance
-	const durationAttr = scroller.getAttribute('data-scroll-speed');
-	const duration = durationAttr ? parseInt(durationAttr, 10) : 600;
+        if (isFadeTransition(scroller)) {
+                const items = Array.from(scroller.children);
+                const current = parseInt(scroller.dataset.activeIndex || '0', 10);
+                const next = current + 1 >= items.length ? 0 : current + 1;
+                fadeToIndex(scroller, next);
+                return;
+        }
+        const epsilon = 5; // small tolerance
+        const durationAttr = scroller.getAttribute('data-scroll-speed');
+        const duration = durationAttr ? parseInt(durationAttr, 10) : 600;
 
-	const current = scroller.scrollLeft;
-	let target = current;
+        const current = scroller.scrollLeft;
+        let target = current;
 
-	const items = Array.from(scroller.children);
-	for (const item of items) {
-		const itemStart = item.offsetLeft;
-		if (itemStart > current + epsilon) {
-			target = itemStart;
-			break;
-		}
-	}
-	smoothScrollTo(scroller, target, duration);
+        const items = Array.from(scroller.children);
+        for (const item of items) {
+                const itemStart = item.offsetLeft;
+                if (itemStart > current + epsilon) {
+                        target = itemStart;
+                        break;
+                }
+        }
+        smoothScrollTo(scroller, target, duration);
 }
 
 function scrollToPrev(scroller) {
-	const epsilon = 5;
-	const duration = parseInt(
-		scroller.getAttribute('data-scroll-speed') || '600',
-		10
-	);
-	const items = Array.from(scroller.children);
-	const current = scroller.scrollLeft;
+        if (isFadeTransition(scroller)) {
+                const items = Array.from(scroller.children);
+                const current = parseInt(scroller.dataset.activeIndex || '0', 10);
+                const prev = current - 1 < 0 ? items.length - 1 : current - 1;
+                fadeToIndex(scroller, prev);
+                return;
+        }
+        const epsilon = 5;
+        const duration = parseInt(
+                scroller.getAttribute('data-scroll-speed') || '600',
+                10
+        );
+        const items = Array.from(scroller.children);
+        const current = scroller.scrollLeft;
 
-	const prevOffsets = items
-		.map((item) => item.offsetLeft)
-		.filter((offset) => offset + epsilon < current);
+        const prevOffsets = items
+                .map((item) => item.offsetLeft)
+                .filter((offset) => offset + epsilon < current);
 
-	const target = prevOffsets.length
-		? Math.max(...prevOffsets)
-		: scroller.scrollWidth - scroller.offsetWidth;
+        const target = prevOffsets.length
+                ? Math.max(...prevOffsets)
+                : scroller.scrollWidth - scroller.offsetWidth;
 
-	smoothScrollTo(scroller, target, duration);
+        smoothScrollTo(scroller, target, duration);
 }
 
 //------------------------------------------------------------------
 // 3.  Infinite loop setup.
 //------------------------------------------------------------------
 function setupInfiniteLoop(scroller) {
-	if (scroller.dataset.loopInitialised === 'true') {
-		return;
-	}
+        if (isFadeTransition(scroller)) {
+                return;
+        }
+        if (scroller.dataset.loopInitialised === 'true') {
+                return;
+        }
 
 	if (!scroller.classList.contains('horizontal-scroller-loop')) {
 		return;
@@ -446,8 +493,10 @@ function initScroller(scroller) {
 		removeWrapper(scroller);
 	}
 
-	setupScrollerButtons(scroller); // may add / remove button UI
-	setupStatusObserver(scroller);
+       setupScrollerButtons(scroller); // may add / remove button UI
+       if (!isFadeTransition(scroller)) {
+               setupStatusObserver(scroller);
+       }
 }
 
 /**
@@ -483,20 +532,23 @@ function teardownInfiniteLoop(scroller) {
  * @param scroller
  */
 function watchLoopToggle(scroller) {
-	if (scroller.dataset.loopObserverAttached) {
-		return;
-	}
-	new MutationObserver(() => {
-		if (!scroller.classList.contains('horizontal-scroller-loop')) {
-			teardownInfiniteLoop(scroller);
-		} else {
-			setupInfiniteLoop(scroller);
-		}
-	}).observe(scroller, {
-		attributes: true,
-		attributeFilter: ['class'],
-	});
-	scroller.dataset.loopObserverAttached = 'true';
+        if (isFadeTransition(scroller)) {
+                return;
+        }
+        if (scroller.dataset.loopObserverAttached) {
+                return;
+        }
+        new MutationObserver(() => {
+                if (!scroller.classList.contains('horizontal-scroller-loop')) {
+                        teardownInfiniteLoop(scroller);
+                } else {
+                        setupInfiniteLoop(scroller);
+                }
+        }).observe(scroller, {
+                attributes: true,
+                attributeFilter: ['class'],
+        });
+        scroller.dataset.loopObserverAttached = 'true';
 }
 
 /**
@@ -506,11 +558,14 @@ function watchLoopToggle(scroller) {
  * @param scroller
  */
 function watchChildrenForLoop(scroller) {
-	if (scroller._childObserverAttached) {
-		return;
-	}
-	const mo = new MutationObserver((mutations) => {
-		// do any of these mutations add or remove a non‐clone?
+        if (isFadeTransition(scroller)) {
+                return;
+        }
+        if (scroller._childObserverAttached) {
+                return;
+        }
+        const mo = new MutationObserver((mutations) => {
+                // do any of these mutations add or remove a non‐clone?
 		const realChange = mutations.some((m) => {
 			return (
 				Array.from(m.addedNodes).some(
@@ -567,10 +622,14 @@ function initInfiniteLoops() {
  * @param scroller
  */
 function initOneScroller(scroller) {
-	initScroller(scroller);
-	if (scroller.classList.contains('horizontal-scroller-loop')) {
-		setupInfiniteLoop(scroller);
-	}
+        initScroller(scroller);
+        if (isFadeTransition(scroller)) {
+                fadeToIndex(scroller, 0);
+                return;
+        }
+        if (scroller.classList.contains('horizontal-scroller-loop')) {
+                setupInfiniteLoop(scroller);
+        }
 }
 
 /**

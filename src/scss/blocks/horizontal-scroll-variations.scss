@@ -162,16 +162,38 @@ body,
 			}
 		}
 
-		&.horizontal-scroller-loop {
-			gap: 0px;
+                &.horizontal-scroller-loop {
+                        gap: 0px;
 
-			.out-of-view {
-				visibility: hidden;
-				opacity: 0;
-			}
-		}
+                        .out-of-view {
+                                visibility: hidden;
+                                opacity: 0;
+                        }
+                }
 
-	}
+                &.horizontal-scroller-fade {
+                        position: relative;
+                        overflow: hidden;
+                        display: block !important;
+
+                        >* {
+                                opacity: 0;
+                                position: absolute;
+                                inset: 0;
+                                pointer-events: none;
+                                width: 100%;
+                                transition: opacity var(--horizontal-scroll-fade-duration, 600ms)
+                                        ease-in-out;
+                        }
+
+                        >*.is-active {
+                                opacity: 1;
+                                position: relative;
+                                pointer-events: auto;
+                        }
+                }
+
+        }
 
 	@include screen($mobile) {
 

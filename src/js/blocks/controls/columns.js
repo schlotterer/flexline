@@ -22,20 +22,35 @@ export const controls = (BlockEdit, props) => (
 						})
 					}
 				/>
-				{props.attributes.enableHorizontalScroller && (
-					<ToggleControl
-						label="Show Arrow Navigation"
-						checked={!!props.attributes.scrollNav}
-						onChange={(newValue) =>
-							props.setAttributes({ scrollNav: newValue })
-						}
-					/>
-				)}
-				{props.attributes.enableHorizontalScroller && (
-					<RangeControl
-						label="Scroll transition in Milliseconds"
-						value={props.attributes.transitionDuration}
-						onChange={(newInterval) =>
+                                {props.attributes.enableHorizontalScroller && (
+                                        <ToggleControl
+                                                label="Show Arrow Navigation"
+                                                checked={!!props.attributes.scrollNav}
+                                                onChange={(newValue) =>
+                                                        props.setAttributes({ scrollNav: newValue })
+                                                }
+                                        />
+                                )}
+                                {props.attributes.enableHorizontalScroller && (
+                                        <SelectControl
+                                                label="Transition Effect"
+                                                value={props.attributes.scrollTransition}
+                                                options={[
+                                                        { value: 'slide', label: 'Slide' },
+                                                        { value: 'fade', label: 'Fade' },
+                                                ]}
+                                                onChange={(value) =>
+                                                        props.setAttributes({
+                                                                scrollTransition: value,
+                                                        })
+                                                }
+                                        />
+                                )}
+                                {props.attributes.enableHorizontalScroller && (
+                                        <RangeControl
+                                                label="Scroll transition in Milliseconds"
+                                                value={props.attributes.transitionDuration}
+                                                onChange={(newInterval) =>
 							props.setAttributes({
 								transitionDuration: newInterval,
 							})
@@ -270,12 +285,13 @@ export const getClasses = (attributes) => {
 			'scroller-buttons-border-gray',
 			'scroller-buttons-border-primary',
 			'scroller-buttons-border-secondary',
-			'scroller-buttons-border-alternate',
-			'scroller-buttons-over',
-			'scroller-buttons-box-shadow',
-			'scroller-pause-on-hover'
-		);
-	}
+                        'scroller-buttons-border-alternate',
+                        'scroller-buttons-over',
+                        'scroller-buttons-box-shadow',
+                        'scroller-pause-on-hover',
+                        'horizontal-scroller-fade'
+                );
+        }
 	if (!attributes.scrollNav) {
 		removed.push('horizontal-scroller-navigation');
 	}
@@ -375,9 +391,12 @@ export const getClasses = (attributes) => {
 	if (!attributes.buttonsBoxShadow) {
 		removed.push('scroller-buttons-box-shadow');
 	}
-	if (!attributes.pauseOnHover) {
-		removed.push('scroller-pause-on-hover');
-	}
+        if (!attributes.pauseOnHover) {
+                removed.push('scroller-pause-on-hover');
+        }
+        if (attributes.scrollTransition !== 'fade') {
+                removed.push('horizontal-scroller-fade');
+        }
 
 	let added = '';
 	if (attributes.enableHorizontalScroller) {
@@ -431,10 +450,16 @@ export const getClasses = (attributes) => {
 	if (attributes.buttonsBoxShadow && attributes.enableHorizontalScroller) {
 		added += ' scroller-buttons-box-shadow';
 	}
-	if (attributes.stackAtTablet) {
-		added += ' flexline-stack-at-tablet';
-	}
-	return { added, removed };
+        if (attributes.stackAtTablet) {
+                added += ' flexline-stack-at-tablet';
+        }
+        if (
+                attributes.scrollTransition === 'fade' &&
+                attributes.enableHorizontalScroller
+        ) {
+                added += ' horizontal-scroller-fade';
+        }
+        return { added, removed };
 };
 
 export const useHooks = (props) => {
