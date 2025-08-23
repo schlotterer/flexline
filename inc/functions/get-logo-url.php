@@ -13,8 +13,8 @@ namespace FlexLine;
  * @return string The site logo URL or an empty string if none is found.
  */
 function get_site_logo_from_block() {
-	// Assuming the header template part is used and its slug is 'header'.
-	$header_template_part = get_block_template( 'theme_slug//header', 'wp_template_part' );
+       // Assuming the header template part is used and its slug is 'header'.
+       $header_template_part = get_block_template( wp_get_theme()->get_stylesheet() . '//header', 'wp_template_part' );
 
 	if ( $header_template_part && isset( $header_template_part->content ) ) {
 		$blocks = parse_blocks( $header_template_part->content );
