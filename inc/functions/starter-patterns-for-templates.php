@@ -7,8 +7,16 @@
  *
  * @package flexline
  */
+
 namespace FlexLine;
 
+/**
+ * Insert a starter pattern when a new post or page is created.
+ *
+ * @param string   $content Default content for the post.
+ * @param \WP_Post $post    Post object.
+ * @return string Starter pattern content or original content.
+ */
 function auto_insert_pattern_smart( $content, $post ) {
 	if ( ! empty( $content ) ) {
 		return $content;
@@ -18,7 +26,8 @@ function auto_insert_pattern_smart( $content, $post ) {
 	$template_file = get_page_template_slug( $post->ID );
 	if ( $template_file ) {
 		$template_slug = pathinfo( $template_file, PATHINFO_FILENAME ) . '-starter';
-		if ( $pattern = get_block_pattern_by_slug( $template_slug ) ) {
+		$pattern       = get_block_pattern_by_slug( $template_slug );
+		if ( $pattern ) {
 			return $pattern;
 		}
 	}
@@ -30,7 +39,8 @@ function auto_insert_pattern_smart( $content, $post ) {
 	);
 	$post_type    = $post->post_type;
 	if ( isset( $fallback_map[ $post_type ] ) ) {
-		if ( $pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] ) ) {
+		$pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] );
+		if ( $pattern ) {
 			return $pattern;
 		}
 	}
@@ -41,6 +51,9 @@ add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_smart', 10,
 
 /**
  * Convenience wrapper for fetching a published wp_block by slug.
+ *
+ * @param string $slug Slug of the block pattern.
+ * @return string|false Block pattern content if found, otherwise false.
  */
 function get_block_pattern_by_slug( $slug ) {
 	$q = new \WP_Query(

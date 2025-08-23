@@ -4,19 +4,20 @@
  *
  * @package flexline
  */
+
 namespace FlexLine;
 
-/**
- * Renders the documentation tab for the flexline theme.
- *
- * Generates HTML for a two‑column layout: the docs content on the left and a sticky
- * “On this page” table‑of‑contents on the right. Each top‑level section headline
- * carries an <code>id</code>, which the nav anchors reference, giving users quick
- * jump‑links and smooth scrolling within the tab.
- *
- * @return void
- */
 if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) ) {
+		/**
+		 * Renders the documentation tab for the flexline theme.
+		 *
+		 * Generates HTML for a two‑column layout: the docs content on the left and a sticky
+		 * “On this page” table‑of‑contents on the right. Each top‑level section headline
+		 * carries an <code>id</code>, which the nav anchors reference, giving users quick
+		 * jump‑links and smooth scrolling within the tab.
+		 *
+		 * @return void
+		 */
 	function flexline_render_documentation_tab() {
 		// Unified block documentation.
 		$block_docs = array(
@@ -408,7 +409,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<label for="flexline-attribute-filter">Filter by attribute</label>
 								<select id="flexline-attribute-filter">
 									<option value="">All</option>
-									<?php foreach ( $unique_attribute_names as $attr_name ) : ?>
+								<?php foreach ( $unique_attribute_names as $attr_name ) : ?>
 										<option value="<?php echo esc_attr( $attr_name ); ?>"><?php echo esc_html( $attr_name ); ?></option>
 									<?php endforeach; ?>
 								</select>
@@ -418,7 +419,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<label for="flexline-style-filter">Filter by style</label>
 								<select id="flexline-style-filter">
 									<option value="">All</option>
-									<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+								<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
 										<option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
 									<?php endforeach; ?>
 								</select>
@@ -434,50 +435,50 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								</tr>
 							</thead>
 							<tbody>
-							<?php
-							foreach ( $block_docs as $block => $data ) {
-								$attributes = $data['attributes'] ?? array();
-								$styles     = $data['styles'] ?? array();
+						<?php
+						foreach ( $block_docs as $block => $data ) {
+							$attributes = $data['attributes'] ?? array();
+							$styles     = $data['styles'] ?? array();
 
-								$attribute_names = array_column( $attributes, 'name' );
-								$style_slugs     = array_column( $styles, 'slug' );
+							$attribute_names = array_column( $attributes, 'name' );
+							$style_slugs     = array_column( $styles, 'slug' );
 
-								echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
-								echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
+							echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+							echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
 
-								echo '<td>';
-								if ( $attributes ) {
-									echo '<ul>';
-									foreach ( $attributes as $attr ) {
-										echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
-										if ( ! empty( $attr['description'] ) ) {
-											echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
-											echo '<div class="flexline-tooltip" role="tooltip" hidden>' . wp_kses_post( $attr['description'] ) . '</div>';
-										}
-										echo '</li>';
+							echo '<td>';
+							if ( $attributes ) {
+								echo '<ul>';
+								foreach ( $attributes as $attr ) {
+									echo '<li><strong>' . esc_html( $attr['name'] ) . '</strong>';
+									if ( ! empty( $attr['description'] ) ) {
+										echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+										echo '<div class="flexline-tooltip" role="tooltip" hidden>' . wp_kses_post( $attr['description'] ) . '</div>';
 									}
-									echo '</ul>';
+									echo '</li>';
 								}
-								echo '</td>';
-
-								echo '<td>';
-								if ( $styles ) {
-									echo '<ul>';
-									foreach ( $styles as $style ) {
-										echo '<li><strong>' . esc_html( $style['label'] ) . ' -</strong> <code>' . esc_html( $style['slug'] ) . '</code>';
-										if ( ! empty( $style['description'] ) ) {
-											echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
-											echo '<div class="flexline-tooltip" role="tooltip" hidden>' . esc_html( $style['description'] ) . '</div>';
-										}
-										echo '</li>';
-									}
-									echo '</ul>';
-								}
-								echo '</td>';
-
-								echo '</tr>';
+								echo '</ul>';
 							}
-							?>
+							echo '</td>';
+
+							echo '<td>';
+							if ( $styles ) {
+								echo '<ul>';
+								foreach ( $styles as $style ) {
+									echo '<li><strong>' . esc_html( $style['label'] ) . ' -</strong> <code>' . esc_html( $style['slug'] ) . '</code>';
+									if ( ! empty( $style['description'] ) ) {
+										echo ' <button class="flexline-info" aria-expanded="false"><span class="dashicons dashicons-info"></span></button>';
+										echo '<div class="flexline-tooltip" role="tooltip" hidden>' . esc_html( $style['description'] ) . '</div>';
+									}
+									echo '</li>';
+								}
+								echo '</ul>';
+							}
+							echo '</td>';
+
+							echo '</tr>';
+						}
+						?>
 							</tbody>
 						</table>
 					</div>
@@ -554,7 +555,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.is-order-first-tablet</code></td><td><code>order: -1;</code></td></tr>
 							<tr><td><code>.is-order-0-tablet</code></td><td><code>order: 0;</code></td></tr>
 							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-								<tr><td><code>.is-order-<?php echo $i; ?>-tablet</code></td><td><code>order: <?php echo $i; ?>;</code></td></tr>
+									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
 							<?php endfor; ?>
 							<tr><td><code>.is-order-last-tablet</code></td><td><code>order: 99999;</code></td></tr>
 						</tbody>
@@ -567,9 +568,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<tbody>
 							<tr><td><code>.is-order-first-mobile</code></td><td><code>order: -1;</code></td></tr>
 							<tr><td><code>.is-order-0-mobile</code></td><td><code>order: 0;</code></td></tr>
-							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-								<tr><td><code>.is-order-<?php echo $i; ?>-mobile</code></td><td><code>order: <?php echo $i; ?>;</code></td></tr>
-							<?php endfor; ?>
+													<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+																<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-mobile</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
+														<?php endfor; ?>
 							<tr><td><code>.is-order-last-mobile</code></td><td><code>order: 99999;</code></td></tr>
 							<tr><td><code>.is-justify-content-center-mobile</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container on mobile.</td></tr>
 						</tbody>
