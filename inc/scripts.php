@@ -40,7 +40,7 @@ function flexline_enqueue_styles() {
 	}
 	wp_enqueue_script( 'flexline-load-early', get_template_directory_uri() . '/assets/built/js/load-early.js', array(), THEME_VERSION, false );
 	wp_enqueue_script( 'flexline-modal', get_template_directory_uri() . '/assets/built/js/modal.js', array(), THEME_VERSION, true );
-        wp_enqueue_script( 'flexline-slidein', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, true );
+	wp_enqueue_script( 'flexline-slidein', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, true );
 
 	// Customized Scripts.
 	wp_enqueue_script( 'flexline-customize', get_template_directory_uri() . '/assets/js/customize.js', array(), THEME_VERSION, true );
