@@ -117,6 +117,10 @@ export const customHorizontalScrollerAttributes = {
 		type: 'string',
 		default: '',
 	},
+	imageFit: {
+		type: 'string',
+		default: 'cover',
+	},
 };
 
 // Group - Define custom attributes

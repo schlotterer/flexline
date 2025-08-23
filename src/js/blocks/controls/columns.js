@@ -49,6 +49,22 @@ export const controls = (BlockEdit, props) => (
 						}
 					/>
 				)}
+				{props.attributes.enableHorizontalScroller &&
+					props.attributes.scrollTransition === 'fade' && (
+						<SelectControl
+							label="Image Fit"
+							value={props.attributes.imageFit}
+							options={[
+								{ value: 'cover', label: 'Cover' },
+								{ value: 'contain', label: 'Contain' },
+							]}
+							onChange={(value) =>
+								props.setAttributes({
+									imageFit: value,
+								})
+							}
+						/>
+					)}
 				{props.attributes.enableHorizontalScroller && (
 					<RangeControl
 						label="Scroll transition in Milliseconds"
@@ -311,8 +327,16 @@ export const getClasses = (attributes) => {
 			'scroller-buttons-over',
 			'scroller-buttons-box-shadow',
 			'scroller-pause-on-hover',
-			'horizontal-scroller-fade'
+			'horizontal-scroller-fade',
+			'scroller-image-fit-cover',
+			'scroller-image-fit-contain'
 		);
+	}
+	if (attributes.imageFit !== 'cover') {
+		removed.push('scroller-image-fit-cover');
+	}
+	if (attributes.imageFit !== 'contain') {
+		removed.push('scroller-image-fit-contain');
 	}
 	if (!attributes.scrollNav) {
 		removed.push('horizontal-scroller-navigation');
@@ -480,6 +504,9 @@ export const getClasses = (attributes) => {
 		attributes.enableHorizontalScroller
 	) {
 		added += ' horizontal-scroller-fade';
+	}
+	if (attributes.imageFit && attributes.enableHorizontalScroller) {
+		added += ` scroller-image-fit-${attributes.imageFit}`;
 	}
 	return { added, removed };
 };

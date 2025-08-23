@@ -197,19 +197,19 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$replace_string                       = ' ' . $data_scroll_interval . '>';
 				$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
 		}
-                if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['scrollTransition'] ) && 'fade' === $block['attrs']['scrollTransition'] ) {
-                                        $data_transition = 'data-transition="fade"';
-                                        $search_string   = '>';
-                                        $replace_string  = ' ' . $data_transition . '>';
-                                        $block_content   = str_replace_first( $search_string, $replace_string, $block_content );
-                }
-               if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && ! empty( $block['attrs']['scrollerHeight'] ) ) {
-                               $data_scroller_height = 'data-scroller-height="' . esc_attr( $block['attrs']['scrollerHeight'] ) . '"';
-                               $search_string        = '>';
-                               $replace_string       = ' ' . $data_scroller_height . '>';
-                               $block_content        = str_replace_first( $search_string, $replace_string, $block_content );
-               }
-        }
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['scrollTransition'] ) && 'fade' === $block['attrs']['scrollTransition'] ) {
+								$data_transition = 'data-transition="fade"';
+								$search_string   = '>';
+								$replace_string  = ' ' . $data_transition . '>';
+								$block_content   = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && ! empty( $block['attrs']['scrollerHeight'] ) ) {
+						$data_scroller_height = 'data-scroller-height="' . esc_attr( $block['attrs']['scrollerHeight'] ) . '"';
+						$search_string        = '>';
+						$replace_string       = ' ' . $data_scroller_height . '>';
+						$block_content        = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+	}
 
 	// **Add Unique Class and Styles for Content Shift**.
 	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {

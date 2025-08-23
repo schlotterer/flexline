@@ -277,6 +277,13 @@ function setupScrollerButtons(scroller) {
 		).observe(scroller, { attributes: true, attributeFilter: ['class'] });
 		scroller.dataset.classObserverAttached = 'true';
 	}
+	if (scroller.classList.contains('scroller-image-fit-contain')) {
+		scroller.style.setProperty('--scroller-image-fit', 'contain');
+	} else if (scroller.classList.contains('scroller-image-fit-cover')) {
+		scroller.style.setProperty('--scroller-image-fit', 'cover');
+	} else {
+		scroller.style.removeProperty('--scroller-image-fit');
+	}
 	// ──────────────────────────────────────────────────────────────────────
 	// 0. Determine current option state *up‑front*
 	//    (We need this before any early‑exit based on buttonsInitialised.)
@@ -537,6 +544,14 @@ function initScroller(scroller) {
 		ensureWrapper(scroller);
 	} else {
 		removeWrapper(scroller);
+	}
+
+	if (scroller.classList.contains('scroller-image-fit-contain')) {
+		scroller.style.setProperty('--scroller-image-fit', 'contain');
+	} else if (scroller.classList.contains('scroller-image-fit-cover')) {
+		scroller.style.setProperty('--scroller-image-fit', 'cover');
+	} else {
+		scroller.style.removeProperty('--scroller-image-fit');
 	}
 
 	setupScrollerButtons(scroller); // may add / remove button UI
