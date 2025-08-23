@@ -60,7 +60,7 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_style( 'flexline-custom-admin', get_template_directory_uri() . '/assets/css/customize.css', array(), THEME_VERSION );
 
 	wp_enqueue_script( 'flexline-global-admin', get_template_directory_uri() . '/assets/built/js/global.js', array(), THEME_VERSION, true );
-	// wp_enqueue_script( 'flexline-slidein-admin', get_template_directory_uri() . '/assets/built/js/slidein.js', array(), THEME_VERSION, args: true );
+	// The slide-in admin script is intentionally not enqueued.
 
 	// Template pattern inserter
 	wp_enqueue_script(
