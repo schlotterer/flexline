@@ -109,6 +109,18 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	flexlineTransition: {
+		type: 'string',
+		default: 'slide',
+	},
+	flexlineHeight: {
+		type: 'string',
+		default: '',
+	},
+	flexlineMedia: {
+		type: 'string',
+		default: 'fill',
+	},
 };
 
 // Group - Define custom attributes

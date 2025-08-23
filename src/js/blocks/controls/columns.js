@@ -1,3 +1,4 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 /* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -6,6 +7,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	RangeControl,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 import { getVisibilityControls } from '../utils';
 
@@ -47,6 +49,54 @@ export const controls = (BlockEdit, props) => (
 						step={50}
 					/>
 				)}
+				{props.attributes.enableHorizontalScroller && (
+					<SelectControl
+						label="Transition Type"
+						value={props.attributes.flexlineTransition}
+						options={[
+							{ value: 'slide', label: 'Slide' },
+							{ value: 'fade', label: 'Fade' },
+						]}
+						onChange={(value) =>
+							props.setAttributes({ flexlineTransition: value })
+						}
+					/>
+				)}
+				{props.attributes.enableHorizontalScroller &&
+					props.attributes.flexlineTransition === 'fade' && (
+						<>
+							<UnitControl
+								label="Scroller Height"
+								value={props.attributes.flexlineHeight}
+								onChange={(value) =>
+									props.setAttributes({
+										flexlineHeight: value,
+									})
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: '%', label: '%' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+								]}
+							/>
+							<SelectControl
+								label="Media Fit"
+								value={props.attributes.flexlineMedia}
+								options={[
+									{ value: 'fill', label: 'Fill' },
+									{ value: 'fit', label: 'Fit' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										flexlineMedia: value,
+									})
+								}
+							/>
+						</>
+					)}
 				{props.attributes.enableHorizontalScroller && (
 					<ToggleControl
 						label="Hide Scrollbar"
