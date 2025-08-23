@@ -1,3 +1,5 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
+/* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
@@ -5,6 +7,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	RangeControl,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 import { getVisibilityControls } from '../utils';
 
@@ -31,6 +34,37 @@ export const controls = (BlockEdit, props) => (
 						}
 					/>
 				)}
+				{props.attributes.enableHorizontalScroller && (
+					<SelectControl
+						label="Transition Effect"
+						value={props.attributes.scrollTransition}
+						options={[
+							{ value: 'slide', label: 'Slide' },
+							{ value: 'fade', label: 'Fade' },
+						]}
+						onChange={(value) =>
+							props.setAttributes({
+								scrollTransition: value,
+							})
+						}
+					/>
+				)}
+				{props.attributes.enableHorizontalScroller &&
+					props.attributes.scrollTransition === 'fade' && (
+						<SelectControl
+							label="Image Fit"
+							value={props.attributes.imageFit}
+							options={[
+								{ value: 'cover', label: 'Cover' },
+								{ value: 'contain', label: 'Contain' },
+							]}
+							onChange={(value) =>
+								props.setAttributes({
+									imageFit: value,
+								})
+							}
+						/>
+					)}
 				{props.attributes.enableHorizontalScroller && (
 					<RangeControl
 						label="Scroll transition in Milliseconds"
@@ -220,6 +254,25 @@ export const controls = (BlockEdit, props) => (
 							step={500}
 						/>
 					)}
+				{props.attributes.enableHorizontalScroller && (
+					<UnitControl
+						label="Scroller Height"
+						value={props.attributes.scrollerHeight}
+						onChange={(value) =>
+							props.setAttributes({
+								scrollerHeight: value,
+							})
+						}
+						units={[
+							{ value: 'px', label: 'px' },
+							{ value: '%', label: '%' },
+							{ value: 'em', label: 'em' },
+							{ value: 'rem', label: 'rem' },
+							{ value: 'vw', label: 'vw' },
+							{ value: 'vh', label: 'vh' },
+						]}
+					/>
+				)}
 			</PanelBody>
 			<PanelBody title="FlexLine Visibility">
 				<ToggleControl
@@ -273,8 +326,17 @@ export const getClasses = (attributes) => {
 			'scroller-buttons-border-alternate',
 			'scroller-buttons-over',
 			'scroller-buttons-box-shadow',
-			'scroller-pause-on-hover'
+			'scroller-pause-on-hover',
+			'horizontal-scroller-fade',
+			'scroller-image-fit-cover',
+			'scroller-image-fit-contain'
 		);
+	}
+	if (attributes.imageFit !== 'cover') {
+		removed.push('scroller-image-fit-cover');
+	}
+	if (attributes.imageFit !== 'contain') {
+		removed.push('scroller-image-fit-contain');
 	}
 	if (!attributes.scrollNav) {
 		removed.push('horizontal-scroller-navigation');
@@ -378,6 +440,9 @@ export const getClasses = (attributes) => {
 	if (!attributes.pauseOnHover) {
 		removed.push('scroller-pause-on-hover');
 	}
+	if (attributes.scrollTransition !== 'fade') {
+		removed.push('horizontal-scroller-fade');
+	}
 
 	let added = '';
 	if (attributes.enableHorizontalScroller) {
@@ -434,6 +499,15 @@ export const getClasses = (attributes) => {
 	if (attributes.stackAtTablet) {
 		added += ' flexline-stack-at-tablet';
 	}
+	if (
+		attributes.scrollTransition === 'fade' &&
+		attributes.enableHorizontalScroller
+	) {
+		added += ' horizontal-scroller-fade';
+	}
+	if (attributes.imageFit && attributes.enableHorizontalScroller) {
+		added += ` scroller-image-fit-${attributes.imageFit}`;
+	}
 	return { added, removed };
 };
 
@@ -447,7 +521,7 @@ export const useHooks = (props) => {
 		if (enableHorizontalScroller && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
 		}
-	}, [enableHorizontalScroller, isStackedOnMobile]);
+	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
 
 	useEffect(() => {
 		if (name === 'core/columns') {
