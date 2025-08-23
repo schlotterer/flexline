@@ -101,6 +101,18 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	flexlineTransition: {
+		type: 'select',
+		default: 'slide',
+	},
+	flexlineHeight: {
+		type: 'string',
+		default: '',
+	},
+	flexlineMedia: {
+		type: 'select',
+		default: 'fill',
+	},
 	transitionDuration: {
 		type: 'number',
 		default: 500,
