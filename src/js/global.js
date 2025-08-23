@@ -574,7 +574,7 @@ function initOneScroller(scroller) {
  * Schedule everything (watchers + first init) at the right time.
  * @param {HTMLElement} scroller
  */
-function scheduleScrollerInit(scroller) {
+function initSlideScroller(scroller) {
 	watchLoopToggle(scroller);
 	watchChildrenForLoop(scroller);
 
@@ -639,16 +639,278 @@ function scheduleScrollerInit(scroller) {
  * Boot-strap: find every “.is-style-horizontal-scroll” and hand
  * it off to our scheduler.
  */
-function initScrollers() {
+function initSlideScrollers() {
 	document
 		.querySelectorAll('.is-style-horizontal-scroll')
-		.forEach(scheduleScrollerInit);
+		.forEach(initSlideScroller);
 	initInfiniteLoops();
 }
 
+/**
+ * Fade scroller initialiser.
+ * @param {HTMLElement} scroller
+ */
+function initFadeScroller(scroller) {
+	if (scroller._fadeCleanup) {
+		scroller._fadeCleanup();
+	}
+
+	const existing = scroller.parentNode
+		? scroller.parentNode.querySelector('.horizontal-scroller-nav-buttons')
+		: null;
+	if (existing) {
+		existing.remove();
+	}
+
+	const slides = Array.from(scroller.children).filter(
+		(el) => el.nodeType === 1
+	);
+	if (!slides.length) {
+		return;
+	}
+
+	scroller.style.position = 'relative';
+	scroller.style.overflow = 'hidden';
+
+	const hAttr = scroller.getAttribute('data-container-height');
+	let height = hAttr ? parseInt(hAttr, 10) : null;
+	if (!height) {
+		height = Math.max(...slides.map((s) => s.offsetHeight));
+	}
+	if (height) {
+		scroller.style.height = height + 'px';
+	}
+
+	const mediaDisplay = scroller.getAttribute('data-media-display');
+	if (mediaDisplay) {
+		slides.forEach((slide) => {
+			slide.querySelectorAll('img,video').forEach((m) => {
+				m.style.objectFit = mediaDisplay;
+				m.style.width = '100%';
+				m.style.height = '100%';
+			});
+		});
+	}
+
+	const dur = parseInt(
+		scroller.getAttribute('data-scroll-speed') || '600',
+		10
+	);
+	slides.forEach((slide, i) => {
+		slide.style.position = 'absolute';
+		slide.style.inset = 0;
+		slide.style.width = '100%';
+		slide.style.transition = `opacity ${dur}ms`;
+		slide.style.opacity = i === 0 ? '1' : '0';
+	});
+
+	let index = 0;
+	function show(i) {
+		slides[index].style.opacity = '0';
+		slides[i].style.opacity = '1';
+		index = i;
+	}
+	function next() {
+		let ni;
+		if (index + 1 < slides.length) {
+			ni = index + 1;
+		} else if (scroller.classList.contains('horizontal-scroller-loop')) {
+			ni = 0;
+		} else {
+			ni = index;
+		}
+		if (ni !== index) {
+			show(ni);
+		}
+	}
+	function prev() {
+		let pi;
+		if (index - 1 >= 0) {
+			pi = index - 1;
+		} else if (scroller.classList.contains('horizontal-scroller-loop')) {
+			pi = slides.length - 1;
+		} else {
+			pi = index;
+		}
+		if (pi !== index) {
+			show(pi);
+		}
+	}
+
+	let autoInterval;
+	let isPaused = false;
+	function startAuto() {
+		if (!scroller.classList.contains('horizontal-scroller-auto')) {
+			return;
+		}
+		const intervalDur = parseInt(
+			scroller.getAttribute('data-scroll-interval') || '4000',
+			10
+		);
+		autoInterval = setInterval(() => {
+			next();
+		}, intervalDur);
+	}
+	function stopAuto() {
+		clearInterval(autoInterval);
+		autoInterval = null;
+	}
+	function resetAuto() {
+		if (!scroller.classList.contains('horizontal-scroller-auto')) {
+			return;
+		}
+		stopAuto();
+		if (!isPaused) {
+			startAuto();
+		}
+	}
+
+	const hasNav = scroller.classList.contains(
+		'horizontal-scroller-navigation'
+	);
+	const showPause =
+		scroller.classList.contains('horizontal-scroller-auto') &&
+		!scroller.classList.contains('horizontal-scroller-hide-pause-button');
+
+	if (hasNav || showPause) {
+		const wrapper = ensureWrapper(scroller);
+		const controlContainer = document.createElement('div');
+		controlContainer.classList.add('horizontal-scroller-nav-buttons');
+		controlContainer.style.position = 'absolute';
+		controlContainer.style.display = 'flex';
+		controlContainer.style.gap = '4px';
+		controlContainer.style.pointerEvents = 'auto';
+
+		let prevBtn, nextBtn, pauseBtn;
+
+		if (hasNav) {
+			prevBtn = document.createElement('button');
+			prevBtn.classList.add(
+				'is-horizontal-scroll-btn',
+				'is-horizontal-scroll-prev'
+			);
+			prevBtn.setAttribute('aria-label', 'Scroll to previous item');
+			prevBtn.innerHTML =
+				'<span class="material-symbols-outlined">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+				'<path fill="#ffffff" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>';
+			prevBtn.addEventListener('click', () => {
+				prev();
+				resetAuto();
+			});
+
+			nextBtn = document.createElement('button');
+			nextBtn.classList.add(
+				'is-horizontal-scroll-btn',
+				'is-horizontal-scroll-next'
+			);
+			nextBtn.setAttribute('aria-label', 'Scroll to next item');
+			nextBtn.innerHTML =
+				'<span class="material-symbols-outlined">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+				'<path fill="#ffffff" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>';
+			nextBtn.addEventListener('click', () => {
+				next();
+				resetAuto();
+			});
+		}
+
+		if (showPause) {
+			pauseBtn = document.createElement('button');
+			pauseBtn.classList.add(
+				'is-horizontal-scroll-btn',
+				'is-horizontal-scroll-pause'
+			);
+			pauseBtn.setAttribute('aria-label', 'Pause auto-scroll');
+			pauseBtn.innerHTML =
+				'<span class="material-symbols-outlined">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+				'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
+
+			pauseBtn.addEventListener('click', () => {
+				if (isPaused) {
+					isPaused = false;
+					pauseBtn.setAttribute('aria-label', 'Pause auto-scroll');
+					pauseBtn.innerHTML =
+						'<span class="material-symbols-outlined">' +
+						'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+						'<path fill="#ffffff" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
+					resetAuto();
+				} else {
+					isPaused = true;
+					pauseBtn.setAttribute('aria-label', 'Resume auto-scroll');
+					pauseBtn.innerHTML =
+						'<span class="material-symbols-outlined">' +
+						'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
+						'<path fill="#ffffff" d="M320-720v480l400-240-400-240Z"/></svg></span>';
+					stopAuto();
+				}
+			});
+		}
+
+		if (hasNav) {
+			controlContainer.appendChild(prevBtn);
+			if (pauseBtn) {
+				controlContainer.appendChild(pauseBtn);
+			}
+			controlContainer.appendChild(nextBtn);
+		} else if (pauseBtn) {
+			controlContainer.appendChild(pauseBtn);
+		}
+
+		wrapper.appendChild(controlContainer);
+	}
+
+	function handleMouseEnter() {
+		isPaused = true;
+		stopAuto();
+	}
+	function handleMouseLeave() {
+		isPaused = false;
+		startAuto();
+	}
+	if (
+		scroller.classList.contains('horizontal-scroller-auto') &&
+		scroller.classList.contains('scroller-pause-on-hover')
+	) {
+		scroller.addEventListener('mouseenter', handleMouseEnter);
+		scroller.addEventListener('mouseleave', handleMouseLeave);
+	}
+
+	startAuto();
+
+	scroller._fadeCleanup = () => {
+		stopAuto();
+		scroller.removeEventListener('mouseenter', handleMouseEnter);
+		scroller.removeEventListener('mouseleave', handleMouseLeave);
+	};
+
+	if (isBlockEditor() && !scroller._fadeObserverAttached) {
+		new window.MutationObserver(() => initFadeScroller(scroller)).observe(
+			scroller,
+			{
+				attributes: true,
+			}
+		);
+		scroller._fadeObserverAttached = true;
+	}
+}
+
+function initFadeScrollers() {
+	document
+		.querySelectorAll('.is-style-fade-slider')
+		.forEach(initFadeScroller);
+}
+
 // on DOMContentLoaded / load you just call:
-document.addEventListener('DOMContentLoaded', initScrollers);
-window.addEventListener('load', initScrollers);
+document.addEventListener('DOMContentLoaded', () => {
+	initSlideScrollers();
+	initFadeScrollers();
+});
+window.addEventListener('load', () => {
+	initSlideScrollers();
+	initFadeScrollers();
+});
 
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
@@ -661,7 +923,15 @@ if (isBlockEditor()) {
 					!node.dataset._scrollerInitQueued
 				) {
 					node.dataset._scrollerInitQueued = 'true';
-					scheduleScrollerInit(node);
+					initSlideScroller(node);
+				}
+				if (
+					node.nodeType === 1 &&
+					node.classList.contains('is-style-fade-slider') &&
+					!node.dataset._fadeInitQueued
+				) {
+					node.dataset._fadeInitQueued = 'true';
+					initFadeScroller(node);
 				}
 			}
 		}
@@ -675,7 +945,10 @@ if (isBlockEditor()) {
 		let t;
 		wp.data.subscribe(() => {
 			clearTimeout(t);
-			t = setTimeout(() => initScrollers(), 200);
+			t = setTimeout(() => {
+				initSlideScrollers();
+				initFadeScrollers();
+			}, 200);
 		});
 	});
 }
