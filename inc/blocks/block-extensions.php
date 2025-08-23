@@ -94,7 +94,7 @@ function get_visibility_classes( $attrs ) {
  * @return string The modified block content with the new classes.
  */
 function add_classes_to_block_content( $block_content, $added_classes ) {
-	$search_string  = 'class="';
+	$search_string	= 'class="';
 	$replace_string = 'class="' . esc_attr( $added_classes );
 
 	// Use str_replace_first to ensure only the first occurrence is replaced.
@@ -113,9 +113,9 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 	if ( 'core/button' === $block['blockName'] ) {
 		if ( isset( $block['attrs']['iconType'] ) && 'download' === $block['attrs']['iconType'] ) {
-				$search_string  = 'href="';
+				$search_string	= 'href="';
 				$replace_string = 'download href="';
-				$block_content  = str_replace( $search_string, $replace_string, $block_content );
+				$block_content	= str_replace( $search_string, $replace_string, $block_content );
 		}
 	}
 
@@ -123,16 +123,16 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
-			$search_string   = 'loading="lazy"';
-			$replace_string  = '';
-			$block_content   = str_replace( $search_string, $replace_string, $block_content );
-			$search_string2  = 'decoding="async"';
+			$search_string	 = 'loading="lazy"';
+			$replace_string	 = '';
+			$block_content	 = str_replace( $search_string, $replace_string, $block_content );
+			$search_string2	 = 'decoding="async"';
 			$replace_string2 = '';
-			$block_content   = str_replace( $search_string2, $replace_string2, $block_content );
+			$block_content	 = str_replace( $search_string2, $replace_string2, $block_content );
 		} else {
-			$search_string  = '<img ';
+			$search_string	= '<img ';
 			$replace_string = '<img decoding="async" loading="lazy" ';
-			$block_content  = str_replace( $search_string, $replace_string, $block_content );
+			$block_content	= str_replace( $search_string, $replace_string, $block_content );
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
 			// Add a class.
@@ -141,25 +141,25 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				// Insert your data attribute just before the closing tag of the element.
 				// This is a basic string replacement and might need to be adjusted based on the block markup.
 				// $block_content = str_replace('>', ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">', $block_content);'.
-				$search_string  = '>';
+				$search_string	= '>';
 				$replace_string = ' data-modal-media-url="' . esc_attr( $block['attrs']['modalMediaURL'] ) . '">';
-				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+				$block_content	= str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
 	}
 	if ( 'core/cover' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
-			$search_string   = 'loading="lazy"';
-			$replace_string  = '';
-			$block_content   = str_replace( $search_string, $replace_string, $block_content );
-			$search_string2  = 'decoding="async"';
+			$search_string	 = 'loading="lazy"';
+			$replace_string	 = '';
+			$block_content	 = str_replace( $search_string, $replace_string, $block_content );
+			$search_string2	 = 'decoding="async"';
 			$replace_string2 = 'decoding="sync"';
-			$block_content   = str_replace( $search_string2, $replace_string2, $block_content );
+			$block_content	 = str_replace( $search_string2, $replace_string2, $block_content );
 		} else {
-			$search_string  = '<img ';
+			$search_string	= '<img ';
 			$replace_string = '<img loading="lazy" ';
-			$block_content  = str_replace( $search_string, $replace_string, $block_content );
+			$block_content	= str_replace( $search_string, $replace_string, $block_content );
 		}
 	}
 
@@ -168,13 +168,13 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
 				$link_type  = isset( $block['attrs']['groupLinkType'] ) ? '_' . $block['attrs']['groupLinkType'] : '_self';
 				$aria_label = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-				$link       = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0" target="' . $link_type . '"></a>';
+				$link	    = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0" target="' . $link_type . '"></a>';
 
 				// Insert your data attribute just before the closing tag of the element.
 				// This is a basic string replacement and might need to be adjusted based on the block markup.
-				$search_string  = '>';
+				$search_string	= '>';
 				$replace_string = ' data-group-link-url="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '">' . $link;
-				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+				$block_content	= str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
 	}
@@ -184,18 +184,62 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
 			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
-			$data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
-			$search_string                 = '>';
-			$replace_string                = ' ' . $data_scroll_interval . '>';
-			$block_content                 = str_replace_first( $search_string, $replace_string, $block_content );
+			$data_scroll_interval	       = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
+			$search_string		       = '>';
+			$replace_string		       = ' ' . $data_scroll_interval . '>';
+			$block_content		       = str_replace_first( $search_string, $replace_string, $block_content );
 		}
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
 			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
-			$data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
-			$search_string                        = '>';
-			$replace_string                       = ' ' . $data_scroll_interval . '>';
-			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
+			$data_scroll_interval		      = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
+			$search_string			      = '>';
+			$replace_string			      = ' ' . $data_scroll_interval . '>';
+			$block_content			      = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+	}
+
+	if ( ( 'core/columns' === $block['blockName'] || 'core/post-template' === $block['blockName'] ) && isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+
+		$attributes = '';
+		$styles	    = '';
+
+		if ( isset( $block['attrs']['flexlineTransition'] ) ) {
+			$attributes .= ' data-flexline-transition="' . esc_attr( $block['attrs']['flexlineTransition'] ) . '"';
+		}
+
+		if ( isset( $block['attrs']['flexlineMedia'] ) ) {
+			$attributes .= ' data-flexline-media="' . esc_attr( $block['attrs']['flexlineMedia'] ) . '"';
+
+			$media_fit = 'cover';
+			if ( 'contain' === $block['attrs']['flexlineMedia'] ) {
+				$media_fit = 'contain';
+			}
+			$styles .= ' --fl-media-fit: ' . esc_attr( $media_fit ) . ';';
+		}
+
+		if ( ! empty( $block['attrs']['flexlineHeight'] ) ) {
+			$styles .= ' --fl-height: ' . esc_attr( $block['attrs']['flexlineHeight'] ) . ';';
+		}
+
+		if ( ! empty( $block['attrs']['flDuration'] ) ) {
+			$styles .= ' --fl-duration: ' . esc_attr( $block['attrs']['flDuration'] ) . ';';
+		}
+
+		if ( ! empty( $block['attrs']['flInterval'] ) ) {
+			$styles .= ' --fl-interval: ' . esc_attr( $block['attrs']['flInterval'] ) . ';';
+		}
+
+		if ( ! empty( $block['attrs']['flEasing'] ) ) {
+			$styles .= ' --fl-easing: ' . esc_attr( $block['attrs']['flEasing'] ) . ';';
+		}
+
+		if ( ! empty( $attributes ) ) {
+			$block_content = str_replace_first( '>', $attributes . '>', $block_content );
+		}
+
+		if ( ! empty( $styles ) ) {
+			$block_content = flexline_merge_inline_style( $block_content, $styles );
 		}
 	}
 
@@ -204,12 +248,12 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		$added_classes = '';
 		// Generate the visibility classes.
 		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+		$block_content	= add_classes_to_block_content( $block_content, $added_classes );
 		// Generate a unique class based on the block's attributes.
 		$unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $block['attrs'] ) ), 0, 8 );
 		// Add the unique class to the block's classes.
 		$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
-		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+		$block_content	= add_classes_to_block_content( $block_content, $added_classes );
 
 		// Generate the styles.
 		$shift_left  = '0';
@@ -236,8 +280,8 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		if ( isset( $block['attrs']['slideVertical'] ) ) {
 				$slide_y = $block['attrs']['slideVertical'];
 		}
-    	// Build the CSS.
-		$styles  = ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
+	// Build the CSS.
+		$styles	 = ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
 		$styles .= ' --flexline-shift-right: ' . esc_attr( $shift_right ) . ';';
 		$styles .= ' --flexline-shift-up: ' . esc_attr( $shift_up ) . ';';
 		$styles .= ' --flexline-shift-down: ' . esc_attr( $shift_down ) . ';';
