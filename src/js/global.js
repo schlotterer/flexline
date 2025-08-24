@@ -436,7 +436,7 @@ function setupStatusObserver(scroller) {
 //------------------------------------------------------------------
 function initScroller(scroller) {
 	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
-	if (scroller.classList.contains('horizontal-scroller-transition-slide')) {
+	if (scroller.classList.contains('is-style-horizontal-scroll')) {
 		ensureWrapper(scroller);
 	} else {
 		removeWrapper(scroller);
@@ -550,7 +550,7 @@ function initInfiniteLoops() {
 	// 2) Now re-build only the ones that still want looping
 	document
 		.querySelectorAll(
-			'.horizontal-scroller-transition-slide.horizontal-scroller-loop'
+			'.is-style-horizontal-scroll.horizontal-scroller-loop'
 		)
 		.forEach(setupInfiniteLoop);
 }
@@ -641,7 +641,7 @@ function scheduleScrollerInit(scroller) {
  */
 function initScrollers() {
 	document
-		.querySelectorAll('.horizontal-scroller-transition-slide')
+		.querySelectorAll('.is-style-horizontal-scroll')
 		.forEach(scheduleScrollerInit);
 	initInfiniteLoops();
 }
@@ -657,9 +657,7 @@ if (isBlockEditor()) {
 			for (const node of rec.addedNodes) {
 				if (
 					node.nodeType === 1 &&
-					node.classList.contains(
-						'horizontal-scroller-transition-slide'
-					) &&
+					node.classList.contains('is-style-horizontal-scroll') &&
 					!node.dataset._scrollerInitQueued
 				) {
 					node.dataset._scrollerInitQueued = 'true';

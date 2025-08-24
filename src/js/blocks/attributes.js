@@ -59,7 +59,7 @@ export const customHorizontalScrollerAttributes = {
 	},
 	fadeMediaDisplay: {
 		type: 'select',
-		default: 'fill',
+		default: 'normal',
 	},
 	scrollNav: {
 		type: 'boolean',

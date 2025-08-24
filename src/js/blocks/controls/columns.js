@@ -67,8 +67,9 @@ export const controls = (BlockEdit, props) => (
 							label="Media Display type"
 							value={props.attributes.fadeMediaDisplay}
 							options={[
-								{ value: 'cover', label: 'Fill' },
-								{ value: 'contain', label: 'Fit' },
+								{ value: 'normal', label: 'Normal' },
+								{ value: 'cover', label: 'Cover' },
+								{ value: 'contain', label: 'Contain' },
 							]}
 							onChange={(value) =>
 								props.setAttributes({
@@ -292,11 +293,14 @@ export const controls = (BlockEdit, props) => (
 
 export const getClasses = (attributes) => {
 	const removed = [];
-	if (!attributes.enableHorizontalScroller) {
+	if (attributes.enableHorizontalScroller === false) {
 		removed.push(
 			'is-style-horizontal-scroll',
+			'is-style-horizontal-fade',
 			'horizontal-scroller-transition-fade',
 			'horizontal-scroller-transition-slide',
+			'horizontal-fader-media-normal',
+			'horizontal-fader-media-contain',
 			'horizontal-fader-media-cover',
 			'horizontal-fader-media-contain',
 			'horizontal-scroller-navigation',
@@ -334,192 +338,219 @@ export const getClasses = (attributes) => {
 			'scroller-buttons-box-shadow',
 			'scroller-pause-on-hover'
 		);
+	} else {
+		if (attributes.transitionType !== 'fade') {
+			removed.push('is-style-horizontal-fade');
+		}
+		if (attributes.transitionType !== 'slide') {
+			removed.push('is-style-horizontal-scroll');
+		}
+		if (attributes.transitionType !== 'normal') {
+			removed.push('horizontal-fader-media-normal');
+		}
+		if (attributes.transitionType !== 'cover') {
+			removed.push('horizontal-fader-media-cover');
+		}
+		if (attributes.transitionType !== 'contain') {
+			removed.push('horizontal-fader-media-contain');
+		}
+		if (!attributes.scrollNav) {
+			removed.push('horizontal-scroller-navigation');
+		}
+		if (!attributes.scrollNav) {
+			removed.push('horizontal-scroller-navigation');
+		}
+		if (!attributes.scrollLoop) {
+			removed.push('horizontal-scroller-loop');
+		}
+		if (!attributes.scrollAuto) {
+			removed.push('horizontal-scroller-auto');
+		}
+		if (!attributes.hideScrollbar) {
+			removed.push('horizontal-scroller-hide-scrollbar');
+		}
+		if (!attributes.hidePauseButton) {
+			removed.push('horizontal-scroller-hide-pause-button');
+		}
+		if (!attributes.positionButtonsOver) {
+			removed.push('horizontal-scroller-buttons-over');
+		}
+		if (attributes.positionButtonsHorizontal !== 'left') {
+			removed.push('horizontal-scroller-buttons-horizontal-left');
+		}
+		if (attributes.positionButtonsHorizontal !== 'right') {
+			removed.push('horizontal-scroller-buttons-horizontal-right');
+		}
+		if (attributes.positionButtonsHorizontal !== 'center') {
+			removed.push('horizontal-scroller-buttons-horizontal-center');
+		}
+		if (attributes.positionButtonsVertical !== 'top') {
+			removed.push('horizontal-scroller-buttons-vertical-top');
+		}
+		if (attributes.positionButtonsVertical !== 'bottom') {
+			removed.push('horizontal-scroller-buttons-vertical-bottom');
+		}
+		if (attributes.buttonsBackgroundColor !== 'transparent') {
+			removed.push('scroller-buttons-background-transparent');
+		}
+		if (attributes.buttonsBackgroundColor !== 'white') {
+			removed.push('scroller-buttons-background-white');
+		}
+		if (attributes.buttonsBackgroundColor !== 'black') {
+			removed.push('scroller-buttons-background-black');
+		}
+		if (attributes.buttonsBackgroundColor !== 'gray') {
+			removed.push('scroller-buttons-background-gray');
+		}
+		if (attributes.buttonsBackgroundColor !== 'primary') {
+			removed.push('scroller-buttons-background-primary');
+		}
+		if (attributes.buttonsBackgroundColor !== 'secondary') {
+			removed.push('scroller-buttons-background-secondary');
+		}
+		if (attributes.buttonsBackgroundColor !== 'alternate') {
+			removed.push('scroller-buttons-background-alternate');
+		}
+		if (attributes.buttonsTextColor !== 'white') {
+			removed.push('scroller-buttons-text-white');
+		}
+		if (attributes.buttonsTextColor !== 'black') {
+			removed.push('scroller-buttons-text-black');
+		}
+		if (attributes.buttonsTextColor !== 'gray') {
+			removed.push('scroller-buttons-text-gray');
+		}
+		if (attributes.buttonsTextColor !== 'primary') {
+			removed.push('scroller-buttons-text-primary');
+		}
+		if (attributes.buttonsTextColor !== 'secondary') {
+			removed.push('scroller-buttons-text-secondary');
+		}
+		if (attributes.buttonsTextColor !== 'alternate') {
+			removed.push('scroller-buttons-text-alternate');
+		}
+		if (attributes.buttonsBorderColor !== 'none') {
+			removed.push('scroller-buttons-border-none');
+		}
+		if (attributes.buttonsBorderColor !== 'white') {
+			removed.push('scroller-buttons-border-white');
+		}
+		if (attributes.buttonsBorderColor !== 'black') {
+			removed.push('scroller-buttons-border-black');
+		}
+		if (attributes.buttonsBorderColor !== 'gray') {
+			removed.push('scroller-buttons-border-gray');
+		}
+		if (attributes.buttonsBorderColor !== 'primary') {
+			removed.push('scroller-buttons-border-primary');
+		}
+		if (attributes.buttonsBorderColor !== 'secondary') {
+			removed.push('scroller-buttons-border-secondary');
+		}
+		if (attributes.buttonsBorderColor !== 'alternate') {
+			removed.push('scroller-buttons-border-alternate');
+		}
+		if (!attributes.buttonOver) {
+			removed.push('scroller-buttons-over');
+		}
+		if (!attributes.buttonsBoxShadow) {
+			removed.push('scroller-buttons-box-shadow');
+		}
+		if (!attributes.pauseOnHover) {
+			removed.push('scroller-pause-on-hover');
+		}
+		let added = '';
+		if (
+			attributes.enableHorizontalScroller &&
+			attributes.transitionType === 'slide'
+		) {
+			added += ' is-style-horizontal-scroll';
+		}
+		if (
+			attributes.enableHorizontalScroller &&
+			attributes.transitionType === 'fade'
+		) {
+			added += ' is-style-horizontal-fade';
+		}
+		if (attributes.scrollNav && attributes.enableHorizontalScroller) {
+			added += ' horizontal-scroller-navigation';
+		}
+		if (
+			attributes.transitionType === 'fade' &&
+			attributes.fadeMediaDisplay === 'cover'
+		) {
+			added += ' horizontal-fader-media-cover';
+		}
+		if (
+			attributes.transitionType === 'fade' &&
+			attributes.fadeMediaDisplay === 'contain'
+		) {
+			added += ' horizontal-fader-media-contain';
+		}
+		if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
+			added += ' horizontal-scroller-auto';
+		}
+		if (attributes.scrollLoop && attributes.enableHorizontalScroller) {
+			added += ' horizontal-scroller-loop';
+		}
+		if (attributes.hideScrollbar && attributes.enableHorizontalScroller) {
+			added += ' horizontal-scroller-hide-scrollbar';
+		}
+		if (attributes.pauseOnHover && attributes.enableHorizontalScroller) {
+			added += ' scroller-pause-on-hover';
+		}
+		if (attributes.hidePauseButton && attributes.enableHorizontalScroller) {
+			added += ' horizontal-scroller-hide-pause-button';
+		}
+		if (
+			attributes.positionButtonsHorizontal &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ` horizontal-scroller-buttons-horizontal-${attributes.positionButtonsHorizontal}`;
+		}
+		if (
+			attributes.positionButtonsVertical &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ` horizontal-scroller-buttons-vertical-${attributes.positionButtonsVertical}`;
+		}
+		if (
+			attributes.positionButtonsOver &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ' horizontal-scroller-buttons-over';
+		}
+		if (
+			attributes.buttonsBackgroundColor &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ` scroller-buttons-background-${attributes.buttonsBackgroundColor}`;
+		}
+		if (
+			attributes.buttonsTextColor &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ` scroller-buttons-text-${attributes.buttonsTextColor}`;
+		}
+		if (
+			attributes.buttonsBorderColor &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ` scroller-buttons-border-${attributes.buttonsBorderColor}`;
+		}
+		if (
+			attributes.buttonsBoxShadow &&
+			attributes.enableHorizontalScroller
+		) {
+			added += ' scroller-buttons-box-shadow';
+		}
+		if (attributes.stackAtTablet) {
+			added += ' flexline-stack-at-tablet';
+		}
+		return { added, removed };
 	}
-	if (attributes.transitionType !== 'fade') {
-		removed.push('horizontal-scroller-transition-fade');
-	}
-	if (attributes.transitionType !== 'slide') {
-		removed.push('horizontal-scroller-transition-slide');
-	}
-	if (attributes.transitionType !== 'cover') {
-		removed.push('horizontal-fader-media-cover');
-	}
-	if (attributes.transitionType !== 'contain') {
-		removed.push('horizontal-fader-media-contain');
-	}
-	if (!attributes.scrollNav) {
-		removed.push('horizontal-scroller-navigation');
-	}
-	if (!attributes.scrollNav) {
-		removed.push('horizontal-scroller-navigation');
-	}
-	if (!attributes.scrollLoop) {
-		removed.push('horizontal-scroller-loop');
-	}
-	if (!attributes.scrollAuto) {
-		removed.push('horizontal-scroller-auto');
-	}
-	if (!attributes.hideScrollbar) {
-		removed.push('horizontal-scroller-hide-scrollbar');
-	}
-	if (!attributes.hidePauseButton) {
-		removed.push('horizontal-scroller-hide-pause-button');
-	}
-	if (!attributes.positionButtonsOver) {
-		removed.push('horizontal-scroller-buttons-over');
-	}
-	if (attributes.positionButtonsHorizontal !== 'left') {
-		removed.push('horizontal-scroller-buttons-horizontal-left');
-	}
-	if (attributes.positionButtonsHorizontal !== 'right') {
-		removed.push('horizontal-scroller-buttons-horizontal-right');
-	}
-	if (attributes.positionButtonsHorizontal !== 'center') {
-		removed.push('horizontal-scroller-buttons-horizontal-center');
-	}
-	if (attributes.positionButtonsVertical !== 'top') {
-		removed.push('horizontal-scroller-buttons-vertical-top');
-	}
-	if (attributes.positionButtonsVertical !== 'bottom') {
-		removed.push('horizontal-scroller-buttons-vertical-bottom');
-	}
-	if (attributes.buttonsBackgroundColor !== 'transparent') {
-		removed.push('scroller-buttons-background-transparent');
-	}
-	if (attributes.buttonsBackgroundColor !== 'white') {
-		removed.push('scroller-buttons-background-white');
-	}
-	if (attributes.buttonsBackgroundColor !== 'black') {
-		removed.push('scroller-buttons-background-black');
-	}
-	if (attributes.buttonsBackgroundColor !== 'gray') {
-		removed.push('scroller-buttons-background-gray');
-	}
-	if (attributes.buttonsBackgroundColor !== 'primary') {
-		removed.push('scroller-buttons-background-primary');
-	}
-	if (attributes.buttonsBackgroundColor !== 'secondary') {
-		removed.push('scroller-buttons-background-secondary');
-	}
-	if (attributes.buttonsBackgroundColor !== 'alternate') {
-		removed.push('scroller-buttons-background-alternate');
-	}
-	if (attributes.buttonsTextColor !== 'white') {
-		removed.push('scroller-buttons-text-white');
-	}
-	if (attributes.buttonsTextColor !== 'black') {
-		removed.push('scroller-buttons-text-black');
-	}
-	if (attributes.buttonsTextColor !== 'gray') {
-		removed.push('scroller-buttons-text-gray');
-	}
-	if (attributes.buttonsTextColor !== 'primary') {
-		removed.push('scroller-buttons-text-primary');
-	}
-	if (attributes.buttonsTextColor !== 'secondary') {
-		removed.push('scroller-buttons-text-secondary');
-	}
-	if (attributes.buttonsTextColor !== 'alternate') {
-		removed.push('scroller-buttons-text-alternate');
-	}
-	if (attributes.buttonsBorderColor !== 'none') {
-		removed.push('scroller-buttons-border-none');
-	}
-	if (attributes.buttonsBorderColor !== 'white') {
-		removed.push('scroller-buttons-border-white');
-	}
-	if (attributes.buttonsBorderColor !== 'black') {
-		removed.push('scroller-buttons-border-black');
-	}
-	if (attributes.buttonsBorderColor !== 'gray') {
-		removed.push('scroller-buttons-border-gray');
-	}
-	if (attributes.buttonsBorderColor !== 'primary') {
-		removed.push('scroller-buttons-border-primary');
-	}
-	if (attributes.buttonsBorderColor !== 'secondary') {
-		removed.push('scroller-buttons-border-secondary');
-	}
-	if (attributes.buttonsBorderColor !== 'alternate') {
-		removed.push('scroller-buttons-border-alternate');
-	}
-	if (!attributes.buttonOver) {
-		removed.push('scroller-buttons-over');
-	}
-	if (!attributes.buttonsBoxShadow) {
-		removed.push('scroller-buttons-box-shadow');
-	}
-	if (!attributes.pauseOnHover) {
-		removed.push('scroller-pause-on-hover');
-	}
-	let added = '';
-	if (attributes.enableHorizontalScroller) {
-		added += ' is-style-horizontal-scroll';
-	}
-	if (attributes.scrollNav && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-navigation';
-	}
-	if (attributes.transitionType === 'fade') {
-		added += ' horizontal-scroller-transition-fade';
-	}
-	if (attributes.transitionType === 'slide') {
-		added += ' horizontal-scroller-transition-slide';
-	}
-	if (attributes.transitionType === 'cover') {
-		added += ' horizontal-fader-media-cover';
-	}
-	if (attributes.transitionType === 'contain') {
-		added += ' horizontal-fader-media-contain';
-	}
-	if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-auto';
-	}
-	if (attributes.scrollLoop && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-loop';
-	}
-	if (attributes.hideScrollbar && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-hide-scrollbar';
-	}
-	if (attributes.pauseOnHover && attributes.enableHorizontalScroller) {
-		added += ' scroller-pause-on-hover';
-	}
-	if (attributes.hidePauseButton && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-hide-pause-button';
-	}
-	if (
-		attributes.positionButtonsHorizontal &&
-		attributes.enableHorizontalScroller
-	) {
-		added += ` horizontal-scroller-buttons-horizontal-${attributes.positionButtonsHorizontal}`;
-	}
-	if (
-		attributes.positionButtonsVertical &&
-		attributes.enableHorizontalScroller
-	) {
-		added += ` horizontal-scroller-buttons-vertical-${attributes.positionButtonsVertical}`;
-	}
-	if (attributes.positionButtonsOver && attributes.enableHorizontalScroller) {
-		added += ' horizontal-scroller-buttons-over';
-	}
-	if (
-		attributes.buttonsBackgroundColor &&
-		attributes.enableHorizontalScroller
-	) {
-		added += ` scroller-buttons-background-${attributes.buttonsBackgroundColor}`;
-	}
-	if (attributes.buttonsTextColor && attributes.enableHorizontalScroller) {
-		added += ` scroller-buttons-text-${attributes.buttonsTextColor}`;
-	}
-	if (attributes.buttonsBorderColor && attributes.enableHorizontalScroller) {
-		added += ` scroller-buttons-border-${attributes.buttonsBorderColor}`;
-	}
-	if (attributes.buttonsBoxShadow && attributes.enableHorizontalScroller) {
-		added += ' scroller-buttons-box-shadow';
-	}
-	if (attributes.stackAtTablet) {
-		added += ' flexline-stack-at-tablet';
-	}
-	return { added, removed };
+
+	return { removed };
 };
 
 export const useHooks = (props) => {
