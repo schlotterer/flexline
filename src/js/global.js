@@ -229,7 +229,7 @@ function setupFade(scroller) {
 		if (tallest > 0) {
 			height = `${tallest}px`;
 		} else {
-			height = '70svh';
+			height = '100%';
 		}
 	}
 
