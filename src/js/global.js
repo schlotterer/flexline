@@ -171,6 +171,17 @@ function removeWrapper(scroller) {
 }
 
 //------------------------------------------------------------------
+// 3a.  Fade setup.
+//------------------------------------------------------------------
+function setupFade(scroller) {
+	if (!scroller.classList.contains('is-style-horizontal-fade')) {
+		return false;
+	}
+	ensureWrapper(scroller);
+	return true;
+}
+
+//------------------------------------------------------------------
 // 4.  Nav / pause buttons.
 //------------------------------------------------------------------
 function setupScrollerButtons(scroller) {
@@ -436,10 +447,12 @@ function setupStatusObserver(scroller) {
 //------------------------------------------------------------------
 function initScroller(scroller) {
 	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
-	if (scroller.classList.contains('is-style-horizontal-scroll')) {
-		ensureWrapper(scroller);
-	} else {
-		removeWrapper(scroller);
+	if (!setupFade(scroller)) {
+		if (scroller.classList.contains('is-style-horizontal-scroll')) {
+			ensureWrapper(scroller);
+		} else {
+			removeWrapper(scroller);
+		}
 	}
 
 	setupScrollerButtons(scroller); // may add / remove button UI
