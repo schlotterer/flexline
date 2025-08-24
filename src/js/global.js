@@ -215,25 +215,10 @@ function setupFade(scroller) {
 	ensureWrapper(scroller);
 
 	const styles = window.getComputedStyle(scroller);
-	let height =
+	const height =
 		styles.getPropertyValue('--fade-height').trim() ||
-		styles.getPropertyValue('--horizontal-fader-height').trim();
-
-	if (!height) {
-		let tallest = 0;
-		Array.from(scroller.children).forEach((child) => {
-			const h = child.offsetHeight;
-			if (h > tallest) {
-				tallest = h;
-			}
-		});
-
-		if (tallest > 0) {
-			height = `${tallest}px`;
-		} else {
-			height = '100%';
-		}
-	}
+		styles.getPropertyValue('--horizontal-fader-height').trim() ||
+		'100%';
 
 	scroller.style.setProperty('--horizontal-fader-height', height);
 
