@@ -191,16 +191,17 @@ body,
 		display: block;
         height: var(--horizontal-fader-height, 100%);
 		width: 100%;
-		>* {
-			position: absolute;
-			inset: 0;
-			height: 100%;
-			opacity: 0;
-			pointer-events: none;
-			width: 100%;
-			flex-direction: column;
-			display: flex;
-			align-items: center;
+               >* {
+                       position: absolute;
+                       inset: 0;
+                       height: 100%;
+                       opacity: 0;
+                       transition: opacity var(--horizontal-fade-duration, 500ms) ease-in-out;
+                       pointer-events: none;
+                       width: 100%;
+                       flex-direction: column;
+                       display: flex;
+                       align-items: center;
 			justify-content: center;
 		}
 
