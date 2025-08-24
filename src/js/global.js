@@ -51,6 +51,8 @@ function switchFadeSlide(scroller, newIndex) {
 	items.forEach((item, i) => {
 		const active = i === index;
 		item.classList.toggle('is-active', active);
+		// With fade transitions we manage aria-hidden manually to keep
+		// non-visible slides out of the accessibility tree.
 		item.setAttribute('aria-hidden', active ? 'false' : 'true');
 		item.setAttribute('tabindex', active ? '0' : '-1');
 	});
@@ -497,6 +499,12 @@ function buildThresholdList() {
 }
 
 function setupStatusObserver(scroller) {
+	// Fade style scrollers handle slide visibility manually when the
+	// active slide changes, so the intersection observer is unnecessary.
+	if (scroller.classList.contains('is-style-horizontal-fade')) {
+		return;
+	}
+
 	const observer = new window.IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
