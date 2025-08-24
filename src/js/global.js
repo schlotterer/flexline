@@ -171,7 +171,39 @@ function removeWrapper(scroller) {
 }
 
 //------------------------------------------------------------------
-// 4.  Nav / pause buttons.
+// 4.  Fade initialisation.
+//------------------------------------------------------------------
+function setupFade(scroller) {
+	if (!scroller.classList.contains('horizontal-scroller-transition-fade')) {
+		return;
+	}
+
+	const styles = window.getComputedStyle(scroller);
+	let height =
+		styles.getPropertyValue('--fade-height').trim() ||
+		styles.getPropertyValue('--horizontal-fader-height').trim();
+
+	if (!height) {
+		let tallest = 0;
+		Array.from(scroller.children).forEach((child) => {
+			const h = child.offsetHeight;
+			if (h > tallest) {
+				tallest = h;
+			}
+		});
+
+		if (tallest > 0) {
+			height = `${tallest}px`;
+		} else {
+			height = '70svh';
+		}
+	}
+
+	scroller.style.setProperty('--horizontal-fader-height', height);
+}
+
+//------------------------------------------------------------------
+// 5.  Nav / pause buttons.
 //------------------------------------------------------------------
 function setupScrollerButtons(scroller) {
 	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
@@ -385,7 +417,7 @@ function setupScrollerButtons(scroller) {
 }
 
 //------------------------------------------------------------------
-// 5.  Visibility / status observer (unchanged).
+// 6.  Visibility / status observer (unchanged).
 //------------------------------------------------------------------
 function buildThresholdList() {
 	const t = [];
@@ -432,7 +464,7 @@ function setupStatusObserver(scroller) {
 }
 
 //------------------------------------------------------------------
-// 6.  Public initialiser helpers so we can call them multiple times.
+// 7.  Public initialiser helpers so we can call them multiple times.
 //------------------------------------------------------------------
 function initScroller(scroller) {
 	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
@@ -442,6 +474,7 @@ function initScroller(scroller) {
 		removeWrapper(scroller);
 	}
 
+	setupFade(scroller);
 	setupScrollerButtons(scroller); // may add / remove button UI
 	setupStatusObserver(scroller);
 }
