@@ -41,7 +41,31 @@ function smoothScrollTo(scroller, targetScrollLeft, duration) {
 //------------------------------------------------------------------
 // 2.  Next / Prev helpers.
 //------------------------------------------------------------------
+function switchFadeSlide(scroller, newIndex) {
+	const items = Array.from(scroller.children);
+	if (!items.length) {
+		return;
+	}
+	const count = items.length;
+	const index = ((newIndex % count) + count) % count;
+	items.forEach((item, i) => {
+		const active = i === index;
+		item.classList.toggle('is-active', active);
+		item.setAttribute('aria-hidden', active ? 'false' : 'true');
+		item.setAttribute('tabindex', active ? '0' : '-1');
+	});
+}
+
 function scrollToNext(scroller) {
+	if (scroller.classList.contains('is-style-horizontal-fade')) {
+		const items = Array.from(scroller.children);
+		const current = items.findIndex((c) =>
+			c.classList.contains('is-active')
+		);
+		switchFadeSlide(scroller, current + 1);
+		return;
+	}
+
 	const epsilon = 5; // small tolerance
 	const durationAttr = scroller.getAttribute('data-scroll-speed');
 	const duration = durationAttr ? parseInt(durationAttr, 10) : 600;
@@ -61,6 +85,15 @@ function scrollToNext(scroller) {
 }
 
 function scrollToPrev(scroller) {
+	if (scroller.classList.contains('is-style-horizontal-fade')) {
+		const items = Array.from(scroller.children);
+		const current = items.findIndex((c) =>
+			c.classList.contains('is-active')
+		);
+		switchFadeSlide(scroller, current - 1);
+		return;
+	}
+
 	const epsilon = 5;
 	const duration = parseInt(
 		scroller.getAttribute('data-scroll-speed') || '600',
@@ -201,6 +234,10 @@ function setupFade(scroller) {
 	}
 
 	scroller.style.setProperty('--horizontal-fader-height', height);
+
+	switchFadeSlide(scroller, 0);
+
+	return true;
 }
 
 //------------------------------------------------------------------
