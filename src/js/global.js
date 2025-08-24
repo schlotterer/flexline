@@ -408,6 +408,8 @@ function setupStatusObserver(scroller) {
 					if (curr >= 0.1) {
 						item.classList.add('in-view');
 						item.classList.remove('entering', 'exiting');
+						item.setAttribute('tabindex', '0');
+						item.setAttribute('aria-hidden', 'false');
 					} else {
 						item.classList.remove('in-view');
 						if (curr > prev) {
@@ -417,10 +419,14 @@ function setupStatusObserver(scroller) {
 							item.classList.add('exiting');
 							item.classList.remove('entering');
 						}
+						item.setAttribute('tabindex', '-1');
+						item.setAttribute('aria-hidden', 'true');
 					}
 				} else {
 					item.classList.add('out-of-view');
 					item.classList.remove('in-view', 'entering', 'exiting');
+					item.setAttribute('tabindex', '-1');
+					item.setAttribute('aria-hidden', 'true');
 				}
 				item.dataset.prevRatio = curr;
 			});
@@ -428,7 +434,15 @@ function setupStatusObserver(scroller) {
 		{ root: scroller, threshold: buildThresholdList() }
 	);
 
-	Array.from(scroller.children).forEach((child) => observer.observe(child));
+	Array.from(scroller.children).forEach((child, index) => {
+		child.setAttribute('tabindex', '-1');
+		child.setAttribute('aria-hidden', 'true');
+		observer.observe(child);
+		if (index === 0) {
+			child.setAttribute('tabindex', '0');
+			child.setAttribute('aria-hidden', 'false');
+		}
+	});
 }
 
 //------------------------------------------------------------------
