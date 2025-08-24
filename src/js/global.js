@@ -171,53 +171,67 @@ function removeWrapper(scroller) {
 }
 
 //------------------------------------------------------------------
+// 3a.  Fade setup.
+//------------------------------------------------------------------
+function setupFade(scroller) {
+	if (!scroller.classList.contains('is-style-horizontal-fade')) {
+		return false;
+	}
+	ensureWrapper(scroller);
+	return true;
+}
+
+//------------------------------------------------------------------
 // 4.  Nav / pause buttons.
 //------------------------------------------------------------------
 function setupScrollerButtons(scroller) {
-        if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
-                new window.MutationObserver(() =>
-                        initScroller(scroller)
-                ).observe(scroller, { attributes: true, attributeFilter: ['class'] });
-                scroller.dataset.classObserverAttached = 'true';
-        }
-        // ──────────────────────────────────────────────────────────────────────
-        // 0. Determine current option state *up‑front*
-        //    (We need this before any early‑exit based on buttonsInitialised.)
-        // ──────────────────────────────────────────────────────────────────────
-        const currentStyle = scroller.classList.contains(
-                'is-style-horizontal-fade'
-        )
-                ? 'fade'
-                : scroller.classList.contains('is-style-horizontal-scroll')
-                        ? 'slide'
-                        : 'none';
-        const hasNav = scroller.classList.contains(
-                'horizontal-scroller-navigation'
-        );
-        const showPause =
-                scroller.classList.contains('horizontal-scroller-auto') &&
-                !scroller.classList.contains('horizontal-scroller-hide-pause-button');
+	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
+		new window.MutationObserver(() => initScroller(scroller)).observe(
+			scroller,
+			{ attributes: true, attributeFilter: ['class'] }
+		);
+		scroller.dataset.classObserverAttached = 'true';
+	}
+	// ──────────────────────────────────────────────────────────────────────
+	// 0. Determine current option state *up‑front*
+	//    (We need this before any early‑exit based on buttonsInitialised.)
+	// ──────────────────────────────────────────────────────────────────────
+	let currentStyle = 'none';
+	const hasFade = scroller.classList.contains('is-style-horizontal-fade');
+	const hasScroll = scroller.classList.contains('is-style-horizontal-scroll');
+	if (hasFade) {
+		currentStyle = 'fade';
+	} else if (hasScroll) {
+		currentStyle = 'slide';
+	}
 
-        // If the nav / pause state or transition style changed since the last run,
-        // force a rebuild.
-        if (
-                scroller.dataset.buttonsInitialised === 'true' &&
-                (hasNav !== (scroller.dataset.prevHasNav === 'true') ||
-                        showPause !== (scroller.dataset.prevShowPause === 'true') ||
-                        currentStyle !== scroller.dataset.prevStyle)
-        ) {
-                const existing = scroller.parentNode.querySelector(
-                        '.horizontal-scroller-nav-buttons'
-                );
-                if (existing) {
-                        existing.remove();
-                }
-                delete scroller.dataset.buttonsInitialised; // let the function fall through and rebuild
-        }
-        // Remember current state for the next toggle
-        scroller.dataset.prevHasNav = hasNav;
-        scroller.dataset.prevShowPause = showPause;
-        scroller.dataset.prevStyle = currentStyle;
+	const hasNav = scroller.classList.contains(
+		'horizontal-scroller-navigation'
+	);
+	const showPause =
+		scroller.classList.contains('horizontal-scroller-auto') &&
+		!scroller.classList.contains('horizontal-scroller-hide-pause-button');
+
+	// If the nav / pause state or transition style changed since the last run,
+	// force a rebuild.
+	if (
+		scroller.dataset.buttonsInitialised === 'true' &&
+		(hasNav !== (scroller.dataset.prevHasNav === 'true') ||
+			showPause !== (scroller.dataset.prevShowPause === 'true') ||
+			currentStyle !== scroller.dataset.prevStyle)
+	) {
+		const existing = scroller.parentNode.querySelector(
+			'.horizontal-scroller-nav-buttons'
+		);
+		if (existing) {
+			existing.remove();
+		}
+		delete scroller.dataset.buttonsInitialised; // let the function fall through and rebuild
+	}
+	// Remember current state for the next toggle
+	scroller.dataset.prevHasNav = hasNav;
+	scroller.dataset.prevShowPause = showPause;
+	scroller.dataset.prevStyle = currentStyle;
 
 	if (scroller.dataset.buttonsInitialised === 'true') {
 		if (!hasNav && !showPause) {
@@ -445,18 +459,20 @@ function setupStatusObserver(scroller) {
 // 6.  Public initialiser helpers so we can call them multiple times.
 //------------------------------------------------------------------
 function initScroller(scroller) {
-        /*  First, guarantee wrapper status is in sync with the presence of the style-class. */
-        if (
-                scroller.classList.contains('is-style-horizontal-scroll') ||
-                scroller.classList.contains('is-style-horizontal-fade')
-        ) {
-                ensureWrapper(scroller);
-        } else {
-                removeWrapper(scroller);
-        }
+	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
+	if (!setupFade(scroller)) {
+		if (
+			scroller.classList.contains('is-style-horizontal-scroll') ||
+			scroller.classList.contains('is-style-horizontal-fade')
+		) {
+			ensureWrapper(scroller);
+		} else {
+			removeWrapper(scroller);
+		}
+	}
 
-        setupScrollerButtons(scroller); // may add / remove button UI
-        setupStatusObserver(scroller);
+	setupScrollerButtons(scroller); // may add / remove button UI
+	setupStatusObserver(scroller);
 }
 
 /**
@@ -653,12 +669,12 @@ function scheduleScrollerInit(scroller) {
  * it off to our scheduler.
  */
 function initScrollers() {
-        document
-                .querySelectorAll(
-                        '.is-style-horizontal-scroll, .is-style-horizontal-fade'
-                )
-                .forEach(scheduleScrollerInit);
-        initInfiniteLoops();
+	document
+		.querySelectorAll(
+			'.is-style-horizontal-scroll, .is-style-horizontal-fade'
+		)
+		.forEach(scheduleScrollerInit);
+	initInfiniteLoops();
 }
 
 // on DOMContentLoaded / load you just call:
@@ -671,18 +687,14 @@ if (isBlockEditor()) {
 		for (const rec of records) {
 			for (const node of rec.addedNodes) {
 				if (
-                                        node.nodeType === 1 &&
-                                        (node.classList.contains(
-                                                'is-style-horizontal-scroll'
-                                        ) ||
-                                                node.classList.contains(
-                                                        'is-style-horizontal-fade'
-                                                )) &&
-                                        !node.dataset._scrollerInitQueued
-                                ) {
-                                        node.dataset._scrollerInitQueued = 'true';
-                                        scheduleScrollerInit(node);
-                                }
+					node.nodeType === 1 &&
+					(node.classList.contains('is-style-horizontal-scroll') ||
+						node.classList.contains('is-style-horizontal-fade')) &&
+					!node.dataset._scrollerInitQueued
+				) {
+					node.dataset._scrollerInitQueued = 'true';
+					scheduleScrollerInit(node);
+				}
 			}
 		}
 	});
