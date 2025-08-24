@@ -1,4 +1,5 @@
 /* global requestAnimationFrame */
+import { initFaders } from './fader';
 
 // Horizontal Scroll block behaviour – front‑end + block‑editor compatible
 
@@ -647,8 +648,14 @@ function initScrollers() {
 }
 
 // on DOMContentLoaded / load you just call:
-document.addEventListener('DOMContentLoaded', initScrollers);
-window.addEventListener('load', initScrollers);
+document.addEventListener('DOMContentLoaded', () => {
+	initScrollers();
+	initFaders();
+});
+window.addEventListener('load', () => {
+	initScrollers();
+	initFaders();
+});
 
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
@@ -656,14 +663,27 @@ if (isBlockEditor()) {
 		for (const rec of records) {
 			for (const node of rec.addedNodes) {
 				if (
-					node.nodeType === 1 &&
-					node.classList.contains(
-						'horizontal-scroller-transition-slide'
+					(node.nodeType === 1 &&
+						node.classList.contains(
+							'horizontal-scroller-transition-slide'
+						) &&
+						!node.dataset._scrollerInitQueued) ||
+					(node.classList.contains(
+						'horizontal-scroller-transition-fade'
 					) &&
-					!node.dataset._scrollerInitQueued
+						!node.dataset._faderInitQueued)
 				) {
-					node.dataset._scrollerInitQueued = 'true';
-					scheduleScrollerInit(node);
+					if (
+						node.classList.contains(
+							'horizontal-scroller-transition-slide'
+						)
+					) {
+						node.dataset._scrollerInitQueued = 'true';
+						scheduleScrollerInit(node);
+					} else {
+						node.dataset._faderInitQueued = 'true';
+						initFaders();
+					}
 				}
 			}
 		}
@@ -677,7 +697,10 @@ if (isBlockEditor()) {
 		let t;
 		wp.data.subscribe(() => {
 			clearTimeout(t);
-			t = setTimeout(() => initScrollers(), 200);
+			t = setTimeout(() => {
+				initScrollers();
+				initFaders();
+			}, 200);
 		});
 	});
 }
