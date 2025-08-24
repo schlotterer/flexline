@@ -1,12 +1,15 @@
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 /* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	ToggleControl,
 	SelectControl,
 	RangeControl,
+	ToggleControl,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
+
 import { getVisibilityControls } from '../utils';
 
 export const controls = (BlockEdit, props) => (
@@ -23,6 +26,57 @@ export const controls = (BlockEdit, props) => (
 						})
 					}
 				/>
+				{props.attributes.enableHorizontalScroller && (
+					<SelectControl
+						label="Transition Type"
+						value={props.attributes.transitionType}
+						options={[
+							{ value: 'slide', label: 'Slide' },
+							{ value: 'fade', label: 'Fade' },
+						]}
+						onChange={(value) =>
+							props.setAttributes({
+								transitionType: value,
+							})
+						}
+					/>
+				)}
+				{props.attributes.enableHorizontalScroller &&
+					props.attributes.transitionType === 'fade' && (
+						<UnitControl
+							label="Container Height"
+							type="number"
+							min={0}
+							value={props.attributes.fadeHeight}
+							onChange={(value) =>
+								props.setAttributes({ fadeHeight: value })
+							}
+							units={[
+								{ value: 'px', label: 'px' },
+								{ value: '%', label: '%' },
+								{ value: 'em', label: 'em' },
+								{ value: 'rem', label: 'rem' },
+								{ value: 'vw', label: 'vw' },
+								{ value: 'vh', label: 'vh' },
+							]}
+						/>
+					)}
+				{props.attributes.enableHorizontalScroller &&
+					props.attributes.transitionType === 'fade' && (
+						<SelectControl
+							label="Media Display type"
+							value={props.attributes.fadeMediaDisplay}
+							options={[
+								{ value: 'cover', label: 'Fill' },
+								{ value: 'contain', label: 'Fit' },
+							]}
+							onChange={(value) =>
+								props.setAttributes({
+									fadeMediaDisplay: value,
+								})
+							}
+						/>
+					)}
 				{props.attributes.enableHorizontalScroller && (
 					<ToggleControl
 						label="Show Arrow Navigation"
@@ -241,6 +295,10 @@ export const getClasses = (attributes) => {
 	if (!attributes.enableHorizontalScroller) {
 		removed.push(
 			'is-style-horizontal-scroll',
+			'horizontal-scroller-transition-fade',
+			'horizontal-scroller-transition-slide',
+			'horizontal-fader-media-cover',
+			'horizontal-fader-media-contain',
 			'horizontal-scroller-navigation',
 			'horizontal-scroller-loop',
 			'horizontal-scroller-auto',
@@ -276,6 +334,21 @@ export const getClasses = (attributes) => {
 			'scroller-buttons-box-shadow',
 			'scroller-pause-on-hover'
 		);
+	}
+	if (attributes.transitionType !== 'fade') {
+		removed.push('horizontal-scroller-transition-fade');
+	}
+	if (attributes.transitionType !== 'slide') {
+		removed.push('horizontal-scroller-transition-slide');
+	}
+	if (attributes.transitionType !== 'cover') {
+		removed.push('horizontal-fader-media-cover');
+	}
+	if (attributes.transitionType !== 'contain') {
+		removed.push('horizontal-fader-media-contain');
+	}
+	if (!attributes.scrollNav) {
+		removed.push('horizontal-scroller-navigation');
 	}
 	if (!attributes.scrollNav) {
 		removed.push('horizontal-scroller-navigation');
@@ -379,13 +452,24 @@ export const getClasses = (attributes) => {
 	if (!attributes.pauseOnHover) {
 		removed.push('scroller-pause-on-hover');
 	}
-
 	let added = '';
 	if (attributes.enableHorizontalScroller) {
 		added += ' is-style-horizontal-scroll';
 	}
 	if (attributes.scrollNav && attributes.enableHorizontalScroller) {
 		added += ' horizontal-scroller-navigation';
+	}
+	if (attributes.transitionType === 'fade') {
+		added += ' horizontal-scroller-transition-fade';
+	}
+	if (attributes.transitionType === 'slide') {
+		added += ' horizontal-scroller-transition-slide';
+	}
+	if (attributes.transitionType === 'cover') {
+		added += ' horizontal-fader-media-cover';
+	}
+	if (attributes.transitionType === 'contain') {
+		added += ' horizontal-fader-media-contain';
 	}
 	if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
 		added += ' horizontal-scroller-auto';
