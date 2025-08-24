@@ -1,3 +1,5 @@
+import { setupScrollerButtons } from './scroller-utils';
+
 /**
  * Initialize a single fade scroller.
  *
@@ -93,6 +95,8 @@ function initOneFader(scroller) {
 		scroller.removeEventListener('focusout', play);
 		delete scroller._faderCleanup;
 	};
+
+	setupScrollerButtons(scroller);
 }
 
 /**
