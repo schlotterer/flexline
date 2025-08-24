@@ -179,12 +179,18 @@ body,
 		}
 
 	}
-
+	.horizontal-scroll-wrapper:has(.is-style-horizontal-fade) {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: var(--horizontal-fader-height, 100%);
+	}
 	.is-style-horizontal-fade {
 		position: relative;
 		overflow: hidden;
-               height: var(--horizontal-fader-height, 100%);
-
+		display: block;
+        height: var(--horizontal-fader-height, 100%);
+		width: 100%;
 		>* {
 			position: absolute;
 			inset: 0;
