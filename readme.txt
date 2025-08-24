@@ -16,6 +16,31 @@ With its clean, minimal design and powerful feature set, FlexLine enables agenci
 
 For additional helper features, install the optional **FlexLine Utilities Plugin**. It can be downloaded from https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip and provides shortcodes like `[flexline_year]` for the current year or `[flexline_loginout]` to output login and logout links.
 
+== Horizontal Scroller Fade Transition ==
+
+The horizontal scroller supports a **Fade** transition that cross-fades items instead of sliding.
+
+* Set a custom container height.
+* Choose how media is displayed: Fill (`horizontal-fader-media-cover`) or Fit (`horizontal-fader-media-contain`).
+* Enable autoplay with optional pause-on-hover or hidden pause button.
+
+=== Columns example ===
+
+```
+<!-- wp:columns {"className":"is-style-horizontal-scroll horizontal-scroller-transition-fade","enableHorizontalScroller":true,"transitionType":"fade","fadeHeight":"300px","fadeMediaDisplay":"cover","scrollAuto":true} -->
+    <!-- wp:column --><!-- /wp:column -->
+    <!-- wp:column --><!-- /wp:column -->
+<!-- /wp:columns -->
+```
+
+=== Post Template example ===
+
+```
+<!-- wp:post-template {"className":"is-style-horizontal-scroll horizontal-scroller-transition-fade","enableHorizontalScroller":true,"transitionType":"fade","fadeHeight":"300px","fadeMediaDisplay":"cover","scrollAuto":true} /-->
+```
+
+`horizontal-scroller-transition-fade` is required for the fade effect.
+
 == Bundled Assets and Licenses ==
 
 * Google Fonts (Cabin, Calistoga, Crimson Text, Jost, Lato, Quattrocento, Quicksand, REM, Raleway, Source Sans 3, Sulphur Point, Varela) - SIL Open Font License 1.1 (see assets/fonts/*/OFL.txt)

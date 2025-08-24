@@ -114,3 +114,28 @@ The optional **FlexLine Utilities Plugin** adds helpful shortcodes and tools tha
 - `[flexline_loginout]` – show a login or logout link depending on the visitor.
 
 [Download the FlexLine Utilities Plugin](https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip) and install it like any other WordPress plugin.
+
+## Fade Transition for Horizontal Scrollers
+
+The horizontal scroller supports a **Fade** transition that cross‑fades items instead of sliding. When this mode is enabled you can:
+
+- Define a fixed container height.
+- Choose how media is displayed (`Fill` or `Fit`).
+- Enable autoplay and optional pause‑on‑hover.
+
+### Columns example
+
+```html
+<!-- wp:columns {"className":"is-style-horizontal-scroll horizontal-scroller-transition-fade","enableHorizontalScroller":true,"transitionType":"fade","fadeHeight":"300px","fadeMediaDisplay":"cover","scrollAuto":true} -->
+    <!-- wp:column --><!-- /wp:column -->
+    <!-- wp:column --><!-- /wp:column -->
+<!-- /wp:columns -->
+```
+
+### Post Template example
+
+```html
+<!-- wp:post-template {"className":"is-style-horizontal-scroll horizontal-scroller-transition-fade","enableHorizontalScroller":true,"transitionType":"fade","fadeHeight":"300px","fadeMediaDisplay":"cover","scrollAuto":true} /-->
+```
+
+`horizontal-scroller-transition-fade` is required for the fade effect. Setting `fadeMediaDisplay` to `"contain"` will add the `horizontal-fader-media-contain` class instead of `horizontal-fader-media-cover`.
