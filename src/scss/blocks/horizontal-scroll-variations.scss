@@ -183,7 +183,7 @@ body,
 	.is-style-horizontal-fade {
 		position: relative;
 		overflow: hidden;
-		height: var(--horizontal-fader-height, 70svh);
+               height: var(--horizontal-fader-height, 100%);
 
 		>* {
 			position: absolute;
