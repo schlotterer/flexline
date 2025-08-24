@@ -21,7 +21,7 @@ For additional helper features, install the optional **FlexLine Utilities Plugin
 The horizontal scroller supports a **Fade** transition that cross-fades items instead of sliding.
 
 * Set a custom container height.
-* Choose how media is displayed: Fill (`horizontal-fader-media-cover`) or Fit (`horizontal-fader-media-contain`).
+* Choose how media is displayed: Normal (no extra class), Cover (`horizontal-fader-media-cover`) or Contain (`horizontal-fader-media-contain`).
 * Enable autoplay with optional pause-on-hover or hidden pause button.
 
 === Columns example ===
@@ -39,7 +39,7 @@ The horizontal scroller supports a **Fade** transition that cross-fades items in
 <!-- wp:post-template {"className":"is-style-horizontal-scroll horizontal-scroller-transition-fade","enableHorizontalScroller":true,"transitionType":"fade","fadeHeight":"300px","fadeMediaDisplay":"cover","scrollAuto":true} /-->
 ```
 
-`horizontal-scroller-transition-fade` is required for the fade effect.
+`horizontal-scroller-transition-fade` is required for the fade effect. The default `fadeMediaDisplay` of `"normal"` adds no class. Setting `fadeMediaDisplay` to `"cover"` adds the `horizontal-fader-media-cover` class and `"contain"` adds `horizontal-fader-media-contain`.
 
 == Bundled Assets and Licenses ==
 
