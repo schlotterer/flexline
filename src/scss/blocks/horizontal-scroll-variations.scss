@@ -185,24 +185,25 @@ body,
 		width: 100%;
 		height: var(--horizontal-fader-height, 100%);
 	}
-	.is-style-horizontal-fade {
-		position: relative;
-		overflow: hidden;
-		display: block;
-        height: var(--horizontal-fader-height, 100%);
-		width: 100%;
-		>* {
-			position: absolute;
-			inset: 0;
-			height: 100%;
-			opacity: 0;
-			pointer-events: none;
-			width: 100%;
-			flex-direction: column;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+.is-style-horizontal-fade {
+position: relative;
+overflow: hidden;
+display: block;
+height: var(--horizontal-fader-height, 100%);
+width: 100%;
+>* {
+position: absolute;
+inset: 0;
+height: 100%;
+opacity: 0;
+pointer-events: none;
+width: 100%;
+flex-direction: column;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: opacity var(--horizontal-fade-duration, 600ms);
+}
 
 		>.is-active {
 			opacity: 1;

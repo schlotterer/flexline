@@ -222,6 +222,14 @@ function setupFade(scroller) {
 
 	wrapper.style.setProperty('--horizontal-fader-height', height);
 
+	const speed = parseInt(
+		scroller.getAttribute('data-scroll-speed') || '',
+		10
+	);
+	if (!Number.isNaN(speed)) {
+		scroller.style.setProperty('--horizontal-fade-duration', `${speed}ms`);
+	}
+
 	switchFadeSlide(scroller, 0);
 
 	return true;
