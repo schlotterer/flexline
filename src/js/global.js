@@ -312,7 +312,8 @@ function setupScrollerButtons(scroller) {
 	// Make sure we have a wrapper first (created once, reused after)
 	const wrapper = ensureWrapper(scroller);
 
-	let autoScrollInterval;
+	let autoScrollTimeout;
+	let autoScrollDelay;
 	let isPaused = false;
 	const hasStarted = false;
 
@@ -321,29 +322,43 @@ function setupScrollerButtons(scroller) {
 		if (!scroller.classList.contains('horizontal-scroller-auto')) {
 			return;
 		}
-		stopAutoScroll();
+		clearTimeout(autoScrollTimeout);
+		autoScrollTimeout = null;
 		if (!isPaused) {
 			startAutoScroll();
 		}
 	}
 
+	function scheduleNextAutoScroll() {
+		autoScrollTimeout = setTimeout(() => {
+			scrollToNext(scroller);
+			scheduleNextAutoScroll();
+		}, autoScrollDelay);
+	}
+
 	function startAutoScroll() {
-		if (autoScrollInterval) {
+		if (autoScrollTimeout) {
 			return;
 		}
-		const intervalDur = parseInt(
+		const scrollInterval = parseInt(
 			scroller.getAttribute('data-scroll-interval') || '4000',
 			10
 		);
-		autoScrollInterval = setInterval(
-			() => scrollToNext(scroller),
-			intervalDur
-		);
+		const transition =
+			window
+				.getComputedStyle(scroller)
+				.getPropertyValue('--wp--custom--transition-time') || '0ms';
+		const match = transition.match(/(\d+(?:\.\d+)?)m?s/);
+		const fadeDuration = match
+			? parseFloat(match[1]) * (transition.includes('ms') ? 1 : 1000)
+			: 0;
+		autoScrollDelay = scrollInterval + fadeDuration;
+		scheduleNextAutoScroll();
 	}
 
 	function stopAutoScroll() {
-		clearInterval(autoScrollInterval);
-		autoScrollInterval = null;
+		clearTimeout(autoScrollTimeout);
+		autoScrollTimeout = null;
 	}
 
 	function observeVisibility() {
