@@ -162,12 +162,12 @@ body,
 
 	}
 
-	@include screen($mobile) {
+        @include screen($mobile) {
 
-		.is-style-horizontal-scroll {
+                .is-style-horizontal-scroll {
 
-			&.wp-block-columns,
-			&.wp-block-post-template {
+                        &.wp-block-columns,
+                        &.wp-block-post-template {
 
 				>* {
 					//flex: 0 0 auto;
@@ -176,14 +176,78 @@ body,
 
 			}
 
-		}
+                }
 
-	}
+        }
 
-	.is-horizontal-scroll-btn {
-		color: var(--wp--preset--color--base);
-		background-color: var(--wp--custom--deco-color);
-		border-radius: var(--wp--custom--button-border-radius);
+        .horizontal-scroller-transition-fade {
+                position: relative;
+                overflow: hidden;
+                --fl-fader-height: 70svh;
+                height: var(--fl-fader-height);
+
+                >* {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        transition: opacity var(--wp--custom--transition-time);
+                }
+
+                >*.in-view {
+                        opacity: 1;
+                        z-index: 1;
+                }
+
+                + .horizontal-scroller-nav-buttons {
+                        top: 50%;
+                        left: 0;
+                        width: 100%;
+                        transform: translateY(-50%);
+                        justify-content: space-between;
+                }
+        }
+
+        .horizontal-fader-media-cover,
+        .horizontal-fader-media-contain {
+                img,
+                video,
+                .wp-block-cover img,
+                .wp-block-cover video,
+                .wp-block-post-featured-image img,
+                .wp-post-image {
+                        width: 100%;
+                        height: 100%;
+                }
+        }
+
+        .horizontal-fader-media-cover {
+                img,
+                video,
+                .wp-block-cover img,
+                .wp-block-cover video,
+                .wp-block-post-featured-image img,
+                .wp-post-image {
+                        object-fit: cover;
+                }
+        }
+
+        .horizontal-fader-media-contain {
+                img,
+                video,
+                .wp-block-cover img,
+                .wp-block-cover video,
+                .wp-block-post-featured-image img,
+                .wp-post-image {
+                        object-fit: contain;
+                }
+        }
+
+        .is-horizontal-scroll-btn {
+                color: var(--wp--preset--color--base);
+                background-color: var(--wp--custom--deco-color);
+                border-radius: var(--wp--custom--button-border-radius);
 
 		transition: var(--wp--custom--transition-time);
 		width: 30px;
