@@ -218,6 +218,7 @@ function setupScrollerButtons(scroller) {
 			if (existing) {
 				existing.remove();
 			}
+			removeWrapper(scroller);
 			delete scroller.dataset.buttonsInitialised; // reset so we can rebuild later
 		} else {
 			return; // nothing changed – keep existing buttons
@@ -226,6 +227,7 @@ function setupScrollerButtons(scroller) {
 
 	// If neither nav nor pause is requested, we are done.
 	if (!hasNav && !showPause) {
+		removeWrapper(scroller);
 		return;
 	}
 
@@ -436,13 +438,6 @@ function setupStatusObserver(scroller) {
 // 6.  Public initialiser helpers so we can call them multiple times.
 //------------------------------------------------------------------
 function initScroller(scroller) {
-	/*  First, guarantee wrapper status is in sync with the presence of the style-class. */
-	if (scroller.classList.contains('horizontal-scroller-transition-slide')) {
-		ensureWrapper(scroller);
-	} else {
-		removeWrapper(scroller);
-	}
-
 	setupScrollerButtons(scroller); // may add / remove button UI
 	setupStatusObserver(scroller);
 }
