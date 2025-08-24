@@ -330,15 +330,33 @@ function setupScrollerButtons(scroller) {
 	}
 
 	if (scroller.classList.contains('horizontal-scroller-auto')) {
-		if (scroller.classList.contains('scroller-pause-on-hover')) {
-			scroller.addEventListener('mouseenter', stopAutoScroll);
-			scroller.addEventListener('mouseleave', () => {
-				if (!isPaused) {
-					startAutoScroll();
-				}
-			});
+		const reduceMotionQuery = window.matchMedia(
+			'(prefers-reduced-motion: reduce)'
+		);
+
+		const handleMotionChange = (e) => {
+			if (e.matches) {
+				stopAutoScroll();
+			}
+		};
+
+		if (reduceMotionQuery.addEventListener) {
+			reduceMotionQuery.addEventListener('change', handleMotionChange);
+		} else if (reduceMotionQuery.addListener) {
+			reduceMotionQuery.addListener(handleMotionChange);
 		}
-		observeVisibility();
+
+		if (!reduceMotionQuery.matches) {
+			if (scroller.classList.contains('scroller-pause-on-hover')) {
+				scroller.addEventListener('mouseenter', stopAutoScroll);
+				scroller.addEventListener('mouseleave', () => {
+					if (!isPaused) {
+						startAutoScroll();
+					}
+				});
+			}
+			observeVisibility();
+		}
 	}
 
 	const controlContainer = document.createElement('div');
