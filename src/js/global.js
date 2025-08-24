@@ -212,7 +212,7 @@ function setupFade(scroller) {
 	if (!scroller.classList.contains('is-style-horizontal-fade')) {
 		return false;
 	}
-	ensureWrapper(scroller);
+	const wrapper = ensureWrapper(scroller);
 
 	const styles = window.getComputedStyle(scroller);
 	const height =
@@ -220,7 +220,7 @@ function setupFade(scroller) {
 		styles.getPropertyValue('--horizontal-fader-height').trim() ||
 		'100%';
 
-	scroller.style.setProperty('--horizontal-fader-height', height);
+	wrapper.style.setProperty('--horizontal-fader-height', height);
 
 	switchFadeSlide(scroller, 0);
 
