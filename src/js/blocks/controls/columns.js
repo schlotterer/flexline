@@ -67,8 +67,9 @@ export const controls = (BlockEdit, props) => (
 							label="Media Display type"
 							value={props.attributes.fadeMediaDisplay}
 							options={[
-								{ value: 'fill', label: 'Fill' },
-								{ value: 'fit', label: 'Fit' },
+								{ value: 'normal', label: 'Normal' },
+								{ value: 'cover', label: 'Cover' },
+								{ value: 'contain', label: 'Contain' },
 							]}
 							onChange={(value) =>
 								props.setAttributes({
@@ -341,10 +342,10 @@ export const getClasses = (attributes) => {
 	if (attributes.transitionType !== 'slide') {
 		removed.push('horizontal-scroller-transition-slide');
 	}
-	if (attributes.fadeMediaDisplay !== 'fill') {
+	if (attributes.fadeMediaDisplay !== 'cover') {
 		removed.push('horizontal-fader-media-cover');
 	}
-	if (attributes.fadeMediaDisplay !== 'fit') {
+	if (attributes.fadeMediaDisplay !== 'contain') {
 		removed.push('horizontal-fader-media-contain');
 	}
 	if (!attributes.scrollNav) {
@@ -465,10 +466,10 @@ export const getClasses = (attributes) => {
 	if (attributes.transitionType === 'slide') {
 		added += ' horizontal-scroller-transition-slide';
 	}
-	if (attributes.fadeMediaDisplay === 'fill') {
+	if (attributes.fadeMediaDisplay === 'cover') {
 		added += ' horizontal-fader-media-cover';
 	}
-	if (attributes.fadeMediaDisplay === 'fit') {
+	if (attributes.fadeMediaDisplay === 'contain') {
 		added += ' horizontal-fader-media-contain';
 	}
 	if (attributes.scrollAuto && attributes.enableHorizontalScroller) {

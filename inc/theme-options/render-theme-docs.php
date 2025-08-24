@@ -133,20 +133,20 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				'attributes' => array(
 					array(
 						'name'        => 'Horizontal Scroller',
-                                                'description' => 'Turns the container into a swipeable carousel or fader; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
-                                                        '<li>Transition: Slide or Fade</li>' .
-                                                        '<li>Fade height & media display (Fill/Fit)</li>' .
-                                                        '<li>Show Arrow Nav</li>' .
-                                                        '<li>Position Buttons Over Scroller</li>' .
-                                                        '<li>Scroll transition speed in milliseconds</li>' .
-                                                        '<li>Loop</li>' .
-                                                        '<li>Auto Scroll / Autoplay</li>' .
-                                                        '<li>Scroll interval in milliseconds</li>' .
-                                                        '<li>Hide Pause Button</li>' .
-                                                        '<li>Hide Scrollbar</li>' .
-                                                        '<li>Pause on Hover</li>' .
-                                                        '<li>Button Positions / Colors</li>' .
-                                                        '</ul>',
+						'description' => 'Turns the container into a swipeable carousel or fader; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+								'<li>Transition: Slide or Fade</li>' .
+								'<li>Fade height & media display (Fill/Fit)</li>' .
+								'<li>Show Arrow Nav</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
+								'<li>Scroll transition speed in milliseconds</li>' .
+								'<li>Loop</li>' .
+								'<li>Auto Scroll / Autoplay</li>' .
+								'<li>Scroll interval in milliseconds</li>' .
+								'<li>Hide Pause Button</li>' .
+								'<li>Hide Scrollbar</li>' .
+								'<li>Pause on Hover</li>' .
+								'<li>Button Positions / Colors</li>' .
+								'</ul>',
 					),
 					array(
 						'name'        => 'Stack at Tablet',
@@ -162,20 +162,20 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				'attributes' => array(
 					array(
 						'name'        => 'Horizontal Scroller',
-                                                'description' => 'Turns the container into a swipeable carousel or fader; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
-                                                        '<li>Transition: Slide or Fade</li>' .
-                                                        '<li>Fade height & media display (Fill/Fit)</li>' .
-                                                        '<li>Show Arrow Nav</li>' .
-                                                        '<li>Position Buttons Over Scroller</li>' .
-                                                        '<li>Scroll transition speed in milliseconds</li>' .
-                                                        '<li>Loop</li>' .
-                                                        '<li>Auto Scroll / Autoplay</li>' .
-                                                        '<li>Scroll interval in milliseconds</li>' .
-                                                        '<li>Hide Pause Button</li>' .
-                                                        '<li>Hide Scrollbar</li>' .
-                                                        '<li>Pause on Hover</li>' .
-                                                        '<li>Button Positions / Colors</li>' .
-                                                        '</ul>',
+						'description' => 'Turns the container into a swipeable carousel or fader; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+								'<li>Transition: Slide or Fade</li>' .
+								'<li>Fade height & media display (Fill/Fit)</li>' .
+								'<li>Show Arrow Nav</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
+								'<li>Scroll transition speed in milliseconds</li>' .
+								'<li>Loop</li>' .
+								'<li>Auto Scroll / Autoplay</li>' .
+								'<li>Scroll interval in milliseconds</li>' .
+								'<li>Hide Pause Button</li>' .
+								'<li>Hide Scrollbar</li>' .
+								'<li>Pause on Hover</li>' .
+								'<li>Button Positions / Colors</li>' .
+								'</ul>',
 					),
 				),
 			),
