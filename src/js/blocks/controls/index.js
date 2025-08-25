@@ -109,6 +109,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			handler.useHooks(props);
 		}
 
+		if (!props.wrapperProps) {
+			props.wrapperProps = {};
+		}
+
+		if (
+			props.attributes.enableHorizontalScroller &&
+			props.attributes.fadeHeight
+		) {
+			props.wrapperProps.style = {
+				...(props.wrapperProps.style || {}),
+				'--fade-height': props.attributes.fadeHeight,
+			};
+		}
+
 		useEffect(() => {
 			const removedClasses = [];
 			const newClasses = [];

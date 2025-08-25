@@ -179,25 +179,31 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 	}
 
-	if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+        if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
 
-		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
-			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
-			$data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
-			$search_string                 = '>';
-			$replace_string                = ' ' . $data_scroll_interval . '>';
-			$block_content                 = str_replace_first( $search_string, $replace_string, $block_content );
-		}
+                $block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
+                if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
+                        $block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
+                        $data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
+                        $search_string                 = '>';
+                        $replace_string                = ' ' . $data_scroll_interval . '>';
+                        $block_content                 = str_replace_first( $search_string, $replace_string, $block_content );
+                }
 
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
-			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
-			$data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
-			$search_string                        = '>';
-			$replace_string                       = ' ' . $data_scroll_interval . '>';
-			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
-		}
-	}
+                if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
+                        $block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
+                        $data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
+                        $search_string                        = '>';
+                        $replace_string                       = ' ' . $data_scroll_interval . '>';
+                        $block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
+                }
+
+                if ( isset( $block['attrs']['fadeHeight'] ) && ! empty( $block['attrs']['fadeHeight'] ) ) {
+                        $fade_height   = esc_attr( $block['attrs']['fadeHeight'] );
+                        $style_rules   = '--fade-height: ' . $fade_height . '; --horizontal-fader-height: ' . $fade_height . ';';
+                        $block_content = flexline_merge_inline_style( $block_content, $style_rules );
+                }
+        }
 
 	// **Add Unique Class and Styles for Content Shift**.
 	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
