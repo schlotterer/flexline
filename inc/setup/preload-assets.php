@@ -13,7 +13,7 @@ namespace FlexLine;
  * @author Joel Schlotterer
  */
 function preload_assets() {
-	
+
 	// Get the featured image url.
 	$featured_image_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 	if ( $featured_image_url ) {

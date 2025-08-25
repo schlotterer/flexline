@@ -1,9 +1,14 @@
 {
-  "extends": "@wordpress/stylelint-config",
-  "customSyntax": "postcss-scss",
+  "extends": "@wordpress/stylelint-config/scss",
   "rules": {
     "no-descending-specificity": null,
     "selector-class-pattern": null,
-    "selector-id-pattern": null
+    "selector-id-pattern": null,
+    "rule-empty-line-before": null,
+    "selector-pseudo-element-colon-notation": null,
+    "at-rule-empty-line-before": null,
+    "comment-empty-line-before": null,
+    "length-zero-no-unit": null,
+    "value-keyword-case": null
   }
 }

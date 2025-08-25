@@ -44,7 +44,7 @@ function add_og_tags() {
 	$default_type = 'article';
 
 	// Get our custom logo URL. We'll use this on archives and when no featured image is found.
-	$logo_url   = get_site_logo_from_block();
+	$logo_url = get_site_logo_from_block();
 
 	// Set our final defaults.
 	$card_title            = $default_title;

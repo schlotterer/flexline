@@ -32,8 +32,9 @@ npm-debug.log*
 # Laravel Mix files
 mix-manifest.json
 
-# Husky linting files
-.husky/
+# Husky hooks
+# Keep Husky configuration files tracked
+# (Ignore any internal Husky data via nested gitignore if needed)
 
 # Yarn
 yarn-error.log

@@ -48,13 +48,13 @@ body,
 		transition: all 0.2s ease-in-out;
 	}
 
-	a,
-	a:focus,
-	a:hover,
-	a:not(.wp-element-button) {
-		text-decoration-thickness: var(--wp--custom--text-deco-thickness);
-		text-decoration: none;
-	}
+a,
+a:focus,
+a:hover,
+a:not(.wp-element-button) {
+text-decoration: none;
+text-decoration-thickness: var(--wp--custom--text-deco-thickness);
+}
 
 	b,
 	strong,

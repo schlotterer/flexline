@@ -1,3 +1,4 @@
+/* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
@@ -447,7 +448,7 @@ export const useHooks = (props) => {
 		if (enableHorizontalScroller && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
 		}
-	}, [enableHorizontalScroller, isStackedOnMobile]);
+	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
 
 	useEffect(() => {
 		if (name === 'core/columns') {

@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 	document
-		.querySelectorAll('.group-link-type-modal_media .flexline-group-link-anchor')
+		.querySelectorAll(
+			'.group-link-type-modal_media .flexline-group-link-anchor'
+		)
 		.forEach((block) => {
 			const mediaUrl = block.href;
 			if (!mediaUrl) {

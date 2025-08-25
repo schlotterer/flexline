@@ -57,11 +57,11 @@ function body_classes( $classes ) {
 
 	// Add a class if header is fixed all the time.
 	$show_menu_on_scroll = get_option( 'flexline_show_menu_on_scroll_up', false );
-	if ( $show_menu_on_scroll == true ) {
+	if ( '1' === $show_menu_on_scroll ) {
 		$classes[] = 'headroom-in-use';
 	}
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
-	if ( $show_menu_all_the_time == true ) {
+	if ( '1' === $show_menu_all_the_time ) {
 		$classes[] = 'headroom--fixed-all-the-time';
 	}
 
