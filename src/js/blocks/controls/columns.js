@@ -89,7 +89,7 @@ export const controls = (BlockEdit, props) => (
 				)}
 				{props.attributes.enableHorizontalScroller && (
 					<RangeControl
-						label="Scroll transition in Milliseconds"
+						label="Transition in Milliseconds"
 						value={props.attributes.transitionDuration}
 						onChange={(newInterval) =>
 							props.setAttributes({
