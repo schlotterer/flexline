@@ -214,13 +214,19 @@ function setupFade(scroller) {
 	}
 	const wrapper = ensureWrapper(scroller);
 
-	const styles = window.getComputedStyle(scroller);
-	const height =
-		styles.getPropertyValue('--fade-height').trim() ||
-		styles.getPropertyValue('--horizontal-fader-height').trim() ||
-		'65svh';
+	function setHeight() {
+		const styles = window.getComputedStyle(scroller);
+		const header = document.querySelector('header.site-header');
+		const headerHeight = header ? header.offsetHeight : 0;
+		const height =
+			styles.getPropertyValue('--fade-height').trim() ||
+			styles.getPropertyValue('--horizontal-fader-height').trim() ||
+			`calc(100vh - ${headerHeight}px)`;
+		wrapper.style.setProperty('--horizontal-fader-height', height);
+	}
 
-	wrapper.style.setProperty('--horizontal-fader-height', height);
+	setHeight();
+	window.addEventListener('resize', setHeight);
 
 	const speed = parseInt(
 		scroller.getAttribute('data-scroll-speed') || '',
