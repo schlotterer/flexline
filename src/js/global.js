@@ -399,17 +399,20 @@ function setupScrollerButtons(scroller) {
 			reduceMotionQuery.addListener(handleMotionChange);
 		}
 
-		if (!reduceMotionQuery.matches) {
-			if (scroller.classList.contains('scroller-pause-on-hover')) {
-				scroller.addEventListener('mouseenter', stopAutoScroll);
-				scroller.addEventListener('mouseleave', () => {
-					if (!isPaused) {
-						startAutoScroll();
-					}
-				});
-			}
-			observeVisibility();
-		}
+                if (!reduceMotionQuery.matches) {
+                        if (
+                                isBlockEditor() ||
+                                scroller.classList.contains('scroller-pause-on-hover')
+                        ) {
+                                scroller.addEventListener('mouseenter', stopAutoScroll);
+                                scroller.addEventListener('mouseleave', () => {
+                                        if (!isPaused) {
+                                                startAutoScroll();
+                                        }
+                                });
+                        }
+                        observeVisibility();
+                }
 	}
 
 	const controlContainer = document.createElement('div');
