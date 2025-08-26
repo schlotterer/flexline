@@ -344,11 +344,30 @@ if (isBlockEditor()) {
 
 			lastSelected = selectedId;
 			const block = editor.getBlock(selectedId);
-			if (!block || block.name !== 'core/column') {
+			if (!block) {
 				return;
 			}
 
-			const el = document.querySelector(`[data-block="${selectedId}"]`);
+			const parents = editor.getBlockParents(selectedId);
+			let columnId = null;
+
+			if (block.name === 'core/column') {
+				columnId = selectedId;
+			} else {
+				for (let i = parents.length - 1; i >= 0; i--) {
+					const parentBlock = editor.getBlock(parents[i]);
+					if (parentBlock && parentBlock.name === 'core/column') {
+						columnId = parents[i];
+						break;
+					}
+				}
+			}
+
+			if (!columnId) {
+				return;
+			}
+
+			const el = document.querySelector(`[data-block="${columnId}"]`);
 			if (!el) {
 				return;
 			}
