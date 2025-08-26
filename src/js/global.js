@@ -350,15 +350,18 @@ function setupScrollerButtons(scroller) {
 			scroller.getAttribute('data-scroll-interval') || '4000',
 			10
 		);
-		const transition =
-			window
-				.getComputedStyle(scroller)
-				.getPropertyValue('--wp--custom--transition-time') || '0ms';
-		const match = transition.match(/(\d+(?:\.\d+)?)m?s/);
-		const fadeDuration = match
-			? parseFloat(match[1]) * (transition.includes('ms') ? 1 : 1000)
+		const isFade = scroller.classList.contains('is-style-horizontal-fade');
+		const durationVar = isFade
+			? '--horizontal-fade-duration'
+			: '--wp--custom--transition-time';
+		const durationValue =
+			window.getComputedStyle(scroller).getPropertyValue(durationVar) ||
+			'0ms';
+		const match = durationValue.match(/(\d+(?:\.\d+)?)m?s/);
+		const extraDelay = match
+			? parseFloat(match[1]) * (durationValue.includes('ms') ? 1 : 1000)
 			: 0;
-		autoScrollDelay = scrollInterval + fadeDuration;
+		autoScrollDelay = scrollInterval + extraDelay;
 		scheduleNextAutoScroll();
 	}
 
