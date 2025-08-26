@@ -808,9 +808,12 @@ function initScrollers() {
 document.addEventListener('DOMContentLoaded', initScrollers);
 window.addEventListener('load', initScrollers);
 
+// Keep a reference to the body observer for later cleanup.
+let bodyObserver;
+
 // 2. Also watch for new scrollers popping into the editor
 if (isBlockEditor()) {
-	const bodyObserver = new window.MutationObserver((records) => {
+	bodyObserver = new window.MutationObserver((records) => {
 		for (const rec of records) {
 			for (const node of rec.addedNodes) {
 				if (
@@ -882,7 +885,13 @@ if (isBlockEditor()) {
 			}
 		});
 
-		// Clean up subscription on page unload to prevent leaks.
-		window.addEventListener('beforeunload', unsubscribe);
+		// Clean up subscription and observer on page unload to prevent leaks.
+		window.addEventListener('beforeunload', () => {
+			unsubscribe();
+			if (bodyObserver) {
+				bodyObserver.disconnect();
+				bodyObserver = null;
+			}
+		});
 	});
 }
