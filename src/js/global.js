@@ -367,6 +367,9 @@ function setupScrollerButtons(scroller) {
 		autoScrollTimeout = null;
 	}
 
+	// Expose for external control (e.g., block-editor selection handler).
+	scroller._stopAutoScroll = stopAutoScroll;
+
 	function observeVisibility() {
 		const observer = new window.IntersectionObserver(
 			(entries) => {
@@ -818,10 +821,58 @@ if (isBlockEditor()) {
 		subtree: true,
 	});
 	wp.domReady(() => {
+		// Ensure scrollers are initialized before observing selections.
+		initScrollers();
+
 		let t;
-		wp.data.subscribe(() => {
+		let lastSelected;
+		const unsubscribe = wp.data.subscribe(() => {
+			// Re-run scroller init when editor data changes.
 			clearTimeout(t);
 			t = setTimeout(() => initScrollers(), 200);
+
+			const editor = wp.data.select('core/block-editor');
+			const selectedId = editor.getSelectedBlockClientId();
+
+			if (!selectedId || selectedId === lastSelected) {
+				return;
+			}
+
+			lastSelected = selectedId;
+			const block = editor.getBlock(selectedId);
+			if (!block || block.name !== 'core/column') {
+				return;
+			}
+
+			const el = document.querySelector(`[data-block="${selectedId}"]`);
+			if (!el) {
+				return;
+			}
+
+			const scroller = el.closest(
+				'.is-style-horizontal-scroll, .is-style-horizontal-fade'
+			);
+			if (!scroller) {
+				return;
+			}
+
+			const index = Array.from(scroller.children).indexOf(el);
+			if (scroller.classList.contains('is-style-horizontal-fade')) {
+				switchFadeSlide(scroller, index);
+			} else {
+				const duration = parseInt(
+					scroller.getAttribute('data-scroll-speed') || '600',
+					10
+				);
+				smoothScrollTo(scroller, el.offsetLeft, duration);
+			}
+
+			if (typeof scroller._stopAutoScroll === 'function') {
+				scroller._stopAutoScroll();
+			}
 		});
+
+		// Clean up subscription on page unload to prevent leaks.
+		window.addEventListener('beforeunload', unsubscribe);
 	});
 }
