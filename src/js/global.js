@@ -399,10 +399,7 @@ function setupScrollerButtons(scroller) {
 		}
 
 		if (!reduceMotionQuery.matches) {
-			if (
-				isBlockEditor() ||
-				scroller.classList.contains('scroller-pause-on-hover')
-			) {
+			if (scroller.classList.contains('scroller-pause-on-hover')) {
 				scroller.addEventListener('mouseenter', stopAutoScroll);
 				scroller.addEventListener('mouseleave', () => {
 					if (!isPaused) {
@@ -837,13 +834,8 @@ if (isBlockEditor()) {
 		// Ensure scrollers are initialized before observing selections.
 		initScrollers();
 
-		let t;
 		let lastSelected;
 		const unsubscribe = wp.data.subscribe(() => {
-			// Re-run scroller init when editor data changes.
-			clearTimeout(t);
-			t = setTimeout(() => initScrollers(), 200);
-
 			const editor = wp.data.select('core/block-editor');
 			const selectedId = editor.getSelectedBlockClientId();
 
