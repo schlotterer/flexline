@@ -62,23 +62,6 @@ export const controls = (BlockEdit, props) => (
 							help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
 						/>
 					)}
-				{props.attributes.enableHorizontalScroller &&
-					props.attributes.transitionType === 'fade' && (
-						<SelectControl
-							label="Media Display type"
-							value={props.attributes.fadeMediaDisplay}
-							options={[
-								{ value: 'normal', label: 'Normal' },
-								{ value: 'cover', label: 'Cover' },
-								{ value: 'contain', label: 'Contain' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									fadeMediaDisplay: value,
-								})
-							}
-						/>
-					)}
 				{props.attributes.enableHorizontalScroller && (
 					<ToggleControl
 						label="Show Arrow Navigation"
@@ -300,10 +283,6 @@ export const getClasses = (attributes) => {
 			'is-style-horizontal-fade',
 			'horizontal-scroller-transition-fade',
 			'horizontal-scroller-transition-slide',
-			'horizontal-fader-media-normal',
-			'horizontal-fader-media-contain',
-			'horizontal-fader-media-cover',
-			'horizontal-fader-media-contain',
 			'horizontal-scroller-navigation',
 			'horizontal-scroller-loop',
 			'horizontal-scroller-auto',
@@ -345,18 +324,6 @@ export const getClasses = (attributes) => {
 		}
 		if (attributes.transitionType !== 'slide') {
 			removed.push('is-style-horizontal-scroll');
-		}
-		if (attributes.transitionType !== 'normal') {
-			removed.push('horizontal-fader-media-normal');
-		}
-		if (attributes.transitionType !== 'cover') {
-			removed.push('horizontal-fader-media-cover');
-		}
-		if (attributes.transitionType !== 'contain') {
-			removed.push('horizontal-fader-media-contain');
-		}
-		if (!attributes.scrollNav) {
-			removed.push('horizontal-scroller-navigation');
 		}
 		if (!attributes.scrollNav) {
 			removed.push('horizontal-scroller-navigation');
@@ -475,18 +442,6 @@ export const getClasses = (attributes) => {
 		}
 		if (attributes.scrollNav && attributes.enableHorizontalScroller) {
 			added += ' horizontal-scroller-navigation';
-		}
-		if (
-			attributes.transitionType === 'fade' &&
-			attributes.fadeMediaDisplay === 'cover'
-		) {
-			added += ' horizontal-fader-media-cover';
-		}
-		if (
-			attributes.transitionType === 'fade' &&
-			attributes.fadeMediaDisplay === 'contain'
-		) {
-			added += ' horizontal-fader-media-contain';
 		}
 		if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
 			added += ' horizontal-scroller-auto';

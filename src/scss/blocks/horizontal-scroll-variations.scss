@@ -213,49 +213,11 @@ body,
 			pointer-events: auto;
 		}
 
-		&.horizontal-fader-media-normal {
-			img,
-			video,
-			.wp-block-post-featured-image img {
-				object-fit: initial;
-			}
-
-			.wp-block-cover__background,
-			.wp-block-cover__image-background {
-				background-size: auto;
-			}
-		}
-
-		&.horizontal-fader-media-cover {
-			img,
-			video,
-			.wp-block-post-featured-image img {
-				object-fit: cover;
-			}
-
-			.wp-block-cover__background,
-			.wp-block-cover__image-background {
-				background-size: cover;
-			}
-		}
-
-		&.horizontal-fader-media-contain {
-			img,
-			video,
-			.wp-block-post-featured-image img {
-				object-fit: contain;
-			}
-
-			.wp-block-cover__background,
-			.wp-block-cover__image-background {
-				background-size: contain;
-			}
-		}
-	}
-	.is-horizontal-scroll-btn {
-		color: var(--wp--preset--color--base);
-		background-color: var(--wp--custom--deco-color);
-		border-radius: var(--wp--custom--button-border-radius);
+        }
+        .is-horizontal-scroll-btn {
+                color: var(--wp--preset--color--base);
+                background-color: var(--wp--custom--deco-color);
+                border-radius: var(--wp--custom--button-border-radius);
 
 		transition: var(--wp--custom--transition-time);
 		width: 30px;

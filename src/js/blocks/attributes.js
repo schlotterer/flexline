@@ -57,10 +57,6 @@ export const customHorizontalScrollerAttributes = {
 		type: 'text',
 		default: '',
 	},
-	fadeMediaDisplay: {
-		type: 'select',
-		default: 'normal',
-	},
 	scrollNav: {
 		type: 'boolean',
 		default: true,
