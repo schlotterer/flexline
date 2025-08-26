@@ -1,5 +1,12 @@
 /* Media Queries
 ---------------------------------------- */
+
+.block-editor-page .is-style-horizontal-fade > * {
+	position: static;
+	opacity: 1;
+	pointer-events: auto;
+}
+
 body,
 .editor-styles-wrapper {
 

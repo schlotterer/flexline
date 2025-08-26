@@ -410,7 +410,11 @@ if (isBlockEditor()) {
 
 			const index = Array.from(scroller.children).indexOf(el);
 			if (scroller.classList.contains('is-style-horizontal-fade')) {
-				switchFadeSlide(scroller, index);
+				if (isBlockEditor()) {
+					setTimeout(() => switchFadeSlide(scroller, index));
+				} else {
+					switchFadeSlide(scroller, index);
+				}
 			} else {
 				const duration = parseInt(
 					scroller.getAttribute('data-scroll-speed') || '600',
