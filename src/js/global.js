@@ -221,7 +221,7 @@ function setupFade(scroller) {
 		const height =
 			styles.getPropertyValue('--fade-height').trim() ||
 			styles.getPropertyValue('--horizontal-fader-height').trim() ||
-			`calc(100vh - ${headerHeight}px)`;
+			`calc(100svh - ${headerHeight}px)`;
 		wrapper.style.setProperty('--horizontal-fader-height', height);
 	}
 

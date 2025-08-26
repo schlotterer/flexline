@@ -59,6 +59,7 @@ export const controls = (BlockEdit, props) => (
 								{ value: 'vh', label: 'vh' },
 								{ value: 'svh', label: 'svh' },
 							]}
+							help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
 						/>
 					)}
 				{props.attributes.enableHorizontalScroller &&
