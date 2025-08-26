@@ -79,10 +79,34 @@ function removeWrapper(scroller) {
 
 function setupScrollerButtons(scroller) {
 	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
-		new window.MutationObserver(() => initScroller(scroller)).observe(
-			scroller,
-			{ attributes: true, attributeFilter: ['class'] }
-		);
+		const relevant = [
+			'is-style-horizontal-fade',
+			'is-style-horizontal-scroll',
+			'horizontal-scroller-navigation',
+			'horizontal-scroller-auto',
+			'horizontal-scroller-hide-pause-button',
+			'horizontal-scroller-loop',
+		];
+
+		const updateOnRelevantChange = () => {
+			const current = relevant
+				.filter((cls) => scroller.classList.contains(cls))
+				.join(' ');
+
+			if (scroller.dataset.observedClass !== current) {
+				scroller.dataset.observedClass = current;
+				initScroller(scroller);
+			}
+		};
+
+		scroller.dataset.observedClass = relevant
+			.filter((cls) => scroller.classList.contains(cls))
+			.join(' ');
+
+		new window.MutationObserver(updateOnRelevantChange).observe(scroller, {
+			attributes: true,
+			attributeFilter: ['class'],
+		});
 		scroller.dataset.classObserverAttached = 'true';
 	}
 
