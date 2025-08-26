@@ -399,7 +399,10 @@ function setupScrollerButtons(scroller) {
 		}
 
 		if (!reduceMotionQuery.matches) {
-			if (scroller.classList.contains('scroller-pause-on-hover')) {
+			if (
+				isBlockEditor() ||
+				scroller.classList.contains('scroller-pause-on-hover')
+			) {
 				scroller.addEventListener('mouseenter', stopAutoScroll);
 				scroller.addEventListener('mouseleave', () => {
 					if (!isPaused) {
