@@ -72,6 +72,16 @@ export function setupFade(scroller) {
 	if (!scroller.classList.contains('is-style-horizontal-fade')) {
 		return false;
 	}
+
+	if (isBlockEditor()) {
+		Array.from(scroller.children).forEach((item) => {
+			item.classList.remove('is-active');
+			item.removeAttribute('aria-hidden');
+			item.removeAttribute('tabindex');
+		});
+		return false;
+	}
+
 	const wrapper = ensureWrapper(scroller);
 
 	function setHeight() {
@@ -96,7 +106,7 @@ export function setupFade(scroller) {
 		scroller.style.setProperty('--horizontal-fade-duration', `${speed}ms`);
 	}
 
-	// Avoid resetting an already active slide (e.g., in the block editor).
+	// Avoid resetting an already active slide.
 	const hasActiveChild = Array.from(scroller.children).some((c) =>
 		c.classList.contains('is-active')
 	);
