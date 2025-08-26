@@ -1,7 +1,14 @@
 /* Media Queries
 ---------------------------------------- */
 
-.block-editor-page .is-style-horizontal-fade > * {
+// Ensure slides remain interactive when editing by targeting common editor wrappers.
+.block-editor-page .is-style-horizontal-fade > *,
+.editor-styles-wrapper .is-style-horizontal-fade > *,
+.edit-post-visual-editor .is-style-horizontal-fade > *,
+.interface-interface-skeleton__editor .is-style-horizontal-fade > *,
+.block-editor-block-list__block .is-style-horizontal-fade > *,
+.block-editor-block-preview__content .is-style-horizontal-fade > *,
+.block-editor-block-preview__content-iframe .is-style-horizontal-fade > * {
 	position: static;
 	opacity: 1;
 	pointer-events: auto;
