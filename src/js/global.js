@@ -268,8 +268,9 @@ function setupScrollerButtons(scroller) {
 	const hasNav = scroller.classList.contains(
 		'horizontal-scroller-navigation'
 	);
+	const hasAuto = scroller.classList.contains('horizontal-scroller-auto');
 	const showPause =
-		scroller.classList.contains('horizontal-scroller-auto') &&
+		hasAuto &&
 		!scroller.classList.contains('horizontal-scroller-hide-pause-button');
 
 	// If the nav / pause state or transition style changed since the last run,
@@ -307,17 +308,9 @@ function setupScrollerButtons(scroller) {
 		}
 	}
 
-	// If neither nav nor pause is requested, we are done.
-	if (!hasNav && !showPause) {
-		return;
-	}
-
 	// ──────────────────────────────────────────────────────────────────────
-	// 2. Build container + buttons (first time, or after tear‑down)
+	// 1. Set up optional auto-scroll
 	// ──────────────────────────────────────────────────────────────────────
-	// Make sure we have a wrapper first (created once, reused after)
-	const wrapper = ensureWrapper(scroller);
-
 	let autoScrollTimeout;
 	let autoScrollDelay;
 	let isPaused = false;
@@ -325,7 +318,7 @@ function setupScrollerButtons(scroller) {
 
 	function resetAutoScrollTimer() {
 		// only reset if we’re in “auto” mode
-		if (!scroller.classList.contains('horizontal-scroller-auto')) {
+		if (!hasAuto) {
 			return;
 		}
 		clearTimeout(autoScrollTimeout);
@@ -382,7 +375,7 @@ function setupScrollerButtons(scroller) {
 		observer.observe(scroller);
 	}
 
-	if (scroller.classList.contains('horizontal-scroller-auto')) {
+	if (hasAuto) {
 		const reduceMotionQuery = window.matchMedia(
 			'(prefers-reduced-motion: reduce)'
 		);
@@ -411,6 +404,17 @@ function setupScrollerButtons(scroller) {
 			observeVisibility();
 		}
 	}
+
+	// If neither nav nor pause is requested, we are done.
+	if (!hasNav && !showPause) {
+		return;
+	}
+
+	// ──────────────────────────────────────────────────────────────────────
+	// 2. Build container + buttons (first time, or after tear‑down)
+	// ──────────────────────────────────────────────────────────────────────
+	// Make sure we have a wrapper first (created once, reused after)
+	const wrapper = ensureWrapper(scroller);
 
 	const controlContainer = document.createElement('div');
 	controlContainer.classList.add('horizontal-scroller-nav-buttons');
