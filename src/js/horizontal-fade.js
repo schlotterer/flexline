@@ -96,7 +96,13 @@ export function setupFade(scroller) {
 		scroller.style.setProperty('--horizontal-fade-duration', `${speed}ms`);
 	}
 
-	switchFadeSlide(scroller, 0);
+	// Avoid resetting an already active slide (e.g., in the block editor).
+	const hasActiveChild = Array.from(scroller.children).some((c) =>
+		c.classList.contains('is-active')
+	);
+	if (!hasActiveChild) {
+		switchFadeSlide(scroller, 0);
+	}
 
 	return true;
 }
