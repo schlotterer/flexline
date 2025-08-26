@@ -237,7 +237,10 @@ function initScroller(scroller) {
  */
 function initOneScroller(scroller) {
 	initScroller(scroller);
-	if (scroller.classList.contains('horizontal-scroller-loop')) {
+	if (
+		scroller.classList.contains('horizontal-scroller-loop') &&
+		scroller.classList.contains('is-style-horizontal-scroll')
+	) {
 		setupInfiniteLoop(scroller);
 	}
 }
@@ -251,8 +254,10 @@ function initOneScroller(scroller) {
  * @param {HTMLElement} scroller
  */
 function scheduleScrollerInit(scroller) {
-	watchLoopToggle(scroller);
-	watchChildrenForLoop(scroller);
+	if (scroller.classList.contains('is-style-horizontal-scroll')) {
+		watchLoopToggle(scroller);
+		watchChildrenForLoop(scroller);
+	}
 
 	if (
 		isBlockEditor() &&

@@ -88,7 +88,10 @@ export function setupInfiniteLoop(scroller) {
 		return;
 	}
 
-	if (!scroller.classList.contains('horizontal-scroller-loop')) {
+	if (
+		!scroller.classList.contains('horizontal-scroller-loop') ||
+		!scroller.classList.contains('is-style-horizontal-scroll')
+	) {
 		return;
 	}
 
