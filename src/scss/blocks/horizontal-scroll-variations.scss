@@ -239,9 +239,10 @@ body,
    	Styles for Horizontal Scroller Navigation Buttons Positioning
 	------------------------------------------------------------------ */
 
-	.horizontal-scroller-nav-buttons {
-		z-index: 10;
-	}
+        .horizontal-scroller-nav-buttons {
+                position: absolute;
+                z-index: 10;
+        }
 
 	/* Horizontal Alignment */
 .horizontal-scroller-buttons-horizontal-left {
