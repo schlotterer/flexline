@@ -1,5 +1,4 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
-/* global MutationObserver */
 import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls, URLInput } from '@wordpress/block-editor';
 import {
@@ -516,6 +515,9 @@ export const getClasses = (attributes) => {
 };
 
 export const useHooks = (props) => {
+	const { attributes, setAttributes, name } = props;
+	const { enableHorizontalScroller, isStackedOnMobile } = attributes;
+
 	useEffect(() => {
 		if (enableHorizontalScroller && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
