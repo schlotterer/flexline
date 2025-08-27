@@ -1,10 +1,9 @@
 /* Media Queries
 ---------------------------------------- */
 
-.block-editor-page .is-style-horizontal-fade > * {
-	position: static;
-	opacity: 1;
-	pointer-events: auto;
+.block-editor-page .is-style-horizontal-fade > :not(.is-active) {
+       opacity: 0;
+       pointer-events: none;
 }
 
 body,
