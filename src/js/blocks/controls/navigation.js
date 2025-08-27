@@ -10,10 +10,10 @@ export const controls = (BlockEdit, props) => (
 			<PanelBody title="FlexLine Options">
 				<ToggleControl
 					label="Enable Horizontal Scroll at Mobile"
-					checked={!!props.attributes.enableHorizontalScroll}
+					checked={!!props.attributes.enableHorizontalScrollAtMobile}
 					onChange={(newValue) =>
 						props.setAttributes({
-							enableHorizontalScroll: newValue,
+							enableHorizontalScrollAtMobile: newValue,
 						})
 					}
 				/>
@@ -25,7 +25,7 @@ export const controls = (BlockEdit, props) => (
 
 export const getClasses = (attributes) => {
 	let added = '';
-	if (attributes.enableHorizontalScroll) {
+	if (attributes.enableHorizontalScrollAtMobile) {
 		added += ' is-style-horizontal-scroll-at-mobile';
 	}
 	return { added };

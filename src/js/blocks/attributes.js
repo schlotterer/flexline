@@ -37,7 +37,7 @@ export const customNoWrapAttributes = {
 
 // Horizontal Scroll - Define custom attributes
 export const customHorizontalScrollAttributes = {
-	enableHorizontalScroll: {
+	enableHorizontalScrollAtMobile: {
 		type: 'boolean',
 		default: false,
 	},
@@ -108,6 +108,10 @@ export const customHorizontalScrollerAttributes = {
 	pauseOnHover: {
 		type: 'boolean',
 		default: true,
+	},
+	editPreviewToggle: {
+		type: 'boolean',
+		default: false,
 	},
 };
 
