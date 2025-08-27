@@ -95,13 +95,37 @@ export function setupFade(scroller) {
 	if (!Number.isNaN(speed)) {
 		scroller.style.setProperty('--horizontal-fade-duration', `${speed}ms`);
 	}
-
 	// Avoid resetting an already active slide (e.g., in the block editor).
 	const hasActiveChild = Array.from(scroller.children).some((c) =>
 		c.classList.contains('is-active')
 	);
 	if (!hasActiveChild) {
 		switchFadeSlide(scroller, 0);
+	}
+
+	if (isBlockEditor()) {
+		let lastClientId;
+		const unsubscribe = wp.data.subscribe(() => {
+			const clientId = wp
+				.select('core/block-editor')
+				.getSelectedBlockClientId();
+			if (!clientId || clientId === lastClientId) {
+				return;
+			}
+			lastClientId = clientId;
+			const node = document.querySelector(`[data-block="${clientId}"]`);
+			if (!node) {
+				return;
+			}
+			const slide = node.closest('.is-style-horizontal-fade > *');
+			if (!slide || !scroller.contains(slide)) {
+				return;
+			}
+			const index = Array.from(slide.parentNode.children).indexOf(slide);
+			switchFadeSlide(scroller, index);
+		});
+
+		window.addEventListener('unload', unsubscribe, { once: true });
 	}
 
 	return true;
