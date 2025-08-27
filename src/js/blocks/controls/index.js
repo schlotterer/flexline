@@ -7,6 +7,7 @@ import button from './button';
 import buttons from './buttons';
 import cover from './cover';
 import gallery from './gallery';
+import slider from './slider';
 import group from './group';
 import image from './image';
 import navigation from './navigation';
@@ -19,6 +20,9 @@ const handlers = {
 	'core/cover': cover,
 	'core/gallery': gallery,
 	'core/group': group,
+	'core/row': group,
+	'core/grid': group,
+	'core/stack': slider,
 	'core/image': image,
 	'core/navigation': navigation,
 	'core/columns': columns,
@@ -47,7 +51,9 @@ const classMap = {
 	enableLazyLoad: { false: 'no-lazy-load' },
 	noWrap: { true: 'nowrap' },
 	enablePosterGallery: { true: 'poster-gallery' },
-	enableHorizontalScrollAtMobile: { true: 'is-style-horizontal-scroll-at-mobile' },
+	enableHorizontalScrollAtMobile: {
+		true: 'is-style-horizontal-scroll-at-mobile',
+	},
 	stackAtTablet: { true: 'flexline-stack-at-tablet' },
 	enableGroupLink: { true: 'group-link' },
 };
