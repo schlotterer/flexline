@@ -109,10 +109,6 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
-	editPreviewToggle: {
-		type: 'boolean',
-		default: false,
-	},
 };
 
 // Slider - Define custom attributes
@@ -184,10 +180,6 @@ export const customSliderAttributes = {
 	pauseOnHover: {
 		type: 'boolean',
 		default: true,
-	},
-	editPreviewToggle: {
-		type: 'boolean',
-		default: false,
 	},
 };
 
