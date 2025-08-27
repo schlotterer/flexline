@@ -9,13 +9,13 @@ import {
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
-import { getVisibilityControls } from '../utils';
+import { getVisibilityControls, getContentShiftControls } from '../utils';
 
 export const controls = (BlockEdit, props) => (
 	<Fragment>
 		<BlockEdit {...props} />
 		<InspectorControls>
-			{props.attributes.enableHorizontalScroller && (
+			{props.attributes.enableSlider && (
 				<PanelBody title="FlexLine Group Link Options">
 					<ToggleControl
 						label="Enable Group Link"
@@ -50,20 +50,20 @@ export const controls = (BlockEdit, props) => (
 					)}
 				</PanelBody>
 			)}
-			{!props.attributes.enableHorizontalScroller && (
+			{!props.attributes.enableSlider && (
 				<PanelBody title="FlexLine Slider Options">
 					<ToggleControl
 						label="Enable Slider"
-						checked={!!props.attributes.enableHorizontalScroller}
+						checked={!!props.attributes.enableSlider}
 						onChange={(newValue) =>
 							props.setAttributes({
-								enableHorizontalScroller: newValue,
+								enableSlider: newValue,
 							})
 						}
 					/>
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
-							label="Buttons Horizontal Position"
+							label="Edit or Preview"
 							value={props.attributes.editPreviewToggle}
 							options={[
 								{ value: 'edit', label: 'Edit' },
@@ -76,12 +76,12 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<UnitControl
 							label="Container Height"
 							type="number"
 							min={0}
-							value={props.attributes.fadeHeight}
+							value={props.attributes.sliderHeight}
 							onChange={(value) =>
 								props.setAttributes({ fadeHeight: value })
 							}
@@ -96,16 +96,16 @@ export const controls = (BlockEdit, props) => (
 							help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<ToggleControl
 							label="Show Arrow Navigation"
-							checked={!!props.attributes.scrollNav}
+							checked={!!props.attributes.sliderNav}
 							onChange={(newValue) =>
-								props.setAttributes({ scrollNav: newValue })
+								props.setAttributes({ sliderNav: newValue })
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<RangeControl
 							label="Transition in Milliseconds"
 							value={props.attributes.transitionDuration}
@@ -120,16 +120,16 @@ export const controls = (BlockEdit, props) => (
 							step={50}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<ToggleControl
 							label="Loop Scrolling"
-							checked={!!props.attributes.scrollLoop}
+							checked={!!props.attributes.sliderLoop}
 							onChange={(newValue) =>
-								props.setAttributes({ scrollLoop: newValue })
+								props.setAttributes({ sliderLoop: newValue })
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
 							label="Buttons Horizontal Position"
 							value={props.attributes.positionButtonsHorizontal}
@@ -145,7 +145,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
 							label="Buttons Vertical Position"
 							value={props.attributes.positionButtonsVertical}
@@ -160,7 +160,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<ToggleControl
 							label="Position Buttons Over Slider"
 							checked={!!props.attributes.positionButtonsOver}
@@ -171,7 +171,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
 							label="Buttons Text Color"
 							value={props.attributes.buttonsTextColor}
@@ -189,7 +189,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
 							label="Buttons Background Color"
 							value={props.attributes.buttonsBackgroundColor}
@@ -210,7 +210,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<SelectControl
 							label="Buttons Border Color"
 							value={props.attributes.buttonsBorderColor}
@@ -230,7 +230,7 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<ToggleControl
 							label="Add Box Shadow to Buttons"
 							checked={!!props.attributes.buttonsBoxShadow}
@@ -241,17 +241,17 @@ export const controls = (BlockEdit, props) => (
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller && (
+					{props.attributes.enableSlider && (
 						<ToggleControl
 							label="Auto Slide"
-							checked={!!props.attributes.scrollAuto}
+							checked={!!props.attributes.sliderAuto}
 							onChange={(newValue) =>
-								props.setAttributes({ scrollAuto: newValue })
+								props.setAttributes({ sliderAuto: newValue })
 							}
 						/>
 					)}
-					{props.attributes.enableHorizontalScroller &&
-						props.attributes.scrollAuto && (
+					{props.attributes.enableSlider &&
+						props.attributes.sliderAuto && (
 							<ToggleControl
 								label="Hide Pause Button"
 								checked={!!props.attributes.hidePauseButton}
@@ -262,8 +262,8 @@ export const controls = (BlockEdit, props) => (
 								}
 							/>
 						)}
-					{props.attributes.enableHorizontalScroller &&
-						props.attributes.scrollAuto && (
+					{props.attributes.enableSlider &&
+						props.attributes.sliderAuto && (
 							<ToggleControl
 								label="Pause on Hover"
 								checked={!!props.attributes.pauseOnHover}
@@ -274,14 +274,14 @@ export const controls = (BlockEdit, props) => (
 								}
 							/>
 						)}
-					{props.attributes.enableHorizontalScroller &&
-						props.attributes.scrollAuto && (
+					{props.attributes.enableSlider &&
+						props.attributes.sliderAuto && (
 							<RangeControl
-								label="Scroll Interval in Milliseconds"
-								value={props.attributes.scrollSpeed}
+								label="Slide Interval in Milliseconds"
+								value={props.attributes.sliderSpeed}
 								onChange={(newInterval) =>
 									props.setAttributes({
-										scrollSpeed: newInterval,
+										sliderSpeed: newInterval,
 									})
 								}
 								defaultValue={4000}
@@ -296,12 +296,13 @@ export const controls = (BlockEdit, props) => (
 				{getVisibilityControls(props)}
 			</PanelBody>
 		</InspectorControls>
+		{getContentShiftControls(props)}
 	</Fragment>
 );
 
 export const getClasses = (attributes) => {
 	const removed = [];
-	if (attributes.enableHorizontalScroller === false) {
+	if (attributes.enableSlider === false) {
 		removed.push(
 			'is-style-slider',
 			'slider-transition-fade',
@@ -309,7 +310,7 @@ export const getClasses = (attributes) => {
 			'slider-navigation',
 			'slider-loop',
 			'slider-auto',
-			'slider-hide-scrollbar',
+			'slider-hide-sliderbar',
 			'slider-hide-pause-button',
 			'slider-buttons-horizontal-left',
 			'slider-buttons-horizontal-center',
@@ -342,20 +343,17 @@ export const getClasses = (attributes) => {
 			'slider-pause-on-hover'
 		);
 	} else {
-		if (!attributes.enableHorizontalScroller) {
+		if (!attributes.enableSlider) {
 			removed.push('is-style-slider');
 		}
-		if (!attributes.scrollNav) {
+		if (!attributes.sliderNav) {
 			removed.push('slider-navigation');
 		}
-		if (!attributes.scrollLoop) {
+		if (!attributes.sliderLoop) {
 			removed.push('slider-loop');
 		}
-		if (!attributes.scrollAuto) {
+		if (!attributes.sliderAuto) {
 			removed.push('slider-auto');
-		}
-		if (!attributes.hideScrollbar) {
-			removed.push('slider-hide-scrollbar');
 		}
 		if (!attributes.hidePauseButton) {
 			removed.push('slider-hide-pause-button');
@@ -448,64 +446,43 @@ export const getClasses = (attributes) => {
 			removed.push('slider-pause-on-hover');
 		}
 		let added = '';
-		if (attributes.enableHorizontalScroller) {
+		if (attributes.enableSlider) {
 			added += ' is-style-slider';
 		}
-		if (attributes.scrollNav && attributes.enableHorizontalScroller) {
+		if (attributes.sliderNav && attributes.enableSlider) {
 			added += ' slider-navigation';
 		}
-		if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
+		if (attributes.sliderAuto && attributes.enableSlider) {
 			added += ' slider-auto';
 		}
-		if (attributes.scrollLoop && attributes.enableHorizontalScroller) {
+		if (attributes.sliderLoop && attributes.enableSlider) {
 			added += ' slider-loop';
 		}
-		if (attributes.pauseOnHover && attributes.enableHorizontalScroller) {
+		if (attributes.pauseOnHover && attributes.enableSlider) {
 			added += ' slider-pause-on-hover';
 		}
-		if (attributes.hidePauseButton && attributes.enableHorizontalScroller) {
+		if (attributes.hidePauseButton && attributes.enableSlider) {
 			added += ' slider-hide-pause-button';
 		}
-		if (
-			attributes.positionButtonsHorizontal &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.positionButtonsHorizontal && attributes.enableSlider) {
 			added += ` slider-buttons-horizontal-${attributes.positionButtonsHorizontal}`;
 		}
-		if (
-			attributes.positionButtonsVertical &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.positionButtonsVertical && attributes.enableSlider) {
 			added += ` slider-buttons-vertical-${attributes.positionButtonsVertical}`;
 		}
-		if (
-			attributes.positionButtonsOver &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.positionButtonsOver && attributes.enableSlider) {
 			added += ' slider-buttons-over';
 		}
-		if (
-			attributes.buttonsBackgroundColor &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.buttonsBackgroundColor && attributes.enableSlider) {
 			added += ` slider-buttons-background-${attributes.buttonsBackgroundColor}`;
 		}
-		if (
-			attributes.buttonsTextColor &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.buttonsTextColor && attributes.enableSlider) {
 			added += ` slider-buttons-text-${attributes.buttonsTextColor}`;
 		}
-		if (
-			attributes.buttonsBorderColor &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.buttonsBorderColor && attributes.enableSlider) {
 			added += ` slider-buttons-border-${attributes.buttonsBorderColor}`;
 		}
-		if (
-			attributes.buttonsBoxShadow &&
-			attributes.enableHorizontalScroller
-		) {
+		if (attributes.buttonsBoxShadow && attributes.enableSlider) {
 			added += ' slider-buttons-box-shadow';
 		}
 		return { added, removed };
@@ -516,13 +493,13 @@ export const getClasses = (attributes) => {
 
 export const useHooks = (props) => {
 	const { attributes, setAttributes } = props;
-	const { enableHorizontalScroller, isStackedOnMobile } = attributes;
+	const { enableSlider, isStackedOnMobile } = attributes;
 
 	useEffect(() => {
-		if (enableHorizontalScroller && isStackedOnMobile) {
+		if (enableSlider && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
 		}
-	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
+	}, [enableSlider, isStackedOnMobile, setAttributes]);
 };
 
 export default { controls, getClasses, useHooks };
