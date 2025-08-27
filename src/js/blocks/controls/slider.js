@@ -515,7 +515,7 @@ export const getClasses = (attributes) => {
 };
 
 export const useHooks = (props) => {
-	const { attributes, setAttributes, name } = props;
+	const { attributes, setAttributes } = props;
 	const { enableHorizontalScroller, isStackedOnMobile } = attributes;
 
 	useEffect(() => {
@@ -523,8 +523,6 @@ export const useHooks = (props) => {
 			setAttributes({ isStackedOnMobile: false });
 		}
 	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
-
-	useEffect(() => {}, [name, enableHorizontalScroller]);
 };
 
 export default { controls, getClasses, useHooks };
