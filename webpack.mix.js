@@ -7,6 +7,7 @@ const jsFiles = [
         'src/js/modal.js',
         'src/js/global.js',
         'src/js/horizontal-scroll.js',
+		'src/js/slider.js',
         'src/js/slidein.js',
         'src/js/headroom.js',
         'src/js/load-early.js',
