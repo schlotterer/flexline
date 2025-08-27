@@ -104,6 +104,38 @@ export function setupFade(scroller) {
 		switchFadeSlide(scroller, 0);
 	}
 
+	if (isBlockEditor() && wp.data && wp.data.subscribe) {
+		let lastSelected;
+		const unsubscribe = wp.data.subscribe(() => {
+			const editor = wp.data.select('core/block-editor');
+			const selectedId = editor.getSelectedBlockClientId();
+
+			if (!selectedId || selectedId === lastSelected) {
+				return;
+			}
+
+			lastSelected = selectedId;
+
+			const el = document.querySelector(`[data-block="${selectedId}"]`);
+			if (!el || !scroller.contains(el)) {
+				return;
+			}
+
+			let slide = el;
+			while (slide && slide.parentNode !== scroller) {
+				slide = slide.parentNode;
+			}
+			if (!slide) {
+				return;
+			}
+
+			const index = Array.from(scroller.children).indexOf(slide);
+			switchFadeSlide(scroller, index);
+		});
+
+		window.addEventListener('beforeunload', () => unsubscribe());
+	}
+
 	return true;
 }
 
