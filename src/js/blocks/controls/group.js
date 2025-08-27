@@ -50,11 +50,17 @@ export const controls = (BlockEdit, props) => (
 
 export const getClasses = (attributes) => {
 	let added = '';
+	const removed = [
+		'group-link-type-none',
+		'group-link-type-new_tab',
+		'group-link-type-modal_media',
+		'group-link-type-self',
+	];
 	if (attributes.enableGroupLink) {
 		const linkType = attributes.groupLinkType || 'self';
 		added += ` group-link group-link-type-${linkType}`;
 	}
-	return { added };
+	return { added, removed };
 };
 
 export default { controls, getClasses };
