@@ -31,9 +31,9 @@ function flexline_enqueue_styles() {
 	// Customized Styles.
 	wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), array(), THEME_VERSION );
 
-        // Scripts.
-       wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), array(), THEME_VERSION, true );
-       wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), THEME_VERSION, true );
+		// Scripts.
+		wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), array(), THEME_VERSION, true );
+		wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), THEME_VERSION, true );
 	$show_menu_on_scroll    = get_option( 'flexline_show_menu_on_scroll_up', false );
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
 	if ( '1' === $show_menu_on_scroll || '1' === $show_menu_all_the_time ) {
@@ -61,8 +61,8 @@ function flexline_admin_enqueue_scripts() {
 	// Customized Styles.
 	wp_enqueue_style( 'flexline-custom-admin', get_theme_file_uri( 'assets/css/customize.css' ), array(), THEME_VERSION );
 
-       wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), THEME_VERSION, true );
-       wp_enqueue_script( 'flexline-scroll-admin', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), THEME_VERSION, true );
+		wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), THEME_VERSION, true );
+		wp_enqueue_script( 'flexline-scroll-admin', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), THEME_VERSION, true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
 	wp_enqueue_script(
