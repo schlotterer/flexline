@@ -296,8 +296,11 @@
 		}
 		slides.forEach((el, idx) => {
 			const on = idx === slider._activeIndex;
+			const isPrev =
+				typeof slider._prevIndex === 'number' &&
+				idx === slider._prevIndex;
 			el.style.opacity = on ? '1' : '0';
-			el.style.zIndex = on ? '1' : '0';
+			el.style.zIndex = on || isPrev ? '1' : '0';
 		});
 	}
 
@@ -314,6 +317,7 @@
 		if (next < 0) {
 			next = slider._loop ? count - 1 : 0;
 		}
+		slider._prevIndex = slider._activeIndex;
 		slider._activeIndex = next;
 		clampState(slider);
 		if (fromNav) {
@@ -441,6 +445,7 @@
 			if (e && e.propertyName && e.propertyName !== 'opacity') {
 				return;
 			}
+			slider._prevIndex = null;
 			clampState(slider);
 		};
 		slides.forEach((el) => {
