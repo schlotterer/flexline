@@ -214,14 +214,14 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				const showNav = attributes.sliderNav ? 1 : 0;
 
 				cssRules += `
-                  --slider-height: ${height};
-                  --slider-transition-ms: ${transitionMs};
-                  --slider-interval-ms: ${intervalMs};
-                  --slider-loop: ${loop};
-                  --slider-pause-on-hover: ${pauseHover};
-                  --slider-show-pause: ${showPause};
-                  --slider-nav: ${showNav};
-                `;
+						  --slider-height: ${height};
+						  --slider-transition-ms: ${transitionMs};
+						  --slider-interval-ms: ${intervalMs};
+						  --slider-loop: ${loop};
+						  --slider-pause-on-hover: ${pauseHover};
+						  --slider-show-pause: ${showPause};
+						  --slider-nav: ${showNav};
+						`;
 			}
 
 			if (cssRules) {
@@ -233,6 +233,59 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					document.head.appendChild(styleElementRef.current);
 				}
 				styleElementRef.current.textContent = styles;
+
+				// Also apply vars directly on the wrapper for immediate inheritance
+				if (props.attributes.enableSlider) {
+					const sliderHeightValue = (attributes.sliderHeight || '')
+						.toString()
+						.trim();
+					const sliderTransitionMs =
+						attributes.transitionDuration ?? 500;
+					const isAutoEnabled = !!attributes.sliderAuto;
+					const sliderIntervalMs = isAutoEnabled
+						? (attributes.sliderSpeed ?? 4000)
+						: 0;
+
+					const inlineVars = {};
+					const addVar = (name, val) => {
+						if (
+							val !== undefined &&
+							val !== null &&
+							`${val}` !== ''
+						) {
+							inlineVars[name] = `${val}`;
+						}
+					};
+					// Only set height if provided; otherwise supply a preview default
+					if (sliderHeightValue) {
+						inlineVars['--slider-height'] = sliderHeightValue;
+						inlineVars['--slider-height-default'] = undefined; // not needed when explicit height exists
+					} else {
+						inlineVars['--slider-height'] = undefined; // remove if previously set
+						inlineVars['--slider-height-default'] =
+							'calc(100svh - var(--header-site-header-height, 0px))';
+					}
+					addVar('--slider-transition-ms', sliderTransitionMs);
+					addVar('--slider-interval-ms', sliderIntervalMs);
+
+					props.wrapperProps.style = {
+						...(props.wrapperProps.style || {}),
+						...inlineVars,
+					};
+				}
+
+				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
+				try {
+					const evt = new CustomEvent(
+						'flexline-slider-vars-updated',
+						{
+							detail: { selector: `#${uniqueClass}` },
+						}
+					);
+					document.dispatchEvent(evt);
+				} catch (e) {
+					// ignore
+				}
 			} else if (styleElementRef.current) {
 				styleElementRef.current.parentNode.removeChild(
 					styleElementRef.current

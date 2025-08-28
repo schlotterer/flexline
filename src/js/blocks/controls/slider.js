@@ -346,6 +346,10 @@ export const getClasses = (attributes) => {
 		if (!attributes.enableSlider) {
 			removed.push('is-style-slider');
 		}
+		// Remove height class when no explicit height value
+		if (!attributes.sliderHeight) {
+			removed.push('slider-has-height');
+		}
 		// Preview/Edit toggle class for editor runtime
 		if (attributes.editPreviewToggle !== 'preview') {
 			removed.push('slider-preview-mode');
@@ -458,6 +462,9 @@ export const getClasses = (attributes) => {
 			attributes.editPreviewToggle === 'preview'
 		) {
 			added += ' slider-preview-mode';
+		}
+		if (attributes.enableSlider && attributes.sliderHeight) {
+			added += ' slider-has-height';
 		}
 		if (attributes.sliderNav && attributes.enableSlider) {
 			added += ' slider-navigation';

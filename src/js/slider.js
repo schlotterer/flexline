@@ -399,31 +399,26 @@
 
 	function computeAndSetEffectiveHeight(slider) {
 		const wrapper = slider._wrapper || slider.parentElement;
-		let v = '';
-		if (wrapper) {
-			v = (
-				window
-					.getComputedStyle(wrapper)
-					.getPropertyValue('--slider-height') || ''
-			).trim();
-		}
-		if (!v) {
-			v = (
-				window
-					.getComputedStyle(slider)
-					.getPropertyValue('--slider-height') || ''
-			).trim();
-		}
-		if (v) {
-			slider.style.setProperty('--slider-height-effective', v);
+		const csWrapper = wrapper ? window.getComputedStyle(wrapper) : null;
+		const explicitHeight = csWrapper
+			? (csWrapper.getPropertyValue('--slider-height') || '').trim()
+			: '';
+		if (explicitHeight) {
+			// Height provided – clear default so the explicit value wins and live-updates.
+			if (wrapper) {
+				wrapper.style.removeProperty('--slider-height-default');
+			}
 			return;
 		}
+		// No explicit height, provide a robust default based on header size
 		const header = document.querySelector('header.site-header');
 		const h = header ? header.offsetHeight : 0;
-		slider.style.setProperty(
-			'--slider-height-effective',
-			`calc(100svh - ${h}px)`
-		);
+		if (wrapper) {
+			wrapper.style.setProperty(
+				'--slider-height-default',
+				`calc(100svh - ${h}px)`
+			);
+		}
 	}
 
 	function attachResize(slider) {
@@ -717,7 +712,9 @@
 
 		// Clear inline styles
 		clearInlineSlideStyles(slider);
-		slider.style.removeProperty('--slider-height-effective');
+		if (slider._wrapper) {
+			slider._wrapper.style.removeProperty('--slider-height-default');
+		}
 
 		// Remove runtime class
 		slider.classList.remove(RUNTIME_CLASS);
@@ -838,5 +835,35 @@
 		subtree: true,
 		attributes: true,
 		attributeFilter: ['class'],
+	});
+
+	// Editor: listen for live CSS var updates from controls
+	document.addEventListener('flexline-slider-vars-updated', (e) => {
+		const sel = e && e.detail && e.detail.selector;
+		if (sel) {
+			const scope = document.querySelector(sel);
+			const sliders = scope
+				? Array.from(scope.querySelectorAll(SLIDER_SELECTOR))
+				: [];
+			if (sliders.length) {
+				sliders.forEach((slider) => {
+					if (!shouldRun(slider)) {
+						return;
+					}
+					const prevInterval = slider._intervalMs;
+					updateOptionsFromVars(slider);
+					computeAndSetEffectiveHeight(slider);
+					applyStacking(slider);
+					clampState(slider);
+					buildNav(slider);
+					if (slider._intervalMs !== prevInterval) {
+						restartAuto(slider);
+					}
+				});
+				return;
+			}
+		}
+		// Fallback: refresh all sliders
+		rerunInit();
 	});
 })();
