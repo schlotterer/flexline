@@ -8,7 +8,7 @@ import buttons from './buttons';
 import cover from './cover';
 import gallery from './gallery';
 import slider from './slider';
-import group from './group';
+// import group from './group';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';
@@ -19,9 +19,7 @@ const handlers = {
 	'core/buttons': buttons,
 	'core/cover': cover,
 	'core/gallery': gallery,
-	'core/group': group,
-	'core/row': group,
-	'core/grid': group,
+	'core/group': slider,
 	'core/stack': slider,
 	'core/image': image,
 	'core/navigation': navigation,
@@ -158,7 +156,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.wrapperProps) {
 				props.wrapperProps = {};
 			}
+			// Ensure a stable ID on the block wrapper for targeting CSS variables
+			props.wrapperProps.id = uniqueClass;
 
+			// Build a style rule that collects CSS variables for any active features
+			let cssRules = '';
+			// Content Shift variables
 			if (props.attributes.useContentShift) {
 				let shiftLeft = '0';
 				let shiftRight = '0';
@@ -186,23 +189,49 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					slideY = attributes.slideVertical;
 				}
 
-				const styles = `
-                  #${uniqueClass} {
-                        --flexline-shift-left: ${shiftLeft};
-                        --flexline-shift-right: ${shiftRight};
-                        --flexline-shift-up: ${shiftUp};
-                        --flexline-shift-down: ${shiftDown};
-                        --flexline-slide-x: ${slideX};
-                        --flexline-slide-y: ${slideY};
-                  }
+				cssRules += `
+                  --flexline-shift-left: ${shiftLeft};
+                  --flexline-shift-right: ${shiftRight};
+                  --flexline-shift-up: ${shiftUp};
+                  --flexline-shift-down: ${shiftDown};
+                  --flexline-slide-x: ${slideX};
+                  --flexline-slide-y: ${slideY};
                 `;
+			}
+
+			// Slider variables
+			if (props.attributes.enableSlider) {
+				const height = attributes.sliderHeight || '';
+				const transitionMs = attributes.transitionDuration ?? 500;
+				const auto = !!attributes.sliderAuto;
+				const intervalMs = auto ? (attributes.sliderSpeed ?? 4000) : 0;
+				const loop = attributes.sliderLoop ? 1 : 0;
+				const pauseHover = auto && attributes.pauseOnHover ? 1 : 0;
+				let showPause = 0;
+				if (auto && !attributes.hidePauseButton) {
+					showPause = 1;
+				}
+				const showNav = attributes.sliderNav ? 1 : 0;
+
+				cssRules += `
+                  --slider-height: ${height};
+                  --slider-transition-ms: ${transitionMs};
+                  --slider-interval-ms: ${intervalMs};
+                  --slider-loop: ${loop};
+                  --slider-pause-on-hover: ${pauseHover};
+                  --slider-show-pause: ${showPause};
+                  --slider-nav: ${showNav};
+                `;
+			}
+
+			if (cssRules) {
+				const styles = `#${uniqueClass} { ${cssRules} }`;
 
 				if (!styleElementRef.current) {
 					styleElementRef.current = document.createElement('style');
 					styleElementRef.current.setAttribute('type', 'text/css');
 					document.head.appendChild(styleElementRef.current);
 				}
-
 				styleElementRef.current.textContent = styles;
 			} else if (styleElementRef.current) {
 				styleElementRef.current.parentNode.removeChild(

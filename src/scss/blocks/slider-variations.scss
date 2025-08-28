@@ -1,0 +1,135 @@
+/* Dedicated styles for FlexLine fading slider */
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.is-style-slider.slider-runtime-active {
+  position: relative;
+  min-height: var(
+    --slider-height-effective,
+    var(--slider-height, calc(100svh - var(--header-site-header-height, 0px)))
+  );
+}
+
+/* Slides are absolutely stacked by JS while runtime is active */
+.is-style-slider.slider-runtime-active > * {
+  /* In editor, children are inside .block-editor-block-list__layout — JS applies inline styles either way */
+}
+
+/* Nav container: base positioning. Specific alignment rules below. */
+.slider-wrapper > .slider-nav-buttons {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+/* When positioned over the slider: place container inside with 12px inset */
+.slider-wrapper > .is-style-slider.slider-buttons-over + .slider-nav-buttons {
+  inset: unset;
+  pointer-events: auto;
+}
+
+.is-slider-btn {
+  appearance: none;
+  border: 0;
+  background: var(--wp--custom--deco-color, rgba(0,0,0,0.35));
+  color: var(--wp--preset--color--base, #fff);
+  padding: 0.5rem;
+  cursor: pointer;
+  pointer-events: auto;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--wp--custom--button-border-radius, 4px);
+  transition: var(--wp--custom--transition-time, 150ms ease);
+}
+.is-slider-btn:hover {
+  box-shadow: var(--wp--custom--button-shadow-hover, 0 2px 8px rgba(0,0,0,0.35));
+  /* slightly darken background when over */
+  background-color: color-mix(in lab, var(--wp--custom--deco-color, rgba(0,0,0,0.35)), #000 20%);
+}
+
+/* Ensure SVG icons inherit the button color by default */
+.is-slider-btn svg path { fill: currentColor; }
+
+/* Horizontal placement (outside) */
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-left:not(.slider-buttons-over) + .slider-nav-buttons {
+  left: 0; right: auto; transform: none; margin-left: 10px;
+}
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-center:not(.slider-buttons-over) + .slider-nav-buttons {
+  left: 50%; transform: translateX(-50%);
+}
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-right:not(.slider-buttons-over) + .slider-nav-buttons {
+  right: 0; left: auto; transform: none; margin-right: 10px;
+}
+
+/* Vertical placement (outside) */
+.slider-wrapper > .is-style-slider.slider-buttons-vertical-top:not(.slider-buttons-over) + .slider-nav-buttons {
+  top: -40px; bottom: auto;
+}
+.slider-wrapper > .is-style-slider.slider-buttons-vertical-bottom:not(.slider-buttons-over) + .slider-nav-buttons {
+  bottom: -40px; top: auto;
+}
+
+/* When over, align inside with 12px offsets */
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-top + .slider-nav-buttons { top: 12px; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-bottom + .slider-nav-buttons { bottom: 12px; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-left + .slider-nav-buttons { left: 12px; right: auto; transform: none; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-center + .slider-nav-buttons { left: 50%; transform: translateX(-50%); }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-right + .slider-nav-buttons { right: 12px; left: auto; transform: none; }
+
+/* Background variants (match scroller’s palette) */
+.slider-wrapper > .is-style-slider.slider-buttons-background-transparent + .slider-nav-buttons .is-slider-btn { background-color: transparent; }
+.slider-wrapper > .is-style-slider.slider-buttons-background-white + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-black + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-gray + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-primary + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-secondary + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-alternate + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--alternate); }
+
+/* Text color variants */
+.slider-wrapper > .is-style-slider.slider-buttons-text-white + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-black + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-gray + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-primary + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-secondary + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-alternate + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--alternate); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-default + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--base); }
+
+/* Ensure SVG inherits chosen text color when variants are applied */
+.slider-wrapper > .is-style-slider[class*='slider-buttons-text-'] + .slider-nav-buttons .is-slider-btn svg path {
+  fill: currentColor !important;
+}
+
+/* Border variants */
+.slider-wrapper > .is-style-slider.slider-buttons-border-none + .slider-nav-buttons .is-slider-btn { border: none; }
+.slider-wrapper > .is-style-slider.slider-buttons-border-white + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-black + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-gray + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-primary + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-secondary + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-alternate + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--alternate); }
+
+/* Box shadow */
+.slider-wrapper > .is-style-slider.slider-buttons-box-shadow + .slider-nav-buttons .is-slider-btn {
+  box-shadow: var(--wp--custom--button-shadow, 0 2px 8px rgba(0,0,0,0.4));
+}
+
+/* Editor Preview: disable interaction with slides */
+.editor-styles-wrapper
+.is-style-slider.slider-preview-mode
+> .block-editor-block-list__layout > * {
+  pointer-events: none !important;
+}
+
+/* Editor width sanity */
+.editor-styles-wrapper .slider-wrapper,
+.editor-styles-wrapper .is-style-slider {
+  width: 100%;
+}

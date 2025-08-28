@@ -50,6 +50,7 @@ registerAttributes(['core/group'], {
 	...customGroupAttributes,
 	...customVisibilityAttributes,
 	...customShiftAttributes,
+	...customSliderAttributes,
 });
 
 registerAttributes(['core/stack'], {

@@ -15,7 +15,7 @@ export const controls = (BlockEdit, props) => (
 	<Fragment>
 		<BlockEdit {...props} />
 		<InspectorControls>
-			{props.attributes.enableSlider && (
+			{!props.attributes.enableSlider && (
 				<PanelBody title="FlexLine Group Link Options">
 					<ToggleControl
 						label="Enable Group Link"
@@ -50,7 +50,7 @@ export const controls = (BlockEdit, props) => (
 					)}
 				</PanelBody>
 			)}
-			{!props.attributes.enableSlider && (
+			{!props.attributes.enableGroupLink && (
 				<PanelBody title="FlexLine Slider Options">
 					<ToggleControl
 						label="Enable Slider"
@@ -83,7 +83,7 @@ export const controls = (BlockEdit, props) => (
 							min={0}
 							value={props.attributes.sliderHeight}
 							onChange={(value) =>
-								props.setAttributes({ fadeHeight: value })
+								props.setAttributes({ sliderHeight: value })
 							}
 							units={[
 								{ value: 'px', label: 'px' },
@@ -346,6 +346,10 @@ export const getClasses = (attributes) => {
 		if (!attributes.enableSlider) {
 			removed.push('is-style-slider');
 		}
+		// Preview/Edit toggle class for editor runtime
+		if (attributes.editPreviewToggle !== 'preview') {
+			removed.push('slider-preview-mode');
+		}
 		if (!attributes.sliderNav) {
 			removed.push('slider-navigation');
 		}
@@ -448,6 +452,12 @@ export const getClasses = (attributes) => {
 		let added = '';
 		if (attributes.enableSlider) {
 			added += ' is-style-slider';
+		}
+		if (
+			attributes.enableSlider &&
+			attributes.editPreviewToggle === 'preview'
+		) {
+			added += ' slider-preview-mode';
 		}
 		if (attributes.sliderNav && attributes.enableSlider) {
 			added += ' slider-navigation';
