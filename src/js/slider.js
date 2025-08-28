@@ -391,6 +391,9 @@ function initOneSlider(slider) {
 	getSlides(slider).forEach((el) => {
 		el.addEventListener('transitionend', () => clampState(slider, opts));
 	});
+
+	// Keep transitions simple; rely on mutation observer + transitionend clamp
+	// rather than resetting transitions on focus.
 	// In the editor, selection/DOM churn can recreate inner wrappers.
 	// Watch the immediate slide container and re-apply the layout if needed.
 	if (isBlockEditor()) {
@@ -482,6 +485,7 @@ function teardownSlider(slider) {
 
 	delete slider.dataset._sliderInit;
 	delete slider.dataset.activeIndex;
+	// no-op: stabilise listeners removed (we clamp via observers)
 	if (slider._childWatcher) {
 		try {
 			slider._childWatcher.disconnect();
