@@ -122,7 +122,7 @@ export const controls = (BlockEdit, props) => (
 					)}
 					{props.attributes.enableSlider && (
 						<ToggleControl
-							label="Loop Scrolling"
+							label="Loop Slides"
 							checked={!!props.attributes.sliderLoop}
 							onChange={(newValue) =>
 								props.setAttributes({ sliderLoop: newValue })
