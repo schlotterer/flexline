@@ -8,7 +8,7 @@ import buttons from './buttons';
 import cover from './cover';
 import gallery from './gallery';
 import slider from './slider';
-import group from './group';
+// import group from './group';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';

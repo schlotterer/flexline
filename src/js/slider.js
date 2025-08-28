@@ -158,6 +158,22 @@ function gotoIndex(slider, idx, opts) {
 	slider.dataset.activeIndex = String(clamped);
 }
 
+function clampState(slider, opts) {
+	// Ensure exactly one slide is active with correct styles
+	const active = Number(slider.dataset.activeIndex || '0');
+	const slides = getSlides(slider);
+	slides.forEach((el, i) => {
+		const isActive = i === active;
+		el.classList.toggle('slide-active', isActive);
+		el.style.opacity = isActive ? '1' : '0';
+		if (opts.disablePointer) {
+			el.style.pointerEvents = 'none';
+		} else {
+			el.style.pointerEvents = isActive ? 'auto' : 'none';
+		}
+	});
+}
+
 function next(slider, opts) {
 	const slides = getSlides(slider);
 	if (!slides.length) {
@@ -371,24 +387,51 @@ function initOneSlider(slider) {
 		el.style.opacity = '0';
 	});
 	gotoIndex(slider, 0, opts);
+	// Guard against stuck mid-transition when editor focus changes
+	getSlides(slider).forEach((el) => {
+		el.addEventListener('transitionend', () => clampState(slider, opts));
+	});
+	// In the editor, selection/DOM churn can recreate inner wrappers.
+	// Watch the immediate slide container and re-apply the layout if needed.
+	if (isBlockEditor()) {
+		const root = getSlideContainer(slider);
+		if (root && !slider._childWatcher) {
+			const childMo = new window.MutationObserver(() => {
+				// Re-assert stacking + active slide state
+				getSlides(slider).forEach((el) => {
+					el.style.position = 'absolute';
+					el.style.inset = '0';
+					el.style.width = '100%';
+					el.style.height = '100%';
+				});
+				clampState(slider, opts);
+			});
+			childMo.observe(root, { childList: true });
+			slider._childWatcher = childMo;
+		}
+	}
 
 	buildNav(slider, opts);
 
 	// Auto only when configured; pause-on-hover if set
 	if (slider.classList.contains('slider-auto')) {
-		const io = new window.IntersectionObserver(
-			(entries) => {
-				entries.forEach((e) => {
-					if (e.isIntersecting) {
-						startAuto(slider, opts);
-					} else {
-						stopAuto(slider);
-					}
-				});
-			},
-			{ threshold: 0.3 }
-		);
-		io.observe(slider);
+		if (isBlockEditor()) {
+			startAuto(slider, opts);
+		} else {
+			const io = new window.IntersectionObserver(
+				(entries) => {
+					entries.forEach((e) => {
+						if (e.isIntersecting) {
+							startAuto(slider, opts);
+						} else {
+							stopAuto(slider);
+						}
+					});
+				},
+				{ threshold: 0.3 }
+			);
+			io.observe(slider);
+		}
 
 		if (slider.classList.contains('slider-pause-on-hover')) {
 			slider.addEventListener('mouseenter', () => stopAuto(slider));
@@ -439,6 +482,12 @@ function teardownSlider(slider) {
 
 	delete slider.dataset._sliderInit;
 	delete slider.dataset.activeIndex;
+	if (slider._childWatcher) {
+		try {
+			slider._childWatcher.disconnect();
+		} catch (e) {}
+		slider._childWatcher = null;
+	}
 }
 
 function shouldRun(slider) {
