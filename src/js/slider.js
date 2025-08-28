@@ -230,6 +230,26 @@
 			'slider-nav',
 			true
 		);
+
+		// Class fallbacks (front end resiliency)
+		const hasClass = (cls) =>
+			slider.classList && slider.classList.contains(cls);
+		if (!(slider._intervalMs > 0) && hasClass('slider-auto')) {
+			slider._intervalMs = 4000;
+		}
+		if (!slider._pauseOnHover && hasClass('slider-pause-on-hover')) {
+			slider._pauseOnHover = true;
+		}
+		if (
+			!slider._showPauseButton &&
+			hasClass('slider-auto') &&
+			!hasClass('slider-hide-pause-button')
+		) {
+			slider._showPauseButton = true;
+		}
+		if (!slider._showNav && hasClass('slider-navigation')) {
+			slider._showNav = true;
+		}
 	}
 
 	function applyStacking(slider) {
@@ -648,6 +668,8 @@
 		slides.forEach((el) => {
 			el.style.position = '';
 			el.style.inset = '';
+			el.style.height = '';
+			el.style.minHeight = '';
 			el.style.opacity = '';
 			el.style.transitionProperty = '';
 			el.style.transitionDuration = '';

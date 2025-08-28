@@ -177,6 +177,36 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
+
+		// Slider CSS variables for Group/Stack when enabled
+		if (
+			( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] ) &&
+			! empty( $block['attrs']['enableSlider'] )
+		) {
+			$height         = isset( $block['attrs']['sliderHeight'] ) ? trim( (string) $block['attrs']['sliderHeight'] ) : '';
+			$transition_ms  = isset( $block['attrs']['transitionDuration'] ) ? (int) $block['attrs']['transitionDuration'] : 500;
+			$auto           = ! empty( $block['attrs']['sliderAuto'] );
+			$interval_ms    = $auto ? ( (int) ( $block['attrs']['sliderSpeed'] ?? 4000 ) ) : 0;
+			$loop           = ! empty( $block['attrs']['sliderLoop'] ) ? 1 : 0;
+			$pause_on_hover = ( $auto && ! empty( $block['attrs']['pauseOnHover'] ) ) ? 1 : 0;
+			$show_pause     = ( $auto && empty( $block['attrs']['hidePauseButton'] ) ) ? 1 : 0;
+			$show_nav       = ! empty( $block['attrs']['sliderNav'] ) ? 1 : 0;
+
+			$vars = '';
+			if ( '' !== $height ) {
+				$vars .= ' --slider-height: ' . esc_attr( $height ) . ';';
+			}
+			$vars .= ' --slider-transition-ms: ' . esc_attr( $transition_ms ) . ';';
+			$vars .= ' --slider-interval-ms: ' . esc_attr( $interval_ms ) . ';';
+			$vars .= ' --slider-loop: ' . esc_attr( $loop ) . ';';
+			$vars .= ' --slider-pause-on-hover: ' . esc_attr( $pause_on_hover ) . ';';
+			$vars .= ' --slider-show-pause: ' . esc_attr( $show_pause ) . ';';
+			$vars .= ' --slider-nav: ' . esc_attr( $show_nav ) . ';';
+
+			if ( $vars ) {
+				$block_content = flexline_merge_inline_style( $block_content, $vars );
+			}
+		}
 	}
 
 	if ( 'core/columns' === $block['blockName'] ) {

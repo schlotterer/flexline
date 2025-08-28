@@ -15,16 +15,29 @@
 
 /* Slides are absolutely stacked by JS while runtime is active */
 .is-style-slider.slider-runtime-active > * {
-  /* In editor, children are inside .block-editor-block-list__layout — JS applies inline styles either way */
+  /* Ensure slides fit the slider height regardless of block defaults */
+  height: 100% !important;
+  min-height: inherit !important; /* adopt the slider's min/height */
+}
+
+/* Editor: children live inside the layout wrapper */
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > * {
+  height: 100% !important;
+  min-height: 0 !important;
 }
 
 /* Nav container: base positioning. Specific alignment rules below. */
 .slider-wrapper > .slider-nav-buttons {
   position: absolute;
+  padding-left: 12px;
+  padding-right: 12px;
   z-index: 10;
   display: flex;
   gap: 4px;
   pointer-events: auto;
+  /* Sensible default placement to ensure visibility on FE */
+  right: 12px;
+  bottom: 12px;
 }
 
 /* When positioned over the slider: place container inside with 12px inset */
@@ -63,7 +76,7 @@
   left: 0; right: auto; transform: none; margin-left: 10px;
 }
 .slider-wrapper > .is-style-slider.slider-buttons-horizontal-center:not(.slider-buttons-over) + .slider-nav-buttons {
-  left: 50%; transform: translateX(-50%);
+  left: 50%; right: auto; transform: translateX(-50%);
 }
 .slider-wrapper > .is-style-slider.slider-buttons-horizontal-right:not(.slider-buttons-over) + .slider-nav-buttons {
   right: 0; left: auto; transform: none; margin-right: 10px;
@@ -81,7 +94,7 @@
 .slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-top + .slider-nav-buttons { top: 12px; }
 .slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-bottom + .slider-nav-buttons { bottom: 12px; }
 .slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-left + .slider-nav-buttons { left: 12px; right: auto; transform: none; }
-.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-center + .slider-nav-buttons { left: 50%; transform: translateX(-50%); }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-center + .slider-nav-buttons { left: 50%; right: auto; transform: translateX(-50%); }
 .slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-right + .slider-nav-buttons { right: 12px; left: auto; transform: none; }
 
 /* Background variants (match scroller’s palette) */
