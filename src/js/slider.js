@@ -252,10 +252,10 @@
 		}
 	}
 
-	function applyStacking(slider) {
+	function applyStacking(slider, initial = false) {
 		const slides = getSlides(slider);
 		slider._slides = slides;
-		const dur = slider._transitionMs || 500;
+		const dur = initial ? 0 : slider._transitionMs || 500;
 		// Set absolute stacking and fade behavior
 		slides.forEach((el, idx) => {
 			el.style.position = 'absolute';
@@ -265,6 +265,14 @@
 			el.style.transitionTimingFunction = 'ease';
 			el.style.willChange = 'opacity';
 			el.style.opacity = idx === (slider._activeIndex || 0) ? '1' : '0';
+		});
+	}
+
+	function enableTransitions(slider) {
+		const slides = slider._slides || getSlides(slider);
+		const dur = slider._transitionMs || 500;
+		slides.forEach((el) => {
+			el.style.transitionDuration = dur + 'ms';
 		});
 	}
 
@@ -625,8 +633,15 @@
 		if (typeof slider._activeIndex !== 'number') {
 			slider._activeIndex = 0;
 		}
-		applyStacking(slider);
+		applyStacking(slider, true);
 		clampState(slider);
+
+		// After first paint, enable transitions to avoid fade flash
+		if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+			window.requestAnimationFrame(() => enableTransitions(slider));
+		} else {
+			setTimeout(() => enableTransitions(slider), 0);
+		}
 
 		// Build navigation
 		buildNav(slider);

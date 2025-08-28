@@ -5,6 +5,24 @@
   width: 100%;
 }
 
+/* Front-end baseline: reserve height as soon as markup loads */
+body:not(.block-editor-page) .is-style-slider {
+  position: relative;
+  min-height: var(
+    --slider-height-default,
+    calc(100svh - var(--header-site-header-height, 0px))
+  );
+}
+
+/* Editor Preview baseline: reserve height before runtime activates */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode {
+  position: relative;
+  min-height: var(
+    --slider-height-default,
+    calc(100svh - var(--header-site-header-height, 0px))
+  );
+}
+
 .is-style-slider.slider-runtime-active {
   position: relative;
   /* Default height chain; explicit user height guarded by class below */
