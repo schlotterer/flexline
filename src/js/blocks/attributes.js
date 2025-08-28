@@ -118,8 +118,8 @@ export const customSliderAttributes = {
 		default: false,
 	},
 	editPreviewToggle: {
-		type: 'boolean',
-		default: false,
+		type: 'string',
+		default: 'edit',
 	},
 	sliderHeight: {
 		type: 'string',

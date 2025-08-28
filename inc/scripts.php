@@ -63,6 +63,7 @@ function flexline_admin_enqueue_scripts() {
 
 	wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), THEME_VERSION, true );
 	wp_enqueue_script( 'flexline-scroll-admin', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), THEME_VERSION, true );
+	wp_enqueue_script( 'flexline-slider-admin', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), THEME_VERSION, true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
 	wp_enqueue_script(

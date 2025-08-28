@@ -1,0 +1,21 @@
+// Basic slider runtime styles. Navigation positioning/colors re-use
+// the horizontal scroller CSS via class mirroring.
+
+.is-style-slider { position: relative; width: 100%; max-width: 100%; }
+.slider-wrapper { position: relative; width: 100%; max-width: 100%; }
+
+// Only apply fade stacking during runtime (front-end or editor Preview)
+.is-style-slider.slider-runtime-active { overflow: hidden; }
+.is-style-slider.slider-runtime-active > * { opacity: 0; }
+.is-style-slider.slider-runtime-active > *.slide-active { opacity: 1; }
+
+// In the block editor, ensure Edit mode behaves like normal editing
+.editor-styles-wrapper .is-style-slider:not(.slider-runtime-active) > * {
+  opacity: 1 !important;
+}
+.editor-styles-wrapper .is-style-slider.slider-preview-mode > :not(.slider-nav-buttons) {
+  pointer-events: none !important;
+}
+
+// Ensure buttons sit above content
+.slider-nav-buttons { z-index: 1000; }

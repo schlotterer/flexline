@@ -199,6 +199,31 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 	}
 
+	// Slider data attributes on Group and Stack (apply to group generally)
+	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] ) {
+		$block['attrs']['sliderAuto']         = isset( $block['attrs']['sliderAuto'] ) ? $block['attrs']['sliderAuto'] : false;
+		$block['attrs']['sliderSpeed']        = isset( $block['attrs']['sliderSpeed'] ) ? $block['attrs']['sliderSpeed'] : 4000;
+		$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
+		$block['attrs']['sliderHeight']       = isset( $block['attrs']['sliderHeight'] ) ? $block['attrs']['sliderHeight'] : '';
+
+		if ( isset( $block['attrs']['enableSlider'] ) && $block['attrs']['enableSlider'] ) {
+			// Add auto interval when auto is enabled
+			if ( $block['attrs']['sliderAuto'] ) {
+				$data_slider_interval = 'data-slider-interval="' . intval( $block['attrs']['sliderSpeed'] ) . '"';
+				$block_content        = str_replace_first( '>', ' ' . $data_slider_interval . '>', $block_content );
+			}
+			// Always add transition duration
+			$data_slider_transition = 'data-slider-transition="' . intval( $block['attrs']['transitionDuration'] ) . '"';
+			$block_content          = str_replace_first( '>', ' ' . $data_slider_transition . '>', $block_content );
+			// Optional height value
+			if ( '' !== $block['attrs']['sliderHeight'] ) {
+				$height             = esc_attr( $block['attrs']['sliderHeight'] );
+				$data_slider_height = 'data-slider-height="' . $height . '"';
+				$block_content      = str_replace_first( '>', ' ' . $data_slider_height . '>', $block_content );
+			}
+		}
+	}
+
 	// **Add Unique Class and Styles for Content Shift**.
 	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
 		$added_classes = '';

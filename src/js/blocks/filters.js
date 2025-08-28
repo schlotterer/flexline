@@ -48,13 +48,7 @@ registerAttributes(['core/gallery'], { ...customGalleryAttributes });
 
 registerAttributes(['core/group'], {
 	...customGroupAttributes,
-	...customVisibilityAttributes,
-	...customShiftAttributes,
-});
-
-registerAttributes(['core/stack'], {
 	...customSliderAttributes,
-	...customGroupAttributes,
 	...customVisibilityAttributes,
 	...customShiftAttributes,
 });
