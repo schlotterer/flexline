@@ -536,17 +536,6 @@
 				e.stopPropagation();
 			};
 			nav.addEventListener('mousedown', swallow, true);
-			nav.addEventListener('mouseup', swallow, true);
-			// nav.addEventListener('click', swallow, true);
-			nav.addEventListener('focusin', swallow, true);
-			// nav.addEventListener('touchstart', swallow, {
-			// 	capture: true,
-			// 	passive: false,
-			// });
-			// nav.addEventListener('touchend', swallow, {
-			// 	capture: true,
-			// 	passive: false,
-			// });
 			slider._navSwallow = swallow;
 		}
 
@@ -629,7 +618,19 @@
 			nextSlide(slider, true);
 		};
 		slider._btnNext = next;
+
+		// Editor: keep nav from taking focus to avoid scroll jumps
+		if (isEditor()) {
+			prev.tabIndex = -1;
+			next.tabIndex = -1;
+			if (slider._btnPause) {
+				slider._btnPause.tabIndex = -1;
+			}
+			nav.setAttribute('aria-hidden', 'true');
+		}
 	}
+	// Prevent editor interactions (double‑click, drag/drop) from hijacking Preview
+	// (Preview guards removed — z-index and pointer-events manage interactions)
 
 	function initOneSlider(slider) {
 		// Ensure clean start
@@ -747,10 +748,7 @@
 		if (nav && slider._navSwallow) {
 			nav.removeEventListener('mousedown', slider._navSwallow, true);
 			nav.removeEventListener('mouseup', slider._navSwallow, true);
-			// nav.removeEventListener('click', slider._navSwallow, true);
-			nav.removeEventListener('focusin', slider._navSwallow, true);
-			// nav.removeEventListener('touchstart', slider._navSwallow, true);
-			// nav.removeEventListener('touchend', slider._navSwallow, true);
+			// only mousedown was added
 			slider._navSwallow = null;
 		}
 		if (slider._btnPrev) {

@@ -21,6 +21,25 @@ body:not(.block-editor-page) .is-style-slider {
     --slider-height-default,
     calc(100svh - var(--header-site-header-height, 0px))
   );
+  /* Prevent scroll chaining/jumps while interacting in Preview */
+  overscroll-behavior: contain;
+}
+/* Editor (both Edit and Preview): ensure a default value is available */
+.editor-styles-wrapper .is-style-slider {
+  --slider-height-default: calc(100svh - var(--header-site-header-height, 0px));
+}
+/* Editor Edit mode (not Preview): apply Container Height to each direct slide */
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) .wp-block.is-selected {
+  min-height: var(
+    --slider-height,
+    var(--slider-height-default, calc(100svh - var(--header-site-header-height, 0px)))
+  );
+}
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  min-height: var(
+    --slider-height,
+    var(--slider-height-default, calc(100svh - var(--header-site-header-height, 0px)))
+  );
 }
 
 .is-style-slider.slider-runtime-active {
@@ -42,13 +61,14 @@ body:not(.block-editor-page) .is-style-slider {
   position: absolute;
   inset: 0;
   opacity: 0;
+  pointer-events: none; /* only active slide receives input */
   transition-property: opacity;
   transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
   transition-timing-function: ease;
   will-change: opacity;
 }
 /* Active/previous slide layering via classes (no inline styles) */
-.is-style-slider.slider-runtime-active > *.is-slide-active { opacity: 1; z-index: 1; }
+.is-style-slider.slider-runtime-active > *.is-slide-active { opacity: 1; z-index: 2; pointer-events: auto; }
 .is-style-slider.slider-runtime-active > *.is-slide-prev { z-index: 1; }
 
 /* Editor variant of the absolute stacking */
@@ -56,12 +76,13 @@ body:not(.block-editor-page) .is-style-slider {
   position: absolute;
   inset: 0;
   opacity: 0;
+  // pointer-events: none;
   transition-property: opacity;
   transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
   transition-timing-function: ease;
   will-change: opacity;
 }
-.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-active { opacity: 1; z-index: 1; }
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-active { opacity: 1; z-index: 2; pointer-events: auto; }
 .editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-prev { z-index: 1; }
 
 /* Nav container: base positioning. Specific alignment rules below. */
@@ -177,8 +198,13 @@ body:not(.block-editor-page) .is-style-slider {
 }
 
 /* Editor Preview: disable interaction with slides (both wrapper structures) */
-.editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > * { pointer-events: none !important; }
-.editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
+.editor-styles-wrapper .is-style-slider.slider-preview-mode * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > *.is-slide-active { pointer-events: auto !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .is-slide-active { pointer-events: auto !important; }
+/* Reduce scroll jumps while interacting in Preview */
+
 
 /* Editor width sanity */
 .editor-styles-wrapper .slider-wrapper,

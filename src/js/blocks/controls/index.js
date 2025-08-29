@@ -265,6 +265,8 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 						inlineVars['--slider-height-default'] =
 							'calc(100svh - var(--header-site-header-height, 0px))';
 					}
+					// Ensure we always have a header height var in the editor canvas
+					inlineVars['--header-site-header-height'] = '0px';
 					addVar('--slider-transition-ms', sliderTransitionMs);
 					addVar('--slider-interval-ms', sliderIntervalMs);
 
