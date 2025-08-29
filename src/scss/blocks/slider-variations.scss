@@ -37,18 +37,32 @@ body:not(.block-editor-page) .is-style-slider {
   min-height: var(--slider-height) !important;
 }
 
-/* Slides are absolutely stacked by JS while runtime is active */
+/* Slides are absolutely stacked while runtime is active (CSS-driven stacking) */
 .is-style-slider.slider-runtime-active > * {
-  /* Ensure slides fit the slider height regardless of block defaults */
-  height: 100% !important;
-  min-height: inherit !important; /* adopt the slider's min/height */
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
+  transition-timing-function: ease;
+  will-change: opacity;
 }
+/* Active/previous slide layering via classes (no inline styles) */
+.is-style-slider.slider-runtime-active > *.is-slide-active { opacity: 1; z-index: 1; }
+.is-style-slider.slider-runtime-active > *.is-slide-prev { z-index: 1; }
 
-/* Editor: children live inside the layout wrapper */
+/* Editor variant of the absolute stacking */
 .editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > * {
-  height: 100% !important;
-  min-height: 0 !important;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
+  transition-timing-function: ease;
+  will-change: opacity;
 }
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-active { opacity: 1; z-index: 1; }
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-prev { z-index: 1; }
 
 /* Nav container: base positioning. Specific alignment rules below. */
 .slider-wrapper > .slider-nav-buttons {
@@ -56,12 +70,16 @@ body:not(.block-editor-page) .is-style-slider {
   padding-left: 12px;
   padding-right: 12px;
   z-index: 10;
-  display: flex;
+  display: none; /* hidden by default; opt-in via status classes */
   gap: 4px;
   pointer-events: auto;
   /* Sensible default placement to ensure visibility on FE */
   right: 12px;
   bottom: 12px;
+}
+/* Show nav only when slider is running and navigation is enabled */
+.slider-wrapper > .is-style-slider.slider-runtime-active.slider-navigation + .slider-nav-buttons {
+  display: flex;
 }
 
 /* When positioned over the slider: place container inside with 12px inset */
@@ -158,12 +176,9 @@ body:not(.block-editor-page) .is-style-slider {
   box-shadow: var(--wp--custom--button-shadow, 0 2px 8px rgba(0,0,0,0.4));
 }
 
-/* Editor Preview: disable interaction with slides */
-.editor-styles-wrapper
-.is-style-slider.slider-preview-mode
-> .block-editor-block-list__layout > * {
-  pointer-events: none !important;
-}
+/* Editor Preview: disable interaction with slides (both wrapper structures) */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > * { pointer-events: none !important; }
+.editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
 
 /* Editor width sanity */
 .editor-styles-wrapper .slider-wrapper,

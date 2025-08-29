@@ -450,7 +450,39 @@ export const getClasses = (attributes) => {
 			'slider-buttons-border-alternate',
 			'slider-buttons-over',
 			'slider-buttons-box-shadow',
-			'slider-pause-on-hover'
+			'slider-pause-on-hover',
+			'slider-preview-mode',
+			'slider-has-height',
+			// Also strip any legacy scroller classes that could bleed styles
+			'horizontal-scroller-buttons-horizontal-left',
+			'horizontal-scroller-buttons-horizontal-center',
+			'horizontal-scroller-buttons-horizontal-right',
+			'horizontal-scroller-buttons-vertical-top',
+			'horizontal-scroller-buttons-vertical-bottom',
+			'horizontal-scroller-buttons-over',
+			'scroller-buttons-background-transparent',
+			'scroller-buttons-background-white',
+			'scroller-buttons-background-black',
+			'scroller-buttons-background-gray',
+			'scroller-buttons-background-primary',
+			'scroller-buttons-background-secondary',
+			'scroller-buttons-background-alternate',
+			'scroller-buttons-text-default',
+			'scroller-buttons-text-white',
+			'scroller-buttons-text-black',
+			'scroller-buttons-text-gray',
+			'scroller-buttons-text-primary',
+			'scroller-buttons-text-secondary',
+			'scroller-buttons-text-alternate',
+			'scroller-buttons-border-default',
+			'scroller-buttons-border-none',
+			'scroller-buttons-border-white',
+			'scroller-buttons-border-black',
+			'scroller-buttons-border-gray',
+			'scroller-buttons-border-primary',
+			'scroller-buttons-border-secondary',
+			'scroller-buttons-border-alternate',
+			'scroller-buttons-box-shadow'
 		);
 	} else {
 		if (!attributes.enableSlider) {
@@ -464,6 +496,39 @@ export const getClasses = (attributes) => {
 		if (attributes.editPreviewToggle !== 'preview') {
 			removed.push('slider-preview-mode');
 		}
+		// Always ensure legacy scroller classes are stripped even when enabled
+		removed.push(
+			'horizontal-scroller-buttons-horizontal-left',
+			'horizontal-scroller-buttons-horizontal-center',
+			'horizontal-scroller-buttons-horizontal-right',
+			'horizontal-scroller-buttons-vertical-top',
+			'horizontal-scroller-buttons-vertical-bottom',
+			'horizontal-scroller-buttons-over',
+			'scroller-buttons-background-transparent',
+			'scroller-buttons-background-white',
+			'scroller-buttons-background-black',
+			'scroller-buttons-background-gray',
+			'scroller-buttons-background-primary',
+			'scroller-buttons-background-secondary',
+			'scroller-buttons-background-alternate',
+			'scroller-buttons-text-default',
+			'scroller-buttons-text-white',
+			'scroller-buttons-text-black',
+			'scroller-buttons-text-gray',
+			'scroller-buttons-text-primary',
+			'scroller-buttons-text-secondary',
+			'scroller-buttons-text-alternate',
+			'scroller-buttons-border-default',
+			'scroller-buttons-border-none',
+			'scroller-buttons-border-white',
+			'scroller-buttons-border-black',
+			'scroller-buttons-border-gray',
+			'scroller-buttons-border-primary',
+			'scroller-buttons-border-secondary',
+			'scroller-buttons-border-alternate',
+			'scroller-buttons-box-shadow'
+		);
+
 		if (!attributes.sliderNav) {
 			removed.push('slider-navigation');
 		}

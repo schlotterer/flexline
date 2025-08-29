@@ -252,28 +252,21 @@
 		}
 	}
 
-	function applyStacking(slider, initial = false) {
+	function applyStacking(slider) {
 		const slides = getSlides(slider);
 		slider._slides = slides;
-		const dur = initial ? 0 : slider._transitionMs || 500;
-		// Set absolute stacking and fade behavior
+		// CSS handles positioning and transitions; JS toggles classes only
 		slides.forEach((el, idx) => {
-			el.style.position = 'absolute';
-			el.style.inset = '0';
-			el.style.transitionProperty = 'opacity';
-			el.style.transitionDuration = dur + 'ms';
-			el.style.transitionTimingFunction = 'ease';
-			el.style.willChange = 'opacity';
-			el.style.opacity = idx === (slider._activeIndex || 0) ? '1' : '0';
+			el.classList.remove('is-slide-active', 'is-slide-prev');
+			if (idx === (slider._activeIndex || 0)) {
+				el.classList.add('is-slide-active');
+			}
 		});
 	}
 
 	function enableTransitions(slider) {
 		const slides = slider._slides || getSlides(slider);
-		const dur = slider._transitionMs || 500;
-		slides.forEach((el) => {
-			el.style.transitionDuration = dur + 'ms';
-		});
+		void slides; // transitions are driven by CSS
 	}
 
 	function clampState(slider) {
@@ -295,12 +288,17 @@
 			slider._activeIndex = slider._loop ? count - 1 : 0;
 		}
 		slides.forEach((el, idx) => {
+			el.classList.remove('is-slide-active', 'is-slide-prev');
 			const on = idx === slider._activeIndex;
 			const isPrev =
 				typeof slider._prevIndex === 'number' &&
 				idx === slider._prevIndex;
-			el.style.opacity = on ? '1' : '0';
-			el.style.zIndex = on || isPrev ? '1' : '0';
+			if (on) {
+				el.classList.add('is-slide-active');
+			}
+			if (isPrev) {
+				el.classList.add('is-slide-prev');
+			}
 		});
 	}
 
@@ -539,7 +537,16 @@
 			};
 			nav.addEventListener('mousedown', swallow, true);
 			nav.addEventListener('mouseup', swallow, true);
+			// nav.addEventListener('click', swallow, true);
 			nav.addEventListener('focusin', swallow, true);
+			// nav.addEventListener('touchstart', swallow, {
+			// 	capture: true,
+			// 	passive: false,
+			// });
+			// nav.addEventListener('touchend', swallow, {
+			// 	capture: true,
+			// 	passive: false,
+			// });
 			slider._navSwallow = swallow;
 		}
 
@@ -638,7 +645,7 @@
 		if (typeof slider._activeIndex !== 'number') {
 			slider._activeIndex = 0;
 		}
-		applyStacking(slider, true);
+		applyStacking(slider);
 		clampState(slider);
 
 		// After first paint, enable transitions to avoid fade flash
@@ -681,16 +688,9 @@
 	function clearInlineSlideStyles(slider) {
 		const slides = slider._slides || getSlides(slider);
 		slides.forEach((el) => {
-			el.style.position = '';
-			el.style.inset = '';
-			el.style.height = '';
-			el.style.minHeight = '';
 			el.style.opacity = '';
-			el.style.transitionProperty = '';
-			el.style.transitionDuration = '';
-			el.style.transitionTimingFunction = '';
-			el.style.willChange = '';
 			el.style.zIndex = '';
+			el.classList.remove('is-slide-active', 'is-slide-prev');
 		});
 	}
 
@@ -747,7 +747,10 @@
 		if (nav && slider._navSwallow) {
 			nav.removeEventListener('mousedown', slider._navSwallow, true);
 			nav.removeEventListener('mouseup', slider._navSwallow, true);
+			// nav.removeEventListener('click', slider._navSwallow, true);
 			nav.removeEventListener('focusin', slider._navSwallow, true);
+			// nav.removeEventListener('touchstart', slider._navSwallow, true);
+			// nav.removeEventListener('touchend', slider._navSwallow, true);
 			slider._navSwallow = null;
 		}
 		if (slider._btnPrev) {
@@ -804,6 +807,24 @@
 			clearInlineSlideStyles(slider);
 			slider.classList.remove(RUNTIME_CLASS);
 			slider.style.removeProperty('--slider-height-effective');
+		});
+
+		// Also handle orphaned wrappers whose child lost the slider class
+		const wrappers = Array.from(
+			document.querySelectorAll('.slider-wrapper')
+		);
+		wrappers.forEach((wrap) => {
+			const child = wrap.firstElementChild;
+			if (!child) {
+				return;
+			}
+			// If the child is no longer a slider or shouldn't run, teardown/unwrap
+			if (
+				!child.classList.contains('is-style-slider') ||
+				!shouldRun(child)
+			) {
+				teardownSlider(child);
+			}
 		});
 	}
 
