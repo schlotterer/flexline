@@ -21,6 +21,17 @@ import { createBlock } from '@wordpress/blocks';
 
 import { getVisibilityControls, getContentShiftControls } from '../utils';
 
+/**
+ * Controls: Slider-specific editor UI for Group/Stack blocks
+ * - Adds toolbar action to insert Cover slides
+ * - Warns/Converts first-level non-Cover children into Cover slides
+ * - Auto-wraps new first-level children into Cover while slider is enabled
+ *
+ * This component only manages classes and CSS vars on the block wrapper;
+ * the runtime (src/js/slider.js) reads those vars and toggles slide state classes.
+ * @param {*} BlockEdit React component supplied by the HOC pipeline
+ * @param {*} props     Block props ({ clientId, attributes, setAttributes, ... })
+ */
 const Controls = (BlockEdit, props) => {
 	const { clientId, attributes } = props;
 	const sliderEnabled = !!attributes.enableSlider;
@@ -30,18 +41,22 @@ const Controls = (BlockEdit, props) => {
 		(select) => select('core/block-editor').getBlocks(clientId),
 		[clientId]
 	);
+	// True if any direct child is not a Cover (first level only)
 	const hasNonCover = sliderEnabled
 		? children.some((b) => b && b.name !== 'core/cover')
 		: false;
 
+	// Editor actions for insertion/replacement of children
 	const { insertBlocks, replaceInnerBlocks } =
 		useDispatch('core/block-editor');
 
+	/** Insert a new Cover as a direct child slide */
 	const addSlide = () => {
 		const cover = createBlock('core/cover', {});
 		insertBlocks(cover, undefined, clientId);
 	};
 
+	/** Wrap all first-level non‑Cover children in a Cover, preserving content */
 	const convertAllToCovers = () => {
 		const mapped = children.map((b) =>
 			b.name === 'core/cover' ? b : createBlock('core/cover', {}, [b])
@@ -49,7 +64,7 @@ const Controls = (BlockEdit, props) => {
 		replaceInnerBlocks(clientId, mapped, false);
 	};
 
-	// Phase 2: auto-wrap non-covers on insertion while slider is enabled
+	// Phase 2: auto‑wrap non‑Covers on insertion while slider is enabled
 	useEffect(() => {
 		if (!sliderEnabled) {
 			return undefined;

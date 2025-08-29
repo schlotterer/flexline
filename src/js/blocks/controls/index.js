@@ -102,6 +102,18 @@ const getContentShiftClasses = (attrs) => {
 	return { removed, added };
 };
 
+/**
+ * HOC: withCustomControls
+ *
+ * Attaches per-block controls and ensures a stable wrapper id + inline CSS variables
+ * so the runtime can read configuration without touching saved markup.
+ *
+ * Flow:
+ *  - Compute classes to add/remove (base + per‑feature + slider‑specific)
+ *  - Ensure wrapperProps.id = block-<clientId>
+ *  - Write a <style> tag targeting #block-<clientId> with CSS vars for Preview/FE
+ *  - Mirror key vars inline on wrapperProps.style for immediate inheritance in Preview
+ */
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		const { attributes, clientId } = props;

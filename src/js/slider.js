@@ -1,7 +1,26 @@
 /*
  * FlexLine Fading Slider Runtime
- * - Idempotent initializer for Group/Stack blocks with .is-style-slider
- * - Works on front end and in Block Editor Preview (requires .slider-preview-mode)
+ *
+ * How this runtime connects to styles and controls
+ * ------------------------------------------------
+ * - Activation is class‑driven:
+ *   - The Group/Stack block gets .is-style-slider from the controls layer.
+ *   - In the editor, Preview mode adds .slider-preview-mode; runtime only runs in Preview.
+ *   - When the runtime is running it sets .slider-runtime-active on the slider element.
+ *
+ * - Slides are the direct children of the slider element (or the editor inner layout wrapper).
+ *   CSS (slider-variations.scss) absolutely stacks those children and animates opacity only
+ *   while .slider-runtime-active is present.
+ *   JS toggles only two classes on slides:
+ *     .is-slide-active (visible, z-index:2, pointer-events:auto)
+ *     .is-slide-prev   (previous slide, z-index:1 during cross‑fade)
+ *
+ * - Dynamic numbers (e.g., transition/interval/height) are read from CSS variables first
+ *   (set inline on the main slider wrapper by the controls HOC), then data-* fallbacks.
+ *   No inline layout styles are written by the runtime — only classes or timers.
+ *
+ * - Teardown is symmetric and idempotent. It clears timers/observers/listeners, removes
+ *   slide state classes and unwraps the temporary .slider-wrapper + nav container.
  */
 
 (() => {
@@ -32,6 +51,11 @@
 		};
 	};
 
+	/**
+	 * Return the immediate container that holds slide children.
+	 * In the editor, slides live inside the block list layout wrapper.
+	 */
+
 	function getSlideContainer(slider) {
 		if (isEditor()) {
 			const c = slider.querySelector(
@@ -43,6 +67,11 @@
 	}
 
 	function getSlides(slider) {
+		/**
+		 * Collect candidate slides from the container and filter out editor
+		 * appenders and our nav container. This function should return only
+		 * the real slide elements in document order.
+		 */
 		const container = getSlideContainer(slider);
 		const children = Array.from(container.children || []);
 		return children.filter(
@@ -56,6 +85,11 @@
 	}
 
 	function ensureWrapper(slider) {
+		/**
+		 * Ensure a .slider-wrapper exists around the slider element and a single
+		 * sibling nav container. This wrapper is temporary and will be removed
+		 * on teardown or when the feature is disabled.
+		 */
 		let wrapper = slider.parentElement;
 		if (!wrapper || !wrapper.classList.contains(WRAPPER_CLASS)) {
 			wrapper = document.createElement('div');
@@ -104,6 +138,12 @@
 		dataAttr,
 		defaultValue
 	) {
+		/**
+		 * Read a numeric option with the following precedence:
+		 *  1) CSS custom property on wrapper/slider
+		 *  2) data-* attribute on wrapper/slider
+		 *  3) provided default
+		 */
 		// Try CSS var on wrapper, then on slider element
 		const cssEls = [wrapper, slider];
 		for (const el of cssEls) {
@@ -253,6 +293,10 @@
 	}
 
 	function applyStacking(slider) {
+		/**
+		 * Project the current index into slide state classes.
+		 * CSS handles absolute stacking + transitions.
+		 */
 		const slides = getSlides(slider);
 		slider._slides = slides;
 		// CSS handles positioning and transitions; JS toggles classes only
@@ -264,12 +308,14 @@
 		});
 	}
 
-	function enableTransitions(slider) {
-		const slides = slider._slides || getSlides(slider);
-		void slides; // transitions are driven by CSS
-	}
+	// (Transitions declared in CSS; no JS needed.)
 
 	function clampState(slider) {
+		/**
+		 * Clamp active index and toggle .is-slide-active / .is-slide-prev.
+		 * This ensures exactly one visible slide, with the previous kept
+		 * layered above during cross‑fade.
+		 */
 		const slides = slider._slides || getSlides(slider);
 		const count = slides.length;
 		if (count === 0) {
@@ -303,6 +349,10 @@
 	}
 
 	function goTo(slider, idx, fromNav = true) {
+		/**
+		 * Navigate to the given index (wrapping when loop is enabled).
+		 * fromNav=false is used by autoplay to avoid resetting timers excessively.
+		 */
 		const slides = slider._slides || getSlides(slider);
 		const count = slides.length;
 		if (count <= 1) {
@@ -332,6 +382,7 @@
 	}
 
 	function startAuto(slider) {
+		/** Start/restart the autoplay timer (if interval > 0). */
 		stopAuto(slider);
 		if (!(slider._intervalMs > 0)) {
 			return;
@@ -362,6 +413,9 @@
 	}
 
 	function setupIntersectionObserver(slider) {
+		/**
+		 * Front‑end only: start/stop autoplay based on viewport visibility.
+		 */
 		if (slider._io) {
 			slider._io.disconnect();
 		}
@@ -408,6 +462,11 @@
 	}
 
 	function computeAndSetEffectiveHeight(slider) {
+		/**
+		 * Provide a default height when no explicit --slider-height is set.
+		 * The controls layer writes inline vars in the editor; on the front end
+		 * we compute a default based on the header height.
+		 */
 		const wrapper = slider._wrapper || slider.parentElement;
 		const csWrapper = wrapper ? window.getComputedStyle(wrapper) : null;
 		const explicitHeight = csWrapper
@@ -438,6 +497,10 @@
 	}
 
 	function attachTransitionClamp(slider) {
+		/**
+		 * Keep state consistent after opacity transitions by clearing the
+		 * previous slide marker when the fade completes.
+		 */
 		const slides = slider._slides || getSlides(slider);
 		const onTe = (e) => {
 			if (e && e.propertyName && e.propertyName !== 'opacity') {
@@ -649,12 +712,7 @@
 		applyStacking(slider);
 		clampState(slider);
 
-		// After first paint, enable transitions to avoid fade flash
-		if (typeof window !== 'undefined' && window.requestAnimationFrame) {
-			window.requestAnimationFrame(() => enableTransitions(slider));
-		} else {
-			setTimeout(() => enableTransitions(slider), 0);
-		}
+		// Transitions are CSS-driven; no JS step required here
 
 		// Build navigation
 		buildNav(slider);
