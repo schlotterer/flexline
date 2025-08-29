@@ -1,304 +1,414 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 import { Fragment, useEffect } from '@wordpress/element';
-import { InspectorControls, URLInput } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	URLInput,
+	BlockControls,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
 	RangeControl,
 	ToggleControl,
+	ToolbarGroup,
+	ToolbarButton,
+	Notice,
+	Button,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
+import { useSelect, useDispatch, subscribe } from '@wordpress/data';
+import { createBlock } from '@wordpress/blocks';
 
 import { getVisibilityControls, getContentShiftControls } from '../utils';
 
-export const controls = (BlockEdit, props) => (
-	<Fragment>
-		<BlockEdit {...props} />
-		<InspectorControls>
-			{!props.attributes.enableSlider && (
-				<PanelBody title="FlexLine Group Link Options">
-					<ToggleControl
-						label="Enable Group Link"
-						checked={!!props.attributes.enableGroupLink}
-						onChange={(newValue) =>
-							props.setAttributes({ enableGroupLink: newValue })
-						}
-					/>
-					{props.attributes.enableGroupLink && (
-						<URLInput
-							label="Group Link URL"
-							value={props.attributes.groupLinkURL}
-							onChange={(newValue) =>
-								props.setAttributes({ groupLinkURL: newValue })
-							}
+const Controls = (BlockEdit, props) => {
+	const { clientId, attributes } = props;
+	const sliderEnabled = !!attributes.enableSlider;
+
+	// Read direct children of this block
+	const children = useSelect(
+		(select) => select('core/block-editor').getBlocks(clientId),
+		[clientId]
+	);
+	const hasNonCover = sliderEnabled
+		? children.some((b) => b && b.name !== 'core/cover')
+		: false;
+
+	const { insertBlocks, replaceInnerBlocks } =
+		useDispatch('core/block-editor');
+
+	const addSlide = () => {
+		const cover = createBlock('core/cover', {});
+		insertBlocks(cover, undefined, clientId);
+	};
+
+	const convertAllToCovers = () => {
+		const mapped = children.map((b) =>
+			b.name === 'core/cover' ? b : createBlock('core/cover', {}, [b])
+		);
+		replaceInnerBlocks(clientId, mapped, false);
+	};
+
+	// Phase 2: auto-wrap non-covers on insertion while slider is enabled
+	useEffect(() => {
+		if (!sliderEnabled) {
+			return undefined;
+		}
+		let prevIds = (children || []).map((b) => b.clientId);
+		const unsubscribe = subscribe(() => {
+			const sel = wp.data.select('core/block-editor');
+			const current = sel.getBlocks(clientId) || [];
+			const ids = current.map((b) => b.clientId);
+			const changed =
+				ids.length !== prevIds.length ||
+				ids.some((id, i) => id !== prevIds[i]);
+			if (!changed) {
+				return;
+			}
+			prevIds = ids;
+			if (current.some((b) => b && b.name !== 'core/cover')) {
+				const mapped = current.map((b) =>
+					b.name === 'core/cover'
+						? b
+						: createBlock('core/cover', {}, [b])
+				);
+				replaceInnerBlocks(clientId, mapped, false);
+			}
+		});
+		return () => unsubscribe();
+	}, [clientId, sliderEnabled, replaceInnerBlocks, children]);
+
+	return (
+		<Fragment>
+			<BlockControls>
+				{sliderEnabled && (
+					<ToolbarGroup>
+						<ToolbarButton
+							icon="plus-alt2"
+							label="Add Slide (Cover)"
+							onClick={addSlide}
 						/>
-					)}
-					{props.attributes.enableGroupLink && (
-						<SelectControl
-							label="Link Type"
-							value={props.attributes.groupLinkType}
-							options={[
-								{ label: 'Normal', value: 'none' },
-								{ label: 'New Tab', value: 'new_tab' },
-								{ label: 'Modal Media', value: 'modal_media' },
-							]}
-							onChange={(newValue) =>
-								props.setAttributes({ groupLinkType: newValue })
-							}
-							__nextHasNoMarginBottom={true}
-						/>
-					)}
-				</PanelBody>
-			)}
-			{!props.attributes.enableGroupLink && (
-				<PanelBody title="FlexLine Slider Options">
-					<ToggleControl
-						label="Enable Slider"
-						checked={!!props.attributes.enableSlider}
-						onChange={(newValue) =>
-							props.setAttributes({
-								enableSlider: newValue,
-							})
-						}
-					/>
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Edit or Preview"
-							value={props.attributes.editPreviewToggle}
-							options={[
-								{ value: 'edit', label: 'Edit' },
-								{ value: 'preview', label: 'Preview' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									editPreviewToggle: value,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<UnitControl
-							label="Container Height"
-							type="number"
-							min={0}
-							value={props.attributes.sliderHeight}
-							onChange={(value) =>
-								props.setAttributes({ sliderHeight: value })
-							}
-							units={[
-								{ value: 'px', label: 'px' },
-								{ value: 'em', label: 'em' },
-								{ value: 'rem', label: 'rem' },
-								{ value: 'vw', label: 'vw' },
-								{ value: 'vh', label: 'vh' },
-								{ value: 'svh', label: 'svh' },
-							]}
-							help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
-						/>
-					)}
-					{props.attributes.enableSlider && (
+					</ToolbarGroup>
+				)}
+			</BlockControls>
+			<BlockEdit {...props} />
+			<InspectorControls>
+				{sliderEnabled && hasNonCover && (
+					<Notice status="warning" isDismissible={false}>
+						<p>
+							Direct children in a slider must be Cover blocks.
+							Convert existing children now?
+						</p>
+						<Button variant="primary" onClick={convertAllToCovers}>
+							Convert to Cover Slides
+						</Button>
+					</Notice>
+				)}
+				{!props.attributes.enableSlider && (
+					<PanelBody title="FlexLine Group Link Options">
 						<ToggleControl
-							label="Show Arrow Navigation"
-							checked={!!props.attributes.sliderNav}
-							onChange={(newValue) =>
-								props.setAttributes({ sliderNav: newValue })
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<RangeControl
-							label="Transition in Milliseconds"
-							value={props.attributes.transitionDuration}
-							onChange={(newInterval) =>
-								props.setAttributes({
-									transitionDuration: newInterval,
-								})
-							}
-							defaultValue={500}
-							min={100}
-							max={1500}
-							step={50}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<ToggleControl
-							label="Loop Slides"
-							checked={!!props.attributes.sliderLoop}
-							onChange={(newValue) =>
-								props.setAttributes({ sliderLoop: newValue })
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Buttons Horizontal Position"
-							value={props.attributes.positionButtonsHorizontal}
-							options={[
-								{ value: 'left', label: 'Left' },
-								{ value: 'center', label: 'Center' },
-								{ value: 'right', label: 'Right' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									positionButtonsHorizontal: value,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Buttons Vertical Position"
-							value={props.attributes.positionButtonsVertical}
-							options={[
-								{ value: 'top', label: 'Top' },
-								{ value: 'bottom', label: 'Bottom' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									positionButtonsVertical: value,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<ToggleControl
-							label="Position Buttons Over Slider"
-							checked={!!props.attributes.positionButtonsOver}
+							label="Enable Group Link"
+							checked={!!props.attributes.enableGroupLink}
 							onChange={(newValue) =>
 								props.setAttributes({
-									positionButtonsOver: newValue,
+									enableGroupLink: newValue,
 								})
 							}
 						/>
-					)}
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Buttons Text Color"
-							value={props.attributes.buttonsTextColor}
-							options={[
-								{ value: 'default', label: 'Default' },
-								{ value: 'white', label: 'White' },
-								{ value: 'black', label: 'Black' },
-								{ value: 'primary', label: 'Primary' },
-								{ value: 'secondary', label: 'Secondary' },
-								{ value: 'alternate', label: 'Alternate' },
-								{ value: 'gray', label: 'Gray' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({ buttonsTextColor: value })
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Buttons Background Color"
-							value={props.attributes.buttonsBackgroundColor}
-							options={[
-								{ value: 'default', label: 'Default' },
-								{ value: 'transparent', label: 'Transparent' },
-								{ value: 'white', label: 'White' },
-								{ value: 'black', label: 'Black' },
-								{ value: 'primary', label: 'Primary' },
-								{ value: 'secondary', label: 'Secondary' },
-								{ value: 'alternate', label: 'Alternate' },
-								{ value: 'gray', label: 'Gray' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									buttonsBackgroundColor: value,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<SelectControl
-							label="Buttons Border Color"
-							value={props.attributes.buttonsBorderColor}
-							options={[
-								{ value: 'none', label: 'None' },
-								{ value: 'white', label: 'White' },
-								{ value: 'black', label: 'Black' },
-								{ value: 'primary', label: 'Primary' },
-								{ value: 'secondary', label: 'Secondary' },
-								{ value: 'alternate', label: 'Alternate' },
-								{ value: 'gray', label: 'Gray' },
-							]}
-							onChange={(value) =>
-								props.setAttributes({
-									buttonsBorderColor: value,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<ToggleControl
-							label="Add Box Shadow to Buttons"
-							checked={!!props.attributes.buttonsBoxShadow}
-							onChange={(newValue) =>
-								props.setAttributes({
-									buttonsBoxShadow: newValue,
-								})
-							}
-						/>
-					)}
-					{props.attributes.enableSlider && (
-						<ToggleControl
-							label="Auto Slide"
-							checked={!!props.attributes.sliderAuto}
-							onChange={(newValue) =>
-								props.setAttributes({ sliderAuto: newValue })
-							}
-						/>
-					)}
-					{props.attributes.enableSlider &&
-						props.attributes.sliderAuto && (
-							<ToggleControl
-								label="Hide Pause Button"
-								checked={!!props.attributes.hidePauseButton}
+						{props.attributes.enableGroupLink && (
+							<URLInput
+								label="Group Link URL"
+								value={props.attributes.groupLinkURL}
 								onChange={(newValue) =>
 									props.setAttributes({
-										hidePauseButton: newValue,
+										groupLinkURL: newValue,
 									})
 								}
 							/>
 						)}
-					{props.attributes.enableSlider &&
-						props.attributes.sliderAuto && (
-							<ToggleControl
-								label="Pause on Hover"
-								checked={!!props.attributes.pauseOnHover}
+						{props.attributes.enableGroupLink && (
+							<SelectControl
+								label="Link Type"
+								value={props.attributes.groupLinkType}
+								options={[
+									{ label: 'Normal', value: 'none' },
+									{ label: 'New Tab', value: 'new_tab' },
+									{
+										label: 'Modal Media',
+										value: 'modal_media',
+									},
+								]}
 								onChange={(newValue) =>
 									props.setAttributes({
-										pauseOnHover: newValue,
+										groupLinkType: newValue,
+									})
+								}
+								__nextHasNoMarginBottom={true}
+							/>
+						)}
+					</PanelBody>
+				)}
+				{!props.attributes.enableGroupLink && (
+					<PanelBody title="FlexLine Slider Options">
+						<ToggleControl
+							label="Enable Slider"
+							checked={!!props.attributes.enableSlider}
+							onChange={(newValue) =>
+								props.setAttributes({
+									enableSlider: newValue,
+								})
+							}
+						/>
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Edit or Preview"
+								value={props.attributes.editPreviewToggle}
+								options={[
+									{ value: 'edit', label: 'Edit' },
+									{ value: 'preview', label: 'Preview' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										editPreviewToggle: value,
 									})
 								}
 							/>
 						)}
-					{props.attributes.enableSlider &&
-						props.attributes.sliderAuto && (
+						{props.attributes.enableSlider && (
+							<UnitControl
+								label="Container Height"
+								type="number"
+								min={0}
+								value={props.attributes.sliderHeight}
+								onChange={(value) =>
+									props.setAttributes({ sliderHeight: value })
+								}
+								units={[
+									{ value: 'px', label: 'px' },
+									{ value: 'em', label: 'em' },
+									{ value: 'rem', label: 'rem' },
+									{ value: 'vw', label: 'vw' },
+									{ value: 'vh', label: 'vh' },
+									{ value: 'svh', label: 'svh' },
+								]}
+								help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<ToggleControl
+								label="Show Arrow Navigation"
+								checked={!!props.attributes.sliderNav}
+								onChange={(newValue) =>
+									props.setAttributes({ sliderNav: newValue })
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
 							<RangeControl
-								label="Slide Interval in Milliseconds"
-								value={props.attributes.sliderSpeed}
+								label="Transition in Milliseconds"
+								value={props.attributes.transitionDuration}
 								onChange={(newInterval) =>
 									props.setAttributes({
-										sliderSpeed: newInterval,
+										transitionDuration: newInterval,
 									})
 								}
-								defaultValue={4000}
-								min={1000}
-								max={10000}
-								step={500}
+								defaultValue={500}
+								min={100}
+								max={1500}
+								step={50}
 							/>
 						)}
+						{props.attributes.enableSlider && (
+							<ToggleControl
+								label="Loop Slides"
+								checked={!!props.attributes.sliderLoop}
+								onChange={(newValue) =>
+									props.setAttributes({
+										sliderLoop: newValue,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Buttons Horizontal Position"
+								value={
+									props.attributes.positionButtonsHorizontal
+								}
+								options={[
+									{ value: 'left', label: 'Left' },
+									{ value: 'center', label: 'Center' },
+									{ value: 'right', label: 'Right' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										positionButtonsHorizontal: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Buttons Vertical Position"
+								value={props.attributes.positionButtonsVertical}
+								options={[
+									{ value: 'top', label: 'Top' },
+									{ value: 'bottom', label: 'Bottom' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										positionButtonsVertical: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<ToggleControl
+								label="Position Buttons Over Slider"
+								checked={!!props.attributes.positionButtonsOver}
+								onChange={(newValue) =>
+									props.setAttributes({
+										positionButtonsOver: newValue,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Buttons Text Color"
+								value={props.attributes.buttonsTextColor}
+								options={[
+									{ value: 'default', label: 'Default' },
+									{ value: 'white', label: 'White' },
+									{ value: 'black', label: 'Black' },
+									{ value: 'primary', label: 'Primary' },
+									{ value: 'secondary', label: 'Secondary' },
+									{ value: 'alternate', label: 'Alternate' },
+									{ value: 'gray', label: 'Gray' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										buttonsTextColor: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Buttons Background Color"
+								value={props.attributes.buttonsBackgroundColor}
+								options={[
+									{ value: 'default', label: 'Default' },
+									{
+										value: 'transparent',
+										label: 'Transparent',
+									},
+									{ value: 'white', label: 'White' },
+									{ value: 'black', label: 'Black' },
+									{ value: 'primary', label: 'Primary' },
+									{ value: 'secondary', label: 'Secondary' },
+									{ value: 'alternate', label: 'Alternate' },
+									{ value: 'gray', label: 'Gray' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										buttonsBackgroundColor: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<SelectControl
+								label="Buttons Border Color"
+								value={props.attributes.buttonsBorderColor}
+								options={[
+									{ value: 'none', label: 'None' },
+									{ value: 'white', label: 'White' },
+									{ value: 'black', label: 'Black' },
+									{ value: 'primary', label: 'Primary' },
+									{ value: 'secondary', label: 'Secondary' },
+									{ value: 'alternate', label: 'Alternate' },
+									{ value: 'gray', label: 'Gray' },
+								]}
+								onChange={(value) =>
+									props.setAttributes({
+										buttonsBorderColor: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<ToggleControl
+								label="Add Box Shadow to Buttons"
+								checked={!!props.attributes.buttonsBoxShadow}
+								onChange={(newValue) =>
+									props.setAttributes({
+										buttonsBoxShadow: newValue,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider && (
+							<ToggleControl
+								label="Auto Slide"
+								checked={!!props.attributes.sliderAuto}
+								onChange={(newValue) =>
+									props.setAttributes({
+										sliderAuto: newValue,
+									})
+								}
+							/>
+						)}
+						{props.attributes.enableSlider &&
+							props.attributes.sliderAuto && (
+								<ToggleControl
+									label="Hide Pause Button"
+									checked={!!props.attributes.hidePauseButton}
+									onChange={(newValue) =>
+										props.setAttributes({
+											hidePauseButton: newValue,
+										})
+									}
+								/>
+							)}
+						{props.attributes.enableSlider &&
+							props.attributes.sliderAuto && (
+								<ToggleControl
+									label="Pause on Hover"
+									checked={!!props.attributes.pauseOnHover}
+									onChange={(newValue) =>
+										props.setAttributes({
+											pauseOnHover: newValue,
+										})
+									}
+								/>
+							)}
+						{props.attributes.enableSlider &&
+							props.attributes.sliderAuto && (
+								<RangeControl
+									label="Slide Interval in Milliseconds"
+									value={props.attributes.sliderSpeed}
+									onChange={(newInterval) =>
+										props.setAttributes({
+											sliderSpeed: newInterval,
+										})
+									}
+									defaultValue={4000}
+									min={1000}
+									max={10000}
+									step={500}
+								/>
+							)}
+					</PanelBody>
+				)}
+				<PanelBody title="FlexLine Visibility">
+					{getVisibilityControls(props)}
 				</PanelBody>
-			)}
-			<PanelBody title="FlexLine Visibility">
-				{getVisibilityControls(props)}
-			</PanelBody>
-		</InspectorControls>
-		{getContentShiftControls(props)}
-	</Fragment>
-);
+			</InspectorControls>
+			{getContentShiftControls(props)}
+		</Fragment>
+	);
+};
 
 export const getClasses = (attributes) => {
 	const removed = [];
@@ -519,4 +629,4 @@ export const useHooks = (props) => {
 	}, [enableSlider, isStackedOnMobile, setAttributes]);
 };
 
-export default { controls, getClasses, useHooks };
+export default { controls: Controls, getClasses, useHooks };
