@@ -76,11 +76,11 @@ namespace FlexLine;
                             <!-- /wp:heading -->
 
                             <!-- wp:heading {"textAlign":"center","className":"is-style-creative","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"lineHeight":"1"}},"textColor":"base"} -->
-                            <h2 class="wp-block-heading has-text-align-center is-style-creative has-base-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;line-height:1">Full feature control</h2>
+                            <h2 class="wp-block-heading has-text-align-center is-style-creative has-base-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;line-height:1"><span class="is-style-text-shadow">Full feature control</span></h2>
                             <!-- /wp:heading -->
 
                             <!-- wp:paragraph {"align":"center","className":"is-style-default"} -->
-                            <p class="has-text-align-center is-style-default"><span class="is-style-text-shadow">Enable the slider in the sidebar, then set height, transition speed, loop, auto-slide, and button styles. Slides fade in/out automatically or with arrow controls.</span> And swich between edit and preview modes so you verify your design before you publish.</p>
+                            <p class="has-text-align-center is-style-default"><span class="is-style-text-shadow">Enable the slider in the sidebar, then set height, transition speed, loop, auto-slide, and button styles. Slides fade in/out automatically or with arrow controls. And switch between edit and preview modes so you verify your design before you publish.</span></p>
                             <!-- /wp:paragraph -->
                         </div>
                         <!-- /wp:group -->
