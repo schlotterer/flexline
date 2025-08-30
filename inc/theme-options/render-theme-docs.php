@@ -85,7 +85,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 				),
 			),
-'core/group'                     => array(
+			'core/group'                     => array(
 				'attributes' => array(
 					array(
 						'name'        => 'Enable Group Link',

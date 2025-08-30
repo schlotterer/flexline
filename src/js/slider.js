@@ -689,7 +689,7 @@
 			if (slider._btnPause) {
 				slider._btnPause.tabIndex = -1;
 			}
-			nav.setAttribute('aria-hidden', 'true');
+			// nav.setAttribute('aria-hidden', 'true');
 		}
 	}
 	// Prevent editor interactions (double‑click, drag/drop) from hijacking Preview
@@ -805,7 +805,6 @@
 			: null;
 		if (nav && slider._navSwallow) {
 			nav.removeEventListener('mousedown', slider._navSwallow, true);
-			nav.removeEventListener('mouseup', slider._navSwallow, true);
 			// only mousedown was added
 			slider._navSwallow = null;
 		}

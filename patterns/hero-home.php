@@ -46,14 +46,6 @@ namespace FlexLine;
     </div>
     <!-- /wp:cover -->
 
-    <!-- wp:group {"metadata":{"name":"Scroll-to button"},"className":"flexline-content-shift flexline-content-shift-above flexline-content-shift-up","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"},"useContentShift":true,"shiftUp":"18px","shiftToTop":true} -->
-    <div id="home-hero-next" class="wp-block-group flexline-content-shift flexline-content-shift-above flexline-content-shift-up" style="margin-top:0;margin-bottom:0"><!-- wp:buttons {"className":"","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"top"}} -->
-        <div class="wp-block-buttons" style="margin-top:0px;margin-bottom:0px"><!-- wp:button {"backgroundColor":"secondary","className":"animated bounce delay-2s slow  flexline-icon-none","style":{"border":{"radius":"100px"},"spacing":{"padding":{"left":"var:preset|spacing|medium","right":"var:preset|spacing|medium","top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}}} -->
-            <div class="wp-block-button animated bounce delay-2s slow  flexline-icon-none"><a class="wp-block-button__link has-secondary-background-color has-background wp-element-button" href="#scrollTo" style="border-radius:100px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">↓</a></div>
-            <!-- /wp:button -->
-        </div>
-        <!-- /wp:buttons -->
-    </div>
-    <!-- /wp:group -->
+    <!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
 </div>
 <!-- /wp:group -->
