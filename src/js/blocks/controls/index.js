@@ -7,7 +7,8 @@ import button from './button';
 import buttons from './buttons';
 import cover from './cover';
 import gallery from './gallery';
-import group from './group';
+import slider from './slider';
+// import group from './group';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';
@@ -18,7 +19,8 @@ const handlers = {
 	'core/buttons': buttons,
 	'core/cover': cover,
 	'core/gallery': gallery,
-	'core/group': group,
+	'core/group': slider,
+	'core/stack': slider,
 	'core/image': image,
 	'core/navigation': navigation,
 	'core/columns': columns,
@@ -47,7 +49,9 @@ const classMap = {
 	enableLazyLoad: { false: 'no-lazy-load' },
 	noWrap: { true: 'nowrap' },
 	enablePosterGallery: { true: 'poster-gallery' },
-	enableHorizontalScroll: { true: 'is-style-horizontal-scroll-at-mobile' },
+	enableHorizontalScrollAtMobile: {
+		true: 'is-style-horizontal-scroll-at-mobile',
+	},
 	stackAtTablet: { true: 'flexline-stack-at-tablet' },
 	enableGroupLink: { true: 'group-link' },
 };
@@ -98,6 +102,18 @@ const getContentShiftClasses = (attrs) => {
 	return { removed, added };
 };
 
+/**
+ * HOC: withCustomControls
+ *
+ * Attaches per-block controls and ensures a stable wrapper id + inline CSS variables
+ * so the runtime can read configuration without touching saved markup.
+ *
+ * Flow:
+ *  - Compute classes to add/remove (base + per‑feature + slider‑specific)
+ *  - Ensure wrapperProps.id = block-<clientId>
+ *  - Write a <style> tag targeting #block-<clientId> with CSS vars for Preview/FE
+ *  - Mirror key vars inline on wrapperProps.style for immediate inheritance in Preview
+ */
 const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		const { attributes, clientId } = props;
@@ -152,7 +168,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			if (!props.wrapperProps) {
 				props.wrapperProps = {};
 			}
+			// Ensure a stable ID on the block wrapper for targeting CSS variables
+			props.wrapperProps.id = uniqueClass;
 
+			// Build a style rule that collects CSS variables for any active features
+			let cssRules = '';
+			// Content Shift variables
 			if (props.attributes.useContentShift) {
 				let shiftLeft = '0';
 				let shiftRight = '0';
@@ -180,24 +201,105 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					slideY = attributes.slideVertical;
 				}
 
-				const styles = `
-                  #${uniqueClass} {
-                        --flexline-shift-left: ${shiftLeft};
-                        --flexline-shift-right: ${shiftRight};
-                        --flexline-shift-up: ${shiftUp};
-                        --flexline-shift-down: ${shiftDown};
-                        --flexline-slide-x: ${slideX};
-                        --flexline-slide-y: ${slideY};
-                  }
+				cssRules += `
+                  --flexline-shift-left: ${shiftLeft};
+                  --flexline-shift-right: ${shiftRight};
+                  --flexline-shift-up: ${shiftUp};
+                  --flexline-shift-down: ${shiftDown};
+                  --flexline-slide-x: ${slideX};
+                  --flexline-slide-y: ${slideY};
                 `;
+			}
+
+			// Slider variables
+			if (props.attributes.enableSlider) {
+				const height = attributes.sliderHeight || '';
+				const transitionMs = attributes.transitionDuration ?? 500;
+				const auto = !!attributes.sliderAuto;
+				const intervalMs = auto ? (attributes.sliderSpeed ?? 4000) : 0;
+				const loop = attributes.sliderLoop ? 1 : 0;
+				const pauseHover = auto && attributes.pauseOnHover ? 1 : 0;
+				let showPause = 0;
+				if (auto && !attributes.hidePauseButton) {
+					showPause = 1;
+				}
+				const showNav = attributes.sliderNav ? 1 : 0;
+
+				cssRules += `
+						  --slider-height: ${height};
+						  --slider-transition-ms: ${transitionMs};
+						  --slider-interval-ms: ${intervalMs};
+						  --slider-loop: ${loop};
+						  --slider-pause-on-hover: ${pauseHover};
+						  --slider-show-pause: ${showPause};
+						  --slider-nav: ${showNav};
+						`;
+			}
+
+			if (cssRules) {
+				const styles = `#${uniqueClass} { ${cssRules} }`;
 
 				if (!styleElementRef.current) {
 					styleElementRef.current = document.createElement('style');
 					styleElementRef.current.setAttribute('type', 'text/css');
 					document.head.appendChild(styleElementRef.current);
 				}
-
 				styleElementRef.current.textContent = styles;
+
+				// Also apply vars directly on the wrapper for immediate inheritance
+				if (props.attributes.enableSlider) {
+					const sliderHeightValue = (attributes.sliderHeight || '')
+						.toString()
+						.trim();
+					const sliderTransitionMs =
+						attributes.transitionDuration ?? 500;
+					const isAutoEnabled = !!attributes.sliderAuto;
+					const sliderIntervalMs = isAutoEnabled
+						? (attributes.sliderSpeed ?? 4000)
+						: 0;
+
+					const inlineVars = {};
+					const addVar = (name, val) => {
+						if (
+							val !== undefined &&
+							val !== null &&
+							`${val}` !== ''
+						) {
+							inlineVars[name] = `${val}`;
+						}
+					};
+					// Only set height if provided; otherwise supply a preview default
+					if (sliderHeightValue) {
+						inlineVars['--slider-height'] = sliderHeightValue;
+						inlineVars['--slider-height-default'] = undefined; // not needed when explicit height exists
+					} else {
+						inlineVars['--slider-height'] = undefined; // remove if previously set
+						inlineVars['--slider-height-default'] =
+							'calc(100svh - var(--header-site-header-height, 0px))';
+					}
+					// Ensure we always have a header height var in the editor canvas
+					inlineVars['--header-site-header-height'] = '0px';
+					addVar('--slider-transition-ms', sliderTransitionMs);
+					addVar('--slider-interval-ms', sliderIntervalMs);
+
+					props.wrapperProps.style = {
+						...(props.wrapperProps.style || {}),
+						...inlineVars,
+					};
+				}
+
+				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
+				try {
+					const evt = new CustomEvent(
+						'flexline-slider-vars-updated',
+						{
+							detail: { selector: `#${uniqueClass}` },
+						}
+					);
+					document.dispatchEvent(evt);
+				} catch (e) {
+					// ignore
+				}
 			} else if (styleElementRef.current) {
 				styleElementRef.current.parentNode.removeChild(
 					styleElementRef.current

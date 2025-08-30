@@ -95,6 +95,21 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Content Shift / Slide',
 						'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
 					),
+					array(
+						'name'        => 'Slider (Fading)',
+						'description' => 'Turns the Group into a fading slider. Direct children become slides (Cover blocks are required). In the editor, non‑Cover children are auto‑wrapped into Cover. Runtime is class‑driven (<code>is-style-slider</code>) and reads CSS variables; it writes no inline layout, only classes. <ul>' .
+							'<li><strong>Edit or Preview</strong> — toggles editor runtime (Preview adds <code>slider-preview-mode</code>).</li>' .
+							'<li><strong>Container Height</strong> — sets <code>--slider-height</code> and adds <code>slider-has-height</code> when provided. Default is <code>calc(100svh - header-height)</code>.</li>' .
+							'<li><strong>Show Arrow Navigation</strong> — adds <code>slider-navigation</code> and shows Prev/Next (and optional Pause) buttons.</li>' .
+							'<li><strong>Transition in Milliseconds</strong> — controls fade duration via <code>--slider-transition-ms</code> (default 500ms).</li>' .
+							'<li><strong>Loop Slides</strong> — adds <code>slider-loop</code> (default on).</li>' .
+							'<li><strong>Buttons Position</strong> — horizontal: <code>left|center|right</code>; vertical: <code>top|bottom</code>; optionally “over” the slider (<code>slider-buttons-over</code>).</li>' .
+							'<li><strong>Buttons Colors</strong> — text/background/border variants (e.g., <code>slider-buttons-text-white</code>, <code>slider-buttons-background-primary</code>, <code>slider-buttons-border-gray</code>).</li>' .
+							'<li><strong>Box Shadow</strong> — adds <code>slider-buttons-box-shadow</code>.</li>' .
+							'<li><strong>Auto Slide</strong> — enables autoplay (<code>slider-auto</code>) with <em>Slide Interval</em> (<code>--slider-interval-ms</code>, default 4000ms), <em>Pause on Hover</em> (<code>slider-pause-on-hover</code>), and optional <em>Hide Pause Button</em>.</li>' .
+							'<li><strong>Accessibility</strong> — buttons have labels; only the active slide accepts pointer events to prevent focus traps.</li>' .
+						'</ul>',
+					),
 				),
 			),
 			'core/stack'                     => array(
@@ -106,6 +121,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					array(
 						'name'        => 'Content Shift / Slide',
 						'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
+					),
+					array(
+						'name'        => 'Slider (Fading)',
+						'description' => 'Same slider feature as Group: enables a fading slider over Stack children (Cover slides). Includes navigation, autoplay, loop, button positions/colors, and height control. See Group → Slider for full option list.',
 					),
 				),
 			),
@@ -119,6 +138,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Content Shift / Slide',
 						'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
 					),
+					array(
+						'name'        => 'Slider (Fading)',
+						'description' => 'Same slider feature as Group: enables a fading slider over Row children (Cover slides). Includes navigation, autoplay, loop, button positions/colors, and height control. See Group → Slider for full option list.',
+					),
 				),
 			),
 			'core/grid'                      => array(
@@ -126,6 +149,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					array(
 						'name'        => 'Enable Group Link',
 						'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+					),
+					array(
+						'name'        => 'Slider (Fading)',
+						'description' => 'Same slider feature as Group: enables a fading slider over Grid children (Cover slides). Includes navigation, autoplay, loop, button positions/colors, and height control. See Group → Slider for full option list.',
 					),
 				),
 			),
