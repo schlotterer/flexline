@@ -13,7 +13,6 @@ Thumbs.db
 .idea
 *.sublime-project
 *.sublime-workspace
-.vscode/
 
 # Log files
 *.log
