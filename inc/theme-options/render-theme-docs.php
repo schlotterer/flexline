@@ -206,6 +206,62 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 
 		// Merge registered block styles.
 		$block_styles       = \FlexLine\flexline_get_block_styles();
+		$text_shadow_blocks = array(
+			// Headings & titles.
+			'core/heading',
+			'core/post-title',
+			'core/query-title',
+			'core/site-title',
+			'core/site-tagline',
+
+			// Text content.
+			'core/paragraph',
+			'core/list',
+			'core/quote',
+			'core/pullquote',
+			'core/verse',
+			'core/table',       // table cell text
+			'core/details',     // summary text
+
+			// Buttons & links.
+			'core/button',
+			'core/read-more',
+			'core/navigation-link',
+			'core/navigation-submenu',
+
+			// Captions (figcaption uses RichText).
+			'core/image',
+			'core/gallery',
+			'core/audio',
+			'core/video',
+
+			// Post metadata & excerpt.
+			'core/post-excerpt',
+			'core/post-author',
+			'core/post-author-name',
+			'core/post-terms',
+
+			// Comments.
+			'core/comment-author-name',
+			'core/comment-date',
+			'core/comment-edit-link',
+			'core/comment-reply-link',
+
+			// Query pagination.
+			'core/post-navigation-link',
+			'core/query-pagination',
+			'core/query-pagination-previous',
+			'core/query-pagination-next',
+			'core/query-pagination-numbers',
+		);
+
+		foreach ( $text_shadow_blocks as $block ) {
+			if ( ! isset( $block_styles[ $block ] ) ) {
+					$block_styles[ $block ] = array();
+			}
+			$block_styles[ $block ]['text-shadow'] = __( 'Text Shadow', 'flexline' );
+		}
+
 		$style_descriptions = array(
 			'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
 			'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
@@ -222,7 +278,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',
 			'light-over-dark' => 'Light text on dark backgrounds for hero/footers.',
 			'outline'         => 'Navigation links gain a 1 px outline & padding on desktop-up.',
-			'text-shadow'     => 'Applies the theme’s subtle text shadow variable for soft lift.',
+			'text-shadow'     => 'Applies the theme’s subtle text shadow vid the RichText Editor',
 			'eyebrow'         => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
 			'creative'        => 'Large decorative headline style using the site’s creative font.',
 			'glass-button'    => 'Transparent glass button with blur & subtle border that intensifies on hover.',

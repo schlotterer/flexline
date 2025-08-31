@@ -18,33 +18,24 @@ namespace FlexLine;
  *
  * @return array
  */
-function flexline_get_block_styles() {
+function flexline_get_block_styles( $action = 'set' ) {
 		$styles = array(
 			'core/columns'              => array(
 				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
 			),
 			'core/group'                => array(
-				'shadow-light'    => __( 'Shadow', 'flexline' ),
-				'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-				'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-				'card'            => __( 'Card', 'flexline' ),
-				'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
-				'card-alt'        => __( 'Card w/ Images that fill', 'flexline' ),
-				'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'           => __( 'Glass', 'flexline' ),
-				'glass-card'      => __( 'Glass Card', 'flexline' ),
+				'card'        => __( 'Card', 'flexline' ),
+				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
+				'card-alt'    => __( 'Card w/ Images that fill', 'flexline' ),
+				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'       => __( 'Glass', 'flexline' ),
+				'glass-card'  => __( 'Glass Card', 'flexline' ),
 			),
 			'core/image'                => array(
-				'shadow-light'    => __( 'Shadow', 'flexline' ),
-				'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-				'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-				'card'            => __( 'Card', 'flexline' ),
+				'card' => __( 'Card', 'flexline' ),
 			),
 			'core/post-featured-image'  => array(
-				'shadow-light'    => __( 'Shadow', 'flexline' ),
-				'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-				'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-				'card'            => __( 'Card', 'flexline' ),
+				'card' => __( 'Card', 'flexline' ),
 			),
 			'core/list'                 => array(
 				'no-disc' => __( 'No Disc', 'flexline' ),
@@ -73,14 +64,11 @@ function flexline_get_block_styles() {
 				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/quote'                => array(
-				'shadow-light'    => __( 'Shadow', 'flexline' ),
-				'shadow-dark'     => __( 'Shadow Dark', 'flexline' ),
-				'shadow-diffused' => __( 'Shadow Diffused', 'flexline' ),
-				'card'            => __( 'Card', 'flexline' ),
-				'card-padded'     => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'        => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'           => __( 'Glass', 'flexline' ),
-				'glass-card'      => __( 'Glass Card', 'flexline' ),
+				'card'        => __( 'Card', 'flexline' ),
+				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'       => __( 'Glass', 'flexline' ),
+				'glass-card'  => __( 'Glass Card', 'flexline' ),
 			),
 			'core/social-links'         => array(
 				'outline' => __( 'Outline', 'flexline' ),
@@ -122,40 +110,6 @@ function flexline_get_block_styles() {
 			),
 		);
 
-		$text_shadow_blocks = array(
-			// Titles & taglines.
-			'core/post-title',
-			'core/query-title',
-			// Post metadata & excerpt.
-			'core/post-date',
-			'core/post-time',
-			'core/post-author',
-			'core/post-author-name',
-			'core/post-author-biography',
-			'core/post-terms',
-
-			// Navigation & lists.
-			'core/post-navigation-link',
-			'core/page-list',
-			'core/query-pagination',
-			'core/query-pagination-previous',
-			'core/query-pagination-next',
-			'core/query-pagination-numbers',
-
-			// Comments & login.
-			'core/comment-author-name',
-			'core/comment-date',
-			'core/comment-reply-link',
-			'core/loginout',
-		);
-
-		foreach ( $text_shadow_blocks as $block ) {
-			if ( ! isset( $styles[ $block ] ) ) {
-					$styles[ $block ] = array();
-			}
-				$styles[ $block ]['text-shadow'] = __( 'Text Shadow', 'flexline' );
-		}
-
 		return $styles;
 }
 
@@ -168,7 +122,7 @@ function flexline_get_block_styles() {
  * @return void
  */
 function flexline_register_block_styles() {
-		$block_styles = flexline_get_block_styles();
+	$block_styles = flexline_get_block_styles();
 
 	foreach ( $block_styles as $block => $styles ) {
 		foreach ( $styles as $style_name => $style_label ) {
