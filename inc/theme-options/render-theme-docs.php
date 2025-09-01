@@ -220,8 +220,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			'core/quote',
 			'core/pullquote',
 			'core/verse',
-			'core/table',       // table cell text
-			'core/details',     // summary text
+			'core/table',
+			'core/details',
 
 			// Buttons & links.
 			'core/button',

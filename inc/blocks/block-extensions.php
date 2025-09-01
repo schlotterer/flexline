@@ -178,7 +178,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			}
 		}
 
-		// Slider CSS variables for Group/Stack when enabled
+		// Slider CSS variables for Group/Stack when enabled.
 		if (
 			( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] ) &&
 			! empty( $block['attrs']['enableSlider'] )

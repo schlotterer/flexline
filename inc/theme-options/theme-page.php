@@ -2,7 +2,10 @@
 /**
  * Theme options page.
  *
- * @package flexline
+ * This file is responsible for rendering the theme options page.
+ *
+ * @package FlexLine
+ * @since   0.9.2
  */
 
 require_once __DIR__ . '/render-theme-docs.php';
@@ -115,6 +118,3 @@ function flexline_theme_options_page() {
 	</script>
 	<?php
 }
-
-
-?>

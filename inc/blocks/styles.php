@@ -18,7 +18,7 @@ namespace FlexLine;
  *
  * @return array
  */
-function flexline_get_block_styles( $action = 'set' ) {
+function flexline_get_block_styles() {
 		$styles = array(
 			'core/columns'              => array(
 				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
