@@ -205,6 +205,7 @@ const Controls = (BlockEdit, props) => {
 									{ value: 'vw', label: 'vw' },
 									{ value: 'vh', label: 'vh' },
 									{ value: 'svh', label: 'svh' },
+									{ value: 'dvh', label: 'dvh' },
 								]}
 								help="Leave blank for full screen - header height. Use 100svh for mobile friendly full screen height"
 							/>
