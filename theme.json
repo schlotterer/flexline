@@ -791,9 +791,6 @@
 			"core/group": {
 				"css": "",
 				"variations": {
-					"shadow-light": {},
-					"shadow-dark": {},
-					"shadow-diffused": {},
 					"card": {},
 					"card-padded": {},
 					"card-alt": {},
@@ -828,9 +825,7 @@
 						},
 						"css": "&.is-style-rounded figcaption { linear-gradient(0deg, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3) 70%, transparent);position:absolute;}"
 					},
-					"shadow-light": {},
-					"shadow-dark": {},
-					"shadow-diffused": {},
+					
 					"card": {}
 				}
 			},
@@ -934,9 +929,7 @@
 			},
 			"core/post-featured-image": {
 				"variations": {
-					"shadow-light": {},
-					"shadow-dark": {},
-					"shadow-diffused": {},
+					
 					"card": {}
 				}
 			},
@@ -1082,9 +1075,7 @@
 					"fontFamily": "var(--wp--preset--font-family--brand)"
 				},
 				"variations": {
-					"shadow-light": {},
-					"shadow-dark": {},
-					"shadow-diffused": {},
+					
 					"card": {},
 					"card-padded": {},
 					"outlined": {},
