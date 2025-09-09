@@ -67,13 +67,13 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_script( 'flexline-slider-admin', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), THEME_VERSION, true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
-	wp_enqueue_script(
-		'template-pattern-inserter',
-		get_stylesheet_directory_uri() . '/assets/built/js/template-pattern-inserter.js',
-		array( 'wp-blocks', 'wp-data', 'wp-api-fetch', 'wp-element', 'wp-components' ),
-		THEME_VERSION,
-		true
-	);
+    wp_enqueue_script(
+        'template-pattern-inserter',
+        get_theme_file_uri( 'assets/built/js/template-pattern-inserter.js' ),
+        array( 'wp-blocks', 'wp-data', 'wp-api-fetch', 'wp-element', 'wp-components' ),
+        THEME_VERSION,
+        true
+    );
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
