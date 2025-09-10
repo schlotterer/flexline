@@ -177,6 +177,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			// We'll also mirror key vars inline on the wrapper so they work inside
 			// the editor iframe where <style> in the parent document won't apply.
 			const inlineVars = {};
+			const inlineStyles = {};
 			const setVar = (name, val) => {
 				// If val is undefined/null/empty, explicitly remove the var if it existed.
 				if (val === undefined || val === null || `${val}` === '') {
@@ -230,6 +231,32 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				setVar('--flexline-shift-down', shiftDown);
 				setVar('--flexline-slide-x', slideX);
 				setVar('--flexline-slide-y', slideY);
+
+				// Additionally, apply direct inline styles so Template Editor canvas
+				// (which may not load our CSS) still previews the shift.
+				if (shiftLeft !== '0') {
+					inlineStyles.marginLeft = shiftLeft;
+				}
+				if (shiftRight !== '0') {
+					inlineStyles.marginRight = shiftRight;
+				}
+				if (shiftUp !== '0') {
+					inlineStyles.marginTop = shiftUp;
+					inlineStyles.marginBlockStart = shiftUp;
+				}
+				if (shiftDown !== '0') {
+					inlineStyles.marginBottom = shiftDown;
+				}
+				if (slideX !== '0' || slideY !== '0') {
+					const existingTransform =
+						(props.wrapperProps.style &&
+							props.wrapperProps.style.transform) ||
+						'';
+					const translate = `translateX(${slideX}) translateY(${slideY})`;
+					inlineStyles.transform = existingTransform
+						? `${existingTransform} ${translate}`
+						: translate;
+				}
 			} else {
 				// Ensure stale vars are cleared if feature is toggled off
 				setVar('--flexline-shift-left', undefined);
@@ -310,10 +337,11 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					setVar('--slider-interval-ms', undefined);
 				}
 
-				// Commit inline vars for both content shift and slider
+				// Commit inline vars and preview styles for both content shift and slider
 				props.wrapperProps.style = {
 					...(props.wrapperProps.style || {}),
 					...inlineVars,
+					...inlineStyles,
 				};
 
 				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
