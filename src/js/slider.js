@@ -448,8 +448,8 @@
 
 	function attachHoverPause(slider) {
 		const wrapper = slider._wrapper || slider.parentElement;
-		const onEnter = (e) => {
-			e.preventDefault();
+		const onEnter = () => {
+			// No preventDefault here; it can interfere with editor selection.
 			slider._hoverPaused = true;
 		};
 		const onLeave = () => {
@@ -592,8 +592,12 @@
 		// Toggle entire nav visibility via option
 		nav.style.display = slider._showNav ? '' : 'none';
 
-		// In editor, swallow selection-related events so buttons stay clickable
-		if (isEditor() && !slider._navSwallow) {
+		// In editor Preview only, swallow selection-related events so buttons stay clickable
+		if (
+			isEditor() &&
+			slider.classList.contains('slider-preview-mode') &&
+			!slider._navSwallow
+		) {
 			const swallow = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
@@ -899,12 +903,13 @@
 				const t = rec.target;
 				if (
 					t.classList &&
-					(t.classList.contains('is-style-slider') ||
-						t.classList.contains('slider-preview-mode'))
+					t.classList.contains('slider-preview-mode')
 				) {
+					// Only react to preview-mode toggles in the editor
 					relevant = true;
 					break;
 				}
+				// Ignore is-selected or other class churn on slider in Edit mode
 			}
 			if (rec.type === 'childList') {
 				for (const n of rec.addedNodes) {
