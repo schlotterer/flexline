@@ -9,6 +9,9 @@ namespace FlexLine_Utilities;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Admin settings page for Utilities options.
+ */
 class Admin {
 
 	// Central defaults (first load behavior).
@@ -21,11 +24,21 @@ class Admin {
 		'disable_all_comments' => 0,
 	);
 
+	/**
+	 * Hook admin menu and settings registration.
+	 *
+	 * @return void
+	 */
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
 	}
 
+	/**
+	 * Add Utilities page under Appearance.
+	 *
+	 * @return void
+	 */
 	public static function add_admin_menu() {
 		add_theme_page(
 			'FlexLine Utilities',
@@ -45,7 +58,9 @@ class Admin {
 	}
 
 	/**
-	 * Register settings and render fields inline (no add_settings_field tables).
+	 * Register settings and render sections/fields.
+	 *
+	 * @return void
 	 */
 	public static function register_settings() {
 		register_setting(
@@ -162,6 +177,9 @@ class Admin {
 
 	/**
 	 * Sanitize checkbox options.
+	 *
+	 * @param array $input Raw input array from form.
+	 * @return array Sanitized options.
 	 */
 	public static function sanitize_options( $input ) {
 		$keys      = array(
@@ -174,11 +192,16 @@ class Admin {
 		);
 		$sanitized = array();
 		foreach ( $keys as $k ) {
-			$sanitized[ $k ] = ( isset( $input[ $k ] ) && (int) $input[ $k ] === 1 ) ? 1 : 0;
+			$sanitized[ $k ] = ( 1 === (int) ( $input[ $k ] ?? 0 ) ) ? 1 : 0; // Yoda.
 		}
 		return \wp_parse_args( $sanitized, self::DEFAULTS );
 	}
 
+	/**
+	 * Render the Utilities admin page.
+	 *
+	 * @return void
+	 */
 	public static function render_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -257,4 +280,3 @@ class Admin {
 		<?php
 	}
 }
-

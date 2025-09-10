@@ -63,6 +63,7 @@ function add_og_tags() {
 		$card_url       = get_term_link( $queried_object );
 		$card_type      = 'website';
 
+		/* translators: 1: qualifier such as "categorized in" or "tagged with", 2: term name */
 		$card_long_description = sprintf( esc_html__( 'Posts %1$s %2$s.', 'flexline' ), $specify, $term_name );
 		$card_description      = $card_long_description;
 	}
@@ -73,6 +74,7 @@ function add_og_tags() {
 		$card_url    = get_search_link( $search_term );
 		$card_type   = 'website';
 
+		/* translators: %s: search phrase */
 		$card_long_description = sprintf( esc_html__( 'Search results for %s.', 'flexline' ), $search_term );
 		$card_description      = $card_long_description;
 	}
@@ -126,4 +128,3 @@ function flexline_register_og_tags() {
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\\flexline_register_og_tags' );
-

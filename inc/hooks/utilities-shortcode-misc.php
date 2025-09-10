@@ -23,6 +23,9 @@ add_filter( 'the_excerpt', 'do_shortcode' );
 
 /**
  * Enable custom mime types (SVG, SVGZ).
+ *
+ * @param array $mimes Allowed mime types keyed by file extension.
+ * @return array Filtered mime types.
  */
 function custom_mime_types( $mimes ) {
 	$mimes['svg']  = 'image/svg+xml';

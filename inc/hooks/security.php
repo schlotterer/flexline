@@ -27,6 +27,8 @@ function flexline_register_security_hooks() {
 		add_filter(
 			'rest_pre_serve_request',
 			function ( $served, $result, $request ) {
+				// Mark unused parameters to satisfy code analysis.
+				unset( $result, $request );
 				if ( ! headers_sent() ) {
 					header( 'Access-Control-Allow-Origin: *' );
 					header( 'Vary: Origin', false );

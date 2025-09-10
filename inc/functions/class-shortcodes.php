@@ -2,6 +2,10 @@
 /**
  * FlexLine Utilities Shortcodes (migrated into theme).
  *
+ * Registers a small set of helper shortcodes used by the theme and
+ * starter content, including copyright year, site name/title, and a
+ * shortcode to render the theme’s documentation tab.
+ *
  * @package flexline
  */
 
@@ -9,6 +13,9 @@ namespace FlexLine_Utilities;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Shortcodes container class.
+ */
 class Shortcodes {
 	/**
 	 * Register shortcodes.
@@ -22,6 +29,9 @@ class Shortcodes {
 
 	/**
 	 * Copyright year or range.
+	 *
+	 * @param array $atts Shortcode attributes.
+	 * @return string
 	 */
 	public static function flexline_copyright_year_shortcode( $atts ) {
 		$args = shortcode_atts(
@@ -72,36 +82,3 @@ class Shortcodes {
 		return ob_get_clean();
 	}
 }
-
-/**
- * Enqueue assets for the theme docs shortcode on the front end.
- */
-function enqueue_theme_docs_assets() {
-	if ( ! is_singular() ) {
-		return;
-	}
-
-	$post = get_post();
-	if ( ! $post || ! has_shortcode( $post->post_content, 'flexline_theme_docs' ) ) {
-		return;
-	}
-
-	wp_enqueue_style( 'dashicons' );
-
-	$theme_uri = get_template_directory_uri();
-	wp_enqueue_script(
-		'flexline-tablesort',
-		$theme_uri . '/assets/js/tablesort.js',
-		array(),
-		null,
-		true
-	);
-	wp_enqueue_script(
-		'flexline-theme-docs',
-		$theme_uri . '/assets/js/theme-docs.js',
-		array( 'flexline-tablesort' ),
-		null,
-		true
-	);
-}
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_theme_docs_assets' );

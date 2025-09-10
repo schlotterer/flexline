@@ -1,6 +1,9 @@
 <?php
 /**
- * Disable all comments sitewide (front + admin + REST).
+ * Disable all comments sitewide (front end, admin UI, REST endpoints).
+ *
+ * Provides a comprehensive “no comments” mode by closing comments/pings,
+ * stripping UI and REST endpoints, and removing scripts/widgets.
  *
  * @package flexline
  */
@@ -9,6 +12,11 @@ namespace FlexLine;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Boot handler to disable comments globally when option enabled.
+ *
+ * @return void
+ */
 function disable_comments_boot() {
 	$opts = get_option( 'flexline_utilities', array() );
 	if ( empty( $opts['disable_all_comments'] ) ) {
@@ -24,7 +32,7 @@ function disable_comments_boot() {
 	add_filter( 'pre_option_default_comment_status', fn() => 'closed' );
 	add_filter( 'pre_option_default_ping_status', fn() => 'closed' );
 
-	// Don’t enqueue comment-reply.js
+	// Don’t enqueue comment-reply.js.
 	add_action(
 		'wp_enqueue_scripts',
 		function () {
