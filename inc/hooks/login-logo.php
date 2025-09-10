@@ -56,9 +56,9 @@ function login_logo_get_url() {
  * Output CSS to replace the login logo.
  *
  * Filters:
- * - `flexline/login_logo_duotone` (bool): Apply black-on-black duotone. Default true.
- * - `flexline/login_logo_color` (string): Hex/RGB color used when masking. Default '#000'.
- * - `flexline/login_logo_use_mask` (bool): Use CSS mask technique when possible. Default true.
+ * - `flexline_login_logo_duotone` (bool): Apply black-on-black duotone. Default true.
+ * - `flexline_login_logo_color` (string): Hex/RGB color used when masking. Default '#000'.
+ * - `flexline_login_logo_use_mask` (bool): Use CSS mask technique when possible. Default true.
  */
 function replace_wp_login_logo() {
 	$logo_url = login_logo_get_url();
@@ -66,9 +66,9 @@ function replace_wp_login_logo() {
 		return; // No change if no site logo found.
 	}
 
-	$apply_duotone = (bool) apply_filters( 'flexline/login_logo_duotone', true );
-	$mask_color    = (string) apply_filters( 'flexline/login_logo_color', '#000' );
-	$use_mask      = (bool) apply_filters( 'flexline/login_logo_use_mask', true );
+	$apply_duotone = (bool) apply_filters( 'flexline_login_logo_duotone', true );
+	$mask_color    = (string) apply_filters( 'flexline_login_logo_color', '#000' );
+	$use_mask      = (bool) apply_filters( 'flexline_login_logo_use_mask', true );
 
 	// Basic sanitization for CSS color value (allow simple hex or rgb/rgba keywords).
 	if ( ! preg_match( '/^(#[0-9a-fA-F]{3,8}|rgba?\([^\)]+\)|hsl[a]?\([^\)]+\)|[a-zA-Z]+)$/', $mask_color ) ) {

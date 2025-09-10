@@ -1,5 +1,10 @@
 <?php
 /**
+ * FlexLine theme options admin page and tabs.
+ *
+ * @package flexline
+ */
+/**
  * Theme options page.
  *
  * This file is responsible for rendering the theme options page.
