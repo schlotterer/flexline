@@ -173,6 +173,19 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 			// Build a style rule that collects CSS variables for any active features
 			let cssRules = '';
+
+			// We'll also mirror key vars inline on the wrapper so they work inside
+			// the editor iframe where <style> in the parent document won't apply.
+			const inlineVars = {};
+			const setVar = (name, val) => {
+				// If val is undefined/null/empty, explicitly remove the var if it existed.
+				if (val === undefined || val === null || `${val}` === '') {
+					inlineVars[name] = undefined;
+				} else {
+					inlineVars[name] = `${val}`;
+				}
+			};
+
 			// Content Shift variables
 			if (props.attributes.useContentShift) {
 				let shiftLeft = '0';
@@ -209,6 +222,22 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
                   --flexline-slide-x: ${slideX};
                   --flexline-slide-y: ${slideY};
                 `;
+
+				// Mirror inside the block wrapper for editor iframe
+				setVar('--flexline-shift-left', shiftLeft);
+				setVar('--flexline-shift-right', shiftRight);
+				setVar('--flexline-shift-up', shiftUp);
+				setVar('--flexline-shift-down', shiftDown);
+				setVar('--flexline-slide-x', slideX);
+				setVar('--flexline-slide-y', slideY);
+			} else {
+				// Ensure stale vars are cleared if feature is toggled off
+				setVar('--flexline-shift-left', undefined);
+				setVar('--flexline-shift-right', undefined);
+				setVar('--flexline-shift-up', undefined);
+				setVar('--flexline-shift-down', undefined);
+				setVar('--flexline-slide-x', undefined);
+				setVar('--flexline-slide-y', undefined);
 			}
 
 			// Slider variables
@@ -246,47 +275,46 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				}
 				styleElementRef.current.textContent = styles;
 
-				// Also apply vars directly on the wrapper for immediate inheritance
-				if (props.attributes.enableSlider) {
-					const sliderHeightValue = (attributes.sliderHeight || '')
-						.toString()
-						.trim();
-					const sliderTransitionMs =
-						attributes.transitionDuration ?? 500;
-					const isAutoEnabled = !!attributes.sliderAuto;
-					const sliderIntervalMs = isAutoEnabled
-						? (attributes.sliderSpeed ?? 4000)
-						: 0;
+				// Also apply vars directly on the wrapper for immediate inheritance (editor iframe)
+				const sliderHeightValue = (attributes.sliderHeight || '')
+					.toString()
+					.trim();
+				const sliderTransitionMs = attributes.transitionDuration ?? 500;
+				const isAutoEnabled = !!attributes.sliderAuto;
+				const sliderIntervalMs = isAutoEnabled
+					? (attributes.sliderSpeed ?? 4000)
+					: 0;
 
-					const inlineVars = {};
-					const addVar = (name, val) => {
-						if (
-							val !== undefined &&
-							val !== null &&
-							`${val}` !== ''
-						) {
-							inlineVars[name] = `${val}`;
-						}
-					};
+				if (props.attributes.enableSlider) {
 					// Only set height if provided; otherwise supply a preview default
 					if (sliderHeightValue) {
-						inlineVars['--slider-height'] = sliderHeightValue;
-						inlineVars['--slider-height-default'] = undefined; // not needed when explicit height exists
+						setVar('--slider-height', sliderHeightValue);
+						setVar('--slider-height-default', undefined); // not needed when explicit height exists
 					} else {
-						inlineVars['--slider-height'] = undefined; // remove if previously set
-						inlineVars['--slider-height-default'] =
-							'calc(100svh - var(--header-site-header-height, 0px))';
+						setVar('--slider-height', undefined); // remove if previously set
+						setVar(
+							'--slider-height-default',
+							'calc(100svh - var(--header-site-header-height, 0px))'
+						);
 					}
 					// Ensure we always have a header height var in the editor canvas
-					inlineVars['--header-site-header-height'] = '0px';
-					addVar('--slider-transition-ms', sliderTransitionMs);
-					addVar('--slider-interval-ms', sliderIntervalMs);
-
-					props.wrapperProps.style = {
-						...(props.wrapperProps.style || {}),
-						...inlineVars,
-					};
+					setVar('--header-site-header-height', '0px');
+					setVar('--slider-transition-ms', sliderTransitionMs);
+					setVar('--slider-interval-ms', sliderIntervalMs);
+				} else {
+					// Clear slider vars if disabled
+					setVar('--slider-height', undefined);
+					setVar('--slider-height-default', undefined);
+					setVar('--header-site-header-height', undefined);
+					setVar('--slider-transition-ms', undefined);
+					setVar('--slider-interval-ms', undefined);
 				}
+
+				// Commit inline vars for both content shift and slider
+				props.wrapperProps.style = {
+					...(props.wrapperProps.style || {}),
+					...inlineVars,
+				};
 
 				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
 				try {
