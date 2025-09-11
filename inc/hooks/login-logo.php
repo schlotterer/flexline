@@ -81,7 +81,7 @@ function replace_wp_login_logo() {
 	if ( $apply_duotone && $use_mask ) {
 		// Use the logo as a mask and fill with black for a crisp silhouette.
 		$css .= sprintf(
-			'body.login #login h1 a{background-image:none!important;-webkit-mask-image:url(%1$s);mask-image:url(%1$s);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;background-color:%2$s;}',
+			'body.login #login h1 a{background-image:none!important;-webkit-mask-image:url(%1$s);mask-image:url(%1$s);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;width:300px;background-color:%2$s;}',
 			esc_url( $logo_url ),
 			esc_attr( $mask_color )
 		);
