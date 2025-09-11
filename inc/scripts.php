@@ -50,19 +50,21 @@ function flexline_enqueue_styles() {
 	// Scripts.
 	wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
 	wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ), true );
-	wp_enqueue_script( 'flexline-slider', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), flexline_asset_ver( 'assets/built/js/slider.js' ), true );
 	$show_menu_on_scroll    = get_option( 'flexline_show_menu_on_scroll_up', false );
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
 	if ( '1' === $show_menu_on_scroll || '1' === $show_menu_all_the_time ) {
 		wp_enqueue_script( 'flexline-headroom', get_theme_file_uri( 'assets/js/headroom.min.js' ), array(), flexline_asset_ver( 'assets/js/headroom.min.js' ), true );
 		wp_enqueue_script( 'flexline-headroom-init', get_theme_file_uri( 'assets/built/js/headroom.js' ), array(), flexline_asset_ver( 'assets/built/js/headroom.js' ), true );
 	}
-	wp_enqueue_script( 'flexline-load-early', get_theme_file_uri( 'assets/built/js/load-early.js' ), array(), flexline_asset_ver( 'assets/built/js/load-early.js' ), false );
 	wp_enqueue_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), array(), flexline_asset_ver( 'assets/built/js/modal.js' ), true );
 	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), array(), flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
 
 	// Customized Scripts.
 	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), array(), flexline_asset_ver( 'assets/js/customize.js' ), true );
+
+	// Load early scripts.
+	wp_enqueue_script( 'flexline-load-early', get_theme_file_uri( 'assets/built/js/load-early.js' ), array(), flexline_asset_ver( 'assets/built/js/load-early.js' ), false );
+	wp_enqueue_script( 'flexline-slider', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), flexline_asset_ver( 'assets/built/js/slider.js' ), false );
 }
 
 /**
