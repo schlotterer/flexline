@@ -103,6 +103,19 @@ body,
 			order: 99999;
 		}
 
+		/* Flex alignment helpers (tablet) */
+		.is-justify-content-center-tablet {
+			justify-content: center !important;
+		}
+		.is-align-items-center-tablet {
+			align-items: center !important;
+		}
+		.is-center-tablet {
+			justify-content: center !important;
+			align-items: center !important;
+			text-align: center !important;
+		}
+
 		/* Opacity utilities (tablet breakpoint) */
 		.opacity-0-tablet { opacity: 0; }
 		.opacity-10-tablet { opacity: 0.1; }
@@ -173,6 +186,14 @@ body,
         .is-justify-content-center-mobile {
             justify-content: center !important;
         }
+		.is-align-items-center-mobile {
+            align-items: center !important;
+        }
+		.is-center-mobile {
+			justify-content: center !important;
+			align-items: center !important;
+			text-align: center !important;
+		}
 
 		/* Opacity utilities (mobile breakpoint) */
 		.opacity-0-mobile { opacity: 0; }
