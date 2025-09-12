@@ -110,10 +110,18 @@ body,
 		.is-align-items-center-tablet {
 			align-items: center !important;
 		}
+		.is-text-align-center-tablet {
+			text-align: center !important;
+		}
 		.is-center-tablet {
 			justify-content: center !important;
 			align-items: center !important;
 			text-align: center !important;
+			> * {
+				justify-content: center !important;
+				align-items: center !important;
+				text-align: center !important;
+			}
 		}
 
 		/* Opacity utilities (tablet breakpoint) */
@@ -189,10 +197,18 @@ body,
 		.is-align-items-center-mobile {
             align-items: center !important;
         }
+		.is-text-align-center-mobile {
+			text-align: center !important;
+		}
 		.is-center-mobile {
 			justify-content: center !important;
 			align-items: center !important;
 			text-align: center !important;
+			> * {
+				justify-content: center !important;
+				align-items: center !important;
+				text-align: center !important;
+			}
 		}
 
 		/* Opacity utilities (mobile breakpoint) */
