@@ -14,6 +14,21 @@ body:not(.block-editor-page) .is-style-slider {
   );
 }
 
+/* No-JS fallback: ensure the first slide fills the reserved height */
+body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) > * {
+  min-height: inherit;
+}
+body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) .wp-block-cover,
+body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) .wp-block-cover .wp-block-cover__inner-container {
+  min-height: inherit;
+}
+body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) .wp-block-cover__image-background,
+body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) video.wp-block-cover__video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Editor Preview baseline: reserve height before runtime activates */
 .editor-styles-wrapper .is-style-slider.slider-preview-mode {
   position: relative;
