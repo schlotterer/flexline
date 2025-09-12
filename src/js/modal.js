@@ -42,9 +42,39 @@ document.addEventListener('DOMContentLoaded', () => {
 			element.insertAdjacentHTML('beforeend', iconExpand);
 		}
 
+		// Accessibility: make non-interactive elements operable
+		const isLink = element.tagName === 'A';
+		const isButtonLike = isLink || element.tagName === 'BUTTON';
+		if (!isButtonLike) {
+			element.setAttribute('role', 'button');
+			element.setAttribute('tabindex', '0');
+		}
+		element.setAttribute('aria-haspopup', 'dialog');
+		element.setAttribute('aria-controls', 'flexline-modal');
+		element.setAttribute('aria-expanded', 'false');
+		if (!element.getAttribute('aria-label')) {
+			const altText = element.getAttribute('alt');
+			const label =
+				altText && altText.trim() !== ''
+					? altText
+					: 'Open media in modal';
+			element.setAttribute('aria-label', label);
+		}
+
+		const openFromTrigger = (trigger) => {
+			trigger.setAttribute('aria-expanded', 'true');
+			displayModal(url, trigger); // Function to display the modal
+		};
+
 		element.addEventListener('click', (e) => {
 			e.preventDefault();
-			displayModal(url); // Function to display the modal
+			openFromTrigger(e.currentTarget);
+		});
+		element.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openFromTrigger(e.currentTarget);
+			}
 		});
 	};
 
@@ -76,9 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			if (url) {
+				element.setAttribute('aria-haspopup', 'dialog');
+				element.setAttribute('aria-controls', 'flexline-modal');
+				element.setAttribute('aria-expanded', 'false');
+				if (
+					!element.textContent.trim() &&
+					!element.getAttribute('aria-label')
+				) {
+					element.setAttribute('aria-label', 'Open media in modal');
+				}
+				const openFromTrigger = (trigger) => {
+					trigger.setAttribute('aria-expanded', 'true');
+					displayModal(url, trigger);
+				};
 				element.addEventListener('click', (e) => {
 					e.preventDefault();
-					displayModal(url); // Function to display the modal
+					openFromTrigger(e.currentTarget);
+				});
+				element.addEventListener('keydown', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openFromTrigger(e.currentTarget);
+					}
 				});
 			}
 		});
@@ -92,11 +141,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (!mediaUrl) {
 				return;
 			}
+			block.setAttribute('aria-haspopup', 'dialog');
+			block.setAttribute('aria-controls', 'flexline-modal');
+			block.setAttribute('aria-expanded', 'false');
 			const triggerModal = (e) => {
 				e.preventDefault();
-				displayModal(mediaUrl);
+				block.setAttribute('aria-expanded', 'true');
+				displayModal(mediaUrl, block);
 			};
 			block.addEventListener('click', triggerModal);
+			block.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					triggerModal(e);
+				}
+			});
 		});
 });
 
@@ -120,7 +179,7 @@ function unlockBodyScroll() {
 	document.documentElement.style.scrollBehavior = prev || '';
 }
 
-function displayModal(mediaUrl) {
+function displayModal(mediaUrl, openerEl) {
 	// eslint-disable-next-line no-console
 	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
@@ -134,13 +193,13 @@ function displayModal(mediaUrl) {
 	) {
 		// Extract the YouTube video ID and construct the embed URL with autoplay
 		const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
-		contentHtml = `<div class="aspect-ratio-16-9 iframe"><iframe src="${videoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+		contentHtml = `<div class="aspect-ratio-16-9 iframe"><iframe src="${videoEmbedUrl}" frameborder="0" title="Embedded video" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
 	} else if (mediaUrl.match(/\.(mp4|webm|ogg)$/)) {
 		// For native video elements, add the autoplay attribute
 		contentHtml = `<div class="aspect-ratio-16-9 video"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
 	} else {
 		// other domains try to put them in an iframe
-		contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+		contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" title="Embedded content" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
 	}
 
 	// Create the modal container
@@ -159,7 +218,8 @@ function displayModal(mediaUrl) {
 	modal.style.cursor = 'pointer';
 	modal.setAttribute('role', 'dialog');
 	modal.setAttribute('aria-modal', 'true');
-	modal.setAttribute('aria-label', 'Media Modal');
+	modal.setAttribute('aria-label', 'Media modal');
+	modal.setAttribute('tabindex', '-1');
 
 	// Create the close button
 	const closeButton = document.createElement('span');
@@ -172,6 +232,7 @@ function displayModal(mediaUrl) {
 	closeButton.style.color = '#fff';
 	closeButton.style.cursor = 'pointer';
 	closeButton.setAttribute('aria-label', 'Close modal');
+	closeButton.setAttribute('aria-keyshortcuts', 'Escape');
 	closeButton.setAttribute('role', 'button');
 	closeButton.setAttribute('tabindex', '0'); // Make it focusable
 	closeButton.className = 'material-symbols-outlined';
@@ -185,30 +246,86 @@ function displayModal(mediaUrl) {
 	document.body.appendChild(modal);
 
 	// Focus management for accessibility
+	const doc = modal.ownerDocument || document;
+	const previouslyFocused = openerEl || doc.activeElement;
+	// Focus trap setup
+	const focusableSelectors = [
+		'a[href]',
+		'area[href]',
+		'input:not([disabled])',
+		'select:not([disabled])',
+		'textarea:not([disabled])',
+		'button:not([disabled])',
+		'iframe',
+		'[tabindex]:not([tabindex="-1"])',
+		'[contenteditable="true"]',
+	].join(',');
+	const getFocusable = () =>
+		Array.from(modal.querySelectorAll(focusableSelectors));
+
 	closeButton.focus();
+	let trapHandler = null;
+	trapHandler = (e) => {
+		// Allow Escape to close the modal even when focus is inside the dialog
+		if (e.key === 'Escape') {
+			e.preventDefault();
+			cleanupAndClose();
+			return;
+		}
+		if (e.key !== 'Tab') {
+			return;
+		}
+		const list = getFocusable();
+		if (list.length === 0) {
+			e.preventDefault();
+			closeButton.focus();
+			return;
+		}
+		const first = list[0];
+		const last = list[list.length - 1];
+		if (e.shiftKey && doc.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+		} else if (!e.shiftKey && doc.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+		}
+	};
+	modal.addEventListener('keydown', trapHandler);
 
 	// Event listener for the close button
-	closeButton.addEventListener('click', (e) => {
-		e.stopPropagation(); // Prevent the modal click event from firing
+	const cleanupAndClose = () => {
 		modal.remove();
 		unlockBodyScroll();
+		if (
+			previouslyFocused &&
+			typeof previouslyFocused.setAttribute === 'function' &&
+			typeof previouslyFocused.focus === 'function'
+		) {
+			previouslyFocused.setAttribute('aria-expanded', 'false');
+			previouslyFocused.focus();
+		}
+		modal.removeEventListener('keydown', trapHandler);
+		document.removeEventListener('keydown', escHandler, true);
+	};
+
+	closeButton.addEventListener('click', (e) => {
+		e.stopPropagation(); // Prevent the modal click event from firing
+		cleanupAndClose();
 	});
 
 	// Optional: Close the modal when clicking outside the media content
 	modal.addEventListener('click', () => {
-		modal.remove();
-		unlockBodyScroll();
+		cleanupAndClose();
 	});
 
 	// Close the modal with the Escape key
-	document.addEventListener(
-		'keydown',
-		function (e) {
-			if (e.key === 'Escape') {
-				modal.remove();
-				unlockBodyScroll();
-			}
-		},
-		{ once: true }
-	); // Use the `once` option to auto-remove this event listener
+	const escHandler = function (e) {
+		if (e.key === 'Escape') {
+			cleanupAndClose();
+		}
+	};
+	document.addEventListener('keydown', escHandler, true);
+	// Move focus to the modal container to announce dialog region
+	modal.focus();
 }
