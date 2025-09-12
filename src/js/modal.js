@@ -100,6 +100,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 });
 
+// Lock/unlock body scroll while preserving position
+function lockBodyScroll() {
+	const y = window.scrollY || document.documentElement.scrollTop || 0;
+	document.body.dataset.modalScrollY = String(y);
+	// Set the offset before applying fixed positioning via the CSS class
+	document.body.style.top = `-${y}px`;
+	document.body.classList.add('no-scroll');
+}
+
+function unlockBodyScroll() {
+	const y = parseInt(document.body.dataset.modalScrollY || '0', 10);
+	document.body.classList.remove('no-scroll');
+	document.body.style.top = '';
+	delete document.body.dataset.modalScrollY;
+	const prev = document.documentElement.style.scrollBehavior;
+	document.documentElement.style.scrollBehavior = 'auto';
+	window.scrollTo(0, y);
+	document.documentElement.style.scrollBehavior = prev || '';
+}
+
 function displayModal(mediaUrl) {
 	// eslint-disable-next-line no-console
 	console.log('Displaying modal for:', mediaUrl);
@@ -160,9 +180,9 @@ function displayModal(mediaUrl) {
 	modal.innerHTML = contentHtml;
 	modal.appendChild(closeButton);
 
-	// Append the modal to the body
+	// Lock scroll and append the modal
+	lockBodyScroll();
 	document.body.appendChild(modal);
-	document.body.classList.add('no-scroll');
 
 	// Focus management for accessibility
 	closeButton.focus();
@@ -171,13 +191,13 @@ function displayModal(mediaUrl) {
 	closeButton.addEventListener('click', (e) => {
 		e.stopPropagation(); // Prevent the modal click event from firing
 		modal.remove();
-		document.body.classList.remove('no-scroll');
+		unlockBodyScroll();
 	});
 
 	// Optional: Close the modal when clicking outside the media content
 	modal.addEventListener('click', () => {
 		modal.remove();
-		document.body.classList.remove('no-scroll');
+		unlockBodyScroll();
 	});
 
 	// Close the modal with the Escape key
@@ -186,7 +206,7 @@ function displayModal(mediaUrl) {
 		function (e) {
 			if (e.key === 'Escape') {
 				modal.remove();
-				document.body.classList.remove('no-scroll');
+				unlockBodyScroll();
 			}
 		},
 		{ once: true }
