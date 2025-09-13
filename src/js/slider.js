@@ -490,8 +490,46 @@
 		}
 	}
 
+	/**
+	 * Lock a definite slider height so children using height:100% resolve reliably.
+	 * Uses the larger of computed min-height and current box height.
+	 *
+	 * @param {HTMLElement} slider The slider root element.
+	 */
+	function lockSliderHeight(slider) {
+		const cs = window.getComputedStyle(slider);
+		const minH = parseFloat((cs.minHeight || '0').replace('px', '')) || 0;
+		const boxH = slider.getBoundingClientRect().height || 0;
+		const h = Math.max(minH, boxH);
+		if (h > 0) {
+			slider.style.height = Math.round(h) + 'px';
+			slider.classList.add('slider-has-height');
+		}
+	}
+
+	/**
+	 * Targeted Safari guard: neutralize intrinsic ratio hints for cover bg images
+	 * inside this slider only.
+	 *
+	 * @param {HTMLElement} slider The slider root element.
+	 */
+	function scrubCoverImageHints(slider) {
+		const imgs = slider.querySelectorAll(
+			'img.wp-block-cover__image-background'
+		);
+		imgs.forEach((img) => {
+			img.removeAttribute('width');
+			img.removeAttribute('height');
+			img.setAttribute('sizes', '100vw');
+			img.style.aspectRatio = 'auto';
+		});
+	}
+
 	function attachResize(slider) {
-		const onResize = () => computeAndSetEffectiveHeight(slider);
+		const onResize = () => {
+			computeAndSetEffectiveHeight(slider);
+			lockSliderHeight(slider);
+		};
 		window.addEventListener('resize', onResize);
 		slider._onResize = onResize;
 	}
@@ -706,6 +744,10 @@
 		slider._wrapper = wrapper;
 		updateOptionsFromVars(slider);
 
+		// Height: compute a definite value before absolute stacking kicks in
+		computeAndSetEffectiveHeight(slider);
+		lockSliderHeight(slider);
+
 		// Activate runtime
 		slider.classList.add(RUNTIME_CLASS);
 
@@ -721,9 +763,11 @@
 		// Build navigation
 		buildNav(slider);
 
-		// Height
-		computeAndSetEffectiveHeight(slider);
+		// Height listeners
 		attachResize(slider);
+
+		// Targeted Safari guard for this slider only
+		scrubCoverImageHints(slider);
 
 		// Transitions and observers
 		attachTransitionClamp(slider);
@@ -798,6 +842,7 @@
 		if (slider._wrapper) {
 			slider._wrapper.style.removeProperty('--slider-height-default');
 		}
+		slider.style.height = '';
 
 		// Remove runtime class
 		slider.classList.remove(RUNTIME_CLASS);
