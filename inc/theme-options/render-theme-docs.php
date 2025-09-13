@@ -641,9 +641,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
 							<?php endfor; ?>
 							<tr><td><code>.is-order-last-tablet</code></td><td><code>order: 99999;</code></td></tr>
-                            <tr><td><code>.is-justify-content-center-tablet</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
-                            <tr><td><code>.is-align-items-center-tablet</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
-                            <tr><td><code>.is-text-align-center-tablet</code></td><td>Adds <code>text-align: center !important;</code> to the container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-justify-content-center-tablet</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-align-items-center-tablet</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-text-align-center-tablet</code></td><td>Adds <code>text-align: center !important;</code> to the container at the tablet breakpoint.</td></tr>
 							<tr><td><code>.is-center-tablet</code></td><td>Centers content at the tablet breakpoint: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
 						</tbody>
 					</table>
@@ -659,9 +659,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 																<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-mobile</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
 														<?php endfor; ?>
 							<tr><td><code>.is-order-last-mobile</code></td><td><code>order: 99999;</code></td></tr>
-                            <tr><td><code>.is-justify-content-center-mobile</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container on mobile.</td></tr>
-                            <tr><td><code>.is-align-items-center-mobile</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container on mobile.</td></tr>
-                            <tr><td><code>.is-text-align-center-mobile</code></td><td>Adds <code>text-align: center !important;</code> to the container on mobile.</td></tr>
+							<tr><td><code>.is-justify-content-center-mobile</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container on mobile.</td></tr>
+							<tr><td><code>.is-align-items-center-mobile</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container on mobile.</td></tr>
+							<tr><td><code>.is-text-align-center-mobile</code></td><td>Adds <code>text-align: center !important;</code> to the container on mobile.</td></tr>
 							<tr><td><code>.is-center-mobile</code></td><td>Centers content on mobile: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
 						</tbody>
 					</table>

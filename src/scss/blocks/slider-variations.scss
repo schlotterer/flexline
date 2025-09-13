@@ -3,6 +3,13 @@
 .slider-wrapper {
   position: relative;
   width: 100%;
+  /* Force cover images to respect the parent block height */
+  .wp-block-cover img.wp-block-cover__image-background {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: none !important; /* prevent Safari shrinking it */
+  }
 }
 
 /* Front-end baseline: reserve height as soon as markup loads */
