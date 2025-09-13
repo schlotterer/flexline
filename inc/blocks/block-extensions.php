@@ -166,9 +166,26 @@ function flexline_block_customizations_render( $block_content, $block ) {
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
-				$link_type  = isset( $block['attrs']['groupLinkType'] ) ? '_' . $block['attrs']['groupLinkType'] : '_self';
+				// Determine target attribute for link types.
+				$link_type_raw = isset( $block['attrs']['groupLinkType'] ) ? (string) $block['attrs']['groupLinkType'] : 'self';
+				$target_attr   = '';
+				if ( 'new_tab' === $link_type_raw ) {
+					$target_attr = ' target="_blank" rel="noopener"';
+				} elseif ( 'self' === $link_type_raw || 'none' === $link_type_raw ) {
+					$target_attr = ''; // Default same-window; no target attribute needed.
+				} elseif ( 'modal_media' === $link_type_raw ) {
+					// Modal handled via JS on container class 'group-link-type-modal_media'.
+					// Do not set target to avoid opening a new tab.
+					$target_attr = '';
+				}
+
 				$aria_label = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-				$link       = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0" target="' . $link_type . '"></a>';
+				$link       = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>';
+
+				// Ensure the wrapper carries the link-type class for runtime JS hooks.
+				$type_class    = 'group-link-type-' . $link_type_raw;
+				$added_classes = 'group-link ' . $type_class . ' ';
+				$block_content = add_classes_to_block_content( $block_content, $added_classes );
 
 				// Insert your data attribute just before the closing tag of the element.
 				// This is a basic string replacement and might need to be adjusted based on the block markup.
