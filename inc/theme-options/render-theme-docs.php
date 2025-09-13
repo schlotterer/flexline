@@ -641,6 +641,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?>-tablet</code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
 							<?php endfor; ?>
 							<tr><td><code>.is-order-last-tablet</code></td><td><code>order: 99999;</code></td></tr>
+							<tr><td><code>.is-justify-content-center-tablet</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-align-items-center-tablet</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-text-align-center-tablet</code></td><td>Adds <code>text-align: center !important;</code> to the container at the tablet breakpoint.</td></tr>
+							<tr><td><code>.is-center-tablet</code></td><td>Centers content at the tablet breakpoint: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
 						</tbody>
 					</table>
 	
@@ -656,6 +660,66 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 														<?php endfor; ?>
 							<tr><td><code>.is-order-last-mobile</code></td><td><code>order: 99999;</code></td></tr>
 							<tr><td><code>.is-justify-content-center-mobile</code></td><td>Adds <code>justify-content: center !important;</code> to the flex‑container on mobile.</td></tr>
+							<tr><td><code>.is-align-items-center-mobile</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container on mobile.</td></tr>
+							<tr><td><code>.is-text-align-center-mobile</code></td><td>Adds <code>text-align: center !important;</code> to the container on mobile.</td></tr>
+							<tr><td><code>.is-center-mobile</code></td><td>Centers content on mobile: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="opacity">Opacity</h4>
+					<p>Quick helpers for element transparency. Base classes apply at all sizes; <code>-tablet</code> and <code>-mobile</code> variants apply only within those breakpoints.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php for ( $i = 0; $i <= 100; $i += 10 ) : ?>
+								<?php $val = ( 100 === $i ) ? '1' : ( 0 === $i ? '0' : '0.' . intval( $i / 10 ) ); ?>
+								<tr>
+									<td><code>.opacity-<?php echo esc_html( $i ); ?></code></td>
+									<td><code>opacity: <?php echo esc_html( $val ); ?>;</code></td>
+								</tr>
+							<?php endfor; ?>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS (tablet range)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php for ( $i = 0; $i <= 100; $i += 10 ) : ?>
+								<?php $val = ( 100 === $i ) ? '1' : ( 0 === $i ? '0' : '0.' . intval( $i / 10 ) ); ?>
+								<tr>
+									<td><code>.opacity-<?php echo esc_html( $i ); ?>-tablet</code></td>
+									<td><code>opacity: <?php echo esc_html( $val ); ?>;</code> (<?php echo esc_html( '$tablet' ); ?>)</td>
+								</tr>
+							<?php endfor; ?>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS (mobile range)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php for ( $i = 0; $i <= 100; $i += 10 ) : ?>
+								<?php $val = ( 100 === $i ) ? '1' : ( 0 === $i ? '0' : '0.' . intval( $i / 10 ) ); ?>
+								<tr>
+									<td><code>.opacity-<?php echo esc_html( $i ); ?>-mobile</code></td>
+									<td><code>opacity: <?php echo esc_html( $val ); ?>;</code> (<?php echo esc_html( '$mobile' ); ?>)</td>
+								</tr>
+							<?php endfor; ?>
 						</tbody>
 					</table>
 				</section>
@@ -710,6 +774,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
 								<li><a href="#position-helpers">Position Helpers</a></li>
 								<li><a href="#flexbox-order">Flexbox Order</a></li>
+								<li><a href="#opacity">Opacity</a></li>
 							</ul>
 						</li>
 						<li><a href="#demo-patterns">Demo Patterns</a></li>

@@ -3,6 +3,15 @@
 .slider-wrapper {
   position: relative;
   width: 100%;
+  /* Force cover images to respect the parent block height */
+  .wp-block-cover img.wp-block-cover__image-background {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: none !important; /* prevent Safari shrinking it */
+    max-height: none !important;
+    aspect-ratio: auto !important;
+  }
 }
 
 /* Front-end baseline: reserve height as soon as markup loads */
@@ -52,6 +61,9 @@ body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) video.
 }
 
 .is-style-slider.slider-runtime-active {
+  height: var(--slider-height,
+          var(--slider-height-default,
+          calc(100svh - var(--header-site-header-height, 0px)))) !important;
   position: relative;
   /* Default height chain; explicit user height guarded by class below */
   min-height: var(
@@ -63,6 +75,13 @@ body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) video.
 /* If user provided a height, opt-in via class to override default */
 .is-style-slider.slider-runtime-active.slider-has-height {
   min-height: var(--slider-height) !important;
+  height: var(--slider-height) !important;
+}
+
+/* Ensure each Cover inside the slider fills the slide height */
+.is-style-slider .wp-block-cover {
+  height: 100% !important;
+  min-height: 100% !important;
 }
 
 /* Slides are absolutely stacked while runtime is active (CSS-driven stacking) */
