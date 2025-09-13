@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
 function flexline_utilities_get_options(): array {
 	$defaults = array(
 		'enable_og_tags'       => 0,
-		'og_skip_if_yoast'     => 0,
 		'remove_generator'     => 1,
 		'disable_xmlrpc'       => 1,
 		'rest_cors_allow_all'  => 0,

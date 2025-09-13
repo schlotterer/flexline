@@ -17,7 +17,6 @@ class Admin {
 	// Central defaults (first load behavior).
 	private const DEFAULTS = array(
 		'enable_og_tags'       => 1,
-		'og_skip_if_yoast'     => 1,
 		'remove_generator'     => 1,
 		'disable_xmlrpc'       => 1,
 		'rest_cors_allow_all'  => 0,
@@ -25,12 +24,12 @@ class Admin {
 	);
 
 	/**
-	 * Hook admin menu and settings registration.
+	 * Register settings. UI is rendered on the FlexLine Options page.
 	 *
 	 * @return void
 	 */
 	public static function init() {
-		add_action( 'admin_menu', array( __CLASS__, 'add_admin_menu' ) );
+		// Settings registration remains; the standalone Utilities menu is retired.
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
 	}
 
@@ -89,17 +88,6 @@ class Admin {
 					<span class="description">
 						Outputs <code>&lt;meta property="og:*"&gt;</code> tags (title, description, URL, image, type) and a matching
 						<code>&lt;meta name="description"&gt;</code> for better social sharing.
-					</span>
-				</p>
-				<p>
-					<label>
-						<input type="checkbox"
-							name="flexline_utilities[og_skip_if_yoast]"
-							value="1" <?php checked( $options['og_skip_if_yoast'], 1 ); ?> />
-						<strong>Skip OG Tags if Yoast SEO is Active</strong>
-					</label><br />
-					<span class="description">
-						If enabled, OG tags won’t be output when Yoast SEO is installed (Yoast will handle them).
 					</span>
 				</p>
 				<?php
@@ -184,7 +172,6 @@ class Admin {
 	public static function sanitize_options( $input ) {
 		$keys      = array(
 			'enable_og_tags',
-			'og_skip_if_yoast',
 			'remove_generator',
 			'disable_xmlrpc',
 			'rest_cors_allow_all',
