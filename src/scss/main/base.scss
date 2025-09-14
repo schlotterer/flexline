@@ -207,6 +207,7 @@ body,
 	&.flexline .wp-block-group.group-link,
 	&.flexline .wp-block-group.group-link * {
 		cursor: pointer;
+		pointer-events: auto;
 	}
 
 	&.flexline .wp-block-group.group-link {
@@ -217,7 +218,9 @@ body,
 			left: 0;
 			width: 100%;
 			height: 100%;
-			z-index: 1;
+			z-index: 13;
+			cursor: pointer;
+			pointer-events: auto;
 		}
 	}
 	// Phone link
