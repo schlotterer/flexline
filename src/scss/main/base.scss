@@ -13,6 +13,9 @@ html {
 html,
 body {
     scroll-padding-top: 100px; /* set to the height of your header */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 body.baguetteBox-open,
