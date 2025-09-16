@@ -31,3 +31,15 @@ function disable_wpautop_for_gutenberg() {
 
 // Run after the main query is set so we can reliably detect blocks.
 add_action( 'wp', __NAMESPACE__ . '\\disable_wpautop_for_gutenberg', 9 );
+
+
+add_filter( 'the_content', function( $content ) {
+    // Only target content that has [events_list]
+    if ( has_shortcode( $content, 'events_list' ) ) {
+        // Strip autop from this piece
+        remove_filter( 'the_content', 'wpautop' );
+        $content = do_shortcode( shortcode_unautop( $content ) );
+        add_filter( 'the_content', 'wpautop' ); // re-add after processing
+    }
+    return $content;
+}, 9 );
