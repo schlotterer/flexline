@@ -1219,10 +1219,6 @@
 		{
 			"name": "events-list",
 			"title": "Events List - (events-list)"
-		},
-		{
-			"name": "taxonomy-event-categories",
-			"title": "Events Categories - (taxonomy-event-categories)"
 		}
 	],
 	"templateParts": [
