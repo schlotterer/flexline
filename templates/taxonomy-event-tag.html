@@ -5,15 +5,20 @@
 
 	<!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
 	
-	<!-- wp:post-content /-->
+	
+  <!-- wp:heading -->
+  <h1><!-- wp:term-title /--></h1>
+  <!-- /wp:heading -->
 
-	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"backgroundColor":"neutral","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull has-neutral-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
-		<!-- wp:shortcode -->
-			[events_list]
-		<!-- /wp:shortcode -->
-	</div>
-	<!-- /wp:group -->
+  <!-- wp:term-description /-->
+
+  <!-- wp:group {"align":"full","backgroundColor":"neutral"} -->
+  <div class="wp-block-group alignfull has-neutral-background-color has-background">
+    <!-- wp:shortcode -->
+    [events_list scope="future" pagination=1 limit=10]
+    <!-- /wp:shortcode -->
+  </div>
+  <!-- /wp:group -->
 	<!-- wp:pattern {"slug":"flexline/cta-large"} /-->
 
 </main>
