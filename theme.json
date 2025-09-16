@@ -1223,10 +1223,6 @@
 		{
 			"name": "taxonomy-event-categories",
 			"title": "Events Categories - (taxonomy-event-categories)"
-		},
-		{
-			"name": "taxonomy-event-tags",
-			"title": "Events Tags - (taxonomy-event-tags)"
 		}
 	],
 	"templateParts": [
