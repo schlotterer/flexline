@@ -31,4 +31,3 @@ function disable_wpautop_for_gutenberg() {
 
 // Run after the main query is set so we can reliably detect blocks.
 add_action( 'wp', __NAMESPACE__ . '\\disable_wpautop_for_gutenberg', 9 );
-
