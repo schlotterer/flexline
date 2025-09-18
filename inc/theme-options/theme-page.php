@@ -4,6 +4,7 @@
  *
  * @package flexline
  */
+
 /**
  * Theme options page.
  *
@@ -14,6 +15,7 @@
  */
 
 require_once __DIR__ . '/render-theme-docs.php';
+require_once __DIR__ . '/render-theme-utilities.php';
 
 /**
  * Displays the FlexLine theme options page.
@@ -26,6 +28,10 @@ function flexline_theme_options_page() {
 		'settings'      => array(
 			'title'   => 'Settings',
 			'content' => 'flexline_render_settings_tab',
+		),
+		'utilities'     => array(
+			'title'   => 'Utilities',
+			'content' => 'flexline_render_utilities_tab',
 		),
 		'documentation' => array(
 			'title'   => 'Documentation',

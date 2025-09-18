@@ -12,16 +12,13 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Adds OG tags to the head for better social sharing.
  *
- * Respects utilities options and detects Yoast, post type archives,
+ * Respects utilities options and detects post type archives,
  * front page, search, taxonomies, attachments, etc.
  *
- * @return string Empty string when skipped; echoes meta tags otherwise.
+ * @return void
  */
 function add_og_tags() {
 	$opts = \FlexLine\flexline_utilities_get_options();
-	if ( ! empty( $opts['og_skip_if_yoast'] ) && class_exists( 'WPSEO_Options' ) ) {
-		return '';
-	}
 
 	if ( is_singular() ) {
 		global $post;
