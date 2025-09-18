@@ -14,6 +14,6 @@ namespace FlexLine\flexline;
  * @return string url for image.
  */
 function feature_image_fallback() {
-	$fallbackUrl = get_theme_mod( 'flexline_feature_fallback', '' ) ? get_theme_mod( 'flexline_feature_fallback', '' ) : get_theme_file_uri() . '/assets/built/images/fallback.webp';
-	return $fallbackUrl;
+	$fallback_url = get_option( 'flexline_feature_fallback', '' ) ? get_option( 'flexline_feature_fallback', '' ) : get_theme_file_uri() . '/assets/built/images/fallback.webp';
+	return $fallback_url;
 }

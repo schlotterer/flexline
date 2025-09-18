@@ -10,13 +10,13 @@ updates:
     directory: "/" # Location of package.json
     schedule:
       interval: "weekly" # How often to check for updates
+    target-branch: "dependabot-releases" # Target branch for PRs
+    open-pull-requests-limit: 10
 
   # Configuration for Composer
   - package-ecosystem: "composer"
     directory: "/" # Location of composer.json
     schedule:
       interval: "weekly" # How often to check for updates
-allow:
-  - dependency-type: "direct"
-    update-types: ["security"]
-open-pull-requests-limit: 10
+    target-branch: "dependabot-releases" # Target branch for PRs
+    open-pull-requests-limit: 10

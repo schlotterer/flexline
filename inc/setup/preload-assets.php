@@ -13,7 +13,11 @@ namespace FlexLine\flexline;
  * @author Joel Schlotterer
  */
 function preload_assets() {
-	// TODO: check it first
-	// echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() ) . '/assets/built/images/fallback.png" as="image"/>';
+	
+	// Get the featured image url.
+	$featured_image_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+	if ( $featured_image_url ) {
+		echo '<link rel="preload" href="' . esc_url( $featured_image_url ) . '" as="image"/>';
+	}
 }
 add_action( 'wp_head', __NAMESPACE__ . '\preload_assets', 1 );

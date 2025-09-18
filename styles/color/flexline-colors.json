@@ -1,0 +1,236 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"slug": "flexline-colors",
+	"title": "Flexline Colors",
+	"settings": {
+		"color": {
+			"gradients": [
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary-dark) 0%, var(--wp--preset--color--primary) 100%)",
+					"name": "Primary to Primary Dark",
+					"slug": "primary-primaryDark"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Primary to Secondary",
+					"slug": "primary-secondary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Primary to Alternate",
+					"slug": "primary-alternate"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--primary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Primary to Highlight",
+					"slug": "primary-highlight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary-dark) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Secondary to Secondary Dark",
+					"slug": "secondary-secondaryDark"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary) 100%)",
+					"name": "Secondary to Primary",
+					"slug": "secondary-primary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Secondary to Alternate",
+					"slug": "secondary-alternate"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Secondary to Highlight",
+					"slug": "secondary-highlight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate-dark) 0%, var(--wp--preset--color--alternate) 100%)",
+					"name": "Alternate to Alternate Dark",
+					"slug": "alternate-alternateDark"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--primary) 100%)",
+					"name": "Alternate to Primary",
+					"slug": "alternate-primary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Alternate to Secondary",
+					"slug": "alternate-secondary"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--alternate) 0%, var(--wp--preset--color--highlight) 100%)",
+					"name": "Alternate to Highlight",
+					"slug": "alternate-highlight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral) 100%)",
+					"name": "Neutral to Neutral Light",
+					"slug": "neutral-neutralLight"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--custom--gradient-angle), var(--wp--preset--color--neutral-light) 0%, var(--wp--preset--color--neutral-dark) 100%)",
+					"name": "Neutral Dark to Neutral Light",
+					"slug": "neutralDark-neutralLight"
+				},
+				{
+					"gradient": "linear-gradient(to bottom, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - top to bottom",
+					"slug": "dark-transparent-top-to-bottom"
+				},
+				{
+					"gradient": "linear-gradient(to top, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - bottom to top",
+					"slug": "dark-transparent-bottom-to-top"
+				},
+				{
+					"gradient": "linear-gradient(to right, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - left to right",
+					"slug": "dark-transparent-left-to-right"
+				},
+				{
+					"gradient": "linear-gradient(to left, var(--wp--preset--color--contrast) 0%, transparent 100%)",
+					"name": "Dark to transparent - right to left",
+					"slug": "dark-transparent-right-to-left"
+				}
+			],
+			"duotone": [
+				{
+					"colors": [ "#0B325A", "#F0F0F0" ],
+					"slug": "primary",
+					"name": "Primary"
+				},
+				{
+					"colors": [ "#553563", "#F0F0F0" ],
+					"slug": "secondary",
+					"name": "Secondary"
+				},
+				{
+					"colors": [ "#1895CC", "#F0F0F0" ],
+					"slug": "alternate",
+					"name": "Alternate"
+				},
+				{
+					"colors": [ "#985594", "#F0F0F0" ],
+					"slug": "highlight",
+					"name": "Highlight"
+				},
+				{
+					"colors": [ "#5E5D53", "#DADADA" ],
+					"slug": "neutral-dark",
+					"name": "Neutral Dark"
+				},
+				{
+					"colors": [ "#212021", "#DADADA" ],
+					"slug": "dark",
+					"name": "Dark"
+				},
+				{
+					"colors": [ "#002241", "#553563" ],
+					"slug": "primary-secondary",
+					"name": "Primary Secondary"
+				},
+				{
+					"colors": [ "#002241", "#985594" ],
+					"slug": "primary-highlight",
+					"name": "Primary Highlight"
+				},
+				{
+					"colors": [ "#002241", "#1895CC" ],
+					"slug": "primary-alternate",
+					"name": "Primary Alt"
+				}
+			],
+			"palette": [
+				{
+					"color": "#0B325A",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#553563",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#1895CC",
+					"name": "Alternate",
+					"slug": "alternate"
+				},
+				{
+					"color": "#985594",
+					"name": "Highlight",
+					"slug": "highlight"
+				},
+				{
+					"color": "#DADADA",
+					"name": "Neutral Light",
+					"slug": "neutral-light"
+				},
+				{
+					"color": "#F0F0F0",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#1A5896",
+					"name": "Primary Light",
+					"slug": "primary-light"
+				},
+				{
+					"color": "#AF77C7",
+					"name": "Secondary Light",
+					"slug": "secondary-light"
+				},
+				{
+					"color": "#5CC6F4",
+					"name": "Alternate Light",
+					"slug": "alternate-light"
+				},
+				{
+					"color": "#D28914",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#BCB9B2",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#212021",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#041F3B",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#2D1F33",
+					"name": "Secondary Dark",
+					"slug": "secondary-dark"
+				},
+				{
+					"color": "#13678B",
+					"name": "Alternate Dark",
+					"slug": "alternate-dark"
+				},
+				{
+					"color": "#34A187",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#949494",
+					"name": "Neutral Dark",
+					"slug": "neutral-dark"
+				}
+			]
+		}
+	}
+}

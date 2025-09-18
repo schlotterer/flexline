@@ -1,26 +1,15 @@
 body,
 .editor-styles-wrapper {
 
-	.is-position-fixed {
-		position: fixed;
-		width: 100%;
-		z-index: 10;
+	// Headroom
+	&:not(.headroom-in-use){
+		.is-position-absolute {
+			position: absolute !important;
+			width: 100%;
+			z-index: 10 !important;
+		}
 	}
 
-	.is-position-absolute {
-		position: absolute !important;
-		width: 100%;
-		z-index: 10 !important;
-	}
-
-	.is-pull-left-20 {
-		margin-left: -20px !important;
-		position: relative !important;
-	}
-
-	.is-pull-right-20 {
-		margin-right: -20px !important;
-	}
 	// primary gradients
 	.has-primary-primaryDark-gradient-background {
 		background: var(--wp--preset--gradient--primary-primary-dark);
@@ -94,61 +83,6 @@ body,
 		background: var(--wp--preset--gradient--dark-transparent-right-to-left);
 	}
 
-	/* Media Queries
-    ---------------------------------------- */
 
-	@media only screen and (max-width: 781.98px) {
-
-		/* -- Order -- */
-
-		.is-order-first-mobile {
-			order: -1;
-		}
-
-		.is-order-0-mobile {
-			order: 0;
-		}
-
-		.is-order-1-mobile {
-			order: 1;
-		}
-
-		.is-order-2-mobile {
-			order: 2;
-		}
-
-		.is-order-3-mobile {
-			order: 3;
-		}
-
-		.is-order-4-mobile {
-			order: 4;
-		}
-
-		.is-order-5-mobile {
-			order: 5;
-		}
-
-		.is-order-6-mobile {
-			order: 6;
-		}
-
-		.is-order-7-mobile {
-			order: 7;
-		}
-
-		.is-order-8-mobile {
-			order: 8;
-		}
-
-		.is-order-9-mobile {
-			order: 9;
-		}
-
-		.is-order-last-mobile {
-			order: 99999;
-		}
-
-	}
-
+	
 }

@@ -3,7 +3,7 @@
 /**
  * Title: Post List pagination.
  * Slug: flexline/posts-pagination
- * Categories: flexline-posts
+ * Categories: flexline-posts-templates
  * Block Types: core/query
  */
 ?>

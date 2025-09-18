@@ -24,12 +24,16 @@ Thumbs.db
 ._*
 .Spotlight-V100
 .Trashes
+.DS_Store
 
 # npm debug files
 npm-debug.log*
 
 # Laravel Mix files
 mix-manifest.json
+
+# Husky linting files
+.husky/
 
 # Yarn
 yarn-error.log
@@ -41,13 +45,4 @@ yarn-error.log
 *.swo
 *~
 
-styles/*
-!styles/alpha.json
-!styles/bravo.json
-!styles/charlie.json
-!styles/delta.json
-
-!styles/whiskey.json
-
-!styles/customize.json
-/vendor/
+/vendor

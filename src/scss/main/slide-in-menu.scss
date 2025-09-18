@@ -1,11 +1,4 @@
-// Slide in menu
-body.no-scroll {
-	overflow: hidden; /* Hide scrollbars and disable scrolling */
-	height: 100%; /* Optional: to ensure full page height */
-	width: 100%; /* Optional: to ensure full page width */
-	position: fixed; /* Optional: to lock the position */
-}
-
+// Slide In Menu
 .wp-block-template-part.slide-in {
 
 	> aside {
@@ -31,7 +24,6 @@ body.no-scroll {
 }
 
 button {
-
 	&#slide-in-menu-button {
 
 		position: fixed;
@@ -40,7 +32,7 @@ button {
 		height: 40px;
 		right: 10px;
 		transition: var(--wp--custom--transition-time);
-		z-index: 12;
+		z-index: 100;
 		padding: 0;
 		border-radius: 200px;
 		background-color: var(--wp--custom--search-menu-icon-color);
@@ -104,7 +96,7 @@ button {
 	}
 }
 
-@media screen and (max-width: 1325px) {
+@include screen($desktop-large-down){
 
 	button#slide-in-menu-button {
 		width: 35px;

@@ -15,9 +15,6 @@
                 <div class="wp-block-column is-justify-content-center-mobile" style="flex-basis:25%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"className":"has-text-align-center","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group has-text-align-center"><!-- wp:site-logo {"width":200,"style":{"color":{"duotone":["#ffffff","#ffffff"]}}} /-->
 
-                        <!-- wp:shortcode -->
-                        [flexline_contact_info]
-                        <!-- /wp:shortcode -->
                     </div>
                     <!-- /wp:group -->
                 </div>

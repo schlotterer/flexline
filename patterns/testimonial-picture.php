@@ -8,7 +8,7 @@
 
 namespace FlexLine\flexline;
 ?>
-<!-- wp:group {"className":"is-style-card-padded","layout":{"type":"constrained"},"metadata":{"name":"Testimonial with Picture"}} -->
+<!-- wp:group {"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Testimonial with Picture"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->
     <p class="has-primary-color has-text-color has-link-color has-max-72-font-size" style="line-height:1">“</p>
     <!-- /wp:paragraph -->
@@ -22,7 +22,7 @@ namespace FlexLine\flexline;
         <figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="wp-image-303" style="border-radius:50px;object-fit:cover;width:60px;height:60px" /></figure>
         <!-- /wp:image -->
 
-        <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"constrained"},"fontFamily":"display","metadata":{"name":"Cite"}} -->
+        <!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"1.5"}},"layout":{"type":"default"},"fontFamily":"display","metadata":{"name":"Cite"}} -->
         <div class="wp-block-group has-display-font-family" style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;line-height:1.5"><!-- wp:paragraph {"fontSize":"medium"} -->
             <p class="has-medium-font-size"><strong>Allison Taylor</strong></p>
             <!-- /wp:paragraph -->

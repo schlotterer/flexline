@@ -10,11 +10,9 @@ namespace FlexLine\flexline;
 /**
  * Removes the core Pull Quote block.
  *
- * @param array $allowed_block_types Array of allowed blocks.
- *
  * @return array
  */
-function flexline_remove_default_blocks( $allowed_block_types ) {
+function flexline_remove_default_blocks() {
 	// Get all registered blocks.
 	$registered_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
 
