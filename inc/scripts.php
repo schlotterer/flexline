@@ -62,9 +62,18 @@ function flexline_enqueue_styles() {
 	// Customized Scripts.
 	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), array(), flexline_asset_ver( 'assets/js/customize.js' ), true );
 
-	// Load early scripts.
-	wp_enqueue_script( 'flexline-load-early', get_theme_file_uri( 'assets/built/js/load-early.js' ), array(), flexline_asset_ver( 'assets/built/js/load-early.js' ), false );
-	wp_enqueue_script( 'flexline-slider', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), flexline_asset_ver( 'assets/built/js/slider.js' ), false );
+		// Load early scripts.
+		wp_enqueue_script( 'flexline-load-early', get_theme_file_uri( 'assets/built/js/load-early.js' ), array(), flexline_asset_ver( 'assets/built/js/load-early.js' ), false );
+
+		// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
+		wp_register_script(
+			'flexline-slider',
+			get_theme_file_uri( 'assets/built/js/slider.js' ),
+			array(),
+			flexline_asset_ver( 'assets/built/js/slider.js' ),
+			true
+		);
+		wp_script_add_data( 'flexline-slider', 'defer', true );
 }
 
 /**
@@ -96,3 +105,45 @@ function flexline_admin_enqueue_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
+
+/**
+ * Conditionally enqueue the slider runtime only when a slider block is present.
+ */
+function flexline_maybe_enqueue_slider( $block_content, $block ) {
+	static $done = false;
+	if ( $done || empty( $block ) ) {
+		return $block_content;
+	}
+	$name  = isset( $block['blockName'] ) ? $block['blockName'] : '';
+	$attrs = isset( $block['attrs'] ) ? (array) $block['attrs'] : array();
+	$needs = false;
+	if ( in_array( $name, array( 'core/group', 'core/stack' ), true ) ) {
+		if ( ! empty( $attrs['enableSlider'] ) ) {
+			$needs = true;
+		} else {
+			$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+			if ( $class && false !== strpos( $class, 'is-style-slider' ) ) {
+				$needs = true;
+			}
+		}
+	}
+	if ( ! $needs && $block_content && false !== strpos( $block_content, 'is-style-slider' ) ) {
+		$needs = true;
+	}
+	if ( $needs ) {
+		if ( ! wp_script_is( 'flexline-slider', 'registered' ) ) {
+			wp_register_script(
+				'flexline-slider',
+				get_theme_file_uri( 'assets/built/js/slider.js' ),
+				array(),
+				flexline_asset_ver( 'assets/built/js/slider.js' ),
+				true
+			);
+			wp_script_add_data( 'flexline-slider', 'defer', true );
+		}
+		wp_enqueue_script( 'flexline-slider' );
+		$done = true;
+	}
+	return $block_content;
+}
+add_filter( 'render_block', __NAMESPACE__ . '\flexline_maybe_enqueue_slider', 10, 2 );
