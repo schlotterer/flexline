@@ -284,14 +284,4 @@ body,
 			position: relative;
 		}
 	}
-	&.web4sl-phone-link-show-on-mobile{
-		@include screen($mobile){
-			.site-header{
-				#header_container {
-					display: flex;
-					justify-content: center;
-				}
-			}
-		}
-	}
 }

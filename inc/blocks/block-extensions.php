@@ -138,17 +138,17 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
 		if ( false !== strpos( $block_content, '<a' ) ) {
 			$label = '';
-			
+
 			// get the image alt from the image id.
 			$alt = get_post_meta( $block['attrs']['id'], '_wp_attachment_image_alt', true );
 			// get the file name from the image id.
 			$filename = basename( get_attached_file( $block['attrs']['id'] ) );
-			
+
 			// fallback to "Link to (file name)".
-			if ( !$alt ) {
+			if ( ! $alt ) {
 				$label = $filename . ' Link';
-			}	
-			$label = sanitize_text_field( $label );
+			}
+			$label     = sanitize_text_field( $label );
 			$processor = new WP_HTML_Tag_Processor( $block_content );
 			while ( $processor->next_tag( 'a' ) ) {
 				$has_aria  = $processor->get_attribute( 'aria-label' );
@@ -159,7 +159,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				}
 			}
 			$block_content = $processor->get_updated_html();
-			
+
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
 			// Add a class.

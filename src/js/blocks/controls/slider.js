@@ -648,11 +648,14 @@ export const getClasses = (attributes) => {
 		if (attributes.enableSlider) {
 			added += ' is-style-slider';
 		}
+		// Ensure preview class is present only when explicitly in Preview
 		if (
 			attributes.enableSlider &&
 			attributes.editPreviewToggle === 'preview'
 		) {
 			added += ' slider-preview-mode';
+		} else {
+			removed.push('slider-preview-mode');
 		}
 		if (attributes.enableSlider && attributes.sliderHeight) {
 			added += ' slider-has-height';
@@ -693,6 +696,11 @@ export const getClasses = (attributes) => {
 		if (attributes.buttonsBoxShadow && attributes.enableSlider) {
 			added += ' slider-buttons-box-shadow';
 		}
+		// If the slider feature is disabled entirely, make sure we drop the core marker too
+		if (!attributes.enableSlider) {
+			removed.push('is-style-slider');
+		}
+
 		return { added, removed };
 	}
 

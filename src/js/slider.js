@@ -843,6 +843,8 @@
 			slider._wrapper.style.removeProperty('--slider-height-default');
 		}
 		slider.style.height = '';
+		slider.style.removeProperty('--slider-height-effective');
+		slider.classList.remove('slider-has-height');
 
 		// Remove runtime class
 		slider.classList.remove(RUNTIME_CLASS);
@@ -910,7 +912,22 @@
 			removeWrapper(slider);
 			clearInlineSlideStyles(slider);
 			slider.classList.remove(RUNTIME_CLASS);
+			slider.classList.remove('slider-has-height');
 			slider.style.removeProperty('--slider-height-effective');
+			// Clear any locked height left from a previous Preview session
+			slider.style.height = '';
+		});
+
+		// Global safety: teardown any stray running sliders that no longer qualify
+		const running = Array.from(
+			document.querySelectorAll('.' + RUNTIME_CLASS)
+		);
+		running.forEach((el) => {
+			const isSlider =
+				el.classList && el.classList.contains('is-style-slider');
+			if (!isSlider || !shouldRun(el)) {
+				teardownSlider(el);
+			}
 		});
 
 		// Also handle orphaned wrappers whose child lost the slider class
@@ -946,15 +963,22 @@
 		for (const rec of records) {
 			if (rec.type === 'attributes' && rec.attributeName === 'class') {
 				const t = rec.target;
-				if (
-					t.classList &&
-					t.classList.contains('slider-preview-mode')
-				) {
-					// Only react to preview-mode toggles in the editor
-					relevant = true;
-					break;
+				if (t && t.nodeType === 1) {
+					// Detect both addition and removal of the key classes on the slider element itself
+					const oldVal = rec.oldValue || '';
+					const hadPreview =
+						oldVal.indexOf('slider-preview-mode') !== -1;
+					const hasPreview =
+						t.classList &&
+						t.classList.contains('slider-preview-mode');
+					const hadSlider = oldVal.indexOf('is-style-slider') !== -1;
+					const hasSlider =
+						t.classList && t.classList.contains('is-style-slider');
+					if (hadPreview || hasPreview || hadSlider || hasSlider) {
+						relevant = true;
+						break;
+					}
 				}
-				// Ignore is-selected or other class churn on slider in Edit mode
 			}
 			if (rec.type === 'childList') {
 				for (const n of rec.addedNodes) {
@@ -981,6 +1005,7 @@
 		subtree: true,
 		attributes: true,
 		attributeFilter: ['class'],
+		attributeOldValue: true,
 	});
 
 	// Editor: listen for live CSS var updates from controls
