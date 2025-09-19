@@ -168,30 +168,16 @@ body,
 		}
 	}
 
-	// Slide-in button spacing via body classes (avoid sibling selector + CLS)
-	// Mobile: always reserve space (slide-in present by default)
-	@include screen($mobile){
-		.site-header #header_container{
-			padding-right: $buttonSpace;
-		}
-	}
-	// Tablet: reserve by default, remove when hidden
-	@include screen($tablet){
-		.site-header #header_container{
-			padding-right: $buttonSpace;
-		}
+	// Slide-in button spacing via body classes
+	// (slide-in present by default)
+	.site-header #header_container{
+		padding-right: $buttonSpace;
 	}
 	&.slidein-hide-on-tablet{
 		@include screen($tablet){
 			.site-header #header_container{
 				padding-right: 0;
 			}
-		}
-	}
-	// Desktop: reserve by default, remove when hidden
-	@include screen($desktop){
-		.site-header #header_container{
-			padding-right: $buttonSpace;
 		}
 	}
 	&.slidein-hide-on-desktop{
