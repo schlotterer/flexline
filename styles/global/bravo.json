@@ -302,7 +302,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Quattrocento'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -317,7 +317,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

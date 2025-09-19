@@ -15,7 +15,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Cabin', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -30,7 +30,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Varela'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

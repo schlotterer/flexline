@@ -15,7 +15,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Crimson Text'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -30,7 +30,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Jost'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -45,7 +45,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Source Sans 3', sans-serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
