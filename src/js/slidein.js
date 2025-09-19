@@ -26,19 +26,23 @@ document.addEventListener('DOMContentLoaded', function () {
 	const mainButton = createMainButton();
 	// Insert the main button into the DOM, before the .slide-in div.
 	slideInDiv.parentNode.insertBefore(mainButton, slideInDiv);
-	// Initialize the button icon based on the current screen width and adjust its position.
-	updateButtonIcon();
-	centerButtonInHeader(mainButton);
+    // Initialize the button icon and cache header metrics, then position the button.
+    updateButtonIcon();
+
+    // Cache and maintain the centered top position without measuring on scroll.
+    setupHeaderMetrics(mainButton);
+    applyCenteredTop(mainButton);
 
 	// Attach event listeners to the window object to handle resizing and scrolling events.
-	window.addEventListener(
-		'resize',
-		debounce(() => {
-			// Update the button icon and re-center it whenever the window is resized.
-			updateButtonIcon();
-			toggleButtonPosition(mainButton);
-		}, 100)
-	);
+    window.addEventListener(
+        'resize',
+        debounce(() => {
+            // Update the button icon and refresh cached metrics (fonts/layout changes).
+            updateButtonIcon();
+            recomputeHeaderMetrics(mainButton);
+            toggleButtonPosition(mainButton);
+        }, 100)
+    );
 	window.addEventListener(
 		'scroll',
 		debounce(() => {
@@ -91,53 +95,86 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// Function to adjust the position of the main button based on scroll position.
-	function toggleButtonPosition(buttonToPosition) {
-		let isScrolled = window.scrollY > 0;
-		const body = document.body;
-		const headerSiteHeader = document.querySelector('header.site-header');
+    function toggleButtonPosition(buttonToPosition) {
+        let isScrolled = window.scrollY > 0;
+        const body = document.body;
+        const headerSiteHeader = document.querySelector('header.site-header');
 
-		// If header siteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
-		if (
-			headerSiteHeader.classList.contains('headroom') &&
-			headerSiteHeader.classList.contains('headroom--unpinned')
-		) {
-			isScrolled = true;
-		} else if (
-			headerSiteHeader.classList.contains('headroom') &&
-			headerSiteHeader.classList.contains('headroom--pinned')
-		) {
-			isScrolled = false;
-		}
+        if (
+            headerSiteHeader.classList.contains('headroom') &&
+            headerSiteHeader.classList.contains('headroom--unpinned')
+        ) {
+            isScrolled = true;
+        } else if (
+            headerSiteHeader.classList.contains('headroom') &&
+            headerSiteHeader.classList.contains('headroom--pinned')
+        ) {
+            isScrolled = false;
+        }
 
-		if (
-			isScrolled &&
-			!body.classList.contains('headroom--fixed-all-the-time')
-		) {
-			const isSmallScreen = window.matchMedia(
-				'(max-width: 781.98px)'
-			).matches;
-			buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
-		} else {
-			centerButtonInHeader(buttonToPosition);
-		}
-	}
+        if (
+            isScrolled &&
+            !body.classList.contains('headroom--fixed-all-the-time')
+        ) {
+            const isSmallScreen = window.matchMedia(
+                '(max-width: 781.98px)'
+            ).matches;
+            const desired = isSmallScreen ? '12px' : '6px';
+            if (buttonToPosition.style.top !== desired) {
+                buttonToPosition.style.top = desired;
+            }
+        } else {
+            // No layout reads here; just apply cached centered top.
+            applyCenteredTop(buttonToPosition);
+        }
+    }
 
-	// Function to center the main button within the header.
-	function centerButtonInHeader(buttonToCenter) {
-		const headerContainer = document.querySelector('#header_container');
-		if (headerContainer) {
-			// Assuming the headerContainer's position in the viewport doesn't drastically change
-			const offset =
-				(headerContainer.offsetHeight - buttonToCenter.offsetHeight) /
-				2;
+    // Cache header metrics and keep them updated without doing work on scroll.
+    function setupHeaderMetrics(button) {
+        recomputeHeaderMetrics(button);
+        // Recompute when header container resizes (logo/font swap etc.).
+        const headerContainer = document.querySelector('#header_container');
+        if (headerContainer && 'ResizeObserver' in window) {
+            const ro = new ResizeObserver(() => {
+                recomputeHeaderMetrics(button);
+                // If not scrolled, keep the button centered as things change.
+                const header = document.querySelector('header.site-header');
+                const isPinned = header?.classList.contains('headroom--pinned');
+                const isUnpinned = header?.classList.contains('headroom--unpinned');
+                const scrolled = window.scrollY > 0 || isUnpinned;
+                if (!scrolled || isPinned) {
+                    applyCenteredTop(button);
+                }
+            });
+            ro.observe(headerContainer);
+        }
+        // Also recompute after full load (webfonts may change metrics).
+        window.addEventListener('load', () => recomputeHeaderMetrics(button), {
+            once: true,
+        });
+    }
 
-			// Use offsetTop for a more stable reference point from the document's start
-			buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
-		}
-	}
+    function recomputeHeaderMetrics(button) {
+        const headerContainer = document.querySelector('#header_container');
+        if (!headerContainer || !button) return;
+        const offset =
+            (headerContainer.offsetHeight - button.offsetHeight) / 2;
+        const centeredTop = headerContainer.offsetTop + offset;
+        button.dataset.centerTop = String(Math.round(centeredTop));
+    }
+
+    function applyCenteredTop(button) {
+        const v = button?.dataset?.centerTop;
+        if (v) {
+            const desired = `${v}px`;
+            if (button.style.top !== desired) {
+                button.style.top = desired;
+            }
+        }
+    }
 
 	// Function to trap focus within the slide-in menu for accessibility.
-	function trapFocus(element) {
+    function trapFocus(element) {
 		const focusableElements = element.querySelectorAll(
 			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 		);
