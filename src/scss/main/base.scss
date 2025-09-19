@@ -140,63 +140,64 @@ body,
 		}
 	}
 	$buttonSpace : 40px;
-	#web4sl-call-button{
-		~ .site-header{
-			#header_container {
+
+	// Phone (web4sl) button spacing via body classes (avoid sibling selector + CLS)
+	&.web4sl-phone-link-show-on-mobile{
+		@include screen($mobile){
+			.site-header{
+				#header_container {
+					padding-left: $buttonSpace;
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+	}
+	&.web4sl-phone-link-show-on-tablet{
+		@include screen($tablet){
+			.site-header  #header_container{
 				padding-left: $buttonSpace;
 			}
 		}
-		&:not(.web4sl-hide-on-mobile) {
-			@include screen($mobile){
-				~ .site-header{
-					#header_container {
-						display: flex;
-						justify-content: center;
-					}
-				}
+	}
+	&.web4sl-phone-link-show-on-desktop{
+		@include screen($desktop){
+			.site-header  #header_container{
+				padding-left: $buttonSpace;
 			}
 		}
-		&.web4sl-hide-on-mobile {
-			@include screen($mobile){
-				~ .site-header{
-					#header_container {
-						padding-left: 0;
-					}
-				}
-			}
-		}
-		&.web4sl-hide-on-tablet {
-			@include screen($tablet){
-				~ .site-header  #header_container{
-					padding-left: 0;
-				}
-			}
-		}
-		&.web4sl-hide-on-desktop {
-			@include screen($desktop){
-				~ .site-header  #header_container{
-					padding-left: 0;
-				}
-			}
-		}
-	} 
+	}
 
-	#slide-in-menu-button{
-		~ .site-header #header_container{
+	// Slide-in button spacing via body classes (avoid sibling selector + CLS)
+	// Mobile: always reserve space (slide-in present by default)
+	@include screen($mobile){
+		.site-header #header_container{
 			padding-right: $buttonSpace;
 		}
-		&.flexline-hide-on-tablet{
-			@include screen($tablet){
-				~ .site-header #header_container{
-					padding-right: 0px;
-				}
+	}
+	// Tablet: reserve by default, remove when hidden
+	@include screen($tablet){
+		.site-header #header_container{
+			padding-right: $buttonSpace;
+		}
+	}
+	&.slidein-hide-on-tablet{
+		@include screen($tablet){
+			.site-header #header_container{
+				padding-right: 0;
 			}
 		}
-		&.flexline-hide-on-desktop{
-			@include screen($desktop){
-				~ .site-header #header_container{
-					padding-right: 0px;
-				}
+	}
+	// Desktop: reserve by default, remove when hidden
+	@include screen($desktop){
+		.site-header #header_container{
+			padding-right: $buttonSpace;
+		}
+	}
+	&.slidein-hide-on-desktop{
+		@include screen($desktop){
+			.site-header #header_container{
+				padding-right: 0;
 			}
 		}
 	}
