@@ -18,6 +18,14 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [ "file:./assets/fonts/Quattrocento/Quattrocento-Regular.woff2" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Quattrocento'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/Quattrocento/Quattrocento-Bold.woff2" ]
 						}
 					]
 				},
@@ -31,8 +39,40 @@
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
+							"fontWeight": "100",
+							"src": [ "file:./assets/fonts/Lato/Lato-Thin.woff2"]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
 							"fontWeight": "300",
 							"src": [ "file:./assets/fonts/Lato/Lato-Light.woff2"]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/Lato/Lato-Regular.woff2"]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/Lato/Lato-Bold.woff2"]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Lato'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "900",
+							"src": [ "file:./assets/fonts/Lato/Lato-Black.woff2"]
 						}
 					]
 				},

@@ -306,8 +306,24 @@
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Light.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Regular.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Bold.ttf" ]
 						}
 					]
 				},
@@ -318,11 +334,11 @@
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-                                                        "fontFamily": "'Raleway'",
-                                                        "fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "100 900",
-                                                        "src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.woff2" ]
+							"fontFamily": "'Raleway'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.woff2" ]
 						}
 					]
 				},
@@ -333,11 +349,11 @@
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-                                                        "fontFamily": "'Source Sans 3'",
-                                                        "fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "200 900",
-                                                        "src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
+							"fontFamily": "'Source Sans 3'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "200 900",
+							"src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
 						}
 					]
 				},
