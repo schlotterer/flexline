@@ -307,7 +307,23 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Crimson_Text/CrimsonText-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Regular.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Crimson Text'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Crimson Text'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Bold.ttf" ]
 						}
 					]
 				},
@@ -322,7 +338,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "200 800",
-							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.woff2" ]
 						}
 					]
 				},
@@ -335,9 +351,9 @@
 							"fontDisplay": "fallback",
 							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "200 900",
-                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+							"fontStyle": "normal",
+							"fontWeight": "200 900",
+							"src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
 						}
 					]
 				},

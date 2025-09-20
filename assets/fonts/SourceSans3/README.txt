@@ -7,28 +7,28 @@ Source Sans 3 is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  Source_Sans_3/SourceSans3-VariableFont_wght.ttf
-  Source_Sans_3/SourceSans3-Italic-VariableFont_wght.ttf
+  SourceSans3/SourceSans3-VariableFont_wght.woff2
+  SourceSans3/SourceSans3-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font files for Source Sans 3:
-  Source_Sans_3/static/SourceSans3-ExtraLight.ttf
-  Source_Sans_3/static/SourceSans3-Light.ttf
-  Source_Sans_3/static/SourceSans3-Regular.ttf
-  Source_Sans_3/static/SourceSans3-Medium.ttf
-  Source_Sans_3/static/SourceSans3-SemiBold.ttf
-  Source_Sans_3/static/SourceSans3-Bold.ttf
-  Source_Sans_3/static/SourceSans3-ExtraBold.ttf
-  Source_Sans_3/static/SourceSans3-Black.ttf
-  Source_Sans_3/static/SourceSans3-ExtraLightItalic.ttf
-  Source_Sans_3/static/SourceSans3-LightItalic.ttf
-  Source_Sans_3/static/SourceSans3-Italic.ttf
-  Source_Sans_3/static/SourceSans3-MediumItalic.ttf
-  Source_Sans_3/static/SourceSans3-SemiBoldItalic.ttf
-  Source_Sans_3/static/SourceSans3-BoldItalic.ttf
-  Source_Sans_3/static/SourceSans3-ExtraBoldItalic.ttf
-  Source_Sans_3/static/SourceSans3-BlackItalic.ttf
+  SourceSans3/static/SourceSans3-ExtraLight.ttf
+  SourceSans3/static/SourceSans3-Light.ttf
+  SourceSans3/static/SourceSans3-Regular.ttf
+  SourceSans3/static/SourceSans3-Medium.ttf
+  SourceSans3/static/SourceSans3-SemiBold.ttf
+  SourceSans3/static/SourceSans3-Bold.ttf
+  SourceSans3/static/SourceSans3-ExtraBold.ttf
+  SourceSans3/static/SourceSans3-Black.ttf
+  SourceSans3/static/SourceSans3-ExtraLightItalic.ttf
+  SourceSans3/static/SourceSans3-LightItalic.ttf
+  SourceSans3/static/SourceSans3-Italic.ttf
+  SourceSans3/static/SourceSans3-MediumItalic.ttf
+  SourceSans3/static/SourceSans3-SemiBoldItalic.ttf
+  SourceSans3/static/SourceSans3-BoldItalic.ttf
+  SourceSans3/static/SourceSans3-ExtraBoldItalic.ttf
+  SourceSans3/static/SourceSans3-BlackItalic.ttf
 
 Get started
 -----------

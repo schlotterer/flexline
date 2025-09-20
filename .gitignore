@@ -45,4 +45,6 @@ yarn-error.log
 *.swo
 *~
 
+convert-fonts.sh
+
 /vendor

@@ -7,7 +7,7 @@ Raleway is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  Raleway/Raleway-VariableFont_wght.ttf
+  Raleway/Raleway-VariableFont_wght.woff2
   Raleway/Raleway-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles

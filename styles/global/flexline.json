@@ -306,7 +306,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
@@ -321,7 +321,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
@@ -336,7 +336,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},

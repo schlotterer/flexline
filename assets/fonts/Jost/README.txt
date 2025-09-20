@@ -7,7 +7,7 @@ Jost is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  Jost-VariableFont_wght.ttf
+  Jost-VariableFont_wght.woff2
   Jost-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
