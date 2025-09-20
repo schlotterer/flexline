@@ -297,7 +297,7 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Calistoga', serif",
+					"fontFamily": "'Calistoga', Cambria, Georgia, 'Times New Roman', 'Noto Serif', 'Liberation Serif', Times, serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
@@ -312,7 +312,7 @@
 					]
 				},
 				{
-					"fontFamily": "'Quicksand', sans-serif",
+					"fontFamily": "'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
@@ -327,13 +327,13 @@
                                         ]
                                 },
                                 {
-					"fontFamily": "'Source Sans 3', sans-serif",
+					"fontFamily": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Body",
 					"slug": "body",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Source Sans 3', sans-serif",
+							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
                                                         "fontStyle": "normal",
                                                         "fontWeight": "200 900",
@@ -342,12 +342,12 @@
                                         ]
                                 },
                                 {
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}
