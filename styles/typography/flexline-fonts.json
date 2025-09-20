@@ -7,57 +7,57 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Body",
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}

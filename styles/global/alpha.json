@@ -297,57 +297,73 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Sulphur Point', sans-serif",
+					"fontFamily": "'Sulphur Point', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Light.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Sulphur_Point/SulphurPoint-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Regular.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Bold.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Raleway', sans-serif",
+					"fontFamily": "'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-                                                        "fontFamily": "'Raleway'",
-                                                        "fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "100 900",
-                                                        "src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf" ]
+							"fontDisplay": "fallback",
+							"fontFamily": "'Raleway'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"src": [ "file:./assets/fonts/Raleway/Raleway-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Source Sans 3', sans-serif",
+					"fontFamily": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Body",
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-                                                        "fontFamily": "'Source Sans 3', sans-serif",
-                                                        "fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "200 900",
-                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+							"fontDisplay": "fallback",
+							"fontFamily": "'Source Sans 3'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "200 900",
+							"src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}
