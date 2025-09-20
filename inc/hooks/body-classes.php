@@ -81,7 +81,7 @@ function body_classes( $classes ) {
 
 	// Web4SL call/phone button visibility -> add body classes for padding-left.
 	// Only if the plugin appears active to avoid leaking classes.
-	$web4sl_active = false;
+	$web4sl_active  = false;
 	$active_plugins = (array) get_option( 'active_plugins', array() );
 	if ( is_multisite() ) {
 		$network_active = (array) get_site_option( 'active_sitewide_plugins', array() );

@@ -38,6 +38,21 @@ body:not(.block-editor-page) .is-style-slider {
   --slider-height-default: calc(100svh - var(--header-site-header-height, 0px));
 }
 
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  /* Ensure slides stack vertically when exiting Preview without reload */
+  display: block !important;
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout > *,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  /* Normalize child slides to full-width stacked blocks */
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 auto !important;
+}
+
 .editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
   min-height: var(
     --slider-height,
