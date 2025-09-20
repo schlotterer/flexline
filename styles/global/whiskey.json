@@ -302,7 +302,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Crimson Text'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -310,7 +310,7 @@
 							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Regular.ttf" ]
 						},
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Crimson Text'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -318,7 +318,7 @@
 							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf" ]
 						},
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Crimson Text'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -333,7 +333,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Jost'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -348,7 +348,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

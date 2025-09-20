@@ -299,7 +299,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -314,7 +314,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -329,7 +329,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

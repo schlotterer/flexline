@@ -12,7 +12,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -20,7 +20,7 @@
 							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Light.ttf" ]
 						},
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -28,7 +28,7 @@
 							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Regular.ttf" ]
 						},
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Sulphur Point'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -43,7 +43,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Raleway'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -58,7 +58,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

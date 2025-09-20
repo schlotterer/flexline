@@ -12,7 +12,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Calistoga'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -27,7 +27,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Quicksand'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -42,7 +42,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "swap",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
