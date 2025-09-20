@@ -12,7 +12,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lora'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -27,7 +27,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'ABeeZee'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -35,7 +35,7 @@
 							"src": [ "file:./assets/fonts/ABeeZee/ABeeZee-Regular.woff2" ]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'ABeeZee'",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
@@ -50,7 +50,7 @@
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Inter'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

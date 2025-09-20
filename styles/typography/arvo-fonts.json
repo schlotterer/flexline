@@ -12,7 +12,7 @@
           "slug": "brand",
           "fontFace": [
             {
-              "fontDisplay": "fallback",
+              "fontDisplay": "swap",
               "fontFamily": "'Arvo'",
               "fontStretch": "normal",
               "fontStyle": "normal",
@@ -20,7 +20,7 @@
               "src": [ "file:./assets/fonts/Arvo/Arvo-Regular.woff2" ]
             },
             {
-              "fontDisplay": "fallback",
+              "fontDisplay": "swap",
               "fontFamily": "'Arvo'",
               "fontStretch": "normal",
               "fontStyle": "normal",
@@ -35,7 +35,7 @@
           "slug": "display",
           "fontFace": [
             {
-              "fontDisplay": "fallback",
+              "fontDisplay": "swap",
               "fontFamily": "'Arvo'",
               "fontStretch": "normal",
               "fontStyle": "normal",
@@ -43,7 +43,7 @@
               "src": [ "file:./assets/fonts/Arvo/Arvo-Regular.woff2" ]
             },
             {
-              "fontDisplay": "fallback",
+              "fontDisplay": "swap",
               "fontFamily": "'Arvo'",
               "fontStretch": "normal",
               "fontStyle": "normal",
@@ -58,7 +58,7 @@
           "slug": "body",
           "fontFace": [
             {
-              "fontDisplay": "fallback",
+              "fontDisplay": "swap",
               "fontFamily": "'Inter'",
               "fontStretch": "normal",
               "fontStyle": "normal",

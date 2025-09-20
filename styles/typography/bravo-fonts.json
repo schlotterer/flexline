@@ -12,7 +12,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Quattrocento'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -20,7 +20,7 @@
 							"src": [ "file:./assets/fonts/Quattrocento/Quattrocento-Regular.woff2" ]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Quattrocento'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -35,7 +35,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -43,7 +43,7 @@
 							"src": [ "file:./assets/fonts/Lato/Lato-Thin.woff2"]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -51,7 +51,7 @@
 							"src": [ "file:./assets/fonts/Lato/Lato-Light.woff2"]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -59,7 +59,7 @@
 							"src": [ "file:./assets/fonts/Lato/Lato-Regular.woff2"]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -67,7 +67,7 @@
 							"src": [ "file:./assets/fonts/Lato/Lato-Bold.woff2"]
 						},
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Lato'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",

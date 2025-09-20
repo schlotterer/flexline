@@ -302,7 +302,7 @@
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Cabin'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -317,7 +317,7 @@
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "fallback",
+							"fontDisplay": "swap",
 							"fontFamily": "'Varela'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
