@@ -5,6 +5,7 @@ import {
 	customVisibilityAttributes,
 	customIconAttributes,
 	customLazyAttributes,
+	customCoverOverlayAttributes,
 	customGroupAttributes,
 	customHorizontalScrollAttributes,
 	customHorizontalScrollerAttributes,
@@ -42,6 +43,7 @@ registerAttributes(['core/button'], {
 registerAttributes(['core/cover'], {
 	...customLazyAttributes,
 	...customVisibilityAttributes,
+	...customCoverOverlayAttributes,
 });
 
 registerAttributes(['core/gallery'], { ...customGalleryAttributes });

@@ -49,6 +49,7 @@ const classMap = {
 	enableLazyLoad: { false: 'no-lazy-load' },
 	noWrap: { true: 'nowrap' },
 	enablePosterGallery: { true: 'poster-gallery' },
+	flexlineGlassOverlay: { true: 'flexline-glass-overlay' },
 	enableHorizontalScrollAtMobile: {
 		true: 'is-style-horizontal-scroll-at-mobile',
 	},

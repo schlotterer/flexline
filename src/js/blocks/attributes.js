@@ -27,6 +27,20 @@ export const customLazyAttributes = {
 	},
 };
 
+// Cover overlay options - Define custom attributes
+export const customCoverOverlayAttributes = {
+	// Toggle for applying Flexline glass effect to Cover overlay only
+	flexlineGlassOverlay: {
+		type: 'boolean',
+		default: false,
+	},
+	// Range 0..10 controlling intensity (10 => blur 10px, saturate 70%)
+	flexlineGlassLevel: {
+		type: 'number',
+		default: 0,
+	},
+};
+
 // NoWrap - Define custom attributes
 export const customNoWrapAttributes = {
 	noWrap: {

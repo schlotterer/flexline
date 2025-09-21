@@ -108,6 +108,11 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqu
 
 /**
  * Conditionally enqueue the slider runtime only when a slider block is present.
+ *
+ * @param string $block_content The rendered HTML of the current block.
+ * @param array  $block         The parsed block array (name, attrs, innerBlocks, etc.).
+ *
+ * @return string Possibly-modified block content.
  */
 function flexline_maybe_enqueue_slider( $block_content, $block ) {
 	static $done = false;

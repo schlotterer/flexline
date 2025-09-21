@@ -188,6 +188,15 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$replace_string = '<img loading="lazy" ';
 			$block_content  = str_replace( $search_string, $replace_string, $block_content );
 		}
+
+			// FlexLine Glass overlay: classes only (no inline styles).
+		$toggle    = ! empty( $block['attrs']['flexlineGlassOverlay'] );
+		$level     = isset( $block['attrs']['flexlineGlassLevel'] ) ? (float) $block['attrs']['flexlineGlassLevel'] : 0.0;
+		$level     = max( 0.0, min( 10.0, $level ) );
+		$effective = $level > 0 ? (int) round( $level ) : ( $toggle ? 10 : 0 );
+		if ( $effective > 0 ) {
+			$block_content = add_classes_to_block_content( $block_content, 'flexline-glass-overlay glass-level-' . $effective . ' ' );
+		}
 	}
 
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
