@@ -31,6 +31,39 @@
 	const getPostId = () => select('core/editor').getCurrentPostId();
 
 	/**
+	 * Normalize a template identifier to a bare slug.
+	 * Handles:
+	 *  - 'wp_template:theme//slug'
+	 *  - 'theme//slug'
+	 *  - 'templates/slug.html' or 'page-templates/full-width.php'
+	 * @param {string} value
+	 * @return {string} Normalized template slug.
+	 */
+	const normalizeTemplateSlug = (value) => {
+		if (!value) {
+			return '';
+		}
+		let tpl = String(value);
+		// Drop provider prefix, e.g. 'wp_template:'
+		tpl = tpl.replace(/^[^:]+:/, '');
+		// Drop theme identifier before '//'
+		const dbl = tpl.indexOf('//');
+		if (dbl !== -1) {
+			tpl = tpl.slice(dbl + 2);
+		}
+		// Last path segment (if any)
+		tpl = tpl.split('/').pop();
+		// Remove extension
+		tpl = tpl.replace(/\.[^.]+$/, '');
+		// Sanitize to slug
+		return tpl
+			.trim()
+			.toLowerCase()
+			.replace(/[^a-z0-9-]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+	};
+
+	/**
 	 * Fetch a wp_block by slug (post_name).
 	 * @param {string} slug
 	 */
@@ -161,7 +194,14 @@
 
 		busy = true;
 
-		const starterSlug = `${editedTemplate}-starter`;
+		const normalized = normalizeTemplateSlug(editedTemplate);
+		if (!normalized) {
+			processed.add(key);
+			busy = false;
+			return;
+		}
+
+		const starterSlug = `${normalized}-starter`;
 
 		const starter = await fetchStarter(starterSlug);
 		if (!starter) {

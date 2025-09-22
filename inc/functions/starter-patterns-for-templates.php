@@ -25,10 +25,13 @@ function auto_insert_pattern_smart( $content, $post ) {
 	// 1. Template-specific pattern (if a template is selected and supports it)
 	$template_file = get_page_template_slug( $post->ID );
 	if ( $template_file ) {
-		$template_slug = pathinfo( $template_file, PATHINFO_FILENAME ) . '-starter';
-		$pattern       = get_block_pattern_by_slug( $template_slug );
-		if ( $pattern ) {
-			return $pattern;
+		$normalized = normalize_template_slug( (string) $template_file );
+		if ( $normalized ) {
+			$template_slug = $normalized . '-starter';
+			$pattern       = get_block_pattern_by_slug( $template_slug );
+			if ( $pattern ) {
+				return $pattern;
+			}
 		}
 	}
 
@@ -66,4 +69,34 @@ function get_block_pattern_by_slug( $slug ) {
 		)
 	);
 	return $q->have_posts() ? $q->posts[0]->post_content : false;
+}
+
+/**
+ * Normalize a template identifier into a bare slug suitable for pattern lookup.
+ *
+ * Handles formats like:
+ * - 'wp_template:theme-slug//template-slug'
+ * - 'theme-slug//template-slug'
+ * - 'templates/template-slug.html' or 'page-templates/full-width.php'
+ *
+ * @param string $template Raw template identifier/meta.
+ * @return string Normalized slug (e.g. 'template-slug').
+ */
+function normalize_template_slug( $template ) {
+	$tpl = (string) $template;
+	if ( '' === $tpl ) {
+		return '';
+	}
+	// Drop leading provider if present, e.g. 'wp_template:' prefix.
+	$tpl = preg_replace( '/^[^:]+:/', '', $tpl );
+	// If includes theme prefix like 'theme//slug', keep only portion after '//'.
+	if ( false !== strpos( $tpl, '//' ) ) {
+		$parts = explode( '//', $tpl );
+		$tpl   = end( $parts );
+	}
+	// Trim directories and extension (e.g., 'templates/foo.html' -> 'foo').
+	$tpl = pathinfo( wp_basename( $tpl ), PATHINFO_FILENAME );
+	// Sanitize to a slug.
+	$tpl = sanitize_title( $tpl );
+	return $tpl;
 }
