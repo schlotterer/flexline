@@ -25,7 +25,7 @@
     "@babel/preset-react": "^7.27.1",
     "@wordpress/eslint-plugin": "^22.15.0",
     "autoprefixer": "^10.4.21",
-    "@wordpress/scripts": "^30.22.0",
+    "@wordpress/scripts": "^30.24.0",
     "@wordpress/stylelint-config": "^23.21.0",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
     "cross-env": "^10.0.0",
