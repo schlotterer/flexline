@@ -118,25 +118,25 @@ body,
 
 	// Also apply the blur/saturation directly to the media background so the effect
 	// is visible even when backdrop-filter compositing is blocked by layout.
-	#{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-1 > video.wp-block-cover__video-background { filter: blur(1px) saturate(97%); transform: translateZ(0); }
-	#{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-2 > video.wp-block-cover__video-background { filter: blur(2px) saturate(94%); transform: translateZ(0); }
-	#{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-3 > video.wp-block-cover__video-background { filter: blur(3px) saturate(91%); transform: translateZ(0); }
-	#{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-4 > video.wp-block-cover__video-background { filter: blur(4px) saturate(88%); transform: translateZ(0); }
-	#{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-5 > video.wp-block-cover__video-background { filter: blur(5px) saturate(85%); transform: translateZ(0); }
-	#{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-6 > video.wp-block-cover__video-background { filter: blur(6px) saturate(82%); transform: translateZ(0); }
-	#{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-7 > video.wp-block-cover__video-background { filter: blur(7px) saturate(79%); transform: translateZ(0); }
-	#{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: blur(8px) saturate(76%); transform: translateZ(0); }
-	#{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: blur(9px) saturate(73%); transform: translateZ(0); }
-	#{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
-	#{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: blur(10px) saturate(70%); transform: translateZ(0); }
+    #{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-1 > video.wp-block-cover__video-background { filter: blur(1px) saturate(97%); transform: translateZ(0) scale(1.006); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-2 > video.wp-block-cover__video-background { filter: blur(2px) saturate(94%); transform: translateZ(0) scale(1.009); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-3 > video.wp-block-cover__video-background { filter: blur(3px) saturate(91%); transform: translateZ(0) scale(1.012); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-4 > video.wp-block-cover__video-background { filter: blur(4px) saturate(88%); transform: translateZ(0) scale(1.015); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-5 > video.wp-block-cover__video-background { filter: blur(5px) saturate(85%); transform: translateZ(0) scale(1.018); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-6 > video.wp-block-cover__video-background { filter: blur(6px) saturate(82%); transform: translateZ(0) scale(1.021); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-7 > video.wp-block-cover__video-background { filter: blur(7px) saturate(79%); transform: translateZ(0) scale(1.024); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: blur(8px) saturate(76%); transform: translateZ(0) scale(1.028); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: blur(9px) saturate(73%); transform: translateZ(0) scale(1.032); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: blur(10px) saturate(70%); transform: translateZ(0) scale(1.036); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
 
 }
