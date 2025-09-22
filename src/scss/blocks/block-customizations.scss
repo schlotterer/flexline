@@ -74,7 +74,7 @@ body,
 	.wp-block-cover.flexline-glass-overlay { isolation: isolate; }
 	// Support both solid color and gradient overlays, plus the ::before fallback.
 	// Level classes are hand-coded to avoid Sass function conflicts and stay explicit.
-	$wpb: '.wp-block-cover.flexline-glass-overlay';
+$wpb: '.wp-block-cover.flexline-glass-overlay';
 
 	#{$wpb}.glass-level-1 > .wp-block-cover__background,
 	#{$wpb}.glass-level-1 > .wp-block-cover__gradient-background,
@@ -136,7 +136,136 @@ body,
     #{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: blur(8px) saturate(76%); transform: translateZ(0) scale(1.028); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
     #{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
     #{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: blur(9px) saturate(73%); transform: translateZ(0) scale(1.032); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
-    #{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
-    #{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: blur(10px) saturate(70%); transform: translateZ(0) scale(1.036); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+#{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+#{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: blur(10px) saturate(70%); transform: translateZ(0) scale(1.036); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+
+    // Editor composition: Gutenberg uses numbered duotone classes (e.g. .wp-duotone-0).
+    // Compose url(#wp-duotone-N) with our blur for N in 0..14.
+    @mixin glass-duotone-index($n) {
+        // level 1
+        .wp-duotone-#{$n} #{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-1 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-1 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(1px) saturate(97%) !important; transform: translateZ(0) scale(1.006); transform-origin: center; }
+        // level 2
+        .wp-duotone-#{$n} #{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-2 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-2 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(2px) saturate(94%) !important; transform: translateZ(0) scale(1.009); transform-origin: center; }
+        // level 3
+        .wp-duotone-#{$n} #{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-3 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-3 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(3px) saturate(91%) !important; transform: translateZ(0) scale(1.012); transform-origin: center; }
+        // level 4
+        .wp-duotone-#{$n} #{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-4 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-4 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(4px) saturate(88%) !important; transform: translateZ(0) scale(1.015); transform-origin: center; }
+        // level 5
+        .wp-duotone-#{$n} #{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-5 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-5 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(5px) saturate(85%) !important; transform: translateZ(0) scale(1.018); transform-origin: center; }
+        // level 6
+        .wp-duotone-#{$n} #{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-6 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-6 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(6px) saturate(82%) !important; transform: translateZ(0) scale(1.021); transform-origin: center; }
+        // level 7
+        .wp-duotone-#{$n} #{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-7 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-7 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(7px) saturate(79%) !important; transform: translateZ(0) scale(1.024); transform-origin: center; }
+        // level 8
+        .wp-duotone-#{$n} #{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-8 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(8px) saturate(76%) !important; transform: translateZ(0) scale(1.028); transform-origin: center; }
+        // level 9
+        .wp-duotone-#{$n} #{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-9 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(9px) saturate(73%) !important; transform: translateZ(0) scale(1.032); transform-origin: center; }
+        // level 10
+        .wp-duotone-#{$n} #{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+        .wp-duotone-#{$n} #{$wpb}.glass-level-10 > video.wp-block-cover__video-background,
+        .wp-duotone-#{$n}#{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: url('#wp-duotone-#{$n}') blur(10px) saturate(70%) !important; transform: translateZ(0) scale(1.036); transform-origin: center; }
+    }
+
+    // Generate a reasonable range to cover editor sessions (0..14)
+    @for $i from 0 through 14 {
+        @include glass-duotone-index($i);
+    }
+	/*
+	 * Duotone + Glass: compose the duotone var with our blur/saturate/scale.
+	 * WordPress scopes duotone with a wrapper class `.wp-duotone-<slug>`.
+	 * These rules override the media `filter` so both effects apply together.
+	 */
+	@mixin glass-duotone($slug) {
+		// Match either: ancestor wrapper has .wp-duotone-<slug> OR the same element carries it.
+		// Level 1
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-1 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-1 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(1px) saturate(97%); transform: translateZ(0) scale(1.006); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 2
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-2 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-2 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(2px) saturate(94%); transform: translateZ(0) scale(1.009); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 3
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-3 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-3 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(3px) saturate(91%); transform: translateZ(0) scale(1.012); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 4
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-4 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-4 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(4px) saturate(88%); transform: translateZ(0) scale(1.015); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 5
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-5 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-5 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(5px) saturate(85%); transform: translateZ(0) scale(1.018); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 6
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-6 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-6 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(6px) saturate(82%); transform: translateZ(0) scale(1.021); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 7
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-7 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-7 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(7px) saturate(79%); transform: translateZ(0) scale(1.024); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 8
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-8 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(8px) saturate(76%); transform: translateZ(0) scale(1.028); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 9
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-9 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(9px) saturate(73%); transform: translateZ(0) scale(1.032); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+		// Level 10
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+		.wp-duotone-#{$slug} #{$wpb}.glass-level-10 > video.wp-block-cover__video-background,
+		.wp-duotone-#{$slug}#{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: var(--wp--preset--duotone--#{$slug}) blur(10px) saturate(70%); transform: translateZ(0) scale(1.036); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+	}
+
+	// Compose for your theme duotone presets
+	@include glass-duotone('primary');
+	@include glass-duotone('secondary');
+	@include glass-duotone('alternate');
+	@include glass-duotone('highlight');
+	@include glass-duotone('neutral-dark');
+	@include glass-duotone('dark');
+	@include glass-duotone('primary-secondary');
+	@include glass-duotone('primary-highlight');
+	@include glass-duotone('primary-alternate');
 
 }
