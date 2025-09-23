@@ -28,8 +28,6 @@
 
 	const getEditedTemplate = () =>
 		select('core/editor').getPostEdits()?.template; // user edit only
-	const getPostId = () => select('core/editor').getCurrentPostId();
-
 	/**
 	 * Normalize a template identifier to a bare slug.
 	 * Handles:
@@ -172,7 +170,6 @@
 	// ────────────────────────────────────────────────────────────────────────────
 	let lastEditedTemplate = null; // last value seen in getPostEdits().template
 	let busy = false;
-	const processed = new Set(); // per-session postId:template
 
 	subscribe(async () => {
 		if (!isEditorReady()) {
@@ -185,27 +182,18 @@
 		}
 
 		lastEditedTemplate = editedTemplate; // lock to this user action
-
-		const postId = getPostId();
-		const key = `${postId}:${editedTemplate}`;
-		if (processed.has(key)) {
-			return;
-		} // already handled this exact edit
-
 		busy = true;
 
 		const normalized = normalizeTemplateSlug(editedTemplate);
 		if (!normalized) {
-			processed.add(key);
 			busy = false;
 			return;
 		}
 
 		const starterSlug = `${normalized}-starter`;
-
 		const starter = await fetchStarter(starterSlug);
+
 		if (!starter) {
-			processed.add(key);
 			busy = false;
 			return;
 		}
@@ -219,7 +207,6 @@
 					'';
 
 		if (!markup) {
-			processed.add(key);
 			busy = false;
 			return;
 		}
@@ -227,7 +214,7 @@
 		const blocksInEd = select('core/block-editor').getBlocks();
 		let action = 'replace';
 		if (!isPristine(blocksInEd)) {
-			action = await promptAction(starterSlug); // 'replace' | 'prepend' | 'cancel'
+			action = await promptAction(starterSlug);
 		}
 
 		if (action === 'cancel') {
@@ -236,7 +223,6 @@
 		}
 
 		const newBlocks = parse(markup);
-
 		if (action === 'replace') {
 			const idsToRemove = blocksInEd.map((b) => b.clientId);
 			if (idsToRemove.length) {
@@ -247,7 +233,6 @@
 			dispatch('core/block-editor').insertBlocks(newBlocks, 0);
 		}
 
-		processed.add(key);
 		busy = false;
 	});
 })();
