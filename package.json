@@ -19,8 +19,7 @@
     "lint-style": "wp-scripts lint-style src/scss",
     "lint-style:fix": "wp-scripts lint-style src/scss --fix",
     "ci-lint-js": "wp-scripts lint-js src/js --max-warnings=0 .",
-    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0",
-    "prepare": "husky"
+    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0"
   },
   "keywords": [],
   "author": "Joel Schlotterer",
