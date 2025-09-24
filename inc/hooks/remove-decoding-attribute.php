@@ -1,11 +1,12 @@
 <?php
 /**
- * Adds OG tags to the head for better social sharing.
+ * Prevents WordPress from adding a decoding attribute to images,
+ * letting browsers handle decoding behavior.
  *
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Removes decoding tags from all images

@@ -1,0 +1,11 @@
+{
+    "phpcs.executablePath": "/Users/joelschlotterer/phpcs-tools/vendor/bin/phpcs",
+    "phpcs.standard": "WordPress",
+    "phpSniffer.run": "onType",
+    "phpSniffer.standard": "WordPress",
+    "phpSniffer.executablesFolder": "/Users/joelschlotterer/phpcs-tools/vendor/bin",
+    "phpSniffer.autoDetect": false,
+    "phpSniffer.enable": true,
+    "phpSniffer.showSources": true
+  }
+  

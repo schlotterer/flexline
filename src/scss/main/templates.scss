@@ -18,4 +18,14 @@ body.flexline {
 		color: var(--wp--preset--color--neutral-dark);
 		opacity: 1;
 	}
+
+	&.page-template-blank{
+		.wp-site-blocks{
+			min-height: 100vh;
+			.entry-content{
+				min-height: 100vh;
+			}
+		}
+	}
+	
 }

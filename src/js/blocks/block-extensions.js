@@ -1,3 +1,4 @@
 import './filters';
 import './controls';
-//import './block-variations';
+import './formats/text-shadow';
+import './wrapper-props';

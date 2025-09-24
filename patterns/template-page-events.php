@@ -6,7 +6,7 @@
  * Categories: flexline-events
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 ?>
 <!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->
 

@@ -13,6 +13,9 @@ html {
 html,
 body {
     scroll-padding-top: 100px; /* set to the height of your header */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 body.baguetteBox-open,
@@ -52,8 +55,12 @@ body,
 	a:focus,
 	a:hover,
 	a:not(.wp-element-button) {
-		text-decoration-thickness: var(--wp--custom--text-deco-thickness);
 		text-decoration: none;
+		text-decoration-thickness: var(--wp--custom--text-deco-thickness);
+	}
+
+	:root :where(.wp-element-button:hover, .wp-block-button__link:hover) {
+		white-space: unset;
 	}
 
 	b,
@@ -119,9 +126,9 @@ body,
 	/* -- Code -- */
 
 	*:not(.wp-block-code) > code {
-		background-color: var(--wp--preset--color--neutral);
-		font-size: var(--wp--preset--font-size--small);
-		padding: 5px 8px;
+		background-color: var(--wp--preset--color--neutral-light);
+		font-size: 13px;
+		padding: 2px 4px;
 	}
 
 	/* -- Headers -- */
@@ -133,63 +140,50 @@ body,
 		}
 	}
 	$buttonSpace : 40px;
-	#web4sl-call-button{
-		~ .site-header{
-			#header_container {
+
+	// Phone (web4sl) button spacing via body classes (avoid sibling selector + CLS)
+	&.web4sl-phone-link-show-on-mobile{
+		@include screen($mobile){
+			.site-header{
+				#header_container {
+					padding-left: $buttonSpace;
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+	}
+	&.web4sl-phone-link-show-on-tablet{
+		@include screen($tablet){
+			.site-header  #header_container{
 				padding-left: $buttonSpace;
 			}
 		}
-		&:not(.web4sl-hide-on-mobile) {
-			@include screen($mobile){
-				~ .site-header{
-					#header_container {
-						display: flex;
-						justify-content: center;
-					}
-				}
+	}
+	&.web4sl-phone-link-show-on-desktop{
+		@include screen($desktop){
+			.site-header  #header_container{
+				padding-left: $buttonSpace;
 			}
 		}
-		&.web4sl-hide-on-mobile {
-			@include screen($mobile){
-				~ .site-header{
-					#header_container {
-						padding-left: 0;
-					}
-				}
-			}
-		}
-		&.web4sl-hide-on-tablet {
-			@include screen($tablet){
-				~ .site-header  #header_container{
-					padding-left: 0;
-				}
-			}
-		}
-		&.web4sl-hide-on-desktop {
-			@include screen($desktop){
-				~ .site-header  #header_container{
-					padding-left: 0;
-				}
-			}
-		}
-	} 
+	}
 
-	#slide-in-menu-button{
-		~ .site-header #header_container{
-			padding-right: $buttonSpace;
-		}
-		&.flexline-hide-on-tablet{
-			@include screen($tablet){
-				~ .site-header #header_container{
-					padding-right: 0px;
-				}
+	// Slide-in button spacing via body classes
+	// (slide-in present by default)
+	.site-header #header_container{
+		padding-right: $buttonSpace;
+	}
+	&.slidein-hide-on-tablet{
+		@include screen($tablet){
+			.site-header #header_container{
+				padding-right: 0;
 			}
 		}
-		&.flexline-hide-on-desktop{
-			@include screen($desktop){
-				~ .site-header #header_container{
-					padding-right: 0px;
-				}
+	}
+	&.slidein-hide-on-desktop{
+		@include screen($desktop){
+			.site-header #header_container{
+				padding-right: 0;
 			}
 		}
 	}
@@ -203,6 +197,7 @@ body,
 	&.flexline .wp-block-group.group-link,
 	&.flexline .wp-block-group.group-link * {
 		cursor: pointer;
+		pointer-events: auto;
 	}
 
 	&.flexline .wp-block-group.group-link {
@@ -213,7 +208,11 @@ body,
 			left: 0;
 			width: 100%;
 			height: 100%;
-			z-index: 1;
+			z-index: 13;
+			cursor: pointer;
+			pointer-events: auto;
+			margin: 0px !important;
+			padding: 0px !important;
 		}
 	}
 	// Phone link
@@ -283,16 +282,6 @@ body,
 		header.site-header {
 			z-index: 11;
 			position: relative;
-		}
-	}
-	&.web4sl-phone-link-show-on-mobile{
-		@include screen($mobile){
-			.site-header{
-				#header_container {
-					display: flex;
-					justify-content: center;
-				}
-			}
 		}
 	}
 }

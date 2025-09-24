@@ -5,7 +5,7 @@
  * @package flexline
  */
 
-namespace FlexLine\flexline;
+namespace FlexLine;
 
 /**
  * Outputs JavaScript settings for customizing the search menu.
@@ -17,15 +17,22 @@ namespace FlexLine\flexline;
  * @return void
  */
 function flexline_customize_search_menu_js_settings() {
-	?>
-	<script type="text/javascript">
-		var FlexlineCustomizerSearchMenuSettings = {
-			useMenuIconOnDesktop: <?php echo get_option( 'flexline_use_menu_icon', false ) ? 'true' : 'false'; ?>,
-			hideSearchOnTablet: <?php echo get_option( 'flexline_hide_search_tablet', false ) ? 'true' : 'false'; ?>,
-			hideSearchOnDesktop: <?php echo get_option( 'flexline_hide_search_desktop', false ) ? 'true' : 'false'; ?>,
-		};
-	</script>
-	<?php
+	if ( ! wp_script_is( 'flexline-slidein', 'enqueued' ) ) {
+			return;
+	}
+
+		$settings = array(
+			'useMenuIconOnDesktop' => (bool) get_option( 'flexline_use_menu_icon', false ),
+			'hideSearchOnTablet'   => (bool) get_option( 'flexline_hide_search_tablet', false ),
+			'hideSearchOnDesktop'  => (bool) get_option( 'flexline_hide_search_desktop', false ),
+		);
+
+		wp_add_inline_script(
+			'flexline-slidein',
+			'var FlexLineCustomizerSearchMenuSettings = ' . wp_json_encode( $settings ) . ';',
+			'before'
+		);
 }
-add_action( 'wp_head', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 2);
-add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 2);
+
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 20 );
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_customize_search_menu_js_settings', 20 );

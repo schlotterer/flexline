@@ -36,11 +36,11 @@
                 <!-- /wp:column -->
 
                 <!-- wp:column {"width":"200px"} -->
-                <div class="wp-block-column" style="flex-basis:200px"><!-- wp:navigation {"ref":373,"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /--></div>
+                <div class="wp-block-column" style="flex-basis:200px"><!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /--></div>
                 <!-- /wp:column -->
 
                 <!-- wp:column {"width":"200px"} -->
-                <div class="wp-block-column" style="flex-basis:200px"><!-- wp:navigation {"ref":376,"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /--></div>
+                <div class="wp-block-column" style="flex-basis:200px"><!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"},"style":{"spacing":{"blockGap":"0"}}} /--></div>
                 <!-- /wp:column -->
             </div>
             <!-- /wp:columns -->

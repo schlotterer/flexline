@@ -1,0 +1,246 @@
+/* Dedicated styles for FlexLine fading slider */
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  /* Force cover images to respect the parent block height */
+  .wp-block-cover img.wp-block-cover__image-background {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: none !important; /* prevent Safari shrinking it */
+    max-height: none !important;
+    aspect-ratio: auto !important;
+  }
+}
+
+/* Front-end baseline: reserve height as soon as markup loads */
+body:not(.block-editor-page) .is-style-slider {
+  position: relative;
+  min-height: var(
+    --slider-height-default,
+    calc(100svh - var(--header-site-header-height, 0px))
+  );
+}
+
+/* Editor Preview baseline: reserve height before runtime activates */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode {
+  position: relative;
+  min-height: var(
+    --slider-height-default,
+    calc(100svh - var(--header-site-header-height, 0px))
+  );
+  /* Prevent scroll chaining/jumps while interacting in Preview */
+  overscroll-behavior: contain;
+}
+/* Editor (both Edit and Preview): ensure a default value is available */
+.editor-styles-wrapper .is-style-slider {
+  --slider-height-default: calc(100svh - var(--header-site-header-height, 0px));
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  /* Ensure slides stack vertically when exiting Preview without reload */
+  display: block !important;
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout > *,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  /* Normalize child slides to full-width stacked blocks */
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 auto !important;
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  min-height: var(
+    --slider-height,
+    var(--slider-height-default, calc(100svh - var(--header-site-header-height, 0px)))
+  );
+}
+
+.is-style-slider.slider-runtime-active {
+  height: var(--slider-height,
+          var(--slider-height-default,
+          calc(100svh - var(--header-site-header-height, 0px)))) !important;
+  position: relative;
+  /* Default height chain; explicit user height guarded by class below */
+  min-height: var(
+    --slider-height-default,
+    calc(100svh - var(--header-site-header-height, 0px))
+  );
+}
+
+/* If user provided a height, opt-in via class to override default */
+.is-style-slider.slider-runtime-active.slider-has-height {
+  min-height: var(--slider-height) !important;
+  height: var(--slider-height) !important;
+}
+
+/* Ensure each Cover inside the slider fills the slide height */
+.is-style-slider .wp-block-cover {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+/* Slides are absolutely stacked while runtime is active (CSS-driven stacking) */
+.is-style-slider.slider-runtime-active > * {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none; /* only active slide receives input */
+  transition-property: opacity;
+  transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
+  transition-timing-function: ease;
+  will-change: opacity;
+}
+/* Active/previous slide layering via classes (no inline styles) */
+.is-style-slider.slider-runtime-active > *.is-slide-active { opacity: 1; z-index: 2; pointer-events: auto; }
+.is-style-slider.slider-runtime-active > *.is-slide-prev { z-index: 1; }
+
+/* Editor variant of the absolute stacking */
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > * {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  // pointer-events: none;
+  transition-property: opacity;
+  transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
+  transition-timing-function: ease;
+  will-change: opacity;
+}
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-active { opacity: 1; z-index: 2; pointer-events: auto; }
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-prev { z-index: 1; }
+
+/* Nav container: base positioning. Specific alignment rules below. */
+.slider-wrapper > .slider-nav-buttons {
+  position: absolute;
+  padding-left: 12px;
+  padding-right: 12px;
+  z-index: 10;
+  display: none; /* hidden by default; opt-in via status classes */
+  gap: 4px;
+  pointer-events: auto;
+  /* Sensible default placement to ensure visibility on FE */
+  right: 12px;
+  bottom: 12px;
+}
+/* Show nav only when slider is running and navigation is enabled */
+.slider-wrapper > .is-style-slider.slider-runtime-active.slider-navigation + .slider-nav-buttons {
+  display: flex;
+}
+
+/* When positioned over the slider: place container inside with 12px inset */
+.slider-wrapper > .is-style-slider.slider-buttons-over + .slider-nav-buttons {
+  inset: unset;
+  pointer-events: auto;
+}
+
+.is-slider-btn {
+  appearance: none;
+  border: 0;
+  background: var(--wp--custom--deco-color, rgba(0,0,0,0.35));
+  color: var(--wp--preset--color--base, #fff);
+  padding: 0.5rem;
+  cursor: pointer;
+  pointer-events: auto;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--wp--custom--button-border-radius, 4px);
+  transition: var(--wp--custom--transition-time, 150ms ease);
+}
+.is-slider-btn:hover {
+  box-shadow: var(--wp--custom--button-shadow-hover, 0 2px 8px rgba(0,0,0,0.35));
+  /* slightly darken background when over */
+  background-color: color-mix(in lab, var(--wp--custom--deco-color, rgba(0,0,0,0.35)), #000 20%);
+}
+
+/* Ensure SVG icons inherit the button color by default */
+.is-slider-btn svg path { fill: currentColor; }
+
+/* Horizontal placement (outside) */
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-left:not(.slider-buttons-over) + .slider-nav-buttons {
+  left: 0; right: auto; transform: none; margin-left: 10px;
+}
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-center:not(.slider-buttons-over) + .slider-nav-buttons {
+  left: 50%; right: auto; transform: translateX(-50%);
+}
+.slider-wrapper > .is-style-slider.slider-buttons-horizontal-right:not(.slider-buttons-over) + .slider-nav-buttons {
+  right: 0; left: auto; transform: none; margin-right: 10px;
+}
+
+/* Vertical placement (outside) */
+.slider-wrapper > .is-style-slider.slider-buttons-vertical-top:not(.slider-buttons-over) + .slider-nav-buttons {
+  top: -40px; bottom: auto;
+}
+.slider-wrapper > .is-style-slider.slider-buttons-vertical-bottom:not(.slider-buttons-over) + .slider-nav-buttons {
+  bottom: -40px; top: auto;
+}
+
+/* When over, align inside with 12px offsets */
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-top + .slider-nav-buttons { top: 12px; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-vertical-bottom + .slider-nav-buttons { bottom: 12px; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-left + .slider-nav-buttons { left: 12px; right: auto; transform: none; }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-center + .slider-nav-buttons { left: 50%; right: auto; transform: translateX(-50%); }
+.slider-wrapper > .is-style-slider.slider-buttons-over.slider-buttons-horizontal-right + .slider-nav-buttons { right: 12px; left: auto; transform: none; }
+
+/* Background variants (match scroller’s palette) */
+.slider-wrapper > .is-style-slider.slider-buttons-background-transparent + .slider-nav-buttons .is-slider-btn { background-color: transparent; }
+.slider-wrapper > .is-style-slider.slider-buttons-background-white + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-black + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-gray + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-primary + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-secondary + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-background-alternate + .slider-nav-buttons .is-slider-btn { background-color: var(--wp--preset--color--alternate); }
+
+/* Text color variants */
+.slider-wrapper > .is-style-slider.slider-buttons-text-white + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-black + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-gray + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-primary + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-secondary + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-alternate + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--alternate); }
+.slider-wrapper > .is-style-slider.slider-buttons-text-default + .slider-nav-buttons .is-slider-btn { color: var(--wp--preset--color--base); }
+
+/* Ensure SVG inherits chosen text color when variants are applied */
+.slider-wrapper > .is-style-slider[class*='slider-buttons-text-'] + .slider-nav-buttons .is-slider-btn svg path {
+  fill: currentColor !important;
+}
+
+/* Border variants */
+.slider-wrapper > .is-style-slider.slider-buttons-border-none + .slider-nav-buttons .is-slider-btn { border: none; }
+.slider-wrapper > .is-style-slider.slider-buttons-border-white + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--base); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-black + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--contrast); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-gray + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--neutral); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-primary + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--primary); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-secondary + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--secondary); }
+.slider-wrapper > .is-style-slider.slider-buttons-border-alternate + .slider-nav-buttons .is-slider-btn { border: 1px solid var(--wp--preset--color--alternate); }
+
+/* Box shadow */
+.slider-wrapper > .is-style-slider.slider-buttons-box-shadow + .slider-nav-buttons .is-slider-btn {
+  box-shadow: var(--wp--custom--button-shadow, 0 2px 8px rgba(0,0,0,0.4));
+}
+
+/* Editor Preview: disable interaction with slides (both wrapper structures) */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > *.is-slide-active { pointer-events: auto !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .is-slide-active { pointer-events: auto !important; }
+/* Reduce scroll jumps while interacting in Preview */
+
+
+/* Editor width sanity */
+.editor-styles-wrapper .slider-wrapper,
+.editor-styles-wrapper .is-style-slider {
+  width: 100%;
+}
+/* Editor: hide the default appender inside slider blocks to prevent non‑Cover inserts */
+.editor-styles-wrapper .is-style-slider > .block-editor-block-list__layout > .block-list-appender,
+.editor-styles-wrapper .is-style-slider > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+  display: none !important;
+}

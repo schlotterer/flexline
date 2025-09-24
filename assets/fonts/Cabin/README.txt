@@ -8,7 +8,7 @@ Cabin is a variable font with these axes:
   wght
 
 This means all the styles are contained in these files:
-  Cabin-VariableFont_wdth,wght.ttf
+  Cabin-VariableFont_wght.woff2
   Cabin-Italic-VariableFont_wdth,wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
