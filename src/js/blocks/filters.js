@@ -5,9 +5,11 @@ import {
 	customVisibilityAttributes,
 	customIconAttributes,
 	customLazyAttributes,
+	customCoverOverlayAttributes,
 	customGroupAttributes,
 	customHorizontalScrollAttributes,
 	customHorizontalScrollerAttributes,
+	customSliderAttributes,
 	customGalleryAttributes,
 	customShiftAttributes,
 	customNoWrapAttributes,
@@ -41,11 +43,20 @@ registerAttributes(['core/button'], {
 registerAttributes(['core/cover'], {
 	...customLazyAttributes,
 	...customVisibilityAttributes,
+	...customCoverOverlayAttributes,
 });
 
 registerAttributes(['core/gallery'], { ...customGalleryAttributes });
 
 registerAttributes(['core/group'], {
+	...customGroupAttributes,
+	...customVisibilityAttributes,
+	...customShiftAttributes,
+	...customSliderAttributes,
+});
+
+registerAttributes(['core/stack'], {
+	...customSliderAttributes,
 	...customGroupAttributes,
 	...customVisibilityAttributes,
 	...customShiftAttributes,

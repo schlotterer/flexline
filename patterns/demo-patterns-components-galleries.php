@@ -9,17 +9,6 @@
 
 namespace FlexLine;
 ?>
-<!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
-    <p>Our <strong>Gallery Patterns</strong> are flexible building blocks for showcasing rich media — whether it’s photos, videos, or other embedded content. These patterns help you tell a more visual story and keep visitors engaged.</p>
-    <!-- /wp:paragraph -->
-
-    <!-- wp:paragraph {"className":""} -->
-    <p>Use these patterns to highlight portfolios, media libraries, product shots, or any collection of visuals. Each one is designed to be flexible and easy to adapt — just drop in your media, adjust the layout as needed, and give your audience a smooth, immersive experience.</p>
-    <!-- /wp:paragraph -->
-</div>
-<!-- /wp:group -->
-
 <!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
@@ -29,6 +18,17 @@ namespace FlexLine;
         </div>
     </div>
     <!-- /wp:cover -->
+</div>
+<!-- /wp:group -->
+ 
+<!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
+    <p>Our <strong>Gallery Patterns</strong> are flexible building blocks for showcasing rich media — whether it’s photos, videos, or other embedded content. These patterns help you tell a more visual story and keep visitors engaged.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph {"className":""} -->
+    <p>Use these patterns to highlight portfolios, media libraries, product shots, or any collection of visuals. Each one is designed to be flexible and easy to adapt — just drop in your media, adjust the layout as needed, and give your audience a smooth, immersive experience.</p>
+    <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
 

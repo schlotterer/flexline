@@ -9,8 +9,6 @@
 // • If not pristine → show a wp.components.Modal asking: Replace / Prepend / Don't insert.
 // -----------------------------------------------------------------------------
 (() => {
-	console.log('[template-switcher] booting (with modal)…');
-
 	const { select, resolveSelect, subscribe, dispatch } = wp.data;
 	const { parse } = wp.blocks;
 	const {
@@ -30,13 +28,42 @@
 
 	const getEditedTemplate = () =>
 		select('core/editor').getPostEdits()?.template; // user edit only
-	const getCurrentTemplate = () =>
-		select('core/editor').getEditedPostAttribute('template');
-	const getPostId = () => select('core/editor').getCurrentPostId();
+	/**
+	 * Normalize a template identifier to a bare slug.
+	 * Handles:
+	 *  - 'wp_template:theme//slug'
+	 *  - 'theme//slug'
+	 *  - 'templates/slug.html' or 'page-templates/full-width.php'
+	 * @param {string} value
+	 * @return {string} Normalized template slug.
+	 */
+	const normalizeTemplateSlug = (value) => {
+		if (!value) {
+			return '';
+		}
+		let tpl = String(value);
+		// Drop provider prefix, e.g. 'wp_template:'
+		tpl = tpl.replace(/^[^:]+:/, '');
+		// Drop theme identifier before '//'
+		const dbl = tpl.indexOf('//');
+		if (dbl !== -1) {
+			tpl = tpl.slice(dbl + 2);
+		}
+		// Last path segment (if any)
+		tpl = tpl.split('/').pop();
+		// Remove extension
+		tpl = tpl.replace(/\.[^.]+$/, '');
+		// Sanitize to slug
+		return tpl
+			.trim()
+			.toLowerCase()
+			.replace(/[^a-z0-9-]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+	};
 
 	/**
 	 * Fetch a wp_block by slug (post_name).
-	 * @param slug
+	 * @param {string} slug
 	 */
 	const fetchStarter = async (slug) => {
 		const records = await resolveSelect('core').getEntityRecords(
@@ -49,7 +76,7 @@
 
 	/**
 	 * Canvas considered empty?
-	 * @param blocks
+	 * @param {Array} blocks
 	 */
 	const isPristine = (blocks) => {
 		if (!blocks || blocks.length === 0) {
@@ -68,7 +95,7 @@
 
 	/**
 	 * Modal prompt – returns 'replace' | 'prepend' | 'cancel'
-	 * @param starterSlug
+	 * @param {string} starterSlug
 	 */
 	const promptAction = (starterSlug) =>
 		new Promise((resolve) => {
@@ -143,7 +170,6 @@
 	// ────────────────────────────────────────────────────────────────────────────
 	let lastEditedTemplate = null; // last value seen in getPostEdits().template
 	let busy = false;
-	const processed = new Set(); // per-session postId:template
 
 	subscribe(async () => {
 		if (!isEditorReady()) {
@@ -156,29 +182,18 @@
 		}
 
 		lastEditedTemplate = editedTemplate; // lock to this user action
-
-		const postId = getPostId();
-		const key = `${postId}:${editedTemplate}`;
-		if (processed.has(key)) {
-			return;
-		} // already handled this exact edit
-
 		busy = true;
 
-		const starterSlug = `${editedTemplate}-starter`;
-		console.log(
-			'[template-switcher] user changed template →',
-			editedTemplate,
-			'| starter →',
-			starterSlug
-		);
+		const normalized = normalizeTemplateSlug(editedTemplate);
+		if (!normalized) {
+			busy = false;
+			return;
+		}
 
+		const starterSlug = `${normalized}-starter`;
 		const starter = await fetchStarter(starterSlug);
+
 		if (!starter) {
-			console.info(
-				'[template-switcher] starter pattern missing; leaving blocks.'
-			);
-			processed.add(key);
 			busy = false;
 			return;
 		}
@@ -192,28 +207,22 @@
 					'';
 
 		if (!markup) {
-			console.warn(
-				'[template-switcher] starter has no markup; aborting.'
-			);
-			processed.add(key);
+			busy = false;
+			return;
+		}
+
+		const blocksInEd = select('core/block-editor').getBlocks();
+		let action = 'replace';
+		if (!isPristine(blocksInEd)) {
+			action = await promptAction(starterSlug);
+		}
+
+		if (action === 'cancel') {
 			busy = false;
 			return;
 		}
 
 		const newBlocks = parse(markup);
-
-		const blocksInEd = select('core/block-editor').getBlocks();
-		let action = 'replace';
-		if (!isPristine(blocksInEd)) {
-			action = await promptAction(starterSlug); // 'replace' | 'prepend' | 'cancel'
-		}
-
-		if (action === 'cancel') {
-			console.log('[template-switcher] user cancelled; no changes made.');
-			busy = false;
-			return;
-		}
-
 		if (action === 'replace') {
 			const idsToRemove = blocksInEd.map((b) => b.clientId);
 			if (idsToRemove.length) {
@@ -224,8 +233,6 @@
 			dispatch('core/block-editor').insertBlocks(newBlocks, 0);
 		}
 
-		processed.add(key);
-		console.log('[template-switcher] starter injected via', action, '✓');
 		busy = false;
 	});
 })();

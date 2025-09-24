@@ -52,6 +52,7 @@
 				"em",
 				"rem",
 				"svh",
+				"dvh",
 				"vh",
 				"vw",
 				"%"
@@ -296,57 +297,73 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Crimson Text', serif",
+					"fontFamily": "'Crimson Text', Cambria, Georgia, 'Times New Roman', 'Noto Serif', 'Liberation Serif', Times, serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Crimson Text'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Crimson_Text/CrimsonText-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Regular.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Crimson Text'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Crimson Text'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Bold.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Jost', sans-serif",
+					"fontFamily": "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Jost'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "200 800",
-							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.ttf" ]
+							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Source Sans 3', sans-serif",
+					"fontFamily": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Body",
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-							"fontFamily": "'Source Sans 3', sans-serif",
+							"fontDisplay": "fallback",
+							"fontFamily": "'Source Sans 3'",
 							"fontStretch": "normal",
-                                                        "fontStyle": "normal",
-                                                        "fontWeight": "200 900",
-                                                        "src": [ "file:./assets/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" ]
+							"fontStyle": "normal",
+							"fontWeight": "200 900",
+							"src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}

@@ -70,4 +70,73 @@ body,
 		object-position: center center;
 	}
 
+	// Apply frosted glass effect to the Cover overlay only when enabled
+	.wp-block-cover.flexline-glass-overlay { isolation: isolate; }
+	// Support both solid color and gradient overlays, plus the ::before fallback.
+	// Level classes are hand-coded to avoid Sass function conflicts and stay explicit.
+	$wpb: '.wp-block-cover.flexline-glass-overlay';
+
+	#{$wpb}.glass-level-1 > .wp-block-cover__background,
+	#{$wpb}.glass-level-1 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-1.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(1px) saturate(97%); -webkit-backdrop-filter: blur(1px) saturate(97%);}
+
+	#{$wpb}.glass-level-2 > .wp-block-cover__background,
+	#{$wpb}.glass-level-2 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-2.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(2px) saturate(94%); -webkit-backdrop-filter: blur(2px) saturate(94%);}
+
+	#{$wpb}.glass-level-3 > .wp-block-cover__background,
+	#{$wpb}.glass-level-3 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-3.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(3px) saturate(91%); -webkit-backdrop-filter: blur(3px) saturate(91%);}
+
+	#{$wpb}.glass-level-4 > .wp-block-cover__background,
+	#{$wpb}.glass-level-4 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-4.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(4px) saturate(88%); -webkit-backdrop-filter: blur(4px) saturate(88%);}
+
+	#{$wpb}.glass-level-5 > .wp-block-cover__background,
+	#{$wpb}.glass-level-5 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-5.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(5px) saturate(85%); -webkit-backdrop-filter: blur(5px) saturate(85%);}
+
+	#{$wpb}.glass-level-6 > .wp-block-cover__background,
+	#{$wpb}.glass-level-6 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-6.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(6px) saturate(82%); -webkit-backdrop-filter: blur(6px) saturate(82%);}
+
+	#{$wpb}.glass-level-7 > .wp-block-cover__background,
+	#{$wpb}.glass-level-7 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-7.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(7px) saturate(79%); -webkit-backdrop-filter: blur(7px) saturate(79%);}
+
+	#{$wpb}.glass-level-8 > .wp-block-cover__background,
+	#{$wpb}.glass-level-8 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-8.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(8px) saturate(76%); -webkit-backdrop-filter: blur(8px) saturate(76%);}
+
+	#{$wpb}.glass-level-9 > .wp-block-cover__background,
+	#{$wpb}.glass-level-9 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-9.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(9px) saturate(73%); -webkit-backdrop-filter: blur(9px) saturate(73%);}
+
+	#{$wpb}.glass-level-10 > .wp-block-cover__background,
+	#{$wpb}.glass-level-10 > .wp-block-cover__gradient-background,
+	#{$wpb}.glass-level-10.has-background-dim:not(.has-background-gradient)::before { backdrop-filter: blur(10px) saturate(70%); -webkit-backdrop-filter: blur(10px) saturate(70%);}
+
+	// Also apply the blur/saturation directly to the media background so the effect
+	// is visible even when backdrop-filter compositing is blocked by layout.
+    #{$wpb}.glass-level-1 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-1 > video.wp-block-cover__video-background { filter: blur(1px) saturate(97%); transform: translateZ(0) scale(1.006); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-2 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-2 > video.wp-block-cover__video-background { filter: blur(2px) saturate(94%); transform: translateZ(0) scale(1.009); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-3 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-3 > video.wp-block-cover__video-background { filter: blur(3px) saturate(91%); transform: translateZ(0) scale(1.012); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-4 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-4 > video.wp-block-cover__video-background { filter: blur(4px) saturate(88%); transform: translateZ(0) scale(1.015); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-5 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-5 > video.wp-block-cover__video-background { filter: blur(5px) saturate(85%); transform: translateZ(0) scale(1.018); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-6 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-6 > video.wp-block-cover__video-background { filter: blur(6px) saturate(82%); transform: translateZ(0) scale(1.021); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-7 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-7 > video.wp-block-cover__video-background { filter: blur(7px) saturate(79%); transform: translateZ(0) scale(1.024); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-8 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-8 > video.wp-block-cover__video-background { filter: blur(8px) saturate(76%); transform: translateZ(0) scale(1.028); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-9 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-9 > video.wp-block-cover__video-background { filter: blur(9px) saturate(73%); transform: translateZ(0) scale(1.032); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+    #{$wpb}.glass-level-10 > img.wp-block-cover__image-background,
+    #{$wpb}.glass-level-10 > video.wp-block-cover__video-background { filter: blur(10px) saturate(70%); transform: translateZ(0) scale(1.036); transform-origin: center; top:0; right:0; bottom:0; left:0; will-change: transform, filter; }
+
 }

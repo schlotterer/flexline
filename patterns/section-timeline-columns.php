@@ -23,40 +23,9 @@ namespace FlexLine;
 
         <!-- wp:column {"verticalAlignment":"center","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card"},"className":"is-style-default group-link group-link-type-none","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"enableGroupLink":true,"groupLinkURL":"#"} -->
-            <div class="wp-block-group is-style-default group-link group-link-type-none"><!-- wp:gallery {"columns":3,"linkTo":"media","className":"poster-gallery","style":{"layout":{"selfStretch":"fill","flexSize":null}},"enablePosterGallery":true} -->
-                <figure class="wp-block-gallery has-nested-images columns-3 is-cropped poster-gallery"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-default"} -->
-                    <figure class="wp-block-image size-large is-style-default"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-
-                    <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":""} -->
-                    <figure class="wp-block-image size-large"><a href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
-                    <!-- /wp:image -->
-                </figure>
-                <!-- /wp:gallery -->
+            <div class="wp-block-group is-style-default group-link group-link-type-none">
+                
+                <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
                 <!-- wp:paragraph {"align":"center","className":"","style":{"typography":{"textTransform":"none"}},"fontFamily":"display"} -->
                 <p class="has-text-align-center has-display-font-family" style="text-transform:none">Poster Gallery Title</p>
@@ -86,16 +55,10 @@ namespace FlexLine;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","width":"500px","className":""} -->
-        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:500px"><!-- wp:group {"metadata":{"name":"Video Modal - Card"},"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"top"},"groupLinkType":"modal_media"} -->
-            <div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://www.youtube.com/watch?v=qZ0_aa6RxvQ"} -->
-                <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" style="aspect-ratio:3/2;object-fit:cover" /></figure>
-                <!-- /wp:image -->
-
-                <!-- wp:paragraph {"align":"center","className":"","fontFamily":"brand"} -->
-                <p class="has-text-align-center has-brand-font-family">Video Title</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
+        <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:500px">
+            
+            <!-- wp:pattern {"slug":"flexline/gallery-video-card"} /-->
+            
         </div>
         <!-- /wp:column -->
 

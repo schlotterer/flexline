@@ -3,15 +3,18 @@ Contributors: wpengine, bgardner
 Requires at least: 6.3
 Tested up to: 6.3
 Requires PHP: 7.0
-Stable tag: 1.0.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 2.1.0
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
 With its clean, minimal design and powerful feature set, FlexLine enables agencies to build stylish and sophisticated WordPress websites. FlexLine is a masterpiece of design and functionality. It features a range of valuable patterns, including hero and portfolio sections, prominent call-to-action buttons, and customer testimonials. Whether you’re building a website for your business, personal brand, or creative project, FlexLine is perfect for anyone looking to launch quickly and efficiently.
 
 
+== Installation Notes ==
+
+For additional helper features, install the optional **FlexLine Utilities Plugin**. It can be downloaded from https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip and provides shortcodes like `[flexline_year]` for the current year or `[flexline_loginout]` to output login and logout links.
 
 == Bundled Assets and Licenses ==
 
@@ -23,6 +26,27 @@ With its clean, minimal design and powerful feature set, FlexLine enables agenci
 * Material Design icons - Apache License 2.0 (assets/built/images/LICENSE)
 
 == Changelog ==
+
+= 2.1.0 - 2025-09-20 =
+
+Added
+- New typography presets: Inter, Lora, ABeeZee, Abril Fatface, Arvo, Montserrat.
+- New Hero Slider pattern and slider/horizontal scroll scripts.
+- Events taxonomy templates and list view.
+- Utilities/admin options pages and docs callouts.
+
+Changed
+- Standardized font stacks with robust fallbacks across theme.json and global styles.
+- Migrated many font-face sources to WOFF2; adopted variable fonts where available.
+- Preload tweaks and build cleanup; unified system/monospace stacks.
+
+Deprecated/Removed
+- Deprecated box shadow style variations; prefer utility classes and theme.json shadows.
+- Removed legacy remove-default-blocks; consolidated security to hooks.
+
+Fixed
+- Multiple CLS/content shift improvements across blocks and template editor.
+- Slider behavior (incl. Safari), image fallback, login logo, minor hook issues.
 
 = 1.0.6 - 2023-10-16 =
 

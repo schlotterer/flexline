@@ -29,6 +29,7 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		add_editor_style(
 			array(
 				'./style.css',
+				'./assets/built/css/app.css',
 			)
 		);
 

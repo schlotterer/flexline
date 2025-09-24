@@ -10,47 +10,47 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Cabin', sans-serif",
+					"fontFamily": "'Cabin', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-							"fontFamily": "'Cabin', sans-serif",
+							"fontDisplay": "fallback",
+							"fontFamily": "'Cabin'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400 700",
-							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wdth.ttf" ]
+							"src": [ "file:./assets/fonts/Cabin/Cabin-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Varela', sans-serif",
+					"fontFamily": "'Varela', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'Varela'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/Varela/Varela-Regular.ttf" ]
+							"src": [ "file:./assets/fonts/Varela/Varela-Regular.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "Tahoma, Verdana, sans-serif",
+					"fontFamily": "system-ui, 'Segoe UI', Tahoma, Verdana, Arial, 'Noto Sans', 'Liberation Sans', sans-serif",
 					"name": "Body",
 					"slug": "body"
 				},
 				{
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}
