@@ -19,8 +19,7 @@
     "lint-style": "wp-scripts lint-style src/scss",
     "lint-style:fix": "wp-scripts lint-style src/scss --fix",
     "ci-lint-js": "wp-scripts lint-js src/js --max-warnings=0 .",
-    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0",
-    "prepare": "husky"
+    "ci-lint-style": "wp-scripts lint-style src/scss --max-warnings=0"
   },
   "keywords": [],
   "author": "Joel Schlotterer",
@@ -29,10 +28,13 @@
     "@babel/core": "^7.28.4",
     "@babel/preset-react": "^7.27.1",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
-    "@wordpress/eslint-plugin": "^22.16.0",
+    "@wordpress/eslint-plugin": "^22.17.0",
     "@wordpress/scripts": "^30.23.0",
     "@wordpress/stylelint-config": "^23.22.0",
     "autoprefixer": "^10.4.21",
+    "@wordpress/scripts": "^30.24.0",
+    "@wordpress/stylelint-config": "^23.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
     "cross-env": "^10.0.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -43,7 +45,7 @@
     "postcss": "^8.5.6",
     "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.92.1",
+    "sass": "^1.93.0",
     "sass-loader": "^16.0.5"
   },
   "lint-staged": {
