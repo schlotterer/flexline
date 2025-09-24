@@ -5,10 +5,10 @@
     }
     @include screen($tablet-up) {
         &.flexline-content-shift-left {
-            margin-left: var(--flexline-shift-left, 0);  
+            margin-left: var(--flexline-shift-left, 0) !important;  
         }
         &.flexline-content-shift-right {
-            margin-right: var(--flexline-shift-right, 0);
+            margin-right: var(--flexline-shift-right, 0) !important;
         }
         &.flexline-content-shift-up {
             margin-top: var(--flexline-shift-up, 0);
@@ -25,10 +25,10 @@
     &:not(.flexline-content-shift-revert-mobile) {
         @include screen($mobile) {
             &.flexline-content-shift-left {
-                margin-left: var(--flexline-shift-left, 0);
+                margin-left: var(--flexline-shift-left, 0) !important;
             }
             &.flexline-content-shift-right {
-                margin-right: var(--flexline-shift-right, 0);
+                margin-right: var(--flexline-shift-right, 0) !important;
             }
             &.flexline-content-shift-up {
                 margin-top: var(--flexline-shift-up, 0);

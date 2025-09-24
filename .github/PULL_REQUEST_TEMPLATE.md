@@ -1,7 +1,7 @@
 ## Pull Request Template
 
 ### Description
-Please provide a detailed description of the changes you are proposing. Explain the purpose of these changes and how they will enhance the Flexline theme.
+Please provide a detailed description of the changes you are proposing. Explain the purpose of these changes and how they will enhance the FlexLine theme.
 
 ### Type of Changes
 - [ ] Custom Block Attributes

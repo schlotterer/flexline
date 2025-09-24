@@ -1,5 +1,5 @@
-body,
-.editor-styles-wrapper {
+//body,
+//.editor-styles-wrapper {
 
 	// All
 	.is-style-card,
@@ -9,7 +9,7 @@ body,
 	.is-style-shadow-light,
 	.is-style-shadow-dark,
 	.is-style-shadow-diffused {
-		transition: var(--wp--custom--transition-time);
+		transition: shadow var(--wp--custom--transition-time);
 	}
 
 	// Cards
@@ -117,7 +117,8 @@ body,
 		backdrop-filter: blur(10px) saturate(70%);
 		-webkit-backdrop-filter: blur(10px) saturate(70%);
 		transition: var(--wp--custom--transition-time);
-
+		border-top-color: color-mix(in srgb, var(--wp--preset--color--base), transparent 50%);
+		border-bottom-color: color-mix(in srgb, var(--wp--preset--color--neutral-dark), transparent 50%);
 		&.group-link {
 
 			&:hover {
@@ -139,14 +140,16 @@ body,
 	.wp-block-button.is-style-glass-button .wp-element-button {
 		color: var(--wp--preset--color--primary);
 		border-radius: var(--wp--custom--button-border-radius);
-		border: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
-
+		background: color-mix(in srgb, var(--wp--preset--color--base), transparent 70%);
+		backdrop-filter: blur(5px) saturate(70%);
+		-webkit-backdrop-filter: blur(5px) saturate(70%);
+		
 		&:hover {
-			background: color-mix(in srgb, var(--wp--preset--color--base), transparent 35%);
+			background: color-mix(in srgb, var(--wp--preset--color--base), transparent 40%);
 			box-shadow: var(--wp--preset--shadow--diffused);
 			backdrop-filter: blur(15px) saturate(60%);
 			-webkit-backdrop-filter: blur(15px) saturate(60%);
 		}
 
 	}
-}
+//}

@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-    "title": "Flexline",
+    "title": "FlexLine",
     "slug": "flexline",
 	"settings": {
 		"appearanceTools": true,
@@ -52,6 +52,7 @@
 				"em",
 				"rem",
 				"svh",
+				"dvh",
 				"vh",
 				"vw",
 				"%"
@@ -295,57 +296,57 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"fontWeight": "100 800",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"fontWeight": "100 800",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'REM', sans-serif",
+					"fontFamily": "'REM', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Body",
 					"slug": "body",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "fallback",
 							"fontFamily": "'REM'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "100,300,500,800",
-							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.ttf" ]
+							"fontWeight": "100 800",
+							"src": [ "file:./assets/fonts/REM/REM-VariableFont_wght.woff2" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
 				},
 				{
-					"fontFamily": "monospace",
+					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
 				}
@@ -468,7 +469,7 @@
 			"creativeColor": "var(--wp--preset--color--contrast)",
 			"creativeFont": "var(--wp--preset--font-family--brand)",
 			"creativeTextTransform": "none",
-			"textShadow": "0 .18rem .4rem rgba(0,0,0, 0.5)",
+			"textShadow": "0 .1em .12em rgba(0,0,0, 0.4)",
 			"borderRadius": "0 8px 0 8px",
 			"imageBorderRadius": "var(--wp--custom--border-radius)",
 			"buttonBorderRadius": "var(--wp--custom--border-radius)",
@@ -578,7 +579,6 @@
 		"elements": {
 			"button": {
 				"color": {
-					"gradient": "var(--wp--preset--gradient--primary-secondary)",
 					"background": "var(--wp--preset--color--secondary)",
 					"text": "var(--wp--preset--color--base)"
 				},
@@ -715,6 +715,9 @@
 				}
 			},
 			"core/button": {
+				"color": {
+					"gradient": "var(--wp--preset--gradient--primary-secondary)"
+				},
 				"border": {
 					"radius": "var(--wp--custom--button-border-radius)"
 				},
@@ -747,6 +750,11 @@
 							}
 						},
 						"css": "& a:hover {color: var(--wp--preset--color--alternate) !important;}"
+					},
+					"text-link" : {
+						"color": {
+							"background": "transparent !important"
+						}
 					}
 				}
 			},

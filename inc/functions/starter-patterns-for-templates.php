@@ -1,61 +1,102 @@
 <?php
 /**
- * Dynamically insert starter patterns based on template. 
+ * Dynamically insert starter patterns based on template.
  * The theme also comes with page and post starter starter patterns.
  * Duplicate them and name them Page Starter and Post Starter to have them auto insert when a new page or post is created.
  * theme-page-starter-starter.php and theme-post-starter-starter.php
- * 
+ *
  * @package flexline
  */
-namespace FlexLine\flexline;
+
+namespace FlexLine;
 
 /**
- * Auto-insert a block pattern stored in the database into new posts.
+ * Insert a starter pattern when a new post or page is created.
  *
- * This function retrieves a block pattern (stored as a post of type 'wp_block')
- * based on the new post’s type. If found, its post content is returned
- * as the default content.
- *
- * @param string  $content The default post content.
- * @param WP_Post $post    The post object.
- * @return string Modified post content.
+ * @param string   $content Default content for the post.
+ * @param \WP_Post $post    Post object.
+ * @return string Starter pattern content or original content.
  */
-function auto_insert_pattern_from_db( $content, $post ) {
-    // Only modify content if it's empty (i.e. for new posts).
-    if ( ! empty( $content ) ) {
-        return $content;
-    }
+function auto_insert_pattern_smart( $content, $post ) {
+	if ( ! empty( $content ) ) {
+		return $content;
+	}
 
-    // Map each post type to its corresponding block pattern slug.
-    $pattern_slugs = array(
-        'post' => 'post-starter',  // Replace with your actual slug for posts.
-        'page' => 'page-starter',  // Replace with your actual slug for pages.
-        // Add additional mappings for other custom post types if needed.
-    );
+	// 1. Template-specific pattern (if a template is selected and supports it)
+	$template_file = get_page_template_slug( $post->ID );
+	if ( $template_file ) {
+		$normalized = normalize_template_slug( (string) $template_file );
+		if ( $normalized ) {
+			$template_slug = $normalized . '-starter';
+			$pattern       = get_block_pattern_by_slug( $template_slug );
+			if ( $pattern ) {
+				return $pattern;
+			}
+		}
+	}
 
-    $post_type = $post->post_type;
-    if ( empty( $post_type ) || ! isset( $pattern_slugs[ $post_type ] ) ) {
-        return $content;
-    }
+	// 2. Fallback to post-type starter (old behaviour)
+	$fallback_map = array(
+		'post' => 'post-starter',
+		'page' => 'page-starter',
+	);
+	$post_type    = $post->post_type;
+	if ( isset( $fallback_map[ $post_type ] ) ) {
+		$pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] );
+		if ( $pattern ) {
+			return $pattern;
+		}
+	}
 
-    $pattern_slug = $pattern_slugs[ $post_type ];
-
-    // Query the block pattern from the database using WP_Query.
-    $args = array(
-        'post_type'      => 'wp_block',
-        'name'           => $pattern_slug,
-        'post_status'    => 'publish',
-        'posts_per_page' => 1,
-    );
-    $query = new \WP_Query( $args );
-
-    if ( ! $query->have_posts() ) {
-        return $content;
-    }
-
-    $pattern = $query->posts[0];
-
-    // Return the post_content of the retrieved block pattern.
-    return $pattern->post_content;
+	return $content;
 }
-add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_from_db', 10, 2 );
+add_filter( 'default_content', __NAMESPACE__ . '\auto_insert_pattern_smart', 10, 2 );
+
+/**
+ * Convenience wrapper for fetching a published wp_block by slug.
+ *
+ * @param string $slug Slug of the block pattern.
+ * @return string|false Block pattern content if found, otherwise false.
+ */
+function get_block_pattern_by_slug( $slug ) {
+	$q = new \WP_Query(
+		array(
+			'post_type'      => 'wp_block',
+			'name'           => $slug,
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'no_found_rows'  => true,
+		)
+	);
+	return $q->have_posts() ? $q->posts[0]->post_content : false;
+}
+
+/**
+ * Normalize a template identifier into a bare slug suitable for pattern lookup.
+ *
+ * Handles formats like:
+ * - 'wp_template:theme-slug//template-slug'
+ * - 'theme-slug//template-slug'
+ * - 'templates/template-slug.html' or 'page-templates/full-width.php'
+ *
+ * @param string $template Raw template identifier/meta.
+ * @return string Normalized slug (e.g. 'template-slug').
+ */
+function normalize_template_slug( $template ) {
+	$tpl = (string) $template;
+	if ( '' === $tpl ) {
+		return '';
+	}
+	// Drop leading provider if present, e.g. 'wp_template:' prefix.
+	$tpl = preg_replace( '/^[^:]+:/', '', $tpl );
+	// If includes theme prefix like 'theme//slug', keep only portion after '//'.
+	if ( false !== strpos( $tpl, '//' ) ) {
+		$parts = explode( '//', $tpl );
+		$tpl   = end( $parts );
+	}
+	// Trim directories and extension (e.g., 'templates/foo.html' -> 'foo').
+	$tpl = pathinfo( wp_basename( $tpl ), PATHINFO_FILENAME );
+	// Sanitize to a slug.
+	$tpl = sanitize_title( $tpl );
+	return $tpl;
+}

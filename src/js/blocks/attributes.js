@@ -27,6 +27,20 @@ export const customLazyAttributes = {
 	},
 };
 
+// Cover overlay options - Define custom attributes
+export const customCoverOverlayAttributes = {
+	// Toggle for applying Flexline glass effect to Cover overlay only
+	flexlineGlassOverlay: {
+		type: 'boolean',
+		default: false,
+	},
+	// Range 0..10 controlling intensity (10 => blur 10px, saturate 70%)
+	flexlineGlassLevel: {
+		type: 'number',
+		default: 0,
+	},
+};
+
 // NoWrap - Define custom attributes
 export const customNoWrapAttributes = {
 	noWrap: {
@@ -37,7 +51,7 @@ export const customNoWrapAttributes = {
 
 // Horizontal Scroll - Define custom attributes
 export const customHorizontalScrollAttributes = {
-	enableHorizontalScroll: {
+	enableHorizontalScrollAtMobile: {
 		type: 'boolean',
 		default: false,
 	},
@@ -66,6 +80,78 @@ export const customHorizontalScrollerAttributes = {
 		default: false,
 	},
 	hideScrollbar: {
+		type: 'boolean',
+		default: false,
+	},
+	hidePauseButton: {
+		type: 'boolean',
+		default: false,
+	},
+	positionButtonsHorizontal: {
+		type: 'select',
+		default: 'left',
+	},
+	positionButtonsVertical: {
+		type: 'select',
+		default: 'bottom',
+	},
+	positionButtonsOver: {
+		type: 'boolean',
+		default: false,
+	},
+	buttonsTextColor: {
+		type: 'select',
+		default: 'white',
+	},
+	buttonsBackgroundColor: {
+		type: 'select',
+		default: 'secondary',
+	},
+	buttonsBorderColor: {
+		type: 'select',
+		default: 'none',
+	},
+	buttonsBoxShadow: {
+		type: 'boolean',
+		default: false,
+	},
+	transitionDuration: {
+		type: 'number',
+		default: 500,
+	},
+	pauseOnHover: {
+		type: 'boolean',
+		default: true,
+	},
+};
+
+// Slider - Define custom attributes
+export const customSliderAttributes = {
+	enableSlider: {
+		type: 'boolean',
+		default: false,
+	},
+	editPreviewToggle: {
+		type: 'string',
+		default: 'edit',
+	},
+	sliderHeight: {
+		type: 'string',
+		default: '',
+	},
+	sliderNav: {
+		type: 'boolean',
+		default: true,
+	},
+	sliderAuto: {
+		type: 'boolean',
+		default: false,
+	},
+	sliderSpeed: {
+		type: 'number',
+		default: 4000,
+	},
+	sliderLoop: {
 		type: 'boolean',
 		default: false,
 	},

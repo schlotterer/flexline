@@ -1,3 +1,4 @@
+/* global Headroom */
 document.addEventListener('DOMContentLoaded', function () {
 	// Grab the header element
 	const myHeader = document.querySelector('header.site-header');

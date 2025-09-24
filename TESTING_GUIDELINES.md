@@ -1,7 +1,7 @@
-# Testing Guidelines for Flexline Theme
+# Testing Guidelines for FlexLine Theme
 
 ## Introduction
-Thank you for contributing to the Flexline theme! These testing guidelines are designed to ensure the highest quality and consistency across the theme. Adherence to these guidelines helps maintain a robust and reliable product.
+Thank you for contributing to the FlexLine theme! These testing guidelines are designed to ensure the highest quality and consistency across the theme. Adherence to these guidelines helps maintain a robust and reliable product.
 
 ## Types of Testing
 
