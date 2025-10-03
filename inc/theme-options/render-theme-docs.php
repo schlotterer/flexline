@@ -51,6 +51,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Enable Lazy Load',
 						'description' => 'When true (the default), the image gets loading="lazy". Set it to false to omit the attribute so the browser loads the image immediately — ideal for hero images.',
 					),
+					array(
+						'name'        => 'FlexLine Glass Overlay',
+						'description' => 'Adds <code>flexline-glass-overlay</code> and a glass-level class (1–10) to the Cover overlay so it gains a frosted blur & saturation effect. The range control lives in the Color panel and toggles the overlay automatically.',
+					),
 				),
 			),
 			'core/button'                    => array(
