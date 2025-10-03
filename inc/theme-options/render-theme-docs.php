@@ -202,6 +202,15 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 				),
 			),
+			'core/site-logo'                 => array(
+				'attributes' => array(
+					array(
+						'name'        => 'Use High-Resolution Logo',
+						'description' => 'Adds <code>flexline-logo-hires</code> and sets a new sizes min-width value to twice the image width setting.',
+					),
+				),
+			),
+
 		);
 
 		// Merge registered block styles.

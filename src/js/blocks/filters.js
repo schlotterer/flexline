@@ -13,6 +13,7 @@ import {
 	customGalleryAttributes,
 	customShiftAttributes,
 	customNoWrapAttributes,
+	customLogoAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -91,7 +92,6 @@ registerAttributes(
 		'core/paragraph',
 		'core/heading',
 		'core/video',
-		'core/site-logo',
 		'core/post-featured-image',
 		'core/embed',
 		'core/html',
@@ -100,3 +100,8 @@ registerAttributes(
 	],
 	{ ...customVisibilityAttributes }
 );
+
+registerAttributes(['core/site-logo'], {
+	...customVisibilityAttributes,
+	...customLogoAttributes,
+});
