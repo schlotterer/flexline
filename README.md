@@ -105,12 +105,3 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
-## FlexLine Utilities Plugin
-
-The optional **FlexLine Utilities Plugin** adds helpful shortcodes and tools that extend the theme. After installing the plugin you can use utilities such as:
-
-- `[flexline_year]` – output the current year.
-- `[flexline_site_title]` – display the site title.
-- `[flexline_loginout]` – show a login or logout link depending on the visitor.
-
-[Download the FlexLine Utilities Plugin](https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip) and install it like any other WordPress plugin.
