@@ -566,9 +566,23 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</table>
 					</div>
 				</section>
-	
-	
-	
+
+
+
+				<!-- ✨ PLUGIN INTEGRATIONS -->
+				<section id="plugin-integrations">
+					<h3>Plugin Integrations</h3>
+					<p>FlexLine ships ready-made styling for a handful of popular plugins so their output matches the theme without custom CSS.</p>
+					<ul>
+						<li><strong>Gravity Forms</strong> – form fields, buttons, and validation states inherit FlexLine spacing, typography, and color tokens.</li>
+						<li><strong>Events Manager</strong> – event archives and single layouts align with theme spacing; starter settings live in <code>assets/events-manager/</code> for quick imports.</li>
+						<li><strong>Query Loop Filters</strong> – Human Made’s filter controls adopt FlexLine navigation spacing, button treatments, and form styling for consistent filter bars.</li>
+						<li><strong>Yoast SEO</strong> – required when you use patterns that include the Yoast Breadcrumbs block; the theme expects the plugin to render breadcrumb markup.</li>
+					</ul>
+				</section>
+
+
+
 				<!-- ✨ UTILITY CLASSES -->
 				<section id="utility-classes">
 					<h3>Admin &amp; Front‑end Utility Classes</h3>
@@ -769,6 +783,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
+						<li><a href="#plugin-integrations">Plugin Integrations</a></li>
 						<li><a href="#utility-classes">Utility Classes</a>
 							<ul>
 								<li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
