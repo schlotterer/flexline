@@ -504,14 +504,14 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</thead>
 							<tbody>
 						<?php
-							foreach ( $block_docs as $block => $data ) {
-								$attributes = $data['attributes'] ?? array();
-								$styles     = $data['styles'] ?? array();
+						foreach ( $block_docs as $block => $data ) {
+							$attributes = $data['attributes'] ?? array();
+							$styles     = $data['styles'] ?? array();
 
-								$attribute_names = array_column( $attributes, 'name' );
-								$style_slugs     = array_column( $styles, 'slug' );
+							$attribute_names = array_column( $attributes, 'name' );
+							$style_slugs     = array_column( $styles, 'slug' );
 
-								echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+							echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
 							echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
 
 							echo '<td>';
@@ -529,7 +529,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							}
 							echo '</td>';
 
-								echo '<td>';
+							echo '<td>';
 							if ( $styles ) {
 								echo '<ul>';
 								foreach ( $styles as $style ) {
