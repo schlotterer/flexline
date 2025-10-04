@@ -137,17 +137,28 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
 		if ( false !== strpos( $block_content, '<a' ) ) {
-			$label = '';
+			
+			$label         = '';
+			$attachment_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
 
-			// get the image alt from the image id.
-			$alt = get_post_meta( $block['attrs']['id'], '_wp_attachment_image_alt', true );
-			// get the file name from the image id.
-			$filename = basename( get_attached_file( $block['attrs']['id'] ) );
+			if ( $attachment_id ) {
+				$alt      = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+				$filepath = get_attached_file( $attachment_id );
+				$filename = $filepath ? basename( $filepath ) : '';
 
-			// fallback to "Link to (file name)".
-			if ( ! $alt ) {
-				$label = $filename . ' Link';
+				if ( $alt ) {
+					$label = $alt;
+				} elseif ( $filename ) {
+					$label = sprintf( 'Link to %s', $filename );
+				}
+			} elseif ( ! empty( $block['attrs']['alt'] ) ) {
+				$label = $block['attrs']['alt'];
 			}
+
+			if ( '' === $label ) {
+				$label = 'Image link';
+			}
+
 			$label     = sanitize_text_field( $label );
 			$processor = new WP_HTML_Tag_Processor( $block_content );
 			while ( $processor->next_tag( 'a' ) ) {
