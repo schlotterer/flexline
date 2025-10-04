@@ -2,7 +2,7 @@
 	"version": 3,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
     "title": "Whiskey",
-	"description":  "Crimson Text and Jost",
+	"description":  "Didact Gothic and Source Sans 3",
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -13,27 +13,27 @@
 			"spacingSizes": [
 				{
 					"name": "Extra Small",
-					"size": "12px",
+					"size": "8px",
 					"slug": "x-small"
 				},
 				{
 					"name": "Small",
-					"size": "18px",
+					"size": "12px",
 					"slug": "small"
 				},
 				{
-					"name": "Medium ( 24px / 32px )",
-					"size": "clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 1.5625)), 32px)",
+					"name": "Medium ( 16px / 20px )",
+					"size": "clamp(16px, calc(1.5rem + ((1vw - 7.68px) * 1.5625)), 20px)",
 					"slug": "medium"
 				},
 				{
-					"name": "Large ( 32px / 48px )",
-					"size": "clamp(32px, calc(2rem + ((1vw - 7.68px) * 3.125)), 48px)",
+					"name": "Large ( 24px / 32px )",
+					"size": "clamp(24px, calc(2rem + ((1vw - 7.68px) * 3.125)), 32px)",
 					"slug": "large"
 				},
 				{
-					"name": "Extra Large ( 32px / 64px )",
-					"size": "clamp(32px, calc(2rem + ((1vw - 7.68px) * 6.25)), 64px)",
+					"name": "Extra Large ( 28px / 56px )",
+					"size": "clamp(28px, calc(2rem + ((1vw - 7.68px) * 6.25)), 56px)",
 					"slug": "x-large"
 				},
 				{
@@ -157,27 +157,27 @@
 			],
 			"duotone": [
 				{
-				"colors": ["#0F4E63", "#ffffff"],
+				"colors": ["#2C3E50", "#ffffff"],
 				"slug": "primary",
 				"name": "Primary"
 				},
 				{
-					"colors": ["#277C49", "#ffffff"],
+					"colors": ["#1B355E", "#ffffff"],
 					"slug": "secondary",
 					"name": "Secondary"
 				},
 				{
-					"colors": ["#C33400", "#ffffff"],
+					"colors": ["#D4A017", "#ffffff"],
 					"slug": "alternate",
 					"name": "Alternate"
 				},
 				{
-					"colors": ["#277C49", "#c5e063"],
+					"colors": ["#1B355E", "#7FA9C9"],
 					"slug": "highlight",
 					"name": "Highlight"
 				},
 				{
-					"colors": ["#8A8A8A", "#FEFAE0"],
+					"colors": ["#1E1E1E", "#F4F2EE"],
 					"slug": "neutral-dark",
 					"name": "Neutral"
 				},
@@ -187,44 +187,44 @@
 					"name": "Dark"
 				},
 				{
-					"colors": ["#0F4E63", "#277C49"],
+					"colors": ["#2C3E50", "#1B355E"],
 					"slug": "primary-secondary",
 					"name": "Primary Secondary"
 				},
 				{
-					"colors": ["#0F4E63", "#c5e063"],
+					"colors": ["#2C3E50", "#7FA9C9"],
 					"slug": "primary-highlight",
 					"name": "Primary Highlight"
 				},
 				{
-					"colors": ["#0F4E63", "#C33400"],
+					"colors": ["#2C3E50", "#D4A017"],
 					"slug": "primary-alternate",
 					"name": "Primary Alt"
 				}
 			],
 			"palette": [
 				{
-					"color": "#0F4E63",
+					"color": "#2C3E50",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#277C49",
+					"color": "#1B355E",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#C33400",
+					"color": "#D4A017",
 					"name": "Alternate",
 					"slug": "alternate"
 				},
 				{
-					"color": "#c5e063",
+					"color": "#7FA9C9",
 					"name": "Highlight",
 					"slug": "highlight"
 				},
 				{
-					"color": "#FEFAE0",
+					"color": "#F4F2EE",
 					"name": "Neutral Light",
 					"slug": "neutral-light"
 				},
@@ -234,27 +234,27 @@
 					"slug": "base"
 				},
 				{
-					"color": "#0F6185",
+					"color": "#3BA6A0",
 					"name": "Primary Light",
 					"slug": "primary-light"
 				},
 				{
-					"color": "#c5e063",
+					"color": "#7FA9C9",
 					"name": "Secondary Light",
 					"slug": "secondary-light"
 				},
 				{
-					"color": "#E53D00",
+					"color": "#F4E7CA",
 					"name": "Alternate Light",
 					"slug": "alternate-light"
 				},
 				{
-					"color": "#FFDD38",
+					"color": "#E88B23",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#B8B8B8",
+					"color": "#E6E4E1",
 					"name": "Neutral",
 					"slug": "neutral"
 				},
@@ -264,27 +264,27 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#184057",
+					"color": "#1F2A36",
 					"name": "Primary Dark",
 					"slug": "primary-dark"
 				},
 				{
-					"color": "#205c55",
+					"color": "#0E243D",
 					"name": "Secondary Dark",
 					"slug": "secondary-dark"
 				},
 				{
-					"color": "#710704",
+					"color": "#A27007",
 					"name": "Alternate Dark",
 					"slug": "alternate-dark"
 				},
 				{
-					"color": "#18A957",
+					"color": "#B8DBF2",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#8A8A8A",
+					"color": "#1E1E1E",
 					"name": "Neutral Dark",
 					"slug": "neutral-dark"
 				}
@@ -297,48 +297,32 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Crimson Text', Cambria, Georgia, 'Times New Roman', 'Noto Serif', 'Liberation Serif', Times, serif",
+					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
+							"fontFamily": "'Didact Gothic'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Regular.ttf" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "600",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Bold.ttf" ]
+							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
+					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Jost'",
+							"fontFamily": "'Didact Gothic'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "200 800",
-							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.woff2" ]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
 						}
 					]
 				},
@@ -372,22 +356,22 @@
 				{
 					"fluid": false,
 					"name": "xSmall",
-					"size": "16px",
+					"size": "12px",
 					"slug": "x-small"
 				},
 				{
 					"fluid": false,
 					"name": "Small",
-					"size": "18px",
+					"size": "14px",
 					"slug": "small"
 				},
 				{
 					"fluid": {
-						"min": "18px",
-						"max": "20px"
+						"min": "16px",
+						"max": "18px"
 					},
 					"name": "Medium",
-					"size": "20px",
+					"size": "18px",
 					"slug": "medium"
 				},
 				{

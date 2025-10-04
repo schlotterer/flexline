@@ -10,48 +10,32 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Crimson Text', Cambria, Georgia, 'Times New Roman', 'Noto Serif', 'Liberation Serif', Times, serif",
+					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
+							"fontFamily": "'Didact Gothic'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Regular.ttf" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "600",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Crimson Text'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"src": [ "file:./assets/fonts/CrimsonText/CrimsonText-Bold.ttf" ]
+							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
 						}
 					]
 				},
 				{
-					"fontFamily": "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
+					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Jost'",
+							"fontFamily": "'Didact Gothic'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "200 800",
-							"src": [ "file:./assets/fonts/Jost/Jost-VariableFont_wght.woff2" ]
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
 						}
 					]
 				},
@@ -85,22 +69,22 @@
 				{
 					"fluid": false,
 					"name": "xSmall",
-					"size": "16px",
+					"size": "12px",
 					"slug": "x-small"
 				},
 				{
 					"fluid": false,
 					"name": "Small",
-					"size": "18px",
+					"size": "14px",
 					"slug": "small"
 				},
 				{
 					"fluid": {
-						"min": "18px",
-						"max": "20px"
+						"min": "16px",
+						"max": "18px"
 					},
 					"name": "Medium",
-					"size": "20px",
+					"size": "18px",
 					"slug": "medium"
 				},
 				{
