@@ -9,7 +9,7 @@
 namespace FlexLine;
 ?>
 <!-- wp:group {"metadata":{"name":"Gallery Mixed Detailed"},"className":"is-style-default","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkType":"modal_media"} -->
-<div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Modal Link / Image"},"className":"is-style-default enable-modal","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/375e895ced7441beaca739541d038554?sid=9f1eefbd-20a5-43a8-92c0-0aefe522c534"} -->
+<div class="wp-block-group is-style-default"><!-- wp:image {"aspectRatio":"3/2","scale":"cover","sizeSlug":"large","linkDestination":"none","metadata":{"name":"Modal Link / Image"},"className":"is-style-default enable-modal","enableModal":true} -->
     <figure class="wp-block-image size-large is-style-default enable-modal"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" style="aspect-ratio:3/2;object-fit:cover" /></figure>
     <!-- /wp:image -->
 

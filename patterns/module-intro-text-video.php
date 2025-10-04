@@ -22,8 +22,8 @@ namespace FlexLine;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center"} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"is-style-shadow-light","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/5dab5cacc2c44ba5999c657ba652756b?sid=7971ecc5-3c30-47e0-8038-2f5d683800b1"} -->
-            <figure class="wp-block-image aligncenter size-large is-style-shadow-light"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></figure>
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","align":"center","className":"is-style-shadow-light","enableModal":true,"href":"https://www.loom.com/embed/5dab5cacc2c44ba5999c657ba652756b?sid=7971ecc5-3c30-47e0-8038-2f5d683800b1","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+            <figure class="wp-block-image aligncenter size-large is-style-shadow-light"><a class="enable-modal-trigger" href="https://www.loom.com/embed/5dab5cacc2c44ba5999c657ba652756b?sid=7971ecc5-3c30-47e0-8038-2f5d683800b1"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" /></a></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->

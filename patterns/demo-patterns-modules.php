@@ -46,7 +46,7 @@ namespace FlexLine;
 
 <!-- wp:pattern {"slug":"flexline/text-video"} /-->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/ee1c9f2c778040869684a7d42b5c44fc?sid=c71b8a3e-f125-4618-a884-61ab905308f8"} -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/ee1c9f2c778040869684a7d42b5c44fc-d6b12d998bcddf68-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
@@ -60,7 +60,7 @@ namespace FlexLine;
 
 <!-- wp:pattern {"slug":"flexline/feature-image-links"} /-->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/5ee235f46510467f9c3d68fbae8a7d3b?sid=c4093d7d-d56b-4140-aa1e-78d2f4e6e699"} -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/5ee235f46510467f9c3d68fbae8a7d3b-a0b897b891122823-full-play.gif" alt="" /></figure>
 <!-- /wp:image -->
 
@@ -71,7 +71,7 @@ namespace FlexLine;
 
     <!-- wp:pattern {"slug":"flexline/feature-page-cover"} /-->
 
-    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/fe0fc616d2d14aa1bd25337b71e12ebd?sid=7b14593c-dd07-452b-a3f7-76733fa3305b"} -->
+    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
     <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/fe0fc616d2d14aa1bd25337b71e12ebd-66fd7e01e88bf61e-full-play.gif" alt="" /></figure>
     <!-- /wp:image -->
 </div>
@@ -87,7 +87,7 @@ namespace FlexLine;
 
 <!-- wp:pattern {"slug":"flexline/posts-sticky-feature"} /-->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/6bdc68b4ee104dcea8b3b727e7bd9c15?sid=329838ac-25f4-4bb2-9756-0b1acfd14855"} -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/6bdc68b4ee104dcea8b3b727e7bd9c15-88881c4779b63eea-full-play.gif" /></figure>
 <!-- /wp:image -->
 
@@ -103,7 +103,7 @@ namespace FlexLine;
 
 <!-- wp:pattern {"slug":"flexline/section-gallery"} /-->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/b444cc9536b94f839ff9cfd6eb499573?sid=c02dd3b3-cba1-4639-b5df-6a686db3d1ce"} -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/b444cc9536b94f839ff9cfd6eb499573-c64ac6b5a1a3131f-full-play.gif" /></figure>
 <!-- /wp:image -->
 
@@ -121,6 +121,6 @@ namespace FlexLine;
 
 <!-- wp:pattern {"slug":"flexline/module-gallery-by-title-small"} /-->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/571c362e2cc34b2eac1fad6c37740ffd?sid=2dfcfbf0-b551-417b-89f7-c1636dbcdd37"} -->
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-shadow-diffused","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true} -->
 <figure class="wp-block-image aligncenter size-large enable-modal is-style-shadow-diffused" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/571c362e2cc34b2eac1fad6c37740ffd-98d44188b3bac706-full-play.gif" /></figure>
 <!-- /wp:image -->

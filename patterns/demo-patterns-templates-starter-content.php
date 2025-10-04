@@ -129,8 +129,8 @@ namespace FlexLine;
     <p>💡 <em>Tip:</em> Need unique defaults per author? Create variations (e.g. <code>post-starter-marketing</code>) and have authors duplicate/rename as needed.</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/2264ecddc28a4bbaa56910c34e85ac6b?sid=f866bc23-0ff1-4f50-b134-f4848042f6cd"} -->
-    <figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/2264ecddc28a4bbaa56910c34e85ac6b-909a66f8f02d8a83-full-play.gif" alt="" /></figure>
+    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"href":"https://www.loom.com/embed/2264ecddc28a4bbaa56910c34e85ac6b?sid=f866bc23-0ff1-4f50-b134-f4848042f6cd","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+    <figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><a class="enable-modal-trigger" href="https://www.loom.com/embed/2264ecddc28a4bbaa56910c34e85ac6b?sid=f866bc23-0ff1-4f50-b134-f4848042f6cd"><img src="https://cdn.loom.com/sessions/thumbnails/2264ecddc28a4bbaa56910c34e85ac6b-909a66f8f02d8a83-full-play.gif" alt="" /></a></figure>
     <!-- /wp:image -->
 </div>
 <!-- /wp:group -->
@@ -169,8 +169,8 @@ namespace FlexLine;
 </div>
 <!-- /wp:group -->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/3d1a56ebc7894762a79ff12827d0b391?sid=41cfdc28-cdd2-496a-a379-21840939d249"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/3d1a56ebc7894762a79ff12827d0b391-dbde3211ac8d0b73-full-play.gif" /></figure>
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"href":"https://www.loom.com/embed/3d1a56ebc7894762a79ff12827d0b391?sid=41cfdc28-cdd2-496a-a379-21840939d249","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><a class="enable-modal-trigger" href="https://www.loom.com/embed/3d1a56ebc7894762a79ff12827d0b391?sid=41cfdc28-cdd2-496a-a379-21840939d249"><img src="https://cdn.loom.com/sessions/thumbnails/3d1a56ebc7894762a79ff12827d0b391-dbde3211ac8d0b73-full-play.gif" /></a></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->

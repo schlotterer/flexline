@@ -33,7 +33,7 @@ namespace FlexLine;
                         <div class="wp-block-button flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#quickForm">Contact Us</a></div>
                         <!-- /wp:button -->
 
-                        <!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59"} -->
+                        <!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true} -->
                         <div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59">Watch video</a></div>
                         <!-- /wp:button -->
                     </div>

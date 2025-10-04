@@ -45,8 +45,8 @@ namespace FlexLine;
     <p>If you prefer to start with a “Page Title” layout as your default, simply copy all blocks from the Page with Title template and paste them into the Pages template.</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/6dfb90a1696b40f7b5fb5c81b6d05110?sid=8b3ae847-cc49-487d-9926-848f06dbded5"} -->
-    <figure class="wp-block-image aligncenter size-large enable-modal is-style-card"><img src="https://cdn.loom.com/sessions/thumbnails/6dfb90a1696b40f7b5fb5c81b6d05110-a71ef96d173e7521-full-play.gif" alt="" /></figure>
+    <!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","enableModal":true,"href":"https://www.loom.com/embed/6dfb90a1696b40f7b5fb5c81b6d05110?sid=8b3ae847-cc49-487d-9926-848f06dbded5","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+    <figure class="wp-block-image aligncenter size-large enable-modal is-style-card"><a class="enable-modal-trigger" href="https://www.loom.com/embed/6dfb90a1696b40f7b5fb5c81b6d05110?sid=8b3ae847-cc49-487d-9926-848f06dbded5"><img src="https://cdn.loom.com/sessions/thumbnails/6dfb90a1696b40f7b5fb5c81b6d05110-a71ef96d173e7521-full-play.gif" alt="" /></a></figure>
     <!-- /wp:image -->
 </div>
 <!-- /wp:group -->
@@ -112,8 +112,8 @@ namespace FlexLine;
 </figure>
 <!-- /wp:table -->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/b1288f06a5164237b2a515337fb197d9?sid=07182181-2d51-462b-8e99-d43cf2dab4ec"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/b1288f06a5164237b2a515337fb197d9-d9350ab9ec1a3014-full-play.gif" alt="" /></figure>
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"href":"https://www.loom.com/embed/b1288f06a5164237b2a515337fb197d9?sid=07182181-2d51-462b-8e99-d43cf2dab4ec","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><a class="enable-modal-trigger" href="https://www.loom.com/embed/b1288f06a5164237b2a515337fb197d9?sid=07182181-2d51-462b-8e99-d43cf2dab4ec"><img src="https://cdn.loom.com/sessions/thumbnails/b1288f06a5164237b2a515337fb197d9-d9350ab9ec1a3014-full-play.gif" alt="" /></a></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->
@@ -196,8 +196,8 @@ namespace FlexLine;
 </div>
 <!-- /wp:group -->
 
-<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"modalMediaURL":"https://www.loom.com/embed/792a78f73a2d4c9fac5e45cf78cdb985?sid=c4cce133-b89c-4f9d-88a3-539f6c1bc6da"} -->
-<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><img src="https://cdn.loom.com/sessions/thumbnails/792a78f73a2d4c9fac5e45cf78cdb985-89a9d0d76037302b-full-play.gif" alt="" /></figure>
+<!-- wp:image {"sizeSlug":"large","align":"center","className":"enable-modal is-style-card","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"enableModal":true,"href":"https://www.loom.com/embed/792a78f73a2d4c9fac5e45cf78cdb985?sid=c4cce133-b89c-4f9d-88a3-539f6c1bc6da","linkDestination":"custom","linkClass":"enable-modal-trigger"} -->
+<figure class="wp-block-image aligncenter size-large enable-modal is-style-card" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><a class="enable-modal-trigger" href="https://www.loom.com/embed/792a78f73a2d4c9fac5e45cf78cdb985?sid=c4cce133-b89c-4f9d-88a3-539f6c1bc6da"><img src="https://cdn.loom.com/sessions/thumbnails/792a78f73a2d4c9fac5e45cf78cdb985-89a9d0d76037302b-full-play.gif" alt="" /></a></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator {"className":"is-style-dots"} -->

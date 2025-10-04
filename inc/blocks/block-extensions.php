@@ -137,40 +137,124 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
 		if ( false !== strpos( $block_content, '<a' ) ) {
-			$label = '';
-
-			// get the image alt from the image id.
-			$alt = get_post_meta( $block['attrs']['id'], '_wp_attachment_image_alt', true );
-			// get the file name from the image id.
-			$filename = basename( get_attached_file( $block['attrs']['id'] ) );
-
-			// fallback to "Link to (file name)".
-			if ( ! $alt ) {
-				$label = $filename . ' Link';
-			}
-			$label     = sanitize_text_field( $label );
-			$processor = new WP_HTML_Tag_Processor( $block_content );
-			while ( $processor->next_tag( 'a' ) ) {
-				$has_aria  = $processor->get_attribute( 'aria-label' );
-				$has_title = $processor->get_attribute( 'title' );
-				if ( null === $has_aria && null === $has_title ) {
-					$processor->set_attribute( 'aria-label', $label );
-					break; // Label the first anchor encountered.
+			$label    = '';
+			$image_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
+			$alt      = '';
+			$filename = '';
+			if ( $image_id ) {
+				$alt           = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+				$attached_file = get_attached_file( $image_id );
+				if ( $attached_file ) {
+					$filename = basename( $attached_file );
 				}
 			}
-			$block_content = $processor->get_updated_html();
-
+			if ( ! $alt || ! $filename ) {
+				$img_processor = new WP_HTML_Tag_Processor( $block_content );
+				if ( $img_processor->next_tag( 'img' ) ) {
+					if ( ! $alt ) {
+						$alt = (string) $img_processor->get_attribute( 'alt' );
+					}
+					if ( ! $filename ) {
+						$src = $img_processor->get_attribute( 'src' );
+						if ( $src ) {
+							$filename = wp_basename( $src );
+						}
+					}
+				}
+			}
+			if ( $alt ) {
+				$label = $alt;
+			} elseif ( $filename ) {
+				$label = $filename . ' Link';
+			}
+			$label = sanitize_text_field( $label );
+			if ( '' !== $label ) {
+				$processor = new WP_HTML_Tag_Processor( $block_content );
+				while ( $processor->next_tag( 'a' ) ) {
+					$has_aria  = $processor->get_attribute( 'aria-label' );
+					$has_title = $processor->get_attribute( 'title' );
+					if ( null === $has_aria && null === $has_title ) {
+						$processor->set_attribute( 'aria-label', $label );
+						break; // Label the first anchor encountered.
+					}
+				}
+				$block_content = $processor->get_updated_html();
+			}
 		}
-		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
-			// Add a class.
-			// Add the media URL as a data attribute if it exists.
-			if ( ! empty( $block['attrs']['modalMediaURL'] ) ) {
-				// Insert your data attribute just before the closing tag of the element.
-				// This is a basic string replacement and might need to be adjusted based on the block markup.
-				// $block_content = str_replace('>', ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">', $block_content);'.
-				$search_string  = '>';
-				$replace_string = ' data-modal-media-url="' . esc_attr( $block['attrs']['modalMediaURL'] ) . '">';
-				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+		$should_enable_modal = ! empty( $block['attrs']['enableModal'] );
+		if ( ! $should_enable_modal ) {
+			if ( false !== strpos( $block_content, ' enable-modal' ) || false !== strpos( $block_content, 'data-modal-media-url="' ) ) {
+				$should_enable_modal = true;
+			}
+		}
+		if ( $should_enable_modal ) {
+				$legacy_modal_url = isset( $block['attrs']['modalMediaURL'] ) ? trim( (string) $block['attrs']['modalMediaURL'] ) : '';
+				$modal_url        = $legacy_modal_url;
+			if ( empty( $modal_url ) && ! empty( $block['attrs']['href'] ) ) {
+				$modal_url = $block['attrs']['href'];
+			}
+			if ( empty( $modal_url ) ) {
+				$fallback_processor = new WP_HTML_Tag_Processor( $block_content );
+				while ( $fallback_processor->next_tag() ) {
+					$fallback_url = $fallback_processor->get_attribute( 'data-modal-media-url' );
+					if ( ! empty( $fallback_url ) ) {
+						$modal_url = $fallback_url;
+						break;
+					}
+				}
+			}
+
+				$anchor_processor = new WP_HTML_Tag_Processor( $block_content );
+			$found_anchor         = false;
+			if ( $anchor_processor->next_tag( 'a' ) ) {
+				$found_anchor = true;
+				$current_href = $anchor_processor->get_attribute( 'href' );
+				if ( $legacy_modal_url && empty( $current_href ) ) {
+					$anchor_processor->set_attribute( 'href', esc_url( $legacy_modal_url ) );
+					$current_href = $legacy_modal_url;
+				}
+				if ( empty( $modal_url ) && $current_href ) {
+					$modal_url = $current_href;
+				}
+
+				$current_classes = $anchor_processor->get_attribute( 'class' );
+				$class_string    = is_string( $current_classes ) ? trim( $current_classes ) : '';
+				foreach ( array( 'enable-modal-trigger' ) as $class_name ) {
+					if ( false === strpos( ' ' . $class_string . ' ', ' ' . $class_name . ' ' ) ) {
+						$class_string = trim( $class_string . ' ' . $class_name );
+					}
+				}
+				if ( '' !== $class_string ) {
+					$anchor_processor->set_attribute( 'class', $class_string );
+				}
+				if ( ! empty( $modal_url ) ) {
+					$anchor_processor->set_attribute( 'data-modal-media-url', esc_url( $modal_url ) );
+				}
+				$block_content = $anchor_processor->get_updated_html();
+			}
+
+			if ( ! $found_anchor && ! empty( $modal_url ) ) {
+				$modal_url_attr  = esc_url( $modal_url );
+				$target_attr     = ! empty( $block['attrs']['linkTarget'] ) ? ' target="' . esc_attr( $block['attrs']['linkTarget'] ) . '"' : '';
+				$rel_attr        = ! empty( $block['attrs']['rel'] ) ? ' rel="' . esc_attr( $block['attrs']['rel'] ) . '"' : '';
+				$anchor_open     = sprintf(
+					'<a class="enable-modal-trigger" href="%1$s" data-modal-media-url="%1$s"%2$s%3$s>',
+					$modal_url_attr,
+					$target_attr,
+					$rel_attr
+				);
+				$wrapped_content = preg_replace( '/(<img\b[^>]*>)/', $anchor_open . '$1</a>', $block_content, 1 );
+				if ( null !== $wrapped_content ) {
+					$block_content = $wrapped_content;
+				}
+			}
+
+			if ( ! empty( $modal_url ) ) {
+				$wrapper_processor = new WP_HTML_Tag_Processor( $block_content );
+				if ( $wrapper_processor->next_tag() ) {
+					$wrapper_processor->set_attribute( 'data-modal-media-url', esc_url( $modal_url ) );
+					$block_content = $wrapper_processor->get_updated_html();
+				}
 			}
 		}
 	}

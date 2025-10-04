@@ -78,37 +78,37 @@ function flexline_get_block_styles() {
 				'creative' => __( 'Creative', 'flexline' ),
 			),
 			'core/site-title'           => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/post-title'           => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/post-terms'           => array(
-				'eyebrow' => __( 'Eyebrow', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/post-date'            => array(
-				'eyebrow' => __( 'Eyebrow', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/post-navigation-link' => array(
 				'eyebrow' => __( 'Eyebrow', 'flexline' ),
 			),
 			'core/query-title'          => array(
-				'creative' => __( 'Creative', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/site-tagline'         => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/term-description'     => array(
-				'eyebrow' => __( 'Eyebrow', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/button'               => array(

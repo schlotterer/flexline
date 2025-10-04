@@ -23,24 +23,14 @@ function getVideoEmbedUrl(mediaUrl) {
 
 	return '';
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-	const enableModal = (element, url) => {
+	const processedTriggers = new WeakSet();
+
+	function enableModal(element, url) {
 		element.classList.add('has-modal');
 		element.setAttribute('data-enable-modal', 'true');
 		element.setAttribute('data-modal-media-url', url);
-
-		const iconPlay =
-			'<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg"  height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M320-200v-560l440 280-440 280Z"/></svg></span>';
-		const iconExpand =
-			'<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg></span>';
-
-		if (/youtube\.com|youtu\.be|vimeo\.com|\.mp4|\.webm|\.ogg/.test(url)) {
-			// add the play icon to the end of the button content
-			element.insertAdjacentHTML('beforeend', iconPlay);
-		} else {
-			// add the expand icon to the end of the button content
-			element.insertAdjacentHTML('beforeend', iconExpand);
-		}
 
 		// Accessibility: make non-interactive elements operable
 		const isLink = element.tagName === 'A';
@@ -76,11 +66,33 @@ document.addEventListener('DOMContentLoaded', () => {
 				openFromTrigger(e.currentTarget);
 			}
 		});
+	}
+
+	const tryEnableModal = (element, url) => {
+		if (!element || processedTriggers.has(element)) {
+			return;
+		}
+		const mediaUrl = url || element.dataset.modalMediaUrl;
+		if (!mediaUrl) {
+			return;
+		}
+		enableModal(element, mediaUrl);
+		processedTriggers.add(element);
 	};
+
+	document.querySelectorAll('.enable-modal-trigger').forEach((trigger) => {
+		const mediaUrl =
+			trigger.dataset.modalMediaUrl ||
+			trigger.getAttribute(trigger.tagName === 'A' ? 'href' : 'src');
+		tryEnableModal(trigger, mediaUrl);
+	});
 
 	document
 		.querySelectorAll('.enable-modal:not(.wp-block-button)')
 		.forEach((block) => {
+			if (block.querySelector('.enable-modal-trigger')) {
+				return;
+			}
 			const mediaElement = block.querySelector('img, a');
 			if (!mediaElement) {
 				return;
@@ -91,45 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				mediaElement.getAttribute(
 					mediaElement.tagName === 'A' ? 'href' : 'src'
 				);
-			if (mediaUrl) {
-				enableModal(mediaElement, mediaUrl);
-			}
+			tryEnableModal(mediaElement, mediaUrl);
 		});
 
 	// find all .enable-modal.wp-block-button elements
 	document
 		.querySelectorAll('.enable-modal.wp-block-button a')
 		.forEach((element) => {
-			const url = element.href;
-			if (!url) {
-				return;
-			}
-
-			if (url) {
-				element.setAttribute('aria-haspopup', 'dialog');
-				element.setAttribute('aria-controls', 'flexline-modal');
-				element.setAttribute('aria-expanded', 'false');
-				if (
-					!element.textContent.trim() &&
-					!element.getAttribute('aria-label')
-				) {
-					element.setAttribute('aria-label', 'Open media in modal');
-				}
-				const openFromTrigger = (trigger) => {
-					trigger.setAttribute('aria-expanded', 'true');
-					displayModal(url, trigger);
-				};
-				element.addEventListener('click', (e) => {
-					e.preventDefault();
-					openFromTrigger(e.currentTarget);
-				});
-				element.addEventListener('keydown', (e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openFromTrigger(e.currentTarget);
-					}
-				});
-			}
+			const url = element.dataset.modalMediaUrl || element.href;
+			tryEnableModal(element, url);
 		});
 
 	document
