@@ -220,60 +220,32 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 		// Merge registered block styles.
 		$block_styles       = \FlexLine\flexline_get_block_styles();
 		$text_shadow_blocks = array(
-			// Headings & titles.
-			'core/heading',
-			'core/post-title',
-			'core/query-title',
-			'core/site-title',
-			'core/site-tagline',
-
-			// Text content.
+			// Core content blocks that surface the RichText toolbar.
 			'core/paragraph',
+			'core/heading',
 			'core/list',
 			'core/quote',
 			'core/pullquote',
 			'core/verse',
+			'core/preformatted',
+			'core/code',
 			'core/table',
-			'core/details',
+			'core/post-excerpt',
+			'core/post-author',
+			'core/cover',
+			'core/media-text',
 
-			// Buttons & links.
-			'core/button',
-			'core/read-more',
-			'core/navigation-link',
-			'core/navigation-submenu',
-
-			// Captions (figcaption uses RichText).
+			// Media captions and embeds expose inline formatting controls.
 			'core/image',
 			'core/gallery',
 			'core/audio',
 			'core/video',
-
-			// Post metadata & excerpt.
-			'core/post-excerpt',
-			'core/post-author',
-			'core/post-author-name',
-			'core/post-terms',
-
-			// Comments.
-			'core/comment-author-name',
-			'core/comment-date',
-			'core/comment-edit-link',
-			'core/comment-reply-link',
-
-			// Query pagination.
-			'core/post-navigation-link',
-			'core/query-pagination',
-			'core/query-pagination-previous',
-			'core/query-pagination-next',
-			'core/query-pagination-numbers',
+			'core/embed',
 		);
 
-		foreach ( $text_shadow_blocks as $block ) {
-			if ( ! isset( $block_styles[ $block ] ) ) {
-					$block_styles[ $block ] = array();
-			}
-			$block_styles[ $block ]['text-shadow'] = __( 'Text Shadow', 'flexline' );
-		}
+		sort( $text_shadow_blocks, SORT_NATURAL | SORT_FLAG_CASE );
+
+		$text_shadow_description = __( 'Adds FlexLine’s subtle shadow inline via the RichText toolbar (wraps selections in <code>is-style-text-shadow</code>). Available wherever a block exposes standard inline formats.', 'flexline' );
 
 		$style_descriptions = array(
 			'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
@@ -291,7 +263,6 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',
 			'light-over-dark' => 'Light text on dark backgrounds for hero/footers.',
 			'outline'         => 'Navigation links gain a 1 px outline & padding on desktop-up.',
-			'text-shadow'     => 'Applies the theme’s subtle text shadow vid the RichText Editor',
 			'eyebrow'         => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
 			'creative'        => 'Large decorative headline style using the site’s creative font.',
 			'glass-button'    => 'Transparent glass button with blur & subtle border that intensifies on hover.',
@@ -511,35 +482,36 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								</select>
 							</div>
 	
-							<div class="flexline-filter">
-								<label for="flexline-style-filter">Filter by style</label>
-								<select id="flexline-style-filter">
-									<option value="">All</option>
-								<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
-										<option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
-									<?php endforeach; ?>
-								</select>
-							</div>
+						<div class="flexline-filter">
+							<label for="flexline-style-filter">Filter by style</label>
+							<select id="flexline-style-filter">
+								<option value="">All</option>
+							<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+									<option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+							<?php endforeach; ?>
+							</select>
 						</div>
-	
-						<table id="flexline-docs-table" class="flexline-docs-table">
-							<thead>
-								<tr>
-									<th style="width:25%">Block Name</th>
-									<th style="width:35%">Custom Attribute</th>
-									<th>Style Variation</th>
-								</tr>
-							</thead>
+
+					</div>
+
+					<table id="flexline-docs-table" class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:25%">Block Name</th>
+								<th style="width:35%">Custom Attribute</th>
+								<th>Style Variation</th>
+							</tr>
+						</thead>
 							<tbody>
 						<?php
-						foreach ( $block_docs as $block => $data ) {
-							$attributes = $data['attributes'] ?? array();
-							$styles     = $data['styles'] ?? array();
+							foreach ( $block_docs as $block => $data ) {
+								$attributes = $data['attributes'] ?? array();
+								$styles     = $data['styles'] ?? array();
 
-							$attribute_names = array_column( $attributes, 'name' );
-							$style_slugs     = array_column( $styles, 'slug' );
+								$attribute_names = array_column( $attributes, 'name' );
+								$style_slugs     = array_column( $styles, 'slug' );
 
-							echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
+								echo '<tr data-attributes="' . esc_attr( implode( ', ', $attribute_names ) ) . '" data-styles="' . esc_attr( implode( ', ', $style_slugs ) ) . '">';
 							echo '<td class="block-name"><code>' . esc_html( $block ) . '</code></td>';
 
 							echo '<td>';
@@ -557,7 +529,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							}
 							echo '</td>';
 
-							echo '<td>';
+								echo '<td>';
 							if ( $styles ) {
 								echo '<ul>';
 								foreach ( $styles as $style ) {
@@ -577,6 +549,15 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						?>
 							</tbody>
 						</table>
+
+						<div class="flexline-inline-format">
+							<h2>Inline Formats ( RichText Toolbar )</h2>
+							<ul>
+								<li><strong>Text Shadow:</strong><?php echo ' ' . wp_kses_post( $text_shadow_description ); ?></li>
+							</ul>
+							
+							
+						</div>
 					</div>
 				</section>
 
@@ -589,7 +570,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><strong>Gravity Forms</strong> – form fields, buttons, and validation states inherit FlexLine spacing, typography, and color tokens.</li>
 						<li><strong>Events Manager</strong> – event archives and single layouts align with theme spacing; starter settings live in <code>assets/events-manager/</code> for quick imports.</li>
-						<li><strong>Query Loop Filters</strong> – Human Made’s filter controls adopt FlexLine navigation spacing, button treatments, and form styling for consistent filter bars.</li>
+						<li><strong>Query Loop Filters</strong> – Human Made’s filter controls adopt FlexLine navigation spacing, button treatments, and form styling for consistent filter bars. <a href="https://github.com/humanmade/query-filter" target="_blank">Download from Github</a></li>
 						<li><strong>Yoast SEO</strong> – required when you use patterns that include the Yoast Breadcrumbs block; the theme expects the plugin to render breadcrumb markup.</li>
 					</ul>
 				</section>
@@ -753,34 +734,34 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 	
 				
 	
-				<!-- ✨ DEMO PATTERNS -->
-				<section id="demo-patterns">
-					<h3>Demo Patterns</h3>
-					<p>
-						Want to explore every FlexLine pattern in one place? Create a
-						blank Page or Post, switch the editor to <strong>Code view</strong>,
-						and paste the snippet below. Hit “Update/Publish” and you’ll get a
-						fully-built demo page showcasing all pattern groups and templates.
-					</p>
+<!-- ✨ DEMO PATTERNS -->
+<section id="demo-patterns">
+<h3>Demo Patterns</h3>
+<p>
+	Want to explore every FlexLine pattern in one place? Create a
+	blank Page or Post, switch the editor to <strong>Code view</strong>,
+	and paste the snippet below. Hit “Update/Publish” and you’ll get a
+	fully-built demo page showcasing all pattern groups and templates.
+</p>
 	
-					<pre>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
-					</pre>
+<pre>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
+</pre>
 	
-					<p class="notice">
-						<em>Tip:</em> After previewing the page, you can delete sections you
-						don’t need or copy individual patterns into other pages.
-					</p>
-				</section>
+<p class="notice">
+	<em>Tip:</em> After previewing the page, you can delete sections you
+	don’t need or copy individual patterns into other pages.
+</p>
+</section>
 	
 	
 	
