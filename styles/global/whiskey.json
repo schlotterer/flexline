@@ -458,7 +458,7 @@
 			"linkTextDecoThickness": "1px",
 			"navMainColor": "var(--wp--preset--color--contrast)",
 			"navMainHoverColor": "var(--wp--preset--color--secondary)",
-			"navMainSubColor": "var(--wp--preset--color--primary)",
+			"navMainSubColor": "var(--wp--preset--color--contrast)",
 			"navMainSubHoverColor": "var(--wp--preset--color--secondary)",
 			"navDarkOverLightColor": "var(--wp--preset--color--contrast)",
 			"navDarkOverLightHoverColor": "var(--wp--preset--color--secondary)",
