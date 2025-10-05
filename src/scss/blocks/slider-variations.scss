@@ -17,9 +17,10 @@
 /* Front-end baseline: reserve height as soon as markup loads */
 body:not(.block-editor-page) .is-style-slider {
   position: relative;
+  --slider-height-default: calc(100dvh - var(--header-site-header-height, 0px));
   min-height: var(
     --slider-height-default,
-    calc(100svh - var(--header-site-header-height, 0px))
+    calc(100dvh - var(--header-site-header-height, 0px))
   );
 }
 
@@ -28,14 +29,14 @@ body:not(.block-editor-page) .is-style-slider {
   position: relative;
   min-height: var(
     --slider-height-default,
-    calc(100svh - var(--header-site-header-height, 0px))
+    calc(100dvh - var(--header-site-header-height, 0px))
   );
   /* Prevent scroll chaining/jumps while interacting in Preview */
   overscroll-behavior: contain;
 }
 /* Editor (both Edit and Preview): ensure a default value is available */
 .editor-styles-wrapper .is-style-slider {
-  --slider-height-default: calc(100svh - var(--header-site-header-height, 0px));
+  --slider-height-default: calc(100dvh - var(--header-site-header-height, 0px));
 }
 
 .editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout,
@@ -56,26 +57,26 @@ body:not(.block-editor-page) .is-style-slider {
 .editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
   min-height: var(
     --slider-height,
-    var(--slider-height-default, calc(100svh - var(--header-site-header-height, 0px)))
+    var(--slider-height-default, calc(100vh - var(--header-site-header-height, 0px)))
   );
 }
 
 .is-style-slider.slider-runtime-active {
   height: var(--slider-height,
           var(--slider-height-default,
-          calc(100svh - var(--header-site-header-height, 0px)))) !important;
+          calc(100vh - var(--header-site-header-height, 0px)))) !important;
   position: relative;
   /* Default height chain; explicit user height guarded by class below */
   min-height: var(
     --slider-height-default,
-    calc(100svh - var(--header-site-header-height, 0px))
+    calc(100vh - var(--header-site-header-height, 0px))
   );
 }
 
 /* If user provided a height, opt-in via class to override default */
 .is-style-slider.slider-runtime-active.slider-has-height {
-  min-height: var(--slider-height) !important;
-  height: var(--slider-height) !important;
+  min-height: var(--slider-height, var(--slider-height-default)) !important;
+  height: var(--slider-height, var(--slider-height-default)) !important;
 }
 
 /* Ensure each Cover inside the slider fills the slide height */

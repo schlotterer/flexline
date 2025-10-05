@@ -12,6 +12,7 @@ import slider from './slider';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';
+import siteLogo from './site-logo';
 import visibility from './visibility';
 
 const handlers = {
@@ -30,7 +31,7 @@ const handlers = {
 	'core/paragraph': visibility,
 	'core/heading': visibility,
 	'core/video': visibility,
-	'core/site-logo': visibility,
+	'core/site-logo': siteLogo,
 	'core/post-featured-image': visibility,
 	'core/embed': visibility,
 	'core/navigation-submenu': visibility,
