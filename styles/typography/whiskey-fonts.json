@@ -10,17 +10,17 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
+					"fontFamily": "'Lora', Cambria, Georgia, 'Times New Roman', 'Noto Serif', 'Liberation Serif', Times, serif",
 					"name": "Brand",
 					"slug": "brand",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Didact Gothic'",
+							"fontFamily": "'Lora'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
+							"fontWeight": "400 700",
+							"src": [ "file:./assets/fonts/Lora/Lora-VariableFont_wght.woff2" ]
 						}
 					]
 				},
