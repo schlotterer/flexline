@@ -25,33 +25,19 @@
 					]
 				},
 				{
-					"fontFamily": "'Sulphur Point', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
+					"fontFamily": "'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
 					"name": "Display",
 					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
-							"fontFamily": "'Sulphur Point'",
+							"fontFamily": "'Montserrat'",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "300",
-							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Light.woff2" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Sulphur Point'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Regular.woff2" ]
-						},
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Sulphur Point'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "700",
-							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Bold.woff2" ]
+							"fontWeight": "100 900",
+							"src": [
+								"file:./assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2"
+							]
 						}
 					]
 				},
