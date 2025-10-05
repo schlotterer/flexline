@@ -313,8 +313,8 @@
 				},
 				{
 					"fontFamily": "'Sulphur Point', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
-					"name": "Brand",
-					"slug": "brand",
+					"name": "Display",
+					"slug": "display",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
