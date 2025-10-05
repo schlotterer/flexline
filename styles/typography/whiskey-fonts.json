@@ -25,9 +25,40 @@
 					]
 				},
 				{
+					"fontFamily": "'Sulphur Point', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
+					"name": "Brand",
+					"slug": "brand",
+					"fontFace": [
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Light.woff2" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Regular.woff2" ]
+						},
+						{
+							"fontDisplay": "fallback",
+							"fontFamily": "'Sulphur Point'",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [ "file:./assets/fonts/SulphurPoint/SulphurPoint-Bold.woff2" ]
+						}
+					]
+				},
+				{
 					"fontFamily": "'Didact Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
-					"name": "Display",
-					"slug": "display",
+					"name": "Body",
+					"slug": "body",
 					"fontFace": [
 						{
 							"fontDisplay": "fallback",
@@ -36,21 +67,6 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [ "file:./assets/fonts/DidactGothic/DidactGothic-Regular.ttf" ]
-						}
-					]
-				},
-				{
-					"fontFamily": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif",
-					"name": "Body",
-					"slug": "body",
-					"fontFace": [
-						{
-							"fontDisplay": "fallback",
-							"fontFamily": "'Source Sans 3'",
-							"fontStretch": "normal",
-							"fontStyle": "normal",
-							"fontWeight": "200 900",
-							"src": [ "file:./assets/fonts/SourceSans3/SourceSans3-VariableFont_wght.woff2" ]
 						}
 					]
 				},
@@ -69,22 +85,22 @@
 				{
 					"fluid": false,
 					"name": "xSmall",
-					"size": "12px",
+					"size": "14px",
 					"slug": "x-small"
 				},
 				{
 					"fluid": false,
 					"name": "Small",
-					"size": "14px",
+					"size": "16px",
 					"slug": "small"
 				},
 				{
 					"fluid": {
-						"min": "16px",
-						"max": "18px"
+						"min": "18px",
+						"max": "20px"
 					},
 					"name": "Medium",
-					"size": "18px",
+					"size": "20px",
 					"slug": "medium"
 				},
 				{
