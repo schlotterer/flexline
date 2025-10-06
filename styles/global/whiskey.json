@@ -1045,6 +1045,6 @@
 				"css": "& p {margin: 0;}"
 			}
 		},
-		"css": "& .material-symbols-outlined { font-variation-settings:var(--wp--custom--icon-settings); }"
+		"css": "& .material-symbols-outlined { font-variation-settings:var(--wp--custom--icon-settings); } & .material-symbols-outlined { font-variation-settings:var(--wp--custom--icon-settings); } & .material-symbols-outlined { font-variation-settings:var(--wp--custom--icon-settings); }.flexline button#slide-in-menu-button{ box-shadow:none;color:var(--wp--preset--color--contrast)!important;fill:var(--wp--preset--color--contrast) !important;}.flexline button#slide-in-menu-button:hover{ box-shadow:none;}.flexline button#slide-in-menu-button span svg path{ fill:var(--wp--preset--color--contrast) !important;}"
 	}
 }
