@@ -137,7 +137,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
 		if ( false !== strpos( $block_content, '<a' ) ) {
-			
+
 			$label         = '';
 			$attachment_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
 
