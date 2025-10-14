@@ -107,6 +107,23 @@ function flexline_admin_enqueue_scripts() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
 
 /**
+ * Enqueue the image toggle runtime for both the editor and the frontend.
+ */
+function flexline_enqueue_image_toggle_script() {
+	$relative_path = 'assets/built/js/visibility-toggle.js';
+
+	wp_enqueue_script(
+		'flexline-visibility-toggle',
+		get_theme_file_uri( $relative_path ),
+		array(),
+		flexline_asset_ver( $relative_path ),
+		true
+	);
+}
+
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_enqueue_image_toggle_script' );
+
+/**
  * Conditionally enqueue the slider runtime only when a slider block is present.
  *
  * @param string $block_content The rendered HTML of the current block.

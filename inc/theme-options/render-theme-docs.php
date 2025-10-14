@@ -562,6 +562,30 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				</section>
 
 
+				<!-- ✨ IMAGE TOGGLE GROUPS -->
+				<section id="visibility-toggle">
+					<h3>Image Toggle Groups</h3>
+					<p>Build button-controlled image swaps using stock Button and Image blocks—no custom block needed. Each group is self-contained so multiple toggles can exist on the same page or pattern.</p>
+					<ul>
+						<li><strong>Wrapper:</strong> place buttons and images inside <code>&lt;div class="visibility-toggle-group"&gt;</code> to scope the script.</li>
+						<li><strong>Buttons:</strong> add the <code>visibility-toggle</code> class and set a unique HTML Anchor (for example, <code>interior</code>). The script uses that anchor value to match images.</li>
+						<li><strong>Images:</strong> add a class that matches a button anchor (e.g., <code>class="interior"</code>) plus either <code>toggle-is-visible</code> or <code>toggle-is-hidden</code> so the default state is explicit.</li>
+						<li><strong>Active state:</strong> mark one button with <code>.active</code> and its corresponding image with <code>.toggle-is-visible</code>; other images should start with <code>.toggle-is-hidden</code>.</li>
+					</ul>
+					<p>The runtime listens for clicks on <code>.visibility-toggle</code> buttons, applies the <code>.active</code> state, sets <code>aria-pressed</code>, and swaps the visible image by toggling <code>.toggle-is-visible</code> / <code>.toggle-is-hidden</code> within the same group.</p>
+					<pre><code>&lt;div class="visibility-toggle-group"&gt;
+	&lt;div class="buttons"&gt;
+		&lt;button class="visibility-toggle active" id="exterior"&gt;Exterior&lt;/button&gt;
+		&lt;button class="visibility-toggle" id="interior"&gt;Interior&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;div class="images"&gt;
+		&lt;img class="exterior toggle-is-visible" src="exterior.jpg" alt="" /&gt;
+		&lt;img class="interior toggle-is-hidden" src="interior.jpg" alt="" /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					<p><em>Editor tip:</em> Use the Button block’s <strong>HTML Anchor</strong> field to set the ID/anchor that maps to your images, and use <strong>Additional CSS class(es)</strong> on each image to assign the matching class name.</p>
+				</section>
+
 
 				<!-- ✨ PLUGIN INTEGRATIONS -->
 				<section id="plugin-integrations">
@@ -777,6 +801,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
+						<li><a href="#visibility-toggle">Image Toggle Groups</a></li>
 						<li><a href="#plugin-integrations">Plugin Integrations</a></li>
 						<li><a href="#utility-classes">Utility Classes</a>
 							<ul>
