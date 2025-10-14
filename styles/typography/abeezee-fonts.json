@@ -40,7 +40,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "italic",
 							"fontWeight": "400",
-							"src": [ "file:./assets/fonts/ABeeZee/ABeeZee-Italic.ttf" ]
+							"src": [ "file:./assets/fonts/ABeeZee/ABeeZee-Italic.woff2" ]
 						}
 					]
 				},
