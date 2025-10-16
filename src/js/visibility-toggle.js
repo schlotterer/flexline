@@ -1,4 +1,36 @@
 (() => {
+	const buildTargetVariants = (value) => {
+		const slug = (typeof value === 'string' ? value.trim() : '') || '';
+
+		if (!slug) {
+			return [];
+		}
+
+		return [slug];
+	};
+
+	const panelMatchesTarget = (panel, variants) => {
+		if (!variants.length) {
+			return false;
+		}
+
+		return variants.some((variant) => {
+			if (!variant) {
+				return false;
+			}
+
+			if (
+				panel.classList.contains(variant) ||
+				panel.id === variant ||
+				panel.dataset?.toggleTarget === variant
+			) {
+				return true;
+			}
+
+			return false;
+		});
+	};
+
 	const getInteractiveTarget = (button) => {
 		if (!button) {
 			return null;
@@ -11,14 +43,36 @@
 		return button.querySelector('a, button');
 	};
 
+	const getTargetValue = (button) => {
+		const interactive = getInteractiveTarget(button);
+
+		if (interactive) {
+			const interactiveValue =
+				interactive.dataset?.toggleTarget ||
+				interactive.getAttribute('data-toggle-target') ||
+				interactive.id;
+
+			if (interactiveValue) {
+				return interactiveValue;
+			}
+		}
+
+		if (button.dataset?.toggleTarget) {
+			return button.dataset.toggleTarget;
+		}
+
+		return button.id;
+	};
+
 	const activateGroup = (group, button) => {
 		const buttons = group.querySelectorAll('.visibility-toggle');
 		const panels = group.querySelectorAll(
 			'.toggle-is-visible, .toggle-is-hidden'
 		);
-		const targetClass = button.id;
+		const targetValue = getTargetValue(button);
+		const targetVariants = buildTargetVariants(targetValue);
 
-		if (!targetClass || !buttons.length || !panels.length) {
+		if (!targetVariants.length || !buttons.length || !panels.length) {
 			return;
 		}
 
@@ -26,7 +80,8 @@
 			const isActive = btn === button;
 			const interactive = getInteractiveTarget(btn);
 
-			btn.classList.toggle('active', isActive);
+			btn.classList.remove('active');
+			btn.classList.toggle('toggle-active', isActive);
 
 			if (btn.matches('button, [role="button"]')) {
 				btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
@@ -36,7 +91,8 @@
 
 			if (interactive) {
 				if (interactive !== btn) {
-					interactive.classList.toggle('active', isActive);
+					interactive.classList.remove('active');
+					interactive.classList.toggle('toggle-active', isActive);
 				}
 
 				if (
@@ -54,7 +110,7 @@
 		});
 
 		panels.forEach((panel) => {
-			const matches = panel.classList.contains(targetClass);
+			const matches = panelMatchesTarget(panel, targetVariants);
 			panel.classList.toggle('toggle-is-visible', matches);
 			panel.classList.toggle('toggle-is-hidden', !matches);
 		});
@@ -75,8 +131,10 @@
 		}
 
 		const activeButton =
-			Array.from(buttons).find((button) =>
-				button.classList.contains('active')
+			Array.from(buttons).find(
+				(button) =>
+					button.classList.contains('toggle-active') ||
+					button.classList.contains('active')
 			) || buttons[0];
 
 		if (activeButton) {

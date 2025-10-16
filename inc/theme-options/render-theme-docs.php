@@ -570,13 +570,13 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<li><strong>Wrapper:</strong> place buttons and toggle targets inside <code>&lt;div class="visibility-toggle-group"&gt;</code> to scope the behavior.</li>
 					<li><strong>Buttons:</strong> add the <code>visibility-toggle</code> class and assign a unique HTML Anchor (e.g., <code>interior</code>). The script uses this value to match targets.</li>
 					<li><strong>Targets:</strong> add a class that matches a button's anchor (e.g., <code>class="interior"</code>) along with either <code>toggle-is-visible</code> or <code>toggle-is-hidden</code> to define the default state.</li>
-					<li><strong>Active state:</strong> mark one button with <code>.active</code> and its corresponding element with <code>.toggle-is-visible</code>; all other elements should begin with <code>.toggle-is-hidden</code>.</li>
+					<li><strong>Active state:</strong> mark one button with <code>.toggle-active</code> and its corresponding element with <code>.toggle-is-visible</code>; all other elements should begin with <code>.toggle-is-hidden</code>.</li>
 				</ul>
-				<p>The runtime listens for clicks on <code>.visibility-toggle</code> buttons, toggles the <code>.active</code> class, sets <code>aria-pressed</code>, and updates visibility by toggling <code>.toggle-is-visible</code> / <code>.toggle-is-hidden</code> within the same group. This logic works for any toggleable content—not just images.</p>
+				<p>The runtime listens for clicks on <code>.visibility-toggle</code> buttons, toggles the <code>.toggle-active</code> class, sets <code>aria-pressed</code>, and updates visibility by toggling <code>.toggle-is-visible</code> / <code>.toggle-is-hidden</code> within the same group. This logic works for any toggleable content—not just images.</p>
 				<p><strong>Note:</strong> The following is illustrative pseudo-code. Use block settings in the editor (HTML Anchor, Additional CSS Classes) to apply IDs and classes as needed.</p>
 				<pre><code>&lt;div class="visibility-toggle-group"&gt;
 	&lt;div&gt;
-		&lt;button class="visibility-toggle active" id="exterior"&gt;Exterior&lt;/button&gt;
+		&lt;button class="visibility-toggle toggle-active" id="exterior"&gt;Exterior&lt;/button&gt;
 		&lt;button class="visibility-toggle" id="interior"&gt;Interior&lt;/button&gt;
 	&lt;/div&gt;
 	&lt;div&gt;
