@@ -16,7 +16,9 @@
 
 /* Block editor helpers — reveal hidden toggles when selected so they stay editable. */
 body.wp-admin .block-editor-block-list__block.is-selected.toggle-is-hidden,
-body.wp-admin .block-editor-block-list__block.is-selected .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > * > .toggle-is-hidden,
 body.wp-admin .block-editor-block-list__block.has-child-selected > .toggle-is-hidden,
 body.wp-admin .block-editor-block-list__block.has-child-selected > * > .toggle-is-hidden,
 body.wp-admin .block-editor-block-list__block.has-child-selected > * > * > .toggle-is-hidden {
