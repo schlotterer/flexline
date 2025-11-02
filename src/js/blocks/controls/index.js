@@ -39,6 +39,9 @@ const handlers = {
 	'core/html': visibility,
 	'core/social-link': visibility,
 	'core/social-links': visibility,
+	'web4sl/location-address': visibility,
+	'web4sl/location-phone-link': visibility,
+	'web4sl/location-map-link': visibility,
 };
 
 // Map attributes to the classes they control.
