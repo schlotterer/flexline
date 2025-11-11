@@ -214,7 +214,7 @@ body,
 			margin: 0px !important;
 			padding: 0px !important;
 		}
-		> * {
+		> div:first-of-type {
 			margin-top: 0px !important;
 		}
 	}
