@@ -1,15 +1,14 @@
-<?php 
+<?php
 /**
  * Adds custom images sizes.
  *
  * @package flexline
  */
 
- namespace FlexLine;
-
+namespace FlexLine;
 
 // Theme image sizes — register only what we use
-add_theme_support('post-thumbnails');
+add_theme_support( 'post-thumbnails' );
 
 add_image_size( 'thumb-square', 400, 400, true );         // Square thumbnails for grids/cards
 add_image_size( 'card-image', 640, 480, true );           // Used in content cards
