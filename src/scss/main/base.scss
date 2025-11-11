@@ -214,9 +214,10 @@ body,
 			margin: 0px !important;
 			padding: 0px !important;
 		}
-		> div:first-of-type {
+		> :not(a):first-of-type,
+		&:has(> a:first-child) > :nth-child(2):not(a) {
 			margin-top: 0px !important;
-		}
+		}	
 	}
 	// Phone link
 	@include screen($mobile){
