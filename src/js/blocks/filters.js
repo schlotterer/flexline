@@ -111,6 +111,7 @@ registerAttributes(
 		'web4sl/location-address',
 		'web4sl/location-phone-link',
 		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
 	],
 	{ ...customVisibilityAttributes }
 );
