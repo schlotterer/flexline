@@ -258,6 +258,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			'shadow-diffused' => 'Wide, feathered shadow—great behind covers or hero quotes.',
 			'glass'           => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
 			'glass-card'      => 'Glass background plus card border-radius & light shadow, ideal over photography.',
+			'glass-card-no-padding' => 'Same glass-card treatment but with zero interior padding—stack alongside blocks that already handle their own spacing.',
 			'no-disc'         => 'Strips bullets & left-padding for clean checklist or icon lists.',
 			'main-header-nav' => 'Opinionated spacing & weight for primary site navigation.',
 			'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',

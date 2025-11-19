@@ -25,6 +25,10 @@ FlexLine includes opinionated styling for a few popular plugins so their front-e
 * Query Loop Filters – filter bars and controls from Human Made’s Query Loop Filters plugin adopt FlexLine’s navigation spacing and button styling.
 * Yoast SEO – install to use patterns that include the Yoast Breadcrumbs block; the theme doesn’t bundle alternative breadcrumb markup.
 
+== WordPress 6.9 Accordion Block ==
+
+WordPress 6.9 introduces the core Accordion, Accordion Item, Accordion Heading, and Accordion Panel blocks. FlexLine extends each of them with the theme’s visibility toggles plus style variations such as Card, Card w/ Padding, Outline, Glass, and Glass Card so editors can keep a consistent look without relying on any third-party accordion plugin.
+
 == Bundled Assets and Licenses ==
 
 * Google Fonts (Cabin, Calistoga, Crimson Text, Jost, Lato, Quattrocento, Quicksand, REM, Raleway, Source Sans 3, Sulphur Point, Varela) - SIL Open Font License 1.1 (see assets/fonts/*/OFL.txt)

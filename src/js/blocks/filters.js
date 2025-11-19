@@ -86,6 +86,10 @@ registerAttributes(['core/post-template'], {
 
 registerAttributes(
 	[
+		'core/accordion',
+		'core/accordion-item',
+		'core/accordion-heading',
+		'core/accordion-panel',
 		'core/buttons',
 		'core/column',
 		'core/spacer',

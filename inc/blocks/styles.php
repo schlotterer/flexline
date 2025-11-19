@@ -20,16 +20,49 @@ namespace FlexLine;
  */
 function flexline_get_block_styles() {
 		$styles = array(
+			'core/accordion'           => array(
+				'card'        => __( 'Card', 'flexline' ),
+				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			),
+			'core/accordion-item'      => array(
+				'card'                 => __( 'Card', 'flexline' ),
+				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			),
+			'core/accordion-heading'   => array(
+				'card'                 => __( 'Card', 'flexline' ),
+				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			),
+			'core/accordion-panel'     => array(
+				'card'                 => __( 'Card', 'flexline' ),
+				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			),
 			'core/columns'              => array(
 				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
 			),
 			'core/group'                => array(
-				'card'        => __( 'Card', 'flexline' ),
-				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
-				'card-alt'    => __( 'Card w/ Images that fill', 'flexline' ),
-				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'       => __( 'Glass', 'flexline' ),
-				'glass-card'  => __( 'Glass Card', 'flexline' ),
+				'card'                 => __( 'Card', 'flexline' ),
+				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
+				'card-alt'             => __( 'Card w/ Images that fill', 'flexline' ),
+				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/image'                => array(
 				'card' => __( 'Card', 'flexline' ),
@@ -64,11 +97,12 @@ function flexline_get_block_styles() {
 				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/quote'                => array(
-				'card'        => __( 'Card', 'flexline' ),
-				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'       => __( 'Glass', 'flexline' ),
-				'glass-card'  => __( 'Glass Card', 'flexline' ),
+				'card'                 => __( 'Card', 'flexline' ),
+				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                => __( 'Glass', 'flexline' ),
+				'glass-card'           => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/social-links'         => array(
 				'outline' => __( 'Outline', 'flexline' ),

@@ -1,10 +1,11 @@
 body,
 .editor-styles-wrapper {
-
-	.plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__basic,
-	.plethoraplugins-accordion.plethoraplugins-theme__minimal.plethoraplugins-theme__tabby {
-		padding: 0 !important;
-		background-color: transparent !important;
+	.plethoraplugins-accordion.plethoraplugins-theme__minimal {
+		&.plethoraplugins-theme__basic,
+		&.plethoraplugins-theme__tabby {
+			background-color: transparent !important;
+			padding: 0 !important;
+		}
 	}
 
 	a.js-plethoraplugins-tabs--link,
@@ -13,26 +14,32 @@ body,
 	}
 
 	.pds-accordion__title {
-		box-shadow: var(--wp--custom--box-shadow);
-		transition: var(--wp--custom--transition-time);
-		overflow: hidden !important;
 		border-radius: var(--wp--custom--border-radius) !important;
+		box-shadow: var(--wp--custom--box-shadow);
+		overflow: hidden !important;
+		transition: var(--wp--custom--transition-time);
 
-		&[aria-expanded="true"] {
-			box-shadow: none;
-			background-color: color-mix(in lab, var(--wp--preset--color--primary) 70%, #000) !important;
+		&[aria-expanded='true'] {
+			background-color: color-mix(
+				in lab,
+				var(--wp--preset--color--primary) 70%,
+				#000
+			) !important;
 			border-bottom-left-radius: 0 !important;
 			border-bottom-right-radius: 0 !important;
+			box-shadow: none;
 		}
 	}
+}
 
-	@include screen($mobile){
-
-		.plethoraplugins-sidenavjump,
+@media only screen and (max-width: 781.98px) {
+	body,
+	.editor-styles-wrapper {
 		.js-plethoraplugins-tab-panel,
+		.plethoraplugins-sidenavjump,
 		.plethoraplugins-sidenavjump-content {
-			width: 100% !important;
 			flex-basis: 100% !important;
+			width: 100% !important;
 		}
 	}
 }
