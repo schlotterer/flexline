@@ -20,8 +20,8 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"33.33%","className":""} -->
-<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"id":2444,"sizeSlug":"full","linkDestination":"none","className":""} -->
-<figure class="wp-block-image size-full"><img src="http://web4sl-multisite.test/wp-content/uploads/2025/11/lake-geneva-manor-1.jpeg" alt="" class="wp-image-2444"/></figure>
+<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":""} -->
+<figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -46,8 +46,8 @@
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}}} -->
-<div role="region" class="wp-block-accordion-panel" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:image {"id":2444,"aspectRatio":"16/9","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-card"} -->
-<figure class="wp-block-image size-full is-style-card"><img src="http://web4sl-multisite.test/wp-content/uploads/2025/11/lake-geneva-manor-1.jpeg" alt="" class="wp-image-2444" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<div role="region" class="wp-block-accordion-panel" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:image {"aspectRatio":"16/9","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-card"} -->
+<figure class="wp-block-image size-full is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class="" style="aspect-ratio:16/9;object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":""} -->
@@ -70,8 +70,8 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"33.33%","className":""} -->
-<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"id":2444,"sizeSlug":"full","linkDestination":"none","className":""} -->
-<figure class="wp-block-image size-full"><img src="http://web4sl-multisite.test/wp-content/uploads/2025/11/lake-geneva-manor-1.jpeg" alt="" class="wp-image-2444"/></figure>
+<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":""} -->
+<figure class="wp-block-image size-full"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="" class=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
