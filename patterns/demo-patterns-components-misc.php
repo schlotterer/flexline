@@ -209,8 +209,26 @@ namespace FlexLine;
 <!-- /wp:spacer -->
 
 <!-- wp:heading {"level":3,"className":""} -->
+<h3 class="wp-block-heading" id="plethora-tabs">Accordions</h3>
+<!-- /wp:heading -->
+
+<!-- wp:pattern {"slug":"flexline/accordion"} /-->
+
+<!-- wp:spacer {"height":"59px","className":""} -->
+<div style="height:59px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading {"level":3,"className":""} -->
 <h3 class="wp-block-heading" id="plethora-tabs">Plethora Plugins Tabs + Accordions</h3>
 <!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":""} -->
+<p>DEPRECATED: </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":""} -->
+<p>WordPress 6.9 ships with a new accordion block FlexLine will be using moving forward. However, we have left the customizations and will allow the old patterns if the Plethora plugin is active. So if you have the Plethora Tabs plugin activated you will see some examples below - if not the section will be blank.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":""} -->
 <p>FlexLine theme has created some custom styles to support the <a href="https://wordpress.org/plugins/plethora-tabs-accordions/" target="_blank" rel="noreferrer noopener">Plethora Plugins Tabs + Accordions plugin</a>. The following are some example use cases. </p>
