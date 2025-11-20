@@ -28,7 +28,7 @@
     "@babel/core": "^7.28.4",
     "@babel/preset-react": "^7.27.1",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
-    "@wordpress/eslint-plugin": "^22.18.0",
+    "@wordpress/eslint-plugin": "^22.19.0",
     "@wordpress/scripts": "^30.23.0",
     "@wordpress/stylelint-config": "^23.22.0",
     "autoprefixer": "^10.4.21",
