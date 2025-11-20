@@ -4,7 +4,9 @@
  * Slug: flexline/accordion
  * Categories: flexline-components, flexline-misc
  */
+namespace FlexLine;
 ?>
+
 <!-- wp:accordion {"autoclose":true,"headingLevel":2,"className":"is-style-default"} -->
 <div role="group" class="wp-block-accordion is-style-default"><!-- wp:accordion-item {"metadata":{"name":"Accordion Item - Card"},"className":"is-style-card","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-accordion-item is-style-card"><!-- wp:accordion-heading {"level":2,"className":"is-style-default","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"textDecoration":"none"}},"backgroundColor":"secondary","textColor":"base","fontSize":"medium","fontFamily":"display"} -->
