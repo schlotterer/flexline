@@ -12,6 +12,7 @@ import slider from './slider';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';
+import siteLogo from './site-logo';
 import visibility from './visibility';
 
 const handlers = {
@@ -30,7 +31,7 @@ const handlers = {
 	'core/paragraph': visibility,
 	'core/heading': visibility,
 	'core/video': visibility,
-	'core/site-logo': visibility,
+	'core/site-logo': siteLogo,
 	'core/post-featured-image': visibility,
 	'core/embed': visibility,
 	'core/navigation-submenu': visibility,
@@ -38,6 +39,14 @@ const handlers = {
 	'core/html': visibility,
 	'core/social-link': visibility,
 	'core/social-links': visibility,
+	'core/accordion': visibility,
+	'core/accordion-item': visibility,
+	'core/accordion-heading': visibility,
+	'core/accordion-panel': visibility,
+	'web4sl/location-address': visibility,
+	'web4sl/location-phone-link': visibility,
+	'web4sl/location-map-link': visibility,
+	'web4sl/location-filter-family': visibility,
 };
 
 // Map attributes to the classes they control.

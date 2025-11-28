@@ -472,6 +472,7 @@
 		const explicitHeight = csWrapper
 			? (csWrapper.getPropertyValue('--slider-height') || '').trim()
 			: '';
+		slider._hasExplicitHeight = !!explicitHeight;
 		if (explicitHeight) {
 			// Height provided – clear default so the explicit value wins and live-updates.
 			if (wrapper) {
@@ -485,7 +486,7 @@
 		if (wrapper) {
 			wrapper.style.setProperty(
 				'--slider-height-default',
-				`calc(100svh - ${h}px)`
+				`calc(100dvh - ${h}px)`
 			);
 		}
 	}
@@ -503,7 +504,13 @@
 		const h = Math.max(minH, boxH);
 		if (h > 0) {
 			slider.style.height = Math.round(h) + 'px';
+		} else {
+			slider.style.height = '';
+		}
+		if (slider._hasExplicitHeight) {
 			slider.classList.add('slider-has-height');
+		} else {
+			slider.classList.remove('slider-has-height');
 		}
 	}
 

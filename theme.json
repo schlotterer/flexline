@@ -796,7 +796,8 @@
 					"card-alt": {},
 					"outlined": {},
 					"glass": {},
-					"glass-card": {}
+					"glass-card": {},
+					"glass-card-no-padding": {}
 				}
 			},
 			"core/columns": {
@@ -1080,7 +1081,8 @@
 					"card-padded": {},
 					"outlined": {},
 					"glass": {},
-					"glass-card": {}
+					"glass-card": {},
+					"glass-card-no-padding": {}
 				}
 			},
 			"core/separator": {

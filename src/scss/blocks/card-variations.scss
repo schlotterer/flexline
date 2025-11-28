@@ -38,6 +38,15 @@
 		}
 
 	}
+
+	.is-style-glass-card-no-padding {
+		padding: 0 !important;
+
+		&.has-global-padding,
+		&.has-global-padding :where(.has-global-padding:not(.wp-block-block)) {
+			padding: 0;
+		}
+	}
 	.is-style-glass-card,
 	.is-style-card-padded,
 	.is-style-outlined {
@@ -112,6 +121,7 @@
 
 	.is-style-glass,
 	.is-style-glass-card,
+	.is-style-glass-card-no-padding,
 	.wp-block-button.is-style-glass-button .wp-element-button {
 		background: color-mix(in srgb, var(--wp--preset--color--base), transparent 55%);
 		backdrop-filter: blur(10px) saturate(70%);
@@ -131,7 +141,8 @@
 		}
 	}
 
-	.is-style-glass-card {
+	.is-style-glass-card,
+	.is-style-glass-card-no-padding {
 		overflow: hidden;
 		border-radius: var(--wp--custom--border-radius);
 		box-shadow: var(--wp--preset--shadow--light);

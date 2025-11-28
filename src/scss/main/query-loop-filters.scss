@@ -1,0 +1,21 @@
+.editor-styles-wrapper,
+body.flexline {
+
+    select.wp-block-query-filter__select{
+        font-size: var(--gf-ctrl-font-size, 14px);
+        
+        border-radius: var(--wp--custom--border-radius);
+        padding-inline-start: 12px;
+        padding-inline-end: 12px;
+        padding: 12px;
+        border-color: #79797971;
+        option{
+            font-size: inherit;
+        }
+        ::placeholder{
+            font-size: inherit;
+            color: var(--wp--custom--placeholder-color);
+        }
+    }
+
+}

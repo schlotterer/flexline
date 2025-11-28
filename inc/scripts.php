@@ -74,6 +74,16 @@ function flexline_enqueue_styles() {
 			true
 		);
 		wp_script_add_data( 'flexline-slider', 'defer', true );
+
+		$relative_path = 'assets/built/js/visibility-toggle.js';
+
+	wp_enqueue_script(
+		'flexline-visibility-toggle',
+		get_theme_file_uri( $relative_path ),
+		array(),
+		flexline_asset_ver( $relative_path ),
+		true
+	);
 }
 
 /**
@@ -105,6 +115,7 @@ function flexline_admin_enqueue_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
+
 
 /**
  * Conditionally enqueue the slider runtime only when a slider block is present.

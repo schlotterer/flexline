@@ -27,6 +27,14 @@ export const customLazyAttributes = {
 	},
 };
 
+// Logo - Define custom attributes
+export const customLogoAttributes = {
+	useHighResLogo: {
+		type: 'boolean',
+		default: false,
+	},
+};
+
 // Cover overlay options - Define custom attributes
 export const customCoverOverlayAttributes = {
 	// Toggle for applying Flexline glass effect to Cover overlay only

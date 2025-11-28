@@ -13,6 +13,7 @@ import {
 	customGalleryAttributes,
 	customShiftAttributes,
 	customNoWrapAttributes,
+	customLogoAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -85,18 +86,36 @@ registerAttributes(['core/post-template'], {
 
 registerAttributes(
 	[
+		'core/accordion',
+		'core/accordion-item',
+		'core/accordion-heading',
+		'core/accordion-panel',
 		'core/buttons',
 		'core/column',
 		'core/spacer',
 		'core/paragraph',
 		'core/heading',
 		'core/video',
-		'core/site-logo',
 		'core/post-featured-image',
 		'core/embed',
 		'core/html',
 		'core/social-link',
 		'core/social-links',
+	],
+	{ ...customVisibilityAttributes }
+);
+
+registerAttributes(['core/site-logo'], {
+	...customVisibilityAttributes,
+	...customLogoAttributes,
+});
+
+registerAttributes(
+	[
+		'web4sl/location-address',
+		'web4sl/location-phone-link',
+		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
 	],
 	{ ...customVisibilityAttributes }
 );

@@ -12,6 +12,7 @@ const jsFiles = [
         'src/js/headroom.js',
         'src/js/load-early.js',
         'src/js/template-pattern-inserter.js',
+		'src/js/visibility-toggle.js',
 ];
 
 // Individual SASS files
