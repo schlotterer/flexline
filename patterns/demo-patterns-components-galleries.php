@@ -49,7 +49,7 @@ namespace FlexLine;
 
         <!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:66.66%"><!-- wp:image {"sizeSlug":"large","className":"is-style-shadow-diffused enable-modal","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/e38d05ced34a4992adf99712e9dda11a?sid=516d7482-4da7-44b6-92e3-a9e16a06ab3f"} -->
-            <figure class="wp-block-image size-large is-style-shadow-diffused enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/e38d05ced34a4992adf99712e9dda11a-6e1a3e5e871f87db-full-play.gif" alt="" /></figure>
+            <figure class="wp-block-image size-large is-style-shadow-diffused enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/e38d05ced34a4992adf99712e9dda11a-d8fd8340e6c2367e-full-play.gif#t=0.1" alt="Poster Gallery Video" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->
