@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@wordpress/eslint-plugin": "^22.21.0",
     "@wordpress/scripts": "^31.1.0",
-    "@wordpress/stylelint-config": "^23.27.0",
+    "@wordpress/stylelint-config": "^23.28.0",
     "autoprefixer": "^10.4.21",
     "cross-env": "^10.1.0",
     "eslint-plugin-import": "^2.32.0",
