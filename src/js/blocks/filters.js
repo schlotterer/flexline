@@ -14,6 +14,7 @@ import {
 	customShiftAttributes,
 	customNoWrapAttributes,
 	customLogoAttributes,
+	customRelatedPostsAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -83,6 +84,29 @@ registerAttributes(['core/columns'], {
 registerAttributes(['core/post-template'], {
 	...customHorizontalScrollerAttributes,
 });
+
+registerAttributes(['core/query'], {
+	...customRelatedPostsAttributes,
+});
+
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-core-query-related-context',
+	(settings, name) => {
+		if (name !== 'core/query') {
+			return settings;
+		}
+
+		settings.providesContext = {
+			...(settings.providesContext || {}),
+			'flexline/relatedPostsEnabled': 'enableRelatedPosts',
+			'flexline/relatedPostsTaxonomy': 'relatedPostsTaxonomy',
+			'flexline/relatedPostsScope': 'relatedPostsScope',
+		};
+
+		return settings;
+	}
+);
 
 registerAttributes(
 	[

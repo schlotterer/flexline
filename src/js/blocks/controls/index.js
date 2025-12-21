@@ -14,6 +14,7 @@ import navigation from './navigation';
 import columns from './columns';
 import siteLogo from './site-logo';
 import visibility from './visibility';
+import query from './query';
 
 const handlers = {
 	'core/button': button,
@@ -26,6 +27,7 @@ const handlers = {
 	'core/navigation': navigation,
 	'core/columns': columns,
 	'core/post-template': columns,
+	'core/query': query,
 	'core/column': visibility,
 	'core/spacer': visibility,
 	'core/paragraph': visibility,

@@ -18,7 +18,7 @@ function flexline_enqueue_block_editor_assets() {
 		wp_enqueue_script(
 			'flexline-block-extensions',
 			get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text' ),
+			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text', 'wp-data' ),
 			function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
 			false
 		);
