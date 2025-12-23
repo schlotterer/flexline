@@ -3,7 +3,7 @@
  * Adds "Related Posts" panel to Query Loop inspector controls
  */
 
-import { Fragment } from '@wordpress/element';
+import { Fragment, useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -21,7 +21,7 @@ import { useSelect } from '@wordpress/data';
  * @return {Object} JSX element
  */
 const RelatedPostsPanel = (props) => {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, isSelected } = props;
 	const { enableRelatedPosts, relatedPostsTaxonomy, relatedPostsScope } =
 		attributes;
 
@@ -42,6 +42,73 @@ const RelatedPostsPanel = (props) => {
 			value: tax.slug,
 		}));
 	}, []);
+
+	useEffect(() => {
+		const shouldHide = !!enableRelatedPosts && !!isSelected;
+		const body = document?.body;
+		if (body) {
+			body.classList.toggle('flexline-related-posts-active', shouldHide);
+		}
+
+		const inspector = document?.querySelector(
+			'.block-editor-block-inspector'
+		);
+		if (inspector) {
+			const labels = inspector.querySelectorAll(
+				'.components-base-control__label'
+			);
+			labels.forEach((label) => {
+				if (
+					(label.textContent || '').trim().toLowerCase() !==
+					'post type'
+				) {
+					return;
+				}
+
+				const item = label.closest(
+					'[data-wp-component="ToolsPanelItem"], .components-tools-panel-item'
+				);
+				if (item) {
+					item.classList.toggle(
+						'flexline-related-posts-hide-post-type',
+						shouldHide
+					);
+				}
+			});
+		}
+
+		return () => {
+			if (body) {
+				body.classList.remove('flexline-related-posts-active');
+			}
+			const items = document?.querySelectorAll(
+				'.flexline-related-posts-hide-post-type'
+			);
+			if (items) {
+				items.forEach((item) =>
+					item.classList.remove(
+						'flexline-related-posts-hide-post-type'
+					)
+				);
+			}
+		};
+	}, [enableRelatedPosts, isSelected]);
+
+	useEffect(() => {
+		if (!enableRelatedPosts) {
+			return;
+		}
+
+		const currentQuery = attributes.query || {};
+		if (currentQuery.inherit !== false) {
+			setAttributes({
+				query: {
+					...currentQuery,
+					inherit: false,
+				},
+			});
+		}
+	}, [attributes.query, enableRelatedPosts, setAttributes]);
 
 	return (
 		<InspectorControls>
