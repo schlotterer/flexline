@@ -14,10 +14,10 @@ namespace FlexLine;
  */
 function preload_scripts() {
 	printf(
-		'<link rel="%1$s" href="%2$s" as="%3$s" />',
+		'<link rel="%1$s" href="%2$s" as="%3$s">',
 		esc_attr( 'preload' ),
 		esc_url( get_theme_file_uri( 'assets/built/js/load-early.js' ) ),
-		esc_attr( 'javascript' )
+		esc_attr( 'script' )
 	);
 	// Minimal critical CSS to avoid FOUSC (hide slides after the first until runtime activates).
 	?>

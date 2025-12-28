@@ -101,6 +101,40 @@ function add_classes_to_block_content( $block_content, $added_classes ) {
 	return str_replace_first( $search_string, $replace_string, $block_content );
 }
 
+/**
+ * Update img tag attributes without duplicating them.
+ *
+ * @param string $block_content The original block content.
+ * @param array  $attributes    Attribute name/value pairs to set.
+ * @param array  $remove        Attribute names to remove.
+ * @param bool   $set_if_missing Only set attributes that are missing when true.
+ * @return string Updated block content.
+ */
+function flexline_update_img_attributes( $block_content, $attributes = array(), $remove = array(), $set_if_missing = true ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	$updated   = false;
+
+	while ( $processor->next_tag( 'img' ) ) {
+		foreach ( $remove as $attr_name ) {
+			if ( null !== $processor->get_attribute( $attr_name ) ) {
+				$processor->remove_attribute( $attr_name );
+				$updated = true;
+			}
+		}
+
+		foreach ( $attributes as $attr_name => $attr_value ) {
+			if ( $set_if_missing && null !== $processor->get_attribute( $attr_name ) ) {
+				continue;
+			}
+
+			$processor->set_attribute( $attr_name, $attr_value );
+			$updated = true;
+		}
+	}
+
+	return $updated ? $processor->get_updated_html() : $block_content;
+}
+
 
 /**
  * Renders the flexline block modal.
@@ -123,16 +157,21 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
-			$search_string   = 'loading="lazy"';
-			$replace_string  = '';
-			$block_content   = str_replace( $search_string, $replace_string, $block_content );
-			$search_string2  = 'decoding="async"';
-			$replace_string2 = '';
-			$block_content   = str_replace( $search_string2, $replace_string2, $block_content );
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array(),
+				array( 'loading', 'decoding' )
+			);
 		} else {
-			$search_string  = '<img ';
-			$replace_string = '<img decoding="async" loading="lazy" ';
-			$block_content  = str_replace( $search_string, $replace_string, $block_content );
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array(
+					'decoding' => 'async',
+					'loading'  => 'lazy',
+				),
+				array(),
+				true
+			);
 		}
 
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
@@ -208,16 +247,19 @@ function flexline_block_customizations_render( $block_content, $block ) {
 	if ( 'core/cover' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
-			$search_string   = 'loading="lazy"';
-			$replace_string  = '';
-			$block_content   = str_replace( $search_string, $replace_string, $block_content );
-			$search_string2  = 'decoding="async"';
-			$replace_string2 = 'decoding="sync"';
-			$block_content   = str_replace( $search_string2, $replace_string2, $block_content );
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array( 'decoding' => 'sync' ),
+				array( 'loading' ),
+				false
+			);
 		} else {
-			$search_string  = '<img ';
-			$replace_string = '<img loading="lazy" ';
-			$block_content  = str_replace( $search_string, $replace_string, $block_content );
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array( 'loading' => 'lazy' ),
+				array(),
+				true
+			);
 		}
 
 			// FlexLine Glass overlay: classes only (no inline styles).
