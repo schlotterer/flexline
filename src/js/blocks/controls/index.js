@@ -12,6 +12,7 @@ import slider from './slider';
 import image from './image';
 import navigation from './navigation';
 import columns from './columns';
+import siteLogo from './site-logo';
 import visibility from './visibility';
 
 const handlers = {
@@ -30,7 +31,7 @@ const handlers = {
 	'core/paragraph': visibility,
 	'core/heading': visibility,
 	'core/video': visibility,
-	'core/site-logo': visibility,
+	'core/site-logo': siteLogo,
 	'core/post-featured-image': visibility,
 	'core/embed': visibility,
 	'core/navigation-submenu': visibility,
@@ -38,6 +39,26 @@ const handlers = {
 	'core/html': visibility,
 	'core/social-link': visibility,
 	'core/social-links': visibility,
+	'core/accordion': visibility,
+	'core/accordion-item': visibility,
+	'core/accordion-heading': visibility,
+	'core/accordion-panel': visibility,
+	'web4sl/location-address': visibility,
+	'web4sl/location-phone-link': visibility,
+	'web4sl/location-map-link': visibility,
+	'web4sl/location-filter-family': visibility,
+	'web4sl/advanced-floor-plans': visibility,
+	'web4sl/floor-plan-2d-image': visibility,
+	'web4sl/floor-plan-3d-image': visibility,
+	'web4sl/floor-plan-accessibility-badge': visibility,
+	'web4sl/floor-plan-baths': visibility,
+	'web4sl/floor-plan-beds': visibility,
+	'web4sl/floor-plan-brochure-button': visibility,
+	'web4sl/floor-plan-media-toggle': visibility,
+	'web4sl/floor-plan-square-feet': visibility,
+	'web4sl/floor-plan-starting-price': visibility,
+	'web4sl/floor-plan-video-button': visibility,
+	'web4sl/floor-plan-virtual-tour-button': visibility,
 };
 
 // Map attributes to the classes they control.

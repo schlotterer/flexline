@@ -51,6 +51,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Enable Lazy Load',
 						'description' => 'When true (the default), the image gets loading="lazy". Set it to false to omit the attribute so the browser loads the image immediately — ideal for hero images.',
 					),
+					array(
+						'name'        => 'FlexLine Glass Overlay',
+						'description' => 'Adds <code>flexline-glass-overlay</code> and a glass-level class (1–10) to the Cover overlay so it gains a frosted blur & saturation effect. The range control lives in the Color panel and toggles the overlay automatically.',
+					),
 				),
 			),
 			'core/button'                    => array(
@@ -202,87 +206,68 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 				),
 			),
+			'core/site-logo'                 => array(
+				'attributes' => array(
+					array(
+						'name'        => 'Use High-Resolution Logo',
+						'description' => 'Adds <code>flexline-logo-hires</code> and sets a new sizes min-width value to twice the image width setting.',
+					),
+				),
+			),
+
 		);
 
 		// Merge registered block styles.
 		$block_styles       = \FlexLine\flexline_get_block_styles();
 		$text_shadow_blocks = array(
-			// Headings & titles.
-			'core/heading',
-			'core/post-title',
-			'core/query-title',
-			'core/site-title',
-			'core/site-tagline',
-
-			// Text content.
+			// Core content blocks that surface the RichText toolbar.
 			'core/paragraph',
+			'core/heading',
 			'core/list',
 			'core/quote',
 			'core/pullquote',
 			'core/verse',
+			'core/preformatted',
+			'core/code',
 			'core/table',
-			'core/details',
+			'core/post-excerpt',
+			'core/post-author',
+			'core/cover',
+			'core/media-text',
 
-			// Buttons & links.
-			'core/button',
-			'core/read-more',
-			'core/navigation-link',
-			'core/navigation-submenu',
-
-			// Captions (figcaption uses RichText).
+			// Media captions and embeds expose inline formatting controls.
 			'core/image',
 			'core/gallery',
 			'core/audio',
 			'core/video',
-
-			// Post metadata & excerpt.
-			'core/post-excerpt',
-			'core/post-author',
-			'core/post-author-name',
-			'core/post-terms',
-
-			// Comments.
-			'core/comment-author-name',
-			'core/comment-date',
-			'core/comment-edit-link',
-			'core/comment-reply-link',
-
-			// Query pagination.
-			'core/post-navigation-link',
-			'core/query-pagination',
-			'core/query-pagination-previous',
-			'core/query-pagination-next',
-			'core/query-pagination-numbers',
+			'core/embed',
 		);
 
-		foreach ( $text_shadow_blocks as $block ) {
-			if ( ! isset( $block_styles[ $block ] ) ) {
-					$block_styles[ $block ] = array();
-			}
-			$block_styles[ $block ]['text-shadow'] = __( 'Text Shadow', 'flexline' );
-		}
+		sort( $text_shadow_blocks, SORT_NATURAL | SORT_FLAG_CASE );
+
+		$text_shadow_description = __( 'Adds FlexLine’s subtle shadow inline via the RichText toolbar (wraps selections in <code>is-style-text-shadow</code>). Available wherever a block exposes standard inline formats.', 'flexline' );
 
 		$style_descriptions = array(
-			'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
-			'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
-			'card-padded'     => 'Same as Card but with theme-small padding baked in.',
-			'card-alt'        => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
-			'outlined'        => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
-			'shadow-light'    => 'Subtle, soft shadow for slight elevation.',
-			'shadow-dark'     => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
-			'shadow-diffused' => 'Wide, feathered shadow—great behind covers or hero quotes.',
-			'glass'           => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
-			'glass-card'      => 'Glass background plus card border-radius & light shadow, ideal over photography.',
-			'no-disc'         => 'Strips bullets & left-padding for clean checklist or icon lists.',
-			'main-header-nav' => 'Opinionated spacing & weight for primary site navigation.',
-			'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',
-			'light-over-dark' => 'Light text on dark backgrounds for hero/footers.',
-			'outline'         => 'Navigation links gain a 1 px outline & padding on desktop-up.',
-			'text-shadow'     => 'Applies the theme’s subtle text shadow vid the RichText Editor',
-			'eyebrow'         => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
-			'creative'        => 'Large decorative headline style using the site’s creative font.',
-			'glass-button'    => 'Transparent glass button with blur & subtle border that intensifies on hover.',
-			'text-link'       => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
+			'columns-reverse'       => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
+			'card'                  => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
+			'card-padded'           => 'Same as Card but with theme-small padding baked in.',
+			'card-alt'              => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
+			'outlined'              => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
+			'shadow-light'          => 'Subtle, soft shadow for slight elevation.',
+			'shadow-dark'           => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
+			'shadow-diffused'       => 'Wide, feathered shadow—great behind covers or hero quotes.',
+			'glass'                 => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
+			'glass-card'            => 'Glass background plus card border-radius & light shadow, ideal over photography.',
+			'glass-card-no-padding' => 'Same glass-card treatment but with zero interior padding—stack alongside blocks that already handle their own spacing.',
+			'no-disc'               => 'Strips bullets & left-padding for clean checklist or icon lists.',
+			'main-header-nav'       => 'Opinionated spacing & weight for primary site navigation.',
+			'dark-over-light'       => 'Dark text color set atop light backgrounds; pairs with transparent links.',
+			'light-over-dark'       => 'Light text on dark backgrounds for hero/footers.',
+			'outline'               => 'Navigation links gain a 1 px outline & padding on desktop-up.',
+			'eyebrow'               => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
+			'creative'              => 'Large decorative headline style using the site’s creative font.',
+			'glass-button'          => 'Transparent glass button with blur & subtle border that intensifies on hover.',
+			'text-link'             => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
 		);
 
 		foreach ( $block_styles as $block => $styles ) {
@@ -498,25 +483,26 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								</select>
 							</div>
 	
-							<div class="flexline-filter">
-								<label for="flexline-style-filter">Filter by style</label>
-								<select id="flexline-style-filter">
-									<option value="">All</option>
-								<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
-										<option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
-									<?php endforeach; ?>
-								</select>
-							</div>
+						<div class="flexline-filter">
+							<label for="flexline-style-filter">Filter by style</label>
+							<select id="flexline-style-filter">
+								<option value="">All</option>
+							<?php foreach ( $unique_style_slugs as $style_slug ) : ?>
+									<option value="<?php echo esc_attr( $style_slug ); ?>"><?php echo esc_html( $style_slug ); ?></option>
+							<?php endforeach; ?>
+							</select>
 						</div>
-	
-						<table id="flexline-docs-table" class="flexline-docs-table">
-							<thead>
-								<tr>
-									<th style="width:25%">Block Name</th>
-									<th style="width:35%">Custom Attribute</th>
-									<th>Style Variation</th>
-								</tr>
-							</thead>
+
+					</div>
+
+					<table id="flexline-docs-table" class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:25%">Block Name</th>
+								<th style="width:35%">Custom Attribute</th>
+								<th>Style Variation</th>
+							</tr>
+						</thead>
 							<tbody>
 						<?php
 						foreach ( $block_docs as $block => $data ) {
@@ -564,11 +550,60 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						?>
 							</tbody>
 						</table>
+
+						<div class="flexline-inline-format">
+							<h2>Inline Formats ( RichText Toolbar )</h2>
+							<ul>
+								<li><strong>Text Shadow:</strong><?php echo ' ' . wp_kses_post( $text_shadow_description ); ?></li>
+							</ul>
+							
+							
+						</div>
 					</div>
 				</section>
-	
-	
-	
+
+
+				<!-- ✨ VISIBILITY TOGGLE GROUPS -->
+				<section id="visibility-toggle">
+				<h3>Visibility Toggle Groups</h3>
+				<p>Create toggleable visibility states for any elements—images, text, charts, icons—using core Button blocks as the trigger. No custom blocks required. Each toggle group is self-contained, allowing multiple independent toggles on a single page or pattern.</p>
+				<ul>
+					<li><strong>Wrapper:</strong> place buttons and toggle targets inside <code>&lt;div class="visibility-toggle-group"&gt;</code> to scope the behavior.</li>
+					<li><strong>Buttons:</strong> add the <code>visibility-toggle</code> class and assign a unique HTML Anchor (e.g., <code>interior</code>). The script uses this value to match targets.</li>
+					<li><strong>Targets:</strong> add a class that matches a button's anchor (e.g., <code>class="interior"</code>) along with either <code>toggle-is-visible</code> or <code>toggle-is-hidden</code> to define the default state.</li>
+					<li><strong>Active state:</strong> mark one button with <code>.toggle-active</code> and its corresponding element with <code>.toggle-is-visible</code>; all other elements should begin with <code>.toggle-is-hidden</code>.</li>
+				</ul>
+				<p>The runtime listens for clicks on <code>.visibility-toggle</code> buttons, toggles the <code>.toggle-active</code> class, sets <code>aria-pressed</code>, and updates visibility by toggling <code>.toggle-is-visible</code> / <code>.toggle-is-hidden</code> within the same group. This logic works for any toggleable content—not just images.</p>
+				<p><strong>Note:</strong> The following is illustrative pseudo-code. Use block settings in the editor (HTML Anchor, Additional CSS Classes) to apply IDs and classes as needed.</p>
+				<pre><code>&lt;div class="visibility-toggle-group"&gt;
+	&lt;div&gt;
+		&lt;button class="visibility-toggle toggle-active" id="exterior"&gt;Exterior&lt;/button&gt;
+		&lt;button class="visibility-toggle" id="interior"&gt;Interior&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;img class="exterior toggle-is-visible" src="exterior.jpg" alt="" /&gt;
+		&lt;img class="interior toggle-is-hidden" src="interior.jpg" alt="" /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+				<p><em>Editor tip:</em> Use the Button block’s <strong>HTML Anchor</strong> field to assign the anchor/ID, and use <strong>Additional CSS class(es)</strong> to apply the corresponding class to each toggleable element.</p>
+				</section>
+
+
+
+				<!-- ✨ PLUGIN INTEGRATIONS -->
+				<section id="plugin-integrations">
+					<h3>Plugin Integrations</h3>
+					<p>FlexLine ships ready-made styling for a handful of popular plugins so their output matches the theme without custom CSS.</p>
+					<ul>
+						<li><strong>Gravity Forms</strong> – form fields, buttons, and validation states inherit FlexLine spacing, typography, and color tokens.</li>
+						<li><strong>Events Manager</strong> – event archives and single layouts align with theme spacing; starter settings live in <code>assets/events-manager/</code> for quick imports.</li>
+						<li><strong>Query Loop Filters</strong> – Human Made’s filter controls adopt FlexLine navigation spacing, button treatments, and form styling for consistent filter bars. <a href="https://github.com/humanmade/query-filter" target="_blank">Download from Github</a></li>
+						<li><strong>Yoast SEO</strong> – required when you use patterns that include the Yoast Breadcrumbs block; the theme expects the plugin to render breadcrumb markup.</li>
+					</ul>
+				</section>
+
+
+
 				<!-- ✨ UTILITY CLASSES -->
 				<section id="utility-classes">
 					<h3>Admin &amp; Front‑end Utility Classes</h3>
@@ -726,34 +761,34 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 	
 				
 	
-				<!-- ✨ DEMO PATTERNS -->
-				<section id="demo-patterns">
-					<h3>Demo Patterns</h3>
-					<p>
-						Want to explore every FlexLine pattern in one place? Create a
-						blank Page or Post, switch the editor to <strong>Code view</strong>,
-						and paste the snippet below. Hit “Update/Publish” and you’ll get a
-						fully-built demo page showcasing all pattern groups and templates.
-					</p>
+<!-- ✨ DEMO PATTERNS -->
+<section id="demo-patterns">
+<h3>Demo Patterns</h3>
+<p>
+	Want to explore every FlexLine pattern in one place? Create a
+	blank Page or Post, switch the editor to <strong>Code view</strong>,
+	and paste the snippet below. Hit “Update/Publish” and you’ll get a
+	fully-built demo page showcasing all pattern groups and templates.
+</p>
 	
-					<pre>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
-						<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
-					</pre>
+<pre>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-ctas"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-galleries"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-components-misc"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-heroes"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-modules"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-sections"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-template-parts"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-list-views"} /--&gt;</code>
+	<code>&lt;!-- wp:pattern {"slug":"flexline/demo-patterns-templates-starter-content"} /--&gt;</code>
+</pre>
 	
-					<p class="notice">
-						<em>Tip:</em> After previewing the page, you can delete sections you
-						don’t need or copy individual patterns into other pages.
-					</p>
-				</section>
+<p class="notice">
+	<em>Tip:</em> After previewing the page, you can delete sections you
+	don’t need or copy individual patterns into other pages.
+</p>
+</section>
 	
 	
 	
@@ -769,6 +804,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
+						<li><a href="#visibility-toggle">Visibility Toggle Groups</a></li>
+						<li><a href="#plugin-integrations">Plugin Integrations</a></li>
 						<li><a href="#utility-classes">Utility Classes</a>
 							<ul>
 								<li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>

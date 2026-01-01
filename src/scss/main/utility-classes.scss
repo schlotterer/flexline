@@ -30,6 +30,18 @@ body,
 		pointer-events: auto;
 	}
 
+	.is-aligned-center {
+		justify-content: center !important;
+		align-items: center !important;
+		text-align: center !important;
+
+		> * {
+			justify-content: center !important;
+			align-items: center !important;
+			text-align: center !important;
+		}
+	}
+
 	/* Opacity utilities */
 	.opacity-0 { opacity: 0; }
 	.opacity-10 { opacity: 0.1; }

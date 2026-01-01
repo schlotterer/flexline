@@ -1,0 +1,29 @@
+/* Image Toggle visibility helpers */
+.toggle-is-hidden {
+	display: none !important;
+}
+
+.toggle-is-visible {
+	display: block !important;
+}
+
+.visibility-toggle.toggle-active,
+.visibility-toggle[aria-pressed="true"],
+.visibility-toggle .wp-element-button.toggle-active,
+.visibility-toggle .wp-element-button[aria-pressed="true"] {
+    background-color: var(--wp--preset--color--primary-dark);
+}
+
+/* Block editor helpers — reveal hidden toggles when selected so they stay editable. */
+body.wp-admin .block-editor-block-list__block.is-selected.toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > * > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.is-selected > * > * > * > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.has-child-selected > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.has-child-selected > * > .toggle-is-hidden,
+body.wp-admin .block-editor-block-list__block.has-child-selected > * > * > .toggle-is-hidden {
+	display: block !important;
+	opacity: 0.4;
+}

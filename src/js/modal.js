@@ -184,7 +184,7 @@ function displayModal(mediaUrl, openerEl) {
 	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
 
-	if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
+	if (mediaUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/)) {
 		contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
 	} else if (
 		mediaUrl.includes('youtube.com') ||

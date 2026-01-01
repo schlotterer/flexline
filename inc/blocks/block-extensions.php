@@ -19,7 +19,7 @@ function flexline_enqueue_block_editor_assets() {
 			'flexline-block-extensions',
 			get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
 			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text' ),
-			THEME_VERSION,
+			function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
 			false
 		);
 }
@@ -137,17 +137,28 @@ function flexline_block_customizations_render( $block_content, $block ) {
 
 		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
 		if ( false !== strpos( $block_content, '<a' ) ) {
-			$label = '';
 
-			// get the image alt from the image id.
-			$alt = get_post_meta( $block['attrs']['id'], '_wp_attachment_image_alt', true );
-			// get the file name from the image id.
-			$filename = basename( get_attached_file( $block['attrs']['id'] ) );
+			$label         = '';
+			$attachment_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
 
-			// fallback to "Link to (file name)".
-			if ( ! $alt ) {
-				$label = $filename . ' Link';
+			if ( $attachment_id ) {
+				$alt      = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+				$filepath = get_attached_file( $attachment_id );
+				$filename = $filepath ? basename( $filepath ) : '';
+
+				if ( $alt ) {
+					$label = $alt;
+				} elseif ( $filename ) {
+					$label = sprintf( 'Link to %s', $filename );
+				}
+			} elseif ( ! empty( $block['attrs']['alt'] ) ) {
+				$label = $block['attrs']['alt'];
 			}
+
+			if ( '' === $label ) {
+				$label = 'Image link';
+			}
+
 			$label     = sanitize_text_field( $label );
 			$processor = new WP_HTML_Tag_Processor( $block_content );
 			while ( $processor->next_tag( 'a' ) ) {
@@ -174,6 +185,26 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			}
 		}
 	}
+
+	if ( 'core/site-logo' === $block['blockName'] && ! empty( $block['attrs']['useHighResLogo'] ) ) {
+		$width_attr = isset( $block['attrs']['width'] ) ? (int) $block['attrs']['width'] : 0;
+		if ( $width_attr > 0 ) {
+			$hires_width = max( 1, $width_attr * 2 );
+			$processor   = new WP_HTML_Tag_Processor( $block_content );
+			if ( $processor->next_tag( 'img' ) ) {
+				$sizes_value = sprintf( '(min-width: %1$spx) %1$spx, 100vw', $hires_width );
+				$processor->set_attribute( 'sizes', $sizes_value );
+				$current_img_class = $processor->get_attribute( 'class' );
+				$img_class_string  = is_string( $current_img_class ) ? trim( $current_img_class ) : '';
+				if ( false === strpos( ' ' . $img_class_string . ' ', ' flexline-logo-hires ' ) ) {
+					$processor->set_attribute( 'class', trim( $img_class_string . ' flexline-logo-hires' ) );
+				}
+				$block_content = $processor->get_updated_html();
+			}
+		}
+		$block_content = add_classes_to_block_content( $block_content, 'flexline-logo-hires ' );
+	}
+
 	if ( 'core/cover' === $block['blockName'] ) {
 		// Check if your custom attributes are set and not empty.
 		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {

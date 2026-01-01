@@ -88,7 +88,7 @@ body,
 		font-family: var(--wp--preset--font-family--body);
 		font-size: var(--wp--preset--font-size--medium);
 		font-weight: var(--wp--custom--font-weight--light);
-		line-height: var(--wp--custom--line-height--body);
+		line-height: var(--wp--custom--line-height--heading);
 		//padding: 10px 20px;
 		width: 100%;
 	}
@@ -214,6 +214,10 @@ body,
 			margin: 0px !important;
 			padding: 0px !important;
 		}
+		> :not(a):first-of-type,
+		&:has(> a:first-child) > :nth-child(2):not(a) {
+			margin-top: 0px !important;
+		}	
 	}
 	// Phone link
 	@include screen($mobile){

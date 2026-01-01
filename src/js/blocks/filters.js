@@ -13,6 +13,7 @@ import {
 	customGalleryAttributes,
 	customShiftAttributes,
 	customNoWrapAttributes,
+	customLogoAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -85,13 +86,16 @@ registerAttributes(['core/post-template'], {
 
 registerAttributes(
 	[
+		'core/accordion',
+		'core/accordion-item',
+		'core/accordion-heading',
+		'core/accordion-panel',
 		'core/buttons',
 		'core/column',
 		'core/spacer',
 		'core/paragraph',
 		'core/heading',
 		'core/video',
-		'core/site-logo',
 		'core/post-featured-image',
 		'core/embed',
 		'core/html',
@@ -99,4 +103,53 @@ registerAttributes(
 		'core/social-links',
 	],
 	{ ...customVisibilityAttributes }
+);
+
+registerAttributes(['core/site-logo'], {
+	...customVisibilityAttributes,
+	...customLogoAttributes,
+});
+
+registerAttributes(
+	[
+		'web4sl/location-address',
+		'web4sl/location-phone-link',
+		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
+	],
+	{ ...customVisibilityAttributes }
+);
+
+// Floor plan blocks: visibility only (no stackAtTablet).
+const floorPlanVisibility = {
+	hideOnDesktop: {
+		type: 'boolean',
+		default: false,
+	},
+	hideOnTablet: {
+		type: 'boolean',
+		default: false,
+	},
+	hideOnMobile: {
+		type: 'boolean',
+		default: false,
+	},
+};
+
+registerAttributes(
+	[
+		'web4sl/advanced-floor-plans',
+		'web4sl/floor-plan-2d-image',
+		'web4sl/floor-plan-3d-image',
+		'web4sl/floor-plan-accessibility-badge',
+		'web4sl/floor-plan-baths',
+		'web4sl/floor-plan-beds',
+		'web4sl/floor-plan-brochure-button',
+		'web4sl/floor-plan-media-toggle',
+		'web4sl/floor-plan-square-feet',
+		'web4sl/floor-plan-starting-price',
+		'web4sl/floor-plan-video-button',
+		'web4sl/floor-plan-virtual-tour-button',
+	],
+	{ ...floorPlanVisibility }
 );

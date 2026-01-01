@@ -3,24 +3,25 @@
 /**
  * Title: Demo Patterns - Components Galleries
  * Slug: flexline/demo-patterns-components-galleries
- * Categories: flexline-demos 
+ * Categories: flexline-demos
  * Inserter: false
  */
 
 namespace FlexLine;
+
 ?>
 <!-- wp:group {"metadata":{"name":"Subnav Sticky","categories":["flexline-components"],"patternName":"flexline/subnav-sticky"},"align":"full","className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary"}}}},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"textColor":"base","gradient":"primary-primaryDark","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-base-color has-primary-primaryDark-gradient-background has-text-color has-background has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:cover {"minHeight":50,"minHeightUnit":"px","gradient":"primary-primaryDark","align":"full","className":"","style":{"spacing":{"padding":{"left":"var:preset|spacing|large","right":"var:preset|spacing|large","top":"8px","bottom":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"}} -->
     <div class="wp-block-cover alignfull has-base-color has-text-color has-link-color" style="padding-top:8px;padding-right:var(--wp--preset--spacing--large);padding-bottom:8px;padding-left:var(--wp--preset--spacing--large);min-height:50px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim has-background-gradient has-primary-primaryDark-gradient-background"></span>
         <div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"","style":{"elements":{"link":{"color":{"text":"var:preset|color|warning"},":hover":{"color":{"text":"var:preset|color|highlight"}}}},"typography":{"lineHeight":"1.3"}},"textColor":"base","fontFamily":"display"} -->
-            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#poster-gallery">Poster Gallery</a> | <a href="#video-modal">Video Modal</a> | <a href="#gallery-media-detailed">Gallery Media Detailed</a> | <a href="#gallery-media-download">Gallery Media w/ Download</a> | <a href="#modal-link-card">Modal Link Card</a></p>
+            <p class="has-base-color has-text-color has-link-color has-display-font-family" style="line-height:1.3">Patterns: <a href="#poster-gallery">Poster Gallery</a> | <a href="#video-modal">Video Modal</a> | <a href="#gallery-media-detailed">Gallery Media Detailed</a> | <a href="#gallery-media-download">Gallery Media w/ Download</a> | <a href="#gallery-toggle">Gallery Image Toggle</a> | <a href="#modal-link-card">Modal Link Card</a></p>
             <!-- /wp:paragraph -->
         </div>
     </div>
     <!-- /wp:cover -->
 </div>
 <!-- /wp:group -->
- 
+
 <!-- wp:group {"metadata":{"name":"Intro Text"},"className":"","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"><!-- wp:paragraph {"className":""} -->
     <p>Our <strong>Gallery Patterns</strong> are flexible building blocks for showcasing rich media — whether it’s photos, videos, or other embedded content. These patterns help you tell a more visual story and keep visitors engaged.</p>
@@ -40,7 +41,7 @@ namespace FlexLine;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Poster Gallery"},"className":"is-style-dots"} -->
     <div class="wp-block-columns are-vertically-aligned-center is-style-dots"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-photo-poster-card"} /-->
 
         </div>
@@ -48,7 +49,7 @@ namespace FlexLine;
 
         <!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:66.66%"><!-- wp:image {"sizeSlug":"large","className":"is-style-shadow-diffused enable-modal","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/e38d05ced34a4992adf99712e9dda11a?sid=516d7482-4da7-44b6-92e3-a9e16a06ab3f"} -->
-            <figure class="wp-block-image size-large is-style-shadow-diffused enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/e38d05ced34a4992adf99712e9dda11a-6e1a3e5e871f87db-full-play.gif" alt="" /></figure>
+            <figure class="wp-block-image size-large is-style-shadow-diffused enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/e38d05ced34a4992adf99712e9dda11a-d8fd8340e6c2367e-full-play.gif#t=0.1" alt="Poster Gallery Video" /></figure>
             <!-- /wp:image -->
         </div>
         <!-- /wp:column -->
@@ -66,7 +67,7 @@ namespace FlexLine;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Media Modal"},"className":"is-style-dots"} -->
     <div class="wp-block-columns are-vertically-aligned-center is-style-dots"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-video-card"} /-->
 
         </div>
@@ -92,7 +93,7 @@ namespace FlexLine;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Mixed Detailed"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-mixed-detailed-card"} /-->
 
         </div>
@@ -118,7 +119,7 @@ namespace FlexLine;
     <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Media Download Group"},"className":""} -->
     <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-            
+
             <!-- wp:pattern {"slug":"flexline/gallery-media-download"} /-->
 
         </div>
@@ -132,6 +133,43 @@ namespace FlexLine;
         <!-- /wp:column -->
     </div>
     <!-- /wp:columns -->
+
+    <!-- wp:group {"metadata":{"name":"Gallery Floor Plans Toggle"},"align":"full","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:heading {"level":3,"className":""} -->
+        <h3 class="wp-block-heading" id="gallery-floor-plan">Gallery Floor Plan 3D/2D Toggle</h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"className":""} -->
+        <p>The <strong>Floor Plan toggle pattern</strong> uses <strong>FlexLine’s new Visibility Toggle</strong> functionality. The <strong>2D</strong> and <strong>3D</strong> buttons are each connected to specific image instances, allowing their visibility to be switched on and off as needed. The image being toggled should have a <strong>class name matching the ID of its corresponding button</strong> to ensure proper linkage.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"className":""} -->
+        <p>The <strong>PDF button</strong> uses the download icon, which automatically adds the <code>download</code> attribute to the link. This triggers an immediate file download. Alternatively, the button can be configured to open the PDF in a modal window instead of downloading it directly.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph {"className":""} -->
+        <p>The <strong>Learn More button</strong> can be used to link to a detailed page or to open a <strong>virtual tour modal</strong> for an enhanced user experience.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:columns {"verticalAlignment":"center","metadata":{"name":"Gallery Media Download Group"},"className":""} -->
+        <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"33.33%","className":""} -->
+            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+
+                <!-- wp:pattern {"slug":"flexline/gallery-floor-plan-toggle"} /-->
+
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":""} -->
+            <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:66.66%"><!-- wp:image {"sizeSlug":"large","className":"is-style-shadow-diffused enable-modal","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/a15cca5ef3454c4baa611220594b555c?sid=e77ca24f-c0fe-4014-b269-bf02607d2ee8"} -->
+                <figure class="wp-block-image size-large is-style-shadow-diffused enable-modal"><img src="https://cdn.loom.com/sessions/thumbnails/a15cca5ef3454c4baa611220594b555c-6ac0fab5cbdd978e-full-play.gif" /></figure>
+                <!-- /wp:image -->
+            </div>
+            <!-- /wp:column -->
+        </div>
+        <!-- /wp:columns -->
+    </div>
+    <!-- /wp:group -->
 
     <!-- wp:separator {"className":"is-style-dots"} -->
     <hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" />

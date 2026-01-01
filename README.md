@@ -105,3 +105,15 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
+## Plugin Integrations
+
+FlexLine ships opinionated styling for several third-party plugins so they feel native without extra CSS tweaks:
+
+- [Gravity Forms](https://www.gravityforms.com/) – aligns form fields, buttons, and validation messages with the theme’s typography and spacing.
+- [Events Manager](https://wordpress.org/plugins/events-manager/) – keeps event lists, single templates, and the bundled starter settings consistent with FlexLine layouts.
+- [Query Loop Filters](https://github.com/humanmade/query-filter) – matches filter bars and control states from Human Made’s Query Loop Filters plugin to the theme’s navigation spacing and button treatments.
+- [Yoast SEO](https://yoast.com/wordpress/plugins/seo/) – required for patterns that reference the Yoast Breadcrumbs block; install the plugin to render those patterns as intended.
+
+## WordPress 6.9 Accordion Block
+
+WordPress 6.9 ships a native accordion/accordion-item/heading/panel family. FlexLine automatically injects its visibility toggles and card/glass style variations into each of those blocks, so editors can keep using the same FlexLine controls—such as Card, Card w/ Padding, Outline, Glass, and Glass Card—without depending on a third-party accordion plugin.
