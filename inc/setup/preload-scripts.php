@@ -14,7 +14,7 @@ namespace FlexLine;
  */
 function preload_scripts() {
 	printf(
-		'<link rel="%1$s" href="%2$s" as="%3$s">',
+		'<link rel="%1$s" href="%2$s" as="%3$s" fetchpriority="high">',
 		esc_attr( 'preload' ),
 		esc_url( get_theme_file_uri( 'assets/built/js/load-early.js' ) ),
 		esc_attr( 'script' )
