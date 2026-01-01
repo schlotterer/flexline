@@ -1,11 +1,45 @@
 /* global Headroom */
-document.addEventListener('DOMContentLoaded', function () {
+function flexlineOnEarlyReady(callback) {
+	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+		window.Flexline.onEarlyReady(callback);
+		return;
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', callback, { once: true });
+	} else {
+		callback();
+	}
+}
+
+function initHeadroom() {
 	// Grab the header element
 	const myHeader = document.querySelector('header.site-header');
 	// Guard check
 	if (!myHeader) {
 		return; // No header element, so bail out
 	}
+
+	const getHeaderHeight = () => {
+		if (
+			window.Flexline &&
+			typeof window.Flexline.getHeaderHeight === 'function'
+		) {
+			return window.Flexline.getHeaderHeight();
+		}
+		const root = document.documentElement;
+		const raw = root
+			? window
+					.getComputedStyle(root)
+					.getPropertyValue('--header-site-header-height')
+					.trim()
+			: '';
+		const parsed = Number.parseFloat(raw);
+		if (!Number.isNaN(parsed)) {
+			return parsed;
+		}
+		return myHeader.offsetHeight;
+	};
 
 	// Function to adjust the position of the main button based on scroll position.
 	function toggleButtonPosition(buttonToPosition) {
@@ -49,14 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			buttonToCenter.style.top = `${headerContainer.offsetTop + offset}px`;
 		}
 	}
-	const headerSiteHeader = document.querySelector('header.site-header');
-	const headroomOffset = headerSiteHeader.offsetHeight;
+	const headroomOffset = Math.max(getHeaderHeight(), 0);
+	const offsetDown = headroomOffset;
+	const offsetUp = Math.max(headroomOffset - 70, 0);
 
 	// OPTIONAL: define some custom options
 	const options = {
 		offset: {
-			up: headroomOffset - 70,
-			down: headroomOffset,
+			up: offsetUp,
+			down: offsetDown,
 		},
 		tolerance: { up: 5, down: 5 },
 		classes: {
@@ -91,4 +126,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Initialize
 	headroom.init();
-});
+
+	const syncOffsets = () => {
+		const height = Math.max(getHeaderHeight(), 0);
+		headroom.offset.up = Math.max(height - 70, 0);
+		headroom.offset.down = height;
+	};
+
+	const syncState = () => {
+		syncOffsets();
+		window.requestAnimationFrame(() => {
+			window.dispatchEvent(new Event('scroll'));
+		});
+	};
+
+	syncState();
+	document.addEventListener('flexline:header-metrics', syncState);
+}
+
+flexlineOnEarlyReady(initHeadroom);

@@ -23,7 +23,21 @@ function getVideoEmbedUrl(mediaUrl) {
 
 	return '';
 }
-document.addEventListener('DOMContentLoaded', () => {
+
+function flexlineOnEarlyReady(callback) {
+	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+		window.Flexline.onEarlyReady(callback);
+		return;
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', callback, { once: true });
+	} else {
+		callback();
+	}
+}
+
+flexlineOnEarlyReady(() => {
 	const enableModal = (element, url) => {
 		element.classList.add('has-modal');
 		element.setAttribute('data-enable-modal', 'true');
@@ -184,7 +198,7 @@ function displayModal(mediaUrl, openerEl) {
 	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
 
-	if (mediaUrl.match(/\.(jpeg|jpg|gif|png)$/)) {
+	if (mediaUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/)) {
 		contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
 	} else if (
 		mediaUrl.includes('youtube.com') ||

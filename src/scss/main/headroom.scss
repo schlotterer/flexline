@@ -54,12 +54,12 @@ body.headroom-in-use header.site-header {
             opacity: 0;
         }
     }
-    .headroom-hide-at-top{ 
-        position: absolute;
-        transform-origin: top center;
-        transform: translateY(-100%);
-        opacity: 0;
-    }
+    //.headroom-hide-at-top{ 
+    //    position: absolute;
+    //    transform-origin: top center;
+    //    transform: translateY(-100%);
+    //    opacity: 0;
+    //}
 }
 
 

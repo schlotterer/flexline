@@ -19,3 +19,8 @@ body.flexline {
     }
 
 }
+
+body.flexline-related-posts-active
+	.flexline-related-posts-hide-post-type {
+	display: none !important;
+}

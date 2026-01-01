@@ -1,11 +1,112 @@
-.em.em-view-container p{margin: 0;}
-.em.em-view-container .em.em-list{
-    gap:0;
+.em {
+	&.em-view-container {
+		p {
+			margin: 0;
+		}
+
+		.em {
+			&.em-list {
+				gap: 0;
+			}
+		}
+	}
+    .em-events-grid,
+	.em-grid--posters {
+		.em-item--poster {
+			.em-icon {
+				filter: brightness(0) invert(1) drop-shadow(0 1px 0 #fff) drop-shadow(1px 0 0 #fff);
+			}
+		}
+	}
+}
+
+.Registration-Closed {
+	.registration {
+		display: none;
+	}
+}
+
+.em-grid {
+	&--posters {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: var(--wp--preset--spacing--medium);
+	}
+}
+
+.em-item {
+	&--poster {
+		.wp-block-cover {
+			position: relative;
+			overflow: hidden;
+			aspect-ratio: 3 / 4; /* poster feel like your mockup */
+			padding: var(--wp--preset--spacing--medium);
+
+			> img {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.wp-block-cover__inner-container {
+            --gradient-middle: color-mix(in srgb, var(--wp--preset--color--contrast) 60%, transparent);
+
+			position: relative;
+			z-index: 2;
+            background: linear-gradient( to top, var(--wp--preset--color--contrast) 0%, var(--gradient-middle) 80%, transparent 100%) !important;
+		}
+
+		.em-item-kicker {
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-size: 0.85em;
+			margin-bottom: var(--wp--preset--spacing--x-small);
+		}
+
+		.em-item-action {
+			margin-top: var(--wp--preset--spacing--small);
+			justify-content: flex-end;
+            /* default: hide RSVP */
+            display: none;
+		}
+
+		.em-item-action-link {
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-size: 0.8em;
+		}
+
+        a {
+            color: var(--wp--preset--color--base) !important;
+        }
+	}
+}
+
+/* only show when the attribute resolves to "Open" */
+.Registration-Open {
+	.em-item-action {
+		display: flex;
+	}
 }
 
 
-.Registration-Closed{
-    .registration{
-        display: none;
+
+.flexline{
+    .em.em-list,
+    .em.em-list-widget{
+        .em-item{
+            &--poster{
+                .em-item-meta .em-item-meta-line a {
+                    color: var(--wp--preset--color--base) !important;
+                    font-style: italic !important;
+                    text-decoration: underline var(--wp--preset--color--base) 1px !important;
+                    text-underline-offset: 3px;
+                }
+            }
+        } 
     }
+     
 }
