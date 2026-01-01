@@ -1,5 +1,18 @@
-// Listen for the DOMContentLoaded event to ensure the DOM is fully loaded before executing the script.
-document.addEventListener('DOMContentLoaded', function () {
+function flexlineOnEarlyReady(callback) {
+	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+		window.Flexline.onEarlyReady(callback);
+		return;
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', callback, { once: true });
+	} else {
+		callback();
+	}
+}
+
+// Listen for early readiness to ensure the DOM is ready even if scripts are delayed.
+flexlineOnEarlyReady(function () {
 	// Attempt to find the .slide-in div in the document.
 	const slideInDiv = document.querySelector('.slide-in');
 	// eslint-disable-next-line no-undef
