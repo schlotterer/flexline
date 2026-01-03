@@ -6,7 +6,7 @@
 
 		.em {
 			&.em-list {
-				gap: 0;
+				// gap: 0;
 			}
 		}
 	}
@@ -25,7 +25,6 @@
 		display: none;
 	}
 }
-
 .em-grid {
 	&--posters {
 		display: grid;
@@ -39,9 +38,9 @@
 		.wp-block-cover {
 			position: relative;
 			overflow: hidden;
-			aspect-ratio: 3 / 4; /* poster feel like your mockup */
+			//aspect-ratio: 3 / 4; /* poster feel like mockup */
 			padding: var(--wp--preset--spacing--medium);
-
+			box-sizing: border-box;
 			> img {
 				position: absolute;
 				inset: 0;
@@ -82,6 +81,11 @@
         a {
             color: var(--wp--preset--color--base) !important;
         }
+		&:hover{
+			.wp-block-cover__inner-container{
+				padding-top: var(--wp--preset--spacing--x-large, 50px);
+			}
+		}
 	}
 }
 
