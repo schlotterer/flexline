@@ -9,55 +9,6 @@
 			"contentSize": "960px",
 			"wideSize": "1380px"
 		},
-		"spacing": {
-			"spacingSizes": [
-				{
-					"name": "Extra Small",
-					"size": "8px",
-					"slug": "x-small"
-				},
-				{
-					"name": "Small",
-					"size": "16px",
-					"slug": "small"
-				},
-				{
-					"name": "Medium ( 24px / 32px )",
-					"size": "clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 1.5625)), 32px)",
-					"slug": "medium"
-				},
-				{
-					"name": "Large ( 32px / 48px )",
-					"size": "clamp(32px, calc(2rem + ((1vw - 7.68px) * 3.125)), 48px)",
-					"slug": "large"
-				},
-				{
-					"name": "Extra Large ( 32px / 64px )",
-					"size": "clamp(32px, calc(2rem + ((1vw - 7.68px) * 6.25)), 64px)",
-					"slug": "x-large"
-				},
-				{
-					"name": "2xl ( 32px / 80px )",
-					"size": "clamp(32px, calc(2rem + ((1vw - 7.68px) * 9.375)), 80px)",
-					"slug": "xx-large"
-				},
-				{
-					"name": "3xl ( 48px / 96px )",
-					"size": "clamp(48px, calc(3rem + ((1vw - 7.68px) * 9.375)), 96px)",
-					"slug": "xxx-large"
-				}			
-			],
-			"units": [
-				"px",
-				"em",
-				"rem",
-				"svh",
-				"dvh",
-				"vh",
-				"vw",
-				"%"
-			]
-		},
 		"useRootPaddingAwareAlignments": true,
 		"color": {
 			"defaultDuotone": false,
@@ -349,83 +300,6 @@
 					"fontFamily": "'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', monospace",
 					"name": "Monospace",
 					"slug": "monospace"
-				}
-			],
-			"fontSizes": [
-				{
-					"fluid": false,
-					"name": "xSmall",
-					"size": "16px",
-					"slug": "x-small"
-				},
-				{
-					"fluid": false,
-					"name": "Small",
-					"size": "18px",
-					"slug": "small"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "20px"
-					},
-					"name": "Medium",
-					"size": "20px",
-					"slug": "medium"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "24px"
-					},
-					"name": "Large",
-					"size": "24px",
-					"slug": "large"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "30px"
-					},
-					"name": "xLarge",
-					"size": "30px",
-					"slug": "x-large"
-				},
-				{
-					"fluid": {
-						"min": "30px",
-						"max": "36px"
-					},
-					"name": "36px",
-					"size": "36px",
-					"slug": "max-36"
-				},
-				{
-					"fluid": {
-						"min": "36px",
-						"max": "48px"
-					},
-					"name": "48px",
-					"size": "48px",
-					"slug": "max-48"
-				},
-				{
-					"fluid": {
-						"min": "42px",
-						"max": "60px"
-					},
-					"name": "60px",
-					"size": "60px",
-					"slug": "max-60"
-				},
-				{
-					"fluid": {
-						"min": "48px",
-						"max": "72px"
-					},
-					"name": "72px",
-					"size": "72px",
-					"slug": "max-72"
 				}
 			]
 		},
