@@ -38,9 +38,6 @@
 		.wp-block-cover {
 			position: relative;
 			overflow: hidden;
-			//aspect-ratio: 3 / 4; /* poster feel like mockup */
-			padding: var(--wp--preset--spacing--medium);
-			box-sizing: border-box;
 			> img {
 				position: absolute;
 				inset: 0;
@@ -48,11 +45,16 @@
 				height: 100%;
 				object-fit: cover;
 			}
+			&:hover{
+				.wp-block-cover__inner-container{
+					padding-top: var(--wp--preset--spacing--xx-large, 80px) !important;
+				}
+			}
 		}
 
 		.wp-block-cover__inner-container {
+			transition: var(--wp--custom--transition-time);
             --gradient-middle: color-mix(in srgb, var(--wp--preset--color--contrast) 60%, transparent);
-
 			position: relative;
 			z-index: 2;
             background: linear-gradient( to top, var(--wp--preset--color--contrast) 0%, var(--gradient-middle) 80%, transparent 100%) !important;
@@ -65,27 +67,34 @@
 			margin-bottom: var(--wp--preset--spacing--x-small);
 		}
 
-		.em-item-action {
+		.em-item-action-link {
+			//color: var(--wp--preset--color--base) !important;
+			
+		}
+		a{
+			color: var(--wp--preset--color--base) !important;
+		}
+
+        .rsvp-button{
 			margin-top: var(--wp--preset--spacing--small);
-			justify-content: flex-end;
+			//justify-content: flex-end;
             /* default: hide RSVP */
             display: none;
-		}
-
-		.em-item-action-link {
-			text-transform: uppercase;
-			letter-spacing: 0.08em;
-			font-size: 0.8em;
-		}
-
-        a {
-            color: var(--wp--preset--color--base) !important;
-        }
-		&:hover{
-			.wp-block-cover__inner-container{
-				padding-top: var(--wp--preset--spacing--x-large, 50px);
+			a {
+				background: transparent none;
+				background-color: transparent;
+				border-color: currentColor;
+				border-width: 1px;
+				border-style: solid;
+				//color: var(--wp--preset--color--primary);
+				padding-top: calc( var(--wp--preset--spacing--medium) - 1px );
+				padding-right: calc( var(--wp--preset--spacing--large) - 1px );
+				padding-bottom: calc( var(--wp--preset--spacing--medium) - 1px );
+				padding-left: calc( var(--wp--preset--spacing--large) - 1px );
+				box-shadow: none;
 			}
-		}
+		} 
+		
 	}
 }
 
@@ -99,6 +108,21 @@
 
 
 .flexline{
+	--button-primary-color: var(--wp--preset--color--base) !important;
+	.em.pixelbones{
+		--accent-color: var(--wp--preset--color--primary) !important;
+		--accent-color-hover: var(--wp--preset--color--primary-dark) !important;
+	}
+	span.flatpickr-weekday,
+	.flatpickr-months .flatpickr-month,
+	.flatpickr-current-month .flatpickr-monthDropdown-months,
+	.flatpickr-weekdays {
+		background: var(--wp--preset--color--neutral-light);
+	}
+	.flatpickr-day.today:focus, 
+	.flatpickr-day.today:hover{
+		background: var(--wp--preset--color--neutral);
+	}
     .em.em-list,
     .em.em-list-widget{
         .em-item{
@@ -111,6 +135,5 @@
                 }
             }
         } 
-    }
-     
+    }    
 }
