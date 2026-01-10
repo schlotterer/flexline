@@ -930,6 +930,17 @@
 				"variations": {
 					"text-shadow": {
 						"css": "text-shadow: var(--wp--custom--text-shadow); & a {text-shadow: var(--wp--custom--text-shadow);}"
+					},
+					"eyebrow": {
+						"color": {
+							"text": "var(--wp--custom--eyebrow-color)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--custom--eyebrow-size)",
+							"fontFamily": "var(--wp--custom--eyebrow-font)",
+							"textTransform": "var(--wp--custom--eyebrow-text-transform)",
+							"lineHeight": "1.05"
+						}
 					}
 				},
 				"css": ".has-background {padding: var(--wp--preset--spacing--medium) var(--wp--preset--spacing--large);}"
