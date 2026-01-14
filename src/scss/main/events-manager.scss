@@ -20,6 +20,19 @@
 	}
 }
 
+/* ==================================================
+      Events Fixes
+================================================== */
+body.flexline .em.em-item.em-item-single .em-item-image img {
+	padding: 0 !important;
+	border-left: none;
+ }
+
+ .em-event-add-to-calendar-content,
+ .tippy-box {
+	min-width: 150px;
+ }
+
 .Registration-Closed {
 	.registration {
 		display: none;
@@ -65,6 +78,12 @@
 			letter-spacing: 0.08em;
 			font-size: 0.85em;
 			margin-bottom: var(--wp--preset--spacing--x-small);
+
+			ul{
+				list-style: none;
+				padding:0;
+				margin: 0 0 var(--wp--preset--spacing--x-small) 0;
+			}
 		}
 
 		.em-item-action-link {
@@ -135,5 +154,15 @@
                 }
             }
         } 
-    }    
+    } 
+	.em-event-categories.wp-block-button{
+		display: inline-block;
+		margin: var(--wp--preset--spacing--small) 0;
+	} 
+	&.single-event{
+		.gform_button{
+			background-color : var(--wp--preset--color--primary) !important;
+		 }  
+	} 
 }
+
