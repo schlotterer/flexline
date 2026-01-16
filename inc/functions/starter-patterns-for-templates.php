@@ -35,17 +35,27 @@ function auto_insert_pattern_smart( $content, $post ) {
 		}
 	}
 
-	// 2. Fallback to post-type starter (old behaviour)
-	$fallback_map = array(
+	// 2. Post-type specific starter pattern.
+	$post_type = $post->post_type;
+
+	// Backward compatibility for core post types.
+	$legacy_map = array(
 		'post' => 'post-starter',
 		'page' => 'page-starter',
 	);
-	$post_type    = $post->post_type;
-	if ( isset( $fallback_map[ $post_type ] ) ) {
-		$pattern = get_block_pattern_by_slug( $fallback_map[ $post_type ] );
-		if ( $pattern ) {
-			return $pattern;
-		}
+
+	if ( isset( $legacy_map[ $post_type ] ) ) {
+		// Use legacy naming for posts and pages.
+		$pattern_slug = $legacy_map[ $post_type ];
+	} else {
+		// For custom post types, use WordPress template hierarchy convention.
+		// Pattern slug: single-{post_type}-starter
+		$pattern_slug = 'single-' . $post_type . '-starter';
+	}
+
+	$pattern = get_block_pattern_by_slug( $pattern_slug );
+	if ( $pattern ) {
+		return $pattern;
 	}
 
 	return $content;
