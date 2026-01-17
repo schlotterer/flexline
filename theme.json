@@ -941,6 +941,17 @@
 							"textTransform": "var(--wp--custom--eyebrow-text-transform)",
 							"lineHeight": "1.05"
 						}
+					},
+					"creative": {
+						"color": {
+							"text": "var(--wp--custom--creative-color)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--custom--creative-size)",
+							"fontFamily": "var(--wp--custom--creative-font)",
+							"textTransform": "var(--wp--custom--creative-text-transform)",
+							"lineHeight": "1.05"
+						}
 					}
 				},
 				"css": ".has-background {padding: var(--wp--preset--spacing--medium) var(--wp--preset--spacing--large);}"
