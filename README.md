@@ -105,6 +105,16 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
+## Shortcode Tokens
+
+FlexLine shortcodes remain available for backward compatibility, and the same values can be used as token placeholders inside block content and patterns. Tokens are replaced at render time using double braces, for example:
+
+- `{{flexline_copyright_year}}`
+- `{{flexline_site_name}}`
+- `{{flexline_page_title}}`
+
+Empty token values render as blank strings.
+
 ## Plugin Integrations
 
 FlexLine ships opinionated styling for several third-party plugins so they feel native without extra CSS tweaks:

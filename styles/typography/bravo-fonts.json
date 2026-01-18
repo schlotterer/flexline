@@ -95,13 +95,31 @@
 			"fontSizes": [
 				{
 					"fluid": false,
-					"name": "xSmall",
+					"name": "14px",
+					"size": "14px",
+					"slug": "max-14"
+				},
+				{
+					"fluid": false,
+					"name": "16px",
+					"size": "16px",
+					"slug": "max-16"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "14px"
+					},
+					"name": "xSmall 16px|14px",
 					"size": "16px",
 					"slug": "x-small"
 				},
 				{
-					"fluid": false,
-					"name": "Small",
+					"fluid": {
+						"min": "16px",
+						"max": "18px"
+					},
+					"name": "Small 18px|16px",
 					"size": "18px",
 					"slug": "small"
 				},
@@ -110,7 +128,7 @@
 						"min": "18px",
 						"max": "20px"
 					},
-					"name": "Medium",
+					"name": "Medium 20px|18px",
 					"size": "20px",
 					"slug": "medium"
 				},
@@ -119,7 +137,7 @@
 						"min": "20px",
 						"max": "24px"
 					},
-					"name": "Large",
+					"name": "Large  24px|20px",
 					"size": "24px",
 					"slug": "large"
 				},
@@ -128,7 +146,7 @@
 						"min": "24px",
 						"max": "30px"
 					},
-					"name": "xLarge",
+					"name": "xLarge 30px|24px",
 					"size": "30px",
 					"slug": "x-large"
 				},
@@ -137,7 +155,7 @@
 						"min": "30px",
 						"max": "36px"
 					},
-					"name": "36px",
+					"name": "36px|30px",
 					"size": "36px",
 					"slug": "max-36"
 				},
@@ -146,7 +164,7 @@
 						"min": "36px",
 						"max": "48px"
 					},
-					"name": "48px",
+					"name": "48px|36px",
 					"size": "48px",
 					"slug": "max-48"
 				},
@@ -155,7 +173,7 @@
 						"min": "42px",
 						"max": "60px"
 					},
-					"name": "60px",
+					"name": "60px|42px",
 					"size": "60px",
 					"slug": "max-60"
 				},
@@ -164,9 +182,18 @@
 						"min": "48px",
 						"max": "72px"
 					},
-					"name": "72px",
+					"name": "72px|48px",
 					"size": "72px",
 					"slug": "max-72"
+				},
+				{
+					"fluid": {
+						"min": "60px",
+						"max": "100px"
+					},
+					"name": "100px|60px",
+					"size": "100px",
+					"slug": "max-100"
 				}
 			]
 		}

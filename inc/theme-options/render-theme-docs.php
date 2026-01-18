@@ -187,6 +187,22 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 				),
 			),
+			'core/query'                     => array(
+				'attributes' => array(
+					array(
+						'name'        => 'Enable Related Posts',
+						'description' => 'Adds a FlexLine panel to the Query Loop sidebar that toggles a “Related” mode. When enabled, the theme forces the block to run its own query (inherit = false) and injects runtime filters on singular views.',
+					),
+					array(
+						'name'        => 'Match by Taxonomy',
+						'description' => 'Dropdown of every public taxonomy registered on the site (categories, tags, custom taxonomies, etc.). Front-end logic finds the current post’s best matching term using Yoast primary term → Rank Math primary term → first assigned term.',
+					),
+					array(
+						'name'        => 'Post Type Scope',
+						'description' => 'Choose whether related results stay within the current post type or may include any public type. The PHP filter updates the Query Loop’s <code>post_type</code> accordingly.',
+					),
+				),
+			),
 			'core/post-template'             => array(
 				'attributes' => array(
 					array(
@@ -248,26 +264,26 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 		$text_shadow_description = __( 'Adds FlexLine’s subtle shadow inline via the RichText toolbar (wraps selections in <code>is-style-text-shadow</code>). Available wherever a block exposes standard inline formats.', 'flexline' );
 
 		$style_descriptions = array(
-			'columns-reverse' => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
-			'card'            => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
-			'card-padded'     => 'Same as Card but with theme-small padding baked in.',
-			'card-alt'        => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
-			'outlined'        => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
-			'shadow-light'    => 'Subtle, soft shadow for slight elevation.',
-			'shadow-dark'     => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
-			'shadow-diffused' => 'Wide, feathered shadow—great behind covers or hero quotes.',
-			'glass'           => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
-			'glass-card'      => 'Glass background plus card border-radius & light shadow, ideal over photography.',
+			'columns-reverse'       => 'Maintains column order in the editor but flips it when the Columns block stacks on smaller screens—handy for mobile-first layouts.',
+			'card'                  => 'Clean white “card” container with border-radius & light shadow. Zero internal padding so media can edge-to-edge.',
+			'card-padded'           => 'Same as Card but with theme-small padding baked in.',
+			'card-alt'              => 'Edge-to-edge images on top; inner text gets theme-small padding. Perfect for image-lead cards.',
+			'outlined'              => 'Adds a 1-px accent border & padding, no shadow. Minimalist card alternative.',
+			'shadow-light'          => 'Subtle, soft shadow for slight elevation.',
+			'shadow-dark'           => 'Deeper shadow for stronger lift; hover swaps to diffused shadow when wrapped in a Group Link.',
+			'shadow-diffused'       => 'Wide, feathered shadow—great behind covers or hero quotes.',
+			'glass'                 => 'Frosted-glass effect: semi-transparent base + 10 px blur + saturate.',
+			'glass-card'            => 'Glass background plus card border-radius & light shadow, ideal over photography.',
 			'glass-card-no-padding' => 'Same glass-card treatment but with zero interior padding—stack alongside blocks that already handle their own spacing.',
-			'no-disc'         => 'Strips bullets & left-padding for clean checklist or icon lists.',
-			'main-header-nav' => 'Opinionated spacing & weight for primary site navigation.',
-			'dark-over-light' => 'Dark text color set atop light backgrounds; pairs with transparent links.',
-			'light-over-dark' => 'Light text on dark backgrounds for hero/footers.',
-			'outline'         => 'Navigation links gain a 1 px outline & padding on desktop-up.',
-			'eyebrow'         => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
-			'creative'        => 'Large decorative headline style using the site’s creative font.',
-			'glass-button'    => 'Transparent glass button with blur & subtle border that intensifies on hover.',
-			'text-link'       => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
+			'no-disc'               => 'Strips bullets & left-padding for clean checklist or icon lists.',
+			'main-header-nav'       => 'Opinionated spacing & weight for primary site navigation.',
+			'dark-over-light'       => 'Dark text color set atop light backgrounds; pairs with transparent links.',
+			'light-over-dark'       => 'Light text on dark backgrounds for hero/footers.',
+			'outline'               => 'Navigation links gain a 1 px outline & padding on desktop-up.',
+			'eyebrow'               => 'Small uppercase “eyebrow” heading with custom font/size/color - used for SEO headlines.',
+			'creative'              => 'Large decorative headline style using the site’s creative font.',
+			'glass-button'          => 'Transparent glass button with blur & subtle border that intensifies on hover.',
+			'text-link'             => 'Removes button chrome so it looks like a plain text link (adds hover underline).',
 		);
 
 		foreach ( $block_styles as $block => $styles ) {
@@ -562,6 +578,33 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					</div>
 				</section>
 
+				<!-- ✨ RELATED QUERY LOOPS -->
+				<section id="related-posts">
+					<h3>Related Posts for Query Loop</h3>
+					<p>FlexLine extends the core Query Loop block with a <strong>Related Posts</strong> toggle so editors can surface context-aware loops without touching PHP. When enabled, the block replaces its manual filters with a runtime query that matches the currently viewed post’s taxonomy terms.</p>
+					<h4>Editor workflow</h4>
+					<ol>
+						<li>Insert a Query Loop (any layout works) and design the inner blocks as usual.</li>
+						<li>Open the <em>FlexLine Related Posts</em> panel and enable the toggle. The theme forces <code>inherit = false</code> behind the scenes so the loop always runs a standalone query.</li>
+						<li>Pick a taxonomy under <strong>Match by Taxonomy</strong>. The dropdown lists every public taxonomy, including custom types like “Floor Plan Groupings”.</li>
+						<li>Choose the <strong>Post Type Scope</strong>—either limit to the current post type or allow all public types.</li>
+						<li>Save your template. The editor preview still shows the manual query, but the front end now swaps in related results automatically.</li>
+					</ol>
+					<h4>How the filter behaves</h4>
+					<ul>
+						<li>Only runs on singular views. Archives continue to use the block’s default query.</li>
+						<li>Looks up the “best” term for the selected taxonomy in this order: Yoast SEO primary term → Rank Math primary term → first assigned term. If no term exists, the loop intentionally returns zero posts.</li>
+						<li>Excludes the current post, preserves your items-per-page / layout settings, and updates <code>post_type</code> when you choose the “All post types” scope.</li>
+						<li>Requires no bespoke block markup—attributes live directly on core/query so patterns remain portable.</li>
+					</ul>
+					<h4>Tips &amp; patterns</h4>
+					<ul>
+						<li>Drop in the <code>flexline/related-posts</code> pattern for a ready-made three-column layout with the feature preconfigured.</li>
+						<li>Use standard Query Loop filters (taxonomy, author, etc.) only when you want to constrain the editor preview; the runtime filter ignores those when Related mode is active.</li>
+						<li>Because the toggle is opt-in per block, you can mix manual Query Loops and related ones on the same page.</li>
+					</ul>
+				</section>
+
 
 				<!-- ✨ VISIBILITY TOGGLE GROUPS -->
 				<section id="visibility-toggle">
@@ -804,6 +847,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
+						<li><a href="#related-posts">Related Posts (Query Loop)</a></li>
 						<li><a href="#visibility-toggle">Visibility Toggle Groups</a></li>
 						<li><a href="#plugin-integrations">Plugin Integrations</a></li>
 						<li><a href="#utility-classes">Utility Classes</a>

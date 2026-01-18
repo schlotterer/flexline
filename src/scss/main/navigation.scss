@@ -73,7 +73,8 @@
         *:not(.wp-element-button):not(span) {
             color: var(--wp--custom--nav-main-color);
 
-            &:hover {
+            &:hover,
+            &:active {
                 color: var(--wp--custom--nav-main-hover-color);
             }
         }

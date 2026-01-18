@@ -288,3 +288,23 @@ export const customShiftAttributes = {
 		default: false,
 	},
 };
+
+// Related Posts - Define custom attributes
+export const customRelatedPostsAttributes = {
+	// Core toggle
+	enableRelatedPosts: {
+		type: 'boolean',
+		default: false,
+	},
+	// Taxonomy to match on
+	relatedPostsTaxonomy: {
+		type: 'string',
+		default: 'category',
+	},
+	// Scope: current post type only, or all post types
+	relatedPostsScope: {
+		type: 'string',
+		enum: ['current', 'all'],
+		default: 'current',
+	},
+};

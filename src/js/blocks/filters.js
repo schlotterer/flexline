@@ -1,4 +1,5 @@
 const { addFilter } = wp.hooks;
+const { registerBlockVariation } = wp.blocks;
 
 import {
 	customModalAttributes,
@@ -14,6 +15,7 @@ import {
 	customShiftAttributes,
 	customNoWrapAttributes,
 	customLogoAttributes,
+	customRelatedPostsAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -84,6 +86,55 @@ registerAttributes(['core/post-template'], {
 	...customHorizontalScrollerAttributes,
 });
 
+registerAttributes(['core/query'], {
+	...customRelatedPostsAttributes,
+});
+
+const relatedPostsAllowedControls = [
+	'inherit',
+	'order',
+	'sticky',
+	'taxQuery',
+	'author',
+	'search',
+	'parents',
+	'format',
+	'postCount',
+	'offset',
+	'pages',
+];
+
+registerBlockVariation('core/query', {
+	name: 'flexline-related-posts',
+	title: 'FlexLine Related Posts',
+	description: 'Related posts settings with fixed post type control.',
+	attributes: {
+		enableRelatedPosts: true,
+	},
+	isActive: (attributes) => !!attributes?.enableRelatedPosts,
+	allowedControls: relatedPostsAllowedControls,
+	scope: ['block'],
+});
+
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-core-query-related-context',
+	(settings, name) => {
+		if (name !== 'core/query') {
+			return settings;
+		}
+
+		settings.providesContext = {
+			...(settings.providesContext || {}),
+			'flexline/relatedPostsEnabled': 'enableRelatedPosts',
+			'flexline/relatedPostsTaxonomy': 'relatedPostsTaxonomy',
+			'flexline/relatedPostsScope': 'relatedPostsScope',
+		};
+
+		return settings;
+	}
+);
+
 registerAttributes(
 	[
 		'core/accordion',
@@ -118,4 +169,38 @@ registerAttributes(
 		'web4sl/location-filter-family',
 	],
 	{ ...customVisibilityAttributes }
+);
+
+// Floor plan blocks: visibility only (no stackAtTablet).
+const floorPlanVisibility = {
+	hideOnDesktop: {
+		type: 'boolean',
+		default: false,
+	},
+	hideOnTablet: {
+		type: 'boolean',
+		default: false,
+	},
+	hideOnMobile: {
+		type: 'boolean',
+		default: false,
+	},
+};
+
+registerAttributes(
+	[
+		'web4sl/advanced-floor-plans',
+		'web4sl/floor-plan-2d-image',
+		'web4sl/floor-plan-3d-image',
+		'web4sl/floor-plan-accessibility-badge',
+		'web4sl/floor-plan-baths',
+		'web4sl/floor-plan-beds',
+		'web4sl/floor-plan-brochure-button',
+		'web4sl/floor-plan-media-toggle',
+		'web4sl/floor-plan-square-feet',
+		'web4sl/floor-plan-starting-price',
+		'web4sl/floor-plan-video-button',
+		'web4sl/floor-plan-virtual-tour-button',
+	],
+	{ ...floorPlanVisibility }
 );

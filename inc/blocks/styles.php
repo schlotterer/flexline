@@ -20,134 +20,151 @@ namespace FlexLine;
  */
 function flexline_get_block_styles() {
 		$styles = array(
-			'core/accordion'           => array(
-				'card'        => __( 'Card', 'flexline' ),
-				'card-padded' => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'    => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/accordion'                        => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/accordion-item'      => array(
-				'card'                 => __( 'Card', 'flexline' ),
-				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/accordion-item'                   => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/accordion-heading'   => array(
-				'card'                 => __( 'Card', 'flexline' ),
-				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/accordion-heading'                => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/accordion-panel'     => array(
-				'card'                 => __( 'Card', 'flexline' ),
-				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/accordion-panel'                  => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/columns'              => array(
+			'core/columns'                          => array(
 				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
 			),
-			'core/group'                => array(
-				'card'                 => __( 'Card', 'flexline' ),
-				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
-				'card-alt'             => __( 'Card w/ Images that fill', 'flexline' ),
-				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/group'                            => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'card-alt'              => __( 'Card w/ Images that fill', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/image'                => array(
+			'core/image'                            => array(
 				'card' => __( 'Card', 'flexline' ),
 			),
-			'core/post-featured-image'  => array(
+			'core/post-featured-image'              => array(
 				'card' => __( 'Card', 'flexline' ),
 			),
-			'core/list'                 => array(
+			'core/list'                             => array(
 				'no-disc' => __( 'No Disc', 'flexline' ),
 			),
-			'core/navigation'           => array(
+			'core/navigation'                       => array(
 				'main-header-nav' => __( 'Main Header Style', 'flexline' ),
 				'dark-over-light' => __( 'Dark on Light', 'flexline' ),
 				'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 			),
-			'core/navigation-link'      => array(
+			'core/navigation-link'                  => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/page-link'            => array(
+			'core/page-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/tag-link'             => array(
+			'core/tag-link'                         => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/category-link'        => array(
+			'core/category-link'                    => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/home-link'            => array(
+			'core/home-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/navigation-submenu'   => array(
+			'core/navigation-submenu'               => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/quote'                => array(
-				'card'                 => __( 'Card', 'flexline' ),
-				'card-padded'          => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'             => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                => __( 'Glass', 'flexline' ),
-				'glass-card'           => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding'=> __( 'Glass Card (No Padding)', 'flexline' ),
+			'core/quote'                            => array(
+				'card'                  => __( 'Card', 'flexline' ),
+				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
+				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
+				'glass'                 => __( 'Glass', 'flexline' ),
+				'glass-card'            => __( 'Glass Card', 'flexline' ),
+				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/social-links'         => array(
+			'core/social-links'                     => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/heading'              => array(
+			'core/heading'                          => array(
 				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
 				'creative' => __( 'Creative', 'flexline' ),
 			),
-			'core/site-title'           => array(
+			'core/paragraph'                        => array(
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
+			),
+			'core/site-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/post-title'           => array(
+			'core/post-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/post-terms'           => array(
+			'core/post-terms'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/post-date'            => array(
+			'core/post-date'                        => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/post-navigation-link' => array(
+			'core/post-navigation-link'             => array(
 				'eyebrow' => __( 'Eyebrow', 'flexline' ),
 			),
-			'core/query-title'          => array(
+			'core/query-title'                      => array(
 				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/site-tagline'         => array(
+			'core/site-tagline'                     => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'creative'    => __( 'Creative', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/term-description'     => array(
+			'core/term-description'                 => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
-			'core/button'               => array(
+			'core/button'                           => array(
 				'glass-button' => __( 'Glass Button', 'flexline' ),
 				'text-link'    => __( 'Plain Text', 'flexline' ),
+			),
+			// Web4SL Floor Plan image-like blocks (use image styles only).
+			'web4sl/floor-plan-2d-image'            => array(
+				'card' => __( 'Card', 'flexline' ),
+			),
+			'web4sl/floor-plan-3d-image'            => array(
+				'card' => __( 'Card', 'flexline' ),
+			),
+			'web4sl/floor-plan-video-button'        => array(
+				'card' => __( 'Card', 'flexline' ),
+			),
+			'web4sl/floor-plan-virtual-tour-button' => array(
+				'card' => __( 'Card', 'flexline' ),
 			),
 		);
 
