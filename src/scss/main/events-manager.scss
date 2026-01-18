@@ -166,3 +166,9 @@ body.flexline .em.em-item.em-item-single .em-item-image img {
 	} 
 }
 
+@include screen($mobile){
+	.multi-line-events-search {
+		padding: 10px 15px 15px 10px;
+    	flex-wrap: wrap;
+	}
+ }
