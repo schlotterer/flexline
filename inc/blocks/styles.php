@@ -111,6 +111,10 @@ function flexline_get_block_styles() {
 				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
 				'creative' => __( 'Creative', 'flexline' ),
 			),
+			'core/paragraph'                        => array(
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
+			),
 			'core/site-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'creative'    => __( 'Creative', 'flexline' ),

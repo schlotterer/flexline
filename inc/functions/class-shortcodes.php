@@ -25,6 +25,7 @@ class Shortcodes {
 		add_shortcode( 'flexline_theme_docs', array( __CLASS__, 'flexline_theme_docs_shortcode' ) );
 		add_shortcode( 'flexline_site_name', array( __CLASS__, 'flexline_site_name_shortcode' ) );
 		add_shortcode( 'flexline_page_title', array( __CLASS__, 'flexline_page_title_shortcode' ) );
+		add_filter( 'render_block', array( __CLASS__, 'flexline_replace_shortcode_tokens' ), 9, 2 );
 	}
 
 	/**
@@ -80,5 +81,32 @@ class Shortcodes {
 		ob_start();
 		echo $page_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return ob_get_clean();
+	}
+
+	/**
+	 * Replace shortcode tokens in rendered block content.
+	 *
+	 * @param string $block_content Rendered block content.
+	 * @param array  $block         Block data.
+	 * @return string
+	 */
+	public static function flexline_replace_shortcode_tokens( $block_content, $block ) {
+		$tokens = array(
+			'{{flexline_copyright_year}}' => self::flexline_copyright_year_shortcode( array() ),
+			'{{flexline_site_name}}'      => self::flexline_site_name_shortcode(),
+			'{{flexline_page_title}}'     => self::flexline_page_title_shortcode(),
+		);
+
+		$tokens = apply_filters( 'flexline_shortcode_token_map', $tokens, $block, $block_content );
+
+		foreach ( $tokens as $placeholder => $value ) {
+			if ( false === strpos( $block_content, $placeholder ) ) {
+				continue;
+			}
+
+			$block_content = str_replace( $placeholder, (string) $value, $block_content );
+		}
+
+		return $block_content;
 	}
 }

@@ -82,5 +82,16 @@ function flexline_render_utilities_tab() {
 		<?php endforeach; ?>
 		</tbody>
 	</table>
+
+	<h2>Shortcode Tokens</h2>
+	<p>FlexLine shortcodes are backward compatible, and you can also use token placeholders in block content and patterns. Tokens are replaced at render time, so editors do not see them unless they open the block HTML.</p>
+	<p>Use double braces with the existing shortcode names (e.g., <code>{{flexline_site_name}}</code>). Empty values render as blank strings.</p>
+	<ul>
+		<li><code>{{flexline_copyright_year}}</code></li>
+		<li><code>{{flexline_site_name}}</code></li>
+		<li><code>{{flexline_page_title}}</code></li>
+	</ul>
+	<pre><code>&lt;h1&gt;{{flexline_page_title}}&lt;/h1&gt;
+&lt;p&gt;{{flexline_site_name}}&lt;/p&gt;</code></pre>
 	<?php
 }

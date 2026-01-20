@@ -1,33 +1,6 @@
 body,
 .editor-styles-wrapper {
 
-	/* -- List -- */
-	.is-style-no-disc {
-		list-style-type: none;
-		padding-left: 0;
-	}
-
-	// Text Shadow
-	.is-style-text-shadow {
-		text-shadow: var(--wp--custom--text-shadow);
-	}
-
-	.is-style-eyebrow{
-		font-size: var(--wp--custom--eyebrow-size);
-		font-family: var(--wp--custom--eyebrow-font);
-		color: var(--wp--custom--eyebrow-color);
-		text-transform: var(--wp--custom--eyebrow-text-transform);
-		line-height: 1.05;
-	}
-
-	.is-style-creative{
-		font-size: var(--wp--custom--creative-size);
-		font-family: var(--wp--custom--creative-font);
-		color: var(--wp--custom--creative-color);
-		text-transform: var(--wp--custom--creative-text-transform);
-		line-height: 1.05;
-	}
-
 	@include screen($tablet-up){
 
 		/* -- Navigation Link -- */
@@ -38,20 +11,5 @@ body,
 		}
 
 	}
-
-	.is-style-text-link{
-		background-color: transparent !important;
-		.wp-element-button {
-			border-radius: 0;
-			padding: 0 !important;
-			background-color: transparent !important;
-			background-image: none !important;
-			line-height: var(--wp--custom--body-line-height);
-			box-shadow: 0px 0px 0px currentColor !important;
-			&:hover {
-				box-shadow: 0px 3px 0px currentColor !important;
-			}
-		}
-	} 
 
 }
