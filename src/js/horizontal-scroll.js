@@ -646,8 +646,21 @@ function initScrollers() {
 	initInfiniteLoops();
 }
 
+const flexlineOnEarlyReady = (callback) => {
+	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+		window.Flexline.onEarlyReady(callback);
+		return;
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', callback, { once: true });
+	} else {
+		callback();
+	}
+};
+
 // on DOMContentLoaded / load you just call:
-document.addEventListener('DOMContentLoaded', initScrollers);
+flexlineOnEarlyReady(initScrollers);
 window.addEventListener('load', initScrollers);
 
 // 2. Also watch for new scrollers popping into the editor

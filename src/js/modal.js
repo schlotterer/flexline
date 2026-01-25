@@ -23,7 +23,21 @@ function getVideoEmbedUrl(mediaUrl) {
 
 	return '';
 }
-document.addEventListener('DOMContentLoaded', () => {
+
+function flexlineOnEarlyReady(callback) {
+	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+		window.Flexline.onEarlyReady(callback);
+		return;
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', callback, { once: true });
+	} else {
+		callback();
+	}
+}
+
+flexlineOnEarlyReady(() => {
 	const enableModal = (element, url) => {
 		element.classList.add('has-modal');
 		element.setAttribute('data-enable-modal', 'true');

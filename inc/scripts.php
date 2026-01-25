@@ -48,42 +48,67 @@ function flexline_enqueue_styles() {
 	// Customized Styles.
 	wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
 	// Scripts.
-	wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
-	wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ), true );
+	$early_handle = 'flexline-load-early';
+	wp_register_script(
+		$early_handle,
+		get_theme_file_uri( 'assets/built/js/load-early.js' ),
+		array(),
+		flexline_asset_ver( 'assets/built/js/load-early.js' ),
+		false
+	);
+	wp_enqueue_script( $early_handle );
+
+	$early_deps = array( $early_handle );
+
+	wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/global.js' ), true );
+	wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ), true );
 	$show_menu_on_scroll    = get_option( 'flexline_show_menu_on_scroll_up', false );
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
 	if ( '1' === $show_menu_on_scroll || '1' === $show_menu_all_the_time ) {
-		wp_enqueue_script( 'flexline-headroom', get_theme_file_uri( 'assets/js/headroom.min.js' ), array(), flexline_asset_ver( 'assets/js/headroom.min.js' ), true );
-		wp_enqueue_script( 'flexline-headroom-init', get_theme_file_uri( 'assets/built/js/headroom.js' ), array(), flexline_asset_ver( 'assets/built/js/headroom.js' ), true );
+		wp_enqueue_script( 'flexline-headroom', get_theme_file_uri( 'assets/js/headroom.min.js' ), $early_deps, flexline_asset_ver( 'assets/js/headroom.min.js' ), true );
+		wp_enqueue_script( 'flexline-headroom-init', get_theme_file_uri( 'assets/built/js/headroom.js' ), array_merge( $early_deps, array( 'flexline-headroom' ) ), flexline_asset_ver( 'assets/built/js/headroom.js' ), true );
 	}
-	wp_enqueue_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), array(), flexline_asset_ver( 'assets/built/js/modal.js' ), true );
-	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), array(), flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
+	wp_enqueue_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
+	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
 
 	// Customized Scripts.
-	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), array(), flexline_asset_ver( 'assets/js/customize.js' ), true );
+	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), $early_deps, flexline_asset_ver( 'assets/js/customize.js' ), true );
 
-		// Load early scripts.
-		wp_enqueue_script( 'flexline-load-early', get_theme_file_uri( 'assets/built/js/load-early.js' ), array(), flexline_asset_ver( 'assets/built/js/load-early.js' ), false );
+	// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
+	wp_register_script(
+		'flexline-slider',
+		get_theme_file_uri( 'assets/built/js/slider.js' ),
+		$early_deps,
+		flexline_asset_ver( 'assets/built/js/slider.js' ),
+		true
+	);
+	wp_script_add_data( 'flexline-slider', 'strategy', 'defer' );
 
-		// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
-		wp_register_script(
-			'flexline-slider',
-			get_theme_file_uri( 'assets/built/js/slider.js' ),
-			array(),
-			flexline_asset_ver( 'assets/built/js/slider.js' ),
-			true
-		);
-		wp_script_add_data( 'flexline-slider', 'defer', true );
-
-		$relative_path = 'assets/built/js/visibility-toggle.js';
+	$relative_path = 'assets/built/js/visibility-toggle.js';
 
 	wp_enqueue_script(
 		'flexline-visibility-toggle',
 		get_theme_file_uri( $relative_path ),
-		array(),
+		$early_deps,
 		flexline_asset_ver( $relative_path ),
 		true
 	);
+
+	$defer_handles = array(
+		'flexline-global',
+		'flexline-scroll',
+		'flexline-headroom',
+		'flexline-headroom-init',
+		'flexline-modal',
+		'flexline-slidein',
+		'flexline-customize',
+		'flexline-visibility-toggle',
+	);
+	foreach ( $defer_handles as $handle ) {
+		if ( wp_script_is( $handle, 'registered' ) ) {
+			wp_script_add_data( $handle, 'strategy', 'defer' );
+		}
+	}
 }
 
 /**
@@ -148,14 +173,15 @@ function flexline_maybe_enqueue_slider( $block_content, $block ) {
 	}
 	if ( $needs ) {
 		if ( ! wp_script_is( 'flexline-slider', 'registered' ) ) {
+			$deps = wp_script_is( 'flexline-load-early', 'registered' ) ? array( 'flexline-load-early' ) : array();
 			wp_register_script(
 				'flexline-slider',
 				get_theme_file_uri( 'assets/built/js/slider.js' ),
-				array(),
+				$deps,
 				flexline_asset_ver( 'assets/built/js/slider.js' ),
 				true
 			);
-			wp_script_add_data( 'flexline-slider', 'defer', true );
+			wp_script_add_data( 'flexline-slider', 'strategy', 'defer' );
 		}
 		wp_enqueue_script( 'flexline-slider' );
 		$done = true;

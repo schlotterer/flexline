@@ -957,11 +957,25 @@
 	}
 
 	// Initialize on DOM ready
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initSliders);
-	} else {
-		initSliders();
-	}
+	const flexlineOnEarlyReady = (callback) => {
+		if (
+			window.Flexline &&
+			typeof window.Flexline.onEarlyReady === 'function'
+		) {
+			window.Flexline.onEarlyReady(callback);
+			return;
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', callback, {
+				once: true,
+			});
+		} else {
+			callback();
+		}
+	};
+
+	flexlineOnEarlyReady(initSliders);
 
 	// Watch for editor mode toggles and style/class changes
 	const rerunInit = debounce(initSliders, 80);

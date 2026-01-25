@@ -232,9 +232,23 @@
 		observeNewGroups();
 	};
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initRuntime);
-	} else {
-		initRuntime();
-	}
+	const flexlineOnEarlyReady = (callback) => {
+		if (
+			window.Flexline &&
+			typeof window.Flexline.onEarlyReady === 'function'
+		) {
+			window.Flexline.onEarlyReady(callback);
+			return;
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', callback, {
+				once: true,
+			});
+		} else {
+			callback();
+		}
+	};
+
+	flexlineOnEarlyReady(initRuntime);
 })();

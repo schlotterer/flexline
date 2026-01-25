@@ -1,4 +1,5 @@
 const { addFilter } = wp.hooks;
+const { registerBlockVariation } = wp.blocks;
 
 import {
 	customModalAttributes,
@@ -14,6 +15,7 @@ import {
 	customShiftAttributes,
 	customNoWrapAttributes,
 	customLogoAttributes,
+	customRelatedPostsAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -83,6 +85,55 @@ registerAttributes(['core/columns'], {
 registerAttributes(['core/post-template'], {
 	...customHorizontalScrollerAttributes,
 });
+
+registerAttributes(['core/query'], {
+	...customRelatedPostsAttributes,
+});
+
+const relatedPostsAllowedControls = [
+	'inherit',
+	'order',
+	'sticky',
+	'taxQuery',
+	'author',
+	'search',
+	'parents',
+	'format',
+	'postCount',
+	'offset',
+	'pages',
+];
+
+registerBlockVariation('core/query', {
+	name: 'flexline-related-posts',
+	title: 'FlexLine Related Posts',
+	description: 'Related posts settings with fixed post type control.',
+	attributes: {
+		enableRelatedPosts: true,
+	},
+	isActive: (attributes) => !!attributes?.enableRelatedPosts,
+	allowedControls: relatedPostsAllowedControls,
+	scope: ['block'],
+});
+
+addFilter(
+	'blocks.registerBlockType',
+	'flexline/add-core-query-related-context',
+	(settings, name) => {
+		if (name !== 'core/query') {
+			return settings;
+		}
+
+		settings.providesContext = {
+			...(settings.providesContext || {}),
+			'flexline/relatedPostsEnabled': 'enableRelatedPosts',
+			'flexline/relatedPostsTaxonomy': 'relatedPostsTaxonomy',
+			'flexline/relatedPostsScope': 'relatedPostsScope',
+		};
+
+		return settings;
+	}
+);
 
 registerAttributes(
 	[
