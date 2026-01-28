@@ -149,6 +149,30 @@ body,
 		.opacity-90-tablet { opacity: 0.9; }
 		.opacity-100-tablet { opacity: 1; }
 
+		.no-padding-tablet {
+			padding: 0 !important;
+		}
+		.no-horizontal-padding-tablet {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		.no-vertical-padding-tablet {
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+		}
+		.no-top-padding-tablet {
+			padding-top: 0 !important;
+		}	
+		.no-bottom-padding-tablet {
+			padding-bottom: 0 !important;
+		}
+		.no-left-padding-tablet {
+			padding-left: 0 !important;
+		}
+		.no-right-padding-tablet {
+			padding-right: 0 !important;
+		}
+
 	}
 
 	@include screen($mobile){
@@ -236,6 +260,57 @@ body,
 		.opacity-90-mobile { opacity: 0.9; }
 		.opacity-100-mobile { opacity: 1; }
 
+		.no-padding-mobile {
+			padding: 0 !important;
+		}
+		.no-horizontal-padding-tablet {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		.no-vertical-padding-mobile {
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+		}
+		.no-top-padding-mobile {
+			padding-top: 0 !important;
+		}
+		.no-bottom-padding-mobile {
+			padding-bottom: 0 !important;
+		}
+		.no-left-padding-mobile {
+			padding-left: 0 !important;
+		}
+		.no-right-padding-mobile {
+			padding-right: 0 !important;
+		}
+
+	}
+
+	@mixin screen($desktop){
+		.no-padding-desktop {
+			padding: 0 !important;
+		}
+		.no-horizontal-padding-desktop {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		.no-vertical-padding-desktop {
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+		}
+		.no-top-padding-desktop {
+			padding-top: 0 !important;
+		}
+		.no-bottom-padding-desktop {
+			padding-bottom: 0 !important;
+		}
+		.no-left-padding-desktop {
+			padding-left: 0 !important;
+		}
+		.no-right-padding-desktop {
+			padding-right: 0 !important;
+		}
 	}
 
 }
+
