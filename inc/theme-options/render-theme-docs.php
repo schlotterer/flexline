@@ -801,6 +801,44 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</tbody>
 					</table>
 
+					<h4 id="hover-color-helpers">Hover Color Helpers</h4>
+					<p>Quick hover treatments for buttons and links. Apply the class to the parent block, and the hover styles will target nested <code>&lt;a&gt;</code> tags.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:32%">Class</th>
+								<th>Applied CSS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.button-hover-text-dark</code></td><td><code>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-text-light</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primary</code></td><td><code>background: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primaryDark</code></td><td><code>background: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondary</code></td><td><code>background: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondaryDark</code></td><td><code>background: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternate</code></td><td><code>background: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternateDark</code></td><td><code>background: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-contrast</code></td><td><code>background: var(--wp--preset--color--contrast) !important;<br>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-base</code></td><td><code>background: var(--wp--preset--color--base) !important;<br>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-base</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutralLight</code></td><td><code>color: var(--wp--preset--color--neutral-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutral</code></td><td><code>color: var(--wp--preset--color--neutral) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutralDark</code></td><td><code>color: var(--wp--preset--color--neutral-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-contrast</code></td><td><code>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-primary</code></td><td><code>color: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-primaryLight</code></td><td><code>color: var(--wp--preset--color--primary-light) !important;</code></td></tr>
+							<tr><td><code>.link-test-hover-text-primaryDark</code></td><td><code>color: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondary</code></td><td><code>color: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondaryLight</code></td><td><code>color: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondaryDark</code></td><td><code>color: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternate</code></td><td><code>color: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternateLight</code></td><td><code>color: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternateDark</code></td><td><code>color: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+						</tbody>
+					</table>
+
 					<h4 id="opacity">Opacity</h4>
 					<p>Quick helpers for element transparency. Base classes apply at all sizes; <code>-tablet</code> and <code>-mobile</code> variants apply only within those breakpoints.</p>
 
@@ -913,6 +951,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<li><a href="#position-helpers">Position Helpers</a></li>
 								<li><a href="#flexbox-order">Flexbox Order</a></li>
 								<li><a href="#padding-helpers">Padding Helpers</a></li>
+								<li><a href="#hover-color-helpers">Hover Color Helpers</a></li>
 								<li><a href="#opacity">Opacity</a></li>
 							</ul>
 						</li>

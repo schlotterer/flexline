@@ -55,8 +55,81 @@ body,
 	.opacity-90 { opacity: 0.9; }
 	.opacity-100 { opacity: 1; }
     
-    
-    
+	.button-hover-text-dark a:hover{
+		color: var(--wp--preset--color--contrast) !important;
+	}
+	.button-hover-text-light a:hover{
+		color: var(--wp--preset--color--base) !important;
+	}
+    .button-hover-background-primary a:hover{
+		background: var(--wp--preset--color--primary) !important;
+	}
+	.button-hover-background-primaryDark a:hover{
+		background: var(--wp--preset--color--primary-dark) !important;
+	}
+	.button-hover-background-secondary a:hover{
+		background: var(--wp--preset--color--secondary) !important;
+	}
+	.button-hover-background-secondaryDark a:hover{
+		background: var(--wp--preset--color--secondary-dark) !important;
+	}
+	.button-hover-background-alternate a:hover{
+		background: var(--wp--preset--color--alternate) !important;
+	}
+	.button-hover-background-alternateDark a:hover{
+		background: var(--wp--preset--color--alternate-dark) !important;
+	}
+	.button-hover-background-contrast a:hover{
+		background: var(--wp--preset--color--contrast) !important;
+		color: var(--wp--preset--color--base) !important;
+	}
+	.button-hover-background-base a:hover{
+		background: var(--wp--preset--color--base) !important;
+		color: var(--wp--preset--color--contrast) !important;
+	}
+	.link-hover-text-base a:hover{
+		color: var(--wp--preset--color--base) !important;
+	}
+	.link-hover-text-neutralLight a:hover{
+		color: var(--wp--preset--color--neutral-light) !important;
+	}
+	.link-hover-text-neutral a:hover{
+		color: var(--wp--preset--color--neutral) !important;
+	}
+	.link-hover-text-neutralDark a:hover{
+		color: var(--wp--preset--color--neutral-dark) !important;
+	}
+	.link-hover-text-contrast a:hover{
+		color: var(--wp--preset--color--contrast) !important;
+	}
+	.link-hover-text-primary a:hover{
+		color: var(--wp--preset--color--primary) !important;
+	}
+	.link-hover-text-primaryLight a:hover{
+		color: var(--wp--preset--color--primary-light) !important;
+	}
+	.link-test-hover-text-primaryDark a:hover{
+		color: var(--wp--preset--color--primary-dark) !important;
+	}
+	.link-hover-text-secondary a:hover{
+		color: var(--wp--preset--color--secondary) !important;
+	}
+	.link-hover-text-secondaryLight a:hover{
+		color: var(--wp--preset--color--secondary-light) !important;
+	}
+	.link-hover-text-secondaryDark a:hover{
+		color: var(--wp--preset--color--secondary-dark) !important;
+	}
+	.link-hover-text-alternate a:hover{
+		color: var(--wp--preset--color--alternate) !important;
+	}
+	.link-hover-text-alternateLight a:hover{
+		color: var(--wp--preset--color--alternate-light) !important;
+	}
+	.link-hover-text-alternateDark a:hover{
+		color: var(--wp--preset--color--alternate-dark) !important;
+	}
+
     
     
     
