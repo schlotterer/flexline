@@ -840,6 +840,17 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.button-hover-background-alternateDark</code></td><td><code>background: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-contrast</code></td><td><code>background: var(--wp--preset--color--contrast) !important;<br>color: var(--wp--preset--color--base) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-base</code></td><td><code>background: var(--wp--preset--color--base) !important;<br>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primary</code></td><td><code>border-color: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primaryLight</code></td><td><code>border-color: var(--wp--preset--color--primary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primaryDark</code></td><td><code>border-color: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondary</code></td><td><code>border-color: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondaryLight</code></td><td><code>border-color: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondaryDark</code></td><td><code>border-color: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternate</code></td><td><code>border-color: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternateLight</code></td><td><code>border-color: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternateDark</code></td><td><code>border-color: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-contrast</code></td><td><code>border-color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-base</code></td><td><code>border-color: var(--wp--preset--color--base) !important;</code></td></tr>
 							<tr><td><code>.link-hover-text-base</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
 							<tr><td><code>.link-hover-text-neutralLight</code></td><td><code>color: var(--wp--preset--color--neutral-light) !important;</code></td></tr>
 							<tr><td><code>.link-hover-text-neutral</code></td><td><code>color: var(--wp--preset--color--neutral) !important;</code></td></tr>
