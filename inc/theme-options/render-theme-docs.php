@@ -833,10 +833,13 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.button-hover-text-dark</code></td><td><code>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
 							<tr><td><code>.button-hover-text-light</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-primary</code></td><td><code>background: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primaryLight</code></td><td><code>background: var(--wp--preset--color--primary-light) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-primaryDark</code></td><td><code>background: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-secondary</code></td><td><code>background: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondaryLight</code></td><td><code>background: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-secondaryDark</code></td><td><code>background: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-alternate</code></td><td><code>background: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternateLight</code></td><td><code>background: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-alternateDark</code></td><td><code>background: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-contrast</code></td><td><code>background: var(--wp--preset--color--contrast) !important;<br>color: var(--wp--preset--color--base) !important;</code></td></tr>
 							<tr><td><code>.button-hover-background-base</code></td><td><code>background: var(--wp--preset--color--base) !important;<br>color: var(--wp--preset--color--contrast) !important;</code></td></tr>

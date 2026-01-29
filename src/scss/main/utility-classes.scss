@@ -71,8 +71,11 @@ body,
 	.button-hover-text-light a:hover{
 		color: var(--wp--preset--color--base) !important;
 	}
-    .button-hover-background-primary a:hover{
+	.button-hover-background-primary a:hover{
 		background: var(--wp--preset--color--primary) !important;
+	}
+	.button-hover-background-primaryLight a:hover{
+		background: var(--wp--preset--color--primary-light) !important;
 	}
 	.button-hover-background-primaryDark a:hover{
 		background: var(--wp--preset--color--primary-dark) !important;
@@ -80,11 +83,17 @@ body,
 	.button-hover-background-secondary a:hover{
 		background: var(--wp--preset--color--secondary) !important;
 	}
+	.button-hover-background-secondaryLight a:hover{
+		background: var(--wp--preset--color--secondary-light) !important;
+	}
 	.button-hover-background-secondaryDark a:hover{
 		background: var(--wp--preset--color--secondary-dark) !important;
 	}
 	.button-hover-background-alternate a:hover{
 		background: var(--wp--preset--color--alternate) !important;
+	}
+	.button-hover-background-alternateLight a:hover{
+		background: var(--wp--preset--color--alternate-light) !important;
 	}
 	.button-hover-background-alternateDark a:hover{
 		background: var(--wp--preset--color--alternate-dark) !important;
@@ -175,7 +184,6 @@ body,
 	.link-hover-text-underline a:hover{
 		text-decoration: underline !important;
 	}
-
     
     
     
