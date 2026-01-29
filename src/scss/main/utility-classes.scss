@@ -45,6 +45,12 @@ body,
 	.is-flex-reverse {
 		flex-direction: row-reverse;
 	}
+	.is-justified-flex-start {
+		justify-content: flex-start !important;
+	}
+	.is-justified-flex-end {
+		justify-content: flex-end !important;
+	}
 
 	/* Opacity utilities */
 	.opacity-0 { opacity: 0; }
