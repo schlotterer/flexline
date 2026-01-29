@@ -42,6 +42,10 @@ body,
 		}
 	}
 
+	.is-flex-reverse {
+		flex-direction: row-reverse;
+	}
+
 	/* Opacity utilities */
 	.opacity-0 { opacity: 0; }
 	.opacity-10 { opacity: 0.1; }
@@ -246,6 +250,10 @@ body,
 			padding-right: 0 !important;
 		}
 
+		.is-flex-reverse-tablet {
+			flex-direction: row-reverse;
+		}
+
 	}
 
 	@include screen($mobile){
@@ -357,6 +365,10 @@ body,
 			padding-right: 0 !important;
 		}
 
+		.is-flex-reverse-mobile {
+			flex-direction: row-reverse;
+		}
+
 	}
 
 	@mixin screen($desktop){
@@ -382,6 +394,10 @@ body,
 		}
 		.no-right-padding-desktop {
 			padding-right: 0 !important;
+		}
+
+		.is-flex-reverse-desktop {
+			flex-direction: row-reverse;
 		}
 	}
 

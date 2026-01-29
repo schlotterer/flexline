@@ -744,6 +744,24 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</tbody>
 					</table>
 
+					<h4 id="flexbox-direction">Flexbox Direction</h4>
+					<p>Reverse flex row direction without custom CSS. Apply to flex containers.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.is-flex-reverse</code></td><td><code>flex-direction: row-reverse !important;</code></td></tr>
+							<tr><td><code>.is-flex-reverse-tablet</code></td><td><code>flex-direction: row-reverse !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.is-flex-reverse-mobile</code></td><td><code>flex-direction: row-reverse !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.is-flex-reverse-desktop</code></td><td><code>flex-direction: row-reverse !important;</code></td></tr>
+						</tbody>
+					</table>
+
 					<h4 id="padding-helpers">Padding Helpers</h4>
 					<p>Remove padding at specific breakpoints. Use these on containers or groups when block spacing needs to collapse without custom CSS.</p>
 
@@ -950,6 +968,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
 								<li><a href="#position-helpers">Position Helpers</a></li>
 								<li><a href="#flexbox-order">Flexbox Order</a></li>
+								<li><a href="#flexbox-direction">Flexbox Direction</a></li>
 								<li><a href="#padding-helpers">Padding Helpers</a></li>
 								<li><a href="#hover-color-helpers">Hover Color Helpers</a></li>
 								<li><a href="#opacity">Opacity</a></li>
