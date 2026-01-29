@@ -854,6 +854,22 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.link-hover-text-alternate</code></td><td><code>color: var(--wp--preset--color--alternate) !important;</code></td></tr>
 							<tr><td><code>.link-hover-text-alternateLight</code></td><td><code>color: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
 							<tr><td><code>.link-hover-text-alternateDark</code></td><td><code>color: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-underline</code></td><td><code>text-decoration: underline !important;</code></td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="slide-in-triggers">Slide-In Menu Triggers</h4>
+					<p>Apply these classes to buttons or links to toggle the slide‑in search/menu panel without adding custom scripts.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:32%">Class</th>
+								<th>Behavior</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.js-open-slidein</code></td><td>Opens/closes the slide‑in panel on click. Use in the block editor’s <strong>Additional CSS class(es)</strong> field (works with Button and Link blocks).</td></tr>
 						</tbody>
 					</table>
 
