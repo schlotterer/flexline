@@ -139,6 +139,9 @@ body,
 	.link-hover-text-alternateDark a:hover{
 		color: var(--wp--preset--color--alternate-dark) !important;
 	}
+	.link-hover-text-underline a:hover{
+		text-decoration: underline !important;
+	}
 
     
     
