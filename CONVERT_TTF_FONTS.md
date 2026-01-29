@@ -149,24 +149,24 @@ Add Montserrat variable font as WOFF2, preserving full weight axis
 You're now using an optimized web-ready variable font that loads fast and retains full typographic control 🎉
 
 
-
-
 ✅ Conversion for Static Fonts
 
 You can still convert these .ttf files into .woff2 for optimized web use.
 
-🔁 Use this command per file:
-python3 -m fontTools.subset ./assets/fonts/Cabin/Cabin-Bold.ttf \
-  --flavor=woff2 \
-  --output-file=./assets/fonts/Cabin/Cabin-Bold.woff2 \
-  --layout-features='*' \
-  --glyphs='*' \
-  --retain-gids \
-  --name-legacy \
-  --name-languages='*' \
-  --recalc-bounds \
-  --recalc-average-width \
-  --glyph-names
+If woff2_compress isn’t installed, you can add it via:
 
+macOS (Homebrew)
+brew install woff2
+
+Ubuntu/Debian
+sudo apt install woff2
+
+
+Or compile manually from:
+🔗 https://github.com/google/woff2
+
+🔁 Use this command per file (from them root):
+
+woff2_compress ./assets/fonts/SulphurPoint/SulphurPoint-Regular.ttf
 
 Do this for each font file individually.
