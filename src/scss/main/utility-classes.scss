@@ -184,6 +184,42 @@ body,
 	.link-hover-text-underline a:hover{
 		text-decoration: underline !important;
 	}
+	.is-order-first {
+		order: -1;
+	}
+	.is-order-0 {
+		order: 0;
+	}
+	.is-order-1 {
+		order: 1;
+	}
+	.is-order-2 {
+		order: 2;
+	}
+	.is-order-3 {
+		order: 3;
+	}
+	.is-order-4 {
+		order: 4;
+	}
+	.is-order-5 {
+		order: 5;
+	}
+	.is-order-6 {
+		order: 6;
+	}
+	.is-order-7 {
+		order: 7;
+	}
+	.is-order-8 {
+		order: 8;
+	}
+	.is-order-9 {
+		order: 9;
+	}
+	.is-order-last {
+		order: 99999;
+	}
     
     
     

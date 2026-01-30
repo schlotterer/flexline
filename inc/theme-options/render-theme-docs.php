@@ -710,6 +710,20 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 	
 					<table class="flexline-docs-table">
 						<thead>
+							<tr><th style="width:25%">Class</th><th>Applied CSS</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.is-order-first</code></td><td><code>order: -1;</code></td></tr>
+							<tr><td><code>.is-order-0</code></td><td><code>order: 0;</code></td></tr>
+							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?></code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
+							<?php endfor; ?>
+							<tr><td><code>.is-order-last</code></td><td><code>order: 99999;</code></td></tr>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
 							<tr><th style="width:25%">Class</th><th>Effect at breakpoint</th></tr>
 						</thead>
 						<tbody>
