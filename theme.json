@@ -777,7 +777,7 @@
 					},
 					"glass-button" : {},
 					"text-link" : {
-						"css": "background-color: transparent !important; & .wp-element-button {border-radius: 0; padding: 0 !important; background-color: transparent !important; background-image: none !important; line-height: var(--wp--custom--line-height--body); box-shadow: 0 0 0 currentColor !important;} & .wp-element-button:hover {box-shadow: 0 3px 0 currentColor !important;}"
+						"css": "background-color: transparent !important; box-shadow: none !important; & .wp-element-button {position: relative; display: inline-block; border: 0 !important; border-radius: 0; padding: 0 !important; background-color: transparent !important; background-image: none !important; line-height: var(--wp--custom--line-height--body); box-shadow: none !important; filter: none !important;} & .wp-element-button:hover, & .wp-element-button:focus, & .wp-element-button:focus-visible, & .wp-element-button:active {background-color: transparent !important; background-image: none !important; box-shadow: none !important; filter: none !important;} & .wp-element-button::after {content: ''; position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0; background-color: currentColor; transition: height var(--wp--custom--transition-time);} & .wp-element-button:hover::after, & .wp-element-button:focus-visible::after {height: 3px;}"
 					}
 				}
 			},
