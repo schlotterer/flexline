@@ -43,7 +43,19 @@ function register_assets() {
 	 */
 	$baguettebox_filter = apply_filters( 'baguettebox_filter', '/.+\.(gif|jpe?g|png|webp|svg|avif|heif|heic|tif?f|)($|\?)/i' );
 
-	wp_add_inline_script( 'baguettebox', 'window.addEventListener("load", function() {baguetteBox.run("' . $baguettebox_selector . '",{captions:function(t){var e=t.parentElement.classList.contains("wp-block-image")||t.parentElement.classList.contains("wp-block-media-text__media")?t.parentElement.querySelector("figcaption"):t.parentElement.parentElement.querySelector("figcaption,dd");return!!e&&e.innerHTML},filter:' . $baguettebox_filter . '});});' );
+	// Keep selector/filter filterable in PHP, but move runtime binding into
+	// poster-gallery-helper.js so lightbox setup can be refreshed after dynamic
+	// block content (for example map comparison cards fetched over REST) is
+	// injected post-load.
+	$config = wp_json_encode(
+		array(
+			'selector' => $baguettebox_selector,
+			'filter'   => $baguettebox_filter,
+		),
+		JSON_UNESCAPED_SLASHES
+	);
+
+	wp_add_inline_script( 'baguettebox', 'window.flexlineBaguetteConfig = ' . $config . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_assets' );
 
