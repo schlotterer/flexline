@@ -100,28 +100,50 @@
 	 * - Location comparison cards and other SSR fragments can be injected later.
 	 * - Re-running here ensures those late anchors are picked up.
 	 */
+	let hasBoundLightbox = false;
+	let refreshInProgress = false;
+	let refreshRequested = false;
+
 	const refreshBaguetteBox = () => {
 		if (!window.baguetteBox || typeof window.baguetteBox.run !== 'function') {
 			return;
 		}
+		if (refreshInProgress) {
+			refreshRequested = true;
+			return;
+		}
+		refreshInProgress = true;
 
 		const { selector, filter } = getBaguetteConfig();
-
 		try {
-			if (typeof window.baguetteBox.destroy === 'function') {
-				window.baguetteBox.destroy();
+			// Only destroy after a successful prior run to avoid calling into
+			// baguetteBox teardown before its internals are fully initialized.
+			if (
+				hasBoundLightbox &&
+				typeof window.baguetteBox.destroy === 'function'
+			) {
+				try {
+					window.baguetteBox.destroy();
+				} catch (error) {
+					console.warn(
+						'[flexline/poster-gallery-helper] baguetteBox.destroy() failed; continuing with fresh run.',
+						error
+					);
+				}
 			}
-		} catch (error) {
-			console.warn(
-				'[flexline/poster-gallery-helper] baguetteBox.destroy() failed; continuing with fresh run.',
-				error
-			);
-		}
 
-		window.baguetteBox.run(selector, {
-			captions: resolveCaption,
-			filter,
-		});
+			window.baguetteBox.run(selector, {
+				captions: resolveCaption,
+				filter,
+			});
+			hasBoundLightbox = true;
+		} finally {
+			refreshInProgress = false;
+			if (refreshRequested) {
+				refreshRequested = false;
+				window.requestAnimationFrame(refreshBaguetteBox);
+			}
+		}
 	};
 
 	const debounce = (fn, delay = 100) => {
