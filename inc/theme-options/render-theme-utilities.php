@@ -16,8 +16,9 @@
 function flexline_render_utilities_tab() {
 	?>
 	<h2>Utilities Settings</h2>
-	<form method="post" action="options.php" style="margin-bottom:2rem;">
+	<form id="flexline-utilities-form" method="post" action="options.php" style="margin-bottom:2rem;">
 		<?php
+		settings_errors( 'flexline_utilities' );
 		settings_fields( 'flexline_utilities_group' );
 		do_settings_sections( 'flexline_utilities' );
 		submit_button();
