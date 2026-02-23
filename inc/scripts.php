@@ -46,7 +46,10 @@ function flexline_enqueue_styles() {
 	// Icons Styles.
 	wp_enqueue_style( 'flexline-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), flexline_asset_ver( 'assets/css/icons.css' ) );
 	// Customized Styles.
-	wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
+	$custom_css_path = get_theme_file_path( 'assets/css/customize.css' );
+	if ( file_exists( $custom_css_path ) && filesize( $custom_css_path ) > 0 ) {
+		wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
+	}
 	// Scripts.
 	$early_handle = 'flexline-load-early';
 	wp_register_script(
@@ -56,6 +59,7 @@ function flexline_enqueue_styles() {
 		flexline_asset_ver( 'assets/built/js/load-early.js' ),
 		false
 	);
+	wp_script_add_data( $early_handle, 'strategy', 'defer' );
 	wp_enqueue_script( $early_handle );
 
 	$early_deps = array( $early_handle );
