@@ -151,6 +151,45 @@ function flexline_is_valid_login_fallback_request( array $opts ): bool {
 }
 
 /**
+ * Return true when request is a tokenized recovery action that should be allowed
+ * on /wp-login.php even in strict mode.
+ *
+ * Allowed actions:
+ * - rp: requires both key + login params.
+ * - resetpass: requires reset context cookie or posted rp_key.
+ * - confirmaction: requires request_id + confirm_key params.
+ *
+ * @return bool
+ */
+function flexline_is_tokenized_login_recovery_request(): bool {
+	$action = '';
+	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	if ( 'rp' === $action ) {
+		$has_key   = ! empty( $_GET['key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$has_login = ! empty( $_GET['login'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return $has_key && $has_login;
+	}
+
+	if ( 'resetpass' === $action ) {
+		$rp_cookie_name = 'wp-resetpass-' . COOKIEHASH;
+		$has_cookie     = isset( $_COOKIE[ $rp_cookie_name ] ) && false !== strpos( (string) wp_unslash( $_COOKIE[ $rp_cookie_name ] ), ':' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$has_rp_key     = ! empty( $_POST['rp_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return $has_cookie || $has_rp_key;
+	}
+
+	if ( 'confirmaction' === $action ) {
+		$has_request_id = ! empty( $_GET['request_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$has_confirm    = ! empty( $_GET['confirm_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return $has_request_id && $has_confirm;
+	}
+
+	return false;
+}
+
+/**
  * Route custom login slug requests through wp-login.php.
  *
  * @param array $opts Utilities options.
@@ -199,6 +238,11 @@ function flexline_maybe_block_default_login_request(): void {
 
 	if ( flexline_is_valid_login_fallback_request( $opts ) ) {
 		flexline_security_debug_log( 'Default login fallback key accepted.' );
+		return;
+	}
+
+	if ( flexline_is_tokenized_login_recovery_request() ) {
+		flexline_security_debug_log( 'Allowing tokenized recovery flow on default wp-login.php endpoint.' );
 		return;
 	}
 
@@ -299,6 +343,28 @@ function flexline_filter_site_url_for_login( $url, $path, $scheme, $blog_id ): s
 }
 
 /**
+ * Filter network_site_url login endpoints to custom login slug for core reset flows.
+ *
+ * @param string      $url Full URL.
+ * @param string      $path Path relative to network site URL.
+ * @param string|null $scheme Scheme context.
+ * @return string
+ */
+function flexline_filter_network_site_url_for_login( $url, $path, $scheme ): string {
+	$opts = flexline_utilities_get_options();
+	if ( ! flexline_is_custom_login_enabled( $opts ) ) {
+		return (string) $url;
+	}
+
+	$path = (string) $path;
+	if ( false !== strpos( $path, 'wp-login.php' ) || in_array( (string) $scheme, array( 'login', 'login_post' ), true ) ) {
+		return flexline_rewrite_login_url( (string) $url, $opts );
+	}
+
+	return (string) $url;
+}
+
+/**
  * Register conditional hardening hooks.
  *
  * @return void
@@ -344,6 +410,7 @@ function flexline_register_security_hooks() {
 		add_filter( 'login_url', __NAMESPACE__ . '\\flexline_filter_login_url', 10, 3 );
 		add_filter( 'lostpassword_url', __NAMESPACE__ . '\\flexline_filter_lostpassword_url', 10, 2 );
 		add_filter( 'site_url', __NAMESPACE__ . '\\flexline_filter_site_url_for_login', 10, 4 );
+		add_filter( 'network_site_url', __NAMESPACE__ . '\\flexline_filter_network_site_url_for_login', 10, 3 );
 		add_action( 'login_init', __NAMESPACE__ . '\\flexline_maybe_block_default_login_request', 1 );
 
 		// Handle custom slug and strict wp-admin hardening for this request.

@@ -151,21 +151,21 @@ class Admin {
 						<code>&lt;meta name="description"&gt;</code> for better social sharing.
 					</span>
 				</p>
-				<?php
-			},
-			'flexline_utilities'
-		);
+					<?php
+				},
+				'flexline_utilities'
+			);
 
 		// Security section.
 			add_settings_section(
 				'flexline_utilities_section_security',
 				'Security Utilities',
 				function () {
-					$options = self::get_options();
-					$slug    = (string) $options['custom_login_slug'];
-					$key     = (string) $options['custom_login_fallback_key'];
-					$value   = (string) $options['custom_login_fallback_value'];
-					$alt_url = $slug ? home_url( '/' . trim( $slug, '/' ) . '/' ) : '';
+					$options          = self::get_options();
+					$slug             = (string) $options['custom_login_slug'];
+					$key              = (string) $options['custom_login_fallback_key'];
+					$value            = (string) $options['custom_login_fallback_value'];
+					$alt_url          = $slug ? home_url( '/' . trim( $slug, '/' ) . '/' ) : '';
 					$fallback_preview = '';
 					if ( $key && $value ) {
 						$fallback_preview = add_query_arg( $key, $value, home_url( '/wp-login.php' ) );
@@ -282,7 +282,7 @@ class Admin {
 					<?php
 				},
 				'flexline_utilities'
-		);
+			);
 
 		// Discussion section.
 		add_settings_section(
@@ -313,21 +313,9 @@ class Admin {
 	 * @param array $input Raw input array from form.
 	 * @return array Sanitized options.
 	 */
-		public static function sanitize_options( $input ) {
+	public static function sanitize_options( $input ) {
 		$input = is_array( $input ) ? $input : array();
 		$saved = self::get_options();
-
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			$keys = implode( ',', array_keys( $input ) );
-			error_log( '[FlexLine Utilities] sanitize_options keys: ' . $keys );
-			error_log(
-				'[FlexLine Utilities] custom_login payload: enabled=' .
-				(string) ( $input['custom_login_enabled'] ?? 'missing' ) .
-				' slug=' . (string) ( $input['custom_login_slug'] ?? 'missing' ) .
-				' fallback_key=' . (string) ( $input['custom_login_fallback_key'] ?? 'missing' ) .
-				' fallback_value=' . (string) ( $input['custom_login_fallback_value'] ?? 'missing' )
-			);
-		}
 
 		$keys      = array(
 			'enable_og_tags',
