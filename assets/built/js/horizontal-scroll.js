@@ -350,7 +350,7 @@ function setupScrollerButtons(scroller) {
   if (!hasAnyControls) {
     return;
   }
-  var dotsInline = scroller.classList.contains('horizontal-scroller-dots-inline');
+  var dotsInline = scroller.classList.contains('horizontal-scroller-dots-inline') && hasBottomNavButtons;
   var prevIconUrl = scroller.getAttribute('data-icon-prev-url') || '';
   var nextIconUrl = scroller.getAttribute('data-icon-next-url') || '';
   var pauseIconUrl = scroller.getAttribute('data-icon-pause-url') || '';
@@ -404,18 +404,18 @@ function setupScrollerButtons(scroller) {
     if (!useSideButtons && hasNav) {
       navContainer.appendChild(buildPrevButton());
     }
+    if (showPause) {
+      navContainer.appendChild(buildPauseButton());
+    }
+    if (!useSideButtons && hasNav) {
+      navContainer.appendChild(buildNextButton());
+    }
     if (showDots && dotsInline) {
       setupRangeDots(scroller, navContainer, true, function (slide) {
         var duration = parseInt(scroller.getAttribute('data-scroll-speed') || '600', 10);
         smoothScrollTo(scroller, slide.offsetLeft, duration);
         resetAutoScrollTimer();
       });
-    }
-    if (showPause) {
-      navContainer.appendChild(buildPauseButton());
-    }
-    if (!useSideButtons && hasNav) {
-      navContainer.appendChild(buildNextButton());
     }
     wrapper.appendChild(navContainer);
   }

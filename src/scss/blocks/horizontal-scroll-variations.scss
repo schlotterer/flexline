@@ -260,19 +260,21 @@ body,
 			margin-right: 6px;
 		}
 
-		.horizontal-scroller-range-dot {
-			appearance: none;
-			width: 8px;
-			height: 8px;
-			padding: 0;
-			border-radius: 999px;
-			background-color: transparent;
-			border: 1px solid currentColor;
-			opacity: 0.35;
-			transition: var(--wp--custom--transition-time);
-			cursor: pointer;
-			color: inherit;
-		}
+			.horizontal-scroller-range-dot {
+				appearance: none;
+				width: 8px;
+				height: 8px;
+				padding: 0;
+				border-radius: 999px;
+				background-color: transparent;
+				border-style: solid;
+				border-width: 1px;
+				border-color: currentColor;
+				opacity: 0.35;
+				transition: var(--wp--custom--transition-time);
+				cursor: pointer;
+				color: inherit;
+			}
 
 		.horizontal-scroller-range-dot.is-visible {
 			opacity: 1;
@@ -365,11 +367,11 @@ body,
 					}
 				}
 
-			~ .horizontal-scroller-range-dots {
-				left: 50%;
-				transform: translateX(-50%);
-				bottom: calc(-6px + var(--wp--preset--spacing--x-small));
-			}
+				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+					left: 50%;
+					transform: translateX(-50%);
+					bottom: calc(-6px + var(--wp--preset--spacing--x-small));
+				}
 
 				&.horizontal-scroller-buttons-over {
 					+ .horizontal-scroller-nav-buttons {
@@ -383,8 +385,46 @@ body,
 						}
 					}
 
-					~ .horizontal-scroller-range-dots {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 						bottom: calc(46px + var(--wp--preset--spacing--x-small));
+					}
+				}
+			}
+
+			.horizontal-scroller-dots-below {
+				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+					bottom: -74px;
+				}
+
+				&.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						top: -74px;
+						bottom: auto;
+					}
+				}
+
+				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-bottom {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						bottom: 2px;
+					}
+				}
+
+				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						top: 2px;
+						bottom: auto;
+					}
+				}
+
+				&.horizontal-scroller-buttons-sides {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						bottom: -74px;
+					}
+
+					&.horizontal-scroller-buttons-over {
+						+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+							bottom: 2px;
+						}
 					}
 				}
 			}

@@ -1979,6 +1979,8 @@ var controls = function controls(BlockEdit, props) {
   var isScrollerEnabled = !!props.attributes.enableHorizontalScroller;
   var isAutoScrollEnabled = !!props.attributes.scrollAuto;
   var isSideButtonsMode = props.attributes.buttonDisplayMode === 'sides';
+  var hasPauseButton = isAutoScrollEnabled && !props.attributes.hidePauseButton;
+  var hasBottomControlsRow = !isSideButtonsMode && props.attributes.scrollNav || hasPauseButton;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(BlockEdit, _objectSpread({}, props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -2098,8 +2100,12 @@ var controls = function controls(BlockEdit, props) {
             label: 'Above Controls'
           }, {
             value: 'inline',
-            label: 'Inline with Pause'
+            label: 'Next To Controls'
+          }, {
+            value: 'below',
+            label: 'Below Controls'
           }],
+          help: !hasBottomControlsRow ? 'Layout applies only when a bottom controls row is present.' : '',
           onChange: function onChange(value) {
             return props.setAttributes({
               rangeDotsLayout: value
@@ -2320,7 +2326,7 @@ var controls = function controls(BlockEdit, props) {
 var getClasses = function getClasses(attributes) {
   var removed = [];
   if (!attributes.enableHorizontalScroller) {
-    removed.push.apply(removed, ['is-style-horizontal-scroll', 'horizontal-scroller-navigation', 'horizontal-scroller-loop', 'horizontal-scroller-auto', 'horizontal-scroller-hide-scrollbar', 'horizontal-scroller-hide-pause-button', 'horizontal-scroller-buttons-horizontal-left', 'horizontal-scroller-buttons-horizontal-center', 'horizontal-scroller-buttons-horizontal-right', 'horizontal-scroller-buttons-vertical-top', 'horizontal-scroller-buttons-vertical-bottom', 'horizontal-scroller-buttons-over', 'horizontal-scroller-buttons-sides', 'horizontal-scroller-show-dots', 'horizontal-scroller-dots-inline', 'scroller-dots-color-default', 'scroller-dots-color-white', 'scroller-dots-color-black', 'scroller-dots-color-gray', 'scroller-dots-color-primary', 'scroller-dots-color-secondary', 'scroller-dots-color-alternate'].concat(DOT_SIZE_CLASSES, ['scroller-buttons-background-transparent', 'scroller-buttons-background-white', 'scroller-buttons-background-black', 'scroller-buttons-background-gray', 'scroller-buttons-background-primary', 'scroller-buttons-background-secondary', 'scroller-buttons-background-alternate', 'scroller-buttons-text-white', 'scroller-buttons-text-black', 'scroller-buttons-text-gray', 'scroller-buttons-text-primary', 'scroller-buttons-text-secondary', 'scroller-buttons-text-alternate', 'scroller-buttons-border-none', 'scroller-buttons-border-white', 'scroller-buttons-border-black', 'scroller-buttons-border-gray', 'scroller-buttons-border-primary', 'scroller-buttons-border-secondary', 'scroller-buttons-border-alternate', 'scroller-buttons-over', 'scroller-buttons-box-shadow', 'scroller-pause-on-hover']));
+    removed.push.apply(removed, ['is-style-horizontal-scroll', 'horizontal-scroller-navigation', 'horizontal-scroller-loop', 'horizontal-scroller-auto', 'horizontal-scroller-hide-scrollbar', 'horizontal-scroller-hide-pause-button', 'horizontal-scroller-buttons-horizontal-left', 'horizontal-scroller-buttons-horizontal-center', 'horizontal-scroller-buttons-horizontal-right', 'horizontal-scroller-buttons-vertical-top', 'horizontal-scroller-buttons-vertical-bottom', 'horizontal-scroller-buttons-over', 'horizontal-scroller-buttons-sides', 'horizontal-scroller-show-dots', 'horizontal-scroller-dots-inline', 'horizontal-scroller-dots-below', 'scroller-dots-color-default', 'scroller-dots-color-white', 'scroller-dots-color-black', 'scroller-dots-color-gray', 'scroller-dots-color-primary', 'scroller-dots-color-secondary', 'scroller-dots-color-alternate'].concat(DOT_SIZE_CLASSES, ['scroller-buttons-background-transparent', 'scroller-buttons-background-white', 'scroller-buttons-background-black', 'scroller-buttons-background-gray', 'scroller-buttons-background-primary', 'scroller-buttons-background-secondary', 'scroller-buttons-background-alternate', 'scroller-buttons-text-white', 'scroller-buttons-text-black', 'scroller-buttons-text-gray', 'scroller-buttons-text-primary', 'scroller-buttons-text-secondary', 'scroller-buttons-text-alternate', 'scroller-buttons-border-none', 'scroller-buttons-border-white', 'scroller-buttons-border-black', 'scroller-buttons-border-gray', 'scroller-buttons-border-primary', 'scroller-buttons-border-secondary', 'scroller-buttons-border-alternate', 'scroller-buttons-over', 'scroller-buttons-box-shadow', 'scroller-pause-on-hover']));
   }
   if (!attributes.scrollNav) {
     removed.push('horizontal-scroller-navigation');
@@ -2425,6 +2431,9 @@ var getClasses = function getClasses(attributes) {
   if (attributes.rangeDotsLayout !== 'inline') {
     removed.push('horizontal-scroller-dots-inline');
   }
+  if (attributes.rangeDotsLayout !== 'below') {
+    removed.push('horizontal-scroller-dots-below');
+  }
   if (attributes.rangeDotsColor !== 'default') {
     removed.push('scroller-dots-color-default');
   }
@@ -2503,6 +2512,9 @@ var getClasses = function getClasses(attributes) {
   }
   if (attributes.rangeDotsLayout === 'inline' && attributes.enableHorizontalScroller) {
     added += ' horizontal-scroller-dots-inline';
+  }
+  if (attributes.rangeDotsLayout === 'below' && attributes.enableHorizontalScroller) {
+    added += ' horizontal-scroller-dots-below';
   }
   if (attributes.rangeDotsColor && attributes.enableHorizontalScroller) {
     added += " scroller-dots-color-".concat(attributes.rangeDotsColor);

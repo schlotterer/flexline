@@ -446,9 +446,9 @@ function setupScrollerButtons(scroller) {
 		return;
 	}
 
-	const dotsInline = scroller.classList.contains(
-		'horizontal-scroller-dots-inline'
-	);
+	const dotsInline =
+		scroller.classList.contains('horizontal-scroller-dots-inline') &&
+		hasBottomNavButtons;
 
 	const prevIconUrl = scroller.getAttribute('data-icon-prev-url') || '';
 	const nextIconUrl = scroller.getAttribute('data-icon-next-url') || '';
@@ -520,6 +520,12 @@ function setupScrollerButtons(scroller) {
 		if (!useSideButtons && hasNav) {
 			navContainer.appendChild(buildPrevButton());
 		}
+		if (showPause) {
+			navContainer.appendChild(buildPauseButton());
+		}
+		if (!useSideButtons && hasNav) {
+			navContainer.appendChild(buildNextButton());
+		}
 		if (showDots && dotsInline) {
 			setupRangeDots(scroller, navContainer, true, (slide) => {
 				const duration = parseInt(
@@ -529,12 +535,6 @@ function setupScrollerButtons(scroller) {
 				smoothScrollTo(scroller, slide.offsetLeft, duration);
 				resetAutoScrollTimer();
 			});
-		}
-		if (showPause) {
-			navContainer.appendChild(buildPauseButton());
-		}
-		if (!useSideButtons && hasNav) {
-			navContainer.appendChild(buildNextButton());
 		}
 		wrapper.appendChild(navContainer);
 	}

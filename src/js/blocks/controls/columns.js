@@ -58,6 +58,10 @@ export const controls = (BlockEdit, props) => {
 	const isScrollerEnabled = !!props.attributes.enableHorizontalScroller;
 	const isAutoScrollEnabled = !!props.attributes.scrollAuto;
 	const isSideButtonsMode = props.attributes.buttonDisplayMode === 'sides';
+	const hasPauseButton =
+		isAutoScrollEnabled && !props.attributes.hidePauseButton;
+	const hasBottomControlsRow =
+		(!isSideButtonsMode && props.attributes.scrollNav) || hasPauseButton;
 
 	return (
 		<Fragment>
@@ -197,8 +201,14 @@ export const controls = (BlockEdit, props) => {
 							value={props.attributes.rangeDotsLayout}
 							options={[
 								{ value: 'above', label: 'Above Controls' },
-								{ value: 'inline', label: 'Inline with Pause' },
+								{ value: 'inline', label: 'Next To Controls' },
+								{ value: 'below', label: 'Below Controls' },
 							]}
+							help={
+								!hasBottomControlsRow
+									? 'Layout applies only when a bottom controls row is present.'
+									: ''
+							}
 							onChange={(value) =>
 								props.setAttributes({ rangeDotsLayout: value })
 							}
@@ -414,6 +424,7 @@ export const getClasses = (attributes) => {
 			'horizontal-scroller-buttons-sides',
 			'horizontal-scroller-show-dots',
 			'horizontal-scroller-dots-inline',
+			'horizontal-scroller-dots-below',
 			'scroller-dots-color-default',
 			'scroller-dots-color-white',
 			'scroller-dots-color-black',
@@ -553,6 +564,9 @@ export const getClasses = (attributes) => {
 	if (attributes.rangeDotsLayout !== 'inline') {
 		removed.push('horizontal-scroller-dots-inline');
 	}
+	if (attributes.rangeDotsLayout !== 'below') {
+		removed.push('horizontal-scroller-dots-below');
+	}
 	if (attributes.rangeDotsColor !== 'default') {
 		removed.push('scroller-dots-color-default');
 	}
@@ -647,6 +661,12 @@ export const getClasses = (attributes) => {
 		attributes.enableHorizontalScroller
 	) {
 		added += ' horizontal-scroller-dots-inline';
+	}
+	if (
+		attributes.rangeDotsLayout === 'below' &&
+		attributes.enableHorizontalScroller
+	) {
+		added += ' horizontal-scroller-dots-below';
 	}
 	if (attributes.rangeDotsColor && attributes.enableHorizontalScroller) {
 		added += ` scroller-dots-color-${attributes.rangeDotsColor}`;
