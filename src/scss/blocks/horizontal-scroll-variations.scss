@@ -271,6 +271,7 @@ body,
 			opacity: 0.35;
 			transition: var(--wp--custom--transition-time);
 			cursor: pointer;
+			color: inherit;
 		}
 
 		.horizontal-scroller-range-dot.is-visible {
@@ -384,51 +385,51 @@ body,
 		}
 
 		.scroller-dots-color-default {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--base);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--base) !important;
 			}
 		}
 
 		.scroller-dots-color-white {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--base);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--base) !important;
 			}
 		}
 
 		.scroller-dots-color-black {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--contrast);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--contrast) !important;
 			}
 		}
 
 		.scroller-dots-color-gray {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--neutral);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--neutral) !important;
 			}
 		}
 
 		.scroller-dots-color-primary {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--primary);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--primary) !important;
 			}
 		}
 
 		.scroller-dots-color-secondary {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--secondary);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--secondary) !important;
 			}
 		}
 
 		.scroller-dots-color-alternate {
-			~ .horizontal-scroller-range-dots,
-			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
-				color: var(--wp--preset--color--alternate);
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--alternate) !important;
 			}
 		}
 
