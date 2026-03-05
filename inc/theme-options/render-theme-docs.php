@@ -167,10 +167,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
 							'<li>Show Arrow Nav</li>' .
 							'<li>Buttons Display Mode (Bottom or Sides)</li>' .
-							'<li>Show Range Dots (visible-item indicators)</li>' .
-							'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
-							'<li>Range Dots Color</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
+								'<li>Range Dots Color</li>' .
+								'<li>Range Dots Size (px)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
 							'<li>Scroll transition in milliseconds</li>' .
 							'<li>Loop</li>' .
 							'<li>Auto Scroll</li>' .
@@ -215,10 +216,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
 							'<li>Show Arrow Nav</li>' .
 							'<li>Buttons Display Mode (Bottom or Sides)</li>' .
-							'<li>Show Range Dots (visible-item indicators)</li>' .
-							'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
-							'<li>Range Dots Color</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
+								'<li>Range Dots Color</li>' .
+								'<li>Range Dots Size (px)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
 							'<li>Scroll transition in milliseconds</li>' .
 							'<li>Loop</li>' .
 							'<li>Auto Scroll</li>' .

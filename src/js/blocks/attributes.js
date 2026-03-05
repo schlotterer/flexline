@@ -147,6 +147,10 @@ export const customHorizontalScrollerAttributes = {
 		type: 'string',
 		default: 'white',
 	},
+	rangeDotsSize: {
+		type: 'number',
+		default: 8,
+	},
 	prevIconMediaId: {
 		type: 'number',
 		default: 0,

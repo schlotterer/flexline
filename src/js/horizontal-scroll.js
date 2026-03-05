@@ -273,7 +273,7 @@ function updateRangeDots(scroller, dotsContainer) {
 	});
 }
 
-function setupRangeDots(scroller, parentNode, isInline) {
+function setupRangeDots(scroller, parentNode, isInline, onDotClick) {
 	const showDots = scroller.classList.contains(
 		'horizontal-scroller-show-dots'
 	);
@@ -288,11 +288,17 @@ function setupRangeDots(scroller, parentNode, isInline) {
 
 	const dotsContainer = document.createElement('div');
 	dotsContainer.classList.add('horizontal-scroller-range-dots');
-	realSlides.forEach((_, index) => {
-		const dot = document.createElement('span');
+	realSlides.forEach((slide, index) => {
+		const dot = document.createElement('button');
+		dot.type = 'button';
 		dot.classList.add('horizontal-scroller-range-dot');
-		dot.setAttribute('aria-hidden', 'true');
+		dot.setAttribute('aria-label', `Scroll to item ${index + 1}`);
 		dot.setAttribute('data-slide-index', `${index}`);
+		dot.addEventListener('click', () => {
+			if (typeof onDotClick === 'function') {
+				onDotClick(slide);
+			}
+		});
 		dotsContainer.appendChild(dot);
 	});
 	if (isInline) {
@@ -487,7 +493,14 @@ function setupScrollerButtons(scroller) {
 			navContainer.appendChild(buildPrevButton());
 		}
 		if (showDots && dotsInline) {
-			setupRangeDots(scroller, navContainer, true);
+			setupRangeDots(scroller, navContainer, true, (slide) => {
+				const duration = parseInt(
+					scroller.getAttribute('data-scroll-speed') || '600',
+					10
+				);
+				smoothScrollTo(scroller, slide.offsetLeft, duration);
+				resetAutoScrollTimer();
+			});
 		}
 		if (showPause) {
 			navContainer.appendChild(buildPauseButton());
@@ -499,7 +512,14 @@ function setupScrollerButtons(scroller) {
 	}
 
 	if (showDots && !dotsInline) {
-		setupRangeDots(scroller, wrapper, false);
+		setupRangeDots(scroller, wrapper, false, (slide) => {
+			const duration = parseInt(
+				scroller.getAttribute('data-scroll-speed') || '600',
+				10
+			);
+			smoothScrollTo(scroller, slide.offsetLeft, duration);
+			resetAutoScrollTimer();
+		});
 	}
 
 	if (useSideButtons && hasNav) {

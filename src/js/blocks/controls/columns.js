@@ -16,6 +16,10 @@ import { getVisibilityControls } from '../utils';
 
 const iconButtonLabel = (id, label) =>
 	id ? `Change ${label} Icon (ID ${id})` : `Select ${label} Icon`;
+const DOT_SIZE_CLASSES = Array.from(
+	{ length: 29 },
+	(_, index) => `horizontal-scroller-dots-size-${index + 4}`
+);
 
 const renderIconControl = (props, attributeName, label) => {
 	const iconId = props.attributes[attributeName] || 0;
@@ -198,6 +202,21 @@ export const controls = (BlockEdit, props) => {
 							onChange={(value) =>
 								props.setAttributes({ rangeDotsLayout: value })
 							}
+						/>
+					)}
+					{isScrollerEnabled && props.attributes.showRangeDots && (
+						<RangeControl
+							label="Range Dots Size (px)"
+							value={props.attributes.rangeDotsSize}
+							onChange={(value) =>
+								props.setAttributes({
+									rangeDotsSize: value || 8,
+								})
+							}
+							defaultValue={8}
+							min={4}
+							max={32}
+							step={1}
 						/>
 					)}
 					{isScrollerEnabled && props.attributes.showRangeDots && (
@@ -402,6 +421,7 @@ export const getClasses = (attributes) => {
 			'scroller-dots-color-primary',
 			'scroller-dots-color-secondary',
 			'scroller-dots-color-alternate',
+			...DOT_SIZE_CLASSES,
 			'scroller-buttons-background-transparent',
 			'scroller-buttons-background-white',
 			'scroller-buttons-background-black',
@@ -529,6 +549,7 @@ export const getClasses = (attributes) => {
 	if (!attributes.showRangeDots) {
 		removed.push('horizontal-scroller-show-dots');
 	}
+	removed.push(...DOT_SIZE_CLASSES);
 	if (attributes.rangeDotsLayout !== 'inline') {
 		removed.push('horizontal-scroller-dots-inline');
 	}
@@ -629,6 +650,13 @@ export const getClasses = (attributes) => {
 	}
 	if (attributes.rangeDotsColor && attributes.enableHorizontalScroller) {
 		added += ` scroller-dots-color-${attributes.rangeDotsColor}`;
+	}
+	if (attributes.enableHorizontalScroller) {
+		const size = Math.min(
+			32,
+			Math.max(4, parseInt(attributes.rangeDotsSize || 8, 10))
+		);
+		added += ` horizontal-scroller-dots-size-${size}`;
 	}
 	if (attributes.stackAtTablet) {
 		added += ' flexline-stack-at-tablet';

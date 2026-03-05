@@ -237,16 +237,17 @@ body,
 		}
 
 		.horizontal-scroller-range-dots {
+			--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
 			position: absolute;
 			z-index: 10;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 6px;
-			pointer-events: none;
+			pointer-events: auto;
 			left: 50%;
 			transform: translateX(-50%);
-			bottom: -6px;
+			bottom: calc(-6px + var(--flexline-scroller-dots-gap));
 			color: var(--wp--preset--color--base);
 		}
 
@@ -260,13 +261,16 @@ body,
 		}
 
 		.horizontal-scroller-range-dot {
+			appearance: none;
 			width: 8px;
 			height: 8px;
+			padding: 0;
 			border-radius: 999px;
 			background-color: transparent;
 			border: 1px solid currentColor;
 			opacity: 0.35;
 			transition: var(--wp--custom--transition-time);
+			cursor: pointer;
 		}
 
 		.horizontal-scroller-range-dot.is-visible {
@@ -306,7 +310,7 @@ body,
 			bottom: -40px;
 		}
 		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-			bottom: -6px;
+			bottom: calc(-6px + var(--wp--preset--spacing--x-small));
 		}
 	}
 
@@ -355,7 +359,7 @@ body,
 			~ .horizontal-scroller-range-dots {
 				left: 50%;
 				transform: translateX(-50%);
-				bottom: -6px;
+				bottom: calc(-6px + var(--wp--preset--spacing--x-small));
 			}
 
 			&.horizontal-scroller-buttons-over {
@@ -364,7 +368,17 @@ body,
 				}
 
 				~ .horizontal-scroller-range-dots {
-					bottom: 46px;
+					bottom: calc(46px + var(--wp--preset--spacing--x-small));
+				}
+			}
+		}
+
+		@for $i from 4 through 32 {
+			.horizontal-scroller-dots-size-#{$i} {
+				~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+				~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+					width: #{$i}px;
+					height: #{$i}px;
 				}
 			}
 		}
