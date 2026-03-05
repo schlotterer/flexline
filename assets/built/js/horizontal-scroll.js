@@ -183,20 +183,35 @@ function clearControlContainers(scroller) {
     return el.remove();
   });
 }
-function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel) {
+function applyButtonSize(button, iconHeightPx) {
+  var clamped = Math.min(100, Math.max(8, parseInt(iconHeightPx || 18, 10)));
+  var buttonSize = Math.max(24, clamped + 12);
+  button.style.width = "".concat(buttonSize, "px");
+  button.style.height = "".concat(buttonSize, "px");
+  return clamped;
+}
+function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel, iconHeightPx) {
   if (!button) {
     return;
   }
+  var clampedIconHeight = applyButtonSize(button, iconHeightPx);
   button.innerHTML = '';
   if (iconUrl) {
     var img = document.createElement('img');
     img.className = 'horizontal-scroller-custom-icon';
     img.src = iconUrl;
     img.alt = iconLabel;
+    img.style.width = "".concat(clampedIconHeight, "px");
+    img.style.height = "".concat(clampedIconHeight, "px");
     button.appendChild(img);
     return;
   }
   button.innerHTML = fallbackSvg;
+  var svg = button.querySelector('svg');
+  if (svg) {
+    svg.style.width = "".concat(clampedIconHeight, "px");
+    svg.style.height = "".concat(clampedIconHeight, "px");
+  }
 }
 function resolveRangeDotsColor(scroller) {
   var colorByClass = [['scroller-dots-color-black', 'var(--wp--preset--color--contrast)'], ['scroller-dots-color-gray', 'var(--wp--preset--color--neutral)'], ['scroller-dots-color-primary', 'var(--wp--preset--color--primary)'], ['scroller-dots-color-secondary', 'var(--wp--preset--color--secondary)'], ['scroller-dots-color-alternate', 'var(--wp--preset--color--alternate)'], ['scroller-dots-color-default', 'var(--wp--preset--color--base)'], ['scroller-dots-color-white', 'var(--wp--preset--color--base)']];
@@ -354,11 +369,13 @@ function setupScrollerButtons(scroller) {
   var prevIconUrl = scroller.getAttribute('data-icon-prev-url') || '';
   var nextIconUrl = scroller.getAttribute('data-icon-next-url') || '';
   var pauseIconUrl = scroller.getAttribute('data-icon-pause-url') || '';
+  var buttonIconHeight = Math.min(100, Math.max(8, parseInt(scroller.getAttribute('data-button-icon-height') || '18', 10)));
+  var pauseIconHeight = Math.min(100, Math.max(8, parseInt(scroller.getAttribute('data-pause-icon-height') || "".concat(buttonIconHeight), 10)));
   var buildPrevButton = function buildPrevButton() {
     var btn = document.createElement('button');
     btn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-prev');
     btn.setAttribute('aria-label', 'Scroll to previous item');
-    setButtonIcon(btn, prevIconUrl, PREV_ICON_SVG, 'Previous');
+    setButtonIcon(btn, prevIconUrl, PREV_ICON_SVG, 'Previous', buttonIconHeight);
     btn.addEventListener('click', function () {
       scrollToPrev(scroller);
       resetAutoScrollTimer();
@@ -369,7 +386,7 @@ function setupScrollerButtons(scroller) {
     var btn = document.createElement('button');
     btn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-next');
     btn.setAttribute('aria-label', 'Scroll to next item');
-    setButtonIcon(btn, nextIconUrl, NEXT_ICON_SVG, 'Next');
+    setButtonIcon(btn, nextIconUrl, NEXT_ICON_SVG, 'Next', buttonIconHeight);
     btn.addEventListener('click', function () {
       scrollToNext(scroller);
       resetAutoScrollTimer();
@@ -380,15 +397,15 @@ function setupScrollerButtons(scroller) {
     var btn = document.createElement('button');
     btn.classList.add('is-horizontal-scroll-btn', 'is-horizontal-scroll-pause');
     btn.setAttribute('aria-label', 'Pause auto-scroll');
-    setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause');
+    setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause', pauseIconHeight);
     btn.addEventListener('click', function () {
       scroller._isPaused = !scroller._isPaused;
       btn.setAttribute('aria-label', scroller._isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll');
       if (scroller._isPaused) {
-        setButtonIcon(btn, '', PLAY_ICON_SVG, 'Play');
+        setButtonIcon(btn, '', PLAY_ICON_SVG, 'Play', pauseIconHeight);
         stopAutoScroll();
       } else {
-        setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause');
+        setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause', pauseIconHeight);
         resetAutoScrollTimer();
       }
     });

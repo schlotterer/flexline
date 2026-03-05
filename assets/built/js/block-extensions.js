@@ -1541,13 +1541,33 @@ var customHorizontalScrollerAttributes = {
     type: 'number',
     "default": 0
   },
+  prevIconUrl: {
+    type: 'string',
+    "default": ''
+  },
   nextIconMediaId: {
     type: 'number',
     "default": 0
   },
+  nextIconUrl: {
+    type: 'string',
+    "default": ''
+  },
   pauseIconMediaId: {
     type: 'number',
     "default": 0
+  },
+  pauseIconUrl: {
+    type: 'string',
+    "default": ''
+  },
+  buttonIconHeight: {
+    type: 'number',
+    "default": 18
+  },
+  pauseButtonIconHeight: {
+    type: 'number',
+    "default": 18
   }
 };
 
@@ -1923,8 +1943,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./src/js/blocks/utils.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./src/js/blocks/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -1932,6 +1954,7 @@ function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 /* global MutationObserver */
+
 
 
 
@@ -1945,19 +1968,49 @@ var DOT_SIZE_CLASSES = Array.from({
 }, function (_, index) {
   return "horizontal-scroller-dots-size-".concat(index + 4);
 });
-var renderIconControl = function renderIconControl(props, attributeName, label) {
-  var iconId = props.attributes[attributeName] || 0;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+var getMediaUrl = function getMediaUrl(media) {
+  var _media$media_details, _media$media_details2;
+  return (media === null || media === void 0 ? void 0 : media.url) || (media === null || media === void 0 ? void 0 : media.source_url) || (media === null || media === void 0 || (_media$media_details = media.media_details) === null || _media$media_details === void 0 || (_media$media_details = _media$media_details.sizes) === null || _media$media_details === void 0 || (_media$media_details = _media$media_details.medium) === null || _media$media_details === void 0 ? void 0 : _media$media_details.source_url) || (media === null || media === void 0 || (_media$media_details2 = media.media_details) === null || _media$media_details2 === void 0 || (_media$media_details2 = _media$media_details2.sizes) === null || _media$media_details2 === void 0 || (_media$media_details2 = _media$media_details2.thumbnail) === null || _media$media_details2 === void 0 ? void 0 : _media$media_details2.source_url) || '';
+};
+var IconPickerControl = function IconPickerControl(_ref) {
+  var props = _ref.props,
+    idAttributeName = _ref.idAttributeName,
+    urlAttributeName = _ref.urlAttributeName,
+    label = _ref.label;
+  var iconId = props.attributes[idAttributeName] || 0;
+  var selectedMedia = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(function (select) {
+    if (!iconId) {
+      return null;
+    }
+    return select('core').getMedia(iconId);
+  }, [iconId]);
+  var resolvedIconUrl = props.attributes[urlAttributeName] || getMediaUrl(selectedMedia);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+      children: "".concat(label, " Icon")
+    }), resolvedIconUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+      src: resolvedIconUrl,
+      alt: "".concat(label, " icon preview"),
+      style: {
+        width: '50px',
+        height: '50px',
+        objectFit: 'contain',
+        display: 'block',
+        marginBottom: '8px',
+        border: '1px solid #dcdcde',
+        padding: '4px',
+        backgroundColor: '#fff'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
         onSelect: function onSelect(media) {
-          return props.setAttributes(_defineProperty({}, attributeName, (media === null || media === void 0 ? void 0 : media.id) || 0));
+          return props.setAttributes(_defineProperty(_defineProperty({}, idAttributeName, (media === null || media === void 0 ? void 0 : media.id) || 0), urlAttributeName, getMediaUrl(media)));
         },
         allowedTypes: ['image'],
         value: iconId,
-        render: function render(_ref) {
-          var open = _ref.open;
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        render: function render(_ref2) {
+          var open = _ref2.open;
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
             onClick: open,
             variant: "secondary",
             size: "small",
@@ -1965,11 +2018,11 @@ var renderIconControl = function renderIconControl(props, attributeName, label) 
           });
         }
       })
-    }), iconId > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }), iconId > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
       variant: "tertiary",
       size: "small",
       onClick: function onClick() {
-        return props.setAttributes(_defineProperty({}, attributeName, 0));
+        return props.setAttributes(_defineProperty(_defineProperty({}, idAttributeName, 0), urlAttributeName, ''));
       },
       children: ["Clear ", label, " Icon"]
     })]
@@ -1981,11 +2034,11 @@ var controls = function controls(BlockEdit, props) {
   var isSideButtonsMode = props.attributes.buttonDisplayMode === 'sides';
   var hasPauseButton = isAutoScrollEnabled && !props.attributes.hidePauseButton;
   var hasBottomControlsRow = !isSideButtonsMode && props.attributes.scrollNav || hasPauseButton;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(BlockEdit, _objectSpread({}, props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, _objectSpread({}, props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: "FlexLine Scroller Options",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Enable Horizontal Scroller",
           checked: isScrollerEnabled,
           onChange: function onChange(newValue) {
@@ -1993,7 +2046,7 @@ var controls = function controls(BlockEdit, props) {
               enableHorizontalScroller: newValue
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Show Arrow Navigation",
           checked: !!props.attributes.scrollNav,
           onChange: function onChange(newValue) {
@@ -2001,7 +2054,7 @@ var controls = function controls(BlockEdit, props) {
               scrollNav: newValue
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           label: "Scroll transition in Milliseconds",
           value: props.attributes.transitionDuration,
           onChange: function onChange(newInterval) {
@@ -2013,7 +2066,7 @@ var controls = function controls(BlockEdit, props) {
           min: 100,
           max: 1500,
           step: 50
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Hide Scrollbar",
           checked: !!props.attributes.hideScrollbar,
           onChange: function onChange(newValue) {
@@ -2021,7 +2074,7 @@ var controls = function controls(BlockEdit, props) {
               hideScrollbar: newValue
             });
           }
-        }), isScrollerEnabled && props.name !== 'core/post-template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && props.name !== 'core/post-template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Loop Scrolling",
           checked: !!props.attributes.scrollLoop,
           onChange: function onChange(newValue) {
@@ -2029,7 +2082,7 @@ var controls = function controls(BlockEdit, props) {
               scrollLoop: newValue
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Auto Scroll",
           checked: isAutoScrollEnabled,
           onChange: function onChange(newValue) {
@@ -2037,7 +2090,7 @@ var controls = function controls(BlockEdit, props) {
               scrollAuto: newValue
             });
           }
-        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Hide Pause Button",
           checked: !!props.attributes.hidePauseButton,
           onChange: function onChange(newValue) {
@@ -2045,7 +2098,7 @@ var controls = function controls(BlockEdit, props) {
               hidePauseButton: newValue
             });
           }
-        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Pause on Hover",
           checked: !!props.attributes.pauseOnHover,
           onChange: function onChange(newValue) {
@@ -2053,7 +2106,7 @@ var controls = function controls(BlockEdit, props) {
               pauseOnHover: newValue
             });
           }
-        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+        }), isScrollerEnabled && isAutoScrollEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           label: "Scroll Interval in Milliseconds",
           value: props.attributes.scrollSpeed,
           onChange: function onChange(newInterval) {
@@ -2066,10 +2119,10 @@ var controls = function controls(BlockEdit, props) {
           max: 10000,
           step: 500
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: "FlexLine Scroller Buttons & Indicators",
         initialOpen: false,
-        children: [isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        children: [isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Display Mode",
           value: props.attributes.buttonDisplayMode,
           options: [{
@@ -2084,7 +2137,7 @@ var controls = function controls(BlockEdit, props) {
               buttonDisplayMode: value
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Show Range Dots",
           checked: !!props.attributes.showRangeDots,
           onChange: function onChange(newValue) {
@@ -2092,7 +2145,7 @@ var controls = function controls(BlockEdit, props) {
               showRangeDots: newValue
             });
           }
-        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Range Dots Layout",
           value: props.attributes.rangeDotsLayout,
           options: [{
@@ -2111,7 +2164,7 @@ var controls = function controls(BlockEdit, props) {
               rangeDotsLayout: value
             });
           }
-        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           label: "Range Dots Size (px)",
           value: props.attributes.rangeDotsSize,
           onChange: function onChange(value) {
@@ -2123,7 +2176,7 @@ var controls = function controls(BlockEdit, props) {
           min: 4,
           max: 32,
           step: 1
-        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && props.attributes.showRangeDots && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Range Dots Color",
           value: props.attributes.rangeDotsColor,
           options: [{
@@ -2153,7 +2206,7 @@ var controls = function controls(BlockEdit, props) {
               rangeDotsColor: value
             });
           }
-        }), isScrollerEnabled && !isSideButtonsMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && !isSideButtonsMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Horizontal Position",
           value: props.attributes.positionButtonsHorizontal,
           options: [{
@@ -2171,7 +2224,7 @@ var controls = function controls(BlockEdit, props) {
               positionButtonsHorizontal: value
             });
           }
-        }), isScrollerEnabled && !isSideButtonsMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && !isSideButtonsMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Vertical Position",
           value: props.attributes.positionButtonsVertical,
           options: [{
@@ -2186,7 +2239,7 @@ var controls = function controls(BlockEdit, props) {
               positionButtonsVertical: value
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Position Buttons Over Scroller",
           checked: !!props.attributes.positionButtonsOver,
           onChange: function onChange(newValue) {
@@ -2194,7 +2247,7 @@ var controls = function controls(BlockEdit, props) {
               positionButtonsOver: newValue
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Text Color",
           value: props.attributes.buttonsTextColor,
           options: [{
@@ -2224,7 +2277,7 @@ var controls = function controls(BlockEdit, props) {
               buttonsTextColor: value
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Background Color",
           value: props.attributes.buttonsBackgroundColor,
           options: [{
@@ -2257,7 +2310,7 @@ var controls = function controls(BlockEdit, props) {
               buttonsBackgroundColor: value
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Buttons Border Color",
           value: props.attributes.buttonsBorderColor,
           options: [{
@@ -2287,7 +2340,7 @@ var controls = function controls(BlockEdit, props) {
               buttonsBorderColor: value
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Add Box Shadow to Buttons",
           checked: !!props.attributes.buttonsBoxShadow,
           onChange: function onChange(newValue) {
@@ -2295,22 +2348,49 @@ var controls = function controls(BlockEdit, props) {
               buttonsBoxShadow: newValue
             });
           }
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: "Prev Icon"
-          }), renderIconControl(props, 'prevIconMediaId', 'Prev')]
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: "Next Icon"
-          }), renderIconControl(props, 'nextIconMediaId', 'Next')]
-        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: "Pause Icon"
-          }), renderIconControl(props, 'pauseIconMediaId', 'Pause')]
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: "Button Icon Height (px)",
+          value: props.attributes.buttonIconHeight,
+          onChange: function onChange(value) {
+            return props.setAttributes({
+              buttonIconHeight: value || 18
+            });
+          },
+          defaultValue: 18,
+          min: 8,
+          max: 100,
+          step: 1
+        }), isScrollerEnabled && isAutoScrollEnabled && !props.attributes.hidePauseButton && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: "Pause Icon Height (px)",
+          value: props.attributes.pauseButtonIconHeight,
+          onChange: function onChange(value) {
+            return props.setAttributes({
+              pauseButtonIconHeight: value || 18
+            });
+          },
+          defaultValue: 18,
+          min: 8,
+          max: 100,
+          step: 1
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(IconPickerControl, {
+          props: props,
+          idAttributeName: "prevIconMediaId",
+          urlAttributeName: "prevIconUrl",
+          label: "Prev"
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(IconPickerControl, {
+          props: props,
+          idAttributeName: "nextIconMediaId",
+          urlAttributeName: "nextIconUrl",
+          label: "Next"
+        }), isScrollerEnabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(IconPickerControl, {
+          props: props,
+          idAttributeName: "pauseIconMediaId",
+          urlAttributeName: "pauseIconUrl",
+          label: "Pause"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: "FlexLine Visibility",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Stack at Tablet",
           checked: !!props.attributes.stackAtTablet,
           onChange: function onChange(newValue) {
@@ -2318,7 +2398,7 @@ var controls = function controls(BlockEdit, props) {
               stackAtTablet: newValue
             });
           }
-        }), (0,_utils__WEBPACK_IMPORTED_MODULE_3__.getVisibilityControls)(props)]
+        }), (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getVisibilityControls)(props)]
       })]
     })]
   });
@@ -2532,9 +2612,11 @@ var getClasses = function getClasses(attributes) {
   };
 };
 var useHooks = function useHooks(props) {
-  var _props$attributes = props.attributes,
+  var attributes = props.attributes,
+    _props$attributes = props.attributes,
     enableHorizontalScroller = _props$attributes.enableHorizontalScroller,
     isStackedOnMobile = _props$attributes.isStackedOnMobile,
+    clientId = props.clientId,
     setAttributes = props.setAttributes,
     name = props.name;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -2544,6 +2626,55 @@ var useHooks = function useHooks(props) {
       });
     }
   }, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (name !== 'core/columns' && name !== 'core/post-template') {
+      return;
+    }
+    var blockElement = document.getElementById("block-".concat(clientId));
+    if (!blockElement) {
+      return;
+    }
+    var scroller = blockElement.matches('.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template') ? blockElement : blockElement.querySelector('.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template');
+    if (!scroller) {
+      return;
+    }
+    var mediaStore = typeof wp !== 'undefined' && wp.data ? wp.data.select('core') : null;
+    var getUrlFromId = function getUrlFromId(id) {
+      if (!id || !mediaStore || typeof mediaStore.getMedia !== 'function') {
+        return '';
+      }
+      var media = mediaStore.getMedia(id);
+      return getMediaUrl(media);
+    };
+    var prevUrl = attributes.prevIconUrl || getUrlFromId(attributes.prevIconMediaId);
+    var nextUrl = attributes.nextIconUrl || getUrlFromId(attributes.nextIconMediaId);
+    var pauseUrl = attributes.pauseIconUrl || getUrlFromId(attributes.pauseIconMediaId);
+    var updates = {};
+    if (attributes.prevIconMediaId && !attributes.prevIconUrl && prevUrl) {
+      updates.prevIconUrl = prevUrl;
+    }
+    if (attributes.nextIconMediaId && !attributes.nextIconUrl && nextUrl) {
+      updates.nextIconUrl = nextUrl;
+    }
+    if (attributes.pauseIconMediaId && !attributes.pauseIconUrl && pauseUrl) {
+      updates.pauseIconUrl = pauseUrl;
+    }
+    if (Object.keys(updates).length) {
+      setAttributes(updates);
+    }
+    var setDataAttr = function setDataAttr(key, value) {
+      if (value || value === 0) {
+        scroller.setAttribute(key, "".concat(value));
+      } else {
+        scroller.removeAttribute(key);
+      }
+    };
+    setDataAttr('data-icon-prev-url', prevUrl);
+    setDataAttr('data-icon-next-url', nextUrl);
+    setDataAttr('data-icon-pause-url', pauseUrl);
+    setDataAttr('data-button-icon-height', Math.max(8, parseInt(attributes.buttonIconHeight || 18, 10)));
+    setDataAttr('data-pause-icon-height', Math.max(8, parseInt(attributes.pauseButtonIconHeight || 18, 10)));
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (name === 'core/columns') {
       var toggleWarning = function toggleWarning() {

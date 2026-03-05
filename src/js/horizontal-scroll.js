@@ -230,10 +230,22 @@ function clearControlContainers(scroller) {
 		.forEach((el) => el.remove());
 }
 
-function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel) {
+function applyButtonSize(button, iconHeightPx) {
+	const clamped = Math.min(
+		100,
+		Math.max(8, parseInt(iconHeightPx || 18, 10))
+	);
+	const buttonSize = Math.max(24, clamped + 12);
+	button.style.width = `${buttonSize}px`;
+	button.style.height = `${buttonSize}px`;
+	return clamped;
+}
+
+function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel, iconHeightPx) {
 	if (!button) {
 		return;
 	}
+	const clampedIconHeight = applyButtonSize(button, iconHeightPx);
 
 	button.innerHTML = '';
 	if (iconUrl) {
@@ -241,10 +253,17 @@ function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel) {
 		img.className = 'horizontal-scroller-custom-icon';
 		img.src = iconUrl;
 		img.alt = iconLabel;
+		img.style.width = `${clampedIconHeight}px`;
+		img.style.height = `${clampedIconHeight}px`;
 		button.appendChild(img);
 		return;
 	}
 	button.innerHTML = fallbackSvg;
+	const svg = button.querySelector('svg');
+	if (svg) {
+		svg.style.width = `${clampedIconHeight}px`;
+		svg.style.height = `${clampedIconHeight}px`;
+	}
 }
 
 function resolveRangeDotsColor(scroller) {
@@ -453,6 +472,27 @@ function setupScrollerButtons(scroller) {
 	const prevIconUrl = scroller.getAttribute('data-icon-prev-url') || '';
 	const nextIconUrl = scroller.getAttribute('data-icon-next-url') || '';
 	const pauseIconUrl = scroller.getAttribute('data-icon-pause-url') || '';
+	const buttonIconHeight = Math.min(
+		100,
+		Math.max(
+			8,
+			parseInt(
+				scroller.getAttribute('data-button-icon-height') || '18',
+				10
+			)
+		)
+	);
+	const pauseIconHeight = Math.min(
+		100,
+		Math.max(
+			8,
+			parseInt(
+				scroller.getAttribute('data-pause-icon-height') ||
+					`${buttonIconHeight}`,
+				10
+			)
+		)
+	);
 
 	const buildPrevButton = () => {
 		const btn = document.createElement('button');
@@ -461,7 +501,13 @@ function setupScrollerButtons(scroller) {
 			'is-horizontal-scroll-prev'
 		);
 		btn.setAttribute('aria-label', 'Scroll to previous item');
-		setButtonIcon(btn, prevIconUrl, PREV_ICON_SVG, 'Previous');
+		setButtonIcon(
+			btn,
+			prevIconUrl,
+			PREV_ICON_SVG,
+			'Previous',
+			buttonIconHeight
+		);
 		btn.addEventListener('click', () => {
 			scrollToPrev(scroller);
 			resetAutoScrollTimer();
@@ -476,7 +522,13 @@ function setupScrollerButtons(scroller) {
 			'is-horizontal-scroll-next'
 		);
 		btn.setAttribute('aria-label', 'Scroll to next item');
-		setButtonIcon(btn, nextIconUrl, NEXT_ICON_SVG, 'Next');
+		setButtonIcon(
+			btn,
+			nextIconUrl,
+			NEXT_ICON_SVG,
+			'Next',
+			buttonIconHeight
+		);
 		btn.addEventListener('click', () => {
 			scrollToNext(scroller);
 			resetAutoScrollTimer();
@@ -491,7 +543,13 @@ function setupScrollerButtons(scroller) {
 			'is-horizontal-scroll-pause'
 		);
 		btn.setAttribute('aria-label', 'Pause auto-scroll');
-		setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause');
+		setButtonIcon(
+			btn,
+			pauseIconUrl,
+			PAUSE_ICON_SVG,
+			'Pause',
+			pauseIconHeight
+		);
 		btn.addEventListener('click', () => {
 			scroller._isPaused = !scroller._isPaused;
 			btn.setAttribute(
@@ -499,10 +557,16 @@ function setupScrollerButtons(scroller) {
 				scroller._isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'
 			);
 			if (scroller._isPaused) {
-				setButtonIcon(btn, '', PLAY_ICON_SVG, 'Play');
+				setButtonIcon(btn, '', PLAY_ICON_SVG, 'Play', pauseIconHeight);
 				stopAutoScroll();
 			} else {
-				setButtonIcon(btn, pauseIconUrl, PAUSE_ICON_SVG, 'Pause');
+				setButtonIcon(
+					btn,
+					pauseIconUrl,
+					PAUSE_ICON_SVG,
+					'Pause',
+					pauseIconHeight
+				);
 				resetAutoScrollTimer();
 			}
 		});

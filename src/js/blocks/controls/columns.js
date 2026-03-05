@@ -12,6 +12,7 @@ import {
 	RangeControl,
 	Button,
 } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 import { getVisibilityControls } from '../utils';
 
 const iconButtonLabel = (id, label) =>
@@ -21,15 +22,57 @@ const DOT_SIZE_CLASSES = Array.from(
 	(_, index) => `horizontal-scroller-dots-size-${index + 4}`
 );
 
-const renderIconControl = (props, attributeName, label) => {
-	const iconId = props.attributes[attributeName] || 0;
+const getMediaUrl = (media) =>
+	media?.url ||
+	media?.source_url ||
+	media?.media_details?.sizes?.medium?.source_url ||
+	media?.media_details?.sizes?.thumbnail?.source_url ||
+	'';
+
+const IconPickerControl = ({
+	props,
+	idAttributeName,
+	urlAttributeName,
+	label,
+}) => {
+	const iconId = props.attributes[idAttributeName] || 0;
+	const selectedMedia = useSelect(
+		(select) => {
+			if (!iconId) {
+				return null;
+			}
+			return select('core').getMedia(iconId);
+		},
+		[iconId]
+	);
+	const resolvedIconUrl =
+		props.attributes[urlAttributeName] || getMediaUrl(selectedMedia);
+
 	return (
 		<div>
+			<p>{`${label} Icon`}</p>
+			{resolvedIconUrl && (
+				<img
+					src={resolvedIconUrl}
+					alt={`${label} icon preview`}
+					style={{
+						width: '50px',
+						height: '50px',
+						objectFit: 'contain',
+						display: 'block',
+						marginBottom: '8px',
+						border: '1px solid #dcdcde',
+						padding: '4px',
+						backgroundColor: '#fff',
+					}}
+				/>
+			)}
 			<MediaUploadCheck>
 				<MediaUpload
 					onSelect={(media) =>
 						props.setAttributes({
-							[attributeName]: media?.id || 0,
+							[idAttributeName]: media?.id || 0,
+							[urlAttributeName]: getMediaUrl(media),
 						})
 					}
 					allowedTypes={['image']}
@@ -45,7 +88,12 @@ const renderIconControl = (props, attributeName, label) => {
 				<Button
 					variant="tertiary"
 					size="small"
-					onClick={() => props.setAttributes({ [attributeName]: 0 })}
+					onClick={() =>
+						props.setAttributes({
+							[idAttributeName]: 0,
+							[urlAttributeName]: '',
+						})
+					}
 				>
 					Clear {label} Icon
 				</Button>
@@ -360,34 +408,60 @@ export const controls = (BlockEdit, props) => {
 						/>
 					)}
 					{isScrollerEnabled && (
-						<div>
-							<p>Prev Icon</p>
-							{renderIconControl(
-								props,
-								'prevIconMediaId',
-								'Prev'
-							)}
-						</div>
+						<RangeControl
+							label="Button Icon Height (px)"
+							value={props.attributes.buttonIconHeight}
+							onChange={(value) =>
+								props.setAttributes({
+									buttonIconHeight: value || 18,
+								})
+							}
+							defaultValue={18}
+							min={8}
+							max={100}
+							step={1}
+						/>
+					)}
+					{isScrollerEnabled &&
+						isAutoScrollEnabled &&
+						!props.attributes.hidePauseButton && (
+							<RangeControl
+								label="Pause Icon Height (px)"
+								value={props.attributes.pauseButtonIconHeight}
+								onChange={(value) =>
+									props.setAttributes({
+										pauseButtonIconHeight: value || 18,
+									})
+								}
+								defaultValue={18}
+								min={8}
+								max={100}
+								step={1}
+							/>
+						)}
+					{isScrollerEnabled && (
+						<IconPickerControl
+							props={props}
+							idAttributeName="prevIconMediaId"
+							urlAttributeName="prevIconUrl"
+							label="Prev"
+						/>
 					)}
 					{isScrollerEnabled && (
-						<div>
-							<p>Next Icon</p>
-							{renderIconControl(
-								props,
-								'nextIconMediaId',
-								'Next'
-							)}
-						</div>
+						<IconPickerControl
+							props={props}
+							idAttributeName="nextIconMediaId"
+							urlAttributeName="nextIconUrl"
+							label="Next"
+						/>
 					)}
 					{isScrollerEnabled && (
-						<div>
-							<p>Pause Icon</p>
-							{renderIconControl(
-								props,
-								'pauseIconMediaId',
-								'Pause'
-							)}
-						</div>
+						<IconPickerControl
+							props={props}
+							idAttributeName="pauseIconMediaId"
+							urlAttributeName="pauseIconUrl"
+							label="Pause"
+						/>
 					)}
 				</PanelBody>
 				<PanelBody title="FlexLine Visibility">
@@ -686,7 +760,9 @@ export const getClasses = (attributes) => {
 
 export const useHooks = (props) => {
 	const {
+		attributes,
 		attributes: { enableHorizontalScroller, isStackedOnMobile },
+		clientId,
 		setAttributes,
 		name,
 	} = props;
@@ -695,6 +771,86 @@ export const useHooks = (props) => {
 			setAttributes({ isStackedOnMobile: false });
 		}
 	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
+
+	useEffect(() => {
+		if (name !== 'core/columns' && name !== 'core/post-template') {
+			return;
+		}
+		const blockElement = document.getElementById(`block-${clientId}`);
+		if (!blockElement) {
+			return;
+		}
+		const scroller = blockElement.matches(
+			'.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template'
+		)
+			? blockElement
+			: blockElement.querySelector(
+					'.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template'
+				);
+		if (!scroller) {
+			return;
+		}
+
+		const mediaStore =
+			typeof wp !== 'undefined' && wp.data
+				? wp.data.select('core')
+				: null;
+		const getUrlFromId = (id) => {
+			if (
+				!id ||
+				!mediaStore ||
+				typeof mediaStore.getMedia !== 'function'
+			) {
+				return '';
+			}
+			const media = mediaStore.getMedia(id);
+			return getMediaUrl(media);
+		};
+		const prevUrl =
+			attributes.prevIconUrl || getUrlFromId(attributes.prevIconMediaId);
+		const nextUrl =
+			attributes.nextIconUrl || getUrlFromId(attributes.nextIconMediaId);
+		const pauseUrl =
+			attributes.pauseIconUrl ||
+			getUrlFromId(attributes.pauseIconMediaId);
+		const updates = {};
+		if (attributes.prevIconMediaId && !attributes.prevIconUrl && prevUrl) {
+			updates.prevIconUrl = prevUrl;
+		}
+		if (attributes.nextIconMediaId && !attributes.nextIconUrl && nextUrl) {
+			updates.nextIconUrl = nextUrl;
+		}
+		if (
+			attributes.pauseIconMediaId &&
+			!attributes.pauseIconUrl &&
+			pauseUrl
+		) {
+			updates.pauseIconUrl = pauseUrl;
+		}
+		if (Object.keys(updates).length) {
+			setAttributes(updates);
+		}
+
+		const setDataAttr = (key, value) => {
+			if (value || value === 0) {
+				scroller.setAttribute(key, `${value}`);
+			} else {
+				scroller.removeAttribute(key);
+			}
+		};
+
+		setDataAttr('data-icon-prev-url', prevUrl);
+		setDataAttr('data-icon-next-url', nextUrl);
+		setDataAttr('data-icon-pause-url', pauseUrl);
+		setDataAttr(
+			'data-button-icon-height',
+			Math.max(8, parseInt(attributes.buttonIconHeight || 18, 10))
+		);
+		setDataAttr(
+			'data-pause-icon-height',
+			Math.max(8, parseInt(attributes.pauseButtonIconHeight || 18, 10))
+		);
+	});
 
 	useEffect(() => {
 		if (name === 'core/columns') {
