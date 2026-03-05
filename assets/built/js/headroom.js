@@ -1,1 +1,132 @@
-!function(){var e;e=function(){var e=document.querySelector("header.site-header");if(e){var n=function(){if(window.Flexline&&"function"==typeof window.Flexline.getHeaderHeight)return window.Flexline.getHeaderHeight();var n=document.documentElement,t=n?window.getComputedStyle(n).getPropertyValue("--header-site-header-height").trim():"",o=Number.parseFloat(t);return Number.isNaN(o)?e.offsetHeight:o},t=Math.max(n(),0),o=t,i=Math.max(t-70,0),a=new Headroom(e,{offset:{up:i,down:o},tolerance:{up:5,down:5},classes:{initial:"headroom",pinned:"headroom--pinned",unpinned:"headroom--unpinned"},onPin:function(){var e=document.querySelector("#slide-in-menu-button"),n=document.querySelector("#web4sl-call-button");e&&r(e),n&&r(n)},onUnpin:function(){var e=document.querySelector("#slide-in-menu-button"),n=document.querySelector("#web4sl-call-button");e&&r(e),n&&r(n)}});a.init();var d=function(){var e;e=Math.max(n(),0),a.offset.up=Math.max(e-70,0),a.offset.down=e,window.requestAnimationFrame(function(){window.dispatchEvent(new Event("scroll"))})};d(),document.addEventListener("flexline:header-metrics",d)}function r(e){var n=window.scrollY>0,t=document.querySelector("header.site-header");if(t.classList.contains("headroom")&&t.classList.contains("headroom--unpinned")?n=!0:t.classList.contains("headroom")&&t.classList.contains("headroom--pinned")&&(n=!1),n){var o=window.matchMedia("(max-width: 781.98px)").matches;e.style.top=o?"12px":"6px"}else e.style.top="",function(e){var n=document.querySelector("#header_container");if(n){var t=(n.offsetHeight-e.offsetHeight)/2;e.style.position="fixed",e.style.top="".concat(n.offsetTop+t,"px")}}(e)}},window.Flexline&&"function"==typeof window.Flexline.onEarlyReady?window.Flexline.onEarlyReady(e):"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e,{once:!0}):e()}();
+/******/ (function() { // webpackBootstrap
+/*!****************************!*\
+  !*** ./src/js/headroom.js ***!
+  \****************************/
+/* global Headroom */
+function flexlineOnEarlyReady(callback) {
+  if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+    window.Flexline.onEarlyReady(callback);
+    return;
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callback, {
+      once: true
+    });
+  } else {
+    callback();
+  }
+}
+function initHeadroom() {
+  // Grab the header element
+  var myHeader = document.querySelector('header.site-header');
+  // Guard check
+  if (!myHeader) {
+    return; // No header element, so bail out
+  }
+  var getHeaderHeight = function getHeaderHeight() {
+    if (window.Flexline && typeof window.Flexline.getHeaderHeight === 'function') {
+      return window.Flexline.getHeaderHeight();
+    }
+    var root = document.documentElement;
+    var raw = root ? window.getComputedStyle(root).getPropertyValue('--header-site-header-height').trim() : '';
+    var parsed = Number.parseFloat(raw);
+    if (!Number.isNaN(parsed)) {
+      return parsed;
+    }
+    return myHeader.offsetHeight;
+  };
+
+  // Function to adjust the position of the main button based on scroll position.
+  function toggleButtonPosition(buttonToPosition) {
+    var isScrolled = window.scrollY > 0;
+    var headerSiteHeader = document.querySelector('header.site-header');
+
+    // If headersiteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+    if (headerSiteHeader.classList.contains('headroom') && headerSiteHeader.classList.contains('headroom--unpinned')) {
+      isScrolled = true;
+    } else if (headerSiteHeader.classList.contains('headroom') && headerSiteHeader.classList.contains('headroom--pinned')) {
+      isScrolled = false;
+    }
+    if (isScrolled) {
+      var isSmallScreen = window.matchMedia('(max-width: 781.98px)').matches;
+      buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
+    } else {
+      buttonToPosition.style.top = '';
+      centerButtonInHeader(buttonToPosition);
+    }
+  }
+
+  // Function to center the main button within the header.
+  function centerButtonInHeader(buttonToCenter) {
+    var headerContainer = document.querySelector('#header_container');
+    if (headerContainer) {
+      // Assuming the headerContainer's position in the viewport doesn't drastically change
+      var offset = (headerContainer.offsetHeight - buttonToCenter.offsetHeight) / 2;
+      buttonToCenter.style.position = 'fixed';
+      // Use offsetTop for a more stable reference point from the document's start
+      buttonToCenter.style.top = "".concat(headerContainer.offsetTop + offset, "px");
+    }
+  }
+  var headroomOffset = Math.max(getHeaderHeight(), 0);
+  var offsetDown = headroomOffset;
+  var offsetUp = Math.max(headroomOffset - 70, 0);
+
+  // OPTIONAL: define some custom options
+  var options = {
+    offset: {
+      up: offsetUp,
+      down: offsetDown
+    },
+    tolerance: {
+      up: 5,
+      down: 5
+    },
+    classes: {
+      initial: 'headroom',
+      pinned: 'headroom--pinned',
+      unpinned: 'headroom--unpinned'
+    },
+    onPin: function onPin() {
+      var menuButton = document.querySelector('#slide-in-menu-button');
+      var phoneButton = document.querySelector('#web4sl-call-button');
+      if (menuButton) {
+        toggleButtonPosition(menuButton);
+      }
+      if (phoneButton) {
+        toggleButtonPosition(phoneButton);
+      }
+    },
+    onUnpin: function onUnpin() {
+      var menuButton = document.querySelector('#slide-in-menu-button');
+      var phoneButton = document.querySelector('#web4sl-call-button');
+      if (menuButton) {
+        toggleButtonPosition(menuButton);
+      }
+      if (phoneButton) {
+        toggleButtonPosition(phoneButton);
+      }
+    }
+  };
+
+  // Construct a Headroom instance
+  var headroom = new Headroom(myHeader, options);
+
+  // Initialize
+  headroom.init();
+  var syncOffsets = function syncOffsets() {
+    var height = Math.max(getHeaderHeight(), 0);
+    headroom.offset.up = Math.max(height - 70, 0);
+    headroom.offset.down = height;
+  };
+  var syncState = function syncState() {
+    syncOffsets();
+    window.requestAnimationFrame(function () {
+      window.dispatchEvent(new Event('scroll'));
+    });
+  };
+  syncState();
+  document.addEventListener('flexline:header-metrics', syncState);
+}
+flexlineOnEarlyReady(initHeadroom);
+/******/ })()
+;

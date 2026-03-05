@@ -247,6 +247,33 @@ function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel) {
 	button.innerHTML = fallbackSvg;
 }
 
+function resolveRangeDotsColor(scroller) {
+	const colorByClass = [
+		['scroller-dots-color-black', 'var(--wp--preset--color--contrast)'],
+		['scroller-dots-color-gray', 'var(--wp--preset--color--neutral)'],
+		['scroller-dots-color-primary', 'var(--wp--preset--color--primary)'],
+		[
+			'scroller-dots-color-secondary',
+			'var(--wp--preset--color--secondary)',
+		],
+		[
+			'scroller-dots-color-alternate',
+			'var(--wp--preset--color--alternate)',
+		],
+		['scroller-dots-color-default', 'var(--wp--preset--color--base)'],
+		['scroller-dots-color-white', 'var(--wp--preset--color--base)'],
+	];
+
+	const explicit = colorByClass.find(([className]) =>
+		scroller.classList.contains(className)
+	);
+	if (explicit) {
+		return explicit[1];
+	}
+
+	return 'var(--wp--preset--color--base)';
+}
+
 function updateRangeDots(scroller, dotsContainer) {
 	if (!dotsContainer) {
 		return;
@@ -288,6 +315,7 @@ function setupRangeDots(scroller, parentNode, isInline, onDotClick) {
 
 	const dotsContainer = document.createElement('div');
 	dotsContainer.classList.add('horizontal-scroller-range-dots');
+	dotsContainer.style.color = resolveRangeDotsColor(scroller);
 	realSlides.forEach((slide, index) => {
 		const dot = document.createElement('button');
 		dot.type = 'button';

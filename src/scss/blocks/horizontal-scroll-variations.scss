@@ -236,20 +236,20 @@ body,
 			}
 		}
 
-		.horizontal-scroller-range-dots {
-			--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
-			position: absolute;
+			.horizontal-scroller-range-dots {
+				--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
+				position: absolute;
 			z-index: 10;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 6px;
 			pointer-events: auto;
-			left: 50%;
-			transform: translateX(-50%);
-			bottom: calc(-6px + var(--flexline-scroller-dots-gap));
-			color: var(--wp--preset--color--base);
-		}
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: calc(-6px + var(--flexline-scroller-dots-gap));
+				color: var(--flexline-scroller-dots-color, var(--wp--preset--color--base));
+			}
 
 		.horizontal-scroller-range-dots.is-inline {
 			position: static;
@@ -345,17 +345,25 @@ body,
 		}
 	}
 
-		.horizontal-scroller-buttons-sides {
-			+ .horizontal-scroller-nav-buttons {
-				left: 50%;
-				right: auto;
-				transform: translateX(-50%);
-				bottom: -40px;
-			}
+			.horizontal-scroller-buttons-sides {
+				+ .horizontal-scroller-nav-buttons {
+					left: 50%;
+					right: auto;
+					transform: translateX(-50%);
+					bottom: -40px;
+				}
 
-			~ .horizontal-scroller-side-buttons {
-				display: flex;
-			}
+				~ .horizontal-scroller-side-buttons {
+					display: flex;
+
+					.is-horizontal-scroll-prev {
+						transform: translateX(calc(-100% - 6px));
+					}
+
+					.is-horizontal-scroll-next {
+						transform: translateX(calc(100% + 6px));
+					}
+				}
 
 			~ .horizontal-scroller-range-dots {
 				left: 50%;
@@ -363,16 +371,23 @@ body,
 				bottom: calc(-6px + var(--wp--preset--spacing--x-small));
 			}
 
-			&.horizontal-scroller-buttons-over {
-				+ .horizontal-scroller-nav-buttons {
-					bottom: 10px;
-				}
+				&.horizontal-scroller-buttons-over {
+					+ .horizontal-scroller-nav-buttons {
+						bottom: 10px;
+					}
 
-				~ .horizontal-scroller-range-dots {
-					bottom: calc(46px + var(--wp--preset--spacing--x-small));
+					~ .horizontal-scroller-side-buttons {
+						.is-horizontal-scroll-prev,
+						.is-horizontal-scroll-next {
+							transform: none;
+						}
+					}
+
+					~ .horizontal-scroller-range-dots {
+						bottom: calc(46px + var(--wp--preset--spacing--x-small));
+					}
 				}
 			}
-		}
 
 		@for $i from 4 through 32 {
 			.horizontal-scroller-dots-size-#{$i} {
