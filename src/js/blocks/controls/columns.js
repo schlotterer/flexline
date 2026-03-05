@@ -187,6 +187,37 @@ export const controls = (BlockEdit, props) => {
 							}
 						/>
 					)}
+					{isScrollerEnabled && props.attributes.showRangeDots && (
+						<SelectControl
+							label="Range Dots Layout"
+							value={props.attributes.rangeDotsLayout}
+							options={[
+								{ value: 'above', label: 'Above Controls' },
+								{ value: 'inline', label: 'Inline with Pause' },
+							]}
+							onChange={(value) =>
+								props.setAttributes({ rangeDotsLayout: value })
+							}
+						/>
+					)}
+					{isScrollerEnabled && props.attributes.showRangeDots && (
+						<SelectControl
+							label="Range Dots Color"
+							value={props.attributes.rangeDotsColor}
+							options={[
+								{ value: 'white', label: 'White' },
+								{ value: 'black', label: 'Black' },
+								{ value: 'primary', label: 'Primary' },
+								{ value: 'secondary', label: 'Secondary' },
+								{ value: 'alternate', label: 'Alternate' },
+								{ value: 'gray', label: 'Gray' },
+								{ value: 'default', label: 'Default' },
+							]}
+							onChange={(value) =>
+								props.setAttributes({ rangeDotsColor: value })
+							}
+						/>
+					)}
 					{isScrollerEnabled && !isSideButtonsMode && (
 						<SelectControl
 							label="Buttons Horizontal Position"
@@ -363,6 +394,14 @@ export const getClasses = (attributes) => {
 			'horizontal-scroller-buttons-over',
 			'horizontal-scroller-buttons-sides',
 			'horizontal-scroller-show-dots',
+			'horizontal-scroller-dots-inline',
+			'scroller-dots-color-default',
+			'scroller-dots-color-white',
+			'scroller-dots-color-black',
+			'scroller-dots-color-gray',
+			'scroller-dots-color-primary',
+			'scroller-dots-color-secondary',
+			'scroller-dots-color-alternate',
 			'scroller-buttons-background-transparent',
 			'scroller-buttons-background-white',
 			'scroller-buttons-background-black',
@@ -490,6 +529,30 @@ export const getClasses = (attributes) => {
 	if (!attributes.showRangeDots) {
 		removed.push('horizontal-scroller-show-dots');
 	}
+	if (attributes.rangeDotsLayout !== 'inline') {
+		removed.push('horizontal-scroller-dots-inline');
+	}
+	if (attributes.rangeDotsColor !== 'default') {
+		removed.push('scroller-dots-color-default');
+	}
+	if (attributes.rangeDotsColor !== 'white') {
+		removed.push('scroller-dots-color-white');
+	}
+	if (attributes.rangeDotsColor !== 'black') {
+		removed.push('scroller-dots-color-black');
+	}
+	if (attributes.rangeDotsColor !== 'gray') {
+		removed.push('scroller-dots-color-gray');
+	}
+	if (attributes.rangeDotsColor !== 'primary') {
+		removed.push('scroller-dots-color-primary');
+	}
+	if (attributes.rangeDotsColor !== 'secondary') {
+		removed.push('scroller-dots-color-secondary');
+	}
+	if (attributes.rangeDotsColor !== 'alternate') {
+		removed.push('scroller-dots-color-alternate');
+	}
 	if (!attributes.buttonsBoxShadow) {
 		removed.push('scroller-buttons-box-shadow');
 	}
@@ -557,6 +620,15 @@ export const getClasses = (attributes) => {
 	}
 	if (attributes.showRangeDots && attributes.enableHorizontalScroller) {
 		added += ' horizontal-scroller-show-dots';
+	}
+	if (
+		attributes.rangeDotsLayout === 'inline' &&
+		attributes.enableHorizontalScroller
+	) {
+		added += ' horizontal-scroller-dots-inline';
+	}
+	if (attributes.rangeDotsColor && attributes.enableHorizontalScroller) {
+		added += ` scroller-dots-color-${attributes.rangeDotsColor}`;
 	}
 	if (attributes.stackAtTablet) {
 		added += ' flexline-stack-at-tablet';

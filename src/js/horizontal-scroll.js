@@ -258,14 +258,14 @@ function updateRangeDots(scroller, dotsContainer) {
 		return;
 	}
 
-	const scrollerRect = scroller.getBoundingClientRect();
+	const viewStart = scroller.scrollLeft;
+	const viewEnd = viewStart + scroller.clientWidth;
 	realSlides.forEach((slide, index) => {
 		const dot = dots[index];
-		const slideRect = slide.getBoundingClientRect();
-		const visibleWidth =
-			Math.min(scrollerRect.right, slideRect.right) -
-			Math.max(scrollerRect.left, slideRect.left);
-		if (visibleWidth > 1) {
+		const slideStart = slide.offsetLeft;
+		const slideEnd = slideStart + slide.offsetWidth;
+		const isVisible = slideEnd > viewStart + 1 && slideStart < viewEnd - 1;
+		if (isVisible) {
 			dot.classList.add('is-visible');
 		} else {
 			dot.classList.remove('is-visible');
@@ -273,7 +273,7 @@ function updateRangeDots(scroller, dotsContainer) {
 	});
 }
 
-function setupRangeDots(scroller, wrapper) {
+function setupRangeDots(scroller, parentNode, isInline) {
 	const showDots = scroller.classList.contains(
 		'horizontal-scroller-show-dots'
 	);
@@ -295,7 +295,10 @@ function setupRangeDots(scroller, wrapper) {
 		dot.setAttribute('data-slide-index', `${index}`);
 		dotsContainer.appendChild(dot);
 	});
-	wrapper.appendChild(dotsContainer);
+	if (isInline) {
+		dotsContainer.classList.add('is-inline');
+	}
+	parentNode.appendChild(dotsContainer);
 
 	const update = () => updateRangeDots(scroller, dotsContainer);
 	scroller._updateRangeDots = update;
@@ -409,6 +412,10 @@ function setupScrollerButtons(scroller) {
 		return;
 	}
 
+	const dotsInline = scroller.classList.contains(
+		'horizontal-scroller-dots-inline'
+	);
+
 	const prevIconUrl = scroller.getAttribute('data-icon-prev-url') || '';
 	const nextIconUrl = scroller.getAttribute('data-icon-next-url') || '';
 	const pauseIconUrl = scroller.getAttribute('data-icon-pause-url') || '';
@@ -479,6 +486,9 @@ function setupScrollerButtons(scroller) {
 		if (!useSideButtons && hasNav) {
 			navContainer.appendChild(buildPrevButton());
 		}
+		if (showDots && dotsInline) {
+			setupRangeDots(scroller, navContainer, true);
+		}
 		if (showPause) {
 			navContainer.appendChild(buildPauseButton());
 		}
@@ -488,8 +498,8 @@ function setupScrollerButtons(scroller) {
 		wrapper.appendChild(navContainer);
 	}
 
-	if (showDots) {
-		setupRangeDots(scroller, wrapper);
+	if (showDots && !dotsInline) {
+		setupRangeDots(scroller, wrapper, false);
 	}
 
 	if (useSideButtons && hasNav) {

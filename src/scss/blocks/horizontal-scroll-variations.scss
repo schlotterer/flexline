@@ -246,7 +246,17 @@ body,
 			pointer-events: none;
 			left: 50%;
 			transform: translateX(-50%);
-			bottom: -76px;
+			bottom: -6px;
+			color: var(--wp--preset--color--base);
+		}
+
+		.horizontal-scroller-range-dots.is-inline {
+			position: static;
+			left: auto;
+			bottom: auto;
+			transform: none;
+			margin-left: 6px;
+			margin-right: 6px;
 		}
 
 		.horizontal-scroller-range-dot {
@@ -262,6 +272,8 @@ body,
 		.horizontal-scroller-range-dot.is-visible {
 			opacity: 1;
 			transform: scale(1.15);
+			background-color: currentColor;
+			border-color: currentColor;
 		}
 
 	/* Horizontal Alignment */
@@ -294,7 +306,7 @@ body,
 			bottom: -40px;
 		}
 		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-			bottom: -76px;
+			bottom: -6px;
 		}
 	}
 
@@ -303,7 +315,7 @@ body,
 			top: -40px;
 		}
 		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-			top: -76px;
+			top: -6px;
 		}
 	}
 
@@ -343,7 +355,7 @@ body,
 			~ .horizontal-scroller-range-dots {
 				left: 50%;
 				transform: translateX(-50%);
-				bottom: -76px;
+				bottom: -6px;
 			}
 
 			&.horizontal-scroller-buttons-over {
@@ -354,6 +366,55 @@ body,
 				~ .horizontal-scroller-range-dots {
 					bottom: 46px;
 				}
+			}
+		}
+
+		.scroller-dots-color-default {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--base);
+			}
+		}
+
+		.scroller-dots-color-white {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--base);
+			}
+		}
+
+		.scroller-dots-color-black {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--contrast);
+			}
+		}
+
+		.scroller-dots-color-gray {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--neutral);
+			}
+		}
+
+		.scroller-dots-color-primary {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--primary);
+			}
+		}
+
+		.scroller-dots-color-secondary {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--secondary);
+			}
+		}
+
+		.scroller-dots-color-alternate {
+			~ .horizontal-scroller-range-dots,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dots {
+				color: var(--wp--preset--color--alternate);
 			}
 		}
 
