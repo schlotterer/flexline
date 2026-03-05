@@ -335,7 +335,7 @@ function flexline_block_customizations_render( $block_content, $block ) {
 		}
 	}
 
-	if ( 'core/columns' === $block['blockName'] ) {
+	if ( in_array( $block['blockName'], array( 'core/columns', 'core/post-template' ), true ) ) {
 
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
@@ -352,6 +352,31 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$search_string                        = '>';
 			$replace_string                       = ' ' . $data_scroll_interval . '>';
 			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
+		}
+
+		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+			$icon_data_attrs = '';
+			$icon_map        = array(
+				'prevIconMediaId'  => 'data-icon-prev-url',
+				'nextIconMediaId'  => 'data-icon-next-url',
+				'pauseIconMediaId' => 'data-icon-pause-url',
+			);
+
+			foreach ( $icon_map as $attr_key => $data_attr ) {
+				$icon_id = isset( $block['attrs'][ $attr_key ] ) ? (int) $block['attrs'][ $attr_key ] : 0;
+				if ( $icon_id > 0 ) {
+					$icon_url = wp_get_attachment_image_url( $icon_id, 'full' );
+					if ( $icon_url ) {
+						$icon_data_attrs .= ' ' . $data_attr . '="' . esc_url( $icon_url ) . '"';
+					}
+				}
+			}
+
+			if ( '' !== $icon_data_attrs ) {
+				$search_string  = '>';
+				$replace_string = $icon_data_attrs . '>';
+				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			}
 		}
 	}
 

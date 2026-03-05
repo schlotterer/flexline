@@ -131,6 +131,26 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	buttonDisplayMode: {
+		type: 'string',
+		default: 'bottom',
+	},
+	showRangeDots: {
+		type: 'boolean',
+		default: false,
+	},
+	prevIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
+	nextIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
+	pauseIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
 };
 
 // Slider - Define custom attributes

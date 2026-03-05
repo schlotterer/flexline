@@ -1,1 +1,942 @@
-!function(){function e(e,n){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(!r){if(Array.isArray(e)||(r=function(e,n){if(e){if("string"==typeof e)return t(e,n);var r={}.toString.call(e).slice(8,-1);return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(e):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?t(e,n):void 0}}(e))||n&&e&&"number"==typeof e.length){r&&(e=r);var i=0,s=function(){};return{s:s,n:function(){return i>=e.length?{done:!0}:{done:!1,value:e[i++]}},e:function(e){throw e},f:s}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var a,o=!0,l=!1;return{s:function(){r=r.call(e)},n:function(){var e=r.next();return o=e.done,e},e:function(e){l=!0,a=e},f:function(){try{o||null==r.return||r.return()}finally{if(l)throw a}}}}function t(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=Array(t);n<t;n++)r[n]=e[n];return r}!function(){"use strict";var t=".is-style-slider",n="slider-wrapper",r="slider-runtime-active",i="slider-nav-buttons",s="is-slider-btn",a="is-slider-prev",o="is-slider-next",l="is-slider-pause",c=function(){return!!document.body&&(document.body.classList.contains("block-editor-page")||document.querySelector(".editor-styles-wrapper"))},u=function(e){return!c()||e.classList.contains("slider-preview-mode")};function d(e){return c()&&e.querySelector(":scope > .block-editor-block-list__layout")||e}function v(e){var t=d(e);return Array.from(t.children||[]).filter(function(e){return e&&1===e.nodeType&&!e.classList.contains(i)&&!e.classList.contains("block-editor-default-block-appender")&&!e.classList.contains("block-list-appender")})}function p(e){var t=e.parentElement;t&&t.classList.contains(n)||((t=document.createElement("div")).className=n,e.parentNode&&e.parentNode.insertBefore(t,e),t.appendChild(e));var r=t.querySelector(":scope > ."+i);return r||((r=document.createElement("div")).className=i,t.appendChild(r)),t}function f(e){var t=e.parentElement;if(t&&t.classList.contains(n)){var r=t.parentNode;r&&r.insertBefore(e,t);var s=t.querySelector(":scope > ."+i);s&&s.remove(),t.remove()}else if(e.parentElement){var a=e.parentElement.querySelector(":scope > ."+i);a&&a.remove()}}function h(e,t,n,r,i){for(var s=0,a=[e,t];s<a.length;s++){var o=a[s];if(o){var l=(window.getComputedStyle(o).getPropertyValue(n)||"").trim();if(l){var c=parseInt(l,10);if(!Number.isNaN(c))return c}}}for(var u=0,d=[e,t];u<d.length;u++){var v=d[u];if(v&&v.hasAttribute("data-"+r)){var p=parseInt(v.getAttribute("data-"+r)||"",10);if(!Number.isNaN(p))return p}}return i}function _(e,t,n,r,i){for(var s=0,a=[e,t];s<a.length;s++){var o=a[s];if(o){var l=(window.getComputedStyle(o).getPropertyValue(n)||"").trim();if(l){if("0"===(l=l.toLowerCase())||"false"===l||"no"===l||"off"===l)return!1;if("1"===l||"true"===l||"yes"===l||"on"===l)return!0}}}for(var c=0,u=[e,t];c<u.length;c++){var d=u[c];if(d&&d.hasAttribute("data-"+r)){var v=(d.getAttribute("data-"+r)||"").toLowerCase();if("0"===v||"false"===v||"no"===v||"off"===v)return!1;if("1"===v||"true"===v||"yes"===v||"on"===v)return!0}}return i}function m(e){var t=e._wrapper||e.parentElement;e._transitionMs=h(t,e,"--slider-transition-ms","slider-transition-ms",500),e._intervalMs=h(t,e,"--slider-interval-ms","slider-interval-ms",4e3),e._loop=_(t,e,"--slider-loop","slider-loop",!0),e._pauseOnHover=_(t,e,"--slider-pause-on-hover","slider-pause-on-hover",!0),e._showPauseButton=_(t,e,"--slider-show-pause","slider-show-pause",!0),e._showNav=_(t,e,"--slider-nav","slider-nav",!0);var n=function(t){return e.classList&&e.classList.contains(t)};e._intervalMs>0||!n("slider-auto")||(e._intervalMs=4e3),!e._pauseOnHover&&n("slider-pause-on-hover")&&(e._pauseOnHover=!0),e._showPauseButton||!n("slider-auto")||n("slider-hide-pause-button")||(e._showPauseButton=!0),!e._showNav&&n("slider-navigation")&&(e._showNav=!0)}function w(e){var t=v(e);e._slides=t,t.forEach(function(t,n){t.classList.remove("is-slide-active","is-slide-prev"),n===(e._activeIndex||0)&&t.classList.add("is-slide-active")})}function y(e){var t=e._slides||v(e),n=t.length;0!==n&&(("number"!=typeof e._activeIndex||Number.isNaN(e._activeIndex))&&(e._activeIndex=0),e._activeIndex>=n&&(e._activeIndex=e._loop?0:n-1),e._activeIndex<0&&(e._activeIndex=e._loop?n-1:0),t.forEach(function(t,n){t.classList.remove("is-slide-active","is-slide-prev");var r=n===e._activeIndex,i="number"==typeof e._prevIndex&&n===e._prevIndex;r&&t.classList.add("is-slide-active"),i&&t.classList.add("is-slide-prev")}))}function b(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=(e._slides||v(e)).length;if(!(r<=1)){var i=t;i>=r&&(i=e._loop?0:r-1),i<0&&(i=e._loop?r-1:0),e._prevIndex=e._activeIndex,e._activeIndex=i,y(e),n&&x(e)}}function g(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];b(e,(e._activeIndex||0)+1,t)}function L(e){E(e),e._intervalMs>0&&(e._autoTimer=setInterval(function(){e._isPaused||e._hoverPaused||g(e,!1)},e._intervalMs))}function E(e){e._autoTimer&&(clearInterval(e._autoTimer),e._autoTimer=null)}function x(e){(c()||e._isInView)&&L(e)}function P(e){var t=e._wrapper||e.parentElement,n=t?window.getComputedStyle(t):null,r=n?(n.getPropertyValue("--slider-height")||"").trim():"";if(e._hasExplicitHeight=!!r,r)t&&t.style.removeProperty("--slider-height-default");else{var i=document.querySelector("header.site-header"),s=i?i.offsetHeight:0;t&&t.style.setProperty("--slider-height-default","calc(100dvh - ".concat(s,"px)"))}}function I(e){var t=window.getComputedStyle(e),n=parseFloat((t.minHeight||"0").replace("px",""))||0,r=e.getBoundingClientRect().height||0,i=Math.max(n,r);e.style.height=i>0?Math.round(i)+"px":"",e._hasExplicitHeight?e.classList.add("slider-has-height"):e.classList.remove("slider-has-height")}function M(e){var t=e._wrapper||p(e),n=t.querySelector(":scope > ."+i);if(n||((n=document.createElement("div")).className=i,t.appendChild(n)),n.style.display=e._showNav?"":"none",c()&&e.classList.contains("slider-preview-mode")&&!e._navSwallow){var r=function(e){e.preventDefault(),e.stopPropagation()};n.addEventListener("mousedown",r,!0),e._navSwallow=r}var u=n.querySelector(":scope > ."+s+"."+a);u||((u=document.createElement("button")).type="button",u.className=s+" "+a,u.setAttribute("aria-label","Previous"),u.innerHTML='<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>',n.appendChild(u)),u.onclick=function(t){t.preventDefault(),t.stopPropagation(),function(e){b(e,(e._activeIndex||0)-1,!0)}(e)},e._btnPrev=u;var d=n.querySelector(":scope > ."+s+"."+l);e._intervalMs>0&&e._showPauseButton?(d||((d=document.createElement("button")).type="button",d.className=s+" "+l,d.setAttribute("aria-label","Pause/Play"),d.innerHTML='<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>',n.appendChild(d)),d.style.display="",d.onclick=function(t){t.preventDefault(),t.stopPropagation(),e._isPaused=!e._isPaused,d.setAttribute("aria-pressed",e._isPaused?"true":"false"),d.innerHTML=e._isPaused?'<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M320-720v480l400-240-400-240Z"/></svg></span>':'<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>',x(e)},e._btnPause=d):d&&(d.style.display="none");var v=n.querySelector(":scope > ."+s+"."+o);v||((v=document.createElement("button")).type="button",v.className=s+" "+o,v.setAttribute("aria-label","Next"),v.innerHTML='<span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>',n.appendChild(v)),v.onclick=function(t){t.preventDefault(),t.stopPropagation(),g(e,!0)},e._btnNext=v,c()&&(u.tabIndex=-1,v.tabIndex=-1,e._btnPause&&(e._btnPause.tabIndex=-1))}function N(t){f(t);var n=p(t);t._wrapper=n,m(t),P(t),I(t),t.classList.add(r),"number"!=typeof t._activeIndex&&(t._activeIndex=0),w(t),y(t),M(t),function(e){var t=function(){P(e),I(e)};window.addEventListener("resize",t),e._onResize=t}(t),function(e){e.querySelectorAll("img.wp-block-cover__image-background").forEach(function(e){e.removeAttribute("width"),e.removeAttribute("height"),e.setAttribute("sizes","100vw"),e.style.aspectRatio="auto"})}(t),function(e){var t=e._slides||v(e),n=function(t){t&&t.propertyName&&"opacity"!==t.propertyName||(e._prevIndex=null,y(e))};t.forEach(function(e){e.addEventListener("transitionend",n)}),e._onTransitionEnd=n}(t),function(e){var t=e._wrapper||e.parentElement;if(t){var n=new window.MutationObserver(function(){var t=e._intervalMs,n=e._transitionMs,r=e._showPauseButton,i=e._showNav;m(e),e._transitionMs!==n&&(w(e),y(e)),e._intervalMs!==t&&x(e),e._showPauseButton===r&&e._showNav===i||M(e)});n.observe(t,{attributes:!0,attributeFilter:["style"]}),e._varsObserver=n}}(t),c()?(!function(e){if(c()){var t=d(e),n=new window.MutationObserver(function(){w(e),y(e)});n.observe(t,{childList:!0,subtree:!1}),e._childWatcher=n}}(t),t._intervalMs>0&&L(t)):t._intervalMs>0&&function(t){t._io&&t._io.disconnect(),t._isInView=!1;var n=t._wrapper||t.parentElement,r=window.IntersectionObserver;if("function"!=typeof r)return t._isInView=!0,void L(t);var i=new r(function(n){var r,i=e(n);try{for(i.s();!(r=i.n()).done;)r.value.isIntersecting?(t._isInView=!0,L(t)):(t._isInView=!1,E(t))}catch(e){i.e(e)}finally{i.f()}},{root:null,threshold:.1});i.observe(n),t._io=i}(t),t._intervalMs>0&&t._pauseOnHover&&function(e){var t=e._wrapper||e.parentElement,n=function(){e._hoverPaused=!0},r=function(){e._hoverPaused=!1};t.addEventListener("mouseenter",n),t.addEventListener("mouseleave",r),e._onHoverEnter=n,e._onHoverLeave=r}(t),function(e){var t=function(){document.hidden?E(e):x(e)};document.addEventListener("visibilitychange",t),e._onVis=t}(t)}function S(e){(e._slides||v(e)).forEach(function(e){e.style.opacity="",e.style.zIndex="",e.classList.remove("is-slide-active","is-slide-prev")})}function A(e){if(E(e),e._io&&(e._io.disconnect(),e._io=null),e._childWatcher&&(e._childWatcher.disconnect(),e._childWatcher=null),e._varsObserver&&(e._varsObserver.disconnect(),e._varsObserver=null),e._onResize&&(window.removeEventListener("resize",e._onResize),e._onResize=null),e._onHoverEnter){var t=e._wrapper||e.parentElement;t&&(t.removeEventListener("mouseenter",e._onHoverEnter),t.removeEventListener("mouseleave",e._onHoverLeave)),e._onHoverEnter=null,e._onHoverLeave=null}e._onVis&&(document.removeEventListener("visibilitychange",e._onVis),e._onVis=null),function(e){e._onTransitionEnd&&((e._slides||v(e)).forEach(function(t){t.removeEventListener("transitionend",e._onTransitionEnd)}),e._onTransitionEnd=null)}(e),S(e),e._wrapper&&e._wrapper.style.removeProperty("--slider-height-default"),e.style.height="",e.style.removeProperty("--slider-height-effective"),e.classList.remove("slider-has-height"),e.classList.remove(r);var n=e._wrapper||e.parentElement,s=n?n.querySelector(":scope > ."+i):null;s&&e._navSwallow&&(s.removeEventListener("mousedown",e._navSwallow,!0),e._navSwallow=null),e._btnPrev&&(e._btnPrev.onclick=null),e._btnNext&&(e._btnNext.onclick=null),e._btnPause&&(e._btnPause.onclick=null),e._btnPrev=null,e._btnNext=null,e._btnPause=null,f(e),e._wrapper=null,e._slides=null}function C(){Array.from(document.querySelectorAll(t)).forEach(function(e){var t=u(e),n=e.classList.contains(r);if(n&&t){e._wrapper=e._wrapper&&e._wrapper.isConnected?e._wrapper:p(e);var i=e._intervalMs;return m(e),w(e),y(e),M(e),void(e._intervalMs!==i&&x(e))}!n||t?n||!t?(f(e),S(e),e.classList.remove(r),e.classList.remove("slider-has-height"),e.style.removeProperty("--slider-height-effective"),e.style.height=""):N(e):A(e)}),Array.from(document.querySelectorAll("."+r)).forEach(function(e){e.classList&&e.classList.contains("is-style-slider")&&u(e)||A(e)}),Array.from(document.querySelectorAll(".slider-wrapper")).forEach(function(e){var t=e.firstElementChild;t&&(t.classList.contains("is-style-slider")&&u(t)||A(t))})}var H;H=C,window.Flexline&&"function"==typeof window.Flexline.onEarlyReady?window.Flexline.onEarlyReady(H):"loading"===document.readyState?document.addEventListener("DOMContentLoaded",H,{once:!0}):H();var T,k,q,O=(T=C,k=80,function(){for(var e=arguments.length,t=new Array(e),n=0;n<e;n++)t[n]=arguments[n];clearTimeout(q),q=setTimeout(function(){return T.apply(void 0,t)},k)}),B=new window.MutationObserver(function(t){var n,r=!1,i=e(t);try{for(i.s();!(n=i.n()).done;){var s=n.value;if("attributes"===s.type&&"class"===s.attributeName){var a=s.target;if(a&&1===a.nodeType){var o=s.oldValue||"",l=-1!==o.indexOf("slider-preview-mode"),c=a.classList&&a.classList.contains("slider-preview-mode"),u=-1!==o.indexOf("is-style-slider"),d=a.classList&&a.classList.contains("is-style-slider");if(l||c||u||d){r=!0;break}}}if("childList"===s.type){var v,p=e(s.addedNodes);try{for(p.s();!(v=p.n()).done;){var f=v.value;if(1===f.nodeType&&f.classList&&f.classList.contains("is-style-slider")){r=!0;break}}}catch(e){p.e(e)}finally{p.f()}if(r)break}}}catch(e){i.e(e)}finally{i.f()}r&&O()});B.observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"],attributeOldValue:!0}),document.addEventListener("flexline-slider-vars-updated",function(e){var n=e&&e.detail&&e.detail.selector;if(n){var r=document.querySelector(n),i=r?Array.from(r.querySelectorAll(t)):[];if(i.length)return void i.forEach(function(e){if(u(e)){var t=e._intervalMs;m(e),P(e),w(e),y(e),M(e),e._intervalMs!==t&&x(e)}})}O()})}()}();
+/******/ (function() { // webpackBootstrap
+/*!**************************!*\
+  !*** ./src/js/slider.js ***!
+  \**************************/
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n2 = 0, F = function F() {}; return { s: F, n: function n() { return _n2 >= r.length ? { done: !0 } : { done: !1, value: r[_n2++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+/*
+ * FlexLine Fading Slider Runtime
+ *
+ * How this runtime connects to styles and controls
+ * ------------------------------------------------
+ * - Activation is class‑driven:
+ *   - The Group/Stack block gets .is-style-slider from the controls layer.
+ *   - In the editor, Preview mode adds .slider-preview-mode; runtime only runs in Preview.
+ *   - When the runtime is running it sets .slider-runtime-active on the slider element.
+ *
+ * - Slides are the direct children of the slider element (or the editor inner layout wrapper).
+ *   CSS (slider-variations.scss) absolutely stacks those children and animates opacity only
+ *   while .slider-runtime-active is present.
+ *   JS toggles only two classes on slides:
+ *     .is-slide-active (visible, z-index:2, pointer-events:auto)
+ *     .is-slide-prev   (previous slide, z-index:1 during cross‑fade)
+ *
+ * - Dynamic numbers (e.g., transition/interval/height) are read from CSS variables first
+ *   (set inline on the main slider wrapper by the controls HOC), then data-* fallbacks.
+ *   No inline layout styles are written by the runtime — only classes or timers.
+ *
+ * - Teardown is symmetric and idempotent. It clears timers/observers/listeners, removes
+ *   slide state classes and unwraps the temporary .slider-wrapper + nav container.
+ */
+
+(function () {
+  'use strict';
+
+  var SLIDER_SELECTOR = '.is-style-slider';
+  var WRAPPER_CLASS = 'slider-wrapper';
+  var RUNTIME_CLASS = 'slider-runtime-active';
+  var NAV_CLASS = 'slider-nav-buttons';
+  var BTN_CLASS = 'is-slider-btn';
+  var BTN_PREV = 'is-slider-prev';
+  var BTN_NEXT = 'is-slider-next';
+  var BTN_PAUSE = 'is-slider-pause';
+  var isEditor = function isEditor() {
+    return !!document.body && (document.body.classList.contains('block-editor-page') || document.querySelector('.editor-styles-wrapper'));
+  };
+  var shouldRun = function shouldRun(slider) {
+    return isEditor() ? slider.classList.contains('slider-preview-mode') : true;
+  };
+  var debounce = function debounce(fn, delay) {
+    var t;
+    return function () {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      clearTimeout(t);
+      t = setTimeout(function () {
+        return fn.apply(void 0, args);
+      }, delay);
+    };
+  };
+
+  /**
+   * Return the immediate container that holds slide children.
+   * In the editor, slides live inside the block list layout wrapper.
+   */
+
+  function getSlideContainer(slider) {
+    if (isEditor()) {
+      var c = slider.querySelector(':scope > .block-editor-block-list__layout');
+      return c || slider;
+    }
+    return slider;
+  }
+  function getSlides(slider) {
+    /**
+     * Collect candidate slides from the container and filter out editor
+     * appenders and our nav container. This function should return only
+     * the real slide elements in document order.
+     */
+    var container = getSlideContainer(slider);
+    var children = Array.from(container.children || []);
+    return children.filter(function (el) {
+      return el && el.nodeType === 1 && !el.classList.contains(NAV_CLASS) && !el.classList.contains('block-editor-default-block-appender') && !el.classList.contains('block-list-appender');
+    });
+  }
+  function ensureWrapper(slider) {
+    /**
+     * Ensure a .slider-wrapper exists around the slider element and a single
+     * sibling nav container. This wrapper is temporary and will be removed
+     * on teardown or when the feature is disabled.
+     */
+    var wrapper = slider.parentElement;
+    if (!wrapper || !wrapper.classList.contains(WRAPPER_CLASS)) {
+      wrapper = document.createElement('div');
+      wrapper.className = WRAPPER_CLASS;
+      if (slider.parentNode) {
+        slider.parentNode.insertBefore(wrapper, slider);
+      }
+      wrapper.appendChild(slider);
+    }
+    var nav = wrapper.querySelector(':scope > .' + NAV_CLASS);
+    if (!nav) {
+      nav = document.createElement('div');
+      nav.className = NAV_CLASS;
+      wrapper.appendChild(nav);
+    }
+    return wrapper;
+  }
+  function removeWrapper(slider) {
+    var wrapper = slider.parentElement;
+    if (wrapper && wrapper.classList.contains(WRAPPER_CLASS)) {
+      var parent = wrapper.parentNode;
+      if (parent) {
+        parent.insertBefore(slider, wrapper);
+      }
+      var nav = wrapper.querySelector(':scope > .' + NAV_CLASS);
+      if (nav) {
+        nav.remove();
+      }
+      wrapper.remove();
+    } else if (slider.parentElement) {
+      // Remove stray nav in same container if present
+      var _nav = slider.parentElement.querySelector(':scope > .' + NAV_CLASS);
+      if (_nav) {
+        _nav.remove();
+      }
+    }
+  }
+  function readNumericOption(wrapper, slider, cssVarName, dataAttr, defaultValue) {
+    /**
+     * Read a numeric option with the following precedence:
+     *  1) CSS custom property on wrapper/slider
+     *  2) data-* attribute on wrapper/slider
+     *  3) provided default
+     */
+    // Try CSS var on wrapper, then on slider element
+    var cssEls = [wrapper, slider];
+    for (var _i = 0, _cssEls = cssEls; _i < _cssEls.length; _i++) {
+      var el = _cssEls[_i];
+      if (!el) {
+        continue;
+      }
+      var cs = window.getComputedStyle(el);
+      var raw = (cs.getPropertyValue(cssVarName) || '').trim();
+      if (raw) {
+        var n = parseInt(raw, 10);
+        if (!Number.isNaN(n)) {
+          return n;
+        }
+      }
+    }
+    var sources = [wrapper, slider];
+    for (var _i2 = 0, _sources = sources; _i2 < _sources.length; _i2++) {
+      var _el = _sources[_i2];
+      if (_el && _el.hasAttribute('data-' + dataAttr)) {
+        var _n = parseInt(_el.getAttribute('data-' + dataAttr) || '', 10);
+        if (!Number.isNaN(_n)) {
+          return _n;
+        }
+      }
+    }
+    return defaultValue;
+  }
+  function readBooleanOption(wrapper, slider, cssVarName, dataAttr, defaultValue) {
+    // Try CSS var on wrapper, then on slider element
+    var cssEls = [wrapper, slider];
+    for (var _i3 = 0, _cssEls2 = cssEls; _i3 < _cssEls2.length; _i3++) {
+      var el = _cssEls2[_i3];
+      if (!el) {
+        continue;
+      }
+      var cs = window.getComputedStyle(el);
+      var v = (cs.getPropertyValue(cssVarName) || '').trim();
+      if (v) {
+        v = v.toLowerCase();
+        if (v === '0' || v === 'false' || v === 'no' || v === 'off') {
+          return false;
+        }
+        if (v === '1' || v === 'true' || v === 'yes' || v === 'on') {
+          return true;
+        }
+      }
+    }
+    var sources = [wrapper, slider];
+    for (var _i4 = 0, _sources2 = sources; _i4 < _sources2.length; _i4++) {
+      var _el2 = _sources2[_i4];
+      if (_el2 && _el2.hasAttribute('data-' + dataAttr)) {
+        var raw = (_el2.getAttribute('data-' + dataAttr) || '').toLowerCase();
+        if (raw === '0' || raw === 'false' || raw === 'no' || raw === 'off') {
+          return false;
+        }
+        if (raw === '1' || raw === 'true' || raw === 'yes' || raw === 'on') {
+          return true;
+        }
+      }
+    }
+    return defaultValue;
+  }
+  function updateOptionsFromVars(slider) {
+    var wrapper = slider._wrapper || slider.parentElement;
+    slider._transitionMs = readNumericOption(wrapper, slider, '--slider-transition-ms', 'slider-transition-ms', 500);
+    slider._intervalMs = readNumericOption(wrapper, slider, '--slider-interval-ms', 'slider-interval-ms', 4000);
+    slider._loop = readBooleanOption(wrapper, slider, '--slider-loop', 'slider-loop', true);
+    slider._pauseOnHover = readBooleanOption(wrapper, slider, '--slider-pause-on-hover', 'slider-pause-on-hover', true);
+    slider._showPauseButton = readBooleanOption(wrapper, slider, '--slider-show-pause', 'slider-show-pause', true);
+    slider._showNav = readBooleanOption(wrapper, slider, '--slider-nav', 'slider-nav', true);
+
+    // Class fallbacks (front end resiliency)
+    var hasClass = function hasClass(cls) {
+      return slider.classList && slider.classList.contains(cls);
+    };
+    if (!(slider._intervalMs > 0) && hasClass('slider-auto')) {
+      slider._intervalMs = 4000;
+    }
+    if (!slider._pauseOnHover && hasClass('slider-pause-on-hover')) {
+      slider._pauseOnHover = true;
+    }
+    if (!slider._showPauseButton && hasClass('slider-auto') && !hasClass('slider-hide-pause-button')) {
+      slider._showPauseButton = true;
+    }
+    if (!slider._showNav && hasClass('slider-navigation')) {
+      slider._showNav = true;
+    }
+  }
+  function applyStacking(slider) {
+    /**
+     * Project the current index into slide state classes.
+     * CSS handles absolute stacking + transitions.
+     */
+    var slides = getSlides(slider);
+    slider._slides = slides;
+    // CSS handles positioning and transitions; JS toggles classes only
+    slides.forEach(function (el, idx) {
+      el.classList.remove('is-slide-active', 'is-slide-prev');
+      if (idx === (slider._activeIndex || 0)) {
+        el.classList.add('is-slide-active');
+      }
+    });
+  }
+
+  // (Transitions declared in CSS; no JS needed.)
+
+  function clampState(slider) {
+    /**
+     * Clamp active index and toggle .is-slide-active / .is-slide-prev.
+     * This ensures exactly one visible slide, with the previous kept
+     * layered above during cross‑fade.
+     */
+    var slides = slider._slides || getSlides(slider);
+    var count = slides.length;
+    if (count === 0) {
+      return;
+    }
+    if (typeof slider._activeIndex !== 'number' || Number.isNaN(slider._activeIndex)) {
+      slider._activeIndex = 0;
+    }
+    if (slider._activeIndex >= count) {
+      slider._activeIndex = slider._loop ? 0 : count - 1;
+    }
+    if (slider._activeIndex < 0) {
+      slider._activeIndex = slider._loop ? count - 1 : 0;
+    }
+    slides.forEach(function (el, idx) {
+      el.classList.remove('is-slide-active', 'is-slide-prev');
+      var on = idx === slider._activeIndex;
+      var isPrev = typeof slider._prevIndex === 'number' && idx === slider._prevIndex;
+      if (on) {
+        el.classList.add('is-slide-active');
+      }
+      if (isPrev) {
+        el.classList.add('is-slide-prev');
+      }
+    });
+  }
+  function goTo(slider, idx) {
+    var fromNav = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    /**
+     * Navigate to the given index (wrapping when loop is enabled).
+     * fromNav=false is used by autoplay to avoid resetting timers excessively.
+     */
+    var slides = slider._slides || getSlides(slider);
+    var count = slides.length;
+    if (count <= 1) {
+      return;
+    }
+    var next = idx;
+    if (next >= count) {
+      next = slider._loop ? 0 : count - 1;
+    }
+    if (next < 0) {
+      next = slider._loop ? count - 1 : 0;
+    }
+    slider._prevIndex = slider._activeIndex;
+    slider._activeIndex = next;
+    clampState(slider);
+    if (fromNav) {
+      restartAuto(slider);
+    }
+  }
+  function nextSlide(slider) {
+    var fromNav = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    goTo(slider, (slider._activeIndex || 0) + 1, fromNav);
+  }
+  function prevSlide(slider) {
+    goTo(slider, (slider._activeIndex || 0) - 1, true);
+  }
+  function startAuto(slider) {
+    /** Start/restart the autoplay timer (if interval > 0). */
+    stopAuto(slider);
+    if (!(slider._intervalMs > 0)) {
+      return;
+    }
+    slider._autoTimer = setInterval(function () {
+      if (slider._isPaused || slider._hoverPaused) {
+        return;
+      }
+      nextSlide(slider, false);
+    }, slider._intervalMs);
+  }
+  function stopAuto(slider) {
+    if (slider._autoTimer) {
+      clearInterval(slider._autoTimer);
+      slider._autoTimer = null;
+    }
+  }
+  function restartAuto(slider) {
+    if (isEditor()) {
+      startAuto(slider);
+      return;
+    }
+    if (slider._isInView) {
+      startAuto(slider);
+    }
+  }
+  function setupIntersectionObserver(slider) {
+    /**
+     * Front‑end only: start/stop autoplay based on viewport visibility.
+     */
+    if (slider._io) {
+      slider._io.disconnect();
+    }
+    slider._isInView = false;
+    var wrapper = slider._wrapper || slider.parentElement;
+    var IO = window.IntersectionObserver;
+    if (typeof IO !== 'function') {
+      // Fallback: if IO is unavailable, consider it always in view
+      slider._isInView = true;
+      startAuto(slider);
+      return;
+    }
+    var io = new IO(function (entries) {
+      var _iterator = _createForOfIteratorHelper(entries),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var ent = _step.value;
+          if (ent.isIntersecting) {
+            slider._isInView = true;
+            startAuto(slider);
+          } else {
+            slider._isInView = false;
+            stopAuto(slider);
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }, {
+      root: null,
+      threshold: 0.1
+    });
+    io.observe(wrapper);
+    slider._io = io;
+  }
+  function attachHoverPause(slider) {
+    var wrapper = slider._wrapper || slider.parentElement;
+    var onEnter = function onEnter() {
+      // No preventDefault here; it can interfere with editor selection.
+      slider._hoverPaused = true;
+    };
+    var onLeave = function onLeave() {
+      slider._hoverPaused = false;
+    };
+    wrapper.addEventListener('mouseenter', onEnter);
+    wrapper.addEventListener('mouseleave', onLeave);
+    slider._onHoverEnter = onEnter;
+    slider._onHoverLeave = onLeave;
+  }
+  function computeAndSetEffectiveHeight(slider) {
+    /**
+     * Provide a default height when no explicit --slider-height is set.
+     * The controls layer writes inline vars in the editor; on the front end
+     * we compute a default based on the header height.
+     */
+    var wrapper = slider._wrapper || slider.parentElement;
+    var csWrapper = wrapper ? window.getComputedStyle(wrapper) : null;
+    var explicitHeight = csWrapper ? (csWrapper.getPropertyValue('--slider-height') || '').trim() : '';
+    slider._hasExplicitHeight = !!explicitHeight;
+    if (explicitHeight) {
+      // Height provided – clear default so the explicit value wins and live-updates.
+      if (wrapper) {
+        wrapper.style.removeProperty('--slider-height-default');
+      }
+      return;
+    }
+    // No explicit height, provide a robust default based on header size
+    var header = document.querySelector('header.site-header');
+    var h = header ? header.offsetHeight : 0;
+    if (wrapper) {
+      wrapper.style.setProperty('--slider-height-default', "calc(100dvh - ".concat(h, "px)"));
+    }
+  }
+
+  /**
+   * Lock a definite slider height so children using height:100% resolve reliably.
+   * Uses the larger of computed min-height and current box height.
+   *
+   * @param {HTMLElement} slider The slider root element.
+   */
+  function lockSliderHeight(slider) {
+    var cs = window.getComputedStyle(slider);
+    var minH = parseFloat((cs.minHeight || '0').replace('px', '')) || 0;
+    var boxH = slider.getBoundingClientRect().height || 0;
+    var h = Math.max(minH, boxH);
+    if (h > 0) {
+      slider.style.height = Math.round(h) + 'px';
+    } else {
+      slider.style.height = '';
+    }
+    if (slider._hasExplicitHeight) {
+      slider.classList.add('slider-has-height');
+    } else {
+      slider.classList.remove('slider-has-height');
+    }
+  }
+
+  /**
+   * Targeted Safari guard: neutralize intrinsic ratio hints for cover bg images
+   * inside this slider only.
+   *
+   * @param {HTMLElement} slider The slider root element.
+   */
+  function scrubCoverImageHints(slider) {
+    var imgs = slider.querySelectorAll('img.wp-block-cover__image-background');
+    imgs.forEach(function (img) {
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      img.setAttribute('sizes', '100vw');
+      img.style.aspectRatio = 'auto';
+    });
+  }
+  function attachResize(slider) {
+    var onResize = function onResize() {
+      computeAndSetEffectiveHeight(slider);
+      lockSliderHeight(slider);
+    };
+    window.addEventListener('resize', onResize);
+    slider._onResize = onResize;
+  }
+  function attachTransitionClamp(slider) {
+    /**
+     * Keep state consistent after opacity transitions by clearing the
+     * previous slide marker when the fade completes.
+     */
+    var slides = slider._slides || getSlides(slider);
+    var onTe = function onTe(e) {
+      if (e && e.propertyName && e.propertyName !== 'opacity') {
+        return;
+      }
+      slider._prevIndex = null;
+      clampState(slider);
+    };
+    slides.forEach(function (el) {
+      el.addEventListener('transitionend', onTe);
+    });
+    slider._onTransitionEnd = onTe;
+  }
+  function detachTransitionClamp(slider) {
+    if (!slider._onTransitionEnd) {
+      return;
+    }
+    var slides = slider._slides || getSlides(slider);
+    slides.forEach(function (el) {
+      el.removeEventListener('transitionend', slider._onTransitionEnd);
+    });
+    slider._onTransitionEnd = null;
+  }
+  function attachEditorChildWatcher(slider) {
+    if (!isEditor()) {
+      return;
+    }
+    var container = getSlideContainer(slider);
+    var mo = new window.MutationObserver(function () {
+      applyStacking(slider);
+      clampState(slider);
+    });
+    mo.observe(container, {
+      childList: true,
+      subtree: false
+    });
+    slider._childWatcher = mo;
+  }
+  function attachVarsObserver(slider) {
+    var wrapper = slider._wrapper || slider.parentElement;
+    if (!wrapper) {
+      return;
+    }
+    var obs = new window.MutationObserver(function () {
+      var prevInterval = slider._intervalMs;
+      var prevTransition = slider._transitionMs;
+      var prevShowPause = slider._showPauseButton;
+      var prevShowNav = slider._showNav;
+      updateOptionsFromVars(slider);
+      if (slider._transitionMs !== prevTransition) {
+        applyStacking(slider);
+        clampState(slider);
+      }
+      if (slider._intervalMs !== prevInterval) {
+        restartAuto(slider);
+      }
+      if (slider._showPauseButton !== prevShowPause || slider._showNav !== prevShowNav) {
+        buildNav(slider); // show/hide pause button
+      }
+    });
+    obs.observe(wrapper, {
+      attributes: true,
+      attributeFilter: ['style']
+    });
+    slider._varsObserver = obs;
+  }
+  function attachVisibilityHandler(slider) {
+    var onVis = function onVis() {
+      if (document.hidden) {
+        stopAuto(slider);
+      } else {
+        restartAuto(slider);
+      }
+    };
+    document.addEventListener('visibilitychange', onVis);
+    slider._onVis = onVis;
+  }
+  function buildNav(slider) {
+    var wrapper = slider._wrapper || ensureWrapper(slider);
+    var nav = wrapper.querySelector(':scope > .' + NAV_CLASS);
+    if (!nav) {
+      nav = document.createElement('div');
+      nav.className = NAV_CLASS;
+      wrapper.appendChild(nav);
+    }
+
+    // Toggle entire nav visibility via option
+    nav.style.display = slider._showNav ? '' : 'none';
+
+    // In editor Preview only, swallow selection-related events so buttons stay clickable
+    if (isEditor() && slider.classList.contains('slider-preview-mode') && !slider._navSwallow) {
+      var swallow = function swallow(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      };
+      nav.addEventListener('mousedown', swallow, true);
+      slider._navSwallow = swallow;
+    }
+
+    // Prev button
+    var prev = nav.querySelector(':scope > .' + BTN_CLASS + '.' + BTN_PREV);
+    if (!prev) {
+      prev = document.createElement('button');
+      prev.type = 'button';
+      prev.className = BTN_CLASS + ' ' + BTN_PREV;
+      prev.setAttribute('aria-label', 'Previous');
+      prev.innerHTML = '<span class="material-symbols-outlined">' + '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' + '<path fill="currentColor" d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></span>';
+      nav.appendChild(prev);
+    }
+    prev.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      prevSlide(slider);
+    };
+    slider._btnPrev = prev;
+
+    // Pause button (optional)
+    var pause = nav.querySelector(':scope > .' + BTN_CLASS + '.' + BTN_PAUSE);
+    if (slider._intervalMs > 0 && slider._showPauseButton) {
+      if (!pause) {
+        pause = document.createElement('button');
+        pause.type = 'button';
+        pause.className = BTN_CLASS + ' ' + BTN_PAUSE;
+        pause.setAttribute('aria-label', 'Pause/Play');
+        pause.innerHTML = '<span class="material-symbols-outlined">' + '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' + '<path fill="currentColor" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
+        nav.appendChild(pause);
+      }
+      pause.style.display = '';
+      pause.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        slider._isPaused = !slider._isPaused;
+        // Reflect state via aria-pressed and swap icon
+        pause.setAttribute('aria-pressed', slider._isPaused ? 'true' : 'false');
+        pause.innerHTML = slider._isPaused ? '<span class="material-symbols-outlined">' + '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' + '<path fill="currentColor" d="M320-720v480l400-240-400-240Z"/></svg></span>' : '<span class="material-symbols-outlined">' + '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' + '<path fill="currentColor" d="M280-240v-480h80v480h-80Zm320 0v-480h80v480h-80Z"/></svg></span>';
+        restartAuto(slider);
+      };
+      slider._btnPause = pause;
+    } else if (pause) {
+      pause.style.display = 'none';
+    }
+
+    // Next button
+    var next = nav.querySelector(':scope > .' + BTN_CLASS + '.' + BTN_NEXT);
+    if (!next) {
+      next = document.createElement('button');
+      next.type = 'button';
+      next.className = BTN_CLASS + ' ' + BTN_NEXT;
+      next.setAttribute('aria-label', 'Next');
+      next.innerHTML = '<span class="material-symbols-outlined">' + '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' + '<path fill="currentColor" d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></span>';
+      nav.appendChild(next);
+    }
+    next.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      nextSlide(slider, true);
+    };
+    slider._btnNext = next;
+
+    // Editor: keep nav from taking focus to avoid scroll jumps
+    if (isEditor()) {
+      prev.tabIndex = -1;
+      next.tabIndex = -1;
+      if (slider._btnPause) {
+        slider._btnPause.tabIndex = -1;
+      }
+      // nav.setAttribute('aria-hidden', 'true');
+    }
+  }
+  // Prevent editor interactions (double‑click, drag/drop) from hijacking Preview
+  // (Preview guards removed — z-index and pointer-events manage interactions)
+
+  function initOneSlider(slider) {
+    // Ensure clean start
+    removeWrapper(slider);
+    var wrapper = ensureWrapper(slider);
+    slider._wrapper = wrapper;
+    updateOptionsFromVars(slider);
+
+    // Height: compute a definite value before absolute stacking kicks in
+    computeAndSetEffectiveHeight(slider);
+    lockSliderHeight(slider);
+
+    // Activate runtime
+    slider.classList.add(RUNTIME_CLASS);
+
+    // Slides and stacking
+    if (typeof slider._activeIndex !== 'number') {
+      slider._activeIndex = 0;
+    }
+    applyStacking(slider);
+    clampState(slider);
+
+    // Transitions are CSS-driven; no JS step required here
+
+    // Build navigation
+    buildNav(slider);
+
+    // Height listeners
+    attachResize(slider);
+
+    // Targeted Safari guard for this slider only
+    scrubCoverImageHints(slider);
+
+    // Transitions and observers
+    attachTransitionClamp(slider);
+    attachVarsObserver(slider);
+    if (isEditor()) {
+      attachEditorChildWatcher(slider);
+      // Autoplay starts immediately in editor preview
+      if (slider._intervalMs > 0) {
+        startAuto(slider);
+      }
+    } else if (slider._intervalMs > 0) {
+      // Front end autoplay gated by IntersectionObserver
+      setupIntersectionObserver(slider);
+    }
+
+    // Hover pause
+    if (slider._intervalMs > 0 && slider._pauseOnHover) {
+      attachHoverPause(slider);
+    }
+
+    // Visibility handling
+    attachVisibilityHandler(slider);
+  }
+  function clearInlineSlideStyles(slider) {
+    var slides = slider._slides || getSlides(slider);
+    slides.forEach(function (el) {
+      el.style.opacity = '';
+      el.style.zIndex = '';
+      el.classList.remove('is-slide-active', 'is-slide-prev');
+    });
+  }
+  function teardownSlider(slider) {
+    // Stop timers and observers
+    stopAuto(slider);
+    if (slider._io) {
+      slider._io.disconnect();
+      slider._io = null;
+    }
+    if (slider._childWatcher) {
+      slider._childWatcher.disconnect();
+      slider._childWatcher = null;
+    }
+    if (slider._varsObserver) {
+      slider._varsObserver.disconnect();
+      slider._varsObserver = null;
+    }
+
+    // Events
+    if (slider._onResize) {
+      window.removeEventListener('resize', slider._onResize);
+      slider._onResize = null;
+    }
+    if (slider._onHoverEnter) {
+      var _wrapper = slider._wrapper || slider.parentElement;
+      if (_wrapper) {
+        _wrapper.removeEventListener('mouseenter', slider._onHoverEnter);
+        _wrapper.removeEventListener('mouseleave', slider._onHoverLeave);
+      }
+      slider._onHoverEnter = null;
+      slider._onHoverLeave = null;
+    }
+    if (slider._onVis) {
+      document.removeEventListener('visibilitychange', slider._onVis);
+      slider._onVis = null;
+    }
+    detachTransitionClamp(slider);
+
+    // Clear inline styles
+    clearInlineSlideStyles(slider);
+    if (slider._wrapper) {
+      slider._wrapper.style.removeProperty('--slider-height-default');
+    }
+    slider.style.height = '';
+    slider.style.removeProperty('--slider-height-effective');
+    slider.classList.remove('slider-has-height');
+
+    // Remove runtime class
+    slider.classList.remove(RUNTIME_CLASS);
+
+    // Remove nav listeners
+    var wrapper = slider._wrapper || slider.parentElement;
+    var nav = wrapper ? wrapper.querySelector(':scope > .' + NAV_CLASS) : null;
+    if (nav && slider._navSwallow) {
+      nav.removeEventListener('mousedown', slider._navSwallow, true);
+      // only mousedown was added
+      slider._navSwallow = null;
+    }
+    if (slider._btnPrev) {
+      slider._btnPrev.onclick = null;
+    }
+    if (slider._btnNext) {
+      slider._btnNext.onclick = null;
+    }
+    if (slider._btnPause) {
+      slider._btnPause.onclick = null;
+    }
+    slider._btnPrev = null;
+    slider._btnNext = null;
+    slider._btnPause = null;
+
+    // Remove wrapper/nav
+    removeWrapper(slider);
+    slider._wrapper = null;
+    slider._slides = null;
+  }
+  function initSliders() {
+    var sliders = Array.from(document.querySelectorAll(SLIDER_SELECTOR));
+    sliders.forEach(function (slider) {
+      var wants = shouldRun(slider);
+      var running = slider.classList.contains(RUNTIME_CLASS);
+      if (running && wants) {
+        // Already running and should continue: refresh options/stacking/nav only
+        slider._wrapper = slider._wrapper && slider._wrapper.isConnected ? slider._wrapper : ensureWrapper(slider);
+        var prevInterval = slider._intervalMs;
+        updateOptionsFromVars(slider);
+        applyStacking(slider);
+        clampState(slider);
+        buildNav(slider);
+        if (slider._intervalMs !== prevInterval) {
+          restartAuto(slider);
+        }
+        return;
+      }
+      if (running && !wants) {
+        teardownSlider(slider);
+        return;
+      }
+      if (!running && wants) {
+        initOneSlider(slider);
+        return;
+      }
+      // Not running and not wanted: ensure clean DOM
+      removeWrapper(slider);
+      clearInlineSlideStyles(slider);
+      slider.classList.remove(RUNTIME_CLASS);
+      slider.classList.remove('slider-has-height');
+      slider.style.removeProperty('--slider-height-effective');
+      // Clear any locked height left from a previous Preview session
+      slider.style.height = '';
+    });
+
+    // Global safety: teardown any stray running sliders that no longer qualify
+    var running = Array.from(document.querySelectorAll('.' + RUNTIME_CLASS));
+    running.forEach(function (el) {
+      var isSlider = el.classList && el.classList.contains('is-style-slider');
+      if (!isSlider || !shouldRun(el)) {
+        teardownSlider(el);
+      }
+    });
+
+    // Also handle orphaned wrappers whose child lost the slider class
+    var wrappers = Array.from(document.querySelectorAll('.slider-wrapper'));
+    wrappers.forEach(function (wrap) {
+      var child = wrap.firstElementChild;
+      if (!child) {
+        return;
+      }
+      // If the child is no longer a slider or shouldn't run, teardown/unwrap
+      if (!child.classList.contains('is-style-slider') || !shouldRun(child)) {
+        teardownSlider(child);
+      }
+    });
+  }
+
+  // Initialize on DOM ready
+  var flexlineOnEarlyReady = function flexlineOnEarlyReady(callback) {
+    if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+      window.Flexline.onEarlyReady(callback);
+      return;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', callback, {
+        once: true
+      });
+    } else {
+      callback();
+    }
+  };
+  flexlineOnEarlyReady(initSliders);
+
+  // Watch for editor mode toggles and style/class changes
+  var rerunInit = debounce(initSliders, 80);
+  var bodyObserver = new window.MutationObserver(function (records) {
+    var relevant = false;
+    var _iterator2 = _createForOfIteratorHelper(records),
+      _step2;
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var rec = _step2.value;
+        if (rec.type === 'attributes' && rec.attributeName === 'class') {
+          var t = rec.target;
+          if (t && t.nodeType === 1) {
+            // Detect both addition and removal of the key classes on the slider element itself
+            var oldVal = rec.oldValue || '';
+            var hadPreview = oldVal.indexOf('slider-preview-mode') !== -1;
+            var hasPreview = t.classList && t.classList.contains('slider-preview-mode');
+            var hadSlider = oldVal.indexOf('is-style-slider') !== -1;
+            var hasSlider = t.classList && t.classList.contains('is-style-slider');
+            if (hadPreview || hasPreview || hadSlider || hasSlider) {
+              relevant = true;
+              break;
+            }
+          }
+        }
+        if (rec.type === 'childList') {
+          var _iterator3 = _createForOfIteratorHelper(rec.addedNodes),
+            _step3;
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var n = _step3.value;
+              if (n.nodeType === 1 && n.classList && n.classList.contains('is-style-slider')) {
+                relevant = true;
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+          if (relevant) {
+            break;
+          }
+        }
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+    if (relevant) {
+      rerunInit();
+    }
+  });
+  bodyObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class'],
+    attributeOldValue: true
+  });
+
+  // Editor: listen for live CSS var updates from controls
+  document.addEventListener('flexline-slider-vars-updated', function (e) {
+    var sel = e && e.detail && e.detail.selector;
+    if (sel) {
+      var scope = document.querySelector(sel);
+      var sliders = scope ? Array.from(scope.querySelectorAll(SLIDER_SELECTOR)) : [];
+      if (sliders.length) {
+        sliders.forEach(function (slider) {
+          if (!shouldRun(slider)) {
+            return;
+          }
+          var prevInterval = slider._intervalMs;
+          updateOptionsFromVars(slider);
+          computeAndSetEffectiveHeight(slider);
+          applyStacking(slider);
+          clampState(slider);
+          buildNav(slider);
+          if (slider._intervalMs !== prevInterval) {
+            restartAuto(slider);
+          }
+        });
+        return;
+      }
+    }
+    // Fallback: refresh all sliders
+    rerunInit();
+  });
+})();
+/******/ })()
+;

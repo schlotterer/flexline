@@ -162,21 +162,24 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			),
 			'core/columns'                   => array(
 				'attributes' => array(
-					array(
-						'name'        => 'Horizontal Scroller',
-						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
-							'<li>Show Arrow Nav</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
-							'<li>Scroll transition in milliseconds</li>' .
-							'<li>Loop</li>' .
-							'<li>Auto Scroll</li>' .
-							'<li>Hide Pause Button</li>' .
-							'<li>Scroll interval in milliseconds</li>' .
-							'<li>Hide Scrollbar</li>' .
-							'<li>Pause on Hover</li>' .
-							'<li>Button Positions / Colors</li>' .
-							'</ul>',
-					),
+						array(
+							'name'        => 'Horizontal Scroller',
+							'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+								'<li>Show Arrow Nav</li>' .
+								'<li>Buttons Display Mode (Bottom or Sides)</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
+								'<li>Scroll transition in milliseconds</li>' .
+								'<li>Loop</li>' .
+								'<li>Auto Scroll</li>' .
+								'<li>Hide Pause Button</li>' .
+								'<li>Scroll interval in milliseconds</li>' .
+								'<li>Hide Scrollbar</li>' .
+								'<li>Pause on Hover</li>' .
+								'<li>Button Positions / Colors</li>' .
+								'<li>Custom Prev / Next / Pause Icons (media picker)</li>' .
+								'</ul>',
+						),
 					array(
 						'name'        => 'Stack at Tablet',
 						'description' => 'Switches from horizontal columns to a vertical stack at medium screens.',
@@ -205,21 +208,24 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 			),
 			'core/post-template'             => array(
 				'attributes' => array(
-					array(
-						'name'        => 'Horizontal Scroller',
-						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
-							'<li>Show Arrow Nav</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
-							'<li>Scroll transition in milliseconds</li>' .
-							'<li>Loop</li>' .
-							'<li>Auto Scroll</li>' .
-							'<li>Hide Pause Button</li>' .
-							'<li>Scroll interval in milliseconds</li>' .
-							'<li>Hide Scrollbar</li>' .
-							'<li>Pause on Hover</li>' .
-							'<li>Button Positions / Colors</li>' .
-							'</ul>',
-					),
+						array(
+							'name'        => 'Horizontal Scroller',
+							'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
+								'<li>Show Arrow Nav</li>' .
+								'<li>Buttons Display Mode (Bottom or Sides)</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
+								'<li>Scroll transition in milliseconds</li>' .
+								'<li>Loop</li>' .
+								'<li>Auto Scroll</li>' .
+								'<li>Hide Pause Button</li>' .
+								'<li>Scroll interval in milliseconds</li>' .
+								'<li>Hide Scrollbar</li>' .
+								'<li>Pause on Hover</li>' .
+								'<li>Button Positions / Colors</li>' .
+								'<li>Custom Prev / Next / Pause Icons (media picker)</li>' .
+								'</ul>',
+						),
 				),
 			),
 			'core/site-logo'                 => array(
