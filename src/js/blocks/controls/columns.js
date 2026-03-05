@@ -249,7 +249,7 @@ export const controls = (BlockEdit, props) => {
 							}
 						/>
 					)}
-					{isScrollerEnabled && !isSideButtonsMode && (
+					{isScrollerEnabled && (
 						<ToggleControl
 							label="Position Buttons Over Scroller"
 							checked={!!props.attributes.positionButtonsOver}
