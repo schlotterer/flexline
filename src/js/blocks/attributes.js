@@ -131,6 +131,58 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	buttonDisplayMode: {
+		type: 'string',
+		default: 'bottom',
+	},
+	showRangeDots: {
+		type: 'boolean',
+		default: false,
+	},
+	rangeDotsLayout: {
+		type: 'string',
+		default: 'above',
+	},
+	rangeDotsColor: {
+		type: 'string',
+		default: 'white',
+	},
+	rangeDotsSize: {
+		type: 'number',
+		default: 8,
+	},
+	prevIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
+	prevIconUrl: {
+		type: 'string',
+		default: '',
+	},
+	nextIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
+	nextIconUrl: {
+		type: 'string',
+		default: '',
+	},
+	pauseIconMediaId: {
+		type: 'number',
+		default: 0,
+	},
+	pauseIconUrl: {
+		type: 'string',
+		default: '',
+	},
+	buttonIconHeight: {
+		type: 'number',
+		default: 18,
+	},
+	pauseButtonIconHeight: {
+		type: 'number',
+		default: 18,
+	},
 };
 
 // Slider - Define custom attributes

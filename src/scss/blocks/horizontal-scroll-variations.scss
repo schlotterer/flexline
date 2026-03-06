@@ -163,28 +163,42 @@ body,
 
 	}
 
-	@include screen($mobile) {
+		@include screen($mobile) {
 
-		.is-style-horizontal-scroll {
+			.is-style-horizontal-scroll {
 
-			&.wp-block-columns,
-			&.wp-block-post-template {
+				&.wp-block-columns,
+				&.wp-block-post-template {
 
 				>* {
 					//flex: 0 0 auto;
 					max-width: 100%;
 				}
 
+				}
+
+				+ .horizontal-scroller-nav-buttons,
+				~ .horizontal-scroller-side-buttons {
+					.is-horizontal-scroll-btn {
+						width: 28px !important;
+						height: 28px !important;
+
+						.horizontal-scroller-custom-icon,
+						svg {
+							width: 16px !important;
+							height: 16px !important;
+						}
+					}
+				}
+
 			}
 
 		}
 
-	}
-
-	.is-horizontal-scroll-btn {
-		color: var(--wp--preset--color--base);
-		background-color: var(--wp--custom--deco-color);
-		border-radius: var(--wp--custom--button-border-radius);
+		.is-horizontal-scroll-btn {
+			color: var(--wp--preset--color--base);
+			background-color: var(--wp--custom--deco-color);
+			border-radius: var(--wp--custom--button-border-radius);
 
 		transition: var(--wp--custom--transition-time);
 		width: 30px;
@@ -193,247 +207,539 @@ body,
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		cursor: pointer;
-		z-index: 10;
+			cursor: pointer;
+			z-index: 10;
 
-		&:hover {
-			box-shadow: var(--wp--custom--button-shadow-hover);
-			background-color: color-mix(in lab, var(--wp--custom--deco-color), #000 20%);
-		}
+			.horizontal-scroller-custom-icon {
+				display: block;
+				width: 18px;
+				height: 18px;
+				object-fit: contain;
+			}
+
+			&:hover {
+				box-shadow: var(--wp--custom--button-shadow-hover);
+				background-color: color-mix(in lab, var(--wp--custom--deco-color), #000 20%);
+			}
 	}
 
 	/* -----------------------------------------------------------------
    	Styles for Horizontal Scroller Navigation Buttons Positioning
 	------------------------------------------------------------------ */
 
-	.horizontal-scroller-nav-buttons {
-		z-index: 10;
-	}
+		.horizontal-scroller-nav-buttons {
+			z-index: 10;
+			align-items: center;
+		}
+
+		.horizontal-scroller-side-buttons {
+			position: absolute;
+			z-index: 10;
+			left: 0;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			justify-content: space-between;
+			padding-left: 10px;
+			padding-right: 10px;
+			pointer-events: none;
+
+			.is-horizontal-scroll-btn {
+				pointer-events: auto;
+			}
+		}
+
+			.horizontal-scroller-range-dots {
+				--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
+				position: absolute;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			pointer-events: auto;
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: calc(-6px + var(--flexline-scroller-dots-gap));
+				color: var(--flexline-scroller-dots-color, var(--wp--preset--color--base));
+			}
+
+		.horizontal-scroller-range-dots.is-inline {
+			position: static;
+			left: auto;
+			bottom: auto;
+			transform: none;
+			margin-left: 6px;
+			margin-right: 6px;
+		}
+
+			.horizontal-scroller-range-dot {
+				appearance: none;
+				width: 8px;
+				height: 8px;
+				padding: 0;
+				border-radius: 999px;
+				background-color: transparent;
+				border-style: solid;
+				border-width: 1px;
+				border-color: currentColor;
+				opacity: 0.35;
+				transition: var(--wp--custom--transition-time);
+				cursor: pointer;
+				color: inherit;
+			}
+
+		.horizontal-scroller-range-dot.is-visible {
+			opacity: 1;
+			transform: scale(1.15);
+			background-color: currentColor;
+			border-color: currentColor;
+		}
 
 	/* Horizontal Alignment */
 .horizontal-scroller-buttons-horizontal-left {
-                + .horizontal-scroller-nav-buttons {
-                        left: 0;
-                        right: auto;
-                        margin-left: 10px;
-                }
-        }
+		+ .horizontal-scroller-nav-buttons {
+			left: 0;
+			right: auto;
+			margin-left: 10px;
+		}
+	}
 
 .horizontal-scroller-buttons-horizontal-center {
-                + .horizontal-scroller-nav-buttons {
-                        left: 50%;
-                        transform: translateX(-50%);
-                }
-        }
+		+ .horizontal-scroller-nav-buttons {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
 
 .horizontal-scroller-buttons-horizontal-right {
-                + .horizontal-scroller-nav-buttons {
-                        left: auto;
-                        right: 0;
-                        margin-right: 10px;
-                }
-        }
+		+ .horizontal-scroller-nav-buttons {
+			left: auto;
+			right: 0;
+			margin-right: 10px;
+		}
+	}
 
-	/* Vertical Alignment Outside (default) */
+		/* Vertical Alignment Outside (default) */
 .horizontal-scroller-buttons-vertical-bottom {
-                + .horizontal-scroller-nav-buttons {
-                        bottom: -40px;
-                }
-
-        }
+		+ .horizontal-scroller-nav-buttons {
+			bottom: -40px;
+		}
+		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+			bottom: calc(-6px + var(--wp--preset--spacing--x-small));
+		}
+	}
 
 .horizontal-scroller-buttons-vertical-top {
-                + .horizontal-scroller-nav-buttons {
-                        top: -40px;
-                }
-        }
+		+ .horizontal-scroller-nav-buttons {
+			top: -40px;
+		}
+		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+			top: -6px;
+		}
+	}
 
-	/* When Positioned Over (inside the container) */
+		/* When Positioned Over (inside the container) */
 .horizontal-scroller-buttons-over {
-                &.horizontal-scroller-buttons-vertical-bottom {
-                        + .horizontal-scroller-nav-buttons {
-                                bottom: 10px;
-                        }
-
-                }
-
-                &.horizontal-scroller-buttons-vertical-top {
-                        + .horizontal-scroller-nav-buttons {
-                                top: 10px;
-                        }
-
-                }
-        }
-
-
-	/* Scroller Button Backgrounds */
-	.scroller-buttons-background-transparent+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: transparent;
+		&.horizontal-scroller-buttons-vertical-bottom {
+			+ .horizontal-scroller-nav-buttons {
+				bottom: 10px;
+			}
+			+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+				bottom: 46px;
+			}
 		}
-	}
 
-	.scroller-buttons-background-white+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--base);
-		}
-	}
-
-	.scroller-buttons-background-black+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--contrast);
-		}
-	}
-
-	.scroller-buttons-background-gray+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--neutral);
-		}
-	}
-
-	.scroller-buttons-background-primary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--primary);
-		}
-	}
-
-	.scroller-buttons-background-secondary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--secondary);
-		}
-	}
-
-	.scroller-buttons-background-alternate+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			background-color: var(--wp--preset--color--alternate);
-		}
-	}
-
-	/* Scroller Button Colors (Text) */
-	.scroller-buttons-text-default+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--base);
-
-			svg path {
-				fill: var(--wp--preset--color--base) !important;
+		&.horizontal-scroller-buttons-vertical-top {
+			+ .horizontal-scroller-nav-buttons {
+				top: 10px;
+			}
+			+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+				top: 46px;
 			}
 		}
 	}
 
-	.scroller-buttons-text-white+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--base);
+			.horizontal-scroller-buttons-sides {
+				+ .horizontal-scroller-nav-buttons {
+					left: 50%;
+					right: auto;
+					transform: translateX(-50%);
+					bottom: -40px;
+				}
 
-			svg path {
-				fill: var(--wp--preset--color--base) !important;
+				~ .horizontal-scroller-side-buttons {
+					display: flex;
+
+					.is-horizontal-scroll-prev {
+						transform: translateX(calc(-100% - 6px));
+					}
+
+					.is-horizontal-scroll-next {
+						transform: translateX(calc(100% + 6px));
+					}
+				}
+
+				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+					left: 50%;
+					transform: translateX(-50%);
+					bottom: calc(-6px + var(--wp--preset--spacing--x-small));
+				}
+
+				&.horizontal-scroller-buttons-over {
+					+ .horizontal-scroller-nav-buttons {
+						bottom: 10px;
+					}
+
+					~ .horizontal-scroller-side-buttons {
+						.is-horizontal-scroll-prev,
+						.is-horizontal-scroll-next {
+							transform: none;
+						}
+					}
+
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						bottom: calc(46px + var(--wp--preset--spacing--x-small));
+					}
+				}
+			}
+
+			.horizontal-scroller-dots-below {
+				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+					bottom: -74px;
+				}
+
+				&.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						top: -74px;
+						bottom: auto;
+					}
+				}
+
+				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-bottom {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						bottom: 2px;
+					}
+				}
+
+				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						top: 2px;
+						bottom: auto;
+					}
+				}
+
+				&.horizontal-scroller-buttons-sides {
+					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+						bottom: -74px;
+					}
+
+					&.horizontal-scroller-buttons-over {
+						+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+							bottom: 2px;
+						}
+					}
+				}
+			}
+
+		@for $i from 4 through 32 {
+			.horizontal-scroller-dots-size-#{$i} {
+				~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+				~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+					width: #{$i}px;
+					height: #{$i}px;
+				}
 			}
 		}
-	}
 
-	.scroller-buttons-text-black+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--contrast);
-
-			svg path {
-				fill: var(--wp--preset--color--contrast) !important;
+		.scroller-dots-color-default {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--base) !important;
 			}
 		}
-	}
 
-	.scroller-buttons-text-gray+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--neutral);
-
-			svg path {
-				fill: var(--wp--preset--color--neutral) !important;
+		.scroller-dots-color-white {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--base) !important;
 			}
 		}
-	}
 
-	.scroller-buttons-text-primary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--primary);
-
-			svg path {
-				fill: var(--wp--preset--color--primary) !important;
+		.scroller-dots-color-black {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--contrast) !important;
 			}
 		}
-	}
 
-	.scroller-buttons-text-secondary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--secondary);
-
-			svg path {
-				fill: var(--wp--preset--color--secondary) !important;
+		.scroller-dots-color-gray {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--neutral) !important;
 			}
 		}
-	}
 
-	.scroller-buttons-text-alternate+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			color: var(--wp--preset--color--alternate);
-
-			svg path {
-				fill: var(--wp--preset--color--alternate) !important;
+		.scroller-dots-color-primary {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--primary) !important;
 			}
 		}
-	}
 
-	/* Scroller Buttons Borders */
-	.scroller-buttons-border-default+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: none;
+		.scroller-dots-color-secondary {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--secondary) !important;
+			}
 		}
-	}
 
-	.scroller-buttons-border-none+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: none;
+		.scroller-dots-color-alternate {
+			~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
+			~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
+				color: var(--wp--preset--color--alternate) !important;
+			}
 		}
-	}
 
-	.scroller-buttons-border-white+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--base);
+
+		/* Scroller Button Backgrounds */
+		.scroller-buttons-background-transparent {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: transparent;
+			}
 		}
-	}
-
-	.scroller-buttons-border-black+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--contrast);
 		}
-	}
 
-	.scroller-buttons-border-gray+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--neutral);
+		.scroller-buttons-background-white {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--base);
+			}
 		}
-	}
-
-	.scroller-buttons-border-primary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--primary);
 		}
-	}
 
-	.scroller-buttons-border-secondary+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--secondary);
+		.scroller-buttons-background-black {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--contrast);
+			}
 		}
-	}
-
-	.scroller-buttons-border-alternate+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			border: 1px solid var(--wp--preset--color--alternate);
 		}
-	}
 
-	// Box Shadow
-	.scroller-buttons-box-shadow+.horizontal-scroller-nav-buttons {
-		.is-horizontal-scroll-btn {
-			box-shadow: var(--wp--custom--button-shadow);
+		.scroller-buttons-background-gray {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--neutral);
+			}
 		}
-	}
+		}
 
-}
+		.scroller-buttons-background-primary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--primary);
+			}
+		}
+		}
+
+		.scroller-buttons-background-secondary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--secondary);
+			}
+		}
+		}
+
+		.scroller-buttons-background-alternate {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				background-color: var(--wp--preset--color--alternate);
+			}
+		}
+		}
+
+		/* Scroller Button Colors (Text) */
+		.scroller-buttons-text-default {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--base);
+
+				svg path {
+					fill: var(--wp--preset--color--base) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-white {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--base);
+
+				svg path {
+					fill: var(--wp--preset--color--base) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-black {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--contrast);
+
+				svg path {
+					fill: var(--wp--preset--color--contrast) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-gray {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--neutral);
+
+				svg path {
+					fill: var(--wp--preset--color--neutral) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-primary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--primary);
+
+				svg path {
+					fill: var(--wp--preset--color--primary) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-secondary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--secondary);
+
+				svg path {
+					fill: var(--wp--preset--color--secondary) !important;
+				}
+			}
+		}
+		}
+
+		.scroller-buttons-text-alternate {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				color: var(--wp--preset--color--alternate);
+
+				svg path {
+					fill: var(--wp--preset--color--alternate) !important;
+				}
+			}
+		}
+		}
+
+		/* Scroller Buttons Borders */
+		.scroller-buttons-border-default {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: none;
+			}
+		}
+		}
+
+		.scroller-buttons-border-none {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: none;
+			}
+		}
+		}
+
+		.scroller-buttons-border-white {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--base);
+			}
+		}
+		}
+
+		.scroller-buttons-border-black {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--contrast);
+			}
+		}
+		}
+
+		.scroller-buttons-border-gray {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--neutral);
+			}
+		}
+		}
+
+		.scroller-buttons-border-primary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--primary);
+			}
+		}
+		}
+
+		.scroller-buttons-border-secondary {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--secondary);
+			}
+		}
+		}
+
+		.scroller-buttons-border-alternate {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				border: 1px solid var(--wp--preset--color--alternate);
+			}
+		}
+		}
+
+		// Box Shadow
+		.scroller-buttons-box-shadow {
+			~ .horizontal-scroller-nav-buttons,
+			~ .horizontal-scroller-side-buttons {
+			.is-horizontal-scroll-btn {
+				box-shadow: var(--wp--custom--button-shadow);
+			}
+		}
+		}
+
+	}

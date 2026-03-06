@@ -1,11 +1,9 @@
 body.headroom-in-use header.site-header {
     position: fixed;
     width: 100%;
-    &.headroom {
-        z-index: 12;
-        will-change: transform;
-        transition: all 200ms linear;
-    }
+    z-index: 12;
+    will-change: transform;
+    transition: all 200ms linear;
     &.headroom--pinned {
         transform: translateY(0%);
         &.headroom--not-top{

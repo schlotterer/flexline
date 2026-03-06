@@ -1,1 +1,237 @@
-!function(){var e;e=function(){var e,t,n=document.querySelector(".slide-in"),i=FlexLineCustomizerSearchMenuSettings,o='<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>',a='<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>',s='<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';if(n){var l=(e=document.createElement("button"),t=a,!0===i.useMenuIconOnDesktop&&(t=o),e.id="slide-in-menu-button",e.className="slide-in-menu-button wp-element-button",e.setAttribute("aria-label","Open Search and Menu"),e.setAttribute("aria-controls","slide-in-menu"),e.setAttribute("aria-expanded","false"),e.setAttribute("tabindex","0"),e.style.position="fixed",e.innerHTML='<span class="material-symbols-outlined">'+t+"</span>",e.addEventListener("click",u),!0===i.hideSearchOnDesktop&&e.classList.add("flexline-hide-on-desktop"),!0===i.hideSearchOnTablet&&e.classList.add("flexline-hide-on-tablet"),e);n.parentNode.insertBefore(l,n),r(),c(l),window.addEventListener("resize",f(function(){r(),d(l)},100)),window.addEventListener("scroll",f(function(){d(l)},100)),document.querySelectorAll('a[href="#openSlideIn"]').forEach(function(e){e.addEventListener("click",function(e){e.preventDefault(),u()})})}else console.error("The .slide-in div was not found.");function r(){if(!0!==i.useMenuIconOnDesktop){var e=l.querySelector(".material-symbols-outlined"),t=window.innerWidth>991;e.innerHTML=t?a:o,l.setAttribute("aria-label",t?"Search":"Menu")}}function d(e){var t=window.scrollY>0,n=document.body,i=document.querySelector("header.site-header");if(i.classList.contains("headroom")&&i.classList.contains("headroom--unpinned")?t=!0:i.classList.contains("headroom")&&i.classList.contains("headroom--pinned")&&(t=!1),t&&!n.classList.contains("headroom--fixed-all-the-time")){var o=window.matchMedia("(max-width: 781.98px)").matches;e.style.top=o?"12px":"6px"}else c(e)}function c(e){var t=document.querySelector("#header_container");if(t){var n=(t.offsetHeight-e.offsetHeight)/2;e.style.top="".concat(t.offsetTop+n,"px")}}function u(){var e="true"===l.getAttribute("aria-expanded");l.setAttribute("aria-expanded",String(!e));var t=document.getElementById("slide-in-menu");if(t)if(t.setAttribute("aria-hidden",String(e)),t.classList.toggle("active",!e),document.body.classList.toggle("no-scroll",!e),e){var n=document.getElementById("slide-in-menu-close");n&&n.remove(),l.focus()}else{!function(e){var t=document.getElementById("slide-in-menu-close");t||((t=document.createElement("button")).id="slide-in-menu-close",t.className="slide-in-menu-close wp-element-button",t.setAttribute("aria-label","Close Menu"),t.setAttribute("tabindex","0"),t.innerHTML='<span class="material-symbols-outlined">'+s+"</span>",e.prepend(t),t.addEventListener("click",function(){u()}))}(t);var i=t.querySelectorAll('bubuttonToPositiontton, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');i.length&&(i[0].focus(),function(e){var t=e.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'),n=t[0],i=t[t.length-1];e.addEventListener("keydown",function(e){("Tab"===e.key||9===e.keyCode)&&(e.shiftKey?e.target.ownerDocument.activeElement===n&&(i.focus(),e.preventDefault()):e.target.ownerDocument.activeElement===i&&(n.focus(),e.preventDefault()))})}(t))}}function f(e,t,n){var i;return function(){var o=this,a=arguments,s=n&&!i;clearTimeout(i),i=setTimeout(function(){i=null,n||e.apply(o,a)},t),s&&e.apply(o,a)}}},window.Flexline&&"function"==typeof window.Flexline.onEarlyReady?window.Flexline.onEarlyReady(e):"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e,{once:!0}):e()}();
+/******/ (function() { // webpackBootstrap
+/*!***************************!*\
+  !*** ./src/js/slidein.js ***!
+  \***************************/
+function flexlineOnEarlyReady(callback) {
+  if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
+    window.Flexline.onEarlyReady(callback);
+    return;
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callback, {
+      once: true
+    });
+  } else {
+    callback();
+  }
+}
+
+// Listen for early readiness to ensure the DOM is ready even if scripts are delayed.
+flexlineOnEarlyReady(function () {
+  // Attempt to find the .slide-in div in the document.
+  var slideInDiv = document.querySelector('.slide-in');
+  // eslint-disable-next-line no-undef
+  // const customizerSettings = FlexLineCustomizerSettings;
+  // eslint-disable-next-line no-undef
+  var customizerSearchMenuSettings = FlexLineCustomizerSearchMenuSettings;
+  // const siteHeader = document.querySelector('.site-header');
+  // Define SVG icons for menu, search, and close actions.
+  var iconMenu = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>';
+  var iconSearch = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>';
+  var iconClose = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+
+  // Check if the .slide-in div exists, log an error if not.
+  if (!slideInDiv) {
+    // eslint-disable-next-line no-console
+    console.error('The .slide-in div was not found.');
+    return;
+  }
+
+  // Create the main button that users will interact with to toggle the slide-in menu.
+  var mainButton = createMainButton();
+  // Insert the main button into the DOM, before the .slide-in div.
+  slideInDiv.parentNode.insertBefore(mainButton, slideInDiv);
+  // Initialize the button icon based on the current screen width and adjust its position.
+  updateButtonIcon();
+  centerButtonInHeader(mainButton);
+
+  // Attach event listeners to the window object to handle resizing and scrolling events.
+  window.addEventListener('resize', debounce(function () {
+    // Update the button icon and re-center it whenever the window is resized.
+    updateButtonIcon();
+    toggleButtonPosition(mainButton);
+  }, 100));
+  window.addEventListener('scroll', debounce(function () {
+    toggleButtonPosition(mainButton);
+  }, 100));
+
+  // Function to create the main toggle button for the slide-in menu.
+  function createMainButton() {
+    var button = document.createElement('button');
+    var initialIcon = iconSearch;
+    if (customizerSearchMenuSettings.useMenuIconOnDesktop === true) {
+      initialIcon = iconMenu;
+    }
+    button.id = 'slide-in-menu-button';
+    button.className = 'slide-in-menu-button wp-element-button';
+    button.setAttribute('aria-label', 'Open Search and Menu');
+    button.setAttribute('aria-controls', 'slide-in-menu');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('tabindex', '0');
+    button.style.position = 'fixed';
+    button.innerHTML = '<span class="material-symbols-outlined">' + initialIcon + '</span>';
+    button.addEventListener('click', toggleMenu);
+    if (customizerSearchMenuSettings.hideSearchOnDesktop === true) {
+      button.classList.add('flexline-hide-on-desktop');
+    }
+    if (customizerSearchMenuSettings.hideSearchOnTablet === true) {
+      button.classList.add('flexline-hide-on-tablet');
+    }
+    return button;
+  }
+
+  // Function to update the icon of the main button based on screen width.
+  function updateButtonIcon() {
+    if (customizerSearchMenuSettings.useMenuIconOnDesktop !== true) {
+      var iconSpan = mainButton.querySelector('.material-symbols-outlined');
+      var isLargeScreen = window.innerWidth > 991;
+      iconSpan.innerHTML = isLargeScreen ? iconSearch : iconMenu;
+      mainButton.setAttribute('aria-label', isLargeScreen ? 'Search' : 'Menu');
+    }
+  }
+
+  // Function to adjust the position of the main button based on scroll position.
+  function toggleButtonPosition(buttonToPosition) {
+    var isScrolled = window.scrollY > 0;
+    var body = document.body;
+    var headerSiteHeader = document.querySelector('header.site-header');
+
+    // If header siteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
+    if (headerSiteHeader.classList.contains('headroom') && headerSiteHeader.classList.contains('headroom--unpinned')) {
+      isScrolled = true;
+    } else if (headerSiteHeader.classList.contains('headroom') && headerSiteHeader.classList.contains('headroom--pinned')) {
+      isScrolled = false;
+    }
+    if (isScrolled && !body.classList.contains('headroom--fixed-all-the-time')) {
+      var isSmallScreen = window.matchMedia('(max-width: 781.98px)').matches;
+      buttonToPosition.style.top = isSmallScreen ? '12px' : '6px';
+    } else {
+      centerButtonInHeader(buttonToPosition);
+    }
+  }
+
+  // Function to center the main button within the header.
+  function centerButtonInHeader(buttonToCenter) {
+    var headerContainer = document.querySelector('#header_container');
+    if (headerContainer) {
+      // Assuming the headerContainer's position in the viewport doesn't drastically change
+      var offset = (headerContainer.offsetHeight - buttonToCenter.offsetHeight) / 2;
+
+      // Use offsetTop for a more stable reference point from the document's start
+      buttonToCenter.style.top = "".concat(headerContainer.offsetTop + offset, "px");
+    }
+  }
+
+  // Function to trap focus within the slide-in menu for accessibility.
+  function trapFocus(element) {
+    var focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    var firstFocusableElement = focusableElements[0];
+    var lastFocusableElement = focusableElements[focusableElements.length - 1];
+    element.addEventListener('keydown', function (e) {
+      var isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+      if (!isTabPressed) {
+        return;
+      }
+      if (e.shiftKey) {
+        /* shift + tab */
+        if (e.target.ownerDocument.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus(); // move focus to the last focusable element
+          e.preventDefault();
+        }
+      } else if (e.target.ownerDocument.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus(); // move focus to the first focusable element
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Function to toggle the visibility of the slide-in menu.
+  function toggleMenu() {
+    var expanded = mainButton.getAttribute('aria-expanded') === 'true';
+    mainButton.setAttribute('aria-expanded', String(!expanded));
+    var slideInMenu = document.getElementById('slide-in-menu');
+    if (slideInMenu) {
+      slideInMenu.setAttribute('aria-hidden', String(expanded));
+      slideInMenu.classList.toggle('active', !expanded);
+      document.body.classList.toggle('no-scroll', !expanded);
+      if (!expanded) {
+        addCloseButton(slideInMenu);
+        var focusableElements = slideInMenu.querySelectorAll('bubuttonToPositiontton, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusableElements.length) {
+          focusableElements[0].focus();
+          trapFocus(slideInMenu);
+        }
+      } else {
+        var closeButton = document.getElementById('slide-in-menu-close');
+        if (closeButton) {
+          closeButton.remove();
+        }
+        mainButton.focus(); // Focus back to the main button when menu is closed
+      }
+    }
+  }
+  function isMenuOpen() {
+    var slideInMenu = document.getElementById('slide-in-menu');
+    return slideInMenu && slideInMenu.classList.contains('active');
+  }
+
+  // Allow ESC to close the slide-in menu.
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape' && event.key !== 'Esc') {
+      return;
+    }
+    if (isMenuOpen()) {
+      event.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  // Add event listener to any anchor link with href="#openSlideIn" or explicit trigger class.
+  document.querySelectorAll('a[href="#openSlideIn"], .js-open-slidein').forEach(function (trigger) {
+    trigger.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      toggleMenu();
+    });
+  });
+
+  // Function to add a close button inside the slide-in menu.
+  function addCloseButton(menuContainer) {
+    var closeButton = document.getElementById('slide-in-menu-close');
+    if (!closeButton) {
+      closeButton = document.createElement('button');
+      closeButton.id = 'slide-in-menu-close';
+      closeButton.className = 'slide-in-menu-close wp-element-button';
+      closeButton.setAttribute('aria-label', 'Close Menu');
+      closeButton.setAttribute('tabindex', '0');
+      closeButton.innerHTML = '<span class="material-symbols-outlined">' + iconClose + '</span>';
+      menuContainer.prepend(closeButton); // Prepend to make it more accessible
+
+      closeButton.addEventListener('click', function () {
+        toggleMenu();
+      });
+    }
+  }
+
+  // Debounce function to limit the rate at which a function can fire
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function later() {
+        timeout = null;
+        if (!immediate) {
+          func.apply(context, args);
+        }
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) {
+        func.apply(context, args);
+      }
+    };
+  }
+});
+/******/ })()
+;

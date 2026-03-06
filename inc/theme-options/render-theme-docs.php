@@ -166,7 +166,12 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Horizontal Scroller',
 						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
 							'<li>Show Arrow Nav</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
+							'<li>Buttons Display Mode (Bottom or Sides)</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
+								'<li>Range Dots Color</li>' .
+								'<li>Range Dots Size (px)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
 							'<li>Scroll transition in milliseconds</li>' .
 							'<li>Loop</li>' .
 							'<li>Auto Scroll</li>' .
@@ -175,6 +180,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							'<li>Hide Scrollbar</li>' .
 							'<li>Pause on Hover</li>' .
 							'<li>Button Positions / Colors</li>' .
+							'<li>Custom Prev / Next / Pause Icons (media picker)</li>' .
 							'</ul>',
 					),
 					array(
@@ -209,7 +215,12 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'name'        => 'Horizontal Scroller',
 						'description' => 'Turns the container into a swipeable carousel; subordinate toggles control nav, auto‑scroll, etc. <ul>' .
 							'<li>Show Arrow Nav</li>' .
-							'<li>Position Buttons Over Scroller</li>' .
+							'<li>Buttons Display Mode (Bottom or Sides)</li>' .
+								'<li>Show Range Dots (visible-item indicators)</li>' .
+								'<li>Range Dots Layout (Above controls or Inline with Pause)</li>' .
+								'<li>Range Dots Color</li>' .
+								'<li>Range Dots Size (px)</li>' .
+								'<li>Position Buttons Over Scroller</li>' .
 							'<li>Scroll transition in milliseconds</li>' .
 							'<li>Loop</li>' .
 							'<li>Auto Scroll</li>' .
@@ -218,6 +229,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							'<li>Hide Scrollbar</li>' .
 							'<li>Pause on Hover</li>' .
 							'<li>Button Positions / Colors</li>' .
+							'<li>Custom Prev / Next / Pause Icons (media picker)</li>' .
 							'</ul>',
 					),
 				),
@@ -710,6 +722,20 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 	
 					<table class="flexline-docs-table">
 						<thead>
+							<tr><th style="width:25%">Class</th><th>Applied CSS</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.is-order-first</code></td><td><code>order: -1;</code></td></tr>
+							<tr><td><code>.is-order-0</code></td><td><code>order: 0;</code></td></tr>
+							<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+									<tr><td><code>.is-order-<?php echo esc_attr( $i ); ?></code></td><td><code>order: <?php echo esc_html( $i ); ?>;</code></td></tr>
+							<?php endfor; ?>
+							<tr><td><code>.is-order-last</code></td><td><code>order: 99999;</code></td></tr>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
 							<tr><th style="width:25%">Class</th><th>Effect at breakpoint</th></tr>
 						</thead>
 						<tbody>
@@ -741,6 +767,149 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.is-align-items-center-mobile</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container on mobile.</td></tr>
 							<tr><td><code>.is-text-align-center-mobile</code></td><td>Adds <code>text-align: center !important;</code> to the container on mobile.</td></tr>
 							<tr><td><code>.is-center-mobile</code></td><td>Centers content on mobile: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="flexbox-direction">Flexbox Direction</h4>
+					<p>Reverse flex row direction without custom CSS. Apply to flex containers.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.is-flex-reverse</code></td><td><code>flex-direction: row-reverse !important;</code></td></tr>
+							<tr><td><code>.is-flex-reverse-tablet</code></td><td><code>flex-direction: row-reverse !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.is-flex-reverse-mobile</code></td><td><code>flex-direction: row-reverse !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.is-flex-reverse-desktop</code></td><td><code>flex-direction: row-reverse !important;</code></td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="padding-helpers">Padding Helpers</h4>
+					<p>Remove padding at specific breakpoints. Use these on containers or groups when block spacing needs to collapse without custom CSS.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS (tablet range)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.no-padding-tablet</code></td><td><code>padding: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-horizontal-padding-tablet</code></td><td><code>padding-left: 0 !important;<br>padding-right: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-vertical-padding-tablet</code></td><td><code>padding-top: 0 !important;<br>padding-bottom: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-top-padding-tablet</code></td><td><code>padding-top: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-bottom-padding-tablet</code></td><td><code>padding-bottom: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-left-padding-tablet</code></td><td><code>padding-left: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+							<tr><td><code>.no-right-padding-tablet</code></td><td><code>padding-right: 0 !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS (mobile range)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.no-padding-mobile</code></td><td><code>padding: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-horizontal-padding-mobile</code></td><td><code>padding-left: 0 !important;<br>padding-right: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-vertical-padding-mobile</code></td><td><code>padding-top: 0 !important;<br>padding-bottom: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-top-padding-mobile</code></td><td><code>padding-top: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-bottom-padding-mobile</code></td><td><code>padding-bottom: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-left-padding-mobile</code></td><td><code>padding-left: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							<tr><td><code>.no-right-padding-mobile</code></td><td><code>padding-right: 0 !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+						</tbody>
+					</table>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:22%">Class</th>
+								<th>Applied CSS (desktop range)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.no-padding-desktop</code></td><td><code>padding: 0 !important;</code></td></tr>
+							<tr><td><code>.no-horizontal-padding-desktop</code></td><td><code>padding-left: 0 !important;<br>padding-right: 0 !important;</code></td></tr>
+							<tr><td><code>.no-vertical-padding-desktop</code></td><td><code>padding-top: 0 !important;<br>padding-bottom: 0 !important;</code></td></tr>
+							<tr><td><code>.no-top-padding-desktop</code></td><td><code>padding-top: 0 !important;</code></td></tr>
+							<tr><td><code>.no-bottom-padding-desktop</code></td><td><code>padding-bottom: 0 !important;</code></td></tr>
+							<tr><td><code>.no-left-padding-desktop</code></td><td><code>padding-left: 0 !important;</code></td></tr>
+							<tr><td><code>.no-right-padding-desktop</code></td><td><code>padding-right: 0 !important;</code></td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="hover-color-helpers">Hover Color Helpers</h4>
+					<p>Quick hover treatments for buttons and links. Apply the class to the parent block, and the hover styles will target nested <code>&lt;a&gt;</code> tags.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:32%">Class</th>
+								<th>Applied CSS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.button-hover-text-dark</code></td><td><code>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-text-light</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primary</code></td><td><code>background: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primaryLight</code></td><td><code>background: var(--wp--preset--color--primary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-primaryDark</code></td><td><code>background: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondary</code></td><td><code>background: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondaryLight</code></td><td><code>background: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-secondaryDark</code></td><td><code>background: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternate</code></td><td><code>background: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternateLight</code></td><td><code>background: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-alternateDark</code></td><td><code>background: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-contrast</code></td><td><code>background: var(--wp--preset--color--contrast) !important;<br>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.button-hover-background-base</code></td><td><code>background: var(--wp--preset--color--base) !important;<br>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primary</code></td><td><code>border-color: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primaryLight</code></td><td><code>border-color: var(--wp--preset--color--primary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-primaryDark</code></td><td><code>border-color: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondary</code></td><td><code>border-color: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondaryLight</code></td><td><code>border-color: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-secondaryDark</code></td><td><code>border-color: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternate</code></td><td><code>border-color: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternateLight</code></td><td><code>border-color: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-alternateDark</code></td><td><code>border-color: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-contrast</code></td><td><code>border-color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.button-hover-border-base</code></td><td><code>border-color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-base</code></td><td><code>color: var(--wp--preset--color--base) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutralLight</code></td><td><code>color: var(--wp--preset--color--neutral-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutral</code></td><td><code>color: var(--wp--preset--color--neutral) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-neutralDark</code></td><td><code>color: var(--wp--preset--color--neutral-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-contrast</code></td><td><code>color: var(--wp--preset--color--contrast) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-primary</code></td><td><code>color: var(--wp--preset--color--primary) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-primaryLight</code></td><td><code>color: var(--wp--preset--color--primary-light) !important;</code></td></tr>
+							<tr><td><code>.link-test-hover-text-primaryDark</code></td><td><code>color: var(--wp--preset--color--primary-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondary</code></td><td><code>color: var(--wp--preset--color--secondary) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondaryLight</code></td><td><code>color: var(--wp--preset--color--secondary-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-secondaryDark</code></td><td><code>color: var(--wp--preset--color--secondary-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternate</code></td><td><code>color: var(--wp--preset--color--alternate) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternateLight</code></td><td><code>color: var(--wp--preset--color--alternate-light) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-alternateDark</code></td><td><code>color: var(--wp--preset--color--alternate-dark) !important;</code></td></tr>
+							<tr><td><code>.link-hover-text-underline</code></td><td><code>text-decoration: underline !important;</code></td></tr>
+						</tbody>
+					</table>
+
+					<h4 id="slide-in-triggers">Slide-In Menu Triggers</h4>
+					<p>Apply these classes to buttons or links to toggle the slide‑in search/menu panel without adding custom scripts.</p>
+
+					<table class="flexline-docs-table">
+						<thead>
+							<tr>
+								<th style="width:32%">Class</th>
+								<th>Behavior</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td><code>.js-open-slidein</code></td><td>Opens/closes the slide‑in panel on click. Use in the block editor’s <strong>Additional CSS class(es)</strong> field (works with Button and Link blocks).</td></tr>
 						</tbody>
 					</table>
 
@@ -855,6 +1024,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<li><a href="#whitespace-overflow">Whitespace &amp; Overflow</a></li>
 								<li><a href="#position-helpers">Position Helpers</a></li>
 								<li><a href="#flexbox-order">Flexbox Order</a></li>
+								<li><a href="#flexbox-direction">Flexbox Direction</a></li>
+								<li><a href="#padding-helpers">Padding Helpers</a></li>
+								<li><a href="#hover-color-helpers">Hover Color Helpers</a></li>
 								<li><a href="#opacity">Opacity</a></li>
 							</ul>
 						</li>

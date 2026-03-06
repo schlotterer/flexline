@@ -1,1 +1,204 @@
-#flexline-modal{-webkit-box-sizing:border-box;box-sizing:border-box}#flexline-modal iframe,#flexline-modal img,#flexline-modal video{max-height:80vh;max-width:90%}#flexline-modal img,#flexline-modal video{-o-object-fit:contain;object-fit:contain;-o-object-position:center center;object-position:center center}#flexline-modal span[role=button]{-webkit-box-pack:center;-ms-flex-pack:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#000;border-radius:50%;display:-webkit-box;display:-ms-flexbox;display:flex;height:35px;justify-content:center;opacity:.7;width:35px}#flexline-modal span[role=button]:focus,#flexline-modal span[role=button]:hover{opacity:1;outline:none}.aspect-ratio-16-9.iframe{padding-top:56.25%}.aspect-ratio-16-9{margin:auto;position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);width:90%}@media only screen and (max-width:781.98px){.aspect-ratio-16-9{width:calc(100% - 10px)}}.aspect-ratio-16-9 iframe{height:100%;left:50%;max-height:100%;max-width:100%;position:absolute;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:100%}.aspect-ratio-16-9 video{left:50%;position:relative;-webkit-transform:translate(-50%);transform:translate(-50%)}figure.wp-block-image.enable-modal{cursor:pointer;position:relative}figure.wp-block-image.enable-modal:after{-webkit-box-pack:center;-ms-flex-pack:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:var(--wp--custom--deco-color);background-position:50%;background-repeat:no-repeat;border-radius:200px;color:#fff;content:"";display:-webkit-box;display:-ms-flexbox;display:flex;font-size:25px;height:40px;justify-content:center;line-height:1;opacity:.7;pointer-events:none;position:absolute;right:5px;text-align:center;top:5px;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;width:40px}figure.wp-block-image.enable-modal:hover:after{opacity:1}figure.wp-block-image.enable-modal[data-modal-media-url*=".mp4"]:after,figure.wp-block-image.enable-modal[data-modal-media-url*=".ogg"]:after,figure.wp-block-image.enable-modal[data-modal-media-url*=".webm"]:after,figure.wp-block-image.enable-modal[data-modal-media-url*="vimeo.com"]:after,figure.wp-block-image.enable-modal[data-modal-media-url*="youtu.be"]:after,figure.wp-block-image.enable-modal[data-modal-media-url*="youtube.com"]:after{background-position:50%;background-repeat:no-repeat;content:"";font-size:30px;height:50px;left:50%;right:unset;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:50px}#flexline-modal .aspect-ratio-match-window{height:90%;width:90%}#flexline-modal .aspect-ratio-match-window,#flexline-modal .aspect-ratio-match-window iframe{left:50%;position:absolute;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#flexline-modal .aspect-ratio-match-window iframe{height:100%;width:100%}figure.poster-gallery.has-nested-images{position:relative}figure.poster-gallery.has-nested-images>figure{max-width:100%;position:absolute!important;visibility:hidden}figure.poster-gallery.has-nested-images>figure:first-of-type{position:relative!important;visibility:visible;z-index:1}figure.poster-gallery.has-nested-images>figure:first-of-type:after{-webkit-box-pack:center;-ms-flex-pack:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:var(--wp--custom--deco-color);background-position:50%;background-repeat:no-repeat;border-radius:200px;color:#fff;content:"";display:inline-block;font-size:30px;height:40px;justify-content:center;line-height:1.3;opacity:.7;pointer-events:none;position:absolute;right:5px;text-align:center;top:5px;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;width:40px}figure.poster-gallery.has-nested-images>figure:first-of-type:hover:after{opacity:1}
+/*
+ * Usage:
+ @include screen($mobile){
+    // CSS
+ }
+*/
+#flexline-modal {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#flexline-modal img,
+#flexline-modal video,
+#flexline-modal iframe {
+  /* Adjustments for better responsiveness */
+  max-width: 90%;
+  max-height: 80vh;
+}
+
+#flexline-modal img,
+#flexline-modal video {
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+#flexline-modal span[role=button] {
+  /* Enhancements for the close button */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+#flexline-modal span[role=button]:hover,
+#flexline-modal span[role=button]:focus {
+  opacity: 1;
+  outline: none; /* For focus, consider a more accessible outline style */
+}
+
+/* Aspect Ratio Box */
+.aspect-ratio-16-9.iframe {
+  padding-top: 56.25%;
+}
+
+/* Aspect Ratio Box */
+.aspect-ratio-16-9 {
+  position: absolute;
+  width: 90%;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+@media only screen and (max-width:781.98px) {
+  .aspect-ratio-16-9 {
+    width: calc(100% - 10px);
+  }
+}
+/* Make the iframe fill the aspect ratio box */
+.aspect-ratio-16-9 iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.aspect-ratio-16-9 video {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+figure.wp-block-image.enable-modal {
+  position: relative;
+  cursor: pointer;
+}
+figure.wp-block-image.enable-modal::after {
+  content: "";
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  background-color: var(--wp--custom--deco-color);
+  border-radius: 200px;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  line-height: 1;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+figure.wp-block-image.enable-modal:hover::after {
+  opacity: 1;
+}
+figure.wp-block-image.enable-modal[data-modal-media-url*="youtube.com"]::after, figure.wp-block-image.enable-modal[data-modal-media-url*="youtu.be"]::after, figure.wp-block-image.enable-modal[data-modal-media-url*="vimeo.com"]::after, figure.wp-block-image.enable-modal[data-modal-media-url*=".mp4"]::after, figure.wp-block-image.enable-modal[data-modal-media-url*=".webm"]::after, figure.wp-block-image.enable-modal[data-modal-media-url*=".ogg"]::after {
+  content: "";
+  right: unset;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#flexline-modal .aspect-ratio-match-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#flexline-modal .aspect-ratio-match-window iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+figure.poster-gallery.has-nested-images {
+  position: relative;
+}
+figure.poster-gallery.has-nested-images > figure {
+  position: absolute !important;
+  visibility: hidden;
+  max-width: 100%;
+}
+figure.poster-gallery.has-nested-images > figure:first-of-type {
+  position: relative !important;
+  z-index: 1;
+  visibility: visible;
+}
+figure.poster-gallery.has-nested-images > figure:first-of-type::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  background-color: var(--wp--custom--deco-color);
+  border-radius: 200px;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  line-height: 1.3;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+figure.poster-gallery.has-nested-images > figure:first-of-type:hover::after {
+  opacity: 1;
+}

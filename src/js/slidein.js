@@ -215,13 +215,32 @@ flexlineOnEarlyReady(function () {
 		}
 	}
 
-	// Add event listener to any anchor link with href="#openSlideIn"
-	document.querySelectorAll('a[href="#openSlideIn"]').forEach((anchor) => {
-		anchor.addEventListener('click', function (event) {
-			event.preventDefault(); // Prevent default anchor behavior
+	function isMenuOpen() {
+		const slideInMenu = document.getElementById('slide-in-menu');
+		return slideInMenu && slideInMenu.classList.contains('active');
+	}
+
+	// Allow ESC to close the slide-in menu.
+	document.addEventListener('keydown', function (event) {
+		if (event.key !== 'Escape' && event.key !== 'Esc') {
+			return;
+		}
+
+		if (isMenuOpen()) {
+			event.preventDefault();
 			toggleMenu();
-		});
+		}
 	});
+
+	// Add event listener to any anchor link with href="#openSlideIn" or explicit trigger class.
+	document
+		.querySelectorAll('a[href="#openSlideIn"], .js-open-slidein')
+		.forEach((trigger) => {
+			trigger.addEventListener('click', function (event) {
+				event.preventDefault(); // Prevent default anchor behavior
+				toggleMenu();
+			});
+		});
 
 	// Function to add a close button inside the slide-in menu.
 	function addCloseButton(menuContainer) {
