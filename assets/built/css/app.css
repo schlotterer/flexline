@@ -2476,6 +2476,24 @@ body .is-style-horizontal-scroll.horizontal-scroller-loop .out-of-view,
   .editor-styles-wrapper .is-style-horizontal-scroll.wp-block-post-template > * {
     max-width: 100%;
   }
+  body .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn,
+  body .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn,
+  .editor-styles-wrapper .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn,
+  .editor-styles-wrapper .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  body .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn .horizontal-scroller-custom-icon,
+  body .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn svg,
+  body .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn .horizontal-scroller-custom-icon,
+  body .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn svg,
+  .editor-styles-wrapper .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn .horizontal-scroller-custom-icon,
+  .editor-styles-wrapper .is-style-horizontal-scroll + .horizontal-scroller-nav-buttons .is-horizontal-scroll-btn svg,
+  .editor-styles-wrapper .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn .horizontal-scroller-custom-icon,
+  .editor-styles-wrapper .is-style-horizontal-scroll ~ .horizontal-scroller-side-buttons .is-horizontal-scroll-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }
 body .is-horizontal-scroll-btn,
 .editor-styles-wrapper .is-horizontal-scroll-btn {

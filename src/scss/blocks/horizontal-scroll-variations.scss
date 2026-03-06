@@ -163,23 +163,37 @@ body,
 
 	}
 
-	@include screen($mobile) {
+		@include screen($mobile) {
 
-		.is-style-horizontal-scroll {
+			.is-style-horizontal-scroll {
 
-			&.wp-block-columns,
-			&.wp-block-post-template {
+				&.wp-block-columns,
+				&.wp-block-post-template {
 
 				>* {
 					//flex: 0 0 auto;
 					max-width: 100%;
 				}
 
+				}
+
+				+ .horizontal-scroller-nav-buttons,
+				~ .horizontal-scroller-side-buttons {
+					.is-horizontal-scroll-btn {
+						width: 28px !important;
+						height: 28px !important;
+
+						.horizontal-scroller-custom-icon,
+						svg {
+							width: 16px !important;
+							height: 16px !important;
+						}
+					}
+				}
+
 			}
 
 		}
-
-	}
 
 		.is-horizontal-scroll-btn {
 			color: var(--wp--preset--color--base);
