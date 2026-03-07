@@ -190,6 +190,20 @@ function flexline_is_tokenized_login_recovery_request(): bool {
 }
 
 /**
+ * Return true when request action is a password reset request submission.
+ *
+ * @return bool
+ */
+function flexline_is_password_request_action(): bool {
+	$action = '';
+	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	return in_array( $action, array( 'lostpassword', 'retrievepassword' ), true );
+}
+
+/**
  * Route custom login slug requests through wp-login.php.
  *
  * @param array $opts Utilities options.
@@ -212,6 +226,10 @@ function flexline_maybe_handle_custom_login_request( array $opts ): void {
 	}
 	$GLOBALS['pagenow'] = 'wp-login.php';
 	flexline_security_debug_log( 'Serving wp-login.php via custom slug "' . $slug . '"' );
+
+	// Core wp-login.php expects these vars to exist in script scope.
+	$user_login = '';
+	$error      = '';
 
 	require ABSPATH . 'wp-login.php';
 	exit;
@@ -238,6 +256,12 @@ function flexline_maybe_block_default_login_request(): void {
 
 	if ( flexline_is_valid_login_fallback_request( $opts ) ) {
 		flexline_security_debug_log( 'Default login fallback key accepted.' );
+		return;
+	}
+
+	$method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_text_field( wp_unslash( (string) $_SERVER['REQUEST_METHOD'] ) ) ) : 'GET';
+	if ( 'POST' === $method && flexline_is_password_request_action() ) {
+		flexline_security_debug_log( 'Allowing password request form submission on default wp-login.php endpoint.' );
 		return;
 	}
 
@@ -354,6 +378,21 @@ function flexline_filter_network_site_url_for_login( $url, $path, $scheme ): str
 	$opts = flexline_utilities_get_options();
 	if ( ! flexline_is_custom_login_enabled( $opts ) ) {
 		return (string) $url;
+	}
+
+	if ( is_multisite() ) {
+		$action = '';
+		$query  = wp_parse_url( (string) $path, PHP_URL_QUERY );
+		if ( is_string( $query ) ) {
+			parse_str( $query, $query_args );
+			if ( ! empty( $query_args['action'] ) && is_string( $query_args['action'] ) ) {
+				$action = sanitize_key( $query_args['action'] );
+			}
+		}
+
+		if ( in_array( $action, array( 'lostpassword', 'retrievepassword' ), true ) ) {
+			return (string) $url;
+		}
 	}
 
 	$path = (string) $path;
