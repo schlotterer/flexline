@@ -19,6 +19,8 @@ namespace FlexLine;
  * @return array
  */
 function flexline_get_block_styles() {
+		// Keep this list limited to styles not declared in theme.json variations.
+		// Duplicates here can trigger WordPress suffixing (e.g., --8) and style mismatches.
 		$styles = array(
 			'core/accordion'                        => array(
 				'card'                  => __( 'Card', 'flexline' ),
@@ -52,35 +54,6 @@ function flexline_get_block_styles() {
 				'glass-card'            => __( 'Glass Card', 'flexline' ),
 				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
-			'core/columns'                          => array(
-				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
-			),
-			'core/group'                            => array(
-				'card'                  => __( 'Card', 'flexline' ),
-				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
-				'card-alt'              => __( 'Card w/ Images that fill', 'flexline' ),
-				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                 => __( 'Glass', 'flexline' ),
-				'glass-card'            => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
-			),
-			'core/image'                            => array(
-				'card' => __( 'Card', 'flexline' ),
-			),
-			'core/post-featured-image'              => array(
-				'card' => __( 'Card', 'flexline' ),
-			),
-			'core/list'                             => array(
-				'no-disc' => __( 'No Disc', 'flexline' ),
-			),
-			'core/navigation'                       => array(
-				'main-header-nav' => __( 'Main Header Style', 'flexline' ),
-				'dark-over-light' => __( 'Dark on Light', 'flexline' ),
-				'light-over-dark' => __( 'Light on Dark', 'flexline' ),
-			),
-			'core/navigation-link'                  => array(
-				'outline' => __( 'Outline', 'flexline' ),
-			),
 			'core/page-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
@@ -96,62 +69,9 @@ function flexline_get_block_styles() {
 			'core/navigation-submenu'               => array(
 				'outline' => __( 'Outline', 'flexline' ),
 			),
-			'core/quote'                            => array(
-				'card'                  => __( 'Card', 'flexline' ),
-				'card-padded'           => __( 'Card w/ Padding', 'flexline' ),
-				'outlined'              => __( 'Outlined w/ Padding', 'flexline' ),
-				'glass'                 => __( 'Glass', 'flexline' ),
-				'glass-card'            => __( 'Glass Card', 'flexline' ),
-				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
-			),
-			'core/social-links'                     => array(
-				'outline' => __( 'Outline', 'flexline' ),
-			),
-			'core/heading'                          => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
-			),
-			'core/paragraph'                        => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
-			),
-			'core/site-title'                       => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/post-title'                       => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/post-terms'                       => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/post-date'                        => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/post-navigation-link'             => array(
-				'eyebrow' => __( 'Eyebrow', 'flexline' ),
-			),
-			'core/query-title'                      => array(
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/site-tagline'                     => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
 			'core/term-description'                 => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
-			),
-			'core/button'                           => array(
-				'glass-button' => __( 'Glass Button', 'flexline' ),
-				'text-link'    => __( 'Plain Text', 'flexline' ),
 			),
 			// Web4SL Floor Plan image-like blocks (use image styles only).
 			'web4sl/floor-plan-2d-image'            => array(
