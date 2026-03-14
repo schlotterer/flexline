@@ -354,48 +354,48 @@ function flexline_block_customizations_render( $block_content, $block ) {
 			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
 		}
 
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
-			$icon_data_attrs = '';
-			$icon_map        = array(
-				'prevIconMediaId'  => array(
-					'data_attr' => 'data-icon-prev-url',
-					'url_attr'  => 'prevIconUrl',
-				),
-				'nextIconMediaId'  => array(
-					'data_attr' => 'data-icon-next-url',
-					'url_attr'  => 'nextIconUrl',
-				),
-				'pauseIconMediaId' => array(
-					'data_attr' => 'data-icon-pause-url',
-					'url_attr'  => 'pauseIconUrl',
-				),
-			);
+			if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+				$icon_data_attrs = '';
+				$icon_map        = array(
+					'prevIconMediaId'  => array(
+						'data_attr' => 'data-icon-prev-url',
+						'url_attr'  => 'prevIconUrl',
+					),
+					'nextIconMediaId'  => array(
+						'data_attr' => 'data-icon-next-url',
+						'url_attr'  => 'nextIconUrl',
+					),
+					'pauseIconMediaId' => array(
+						'data_attr' => 'data-icon-pause-url',
+						'url_attr'  => 'pauseIconUrl',
+					),
+				);
 
-			foreach ( $icon_map as $attr_key => $map ) {
-				$icon_id  = isset( $block['attrs'][ $attr_key ] ) ? (int) $block['attrs'][ $attr_key ] : 0;
-				$icon_url = '';
-				if ( $icon_id > 0 ) {
-					$icon_url = wp_get_attachment_image_url( $icon_id, 'full' );
+				foreach ( $icon_map as $attr_key => $map ) {
+					$icon_id = isset( $block['attrs'][ $attr_key ] ) ? (int) $block['attrs'][ $attr_key ] : 0;
+					$icon_url = '';
+					if ( $icon_id > 0 ) {
+						$icon_url = wp_get_attachment_image_url( $icon_id, 'full' );
+					}
+					if ( '' === $icon_url && ! empty( $block['attrs'][ $map['url_attr'] ] ) ) {
+						$icon_url = esc_url_raw( $block['attrs'][ $map['url_attr'] ] );
+					}
+					if ( $icon_url ) {
+						$icon_data_attrs .= ' ' . $map['data_attr'] . '="' . esc_url( $icon_url ) . '"';
+					}
 				}
-				if ( '' === $icon_url && ! empty( $block['attrs'][ $map['url_attr'] ] ) ) {
-					$icon_url = esc_url_raw( $block['attrs'][ $map['url_attr'] ] );
-				}
-				if ( $icon_url ) {
-					$icon_data_attrs .= ' ' . $map['data_attr'] . '="' . esc_url( $icon_url ) . '"';
-				}
-			}
 
-			$button_icon_height = isset( $block['attrs']['buttonIconHeight'] ) ? (int) $block['attrs']['buttonIconHeight'] : 18;
-			$pause_icon_height  = isset( $block['attrs']['pauseButtonIconHeight'] ) ? (int) $block['attrs']['pauseButtonIconHeight'] : 18;
-			if ( $button_icon_height > 0 ) {
-				$icon_data_attrs .= ' data-button-icon-height="' . $button_icon_height . '"';
-			}
-			if ( $pause_icon_height > 0 ) {
-				$icon_data_attrs .= ' data-pause-icon-height="' . $pause_icon_height . '"';
-			}
+				$button_icon_height = isset( $block['attrs']['buttonIconHeight'] ) ? (int) $block['attrs']['buttonIconHeight'] : 18;
+				$pause_icon_height  = isset( $block['attrs']['pauseButtonIconHeight'] ) ? (int) $block['attrs']['pauseButtonIconHeight'] : 18;
+				if ( $button_icon_height > 0 ) {
+					$icon_data_attrs .= ' data-button-icon-height="' . $button_icon_height . '"';
+				}
+				if ( $pause_icon_height > 0 ) {
+					$icon_data_attrs .= ' data-pause-icon-height="' . $pause_icon_height . '"';
+				}
 
-			if ( '' !== $icon_data_attrs ) {
-				$search_string  = '>';
+				if ( '' !== $icon_data_attrs ) {
+					$search_string  = '>';
 				$replace_string = $icon_data_attrs . '>';
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
