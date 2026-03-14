@@ -13,3 +13,73 @@ body,
 	}
 
 }
+
+/* Fallback for text-link variation output inconsistencies in generated styles. */
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button {
+	background-color: transparent;
+	border-radius: 0;
+	border-style: none;
+	border-width: 0;
+	box-shadow: none;
+	color: currentColor;
+	line-height: var(--wp--custom--line-height--body);
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	position: relative;
+	display: inline-block;
+	background-image: none;
+	filter: none;
+	text-decoration: none;
+}
+
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover,
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus,
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible,
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:active,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:active,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:active,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:active {
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+	filter: none;
+}
+
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button::after,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button::after,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button::after,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -0.12em;
+	width: 100%;
+	height: 0;
+	background-color: currentColor;
+	transition: height var(--wp--custom--transition-time);
+}
+
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover::after,
+body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible::after,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover::after,
+.editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible::after,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover::after,
+body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible::after,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover::after,
+.editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible::after {
+	height: 3px;
+}
