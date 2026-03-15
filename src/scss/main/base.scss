@@ -264,12 +264,20 @@ body,
 		}
 	}
 
-	.material-symbols-outlined {
-		line-height: 1;
-	}
+		.material-symbols-outlined {
+			line-height: 1;
+		}
 
-	// Scroll to button
-	.wp-block-button.scrollTo {
+		// Fallback for inline Text Shadow format when style-variation JSON overrides theme.json CSS.
+		.is-style-text-shadow,
+		.is-style-text-shadow a,
+		a.is-style-text-shadow,
+		a .is-style-text-shadow {
+			text-shadow: var(--wp--custom--text-shadow);
+		}
+
+		// Scroll to button
+		.wp-block-button.scrollTo {
 		position: absolute;
 		margin-top: -18px;
 		z-index: 1;
