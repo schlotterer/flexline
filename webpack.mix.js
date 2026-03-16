@@ -26,6 +26,7 @@ jsFiles.forEach((file) => {
 // Compile each SASS file to its own output with autoprefixer
 sassFiles.forEach((file) => {
 	mix.sass(file, 'css').options({
+		processCssUrls: false,
 		postCss: [
 			autoprefixer({
 				overrideBrowserslist: [

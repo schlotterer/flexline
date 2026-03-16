@@ -42,7 +42,8 @@ function flexline_enqueue_styles() {
 	wp_enqueue_style( 'flexline', get_stylesheet_uri(), array(), $stylesheet_ver );
 	// Styles.
 	wp_enqueue_style( 'flexline-base', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
-	wp_enqueue_style( 'flexline-modal', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
+	// Register modal styles. Enqueue is conditional in render_block.
+	wp_register_style( 'flexline-modal', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
 	// Customized Styles.
 	$custom_css_path = get_theme_file_path( 'assets/css/customize.css' );
 	if ( file_exists( $custom_css_path ) && filesize( $custom_css_path ) > 0 ) {
@@ -70,7 +71,8 @@ function flexline_enqueue_styles() {
 		wp_enqueue_script( 'flexline-headroom', get_theme_file_uri( 'assets/js/headroom.min.js' ), $early_deps, flexline_asset_ver( 'assets/js/headroom.min.js' ), true );
 		wp_enqueue_script( 'flexline-headroom-init', get_theme_file_uri( 'assets/built/js/headroom.js' ), array_merge( $early_deps, array( 'flexline-headroom' ) ), flexline_asset_ver( 'assets/built/js/headroom.js' ), true );
 	}
-	wp_enqueue_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
+	// Register modal runtime. Enqueue is conditional in render_block.
+	wp_register_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
 	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
 
 	// Customized Scripts.
@@ -140,6 +142,51 @@ function flexline_admin_enqueue_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
+
+
+/**
+ * Conditionally enqueue modal assets only when modal trigger markup is present.
+ *
+ * @param string $block_content The rendered HTML of the current block.
+ * @param array  $block         The parsed block array (name, attrs, innerBlocks, etc.).
+ *
+ * @return string Possibly-modified block content.
+ */
+function flexline_maybe_enqueue_modal( $block_content, $block ) {
+	static $done = false;
+	if ( $done ) {
+		return $block_content;
+	}
+
+	$attrs = isset( $block['attrs'] ) ? (array) $block['attrs'] : array();
+	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$needs = false;
+
+	if ( $class ) {
+		if ( false !== strpos( $class, 'enable-modal' ) || false !== strpos( $class, 'group-link-type-modal_media' ) ) {
+			$needs = true;
+		}
+	}
+
+	if ( ! $needs && $block_content ) {
+		if (
+			false !== strpos( $block_content, 'enable-modal' ) ||
+			false !== strpos( $block_content, 'group-link-type-modal_media' ) ||
+			false !== strpos( $block_content, 'data-enable-modal' )
+		) {
+			$needs = true;
+		}
+	}
+
+	if ( $needs ) {
+		wp_enqueue_style( 'flexline-modal' );
+		wp_enqueue_script( 'flexline-modal' );
+		$done = true;
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block', __NAMESPACE__ . '\flexline_maybe_enqueue_modal', 10, 2 );
 
 
 /**
