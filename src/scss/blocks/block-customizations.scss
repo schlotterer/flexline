@@ -10,9 +10,11 @@ body,
 		}
 	}
 
-	.wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
-	figure.wp-block-image.is-style-rounded {
-		border-radius: var(--wp--custom--image-border-radius);
+		.wp-block-gallery.has-nested-images figure.wp-block-image.is-style-rounded,
+		.wp-block-gallery.has-nested-images figure.wp-block-image[class*="is-style-rounded--"],
+		figure.wp-block-image.is-style-rounded,
+		figure.wp-block-image[class*="is-style-rounded--"] {
+			border-radius: var(--wp--custom--image-border-radius);
 
 		figcaption {
 			position: absolute;

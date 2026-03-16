@@ -4,7 +4,8 @@
 
 	/* -- Columns -- */
 
-	.is-style-columns-reverse {
+	.is-style-columns-reverse,
+	[class*="is-style-columns-reverse--"] {
 		&.flexline-stack-at-tablet {
 			@include screen($tablet){
 				flex-direction: column-reverse;
@@ -61,4 +62,3 @@
 
 	
 }
-

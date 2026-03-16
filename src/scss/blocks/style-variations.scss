@@ -5,16 +5,17 @@ body,
 
 		/* -- Navigation Link -- */
 		// TODO: why is this like this?
-		.wp-block-navigation-item.is-style-outline a {
-			border: 1px solid currentcolor;
-			padding: 8px 15px;
-		}
+			.wp-block-navigation-item.is-style-outline a,
+			.wp-block-navigation-item[class*="is-style-outline--"] a {
+				border: 1px solid currentcolor;
+				padding: 8px 15px;
+			}
 
 	}
 
 }
 
-/* Fallback for text-link variation output inconsistencies in generated styles. */
+/* Temporary legacy fallback for theme.json-suffixed classes; remove after site content resave cycle. */
 body .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
 .editor-styles-wrapper .wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
 body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button,
@@ -82,4 +83,93 @@ body .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-e
 .editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover::before,
 .editor-styles-wrapper .wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible::before {
 	height: 3px;
+}
+
+/* Button outline fallback (canonical + temporary legacy suffixed classes). */
+body .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button,
+.editor-styles-wrapper .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button,
+body .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button,
+.editor-styles-wrapper .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button {
+	background: transparent none;
+	background-color: transparent;
+	border-color: currentColor;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: none;
+	color: var(--wp--preset--color--primary);
+	padding-top: calc(var(--wp--preset--spacing--medium) - 1px);
+	padding-right: calc(var(--wp--preset--spacing--large) - 1px);
+	padding-bottom: calc(var(--wp--preset--spacing--medium) - 1px);
+	padding-left: calc(var(--wp--preset--spacing--large) - 1px);
+}
+
+body .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:hover,
+body .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:focus,
+.editor-styles-wrapper .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:hover,
+.editor-styles-wrapper .wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:focus,
+body .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:hover,
+body .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:focus,
+.editor-styles-wrapper .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:hover,
+.editor-styles-wrapper .wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:focus {
+	color: var(--wp--preset--color--alternate);
+}
+
+/* Typography fallbacks (canonical + temporary legacy suffixed classes). */
+body .is-style-eyebrow,
+.editor-styles-wrapper .is-style-eyebrow,
+body [class*="is-style-eyebrow--"],
+.editor-styles-wrapper [class*="is-style-eyebrow--"] {
+	color: var(--wp--custom--eyebrow-color);
+	font-family: var(--wp--custom--eyebrow-font);
+	font-size: var(--wp--custom--eyebrow-size);
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	line-height: 1.05;
+	text-transform: var(--wp--custom--eyebrow-text-transform);
+}
+
+body .is-style-creative,
+.editor-styles-wrapper .is-style-creative,
+body [class*="is-style-creative--"],
+.editor-styles-wrapper [class*="is-style-creative--"] {
+	color: var(--wp--custom--creative-color);
+	font-family: var(--wp--custom--creative-font);
+	font-size: var(--wp--custom--creative-size);
+	line-height: 1.05;
+	text-transform: var(--wp--custom--creative-text-transform);
+}
+
+/* Navigation link text shadow style variation. */
+body .wp-block-navigation-item.is-style-text-shadow,
+body .wp-block-navigation-item.is-style-text-shadow a,
+.editor-styles-wrapper .wp-block-navigation-item.is-style-text-shadow,
+.editor-styles-wrapper .wp-block-navigation-item.is-style-text-shadow a,
+body .wp-block-navigation-item[class*="is-style-text-shadow--"],
+body .wp-block-navigation-item[class*="is-style-text-shadow--"] a,
+.editor-styles-wrapper .wp-block-navigation-item[class*="is-style-text-shadow--"],
+.editor-styles-wrapper .wp-block-navigation-item[class*="is-style-text-shadow--"] a {
+	text-shadow: var(--wp--custom--text-shadow);
+}
+
+/* List no-disc style variation (canonical + temporary legacy suffixed classes). */
+body ul.is-style-no-disc,
+body ol.is-style-no-disc,
+.editor-styles-wrapper ul.is-style-no-disc,
+.editor-styles-wrapper ol.is-style-no-disc,
+body ul[class*="is-style-no-disc--"],
+body ol[class*="is-style-no-disc--"],
+.editor-styles-wrapper ul[class*="is-style-no-disc--"],
+.editor-styles-wrapper ol[class*="is-style-no-disc--"] {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+/* Social links outline style variation. */
+body .wp-block-social-links.is-style-outline .wp-block-social-link,
+.editor-styles-wrapper .wp-block-social-links.is-style-outline .wp-block-social-link,
+body .wp-block-social-links[class*="is-style-outline--"] .wp-block-social-link,
+.editor-styles-wrapper .wp-block-social-links[class*="is-style-outline--"] .wp-block-social-link {
+	background-color: transparent;
+	border: 1px solid currentColor;
 }

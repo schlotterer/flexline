@@ -271,6 +271,8 @@ body,
 		// Fallback for inline Text Shadow format when style-variation JSON overrides theme.json CSS.
 		.is-style-text-shadow,
 		.is-style-text-shadow a,
+		[class*="is-style-text-shadow--"],
+		[class*="is-style-text-shadow--"] a,
 		a.is-style-text-shadow,
 		a .is-style-text-shadow {
 			text-shadow: var(--wp--custom--text-shadow);

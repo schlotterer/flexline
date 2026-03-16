@@ -74,7 +74,8 @@ body,
                }
 	}
 
-	.is-style-horizontal-scroll {
+		.is-style-horizontal-scroll,
+		[class*="is-style-horizontal-scroll--"] {
 
 
 		&.wp-block-columns,
@@ -165,7 +166,8 @@ body,
 
 		@include screen($mobile) {
 
-			.is-style-horizontal-scroll {
+				.is-style-horizontal-scroll,
+				[class*="is-style-horizontal-scroll--"] {
 
 				&.wp-block-columns,
 				&.wp-block-post-template {

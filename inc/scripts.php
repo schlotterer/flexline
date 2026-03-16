@@ -30,7 +30,7 @@ function flexline_asset_ver( $relative_path ) {
  *
  * This function registers and enqueues the necessary styles and scripts for the theme.
  * It includes the theme's main CSS file, the base CSS file, the modal CSS file,
- * the icons CSS file, the customized CSS file, and the necessary scripts.
+ * the customized CSS file, and the necessary scripts.
  *
  * @return void
  */
@@ -43,8 +43,6 @@ function flexline_enqueue_styles() {
 	// Styles.
 	wp_enqueue_style( 'flexline-base', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
 	wp_enqueue_style( 'flexline-modal', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
-	// Icons Styles.
-	wp_enqueue_style( 'flexline-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), flexline_asset_ver( 'assets/css/icons.css' ) );
 	// Customized Styles.
 	$custom_css_path = get_theme_file_path( 'assets/css/customize.css' );
 	if ( file_exists( $custom_css_path ) && filesize( $custom_css_path ) > 0 ) {
@@ -123,8 +121,6 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_style( 'flexline-base-admin', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
 	// Modal Styles.
 	wp_enqueue_style( 'flexline-modal-admin', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
-	// Icons.
-	wp_enqueue_style( 'flexline-icons-admin', get_theme_file_uri( 'assets/css/icons.css' ), array(), flexline_asset_ver( 'assets/css/icons.css' ) );
 	// Customized Styles.
 	wp_enqueue_style( 'flexline-custom-admin', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
 

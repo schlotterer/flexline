@@ -53,7 +53,8 @@ function flexline_get_block_styles() {
 				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/columns'                          => array(
-				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
+				'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
+				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 			),
 			'core/group'                            => array(
 				'card'                  => __( 'Card', 'flexline' ),
@@ -65,7 +66,8 @@ function flexline_get_block_styles() {
 				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/image'                            => array(
-				'card' => __( 'Card', 'flexline' ),
+				'card'    => __( 'Card', 'flexline' ),
+				'rounded' => __( 'Rounded', 'flexline' ),
 			),
 			'core/post-featured-image'              => array(
 				'card' => __( 'Card', 'flexline' ),
@@ -79,7 +81,8 @@ function flexline_get_block_styles() {
 				'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 			),
 			'core/navigation-link'                  => array(
-				'outline' => __( 'Outline', 'flexline' ),
+				'outline'     => __( 'Outline', 'flexline' ),
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/page-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
@@ -108,12 +111,14 @@ function flexline_get_block_styles() {
 				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/heading'                          => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/paragraph'                        => array(
-				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
-				'creative' => __( 'Creative', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'creative'    => __( 'Creative', 'flexline' ),
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/site-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
@@ -134,7 +139,20 @@ function flexline_get_block_styles() {
 				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/post-navigation-link'             => array(
-				'eyebrow' => __( 'Eyebrow', 'flexline' ),
+				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			),
+			'core/post-author'                      => array(
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			),
+			'core/post-author-biography'            => array(
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			),
+			'core/post-excerpt'                     => array(
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+			),
+			'core/query-pagination'                 => array(
+				'text-shadow' => __( 'Text Shadow', 'flexline' ),
 			),
 			'core/query-title'                      => array(
 				'creative'    => __( 'Creative', 'flexline' ),
@@ -151,7 +169,11 @@ function flexline_get_block_styles() {
 			),
 			'core/button'                           => array(
 				'glass-button' => __( 'Glass Button', 'flexline' ),
+				'outline'      => __( 'Outline', 'flexline' ),
 				'text-link'    => __( 'Plain Text', 'flexline' ),
+			),
+			'core/post-template'                    => array(
+				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 			),
 			// Web4SL Floor Plan image-like blocks (use image styles only).
 			'web4sl/floor-plan-2d-image'            => array(
