@@ -57,19 +57,19 @@ body:not(.block-editor-page) .is-style-slider {
 .editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
   min-height: var(
     --slider-height,
-    var(--slider-height-default, calc(100vh - var(--header-site-header-height, 0px)))
+    var(--slider-height-default, calc(100dvh - var(--header-site-header-height, 0px)))
   );
 }
 
 .is-style-slider.slider-runtime-active {
   height: var(--slider-height,
           var(--slider-height-default,
-          calc(100vh - var(--header-site-header-height, 0px)))) !important;
+          calc(100dvh - var(--header-site-header-height, 0px)))) !important;
   position: relative;
   /* Default height chain; explicit user height guarded by class below */
   min-height: var(
     --slider-height-default,
-    calc(100vh - var(--header-site-header-height, 0px))
+    calc(100dvh - var(--header-site-header-height, 0px))
   );
 }
 
@@ -160,6 +160,11 @@ body:not(.block-editor-page) .is-style-slider {
   background-color: color-mix(in lab, var(--wp--custom--deco-color, rgba(0,0,0,0.35)), #000 20%);
 }
 
+.is-slider-btn:focus-visible {
+  outline: 2px solid var(--wp--preset--color--accent, #1d6ae5);
+  outline-offset: 2px;
+}
+
 /* Ensure SVG icons inherit the button color by default */
 .is-slider-btn svg path { fill: currentColor; }
 
@@ -233,6 +238,14 @@ body:not(.block-editor-page) .is-style-slider {
 // .editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
 // .editor-styles-wrapper .is-style-slider.slider-preview-mode .is-slide-active { pointer-events: auto !important; }
 /* Reduce scroll jumps while interacting in Preview */
+@media (prefers-reduced-motion: reduce) {
+  .is-style-slider.slider-runtime-active > *,
+  .editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *,
+  .is-slider-btn {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+}
 
 
 /* Editor width sanity */

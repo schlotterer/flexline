@@ -19,13 +19,15 @@ body.flexline {
 		opacity: 1;
 	}
 
-	&.page-template-blank{
-		.wp-site-blocks{
-			min-height: 100vh;
-			.entry-content{
+		&.page-template-blank{
+			.wp-site-blocks{
 				min-height: 100vh;
+				min-height: 100dvh;
+				.entry-content{
+					min-height: 100vh;
+					min-height: 100dvh;
+				}
 			}
 		}
-	}
 	
 }

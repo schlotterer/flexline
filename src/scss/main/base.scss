@@ -41,15 +41,15 @@ body,
 		}
 	}
 
-	a,
-	button,
-	input:focus,
-	input[type="button"],
-	input[type="submit"],
-	textarea:focus,
-	.wp-element-button {
-		transition: all 0.2s ease-in-out;
-	}
+		a,
+		button,
+		input,
+		input[type="button"],
+		input[type="submit"],
+		textarea,
+		.wp-element-button {
+			transition: all 0.2s ease-in-out;
+		}
 
 	a,
 	a:focus,
@@ -93,11 +93,14 @@ body,
 		width: 100%;
 	}
 
-	input:focus,
-	textarea:focus {
-		//background-color: var(--wp--preset--color--base);
-		outline: none;
-	}
+		a:focus-visible,
+		button:focus-visible,
+		input:focus-visible,
+		textarea:focus-visible,
+		.wp-element-button:focus-visible {
+			outline: 2px solid var(--wp--preset--color--accent, #1d6ae5);
+			outline-offset: 2px;
+		}
 
 	input[type="checkbox"],
 	input[type="image"],

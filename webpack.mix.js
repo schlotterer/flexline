@@ -1,6 +1,17 @@
 const mix = require('laravel-mix');
 const autoprefixer = require('autoprefixer');
 
+const evergreenTwoBrowserslist = [
+	'last 2 Chrome versions',
+	'last 2 Edge versions',
+	'last 2 Firefox versions',
+	'last 2 Safari versions',
+	'last 2 iOS versions',
+	'last 2 ChromeAndroid versions',
+	'not dead',
+	'not op_mini all',
+];
+
 // Individual JavaScript files
 const jsFiles = [
         'src/js/blocks/block-extensions.js',
@@ -29,12 +40,7 @@ sassFiles.forEach((file) => {
 		processCssUrls: false,
 		postCss: [
 			autoprefixer({
-				overrideBrowserslist: [
-					'> 1%',
-					'last 2 versions',
-					'Firefox ESR',
-					'Safari >= 10',
-				],
+				overrideBrowserslist: evergreenTwoBrowserslist,
 				grid: true,
 			}),
 		],

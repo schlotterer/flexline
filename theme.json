@@ -47,7 +47,7 @@
         },
         {
           "name": "120px|72px",
-          "size": "clamp(48px, calc(3rem + ((1vw - 7.68px) * 9.375)), 96px)",
+          "size": "clamp(72px, calc(3rem + ((1vw - 7.68px) * 9.375)), 120px)",
           "slug": "max-120"
         }
       ],
