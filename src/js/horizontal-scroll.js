@@ -98,6 +98,46 @@ function getRealSlides(scroller) {
 	);
 }
 
+function maybeRandomizeSlidesOnLoad(scroller) {
+	if (isBlockEditor()) {
+		return;
+	}
+
+	if (scroller.dataset.randomizedOnLoad === 'true') {
+		return;
+	}
+
+	if (!scroller.classList.contains('horizontal-scroller-randomize')) {
+		return;
+	}
+
+	const hasClones = Array.from(scroller.children).some((el) =>
+		el.classList.contains('cloned-slide')
+	);
+	if (hasClones) {
+		return;
+	}
+
+	const realSlides = getRealSlides(scroller);
+	if (realSlides.length <= 1) {
+		scroller.dataset.randomizedOnLoad = 'true';
+		return;
+	}
+
+	const shuffled = realSlides.slice();
+	for (let i = shuffled.length - 1; i > 0; i -= 1) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const tmp = shuffled[i];
+		shuffled[i] = shuffled[j];
+		shuffled[j] = tmp;
+	}
+
+	const frag = document.createDocumentFragment();
+	shuffled.forEach((slide) => frag.appendChild(slide));
+	scroller.appendChild(frag);
+	scroller.dataset.randomizedOnLoad = 'true';
+}
+
 function setupInfiniteLoop(scroller) {
 	if (scroller.dataset.loopInitialised === 'true') {
 		return;
@@ -788,6 +828,7 @@ function initInfiniteLoops() {
 }
 
 function initOneScroller(scroller) {
+	maybeRandomizeSlidesOnLoad(scroller);
 	initScroller(scroller);
 	if (scroller.classList.contains('horizontal-scroller-loop')) {
 		setupInfiniteLoop(scroller);

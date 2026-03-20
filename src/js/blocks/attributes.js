@@ -87,6 +87,10 @@ export const customHorizontalScrollerAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	randomizeOnLoad: {
+		type: 'boolean',
+		default: false,
+	},
 	hideScrollbar: {
 		type: 'boolean',
 		default: false,
