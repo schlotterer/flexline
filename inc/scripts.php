@@ -35,11 +35,6 @@ function flexline_asset_ver( $relative_path ) {
  * @return void
  */
 function flexline_enqueue_styles() {
-
-	// Theme CSS.
-	$stylesheet     = trailingslashit( get_stylesheet_directory() ) . 'style.css';
-	$stylesheet_ver = file_exists( $stylesheet ) ? (string) filemtime( $stylesheet ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' );
-	wp_enqueue_style( 'flexline', get_stylesheet_uri(), array(), $stylesheet_ver );
 	// Styles.
 	wp_enqueue_style( 'flexline-base', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
 	// Register modal styles. Enqueue is conditional in render_block.

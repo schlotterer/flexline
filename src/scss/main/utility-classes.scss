@@ -18,9 +18,13 @@ body,
 		width: 100%;
 		z-index: 10;
 	}
+	.is-min-width-100,
+	.is-min-width-100 > img {
+		min-width: 100%;
+	}
 
 	.extra-z-index {
-		z-index: 11 !important;
+		z-index: 111 !important;
 	}
 
 	.pointer-events-none {
