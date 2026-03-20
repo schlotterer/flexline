@@ -32,7 +32,7 @@ button {
 		height: 40px;
 		right: 10px;
 		transition: var(--wp--custom--transition-time);
-		z-index: 100;
+		z-index: 200;
 		padding: 0;
 		border-radius: 200px;
 		background-color: var(--wp--custom--search-menu-icon-color);
@@ -66,7 +66,7 @@ button {
 	}
 
 	&#slide-in-menu-close {
-		z-index: 12;
+		z-index: 114;
 		border: none;
 		background-color: transparent;
 		color: var(--wp--preset--color--base);
