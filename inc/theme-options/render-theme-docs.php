@@ -700,6 +700,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<td>Same as above but absolute positioning—ideal for hero overlays, etc.</td>
 							</tr>
 							<tr>
+								<td><code>.is-min-width-100</code></td>
+								<td><code>min-width: 100%;</code></td>
+								<td>Forces an element (and direct images when applicable) to span full available width.</td>
+							</tr>
+							<tr>
 								<td><code>.extra-z-index</code></td>
 								<td><code>z-index: 11 !important;</code></td>
 								<td>Bumps an element one layer above default fixed/absolute layers when conflicts arise.</td>
@@ -715,9 +720,26 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 								<td>Explicitly re‑enables pointer events when a parent element already has <code>pointer-events: none</code>.</td>
 							</tr>
 						</tbody>
-					</table>
-	
-					<h4 id="flexbox-order">Flexbox Order Shorthands</h4>
+						</table>
+
+						<h4 id="flexbox-alignment">Flexbox Alignment</h4>
+						<p>Quick alignment helpers for flex containers without custom CSS.</p>
+
+						<table class="flexline-docs-table">
+							<thead>
+								<tr>
+									<th style="width:28%">Class</th>
+									<th>Applied CSS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td><code>.is-aligned-center</code></td><td><code>justify-content: center !important;<br>align-items: center !important;<br>text-align: center !important;</code> (also applied to direct children)</td></tr>
+								<tr><td><code>.is-justified-flex-start</code></td><td><code>justify-content: flex-start !important;</code></td></tr>
+								<tr><td><code>.is-justified-flex-end</code></td><td><code>justify-content: flex-end !important;</code></td></tr>
+							</tbody>
+						</table>
+		
+						<h4 id="flexbox-order">Flexbox Order Shorthands</h4>
 					<p>These classes let you rearrange flex‑children at specific breakpoints without writing custom media queries. They’re generated for <strong>tablet</strong> (<code>min‑width: <?php echo esc_html( '$tablet' ); ?>;</code>) and <strong>mobile</strong> (<code>min‑width: <?php echo esc_html( '$mobile' ); ?>;</code>).</p>
 	
 					<table class="flexline-docs-table">
@@ -827,11 +849,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</tbody>
 					</table>
 
-					<table class="flexline-docs-table">
-						<thead>
-							<tr>
-								<th style="width:22%">Class</th>
-								<th>Applied CSS (desktop range)</th>
+						<table class="flexline-docs-table">
+							<thead>
+								<tr>
+									<th style="width:22%">Class</th>
+									<th>Applied CSS (desktop range)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -841,12 +863,41 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.no-top-padding-desktop</code></td><td><code>padding-top: 0 !important;</code></td></tr>
 							<tr><td><code>.no-bottom-padding-desktop</code></td><td><code>padding-bottom: 0 !important;</code></td></tr>
 							<tr><td><code>.no-left-padding-desktop</code></td><td><code>padding-left: 0 !important;</code></td></tr>
-							<tr><td><code>.no-right-padding-desktop</code></td><td><code>padding-right: 0 !important;</code></td></tr>
-						</tbody>
-					</table>
+								<tr><td><code>.no-right-padding-desktop</code></td><td><code>padding-right: 0 !important;</code></td></tr>
+							</tbody>
+						</table>
 
-					<h4 id="hover-color-helpers">Hover Color Helpers</h4>
-					<p>Quick hover treatments for buttons and links. Apply the class to the parent block, and the hover styles will target nested <code>&lt;a&gt;</code> tags.</p>
+						<h4 id="border-helpers">Border Helpers</h4>
+						<p>Remove borders at specific breakpoints without custom CSS.</p>
+
+						<table class="flexline-docs-table">
+							<thead>
+								<tr>
+									<th style="width:28%">Class</th>
+									<th>Applied CSS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td><code>.is-border-none-desktop</code></td><td><code>border: none !important;</code> (<?php echo esc_html( '$desktop' ); ?>)</td></tr>
+								<tr><td><code>.is-border-left-none-desktop</code></td><td><code>border-left: none !important;</code> (<?php echo esc_html( '$desktop' ); ?>)</td></tr>
+								<tr><td><code>.is-border-top-none-desktop</code></td><td><code>border-top: none !important;</code> (<?php echo esc_html( '$desktop' ); ?>)</td></tr>
+								<tr><td><code>.is-border-bottom-none-desktop</code></td><td><code>border-bottom: none !important;</code> (<?php echo esc_html( '$desktop' ); ?>)</td></tr>
+								<tr><td><code>.is-border-right-none-desktop</code></td><td><code>border-right: none !important;</code> (<?php echo esc_html( '$desktop' ); ?>)</td></tr>
+								<tr><td><code>.is-border-none-tablet</code></td><td><code>border: none !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+								<tr><td><code>.is-border-left-none-tablet</code></td><td><code>border-left: none !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+								<tr><td><code>.is-border-top-none-tablet</code></td><td><code>border-top: none !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+								<tr><td><code>.is-border-bottom-none-tablet</code></td><td><code>border-bottom: none !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+								<tr><td><code>.is-border-right-none-tablet</code></td><td><code>border-right: none !important;</code> (<?php echo esc_html( '$tablet' ); ?>)</td></tr>
+								<tr><td><code>.is-border-none-mobile</code></td><td><code>border: none !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+								<tr><td><code>.is-border-left-none-mobile</code></td><td><code>border-left: none !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+								<tr><td><code>.is-border-top-none-mobile</code></td><td><code>border-top: none !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+								<tr><td><code>.is-border-bottom-none-mobile</code></td><td><code>border-bottom: none !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+								<tr><td><code>.is-border-right-none-mobile</code></td><td><code>border-right: none !important;</code> (<?php echo esc_html( '$mobile' ); ?>)</td></tr>
+							</tbody>
+						</table>
+
+						<h4 id="hover-color-helpers">Hover Color Helpers</h4>
+						<p>Quick hover treatments for buttons and links. Apply the class to the parent block, and the hover styles will target nested <code>&lt;a&gt;</code> tags.</p>
 
 					<table class="flexline-docs-table">
 						<thead>

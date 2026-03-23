@@ -111,7 +111,7 @@ function flexline_enqueue_styles() {
 }
 
 /**
- * Enqueue scripts for all admin pages.
+ * Enqueue block editor shell assets (sidebar UI and editor chrome).
  */
 function flexline_admin_enqueue_scripts() {
 	// Styles.
@@ -122,9 +122,6 @@ function flexline_admin_enqueue_scripts() {
 	wp_enqueue_style( 'flexline-custom-admin', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
 
 	wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
-	wp_enqueue_script( 'flexline-scroll-admin', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), array(), flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ), true );
-	// Slider runtime is needed for Preview mode in the editor.
-	wp_enqueue_script( 'flexline-slider-admin', get_theme_file_uri( 'assets/built/js/slider.js' ), array(), flexline_asset_ver( 'assets/built/js/slider.js' ), true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
 	wp_enqueue_script(
@@ -137,6 +134,39 @@ function flexline_admin_enqueue_scripts() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqueue_scripts' );
+
+/**
+ * Enqueue block-content runtimes for admin editor canvas contexts.
+ *
+ * Block-content DOM runtimes must enqueue via enqueue_block_assets in admin
+ * to support iframe/non-iframe editor canvases.
+ */
+function flexline_admin_enqueue_canvas_runtime_assets() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	$editor_runtime_deps = array( 'wp-data', 'wp-dom-ready' );
+
+	wp_enqueue_script(
+		'flexline-scroll-admin',
+		get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ),
+		$editor_runtime_deps,
+		flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ),
+		true
+	);
+
+	// Slider runtime is needed for Preview mode in the editor canvas.
+	wp_enqueue_script(
+		'flexline-slider-admin',
+		get_theme_file_uri( 'assets/built/js/slider.js' ),
+		$editor_runtime_deps,
+		flexline_asset_ver( 'assets/built/js/slider.js' ),
+		true
+	);
+}
+
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_admin_enqueue_canvas_runtime_assets' );
 
 
 /**

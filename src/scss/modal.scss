@@ -34,23 +34,26 @@
 }
 
 #flexline-modal span[role="button"]:hover,
-#flexline-modal span[role="button"]:focus {
+#flexline-modal span[role="button"]:focus-visible {
 	opacity: 1;
-	outline: none; /* For focus, consider a more accessible outline style */
-}
-
-/* Aspect Ratio Box */
-.aspect-ratio-16-9.iframe {
-	padding-top: 56.25%;
+	outline: 2px solid var(--wp--preset--color--accent, #1d6ae5);
+	outline-offset: 2px;
 }
 
 /* Aspect Ratio Box */
 .aspect-ratio-16-9 {
+	aspect-ratio: 16 / 9;
 	position: absolute;
 	width: 90%;
 	margin: auto;
 	top: 50%;
 	transform: translate(0, -50%);
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+	.aspect-ratio-16-9.iframe {
+		padding-top: 56.25%;
+	}
 }
 
 @include screen($mobile){
@@ -76,6 +79,8 @@
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0);
+	width: 100%;
+	height: 100%;
 }
 
 figure.wp-block-image.enable-modal {
@@ -151,51 +156,4 @@ figure.wp-block-image.enable-modal {
 	width: 100%;
 	height: 100%;
 	transform: translate(-50%, -50%);
-}
-
-// Poster Gallery
-figure.poster-gallery.has-nested-images {
-	position: relative;
-
-	> figure {
-		position: absolute !important;
-		visibility: hidden;
-		max-width: 100%;
-	}
-
-	> figure:first-of-type {
-		position: relative !important;
-		z-index: 1;
-		visibility: visible;
-
-		&::after {
-			content: "";
-			position: absolute;
-			display: inline-block;
-			justify-content: center;
-			align-items: center;
-			color: #fff;
-			background-color: var(--wp--custom--deco-color);
-			border-radius: 200px;
-			opacity: 0.7;
-			transition: all 0.3s ease-in-out;
-			pointer-events: none;
-			line-height: 1.3;
-			text-align: center;
-			top: 5px;
-			right: 5px;
-			font-size: 30px;
-			width: 40px;
-			height: 40px;
-			background-position: center;
-			background-repeat: no-repeat;
-		}
-
-		&:hover {
-
-			&::after {
-				opacity: 1;
-			}
-		}
-	}
 }

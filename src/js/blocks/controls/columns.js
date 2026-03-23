@@ -172,6 +172,17 @@ export const controls = (BlockEdit, props) => {
 						)}
 					{isScrollerEnabled && (
 						<ToggleControl
+							label="Randomize Order On Load"
+							checked={!!props.attributes.randomizeOnLoad}
+							onChange={(newValue) =>
+								props.setAttributes({
+									randomizeOnLoad: newValue,
+								})
+							}
+						/>
+					)}
+					{isScrollerEnabled && (
+						<ToggleControl
 							label="Auto Scroll"
 							checked={isAutoScrollEnabled}
 							onChange={(newValue) =>
@@ -486,6 +497,7 @@ export const getClasses = (attributes) => {
 			'is-style-horizontal-scroll',
 			'horizontal-scroller-navigation',
 			'horizontal-scroller-loop',
+			'horizontal-scroller-randomize',
 			'horizontal-scroller-auto',
 			'horizontal-scroller-hide-scrollbar',
 			'horizontal-scroller-hide-pause-button',
@@ -537,6 +549,9 @@ export const getClasses = (attributes) => {
 	}
 	if (!attributes.scrollLoop) {
 		removed.push('horizontal-scroller-loop');
+	}
+	if (!attributes.randomizeOnLoad) {
+		removed.push('horizontal-scroller-randomize');
 	}
 	if (!attributes.scrollAuto) {
 		removed.push('horizontal-scroller-auto');
@@ -681,6 +696,9 @@ export const getClasses = (attributes) => {
 	}
 	if (attributes.scrollLoop && attributes.enableHorizontalScroller) {
 		added += ' horizontal-scroller-loop';
+	}
+	if (attributes.randomizeOnLoad && attributes.enableHorizontalScroller) {
+		added += ' horizontal-scroller-randomize';
 	}
 	if (attributes.hideScrollbar && attributes.enableHorizontalScroller) {
 		added += ' horizontal-scroller-hide-scrollbar';

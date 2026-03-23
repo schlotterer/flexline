@@ -254,16 +254,20 @@ body,
 
 			.horizontal-scroller-range-dots {
 				--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
+				--flexline-scroller-dot-size: 8px;
+				--flexline-scroller-dot-offset-outside: calc((var(--flexline-scroller-dot-size) * 0.5) + var(--flexline-scroller-dots-gap));
+				--flexline-scroller-dot-offset-inside: calc((var(--flexline-scroller-dot-size) * 0.5) + 2px);
 				position: absolute;
-			z-index: 10;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 6px;
-			pointer-events: auto;
+				z-index: 10;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
+				pointer-events: auto;
 				left: 50%;
 				transform: translateX(-50%);
-				bottom: calc(-6px + var(--flexline-scroller-dots-gap));
+				bottom: calc(var(--flexline-scroller-dot-offset-outside) * -1);
+				top: auto;
 				color: var(--flexline-scroller-dots-color, var(--wp--preset--color--base));
 			}
 
@@ -324,12 +328,14 @@ body,
 	}
 
 		/* Vertical Alignment Outside (default) */
-.horizontal-scroller-buttons-vertical-bottom {
+	.horizontal-scroller-buttons-vertical-bottom {
 		+ .horizontal-scroller-nav-buttons {
 			bottom: -40px;
 		}
+		+ .horizontal-scroller-range-dots,
 		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-			bottom: calc(-6px + var(--wp--preset--spacing--x-small));
+			bottom: calc(var(--flexline-scroller-dot-offset-outside) * -1);
+			top: auto;
 		}
 	}
 
@@ -337,8 +343,10 @@ body,
 		+ .horizontal-scroller-nav-buttons {
 			top: -40px;
 		}
+		+ .horizontal-scroller-range-dots,
 		+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-			top: -6px;
+			top: calc(var(--flexline-scroller-dot-offset-outside) * -1);
+			bottom: auto;
 		}
 	}
 
@@ -348,8 +356,10 @@ body,
 			+ .horizontal-scroller-nav-buttons {
 				bottom: 10px;
 			}
+			+ .horizontal-scroller-range-dots,
 			+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-				bottom: 46px;
+				bottom: var(--flexline-scroller-dot-offset-inside);
+				top: auto;
 			}
 		}
 
@@ -357,8 +367,10 @@ body,
 			+ .horizontal-scroller-nav-buttons {
 				top: 10px;
 			}
+			+ .horizontal-scroller-range-dots,
 			+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-				top: 46px;
+				top: var(--flexline-scroller-dot-offset-inside);
+				bottom: auto;
 			}
 		}
 	}
@@ -386,7 +398,8 @@ body,
 				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 					left: 50%;
 					transform: translateX(-50%);
-					bottom: calc(-6px + var(--wp--preset--spacing--x-small));
+					bottom: calc(var(--flexline-scroller-dot-offset-outside) * -1);
+					top: auto;
 				}
 
 				&.horizontal-scroller-buttons-over {
@@ -401,18 +414,22 @@ body,
 						}
 					}
 
-					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
-						bottom: calc(46px + var(--wp--preset--spacing--x-small));
-					}
+				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
+					bottom: calc(46px + var(--wp--preset--spacing--x-small));
+					top: auto;
 				}
 			}
+		}
 
 			.horizontal-scroller-dots-below {
+				+ .horizontal-scroller-range-dots,
 				+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 					bottom: -74px;
+					top: auto;
 				}
 
 				&.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-range-dots,
 					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 						top: -74px;
 						bottom: auto;
@@ -420,12 +437,15 @@ body,
 				}
 
 				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-bottom {
+					+ .horizontal-scroller-range-dots,
 					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 						bottom: 2px;
+						top: auto;
 					}
 				}
 
 				&.horizontal-scroller-buttons-over.horizontal-scroller-buttons-vertical-top {
+					+ .horizontal-scroller-range-dots,
 					+ .horizontal-scroller-nav-buttons + .horizontal-scroller-range-dots {
 						top: 2px;
 						bottom: auto;
@@ -447,6 +467,11 @@ body,
 
 		@for $i from 4 through 32 {
 			.horizontal-scroller-dots-size-#{$i} {
+				~ .horizontal-scroller-range-dots,
+				~ .horizontal-scroller-nav-buttons {
+					--flexline-scroller-dot-size: #{$i}px;
+				}
+
 				~ .horizontal-scroller-range-dots .horizontal-scroller-range-dot,
 				~ .horizontal-scroller-nav-buttons .horizontal-scroller-range-dot {
 					width: #{$i}px;
