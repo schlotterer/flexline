@@ -208,16 +208,18 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 /**
  * Resolve best term ID for related posts matching
  *
- * Automatically uses smart fallback:
- * 1. Yoast SEO primary term
- * 2. Rank Math SEO primary term
- * 3. First assigned term
+ * Uses the shared FlexLine canonical primary-term resolver when available.
+ * Falls back to legacy plugin meta order otherwise.
  *
  * @param int    $post_id  Post to get term from.
  * @param string $taxonomy Taxonomy name.
  * @return int Term ID, or 0 if none found.
  */
 function get_related_posts_term_id( $post_id, $taxonomy ) {
+	if ( function_exists( '\\FlexLine\\PrimaryTerms\\resolve_primary_term_id' ) ) {
+		return (int) \FlexLine\PrimaryTerms\resolve_primary_term_id( (int) $post_id, (string) $taxonomy );
+	}
+
 	// Option 1: Yoast Primary Term.
 	$yoast_key = '_yoast_wpseo_primary_' . $taxonomy;
 	$term_id   = (int) get_post_meta( $post_id, $yoast_key, true );
