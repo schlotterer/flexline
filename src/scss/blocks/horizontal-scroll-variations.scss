@@ -253,7 +253,8 @@ body,
 		}
 
 			.horizontal-scroller-range-dots {
-				--flexline-scroller-dots-gap: var(--wp--preset--spacing--x-small);
+				/* Keep dots visually subtle but improve touch target spacing. */
+				--flexline-scroller-dots-gap: 10px;
 				--flexline-scroller-dot-size: 8px;
 				--flexline-scroller-dot-offset-outside: calc((var(--flexline-scroller-dot-size) * 0.5) + var(--flexline-scroller-dots-gap));
 				--flexline-scroller-dot-offset-inside: calc((var(--flexline-scroller-dot-size) * 0.5) + 2px);
@@ -262,7 +263,7 @@ body,
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 6px;
+				gap: var(--flexline-scroller-dots-gap);
 				pointer-events: auto;
 				left: 50%;
 				transform: translateX(-50%);
