@@ -18,11 +18,15 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_styles' );
  * @return string Version string
  */
 function flexline_asset_ver( $relative_path ) {
-	$path = get_theme_file_path( $relative_path );
-	if ( file_exists( $path ) ) {
-		return (string) filemtime( $path );
+	static $cache = array();
+	if ( isset( $cache[ $relative_path ] ) ) {
+		return $cache[ $relative_path ];
 	}
-	return defined( 'THEME_VERSION' ) ? THEME_VERSION : '';
+	$path                       = get_theme_file_path( $relative_path );
+	$cache[ $relative_path ]    = file_exists( $path )
+		? (string) filemtime( $path )
+		: ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' );
+	return $cache[ $relative_path ];
 }
 
 /**

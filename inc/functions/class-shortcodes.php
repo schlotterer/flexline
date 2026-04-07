@@ -77,9 +77,8 @@ class Shortcodes {
 	 * Page title shortcode.
 	 */
 	public static function flexline_page_title_shortcode() {
-		$page_title = get_the_title();
 		ob_start();
-		echo $page_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo esc_html( get_the_title() );
 		return ob_get_clean();
 	}
 

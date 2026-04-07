@@ -81,18 +81,7 @@ function body_classes( $classes ) {
 
 	// Web4SL call/phone button visibility -> add body classes for padding-left.
 	// Only if the plugin appears active to avoid leaking classes.
-	$web4sl_active  = false;
-	$active_plugins = (array) get_option( 'active_plugins', array() );
-	if ( is_multisite() ) {
-		$network_active = (array) get_site_option( 'active_sitewide_plugins', array() );
-		$active_plugins = array_merge( $active_plugins, array_keys( $network_active ) );
-	}
-	foreach ( $active_plugins as $plugin_path ) {
-		if ( false !== strpos( $plugin_path, 'web4sl' ) ) {
-			$web4sl_active = true;
-			break;
-		}
-	}
+	$web4sl_active = defined( 'WEB4SL_PLUGIN_FILE' );
 
 	if ( $web4sl_active ) {
 		$hide_desktop = (bool) get_option( 'web4sl_hide_phone_desktop', false );
