@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## April 2026
+
+### WordPress 7.0 Readiness
+
+- Editor iframe compatibility updates landed across FlexLine theme assets and first-party blocks.
+- Deprecated editor APIs and media selector usage were migrated to current WordPress APIs.
+- Theme admin tabs/settings scripts were moved out of inline handlers to CSP-safe enqueued JS with improved tab semantics.
+
+### Known External Warnings
+
+- `gravityforms/form` still reports `apiVersion: 2` in the editor console until the vendor ships an update.
+- Userway may emit `plugin-button-notice` click-handler console noise due to plugin-side admin notice timing.
+- `/testing/wp-json/wp/...` 404s can appear from `@wordpress/api-fetch` test fixture requests when development tooling exposes `node_modules`; this is not a production runtime issue.
+
 ## Summer 2025
 
 ### New Features

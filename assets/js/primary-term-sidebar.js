@@ -5,20 +5,21 @@
 		! wp.data ||
 		! wp.element ||
 		! wp.components ||
-		! wp.editPost
+		( ! wp.editor && ! wp.editPost )
 	) {
 		return;
 	}
 
 	const registerPlugin = wp.plugins.registerPlugin;
-	const PluginDocumentSettingPanel = wp.editPost.PluginDocumentSettingPanel;
+	const editor = wp.editor || wp.editPost || {};
+	const PluginDocumentSettingPanel = editor.PluginDocumentSettingPanel;
 	const useSelect = wp.data.useSelect;
 	const useDispatch = wp.data.useDispatch;
+	const useEffect = wp.element.useEffect;
 	const el = wp.element.createElement;
 	const Fragment = wp.element.Fragment;
 	const SelectControl = wp.components.SelectControl;
 	const Spinner = wp.components.Spinner;
-	const Notice = wp.components.Notice;
 	const __ = wp.i18n && wp.i18n.__ ? wp.i18n.__ : function( value ) {
 		return value;
 	};
@@ -30,6 +31,20 @@
 	function toInt( value ) {
 		const parsed = parseInt( value, 10 );
 		return Number.isNaN( parsed ) ? 0 : parsed;
+	}
+
+	function movePrimaryTermsPanelBelowTaxonomies() {
+		const panel = document.querySelector( '.editor-sidebar__panel .flexline-primary-terms-panel' );
+		if ( ! panel || ! panel.parentElement ) {
+			return;
+		}
+
+		const parent = panel.parentElement;
+		if ( parent.lastElementChild === panel ) {
+			return;
+		}
+
+		parent.appendChild( panel );
 	}
 
 	function PrimaryTermPanel() {
@@ -54,14 +69,24 @@
 
 				const core = select( 'core' );
 				const editor = select( 'core/editor' );
-				const taxonomies = core.getTaxonomies( { type: postType, per_page: -1 } );
+				const taxonomies = core.getTaxonomies( {
+					type: postType,
+					per_page: -1,
+					context: 'edit',
+				} );
 
 				if ( ! Array.isArray( taxonomies ) ) {
 					return null;
 				}
 
 				return taxonomies
-					.filter( ( taxonomy ) => taxonomy && taxonomy.public && taxonomy.visibility && taxonomy.visibility.show_ui )
+					.filter(
+						( taxonomy ) =>
+							taxonomy &&
+							taxonomy.visibility &&
+							taxonomy.visibility.public &&
+							taxonomy.visibility.show_ui
+					)
 					.map( ( taxonomy ) => {
 						const restBase = taxonomy.rest_base || taxonomy.slug;
 						const assigned = editor.getEditedPostAttribute( restBase );
@@ -93,6 +118,34 @@
 		);
 
 		const dispatchEditor = useDispatch( 'core/editor' );
+		const hasTaxonomyModels =
+			Array.isArray( taxonomyModels ) && taxonomyModels.length > 0;
+
+		useEffect( () => {
+			if ( ! postType || ! hasTaxonomyModels ) {
+				return;
+			}
+
+			const frameId = window.requestAnimationFrame( movePrimaryTermsPanelBelowTaxonomies );
+			const sidebar = document.querySelector( '.editor-sidebar__panel' );
+			if ( ! sidebar || ! window.MutationObserver ) {
+				return function cleanupFrameOnly() {
+					window.cancelAnimationFrame( frameId );
+				};
+			}
+
+			const observer = new window.MutationObserver( movePrimaryTermsPanelBelowTaxonomies );
+			observer.observe( sidebar, { childList: true, subtree: true } );
+
+			return function cleanup() {
+				window.cancelAnimationFrame( frameId );
+				observer.disconnect();
+			};
+		}, [ postType, hasTaxonomyModels ] );
+
+		if ( ! postType ) {
+			return null;
+		}
 
 		if ( taxonomyModels === null ) {
 			return el(
@@ -100,24 +153,14 @@
 				{
 					name: 'flexline-primary-terms-panel',
 					title: __( 'Primary Terms', 'flexline' ),
+					className: 'flexline-primary-terms-panel',
 				},
 				el( Spinner, null )
 			);
 		}
 
 		if ( ! taxonomyModels.length ) {
-			return el(
-				PluginDocumentSettingPanel,
-				{
-					name: 'flexline-primary-terms-panel',
-					title: __( 'Primary Terms', 'flexline' ),
-				},
-				el(
-					Notice,
-					{ status: 'info', isDismissible: false },
-					__( 'No public taxonomies are available for this post type.', 'flexline' )
-				)
-			);
+			return null;
 		}
 
 		return el(
@@ -125,6 +168,7 @@
 			{
 				name: 'flexline-primary-terms-panel',
 				title: __( 'Primary Terms', 'flexline' ),
+				className: 'flexline-primary-terms-panel',
 			},
 			el(
 				Fragment,
@@ -167,6 +211,8 @@
 						key: model.slug,
 						label: model.name,
 						help: help,
+						__nextHasNoMarginBottom: true,
+						__next40pxDefaultSize: true,
 						value: String( currentValue > 0 ? currentValue : 0 ),
 						options: options,
 						disabled: ! hasAssignedTerms,
@@ -189,4 +235,3 @@
 		icon: null,
 	} );
 } )( window.wp );
-

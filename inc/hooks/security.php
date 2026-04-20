@@ -143,10 +143,10 @@ function flexline_is_valid_login_fallback_request( array $opts ): bool {
 	if ( '' === $key || '' === $value ) {
 		return false;
 	}
-	if ( ! isset( $_GET[ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! isset( $_GET[ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Login fallback URL checks run before authentication and are token-based, not nonce-based.
 		return false;
 	}
-	$provided = sanitize_text_field( wp_unslash( (string) $_GET[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$provided = sanitize_text_field( wp_unslash( (string) $_GET[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Login fallback URL checks run before authentication and are token-based, not nonce-based.
 	return hash_equals( $value, $provided );
 }
 
@@ -163,26 +163,26 @@ function flexline_is_valid_login_fallback_request( array $opts ): bool {
  */
 function flexline_is_tokenized_login_recovery_request(): bool {
 	$action = '';
-	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Recovery actions are read on wp-login.php before authenticated nonce context exists.
+		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Recovery actions are read on wp-login.php before authenticated nonce context exists.
 	}
 
 	if ( 'rp' === $action ) {
-		$has_key   = ! empty( $_GET['key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$has_login = ! empty( $_GET['login'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$has_key   = ! empty( $_GET['key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Core password reset flow passes signed key/login in query string, not via nonce.
+		$has_login = ! empty( $_GET['login'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Core password reset flow passes signed key/login in query string, not via nonce.
 		return $has_key && $has_login;
 	}
 
 	if ( 'resetpass' === $action ) {
 		$rp_cookie_name = 'wp-resetpass-' . COOKIEHASH;
-		$has_cookie     = isset( $_COOKIE[ $rp_cookie_name ] ) && false !== strpos( (string) wp_unslash( $_COOKIE[ $rp_cookie_name ] ), ':' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$has_rp_key     = ! empty( $_POST['rp_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$has_cookie     = isset( $_COOKIE[ $rp_cookie_name ] ) && false !== strpos( (string) wp_unslash( $_COOKIE[ $rp_cookie_name ] ), ':' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Recovery cookie check mirrors core reset-password handoff outside wp-admin nonce context.
+		$has_rp_key     = ! empty( $_POST['rp_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Recovery form submits rp_key token on wp-login.php where nonce is not the trust mechanism.
 		return $has_cookie || $has_rp_key;
 	}
 
 	if ( 'confirmaction' === $action ) {
-		$has_request_id = ! empty( $_GET['request_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$has_confirm    = ! empty( $_GET['confirm_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$has_request_id = ! empty( $_GET['request_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Privacy confirmation links carry signed request/confirm tokens instead of nonce values.
+		$has_confirm    = ! empty( $_GET['confirm_key'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Privacy confirmation links carry signed request/confirm tokens instead of nonce values.
 		return $has_request_id && $has_confirm;
 	}
 
@@ -196,8 +196,8 @@ function flexline_is_tokenized_login_recovery_request(): bool {
  */
 function flexline_is_password_request_action(): bool {
 	$action = '';
-	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Lost-password requests occur on wp-login.php before authenticated nonce context exists.
+		$action = sanitize_key( wp_unslash( (string) $_REQUEST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Lost-password requests occur on wp-login.php before authenticated nonce context exists.
 	}
 
 	return in_array( $action, array( 'lostpassword', 'retrievepassword' ), true );

@@ -56,6 +56,7 @@ const handlers = {
 	'web4sl/location-phone-link': visibility,
 	'web4sl/location-map-link': visibility,
 	'web4sl/location-filter-family': visibility,
+	'mylifesite/location-gallery': visibility,
 	'web4sl/advanced-floor-plans': visibility,
 	'web4sl/floor-plan-2d-image': visibility,
 	'web4sl/floor-plan-3d-image': visibility,

@@ -26,6 +26,61 @@ body.no-scroll {
 	position: fixed; /* Optional: to lock the position */
 }
 
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus,
+.skip-link:focus {
+	-webkit-clip-path: none;
+	clip-path: none;
+	background-color: var(--wp--preset--color--base, #fff);
+	border-radius: 4px;
+	box-shadow: var(--wp--custom--button-shadow, 0 2px 8px rgba(0, 0, 0, 0.2));
+	clip: auto !important;
+	color: var(--wp--preset--color--contrast, #000);
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 10px;
+	line-height: normal;
+	padding: 12px 16px;
+	text-decoration: none;
+	top: 10px;
+	width: auto;
+	z-index: 100000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	.animated,
+	.bounce,
+	[class*="delay-"],
+	.slide-in,
+	.slide-in-menu-button,
+	.horizontal-scroll-wrapper *,
+	.is-style-slider,
+	.is-style-slider *,
+	header.site-header.headroom {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
 
 
 body,

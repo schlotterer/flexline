@@ -21,6 +21,12 @@ namespace FlexLine;
  * @return void
  */
 function register_assets() {
+		static $registered = false;
+	if ( $registered ) {
+		return;
+	}
+		$registered = true;
+
 		wp_register_style( 'baguettebox-css', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.css' ), array(), '1.11.1' );
 		wp_register_script( 'baguettebox', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.js' ), array(), '1.11.1', true );
 				wp_register_script( 'poster-gallery-helper', get_theme_file_uri( 'assets/js/poster-gallery-helper.js' ), array(), THEME_VERSION, true );
@@ -57,7 +63,7 @@ function register_assets() {
 
 	wp_add_inline_script( 'baguettebox', 'window.flexlineBaguetteConfig = ' . $config . ';', 'before' );
 }
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_assets' );
+add_action( 'init', __NAMESPACE__ . '\register_assets' );
 
 /**
  * Enqueues the assets for baguetteBox if necessary.

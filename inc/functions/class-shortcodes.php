@@ -67,10 +67,8 @@ class Shortcodes {
 	 * Site name shortcode.
 	 */
 	public static function flexline_site_name_shortcode() {
-		ob_start();
 		$site_name = get_bloginfo( 'name' ) ? esc_html( get_bloginfo( 'name' ) ) : 'flexline';
-		echo $site_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		return ob_get_clean();
+		return $site_name;
 	}
 
 	/**

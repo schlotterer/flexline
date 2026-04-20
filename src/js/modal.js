@@ -194,8 +194,6 @@ function unlockBodyScroll() {
 }
 
 function displayModal(mediaUrl, openerEl) {
-	// eslint-disable-next-line no-console
-	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
 
 	if (mediaUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/)) {

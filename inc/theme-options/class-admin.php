@@ -140,8 +140,8 @@ class Admin {
 					$options = self::get_options();
 					?>
 				<p>
-					<label>
-						<input type="checkbox"
+					<label for="flexline-util-enable-og-tags">
+						<input id="flexline-util-enable-og-tags" type="checkbox"
 							name="flexline_utilities[enable_og_tags]"
 							value="1" <?php checked( $options['enable_og_tags'], 1 ); ?> />
 						<strong>Open Graph (OG) Meta Tags</strong>
@@ -172,8 +172,8 @@ class Admin {
 					}
 					?>
 				<p>
-					<label>
-						<input type="checkbox"
+					<label for="flexline-util-remove-generator">
+						<input id="flexline-util-remove-generator" type="checkbox"
 							name="flexline_utilities[remove_generator]"
 							value="1" <?php checked( $options['remove_generator'], 1 ); ?> />
 						<strong>Remove “generator” Meta</strong>
@@ -183,8 +183,8 @@ class Admin {
 					</span>
 				</p>
 				<p>
-					<label>
-						<input type="checkbox"
+					<label for="flexline-util-disable-xmlrpc">
+						<input id="flexline-util-disable-xmlrpc" type="checkbox"
 							name="flexline_utilities[disable_xmlrpc]"
 							value="1" <?php checked( $options['disable_xmlrpc'], 1 ); ?> />
 						<strong>Disable XML-RPC</strong>
@@ -194,8 +194,8 @@ class Admin {
 					</span>
 				</p>
 					<p>
-						<label>
-							<input type="checkbox"
+						<label for="flexline-util-rest-cors-allow-all">
+							<input id="flexline-util-rest-cors-allow-all" type="checkbox"
 								name="flexline_utilities[rest_cors_allow_all]"
 							value="1" <?php checked( $options['rest_cors_allow_all'], 1 ); ?> />
 						<strong>REST API: Allow Any Origin (*)</strong>
@@ -206,12 +206,12 @@ class Admin {
 					</p>
 					<hr />
 					<p>
-							<label>
+							<label for="flexline-util-custom-login-enabled">
 								<input type="hidden"
 									form="flexline-utilities-form"
 									name="flexline_utilities[custom_login_enabled]"
 									value="0" />
-								<input type="checkbox"
+								<input id="flexline-util-custom-login-enabled" type="checkbox"
 									form="flexline-utilities-form"
 									name="flexline_utilities[custom_login_enabled]"
 									value="1" <?php checked( (int) $options['custom_login_enabled'], 1 ); ?> />
@@ -234,8 +234,8 @@ class Admin {
 						<span class="description">Use at least 8 characters and include both letters and numbers.</span>
 					</p>
 					<p>
-						<label>
-								<input type="checkbox"
+						<label for="flexline-util-custom-login-strict-mode">
+								<input id="flexline-util-custom-login-strict-mode" type="checkbox"
 									form="flexline-utilities-form"
 									name="flexline_utilities[custom_login_strict_mode]"
 									value="1" <?php checked( (int) $options['custom_login_strict_mode'], 1 ); ?> />
@@ -293,8 +293,8 @@ class Admin {
 				$val     = ! empty( $options['disable_all_comments'] ) ? 1 : 0;
 				?>
 				<p>
-					<label>
-					<input type="checkbox"
+					<label for="flexline-util-disable-all-comments">
+					<input id="flexline-util-disable-all-comments" type="checkbox"
 						name="flexline_utilities[disable_all_comments]"
 						value="1" <?php checked( $val, 1 ); ?> />
 					<strong>Disable Comments Sitewide</strong>

@@ -26,12 +26,15 @@ add_action( 'admin_menu', __NAMESPACE__ . '\flexline_add_admin_menu' );
 /**
  * Enqueues the WordPress media uploader if the current request is an admin request.
  *
+ * @param string $hook Current admin page hook.
  * @return void
  */
-function flexline_enqueue_media_uploader() {
-	if ( is_admin() ) {
-		wp_enqueue_media();
+function flexline_enqueue_media_uploader( $hook ) {
+	if ( 'appearance_page_flexline_theme_options' !== $hook ) {
+		return;
 	}
+
+	wp_enqueue_media();
 }
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_media_uploader' );
 
@@ -46,8 +49,15 @@ function flexline_enqueue_theme_options_assets( $hook ) {
 		return;
 	}
 
-		$base = trailingslashit( get_theme_file_uri( 'assets/js' ) );
-		wp_enqueue_script( 'tablesort', $base . 'tablesort.js', array(), '1.0', true );
-		wp_enqueue_script( 'flexline-theme-docs', $base . 'theme-docs.js', array( 'tablesort' ), '1.0', true );
+	$base = trailingslashit( get_theme_file_uri( 'assets/js' ) );
+	wp_enqueue_script( 'flexline-tablesort', $base . 'tablesort.js', array(), flexline_asset_ver( 'assets/js/tablesort.js' ), true );
+	wp_enqueue_script( 'flexline-theme-docs', $base . 'theme-docs.js', array( 'flexline-tablesort' ), flexline_asset_ver( 'assets/js/theme-docs.js' ), true );
+	wp_enqueue_script(
+		'flexline-theme-options',
+		$base . 'theme-options.js',
+		array(),
+		flexline_asset_ver( 'assets/js/theme-options.js' ),
+		true
+	);
 }
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_theme_options_assets' );

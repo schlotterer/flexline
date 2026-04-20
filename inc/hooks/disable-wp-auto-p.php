@@ -29,5 +29,7 @@ function disable_wpautop_for_gutenberg() {
 	}
 }
 
-// Run after the main query is set so we can reliably detect blocks.
-add_action( 'wp', __NAMESPACE__ . '\\disable_wpautop_for_gutenberg', 9 );
+// `wp` fires after the main query is resolved, so `get_queried_object_id()` and
+// `has_blocks()` are reliable. Default priority is fine — no known ordering
+// dependency, and `the_content` rendering happens later during template output.
+add_action( 'wp', __NAMESPACE__ . '\\disable_wpautop_for_gutenberg' );

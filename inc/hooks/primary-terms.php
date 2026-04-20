@@ -28,6 +28,7 @@ const CANONICAL_PREFIX = 'w4sl_primary_';
  */
 function bootstrap_primary_terms(): void {
 	add_action( 'init', __NAMESPACE__ . '\\register_primary_term_meta_keys', 20 );
+	add_action( 'init', __NAMESPACE__ . '\\register_primary_term_permalink_rewrite_tag', 20 );
 
 	add_action( 'added_post_meta', __NAMESPACE__ . '\\handle_added_post_meta', 10, 4 );
 	add_action( 'updated_post_meta', __NAMESPACE__ . '\\handle_updated_post_meta', 10, 4 );
@@ -41,6 +42,9 @@ function bootstrap_primary_terms(): void {
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_sidebar_assets' );
 
 	add_filter( 'block_core_breadcrumbs_post_type_settings', __NAMESPACE__ . '\\filter_breadcrumbs_post_type_settings', 10, 3 );
+	add_filter( 'available_permalink_structure_tags', __NAMESPACE__ . '\\filter_available_permalink_structure_tags' );
+	add_filter( 'pre_post_link', __NAMESPACE__ . '\\filter_pre_post_link_primary_term_tag', 10, 3 );
+	add_filter( 'post_link_category', __NAMESPACE__ . '\\filter_post_link_category_primary_term', 10, 3 );
 
 	if ( defined( 'WP_CLI' ) && WP_CLI && class_exists( 'WP_CLI' ) && class_exists( 'WP_CLI_Command' ) ) {
 		WP_CLI::add_command( 'flexline primary-term', __NAMESPACE__ . '\\Primary_Term_CLI_Command' );
@@ -251,6 +255,97 @@ function is_source_available( string $source ): bool {
 	}
 
 	return false;
+}
+
+/**
+ * Return true when Rank Math primary-term UI ownership should apply.
+ *
+ * @return bool
+ */
+function is_rank_math_active(): bool {
+	return is_source_available( SOURCE_RANK_MATH );
+}
+
+/**
+ * Return true when Yoast exposes primary-term UI for a post type.
+ *
+ * @param string $post_type Post type slug.
+ * @return bool
+ */
+function is_yoast_primary_terms_enabled_for_post_type( string $post_type ): bool {
+	if ( '' === $post_type || ! post_type_exists( $post_type ) || ! is_source_available( SOURCE_YOAST ) ) {
+		return false;
+	}
+
+	$all_taxonomies = get_object_taxonomies( $post_type, 'objects' );
+	if ( ! is_array( $all_taxonomies ) || empty( $all_taxonomies ) ) {
+		return false;
+	}
+
+	$hierarchical_taxonomies = array_filter(
+		$all_taxonomies,
+		static function ( $taxonomy ) {
+			return $taxonomy instanceof WP_Taxonomy && ! empty( $taxonomy->hierarchical );
+		}
+	);
+
+	if ( empty( $hierarchical_taxonomies ) ) {
+		return false;
+	}
+
+	$primary_taxonomies = (array) apply_filters( 'wpseo_primary_term_taxonomies', $hierarchical_taxonomies, $post_type, $all_taxonomies );
+
+	return ! empty( $primary_taxonomies );
+}
+
+/**
+ * Return true when FlexLine primary-term UI should be hidden.
+ *
+ * @param string $post_type Post type slug.
+ * @return bool
+ */
+function should_hide_flexline_primary_terms_ui( string $post_type ): bool {
+	if ( is_rank_math_active() ) {
+		return true;
+	}
+
+	if ( ! is_source_available( SOURCE_YOAST ) || '' === $post_type ) {
+		return false;
+	}
+
+	return is_yoast_primary_terms_enabled_for_post_type( $post_type );
+}
+
+/**
+ * Resolve the current admin post type when possible.
+ *
+ * @return string
+ */
+function get_current_admin_post_type(): string {
+	$post_type = '';
+
+	if ( function_exists( 'get_current_screen' ) ) {
+		$screen = get_current_screen();
+		if ( $screen && ! empty( $screen->post_type ) ) {
+			$post_type = (string) $screen->post_type;
+		}
+	}
+
+	if ( '' === $post_type && isset( $_REQUEST['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$post_type = sanitize_key( wp_unslash( (string) $_REQUEST['post_type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	if ( '' === $post_type && isset( $_REQUEST['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$post_id = absint( wp_unslash( (string) $_REQUEST['post'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( $post_id > 0 ) {
+			$resolved_post_type = get_post_type( $post_id );
+			if ( $resolved_post_type ) {
+				$post_type = (string) $resolved_post_type;
+			}
+		}
+	}
+
+	return $post_type;
 }
 
 /**
@@ -810,15 +905,22 @@ function handle_save_post( $post_id, $post, $update ): void {
  * @return void
  */
 function handle_quick_edit_primary_category_save( int $post_id ): void {
-	if ( ! isset( $_REQUEST['w4sl_primary_category_quick_edit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$post_type = get_post_type( $post_id );
+	if ( $post_type && should_hide_flexline_primary_terms_ui( (string) $post_type ) ) {
 		return;
 	}
 
-	if ( isset( $_REQUEST['_inline_edit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$nonce = sanitize_text_field( wp_unslash( (string) $_REQUEST['_inline_edit'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( ! wp_verify_nonce( $nonce, 'inlineeditnonce' ) ) {
-			return;
-		}
+	if ( ! isset( $_REQUEST['_inline_edit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
+	}
+
+	$nonce = sanitize_text_field( wp_unslash( (string) $_REQUEST['_inline_edit'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( ! wp_verify_nonce( $nonce, 'inlineeditnonce' ) ) {
+		return;
+	}
+
+	if ( ! isset( $_REQUEST['w4sl_primary_category_quick_edit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
 	}
 
 	if ( ! is_supported_post_taxonomy( $post_id, 'category' ) ) {
@@ -853,6 +955,10 @@ function add_quick_edit_inline_data( $post, $post_type_object ): void {
 		return;
 	}
 
+	if ( should_hide_flexline_primary_terms_ui( (string) $post->post_type ) ) {
+		return;
+	}
+
 	if ( ! is_object_in_taxonomy( $post->post_type, 'category' ) ) {
 		return;
 	}
@@ -871,6 +977,10 @@ function add_quick_edit_inline_data( $post, $post_type_object ): void {
  */
 function render_quick_edit_primary_category( $column_name, $post_type, $taxonomy ): void {
 	if ( 'categories' !== $column_name ) {
+		return;
+	}
+
+	if ( should_hide_flexline_primary_terms_ui( (string) $post_type ) ) {
 		return;
 	}
 
@@ -902,6 +1012,15 @@ function enqueue_quick_edit_assets( $hook_suffix ): void {
 		return;
 	}
 
+	$post_type = get_current_admin_post_type();
+	if ( '' === $post_type ) {
+		$post_type = 'post';
+	}
+
+	if ( should_hide_flexline_primary_terms_ui( $post_type ) ) {
+		return;
+	}
+
 	wp_enqueue_script(
 		'flexline-primary-term-quick-edit',
 		get_theme_file_uri( 'assets/js/primary-term-quick-edit.js' ),
@@ -921,6 +1040,11 @@ function enqueue_sidebar_assets(): void {
 		return;
 	}
 
+	$post_type = get_current_admin_post_type();
+	if ( should_hide_flexline_primary_terms_ui( $post_type ) ) {
+		return;
+	}
+
 	wp_enqueue_script(
 		'flexline-primary-term-sidebar',
 		get_theme_file_uri( 'assets/js/primary-term-sidebar.js' ),
@@ -928,6 +1052,80 @@ function enqueue_sidebar_assets(): void {
 		function_exists( '\\FlexLine\\flexline_asset_ver' ) ? \FlexLine\flexline_asset_ver( 'assets/js/primary-term-sidebar.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' ),
 		true
 	);
+}
+
+/**
+ * Register the custom permalink tag used for primary-category URLs.
+ *
+ * @return void
+ */
+function register_primary_term_permalink_rewrite_tag(): void {
+	add_rewrite_tag( '%primary_term%', '([^/]+)', 'primary_term=' );
+}
+
+/**
+ * Expose the primary-term permalink tag in Settings > Permalinks.
+ *
+ * @param array $available_tags Existing available tags.
+ * @return array
+ */
+function filter_available_permalink_structure_tags( array $available_tags ): array {
+	/* translators: %s: Permalink structure tag. */
+	$available_tags['primary_term'] = __( '%s (Primary category slug from FlexLine Primary Terms.)', 'flexline' );
+
+	return $available_tags;
+}
+
+/**
+ * Resolve custom %primary_term% token via core %category% replacement.
+ *
+ * @param string  $permalink Permalink structure.
+ * @param WP_Post $post      Post object.
+ * @param bool    $leavename Whether to keep post name.
+ * @return string
+ */
+function filter_pre_post_link_primary_term_tag( string $permalink, $post, bool $leavename ): string { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+	if ( ! $post instanceof WP_Post || 'post' !== $post->post_type ) {
+		return $permalink;
+	}
+
+	if ( ! str_contains( $permalink, '%primary_term%' ) ) {
+		return $permalink;
+	}
+
+	return str_replace( '%primary_term%', '%category%', $permalink );
+}
+
+/**
+ * Use canonical primary category when resolving %category% in post permalinks.
+ *
+ * @param mixed   $cat  Preferred category object/ID from core.
+ * @param array   $cats Assigned categories.
+ * @param WP_Post $post Post object.
+ * @return mixed
+ */
+function filter_post_link_category_primary_term( $cat, array $cats, $post ) {
+	if ( ! $post instanceof WP_Post || 'post' !== $post->post_type ) {
+		return $cat;
+	}
+
+	$post_id = (int) $post->ID;
+	if ( $post_id <= 0 || ! is_supported_post_taxonomy( $post_id, 'category' ) ) {
+		return $cat;
+	}
+
+	$primary_term_id = resolve_primary_term_id( $post_id, 'category' );
+	if ( $primary_term_id <= 0 ) {
+		return $cat;
+	}
+
+	foreach ( $cats as $candidate ) {
+		if ( isset( $candidate->term_id ) && (int) $candidate->term_id === $primary_term_id ) {
+			return $candidate;
+		}
+	}
+
+	return $cat;
 }
 
 /**
@@ -946,10 +1144,32 @@ function filter_breadcrumbs_post_type_settings( $settings, $post_type, $post_id 
 		return $settings;
 	}
 
+	$taxonomies = wp_filter_object_list(
+		get_object_taxonomies( $post_type, 'objects' ),
+		array(
+			'publicly_queryable' => true,
+			'show_in_rest'       => true,
+		)
+	);
+	if ( empty( $taxonomies ) ) {
+		return $settings;
+	}
+
+	$taxonomy_slugs = array_keys( $taxonomies );
+	sort( $taxonomy_slugs );
+
+	if ( 'post' === $post_type ) {
+		$category_index = array_search( 'category', $taxonomy_slugs, true );
+		if ( false !== $category_index ) {
+			unset( $taxonomy_slugs[ $category_index ] );
+			array_unshift( $taxonomy_slugs, 'category' );
+		}
+	}
+
 	// Core breadcrumbs only read taxonomy/term settings when the block is in taxonomy mode
 	// (prefersTaxonomy=true). We still return settings unconditionally so pattern defaults can
 	// opt into the behavior without any plugin coupling.
-	foreach ( get_public_taxonomies_for_post_type( $post_type ) as $taxonomy ) {
+	foreach ( $taxonomy_slugs as $taxonomy ) {
 		$term_id = resolve_primary_term_id( $post_id, $taxonomy );
 		if ( $term_id <= 0 ) {
 			continue;

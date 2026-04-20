@@ -74,9 +74,6 @@ function flexline_enqueue_styles() {
 	wp_register_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
 	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
 
-	// Customized Scripts.
-	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), $early_deps, flexline_asset_ver( 'assets/js/customize.js' ), true );
-
 	// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
 	wp_register_script(
 		'flexline-slider',
@@ -104,7 +101,6 @@ function flexline_enqueue_styles() {
 		'flexline-headroom-init',
 		'flexline-modal',
 		'flexline-slidein',
-		'flexline-customize',
 		'flexline-visibility-toggle',
 	);
 	foreach ( $defer_handles as $handle ) {
@@ -118,13 +114,6 @@ function flexline_enqueue_styles() {
  * Enqueue block editor shell assets (sidebar UI and editor chrome).
  */
 function flexline_admin_enqueue_scripts() {
-	// Styles.
-	wp_enqueue_style( 'flexline-base-admin', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
-	// Modal Styles.
-	wp_enqueue_style( 'flexline-modal-admin', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
-	// Customized Styles.
-	wp_enqueue_style( 'flexline-custom-admin', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
-
 	wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.

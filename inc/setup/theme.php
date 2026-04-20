@@ -26,12 +26,17 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		load_theme_textdomain( 'flexline', get_template_directory() . '/languages' );
 
 		// Enqueue editor styles and fonts.
-		add_editor_style(
-			array(
-				'./style.css',
-				'./assets/built/css/app.css',
-			)
+		$editor_styles = array(
+			'./style.css',
+			'./assets/built/css/app.css',
+			'./assets/built/css/modal.css',
 		);
+		$custom_css    = get_theme_file_path( 'assets/css/customize.css' );
+		if ( file_exists( $custom_css ) && filesize( $custom_css ) > 0 ) {
+			$editor_styles[] = './assets/css/customize.css';
+		}
+		add_editor_style( $editor_styles );
+		add_theme_support( 'editor-styles' );
 
 		// Remove core block patterns.
 		remove_theme_support( 'core-block-patterns' );
