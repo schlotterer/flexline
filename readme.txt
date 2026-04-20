@@ -23,7 +23,15 @@ FlexLine includes opinionated styling for a few popular plugins so their front-e
 * Gravity Forms – form fields, buttons, and validation notices inherit FlexLine typography, spacing, and color treatments.
 * Events Manager – event lists, single templates, and the bundled starter settings blend with the theme’s layout system.
 * Query Loop Filters – filter bars and controls from Human Made’s Query Loop Filters plugin adopt FlexLine’s navigation spacing and button styling.
-* Yoast SEO – install to use patterns that include the Yoast Breadcrumbs block; the theme doesn’t bundle alternative breadcrumb markup.
+* Yoast SEO / Rank Math SEO – optional. FlexLine mirrors canonical primary-term choices to and from either plugin when installed.
+
+== Primary Terms and Breadcrumbs ==
+
+FlexLine stores canonical primary terms in post meta (`w4sl_primary_{taxonomy}`) and uses that value across related-post and breadcrumb features.
+
+On WordPress 7.0+ the theme patterns use the core Breadcrumbs block. FlexLine hooks `block_core_breadcrumbs_post_type_settings` so taxonomy breadcrumbs prefer the canonical primary term whenever available.
+
+If Yoast SEO or Rank Math is active, FlexLine syncs values bi-directionally, so edits from plugin screens and FlexLine controls stay aligned.
 
 == WordPress 6.9 Accordion Block ==
 

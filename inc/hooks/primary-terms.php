@@ -948,6 +948,9 @@ function filter_breadcrumbs_post_type_settings( $settings, $post_type, $post_id 
 		return $settings;
 	}
 
+	// Core breadcrumbs only read taxonomy/term settings when the block is in taxonomy mode
+	// (prefersTaxonomy=true). We still return settings unconditionally so pattern defaults can
+	// opt into the behavior without any plugin coupling.
 	foreach ( get_public_taxonomies_for_post_type( $post_type ) as $taxonomy ) {
 		$term_id = resolve_primary_term_id( $post_id, $taxonomy );
 		if ( $term_id <= 0 ) {
@@ -962,6 +965,7 @@ function filter_breadcrumbs_post_type_settings( $settings, $post_type, $post_id 
 		$settings['taxonomy'] = $taxonomy;
 		$settings['term']     = (string) $term->slug;
 
+		// First valid canonical match wins; if this taxonomy no longer resolves, core falls back.
 		return $settings;
 	}
 

@@ -220,6 +220,7 @@ function get_related_posts_term_id( $post_id, $taxonomy ) {
 		return (int) \FlexLine\PrimaryTerms\resolve_primary_term_id( (int) $post_id, (string) $taxonomy );
 	}
 
+	// Legacy fallback path: keep backwards compatibility if primary-term subsystem is unavailable.
 	// Option 1: Yoast Primary Term.
 	$yoast_key = '_yoast_wpseo_primary_' . $taxonomy;
 	$term_id   = (int) get_post_meta( $post_id, $yoast_key, true );

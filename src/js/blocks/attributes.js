@@ -364,3 +364,11 @@ export const customRelatedPostsAttributes = {
 		default: 'current',
 	},
 };
+
+// Categories - Define custom attributes
+export const customCategoriesAttributes = {
+	flexlinePrimaryTermOnly: {
+		type: 'boolean',
+		default: false,
+	},
+};
