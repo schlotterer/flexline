@@ -26,11 +26,7 @@ body.no-scroll {
 	position: fixed; /* Optional: to lock the position */
 }
 
-// Keep editor canvas root aligned with Global Styles body colors.
-.editor-styles-wrapper {
-	background-color: var(--wp--style--color--background, var(--wp--preset--color--base));
-	color: var(--wp--style--color--text, var(--wp--preset--color--contrast));
-}
+
 
 body,
 .editor-styles-wrapper {

@@ -96,7 +96,10 @@ export const getContentShiftControls = (props) => {
 						<hr />
 						<p>
 							SHIFT - NEGATIVE MARGINS <br />
-							<small>Enter positive numbers only.</small>
+							<small>
+								Leave empty to keep normal margins. Enter 0 for
+								an explicit zero shift.
+							</small>
 						</p>
 					</>
 				)}
@@ -238,6 +241,71 @@ export const getVisibilityClasses = (attrs) => {
 		classes += 'flexline-hide-on-desktop ';
 	}
 	return classes.trim();
+};
+
+/**
+ * Returns whether a content-shift field is intentionally set.
+ *
+ * Empty string means "inherit normal margins" while any numeric/unit value,
+ * including 0, is treated as intentional.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {boolean} True if the field is intentionally set.
+ */
+export const isContentShiftFieldSet = (value) => {
+	if (value === undefined || value === null) {
+		return false;
+	}
+
+	if (typeof value === 'string') {
+		return value.trim() !== '';
+	}
+
+	return true;
+};
+
+/**
+ * Trims a content-shift field into a normalized string, or empty string when unset.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {string} Normalized field value or empty string when unset.
+ */
+export const normalizeContentShiftInput = (value) => {
+	if (!isContentShiftFieldSet(value)) {
+		return '';
+	}
+
+	return `${value}`.trim();
+};
+
+/**
+ * Converts a positive shift value into its negative margin form.
+ *
+ * Explicit zero remains zero (never `-0`), preserving the "0 = intentional"
+ * behavior without introducing invalid-looking values.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {string} Negative shift value, zero value, or empty string when unset.
+ */
+export const toNegativeContentShiftValue = (value) => {
+	const normalized = normalizeContentShiftInput(value);
+	if (!normalized) {
+		return '';
+	}
+
+	const match = normalized.match(/^(-?\d*\.?\d+)([a-z%]*)$/i);
+	if (!match) {
+		return normalized.startsWith('-') ? normalized : `-${normalized}`;
+	}
+
+	const amount = Number(match[1]);
+	const unit = match[2] || '';
+
+	if (!Number.isFinite(amount) || amount === 0) {
+		return `0${unit}`;
+	}
+
+	return `${-Math.abs(amount)}${unit}`;
 };
 
 // Utility function to manage class additions and removals

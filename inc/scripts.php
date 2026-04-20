@@ -22,8 +22,8 @@ function flexline_asset_ver( $relative_path ) {
 	if ( isset( $cache[ $relative_path ] ) ) {
 		return $cache[ $relative_path ];
 	}
-	$path                       = get_theme_file_path( $relative_path );
-	$cache[ $relative_path ]    = file_exists( $path )
+	$path                    = get_theme_file_path( $relative_path );
+	$cache[ $relative_path ] = file_exists( $path )
 		? (string) filemtime( $path )
 		: ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' );
 	return $cache[ $relative_path ];

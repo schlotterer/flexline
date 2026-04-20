@@ -80,7 +80,7 @@ function register_primary_term_meta_keys(): void {
 					'single'            => true,
 					'show_in_rest'      => true,
 					'sanitize_callback' => 'absint',
-					'auth_callback'     => static function() {
+					'auth_callback'     => static function () {
 						$args      = func_get_args();
 						$object_id = isset( $args[2] ) ? (int) $args[2] : 0;
 						if ( $object_id > 0 ) {
@@ -530,22 +530,20 @@ function normalize_primary_term_for_taxonomy( int $post_id, string $taxonomy, ar
 
 		$winner_source = $best_source;
 		$winner_term   = $best_term_id;
-	} else {
-		if ( isset( $candidates[ SOURCE_YOAST ] ) ) {
+	} elseif ( isset( $candidates[ SOURCE_YOAST ] ) ) {
 			$winner_source = SOURCE_YOAST;
 			$winner_term   = $candidates[ SOURCE_YOAST ];
-		} elseif ( isset( $candidates[ SOURCE_RANK_MATH ] ) ) {
-			$winner_source = SOURCE_RANK_MATH;
-			$winner_term   = $candidates[ SOURCE_RANK_MATH ];
-		} elseif ( isset( $candidates[ SOURCE_W4SL ] ) ) {
-			$winner_source = SOURCE_W4SL;
-			$winner_term   = $candidates[ SOURCE_W4SL ];
-		} else {
-			$fallback_term = get_first_assigned_term_id( $post_id, $taxonomy );
-			if ( $fallback_term > 0 ) {
-				$winner_source = SOURCE_FALLBACK;
-				$winner_term   = $fallback_term;
-			}
+	} elseif ( isset( $candidates[ SOURCE_RANK_MATH ] ) ) {
+		$winner_source = SOURCE_RANK_MATH;
+		$winner_term   = $candidates[ SOURCE_RANK_MATH ];
+	} elseif ( isset( $candidates[ SOURCE_W4SL ] ) ) {
+		$winner_source = SOURCE_W4SL;
+		$winner_term   = $candidates[ SOURCE_W4SL ];
+	} else {
+		$fallback_term = get_first_assigned_term_id( $post_id, $taxonomy );
+		if ( $fallback_term > 0 ) {
+			$winner_source = SOURCE_FALLBACK;
+			$winner_term   = $fallback_term;
 		}
 	}
 
@@ -556,7 +554,7 @@ function normalize_primary_term_for_taxonomy( int $post_id, string $taxonomy, ar
 	if ( $winner_term <= 0 ) {
 		if ( ! $dry_run ) {
 			$changed = with_sync_lock(
-				static function() use ( $post_id, $taxonomy, $canonical_key, $yoast_key, $rank_key ) {
+				static function () use ( $post_id, $taxonomy, $canonical_key, $yoast_key, $rank_key ) {
 					$did_change = false;
 
 					$did_change = delete_meta_if_present( $post_id, $canonical_key ) || $did_change;
@@ -598,7 +596,7 @@ function normalize_primary_term_for_taxonomy( int $post_id, string $taxonomy, ar
 
 	if ( ! $dry_run ) {
 		$changed = with_sync_lock(
-			static function() use ( $post_id, $taxonomy, $winner_term, $winner_ts_key, $winner_ts, $canonical_key, $yoast_key, $rank_key, $now ) {
+			static function () use ( $post_id, $taxonomy, $winner_term, $winner_ts_key, $winner_ts, $canonical_key, $yoast_key, $rank_key, $now ) {
 				$did_change = false;
 
 				$did_change = update_meta_int_if_changed( $post_id, $canonical_key, $winner_term ) || $did_change;
@@ -658,7 +656,7 @@ function mark_source_timestamp_from_event( int $post_id, string $taxonomy, strin
 	$timestamp_key = source_timestamp_meta_key( $taxonomy, $source );
 
 	with_sync_lock(
-		static function() use ( $post_id, $taxonomy, $source, $term_id, $is_deleted, $timestamp_key ) {
+		static function () use ( $post_id, $taxonomy, $source, $term_id, $is_deleted, $timestamp_key ) {
 			if ( $is_deleted ) {
 				delete_meta_if_present( $post_id, $timestamp_key );
 				return;
@@ -830,7 +828,7 @@ function handle_quick_edit_primary_category_save( int $post_id ): void {
 	$term_id = absint( wp_unslash( (string) $_REQUEST['w4sl_primary_category_quick_edit'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 	with_sync_lock(
-		static function() use ( $post_id, $term_id ) {
+		static function () use ( $post_id, $term_id ) {
 			$key = canonical_meta_key( 'category' );
 			if ( $term_id > 0 && is_valid_term_for_post( $post_id, 'category', $term_id ) ) {
 				update_meta_int_if_changed( $post_id, $key, $term_id );
@@ -846,7 +844,7 @@ function handle_quick_edit_primary_category_save( int $post_id ): void {
 /**
  * Provide inline row value for quick-edit script.
  *
- * @param WP_Post      $post             Post object.
+ * @param WP_Post       $post             Post object.
  * @param \WP_Post_Type $post_type_object Post type object.
  * @return void
  */
@@ -977,58 +975,58 @@ if ( class_exists( '\\WP_CLI_Command' ) ) {
 	 * WP-CLI command for primary-term backfill/reporting.
 	 */
 	class Primary_Term_CLI_Command extends \WP_CLI_Command {
-	/**
-	 * Backfill canonical primary terms and source timestamps.
-	 *
-	 * ## OPTIONS
-	 *
-	 * [--post_type=<post_type>]
-	 * : Limit to one post type.
-	 *
-	 * [--taxonomy=<taxonomy>]
-	 * : Limit to one taxonomy.
-	 *
-	 * [--dry-run]
-	 * : Compute results without writing.
-	 *
-	 * [--report=<format>]
-	 * : Report format: table or json.
-	 * ---
-	 * default: table
-	 * options:
-	 *   - table
-	 *   - json
-	 * ---
-	 *
-	 * ## EXAMPLES
-	 *
-	 *     wp flexline primary-term backfill --dry-run --report=json
-	 *
-	 * @param array $args       Positional args.
-	 * @param array $assoc_args Assoc args.
-	 * @return void
-	 */
-	public function backfill( $args, $assoc_args ): void {
-		$dry_run    = ! empty( $assoc_args['dry-run'] );
-		$report     = isset( $assoc_args['report'] ) ? (string) $assoc_args['report'] : 'table';
-		$post_type  = isset( $assoc_args['post_type'] ) ? sanitize_key( (string) $assoc_args['post_type'] ) : '';
-		$taxonomy   = isset( $assoc_args['taxonomy'] ) ? sanitize_key( (string) $assoc_args['taxonomy'] ) : '';
-		$per_page   = 200;
-		$page       = 1;
-		$total_posts = 0;
+		/**
+		 * Backfill canonical primary terms and source timestamps.
+		 *
+		 * ## OPTIONS
+		 *
+		 * [--post_type=<post_type>]
+		 * : Limit to one post type.
+		 *
+		 * [--taxonomy=<taxonomy>]
+		 * : Limit to one taxonomy.
+		 *
+		 * [--dry-run]
+		 * : Compute results without writing.
+		 *
+		 * [--report=<format>]
+		 * : Report format: table or json.
+		 * ---
+		 * default: table
+		 * options:
+		 *   - table
+		 *   - json
+		 * ---
+		 *
+		 * ## EXAMPLES
+		 *
+		 *     wp flexline primary-term backfill --dry-run --report=json
+		 *
+		 * @param array $args       Positional args.
+		 * @param array $assoc_args Assoc args.
+		 * @return void
+		 */
+		public function backfill( $args, $assoc_args ): void {
+			$dry_run     = ! empty( $assoc_args['dry-run'] );
+			$report      = isset( $assoc_args['report'] ) ? (string) $assoc_args['report'] : 'table';
+			$post_type   = isset( $assoc_args['post_type'] ) ? sanitize_key( (string) $assoc_args['post_type'] ) : '';
+			$taxonomy    = isset( $assoc_args['taxonomy'] ) ? sanitize_key( (string) $assoc_args['taxonomy'] ) : '';
+			$per_page    = 200;
+			$page        = 1;
+			$total_posts = 0;
 
-		if ( '' !== $post_type && ! post_type_exists( $post_type ) ) {
-			WP_CLI::error( sprintf( 'Unknown post type: %s', $post_type ) );
-		}
-
-		if ( '' !== $taxonomy ) {
-			$tax_obj = get_taxonomy( $taxonomy );
-			if ( ! $tax_obj || ! $tax_obj->public ) {
-				WP_CLI::error( sprintf( 'Unknown or non-public taxonomy: %s', $taxonomy ) );
+			if ( '' !== $post_type && ! post_type_exists( $post_type ) ) {
+				WP_CLI::error( sprintf( 'Unknown post type: %s', $post_type ) );
 			}
-		}
 
-		$post_types = '' !== $post_type
+			if ( '' !== $taxonomy ) {
+				$tax_obj = get_taxonomy( $taxonomy );
+				if ( ! $tax_obj || ! $tax_obj->public ) {
+					WP_CLI::error( sprintf( 'Unknown or non-public taxonomy: %s', $taxonomy ) );
+				}
+			}
+
+			$post_types = '' !== $post_type
 			? array( $post_type )
 			: get_post_types(
 				array(
@@ -1037,104 +1035,104 @@ if ( class_exists( '\\WP_CLI_Command' ) ) {
 				'names'
 			);
 
-		$counts = array(
-			'seeded-from-yoast'   => 0,
-			'seeded-from-rankmath' => 0,
-			'seeded-from-fallback' => 0,
-			'unchanged'           => 0,
-			'conflicts-resolved'  => 0,
-			'invalid-skipped'     => 0,
-		);
-
-		do {
-			$query = new WP_Query(
-				array(
-					'post_type'              => $post_types,
-					'post_status'            => 'any',
-					'posts_per_page'         => $per_page,
-					'paged'                  => $page,
-					'fields'                 => 'ids',
-					'orderby'                => 'ID',
-					'order'                  => 'ASC',
-					'no_found_rows'          => true,
-					'update_post_meta_cache' => false,
-					'update_post_term_cache' => false,
-				)
+			$counts = array(
+				'seeded-from-yoast'    => 0,
+				'seeded-from-rankmath' => 0,
+				'seeded-from-fallback' => 0,
+				'unchanged'            => 0,
+				'conflicts-resolved'   => 0,
+				'invalid-skipped'      => 0,
 			);
 
-			$post_ids = array_map( 'intval', (array) $query->posts );
-			$total_posts += count( $post_ids );
+			do {
+				$query = new WP_Query(
+					array(
+						'post_type'              => $post_types,
+						'post_status'            => 'any',
+						'posts_per_page'         => $per_page,
+						'paged'                  => $page,
+						'fields'                 => 'ids',
+						'orderby'                => 'ID',
+						'order'                  => 'ASC',
+						'no_found_rows'          => true,
+						'update_post_meta_cache' => false,
+						'update_post_term_cache' => false,
+					)
+				);
 
-			foreach ( $post_ids as $post_id ) {
-				$taxonomies = get_public_taxonomies_for_post( $post_id );
-				if ( '' !== $taxonomy ) {
-					$taxonomies = array_values(
-						array_filter(
-							$taxonomies,
-							static function( $tax_slug ) use ( $taxonomy ) {
-								return $tax_slug === $taxonomy;
-							}
-						)
-					);
-				}
+				$post_ids     = array_map( 'intval', (array) $query->posts );
+				$total_posts += count( $post_ids );
 
-				if ( empty( $taxonomies ) ) {
-					continue;
-				}
-
-				foreach ( $taxonomies as $taxonomy_slug ) {
-					$result = normalize_primary_term_for_taxonomy(
-						$post_id,
-						$taxonomy_slug,
-						array(
-							'dry_run' => $dry_run,
-						)
-					);
-
-					$status = (string) ( $result['status'] ?? 'invalid-skipped' );
-					if ( ! isset( $counts[ $status ] ) ) {
-						$status = 'invalid-skipped';
+				foreach ( $post_ids as $post_id ) {
+					$taxonomies = get_public_taxonomies_for_post( $post_id );
+					if ( '' !== $taxonomy ) {
+						$taxonomies = array_values(
+							array_filter(
+								$taxonomies,
+								static function ( $tax_slug ) use ( $taxonomy ) {
+									return $tax_slug === $taxonomy;
+								}
+							)
+						);
 					}
-					$counts[ $status ]++;
+
+					if ( empty( $taxonomies ) ) {
+						continue;
+					}
+
+					foreach ( $taxonomies as $taxonomy_slug ) {
+						$result = normalize_primary_term_for_taxonomy(
+							$post_id,
+							$taxonomy_slug,
+							array(
+								'dry_run' => $dry_run,
+							)
+						);
+
+						$status = (string) ( $result['status'] ?? 'invalid-skipped' );
+						if ( ! isset( $counts[ $status ] ) ) {
+							$status = 'invalid-skipped';
+						}
+						++$counts[ $status ];
+					}
 				}
+
+				++$page;
+			} while ( ! empty( $post_ids ) );
+
+			if ( 'json' === $report ) {
+				WP_CLI::line(
+					wp_json_encode(
+						array(
+							'dry_run'          => $dry_run,
+							'post_type_filter' => $post_type,
+							'taxonomy_filter'  => $taxonomy,
+							'posts_scanned'    => $total_posts,
+							'counts'           => $counts,
+						),
+						JSON_PRETTY_PRINT
+					)
+				);
+				return;
 			}
 
-			$page++;
-		} while ( ! empty( $post_ids ) );
+			$rows = array();
+			foreach ( $counts as $status => $count ) {
+				$rows[] = array(
+					'status' => $status,
+					'count'  => $count,
+				);
+			}
 
-		if ( 'json' === $report ) {
-			WP_CLI::line(
-				wp_json_encode(
-					array(
-						'dry_run'          => $dry_run,
-						'post_type_filter' => $post_type,
-						'taxonomy_filter'  => $taxonomy,
-						'posts_scanned'    => $total_posts,
-						'counts'           => $counts,
-					),
-					JSON_PRETTY_PRINT
+			\WP_CLI\Utils\format_items( 'table', $rows, array( 'status', 'count' ) );
+			WP_CLI::success(
+				sprintf(
+					'Backfill complete (%s). Posts scanned: %d.',
+					$dry_run ? 'dry-run' : 'write',
+					$total_posts
 				)
 			);
-			return;
 		}
-
-		$rows = array();
-		foreach ( $counts as $status => $count ) {
-			$rows[] = array(
-				'status' => $status,
-				'count'  => $count,
-			);
-		}
-
-		\WP_CLI\Utils\format_items( 'table', $rows, array( 'status', 'count' ) );
-		WP_CLI::success(
-			sprintf(
-				'Backfill complete (%s). Posts scanned: %d.',
-				$dry_run ? 'dry-run' : 'write',
-				$total_posts
-			)
-		);
-	}
 	}
 }
 
