@@ -98,7 +98,7 @@ namespace FlexLine;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>This hero uses the page featured image by default. It can be replaced but for use in templates we have this defaulting to the featured image.<br>NOTE: These include the breadcrumbs block from <a href="https://wordpress.org/plugins/wordpress-seo/">Yoast SEO</a>.</p>
+<p>This hero uses the page featured image by default. It can be replaced but for use in templates we have this defaulting to the featured image.<br>NOTE: These patterns now use the WordPress core Breadcrumbs block and honor FlexLine primary-term preferences on singular content.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"flexline/meta-feature-page-center-bottom"} /-->
@@ -116,7 +116,7 @@ namespace FlexLine;
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":""} -->
-<p>This hero uses the page featured image by default. It can be replaced but for use in templates we have this defaulting to the featured image.<br>NOTE: These include the breadcrumbs block from <a href="https://wordpress.org/plugins/wordpress-seo/">Yoast SEO</a>.</p>
+<p>This hero uses the page featured image by default. It can be replaced but for use in templates we have this defaulting to the featured image.<br>NOTE: These patterns now use the WordPress core Breadcrumbs block and honor FlexLine primary-term preferences on singular content.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"flexline/meta-feature-page"} /-->

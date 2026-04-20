@@ -16,6 +16,7 @@ import {
 	customNoWrapAttributes,
 	customLogoAttributes,
 	customRelatedPostsAttributes,
+	customCategoriesAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -88,6 +89,10 @@ registerAttributes(['core/post-template'], {
 
 registerAttributes(['core/query'], {
 	...customRelatedPostsAttributes,
+});
+
+registerAttributes(['core/categories'], {
+	...customCategoriesAttributes,
 });
 
 const relatedPostsAllowedControls = [

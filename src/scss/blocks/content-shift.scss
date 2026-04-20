@@ -1,8 +1,9 @@
+.flexline-content-shift-above {
+    position: relative;
+    z-index: 8;
+}
+
 .flexline-content-shift {
-    &.flexline-content-shift-above {
-        position: relative;
-        z-index: 8; 
-    }
     @include screen($tablet-up) {
         &.flexline-content-shift-left {
             margin-left: var(--flexline-shift-left, 0) !important;  
@@ -44,4 +45,3 @@
         }
     }
 }
-

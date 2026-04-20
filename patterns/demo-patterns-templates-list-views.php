@@ -229,7 +229,7 @@ namespace FlexLine;
     <!-- /wp:heading -->
 
     <!-- wp:paragraph {"className":""} -->
-    <p>This hero uses a custom dynamic title bar that includes the search term and bread crumb. You can set a background using the cover block. By default the image will be a duo tone and have an overlay for text readability. All of this is adjustable at the template level.<br>NOTE: Breadcrumbs depend on the Yoast SEO breadcrumbs block, but any other breadcrumb could be used or this block could be removed. </p>
+    <p>This hero uses a custom dynamic title bar that includes the search term and breadcrumb. You can set a background using the cover block. By default the image will be a duo tone and have an overlay for text readability. All of this is adjustable at the template level.<br>NOTE: Breadcrumbs now use the WordPress core Breadcrumbs block, with FlexLine primary-term preference applied on singular views.</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

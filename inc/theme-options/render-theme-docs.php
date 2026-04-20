@@ -201,11 +201,19 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 					array(
 						'name'        => 'Match by Taxonomy',
-						'description' => 'Dropdown of every public taxonomy registered on the site (categories, tags, custom taxonomies, etc.). Front-end logic finds the current post’s best matching term using Yoast primary term → Rank Math primary term → first assigned term.',
+						'description' => 'Dropdown of every public taxonomy registered on the site (categories, tags, custom taxonomies, etc.). Front-end logic uses FlexLine’s canonical primary-term resolver and plugin-aware fallbacks.',
 					),
 					array(
 						'name'        => 'Post Type Scope',
 						'description' => 'Choose whether related results stay within the current post type or may include any public type. The PHP filter updates the Query Loop’s <code>post_type</code> accordingly.',
+					),
+				),
+			),
+			'core/categories'                => array(
+				'attributes' => array(
+					array(
+						'name'        => 'Show primary term only',
+						'description' => 'When enabled on singular views, the Terms List output is constrained to one canonical primary term for the selected taxonomy. Uses <code>\\FlexLine\\PrimaryTerms\\resolve_primary_term_id()</code> and falls back to normal core output when context/term resolution is unavailable.',
 					),
 				),
 			),
@@ -605,7 +613,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<h4>How the filter behaves</h4>
 					<ul>
 						<li>Only runs on singular views. Archives continue to use the block’s default query.</li>
-						<li>Looks up the “best” term for the selected taxonomy in this order: Yoast SEO primary term → Rank Math primary term → first assigned term. If no term exists, the loop intentionally returns zero posts.</li>
+						<li>Looks up the “best” term using the shared canonical resolver: <code>w4sl_primary_{taxonomy}</code> first, then plugin-aware fallbacks (Yoast / Rank Math / assigned terms) when needed. If no term exists, the loop intentionally returns zero posts.</li>
 						<li>Excludes the current post, preserves your items-per-page / layout settings, and updates <code>post_type</code> when you choose the “All post types” scope.</li>
 						<li>Requires no bespoke block markup—attributes live directly on core/query so patterns remain portable.</li>
 					</ul>
@@ -614,6 +622,31 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<li>Drop in the <code>flexline/related-posts</code> pattern for a ready-made three-column layout with the feature preconfigured.</li>
 						<li>Use standard Query Loop filters (taxonomy, author, etc.) only when you want to constrain the editor preview; the runtime filter ignores those when Related mode is active.</li>
 						<li>Because the toggle is opt-in per block, you can mix manual Query Loops and related ones on the same page.</li>
+					</ul>
+				</section>
+
+				<!-- ✨ PRIMARY TERMS -->
+				<section id="primary-terms">
+					<h3>Primary Terms and Breadcrumbs</h3>
+					<p>FlexLine now owns canonical primary terms and reuses the same resolver across breadcrumbs, related posts, and selected block extensions.</p>
+					<h4>Canonical keys</h4>
+					<ul>
+						<li>Canonical value per taxonomy: <code>w4sl_primary_{taxonomy}</code>.</li>
+						<li>Per-source timestamps: <code>w4sl_primary_{taxonomy}_ts_w4sl</code>, <code>_ts_yoast</code>, and <code>_ts_rank_math</code>.</li>
+						<li>Plugin mirrors (when available): <code>_yoast_wpseo_primary_{taxonomy}</code> and <code>rank_math_primary_{taxonomy}</code>.</li>
+					</ul>
+					<h4>How sync works</h4>
+					<ul>
+						<li>FlexLine sidebar controls write canonical meta directly; quick edit supports canonical category.</li>
+						<li>Meta updates from FlexLine, Yoast, or Rank Math are normalized through one resolver with term validation (exists, taxonomy matches, assigned to post).</li>
+						<li>When a winning value changes, FlexLine mirrors it out to active plugin keys to keep UIs aligned.</li>
+						<li>Legacy posts without canonical timestamps are seeded lazily on read/save and can be backfilled with <code>wp flexline primary-term backfill</code>.</li>
+					</ul>
+					<h4>Breadcrumb behavior (WordPress 7.0+)</h4>
+					<ul>
+						<li>Theme meta patterns use the core <code>Breadcrumbs</code> block (<code>core/breadcrumbs</code>) with taxonomy preference enabled.</li>
+						<li>FlexLine filters <code>block_core_breadcrumbs_post_type_settings</code> and injects taxonomy + term slug from canonical primary-term resolution.</li>
+						<li>If no valid primary term is available, core breadcrumb fallback behavior is preserved.</li>
 					</ul>
 				</section>
 
@@ -653,7 +686,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<li><strong>Gravity Forms</strong> – form fields, buttons, and validation states inherit FlexLine spacing, typography, and color tokens.</li>
 						<li><strong>Events Manager</strong> – event archives and single layouts align with theme spacing; starter settings live in <code>assets/events-manager/</code> for quick imports.</li>
 						<li><strong>Query Loop Filters</strong> – Human Made’s filter controls adopt FlexLine navigation spacing, button treatments, and form styling for consistent filter bars. <a href="https://github.com/humanmade/query-filter" target="_blank">Download from Github</a></li>
-						<li><strong>Yoast SEO</strong> – required when you use patterns that include the Yoast Breadcrumbs block; the theme expects the plugin to render breadcrumb markup.</li>
+						<li><strong>Yoast SEO / Rank Math SEO</strong> – optional integrations. FlexLine mirrors canonical primary terms to and from plugin meta keys when either plugin is active.</li>
 					</ul>
 				</section>
 
@@ -1068,6 +1101,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
 						<li><a href="#related-posts">Related Posts (Query Loop)</a></li>
+						<li><a href="#primary-terms">Primary Terms &amp; Breadcrumbs</a></li>
 						<li><a href="#visibility-toggle">Visibility Toggle Groups</a></li>
 						<li><a href="#plugin-integrations">Plugin Integrations</a></li>
 						<li><a href="#utility-classes">Utility Classes</a>

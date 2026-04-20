@@ -1,6 +1,11 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
+import {
+	isContentShiftFieldSet,
+	normalizeContentShiftInput,
+	toNegativeContentShiftValue,
+} from './utils';
 
 /**
  * Ensure wrapper ID and inline styles are applied at the wrapper level
@@ -19,63 +24,78 @@ const withFlexlineWrapperProps = createHigherOrderComponent(
 			nextWrapperProps.id = nextWrapperProps.id || `block-${clientId}`;
 
 			const style = { ...(nextWrapperProps.style || {}) };
+			const setStyleValue = (key, value) => {
+				if (value === undefined) {
+					delete style[key];
+					return;
+				}
+				style[key] = value;
+			};
 
 			if (attributes.useContentShift) {
-				let shiftLeft = '0';
-				let shiftRight = '0';
-				let shiftUp = '0';
-				let shiftDown = '0';
-				let slideX = '0';
-				let slideY = '0';
-
-				if (attributes.shiftLeft) {
-					shiftLeft = '-' + attributes.shiftLeft;
-				}
-				if (attributes.shiftRight) {
-					shiftRight = '-' + attributes.shiftRight;
-				}
-				if (attributes.shiftUp) {
-					shiftUp = '-' + attributes.shiftUp;
-				}
-				if (attributes.shiftDown) {
-					shiftDown = '-' + attributes.shiftDown;
-				}
-				if (attributes.slideHorizontal) {
-					slideX = attributes.slideHorizontal;
-				}
-				if (attributes.slideVertical) {
-					slideY = attributes.slideVertical;
-				}
+				const shiftLeft = isContentShiftFieldSet(attributes.shiftLeft)
+					? toNegativeContentShiftValue(attributes.shiftLeft)
+					: '';
+				const shiftRight = isContentShiftFieldSet(attributes.shiftRight)
+					? toNegativeContentShiftValue(attributes.shiftRight)
+					: '';
+				const shiftUp = isContentShiftFieldSet(attributes.shiftUp)
+					? toNegativeContentShiftValue(attributes.shiftUp)
+					: '';
+				const shiftDown = isContentShiftFieldSet(attributes.shiftDown)
+					? toNegativeContentShiftValue(attributes.shiftDown)
+					: '';
+				const slideX = isContentShiftFieldSet(
+					attributes.slideHorizontal
+				)
+					? normalizeContentShiftInput(attributes.slideHorizontal)
+					: '';
+				const slideY = isContentShiftFieldSet(attributes.slideVertical)
+					? normalizeContentShiftInput(attributes.slideVertical)
+					: '';
 
 				// CSS vars for theme rules
-				style['--flexline-shift-left'] = shiftLeft;
-				style['--flexline-shift-right'] = shiftRight;
-				style['--flexline-shift-up'] = shiftUp;
-				style['--flexline-shift-down'] = shiftDown;
-				style['--flexline-slide-x'] = slideX;
-				style['--flexline-slide-y'] = slideY;
+				setStyleValue('--flexline-shift-left', shiftLeft || undefined);
+				setStyleValue(
+					'--flexline-shift-right',
+					shiftRight || undefined
+				);
+				setStyleValue('--flexline-shift-up', shiftUp || undefined);
+				setStyleValue('--flexline-shift-down', shiftDown || undefined);
+				setStyleValue('--flexline-slide-x', slideX || undefined);
+				setStyleValue('--flexline-slide-y', slideY || undefined);
 
 				// Inline preview fallbacks
-				if (shiftLeft !== '0') {
-					style.marginLeft = shiftLeft;
-				}
-				if (shiftRight !== '0') {
-					style.marginRight = shiftRight;
-				}
-				if (shiftUp !== '0') {
-					style.marginTop = shiftUp;
-					style.marginBlockStart = shiftUp;
-				}
-				if (shiftDown !== '0') {
-					style.marginBottom = shiftDown;
-				}
-				if (slideX !== '0' || slideY !== '0') {
+				setStyleValue('marginLeft', shiftLeft || undefined);
+				setStyleValue('marginRight', shiftRight || undefined);
+				setStyleValue('marginTop', shiftUp || undefined);
+				setStyleValue('marginBlockStart', shiftUp || undefined);
+				setStyleValue('marginBottom', shiftDown || undefined);
+				if (slideX || slideY) {
 					const existingTransform = style.transform || '';
-					const translate = `translateX(${slideX}) translateY(${slideY})`;
-					style.transform = existingTransform
-						? `${existingTransform} ${translate}`
-						: translate;
+					const translate = `translateX(${slideX || '0'}) translateY(${slideY || '0'})`;
+					setStyleValue(
+						'transform',
+						existingTransform
+							? `${existingTransform} ${translate}`
+							: translate
+					);
+				} else {
+					setStyleValue('transform', undefined);
 				}
+			} else {
+				setStyleValue('--flexline-shift-left', undefined);
+				setStyleValue('--flexline-shift-right', undefined);
+				setStyleValue('--flexline-shift-up', undefined);
+				setStyleValue('--flexline-shift-down', undefined);
+				setStyleValue('--flexline-slide-x', undefined);
+				setStyleValue('--flexline-slide-y', undefined);
+				setStyleValue('marginLeft', undefined);
+				setStyleValue('marginRight', undefined);
+				setStyleValue('marginTop', undefined);
+				setStyleValue('marginBlockStart', undefined);
+				setStyleValue('marginBottom', undefined);
+				setStyleValue('transform', undefined);
 			}
 
 			nextWrapperProps.style = style;

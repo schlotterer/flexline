@@ -122,7 +122,15 @@ FlexLine ships opinionated styling for several third-party plugins so they feel 
 - [Gravity Forms](https://www.gravityforms.com/) – aligns form fields, buttons, and validation messages with the theme’s typography and spacing.
 - [Events Manager](https://wordpress.org/plugins/events-manager/) – keeps event lists, single templates, and the bundled starter settings consistent with FlexLine layouts.
 - [Query Loop Filters](https://github.com/humanmade/query-filter) – matches filter bars and control states from Human Made’s Query Loop Filters plugin to the theme’s navigation spacing and button treatments.
-- [Yoast SEO](https://yoast.com/wordpress/plugins/seo/) – required for patterns that reference the Yoast Breadcrumbs block; install the plugin to render those patterns as intended.
+- [Yoast SEO](https://yoast.com/wordpress/plugins/seo/) and [Rank Math SEO](https://wordpress.org/plugins/seo-by-rank-math/) – optional. FlexLine mirrors canonical primary-term choices to/from both plugins when installed.
+
+## Primary Terms and Breadcrumbs
+
+- FlexLine owns canonical primary terms in post meta using `w4sl_primary_{taxonomy}`.
+- On WordPress 7.0+ patterns use the core `core/breadcrumbs` block, not Yoast’s breadcrumbs block.
+- FlexLine filters `block_core_breadcrumbs_post_type_settings` so core breadcrumbs prefer the canonical primary term (when the block uses taxonomy mode, e.g. `prefersTaxonomy: true`).
+- If Yoast or Rank Math is active, FlexLine bi-directionally syncs primary-term values so editor changes and plugin UI changes stay aligned.
+- Related posts and categories “Primary Term Only” mode both use the shared resolver, so behavior stays consistent across features.
 
 ## WordPress 6.9 Accordion Block
 

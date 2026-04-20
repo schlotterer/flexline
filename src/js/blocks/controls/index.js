@@ -1,7 +1,12 @@
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
-import { updateBlockClasses } from '../utils';
+import {
+	isContentShiftFieldSet,
+	normalizeContentShiftInput,
+	toNegativeContentShiftValue,
+	updateBlockClasses,
+} from '../utils';
 
 import button from './button';
 import buttons from './buttons';
@@ -15,6 +20,7 @@ import columns from './columns';
 import siteLogo from './site-logo';
 import visibility from './visibility';
 import query from './query';
+import categories from './categories';
 
 const handlers = {
 	'core/button': button,
@@ -28,6 +34,7 @@ const handlers = {
 	'core/columns': columns,
 	'core/post-template': columns,
 	'core/query': query,
+	'core/categories': categories,
 	'core/column': visibility,
 	'core/spacer': visibility,
 	'core/paragraph': visibility,
@@ -80,16 +87,24 @@ const classMap = {
 	enableGroupLink: { true: 'group-link' },
 };
 
-// Content shift related classes.
-const contentShiftMap = {
+// Content shift classes tied to numeric fields.
+const contentShiftValueMap = {
 	shiftLeft: 'flexline-content-shift-left',
 	shiftRight: 'flexline-content-shift-right',
 	shiftUp: 'flexline-content-shift-up',
 	shiftDown: 'flexline-content-shift-down',
 	slideHorizontal: 'flexline-content-slide-x',
 	slideVertical: 'flexline-content-slide-y',
-	shiftToTop: 'flexline-content-shift-above',
+};
+
+// Content shift classes tied to boolean controls under useContentShift.
+const contentShiftBooleanMap = {
 	resetMobile: 'flexline-content-shift-revert-mobile',
+};
+
+// Content shift classes that are independent from useContentShift.
+const contentShiftIndependentMap = {
+	shiftToTop: 'flexline-content-shift-above',
 };
 
 const getContentShiftClasses = (attrs) => {
@@ -97,26 +112,35 @@ const getContentShiftClasses = (attrs) => {
 	const added = [];
 	const base = 'flexline-content-shift';
 
+	Object.entries(contentShiftIndependentMap).forEach(([attr, cls]) => {
+		if (attrs[attr]) {
+			added.push(cls);
+		} else {
+			removed.push(cls);
+		}
+	});
+
 	if (!attrs.useContentShift) {
-		removed.push(base, ...Object.values(contentShiftMap));
+		removed.push(
+			base,
+			...Object.values(contentShiftValueMap),
+			...Object.values(contentShiftBooleanMap)
+		);
 		return { removed, added };
 	}
 
 	added.push(base);
 
-	Object.entries(contentShiftMap).forEach(([attr, cls]) => {
-		const value = attrs[attr];
-		const hasValue = [
-			'shiftLeft',
-			'shiftRight',
-			'shiftUp',
-			'shiftDown',
-			'slideHorizontal',
-			'slideVertical',
-		].includes(attr)
-			? value && value !== '0px'
-			: !!value;
-		if (hasValue) {
+	Object.entries(contentShiftValueMap).forEach(([attr, cls]) => {
+		if (isContentShiftFieldSet(attrs[attr])) {
+			added.push(cls);
+		} else {
+			removed.push(cls);
+		}
+	});
+
+	Object.entries(contentShiftBooleanMap).forEach(([attr, cls]) => {
+		if (attrs[attr]) {
 			added.push(cls);
 		} else {
 			removed.push(cls);
@@ -213,73 +237,60 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 			// Content Shift variables
 			if (props.attributes.useContentShift) {
-				let shiftLeft = '0';
-				let shiftRight = '0';
-				let shiftUp = '0';
-				let shiftDown = '0';
-				let slideX = '0';
-				let slideY = '0';
+				const shiftLeft = isContentShiftFieldSet(attributes.shiftLeft)
+					? toNegativeContentShiftValue(attributes.shiftLeft)
+					: '';
+				const shiftRight = isContentShiftFieldSet(attributes.shiftRight)
+					? toNegativeContentShiftValue(attributes.shiftRight)
+					: '';
+				const shiftUp = isContentShiftFieldSet(attributes.shiftUp)
+					? toNegativeContentShiftValue(attributes.shiftUp)
+					: '';
+				const shiftDown = isContentShiftFieldSet(attributes.shiftDown)
+					? toNegativeContentShiftValue(attributes.shiftDown)
+					: '';
+				const slideX = isContentShiftFieldSet(
+					attributes.slideHorizontal
+				)
+					? normalizeContentShiftInput(attributes.slideHorizontal)
+					: '';
+				const slideY = isContentShiftFieldSet(attributes.slideVertical)
+					? normalizeContentShiftInput(attributes.slideVertical)
+					: '';
 
-				if (attributes.shiftLeft) {
-					shiftLeft = '-' + attributes.shiftLeft;
-				}
-				if (attributes.shiftRight) {
-					shiftRight = '-' + attributes.shiftRight;
-				}
-				if (attributes.shiftUp) {
-					shiftUp = '-' + attributes.shiftUp;
-				}
-				if (attributes.shiftDown) {
-					shiftDown = '-' + attributes.shiftDown;
-				}
-				if (attributes.slideHorizontal) {
-					slideX = attributes.slideHorizontal;
-				}
-				if (attributes.slideVertical) {
-					slideY = attributes.slideVertical;
-				}
+				const setContentShiftVar = (name, value) => {
+					setVar(name, value || undefined);
+					if (value) {
+						cssRules += `${name}: ${value};`;
+					}
+				};
 
-				cssRules += `
-                  --flexline-shift-left: ${shiftLeft};
-                  --flexline-shift-right: ${shiftRight};
-                  --flexline-shift-up: ${shiftUp};
-                  --flexline-shift-down: ${shiftDown};
-                  --flexline-slide-x: ${slideX};
-                  --flexline-slide-y: ${slideY};
-                `;
-
-				// Mirror inside the block wrapper for editor iframe
-				setVar('--flexline-shift-left', shiftLeft);
-				setVar('--flexline-shift-right', shiftRight);
-				setVar('--flexline-shift-up', shiftUp);
-				setVar('--flexline-shift-down', shiftDown);
-				setVar('--flexline-slide-x', slideX);
-				setVar('--flexline-slide-y', slideY);
+				setContentShiftVar('--flexline-shift-left', shiftLeft);
+				setContentShiftVar('--flexline-shift-right', shiftRight);
+				setContentShiftVar('--flexline-shift-up', shiftUp);
+				setContentShiftVar('--flexline-shift-down', shiftDown);
+				setContentShiftVar('--flexline-slide-x', slideX);
+				setContentShiftVar('--flexline-slide-y', slideY);
 
 				// Additionally, apply direct inline styles so Template Editor canvas
 				// (which may not load our CSS) still previews the shift.
-				if (shiftLeft !== '0') {
-					inlineStyles.marginLeft = shiftLeft;
-				}
-				if (shiftRight !== '0') {
-					inlineStyles.marginRight = shiftRight;
-				}
-				if (shiftUp !== '0') {
-					inlineStyles.marginTop = shiftUp;
-					inlineStyles.marginBlockStart = shiftUp;
-				}
-				if (shiftDown !== '0') {
-					inlineStyles.marginBottom = shiftDown;
-				}
-				if (slideX !== '0' || slideY !== '0') {
+				inlineStyles.marginLeft = shiftLeft || undefined;
+				inlineStyles.marginRight = shiftRight || undefined;
+				inlineStyles.marginTop = shiftUp || undefined;
+				inlineStyles.marginBlockStart = shiftUp || undefined;
+				inlineStyles.marginBottom = shiftDown || undefined;
+
+				if (slideX || slideY) {
 					const existingTransform =
 						(props.wrapperProps.style &&
 							props.wrapperProps.style.transform) ||
 						'';
-					const translate = `translateX(${slideX}) translateY(${slideY})`;
+					const translate = `translateX(${slideX || '0'}) translateY(${slideY || '0'})`;
 					inlineStyles.transform = existingTransform
 						? `${existingTransform} ${translate}`
 						: translate;
+				} else {
+					inlineStyles.transform = undefined;
 				}
 			} else {
 				// Ensure stale vars are cleared if feature is toggled off
@@ -289,6 +300,12 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				setVar('--flexline-shift-down', undefined);
 				setVar('--flexline-slide-x', undefined);
 				setVar('--flexline-slide-y', undefined);
+				inlineStyles.marginLeft = undefined;
+				inlineStyles.marginRight = undefined;
+				inlineStyles.marginTop = undefined;
+				inlineStyles.marginBlockStart = undefined;
+				inlineStyles.marginBottom = undefined;
+				inlineStyles.transform = undefined;
 			}
 
 			// Slider variables

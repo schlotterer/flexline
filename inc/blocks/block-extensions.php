@@ -135,15 +135,81 @@ function flexline_update_img_attributes( $block_content, $attributes = array(), 
 	return $updated ? $processor->get_updated_html() : $block_content;
 }
 
+/**
+ * Render core/categories as a single primary term when enabled.
+ *
+ * @param string         $block_content  Rendered block markup.
+ * @param array          $block          Parsed block data.
+ * @param \WP_Block|null $block_instance Block instance.
+ * @return string
+ */
+function flexline_render_primary_term_categories( $block_content, $block, $block_instance ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( empty( $attrs['flexlinePrimaryTermOnly'] ) ) {
+		return $block_content;
+	}
+
+	if ( ! is_singular() ) {
+		return $block_content;
+	}
+
+	$post_id = (int) get_queried_object_id();
+	if ( $post_id <= 0 ) {
+		return $block_content;
+	}
+
+	$taxonomy = isset( $attrs['taxonomy'] ) ? sanitize_key( (string) $attrs['taxonomy'] ) : 'category';
+	if ( '' === $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
+		return $block_content;
+	}
+
+	if ( ! function_exists( '\\FlexLine\\PrimaryTerms\\resolve_primary_term_id' ) ) {
+		return $block_content;
+	}
+
+	$term_id = (int) \FlexLine\PrimaryTerms\resolve_primary_term_id( $post_id, $taxonomy );
+	if ( $term_id <= 0 ) {
+		return $block_content;
+	}
+
+	$term = get_term( $term_id, $taxonomy );
+	if ( ! $term || is_wp_error( $term ) ) {
+		return $block_content;
+	}
+
+	if ( ! function_exists( 'render_block_core_categories' ) ) {
+		return $block_content;
+	}
+
+	// Re-render through core with include[] so we preserve native list/dropdown behavior,
+	// wrapper classes, and enhanced-pagination link handling.
+	$render_attrs = array_merge(
+		array(
+			'taxonomy' => 'category',
+		),
+		$attrs,
+		array(
+			'taxonomy' => $taxonomy,
+			'include'  => array( $term_id ),
+		)
+	);
+
+	$rendered = render_block_core_categories( $render_attrs, '', $block_instance );
+
+	return is_string( $rendered ) && '' !== $rendered ? $rendered : $block_content;
+}
+
 
 /**
  * Renders the flexline block modal.
  *
  * @param mixed $block_content The content of the block.
  * @param array $block The block settings.
+ * @param mixed $block_instance Block instance.
  * @return mixed The modified block content.
  */
-function flexline_block_customizations_render( $block_content, $block ) {
+function flexline_block_customizations_render( $block_content, $block, $block_instance = null ) {
 
 	if ( 'core/button' === $block['blockName'] ) {
 		if ( isset( $block['attrs']['iconType'] ) && 'download' === $block['attrs']['iconType'] ) {
@@ -151,6 +217,10 @@ function flexline_block_customizations_render( $block_content, $block ) {
 				$replace_string = 'download href="';
 				$block_content  = str_replace( $search_string, $replace_string, $block_content );
 		}
+	}
+
+	if ( 'core/categories' === $block['blockName'] ) {
+		return flexline_render_primary_term_categories( $block_content, $block, $block_instance );
 	}
 
 	if ( 'core/image' === $block['blockName'] ) {
@@ -451,4 +521,4 @@ function flexline_block_customizations_render( $block_content, $block ) {
 	}
 	return $block_content;
 }
-add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 2 );
+add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 3 );
