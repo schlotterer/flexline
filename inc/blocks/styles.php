@@ -53,8 +53,7 @@ function flexline_get_block_styles() {
 				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/columns'                          => array(
-				'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
-				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
+				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
 			),
 			'core/group'                            => array(
 				'card'                  => __( 'Card', 'flexline' ),
@@ -171,9 +170,6 @@ function flexline_get_block_styles() {
 				'glass-button' => __( 'Glass Button', 'flexline' ),
 				'outline'      => __( 'Outline', 'flexline' ),
 				'text-link'    => __( 'Plain Text', 'flexline' ),
-			),
-			'core/post-template'                    => array(
-				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 			),
 			// Web4SL Floor Plan image-like blocks (use image styles only).
 			'web4sl/floor-plan-2d-image'            => array(
