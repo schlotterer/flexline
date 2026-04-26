@@ -38,7 +38,40 @@ function flexlineOnEarlyReady(callback) {
 }
 
 flexlineOnEarlyReady(() => {
+	const MODAL_BOUND_ATTR = 'data-flexline-modal-bound';
+	const MODAL_SCOPE_SELECTOR = '.enable-modal, .group-link-type-modal_media';
+
+	const isElementNode = (node) => node && node.nodeType === 1;
+
+	const collectMatches = (root, selector) => {
+		const matches = [];
+		const scope =
+			root && typeof root.querySelectorAll === 'function'
+				? root
+				: document;
+
+		if (isElementNode(root) && root.matches(selector)) {
+			matches.push(root);
+		}
+
+		scope.querySelectorAll(selector).forEach((element) => {
+			matches.push(element);
+		});
+
+		return matches;
+	};
+
+	const isAlreadyBound = (element) =>
+		element.getAttribute(MODAL_BOUND_ATTR) === '1';
+
+	const markAsBound = (element) =>
+		element.setAttribute(MODAL_BOUND_ATTR, '1');
+
 	const enableModal = (element, url) => {
+		if (isAlreadyBound(element)) {
+			return;
+		}
+
 		element.classList.add('has-modal');
 		element.setAttribute('data-enable-modal', 'true');
 		element.setAttribute('data-modal-media-url', url);
@@ -90,36 +123,37 @@ flexlineOnEarlyReady(() => {
 				openFromTrigger(e.currentTarget);
 			}
 		});
+
+		markAsBound(element);
 	};
 
-	document
-		.querySelectorAll('.enable-modal:not(.wp-block-button)')
-		.forEach((block) => {
-			const mediaElement = block.querySelector('img, a');
-			if (!mediaElement) {
-				return;
-			}
+	const bindModalTriggers = (root = document) => {
+		collectMatches(root, '.enable-modal:not(.wp-block-button)').forEach(
+			(block) => {
+				const mediaElement = block.querySelector('img, a');
+				if (!mediaElement) {
+					return;
+				}
 
-			const mediaUrl =
-				block.dataset.modalMediaUrl ||
-				mediaElement.getAttribute(
-					mediaElement.tagName === 'A' ? 'href' : 'src'
-				);
-			if (mediaUrl) {
-				enableModal(mediaElement, mediaUrl);
+				const mediaUrl =
+					block.dataset.modalMediaUrl ||
+					mediaElement.getAttribute(
+						mediaElement.tagName === 'A' ? 'href' : 'src'
+					);
+				if (mediaUrl) {
+					enableModal(mediaElement, mediaUrl);
+				}
 			}
-		});
+		);
 
-	// find all .enable-modal.wp-block-button elements
-	document
-		.querySelectorAll('.enable-modal.wp-block-button a')
-		.forEach((element) => {
-			const url = element.href;
-			if (!url) {
-				return;
-			}
+		// find all .enable-modal.wp-block-button elements
+		collectMatches(root, '.enable-modal.wp-block-button a').forEach(
+			(element) => {
+				const url = element.href;
+				if (!url || isAlreadyBound(element)) {
+					return;
+				}
 
-			if (url) {
 				element.setAttribute('aria-haspopup', 'dialog');
 				element.setAttribute('aria-controls', 'flexline-modal');
 				element.setAttribute('aria-expanded', 'false');
@@ -143,18 +177,20 @@ flexlineOnEarlyReady(() => {
 						openFromTrigger(e.currentTarget);
 					}
 				});
-			}
-		});
 
-	document
-		.querySelectorAll(
+				markAsBound(element);
+			}
+		);
+
+		collectMatches(
+			root,
 			'.group-link-type-modal_media .flexline-group-link-anchor'
-		)
-		.forEach((block) => {
+		).forEach((block) => {
 			const mediaUrl = block.href;
-			if (!mediaUrl) {
+			if (!mediaUrl || isAlreadyBound(block)) {
 				return;
 			}
+
 			block.setAttribute('aria-haspopup', 'dialog');
 			block.setAttribute('aria-controls', 'flexline-modal');
 			block.setAttribute('aria-expanded', 'false');
@@ -170,7 +206,104 @@ flexlineOnEarlyReady(() => {
 					triggerModal(e);
 				}
 			});
+
+			markAsBound(block);
 		});
+	};
+
+	const pendingRoots = new Set();
+	let bindScheduled = false;
+
+	const scheduleBind = (root = document) => {
+		pendingRoots.add(root || document);
+		if (bindScheduled) {
+			return;
+		}
+
+		bindScheduled = true;
+		window.requestAnimationFrame(() => {
+			bindScheduled = false;
+			const roots = Array.from(pendingRoots);
+			pendingRoots.clear();
+			roots.forEach((candidate) => {
+				bindModalTriggers(candidate);
+			});
+		});
+	};
+
+	const nodeHasPotentialModalTrigger = (node) => {
+		if (!isElementNode(node)) {
+			return false;
+		}
+
+		if (
+			node.matches(MODAL_SCOPE_SELECTOR) ||
+			node.closest(MODAL_SCOPE_SELECTOR)
+		) {
+			return true;
+		}
+
+		return !!node.querySelector(MODAL_SCOPE_SELECTOR);
+	};
+
+	const observeModalCandidates = () => {
+		const MutationObserverConstructor = window.MutationObserver;
+		if (typeof MutationObserverConstructor !== 'function') {
+			return;
+		}
+
+		const observer = new MutationObserverConstructor((mutations) => {
+			mutations.forEach((mutation) => {
+				if (
+					mutation.type !== 'childList' ||
+					!mutation.addedNodes.length
+				) {
+					return;
+				}
+
+				mutation.addedNodes.forEach((addedNode) => {
+					if (!nodeHasPotentialModalTrigger(addedNode)) {
+						return;
+					}
+
+					const bindRoot = isElementNode(addedNode)
+						? addedNode.closest(MODAL_SCOPE_SELECTOR) || addedNode
+						: document;
+					scheduleBind(bindRoot);
+				});
+			});
+		});
+
+		const observeTarget = (target) => {
+			if (!target || typeof target.nodeType !== 'number') {
+				return false;
+			}
+
+			try {
+				observer.observe(target, {
+					childList: true,
+					subtree: true,
+				});
+				return true;
+			} catch (error) {
+				return false;
+			}
+		};
+
+		if (!observeTarget(document.body || document.documentElement)) {
+			window.requestAnimationFrame(() => {
+				observeTarget(document.body || document.documentElement);
+			});
+		}
+	};
+
+	bindModalTriggers(document);
+
+	window.addEventListener('flexline:content-updated', () => {
+		scheduleBind(document);
+	});
+
+	observeModalCandidates();
 });
 
 // Lock/unlock body scroll while preserving position

@@ -177,8 +177,13 @@ function flexline_maybe_enqueue_modal( $block_content, $block ) {
 	}
 
 	$attrs = isset( $block['attrs'] ) ? (array) $block['attrs'] : array();
+	$name  = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
 	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
 	$needs = false;
+
+	if ( 'web4sl/location-map' === $name ) {
+		$needs = true;
+	}
 
 	if ( $class ) {
 		if ( false !== strpos( $class, 'enable-modal' ) || false !== strpos( $class, 'group-link-type-modal_media' ) ) {
