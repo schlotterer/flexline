@@ -1,0 +1,76 @@
+/* Editor Preview baseline: reserve height before runtime activates */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode {
+  position: relative;
+  min-height: var(
+    --slider-height-default,
+    calc(100dvh - var(--header-site-header-height, 0px))
+  );
+  /* Prevent scroll chaining/jumps while interacting in Preview */
+  overscroll-behavior: contain;
+}
+/* Editor (both Edit and Preview): ensure a default value is available */
+.editor-styles-wrapper .is-style-slider {
+  --slider-height-default: calc(100dvh - var(--header-site-header-height, 0px));
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  /* Ensure slides stack vertically when exiting Preview without reload */
+  display: block !important;
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-block-list__layout > *,
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  /* Normalize child slides to full-width stacked blocks */
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 auto !important;
+}
+
+.editor-styles-wrapper .is-style-slider:not(.slider-preview-mode) > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+  min-height: var(
+    --slider-height,
+    var(--slider-height-default, calc(100dvh - var(--header-site-header-height, 0px)))
+  );
+}
+
+/* Editor variant of the absolute stacking */
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > * {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  // pointer-events: none;
+  transition-property: opacity;
+  transition-duration: calc(var(--slider-transition-ms, 500) * 1ms);
+  transition-timing-function: ease;
+  will-change: opacity;
+}
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-active { opacity: 1; z-index: 2; pointer-events: auto; }
+.editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > *.is-slide-prev { z-index: 1; }
+
+/* Editor Preview: disable interaction with slides (both wrapper structures) */
+.editor-styles-wrapper .is-style-slider.slider-preview-mode * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .block-editor-block-list__layout > *.is-slide-active { pointer-events: auto !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode > .block-editor-inner-blocks > .block-editor-block-list__layout > * { pointer-events: none !important; }
+// .editor-styles-wrapper .is-style-slider.slider-preview-mode .is-slide-active { pointer-events: auto !important; }
+
+/* Reduce scroll jumps while interacting in Preview */
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .is-style-slider.slider-runtime-active > .block-editor-block-list__layout > * {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* Editor width sanity */
+.editor-styles-wrapper .slider-wrapper,
+.editor-styles-wrapper .is-style-slider {
+  width: 100%;
+}
+/* Editor: hide the default appender inside slider blocks to prevent non‑Cover inserts */
+.editor-styles-wrapper .is-style-slider > .block-editor-block-list__layout > .block-list-appender,
+.editor-styles-wrapper .is-style-slider > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+  display: none !important;
+}

@@ -139,6 +139,8 @@ function flexline_admin_enqueue_canvas_runtime_assets() {
 		return;
 	}
 
+	wp_enqueue_style( 'flexline-editor', get_theme_file_uri( 'assets/built/css/editor.css' ), array(), flexline_asset_ver( 'assets/built/css/editor.css' ) );
+
 	$editor_runtime_deps = array( 'wp-data', 'wp-dom-ready' );
 
 	wp_enqueue_script(

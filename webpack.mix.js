@@ -27,7 +27,11 @@ const jsFiles = [
 ];
 
 // Individual SASS files
-const sassFiles = ['src/scss/app.scss', 'src/scss/modal.scss'];
+const sassFiles = [
+	'src/scss/app.scss',
+	'src/scss/editor.scss',
+	'src/scss/modal.scss',
+];
 
 // Compile each JavaScript file to its own output
 jsFiles.forEach((file) => {

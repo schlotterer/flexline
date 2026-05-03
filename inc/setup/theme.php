@@ -29,6 +29,7 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		$editor_styles = array(
 			'./style.css',
 			'./assets/built/css/app.css',
+			'./assets/built/css/editor.css',
 			'./assets/built/css/modal.css',
 		);
 		$custom_css    = get_theme_file_path( 'assets/css/customize.css' );

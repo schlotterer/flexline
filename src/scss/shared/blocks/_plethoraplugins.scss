@@ -1,0 +1,45 @@
+@mixin flexline-plethoraplugins-rules($scope) {
+#{$scope} {
+	.plethoraplugins-accordion.plethoraplugins-theme__minimal {
+		&.plethoraplugins-theme__basic,
+		&.plethoraplugins-theme__tabby {
+			background-color: transparent !important;
+			padding: 0 !important;
+		}
+	}
+
+	a.js-plethoraplugins-tabs--link,
+	span.pds-accordion__heading {
+		font-family: var(--wp--preset--font-family--display) !important;
+	}
+
+	.pds-accordion__title {
+		border-radius: var(--wp--custom--border-radius) !important;
+		box-shadow: var(--wp--custom--box-shadow);
+		overflow: hidden !important;
+		transition: var(--wp--custom--transition-time);
+
+		&[aria-expanded='true'] {
+			background-color: color-mix(
+				in lab,
+				var(--wp--preset--color--primary) 70%,
+				#000
+			) !important;
+			border-bottom-left-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+			box-shadow: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 781.98px) {
+	#{$scope} {
+		.js-plethoraplugins-tab-panel,
+		.plethoraplugins-sidenavjump,
+		.plethoraplugins-sidenavjump-content {
+			flex-basis: 100% !important;
+			width: 100% !important;
+		}
+	}
+}
+}

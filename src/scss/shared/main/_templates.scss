@@ -1,0 +1,34 @@
+@mixin flexline-templates-rules($scope) {
+#{$scope} {
+
+	// Search In Header
+	.site-header .wp-block-search__inside-wrapper{
+		padding: 0;
+	}
+	.site-header .wp-block-search__button{
+		padding:var(--wp--custom--header-search-button-padding);
+	}
+	.site-header .wp-block-search__input{
+		background: var(--wp--custom--header-search-input-background);
+		border: none;
+		color: var(--wp--custom--header-search-color);
+		padding: 4px 16px;
+	}
+	.site-header .wp-block-search__input::placeholder {
+		color: var(--wp--preset--color--neutral-dark);
+		opacity: 1;
+	}
+
+		&.page-template-blank{
+			.wp-site-blocks{
+				min-height: 100vh;
+				min-height: 100dvh;
+				.entry-content{
+					min-height: 100vh;
+					min-height: 100dvh;
+				}
+			}
+		}
+	
+}
+}
