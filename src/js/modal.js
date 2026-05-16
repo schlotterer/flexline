@@ -146,39 +146,47 @@ flexlineOnEarlyReady(() => {
 			}
 		);
 
-		// find all .enable-modal.wp-block-button elements
-		collectMatches(root, '.enable-modal.wp-block-button a').forEach(
-			(element) => {
-				const url = element.href;
-				if (!url || isAlreadyBound(element)) {
+		// Bind modal triggers for button blocks rendered as either <a> or <button>.
+		collectMatches(root, '.enable-modal.wp-block-button').forEach(
+			(block) => {
+				const trigger = block.querySelector('a, button');
+				if (!trigger || isAlreadyBound(trigger)) {
 					return;
 				}
 
-				element.setAttribute('aria-haspopup', 'dialog');
-				element.setAttribute('aria-controls', 'flexline-modal');
-				element.setAttribute('aria-expanded', 'false');
-				if (
-					!element.textContent.trim() &&
-					!element.getAttribute('aria-label')
-				) {
-					element.setAttribute('aria-label', 'Open media in modal');
+				const blockUrl = (block.dataset.modalMediaUrl || '').trim();
+				const hrefUrl =
+					trigger.tagName === 'A' ? (trigger.href || '').trim() : '';
+				const url = blockUrl || hrefUrl;
+				if (!url) {
+					return;
 				}
-				const openFromTrigger = (trigger) => {
-					trigger.setAttribute('aria-expanded', 'true');
-					displayModal(url, trigger);
+
+				trigger.setAttribute('aria-haspopup', 'dialog');
+				trigger.setAttribute('aria-controls', 'flexline-modal');
+				trigger.setAttribute('aria-expanded', 'false');
+				if (
+					!trigger.textContent.trim() &&
+					!trigger.getAttribute('aria-label')
+				) {
+					trigger.setAttribute('aria-label', 'Open media in modal');
+				}
+				const openFromTrigger = (activeTrigger) => {
+					activeTrigger.setAttribute('aria-expanded', 'true');
+					displayModal(url, activeTrigger);
 				};
-				element.addEventListener('click', (e) => {
+				trigger.addEventListener('click', (e) => {
 					e.preventDefault();
 					openFromTrigger(e.currentTarget);
 				});
-				element.addEventListener('keydown', (e) => {
+				trigger.addEventListener('keydown', (e) => {
 					if (e.key === 'Enter' || e.key === ' ') {
 						e.preventDefault();
 						openFromTrigger(e.currentTarget);
 					}
 				});
 
-				markAsBound(element);
+				markAsBound(trigger);
 			}
 		);
 
