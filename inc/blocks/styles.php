@@ -80,8 +80,7 @@ function flexline_get_block_styles() {
 				'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 			),
 			'core/navigation-link'                  => array(
-				'outline'     => __( 'Outline', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/page-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
@@ -110,14 +109,12 @@ function flexline_get_block_styles() {
 				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/heading'                          => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
 			),
 			'core/paragraph'                        => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
 			),
 			'core/site-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
