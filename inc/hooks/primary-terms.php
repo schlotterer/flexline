@@ -139,6 +139,37 @@ function get_public_taxonomies_for_post_type( string $post_type ): array {
 }
 
 /**
+ * Return public editor-visible taxonomies that can support the primary-term sidebar.
+ *
+ * @param string $post_type Post type slug.
+ * @return array
+ */
+function get_primary_term_sidebar_taxonomies_for_post_type( string $post_type ): array {
+	if ( '' === $post_type || ! post_type_exists( $post_type ) ) {
+		return array();
+	}
+
+	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+	$slugs      = array();
+
+	foreach ( $taxonomies as $taxonomy ) {
+		if ( ! $taxonomy instanceof WP_Taxonomy ) {
+			continue;
+		}
+
+		if ( ! $taxonomy->public || ! $taxonomy->show_ui || ! $taxonomy->show_in_rest ) {
+			continue;
+		}
+
+		$slugs[] = $taxonomy->name;
+	}
+
+	sort( $slugs );
+
+	return $slugs;
+}
+
+/**
  * Return public taxonomies attached to a post.
  *
  * @param int $post_id Post ID.
@@ -1041,7 +1072,16 @@ function enqueue_sidebar_assets(): void {
 	}
 
 	$post_type = get_current_admin_post_type();
+	if ( '' === $post_type || ! post_type_exists( $post_type ) ) {
+		return;
+	}
+
 	if ( should_hide_flexline_primary_terms_ui( $post_type ) ) {
+		return;
+	}
+
+	$supported_taxonomies = get_primary_term_sidebar_taxonomies_for_post_type( $post_type );
+	if ( empty( $supported_taxonomies ) ) {
 		return;
 	}
 
@@ -1051,6 +1091,15 @@ function enqueue_sidebar_assets(): void {
 		array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ),
 		function_exists( '\\FlexLine\\flexline_asset_ver' ) ? \FlexLine\flexline_asset_ver( 'assets/js/primary-term-sidebar.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' ),
 		true
+	);
+
+	wp_localize_script(
+		'flexline-primary-term-sidebar',
+		'flexlinePrimaryTerms',
+		array(
+			'postType'   => $post_type,
+			'taxonomies' => $supported_taxonomies,
+		)
 	);
 }
 

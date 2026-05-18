@@ -369,6 +369,10 @@
 				bottom: var(--flexline-scroller-dot-offset-inside);
 				top: auto;
 			}
+
+			+.horizontal-scroller-nav-buttons+.horizontal-scroller-range-dots {
+				bottom: 48px;
+			}
 		}
 
 		&.horizontal-scroller-buttons-vertical-top {
@@ -380,6 +384,10 @@
 			+.horizontal-scroller-nav-buttons+.horizontal-scroller-range-dots {
 				top: var(--flexline-scroller-dot-offset-inside);
 				bottom: auto;
+			}
+
+			+.horizontal-scroller-nav-buttons+.horizontal-scroller-range-dots {
+				top: 48px;
 			}
 		}
 	}

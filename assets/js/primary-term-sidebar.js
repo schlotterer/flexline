@@ -33,6 +33,18 @@
 		return Number.isNaN( parsed ) ? 0 : parsed;
 	}
 
+	const config = window.flexlinePrimaryTerms || {};
+	const configuredPostType = config.postType || '';
+	const configuredTaxonomies = Array.isArray( config.taxonomies )
+		? config.taxonomies
+		: [];
+	const configuredTaxonomySet = configuredTaxonomies.reduce( function( memo, taxonomy ) {
+		if ( taxonomy ) {
+			memo[ taxonomy ] = true;
+		}
+		return memo;
+	}, {} );
+
 	function movePrimaryTermsPanelBelowTaxonomies() {
 		const panel = document.querySelector( '.editor-sidebar__panel .flexline-primary-terms-panel' );
 		if ( ! panel || ! panel.parentElement ) {
@@ -63,8 +75,12 @@
 
 		const taxonomyModels = useSelect(
 			( select ) => {
-				if ( ! postType ) {
-					return null;
+				if (
+					! postType ||
+					postType !== configuredPostType ||
+					! configuredTaxonomies.length
+				) {
+					return [];
 				}
 
 				const core = select( 'core' );
@@ -83,6 +99,7 @@
 					.filter(
 						( taxonomy ) =>
 							taxonomy &&
+							configuredTaxonomySet[ taxonomy.slug ] &&
 							taxonomy.visibility &&
 							taxonomy.visibility.public &&
 							taxonomy.visibility.show_ui
