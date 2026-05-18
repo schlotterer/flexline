@@ -288,19 +288,20 @@
 		}
 	}
 
-	// Address
-	address {
+	// Contact info
+	.contact-address {
 		font-style: normal;
+		margin: 0;
+	}
 
-		&.contact-info {
+	.contact-info {
 
-			a {
-				display: inline-flex;
-				align-items: center;
+		a {
+			display: inline-flex;
+			align-items: center;
 
-				path {
-					fill: var(--wp--preset--color--contrast);
-				}
+			path {
+				fill: var(--wp--preset--color--contrast);
 			}
 		}
 	}
@@ -309,16 +310,12 @@
 		margin-block-start: 0;
 	}
 	.site-footer {
-		// Address
-		address {
+		.contact-info {
 
-			&.contact-info {
+			a {
 
-				a {
-
-					path {
-						fill: var(--wp--preset--color--base);
-					}
+				path {
+					fill: var(--wp--preset--color--base);
 				}
 			}
 		}

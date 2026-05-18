@@ -3,6 +3,11 @@
 	figure.poster-gallery.has-nested-images {
 		position: relative;
 
+		// Poster gallery already renders its own overlay icon; hide the core trigger icon here.
+		.wp-lightbox-container > button {
+			display: none;
+		}
+
 		> figure {
 			position: absolute !important;
 			visibility: hidden;

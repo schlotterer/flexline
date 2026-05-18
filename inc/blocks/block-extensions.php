@@ -22,6 +22,12 @@ function flexline_enqueue_block_editor_assets() {
 			function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
 			false
 		);
+
+		wp_add_inline_script(
+			'flexline-block-extensions',
+			'window.flexlineBlockExtensions = window.flexlineBlockExtensions || {}; window.flexlineBlockExtensions.useCoreGalleryLightbox = ' . ( version_compare( get_bloginfo( 'version' ), '7.0', '>=' ) ? 'true' : 'false' ) . ';',
+			'before'
+		);
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );

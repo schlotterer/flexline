@@ -21,15 +21,15 @@ namespace FlexLine;
  * @return void
  */
 function register_assets() {
-		static $registered = false;
+	static $registered = false;
 	if ( $registered ) {
 		return;
 	}
-		$registered = true;
+	$registered = true;
 
-		wp_register_style( 'baguettebox-css', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.css' ), array(), '1.11.1' );
-		wp_register_script( 'baguettebox', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.js' ), array(), '1.11.1', true );
-				wp_register_script( 'poster-gallery-helper', get_theme_file_uri( 'assets/js/poster-gallery-helper.js' ), array(), THEME_VERSION, true );
+	wp_register_style( 'baguettebox-css', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.css' ), array(), '1.11.1' );
+	wp_register_script( 'baguettebox', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.js' ), array(), '1.11.1', true );
+	wp_register_script( 'poster-gallery-helper', get_theme_file_uri( 'assets/js/poster-gallery-helper.js' ), array(), THEME_VERSION, true );
 
 	/**
 	 * Filters the CSS selector of baguetteBox.js.
@@ -66,6 +66,129 @@ function register_assets() {
 add_action( 'init', __NAMESPACE__ . '\register_assets' );
 
 /**
+ * Whether core should own gallery lightbox behavior.
+ *
+ * @return bool
+ */
+function should_use_core_gallery_lightbox() {
+	return version_compare( get_bloginfo( 'version' ), '7.0', '>=' );
+}
+
+/**
+ * Enqueue legacy baguetteBox assets.
+ *
+ * @return void
+ */
+function enqueue_baguettebox_assets() {
+	wp_enqueue_script( 'baguettebox' );
+	wp_enqueue_script( 'poster-gallery-helper' );
+	wp_enqueue_style( 'baguettebox-css' );
+}
+
+/**
+ * Determine whether a rendered block still needs the legacy lightbox.
+ *
+ * @param string $block_content The rendered block HTML.
+ * @param array  $block         The parsed block.
+ * @return bool
+ */
+function block_needs_legacy_baguettebox( $block_content, $block ) {
+	$attrs              = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+	$class              = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$uses_core_lightbox =
+		( isset( $attrs['linkTo'] ) && 'lightbox' === $attrs['linkTo'] ) ||
+		false !== strpos( $block_content, 'wp-lightbox-container' ) ||
+		false !== strpos( $block_content, 'showLightbox' ) ||
+		false !== strpos( $block_content, 'core/gallery' );
+
+	if ( $uses_core_lightbox ) {
+		return false;
+	}
+
+	if ( ! empty( $attrs['enablePosterGallery'] ) || false !== strpos( $class, 'poster-gallery' ) ) {
+		return true;
+	}
+
+	if ( false !== strpos( $block_content, 'poster-gallery' ) || false !== strpos( $block_content, 'enablePosterGallery' ) ) {
+		return true;
+	}
+
+	if ( false !== strpos( $block_content, 'class="gallery' ) || false !== strpos( $block_content, "class='gallery" ) ) {
+		return true;
+	}
+
+	if (
+		false !== strpos( $block_content, 'wp-block-media-text__media' ) &&
+		preg_match( '/<a\b[^>]+href=["\'][^"\']+\.(?:gif|jpe?g|png|webp|svg|avif|heif|heic|tiff?)(?:\?[^"\']*)?["\']/i', $block_content )
+	) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * Recursively inspect parsed content for legacy gallery behavior.
+ *
+ * @param array $blocks Parsed blocks.
+ * @return bool
+ */
+function blocks_need_legacy_baguettebox( $blocks ) {
+	foreach ( $blocks as $block ) {
+		if ( ! is_array( $block ) ) {
+			continue;
+		}
+
+		$inner_html = isset( $block['innerHTML'] ) ? (string) $block['innerHTML'] : '';
+		if ( block_needs_legacy_baguettebox( $inner_html, $block ) ) {
+			return true;
+		}
+
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) && blocks_need_legacy_baguettebox( $block['innerBlocks'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Determine whether current singular post content needs legacy lightbox assets.
+ *
+ * @return bool
+ */
+function current_content_needs_legacy_baguettebox() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post = get_post();
+	if ( ! $post || empty( $post->post_content ) || ! function_exists( 'parse_blocks' ) ) {
+		return false;
+	}
+
+	return blocks_need_legacy_baguettebox( parse_blocks( $post->post_content ) );
+}
+
+/**
+ * Determine whether current singular post content includes a classic gallery shortcode.
+ *
+ * @return bool
+ */
+function current_content_has_classic_gallery_shortcode() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post = get_post();
+	if ( ! $post || empty( $post->post_content ) ) {
+		return false;
+	}
+
+	return has_shortcode( $post->post_content, 'gallery' );
+}
+
+/**
  * Enqueues the assets for baguetteBox if necessary.
  *
  * This function enqueues the CSS and JavaScript files for baguetteBox if the current post
@@ -74,6 +197,14 @@ add_action( 'init', __NAMESPACE__ . '\register_assets' );
  * @return void
  */
 function enqueue_assets() {
+	$legacy_default = current_content_has_classic_gallery_shortcode() || current_content_needs_legacy_baguettebox();
+
+	if ( ! should_use_core_gallery_lightbox() ) {
+		$legacy_default = $legacy_default ||
+			has_block( 'core/gallery' ) ||
+			has_block( 'core/media-text' ) ||
+			current_content_has_classic_gallery_shortcode();
+	}
 
 	/**
 	 * Filters whether baguettebox assets have to be enqueued.
@@ -84,15 +215,27 @@ function enqueue_assets() {
 	 */
 	$baguettebox_enqueue_assets = apply_filters(
 		'baguettebox_enqueue_assets',
-		has_block( 'core/gallery' ) ||
-		has_block( 'core/media-text' ) ||
-		get_post_gallery()
+		$legacy_default
 	);
 
 	if ( $baguettebox_enqueue_assets ) {
-		wp_enqueue_script( 'baguettebox' );
-		wp_enqueue_script( 'poster-gallery-helper' );
-		wp_enqueue_style( 'baguettebox-css' );
+		enqueue_baguettebox_assets();
 	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
+
+/**
+ * Enqueue legacy lightbox assets while rendering legacy gallery blocks.
+ *
+ * @param string $block_content The rendered block HTML.
+ * @param array  $block         The parsed block.
+ * @return string
+ */
+function maybe_enqueue_legacy_baguettebox_for_block( $block_content, $block ) {
+	if ( should_use_core_gallery_lightbox() && block_needs_legacy_baguettebox( $block_content, $block ) ) {
+		enqueue_baguettebox_assets();
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block', __NAMESPACE__ . '\maybe_enqueue_legacy_baguettebox_for_block', 10, 2 );
