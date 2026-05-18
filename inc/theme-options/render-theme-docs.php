@@ -25,7 +25,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				'attributes' => array(
 					array(
 						'name'        => 'Hide on Desktop / Tablet / Mobile',
-						'description' => 'Toggles block visibility at common breakpoints—adds the appropriate <code>flexline-hide‑on‑*</code> class under the hood.',
+						'description' => 'Legacy FlexLine responsive visibility controls. Deprecated on WordPress 7.0+; use core Block Visibility from the block toolbar/options menu via Hide.',
 					),
 				),
 			),
@@ -598,6 +598,13 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					</div>
 				</section>
 
+				<!-- ✨ RESPONSIVE VISIBILITY -->
+				<section id="responsive-visibility">
+					<h3>Responsive Visibility Deprecation</h3>
+					<p>FlexLine responsive visibility controls are deprecated on WordPress 7.0+. Use WordPress core Block Visibility from the block toolbar/options menu via <strong>Hide</strong>. Existing FlexLine visibility classes and attributes continue to work for saved content and older WordPress installs, but new responsive visibility should use core block visibility. Viewport-hidden blocks remain in the DOM and are hidden with CSS.</p>
+					<p>On WordPress 7.0 and 7.1, FlexLine shows an editor notice where the legacy controls used to appear. When a block with legacy FlexLine visibility is opened in the editor on WordPress 7.0+, FlexLine converts the equivalent setting to core <code>metadata.blockVisibility.viewport</code> and removes the exact legacy visibility attributes/classes from that block. Starting with WordPress 7.2, the FlexLine visibility panel is removed. This does not affect the separate Visibility Toggle Groups feature.</p>
+				</section>
+
 				<!-- ✨ RELATED QUERY LOOPS -->
 				<section id="related-posts">
 					<h3>Related Posts for Query Loop</h3>
@@ -1100,6 +1107,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
+						<li><a href="#responsive-visibility">Responsive Visibility</a></li>
 						<li><a href="#related-posts">Related Posts (Query Loop)</a></li>
 						<li><a href="#primary-terms">Primary Terms &amp; Breadcrumbs</a></li>
 						<li><a href="#visibility-toggle">Visibility Toggle Groups</a></li>

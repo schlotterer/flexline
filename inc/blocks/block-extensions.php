@@ -14,20 +14,35 @@ use WP_HTML_Tag_Processor;
  * @return void
  */
 function flexline_enqueue_block_editor_assets() {
-		// Modal addons to core button and image blocks.
-		wp_enqueue_script(
-			'flexline-block-extensions',
-			get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
-			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text', 'wp-data' ),
-			function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
-			false
-		);
+	$wp_version         = get_bloginfo( 'version' );
+	$wp_numeric_version = preg_match( '/^\d+(?:\.\d+)?/', $wp_version, $version_matches ) ? $version_matches[0] : $wp_version;
+	$visibility_mode    = 'legacy';
 
-		wp_add_inline_script(
-			'flexline-block-extensions',
-			'window.flexlineBlockExtensions = window.flexlineBlockExtensions || {}; window.flexlineBlockExtensions.useCoreGalleryLightbox = ' . ( version_compare( get_bloginfo( 'version' ), '7.0', '>=' ) ? 'true' : 'false' ) . ';',
-			'before'
-		);
+	if ( version_compare( $wp_numeric_version, '7.2', '>=' ) ) {
+		$visibility_mode = 'hidden';
+	} elseif ( version_compare( $wp_numeric_version, '7.0', '>=' ) ) {
+		$visibility_mode = 'notice';
+	}
+
+	$block_extension_config = array(
+		'useCoreGalleryLightbox' => version_compare( $wp_numeric_version, '7.0', '>=' ),
+		'visibilityMode'         => $visibility_mode,
+	);
+
+	// Modal addons to core button and image blocks.
+	wp_enqueue_script(
+		'flexline-block-extensions',
+		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text', 'wp-data' ),
+		function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
+		false
+	);
+
+	wp_add_inline_script(
+		'flexline-block-extensions',
+		'window.flexlineBlockExtensions = Object.assign({}, window.flexlineBlockExtensions || {}, ' . wp_json_encode( $block_extension_config ) . ');',
+		'before'
+	);
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
@@ -71,6 +86,20 @@ function flexline_merge_inline_style( $block_content, $new_style_rules ) {
 }
 
 /**
+ * Determine whether a block already uses WordPress core viewport visibility.
+ *
+ * @param array $attrs The block attributes.
+ * @return bool True when core viewport visibility metadata is present.
+ */
+function has_core_viewport_visibility( $attrs ) {
+	$block_visibility = $attrs['metadata']['blockVisibility'] ?? null;
+
+	return is_array( $block_visibility )
+		&& isset( $block_visibility['viewport'] )
+		&& is_array( $block_visibility['viewport'] );
+}
+
+/**
  * Generate visibility classes based on block attributes.
  *
  * @param array $attrs The block attributes.
@@ -78,6 +107,10 @@ function flexline_merge_inline_style( $block_content, $new_style_rules ) {
  */
 function get_visibility_classes( $attrs ) {
 	$visibility_classes = '';
+
+	if ( has_core_viewport_visibility( $attrs ) ) {
+		return $visibility_classes;
+	}
 
 	if ( ! empty( $attrs['hideOnMobile'] ) ) {
 		$visibility_classes .= 'flexline-hide-on-mobile ';

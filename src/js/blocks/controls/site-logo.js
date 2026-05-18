@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
-import { getVisibilityControls } from '../utils';
+import { getVisibilityPanel } from '../utils';
 
 const SiteLogoControls = (BlockEdit, props) => {
 	const { attributes, setAttributes } = props;
@@ -40,9 +40,7 @@ const SiteLogoControls = (BlockEdit, props) => {
 						}
 					/>
 				</PanelBody>
-				<PanelBody title="FlexLine Visibility" ref={visibilityPanelRef}>
-					{getVisibilityControls(props)}
-				</PanelBody>
+				{getVisibilityPanel(props, null, { ref: visibilityPanelRef })}
 			</InspectorControls>
 		</Fragment>
 	);

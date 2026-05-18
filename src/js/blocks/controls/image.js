@@ -1,7 +1,7 @@
 import { Fragment } from '@wordpress/element';
 import { InspectorControls, URLInput } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
-import { getVisibilityControls, getContentShiftControls } from '../utils';
+import { getVisibilityPanel, getContentShiftControls } from '../utils';
 
 export const controls = (BlockEdit, props) => (
 	<Fragment>
@@ -32,9 +32,7 @@ export const controls = (BlockEdit, props) => (
 					/>
 				)}
 			</PanelBody>
-			<PanelBody title="FlexLine Visibility">
-				{getVisibilityControls(props)}
-			</PanelBody>
+			{getVisibilityPanel(props)}
 		</InspectorControls>
 		{getContentShiftControls(props)}
 	</Fragment>

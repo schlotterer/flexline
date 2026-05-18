@@ -13,7 +13,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { getVisibilityControls } from '../utils';
+import { getVisibilityPanel } from '../utils';
 
 const iconButtonLabel = (id, label) =>
 	id ? `Change ${label} Icon (ID ${id})` : `Select ${label} Icon`;
@@ -495,7 +495,8 @@ export const controls = (BlockEdit, props) => {
 						/>
 					)}
 				</PanelBody>
-				<PanelBody title="FlexLine Visibility">
+				{getVisibilityPanel(
+					props,
 					<ToggleControl
 						label="Stack at Tablet"
 						checked={!!props.attributes.stackAtTablet}
@@ -503,8 +504,7 @@ export const controls = (BlockEdit, props) => {
 							props.setAttributes({ stackAtTablet: newValue })
 						}
 					/>
-					{getVisibilityControls(props)}
-				</PanelBody>
+				)}
 			</InspectorControls>
 		</Fragment>
 	);
