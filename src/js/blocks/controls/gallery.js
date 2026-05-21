@@ -1,9 +1,7 @@
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
-
-const shouldUseCoreGalleryLightbox = () =>
-	!!window.flexlineBlockExtensions?.useCoreGalleryLightbox;
+import { shouldUseCoreGalleryLightbox } from '../utils';
 
 const getPosterGalleryAttributes = (enablePosterGallery) => {
 	const nextAttributes = { enablePosterGallery };

@@ -3,6 +3,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import {
 	getCoreVisibilityMigrationAttributes,
+	getLegacyGalleryLightboxAttributes,
 	isLegacyFlexlineVisibilityEnabled,
 	isContentShiftFieldSet,
 	normalizeContentShiftInput,
@@ -180,6 +181,16 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		}
 
 		useEffect(() => {
+			const galleryLightboxAttrs = getLegacyGalleryLightboxAttributes(
+				props.name,
+				props.attributes
+			);
+
+			if (galleryLightboxAttrs) {
+				props.setAttributes(galleryLightboxAttrs);
+				return;
+			}
+
 			const visibilityMigrationAttrs =
 				getCoreVisibilityMigrationAttributes(props.attributes);
 

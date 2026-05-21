@@ -75,6 +75,70 @@ function should_use_core_gallery_lightbox() {
 }
 
 /**
+ * Return Gallery block attributes for poster-gallery patterns.
+ *
+ * @param array $attrs Gallery block attributes.
+ * @return string JSON-encoded block attributes.
+ */
+function poster_gallery_pattern_attrs( $attrs = array() ) {
+	$attrs = array_merge(
+		array(
+			'enablePosterGallery' => true,
+		),
+		$attrs
+	);
+
+	if ( should_use_core_gallery_lightbox() ) {
+		$attrs['linkTo'] = 'lightbox';
+	}
+
+	return wp_json_encode( $attrs, JSON_UNESCAPED_SLASHES );
+}
+
+/**
+ * Return Image block attributes for images inside poster-gallery patterns.
+ *
+ * @param array $attrs Image block attributes.
+ * @return string JSON-encoded block attributes.
+ */
+function poster_gallery_image_pattern_attrs( $attrs = array() ) {
+	if ( should_use_core_gallery_lightbox() ) {
+		$attrs['lightbox'] = array(
+			'enabled' => true,
+		);
+	}
+
+	return wp_json_encode( $attrs, JSON_UNESCAPED_SLASHES );
+}
+
+/**
+ * Remove core lightbox attrs from legacy poster-gallery blocks before WP 7.0.
+ *
+ * @param array $parsed_block The parsed block.
+ * @return array Updated parsed block.
+ */
+function disable_core_lightbox_for_legacy_gallery_blocks( $parsed_block ) {
+	if ( should_use_core_gallery_lightbox() || empty( $parsed_block['blockName'] ) ) {
+		return $parsed_block;
+	}
+
+	$attrs = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
+
+	if ( 'core/gallery' === $parsed_block['blockName'] ) {
+		unset( $attrs['linkTo'] );
+		$parsed_block['attrs'] = $attrs;
+	}
+
+	if ( 'core/image' === $parsed_block['blockName'] ) {
+		unset( $attrs['lightbox'] );
+		$parsed_block['attrs'] = $attrs;
+	}
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', __NAMESPACE__ . '\disable_core_lightbox_for_legacy_gallery_blocks' );
+
+/**
  * Enqueue legacy baguetteBox assets.
  *
  * @return void

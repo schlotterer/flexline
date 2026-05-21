@@ -55,6 +55,29 @@ export const isLegacyFlexlineVisibilityEnabled = () =>
 export const shouldShowFlexlineVisibilityPanel = () =>
 	getFlexlineVisibilityMode() !== FLEXLINE_VISIBILITY_HIDDEN;
 
+export const shouldUseCoreGalleryLightbox = () =>
+	!!window.flexlineBlockExtensions?.useCoreGalleryLightbox;
+
+export const getLegacyGalleryLightboxAttributes = (blockName, attrs = {}) => {
+	if (shouldUseCoreGalleryLightbox()) {
+		return null;
+	}
+
+	if (blockName === 'core/gallery' && attrs.linkTo === 'lightbox') {
+		return {
+			linkTo: 'none',
+		};
+	}
+
+	if (blockName === 'core/image' && attrs.lightbox !== undefined) {
+		return {
+			lightbox: undefined,
+		};
+	}
+
+	return null;
+};
+
 const hasCoreBlockVisibility = (attrs) =>
 	attrs?.metadata &&
 	Object.prototype.hasOwnProperty.call(attrs.metadata, 'blockVisibility');
