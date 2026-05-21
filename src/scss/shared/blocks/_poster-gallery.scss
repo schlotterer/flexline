@@ -1,9 +1,8 @@
 @mixin flexline-poster-gallery-rules {
 	// Poster gallery should always render as a single visible cover image.
 	figure.poster-gallery.has-nested-images {
-		display: block;
-		overflow: hidden;
 		position: relative;
+		overflow: hidden;
 
 		// Poster gallery already renders its own overlay icon; hide the core trigger icon here.
 		.wp-lightbox-container > button {
@@ -11,34 +10,32 @@
 		}
 
 		> figure {
-			inset: 0;
 			margin: 0;
 			max-width: 100%;
 			position: absolute !important;
 			visibility: hidden;
-			width: 100%;
+			pointer-events: none;
 		}
 
 		> figure:first-of-type {
-			aspect-ratio: 3 / 2;
-			overflow: hidden;
+			inset: 0;
+			width: 100%;
+			height: 100%;
 			position: relative !important;
 			z-index: 1;
 			visibility: visible;
-
-			> a,
-			> .wp-lightbox-container {
-				display: block;
-				height: 100%;
-				width: 100%;
-			}
+			pointer-events: auto;
 
 			img {
-				display: block;
+				max-width: 100%;
+				width: 100%;
 				height: 100%;
 				object-fit: cover;
 				object-position: center center;
-				width: 100%;
+			}
+
+			img[style*="object-fit"] {
+				object-position: center center;
 			}
 
 			&::after {
