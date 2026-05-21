@@ -25,7 +25,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				'attributes' => array(
 					array(
 						'name'        => 'Hide on Desktop / Tablet / Mobile',
-						'description' => 'Legacy FlexLine responsive visibility controls. Deprecated on WordPress 7.0+; use core Block Visibility from the block toolbar/options menu via Hide.',
+						'description' => 'Toggles block visibility at common breakpoints—adds the appropriate <code>flexline-hide‑on‑*</code> class under the hood.',
 					),
 				),
 			),
@@ -184,8 +184,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							'</ul>',
 					),
 					array(
-						'name'        => 'Stack at Tablet',
-						'description' => 'Switches from horizontal columns to a vertical stack at medium screens.',
+						'name'        => 'Stack at Medium',
+						'description' => 'Switches from horizontal columns to a vertical stack at medium screens (782px–991.98px).',
 					),
 					array(
 						'name'        => 'Content Shift / Slide',
@@ -600,9 +600,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 
 				<!-- ✨ RESPONSIVE VISIBILITY -->
 				<section id="responsive-visibility">
-					<h3>Responsive Visibility Deprecation</h3>
-					<p>FlexLine responsive visibility controls are deprecated on WordPress 7.0+. Use WordPress core Block Visibility from the block toolbar/options menu via <strong>Hide</strong>. Existing FlexLine visibility classes and attributes continue to work for saved content and older WordPress installs, but new responsive visibility should use core block visibility. Viewport-hidden blocks remain in the DOM and are hidden with CSS.</p>
-					<p>On WordPress 7.0 and 7.1, FlexLine shows an editor notice where the legacy controls used to appear. When a block with legacy FlexLine visibility is opened in the editor on WordPress 7.0+, FlexLine converts the equivalent setting to core <code>metadata.blockVisibility.viewport</code> and removes the exact legacy visibility attributes/classes from that block. Starting with WordPress 7.2, the FlexLine visibility panel is removed. This does not affect the separate Visibility Toggle Groups feature.</p>
+					<h3>Responsive Visibility</h3>
+					<p>FlexLine responsive visibility controls are available in the block inspector. Use <strong>Hide on Desktop</strong>, <strong>Hide on Tablet</strong>, and <strong>Hide on Mobile</strong> to write FlexLine visibility attributes and classes.</p>
+					<p>Saved content uses <code>hideOnDesktop</code>, <code>hideOnTablet</code>, and <code>hideOnMobile</code> attributes plus frontend classes like <code>flexline-hide-on-mobile</code>. This behavior is separate from Visibility Toggle Groups.</p>
 				</section>
 
 				<!-- ✨ RELATED QUERY LOOPS -->

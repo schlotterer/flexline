@@ -8,52 +8,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import {
 	ToggleControl,
 	PanelBody,
-	Notice,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
-
-const FLEXLINE_VISIBILITY_LEGACY = 'legacy';
-const FLEXLINE_VISIBILITY_NOTICE = 'notice';
-const FLEXLINE_VISIBILITY_HIDDEN = 'hidden';
-const FLEXLINE_VISIBILITY_MODES = [
-	FLEXLINE_VISIBILITY_LEGACY,
-	FLEXLINE_VISIBILITY_NOTICE,
-	FLEXLINE_VISIBILITY_HIDDEN,
-];
-const LEGACY_VISIBILITY_MAPPINGS = [
-	{
-		attr: 'hideOnDesktop',
-		className: 'flexline-hide-on-desktop',
-		viewport: 'desktop',
-	},
-	{
-		attr: 'hideOnTablet',
-		className: 'flexline-hide-on-tablet',
-		viewport: 'tablet',
-	},
-	{
-		attr: 'hideOnMobile',
-		className: 'flexline-hide-on-mobile',
-		viewport: 'mobile',
-	},
-];
-
-export const getFlexlineVisibilityMode = () => {
-	if (typeof window === 'undefined') {
-		return FLEXLINE_VISIBILITY_LEGACY;
-	}
-
-	const mode = window.flexlineBlockExtensions?.visibilityMode;
-	return FLEXLINE_VISIBILITY_MODES.includes(mode)
-		? mode
-		: FLEXLINE_VISIBILITY_LEGACY;
-};
-
-export const isLegacyFlexlineVisibilityEnabled = () =>
-	getFlexlineVisibilityMode() === FLEXLINE_VISIBILITY_LEGACY;
-
-export const shouldShowFlexlineVisibilityPanel = () =>
-	getFlexlineVisibilityMode() !== FLEXLINE_VISIBILITY_HIDDEN;
 
 export const shouldUseCoreGalleryLightbox = () =>
 	!!window.flexlineBlockExtensions?.useCoreGalleryLightbox;
@@ -78,51 +34,6 @@ export const getLegacyGalleryLightboxAttributes = (blockName, attrs = {}) => {
 	return null;
 };
 
-const hasCoreBlockVisibility = (attrs) =>
-	attrs?.metadata &&
-	Object.prototype.hasOwnProperty.call(attrs.metadata, 'blockVisibility');
-
-export const getCoreVisibilityMigrationAttributes = (attrs = {}) => {
-	if (isLegacyFlexlineVisibilityEnabled() || hasCoreBlockVisibility(attrs)) {
-		return null;
-	}
-
-	const classNames = (attrs.className || '').split(/\s+/).filter(Boolean);
-	const viewport = {};
-	let hasLegacyVisibility = false;
-
-	LEGACY_VISIBILITY_MAPPINGS.forEach(({ attr, className, viewport: key }) => {
-		if (attrs[attr] || classNames.includes(className)) {
-			viewport[key] = false;
-			hasLegacyVisibility = true;
-		}
-	});
-
-	if (!hasLegacyVisibility) {
-		return null;
-	}
-
-	const legacyClasses = LEGACY_VISIBILITY_MAPPINGS.map(
-		({ className }) => className
-	);
-	const nextClassName = classNames
-		.filter((className) => !legacyClasses.includes(className))
-		.join(' ');
-
-	return {
-		metadata: {
-			...(attrs.metadata || {}),
-			blockVisibility: {
-				viewport,
-			},
-		},
-		hideOnDesktop: false,
-		hideOnTablet: false,
-		hideOnMobile: false,
-		className: nextClassName || undefined,
-	};
-};
-
 /**
  * Returns a JSX fragment containing ToggleControls for hiding an element on different screen sizes.
  *
@@ -135,26 +46,15 @@ export const getCoreVisibilityMigrationAttributes = (attrs = {}) => {
  * @return {JSX.Element} A JSX fragment containing the ToggleControls.
  */
 export const getVisibilityControls = (props) => {
-	const visibilityMode = getFlexlineVisibilityMode();
-
-	if (visibilityMode === FLEXLINE_VISIBILITY_HIDDEN) {
-		return null;
-	}
-
-	if (visibilityMode === FLEXLINE_VISIBILITY_NOTICE) {
-		return (
-			<Notice status="info" isDismissible={false}>
-				FlexLine responsive visibility controls are deprecated on
-				WordPress 7.0+. Use the block toolbar/options menu, then choose
-				Hide to set responsive visibility with WordPress core.
-			</Notice>
-		);
-	}
-
 	return (
 		<>
 			<ToggleControl
-				label="Hide on Desktop"
+				label={
+					<>
+						<span>Hide on Desktop</span>
+						<span style={{ display: 'block' }}>(992px+)</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnDesktop}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -163,7 +63,12 @@ export const getVisibilityControls = (props) => {
 				}
 			/>
 			<ToggleControl
-				label="Hide on Tablet"
+				label={
+					<>
+						<span>Hide on Tablet</span>
+						<span style={{ display: 'block' }}>(782px-991.98px)</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnTablet}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -172,7 +77,12 @@ export const getVisibilityControls = (props) => {
 				}
 			/>
 			<ToggleControl
-				label="Hide on Mobile"
+				label={
+					<>
+						<span>Hide on Mobile</span>
+						<span style={{ display: 'block' }}>(0-781.98px)</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnMobile}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -189,15 +99,9 @@ export const getVisibilityPanel = (
 	legacyControls = null,
 	panelProps = {}
 ) => {
-	const visibilityMode = getFlexlineVisibilityMode();
-
-	if (visibilityMode === FLEXLINE_VISIBILITY_HIDDEN) {
-		return null;
-	}
-
 	return (
 		<PanelBody title="FlexLine Visibility" {...panelProps}>
-			{visibilityMode === FLEXLINE_VISIBILITY_LEGACY && legacyControls}
+			{legacyControls}
 			{getVisibilityControls(props)}
 		</PanelBody>
 	);

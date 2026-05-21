@@ -2,9 +2,7 @@ import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import {
-	getCoreVisibilityMigrationAttributes,
 	getLegacyGalleryLightboxAttributes,
-	isLegacyFlexlineVisibilityEnabled,
 	isContentShiftFieldSet,
 	normalizeContentShiftInput,
 	toNegativeContentShiftValue,
@@ -74,14 +72,11 @@ const handlers = {
 	'web4sl/floor-plan-virtual-tour-button': visibility,
 };
 
-const legacyVisibilityClassMap = {
+// Map attributes to the classes they control.
+const classMap = {
 	hideOnMobile: { true: 'flexline-hide-on-mobile' },
 	hideOnTablet: { true: 'flexline-hide-on-tablet' },
 	hideOnDesktop: { true: 'flexline-hide-on-desktop' },
-};
-
-// Map attributes to the classes they control.
-const classMap = {
 	enableModal: { true: 'enable-modal' },
 	enableLazyLoad: { false: 'no-lazy-load' },
 	noWrap: { true: 'nowrap' },
@@ -191,21 +186,10 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 				return;
 			}
 
-			const visibilityMigrationAttrs =
-				getCoreVisibilityMigrationAttributes(props.attributes);
-
-			if (visibilityMigrationAttrs) {
-				props.setAttributes(visibilityMigrationAttrs);
-				return;
-			}
-
 			const removedClasses = [];
 			const newClasses = [];
-			const activeClassMap = isLegacyFlexlineVisibilityEnabled()
-				? { ...legacyVisibilityClassMap, ...classMap }
-				: classMap;
 
-			Object.entries(activeClassMap).forEach(([attr, conditions]) => {
+			Object.entries(classMap).forEach(([attr, conditions]) => {
 				Object.entries(conditions).forEach(([expected, cls]) => {
 					const expectedBool = expected === 'true';
 					const classList = Array.isArray(cls) ? cls : [cls];

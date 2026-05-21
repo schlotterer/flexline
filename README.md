@@ -102,14 +102,12 @@ These commands provide a way to proactively check and fix your code, helping you
 
 Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 
-- `getVisibilityControls( props )` – renders legacy ToggleControls to hide blocks on desktop, tablet, or mobile on WordPress versions before 7.0.
+- `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
-## Responsive Visibility Deprecation
+## Responsive Visibility
 
-FlexLine responsive visibility controls are deprecated on WordPress 7.0+. Use WordPress core Block Visibility from the block toolbar/options menu via Hide. Existing FlexLine visibility classes and attributes continue to work for saved content and older WordPress installs, but new responsive visibility should use core block visibility. Viewport-hidden blocks remain in the DOM and are hidden with CSS.
-
-FlexLine shows an editor deprecation notice where the legacy visibility controls used to appear on WordPress 7.0 and 7.1. When a block with legacy FlexLine visibility is opened in the editor on WordPress 7.0+, FlexLine converts the equivalent setting to core `metadata.blockVisibility.viewport` and removes the exact legacy visibility attributes/classes from that block. Starting with WordPress 7.2, the FlexLine visibility panel is removed. This does not affect the separate Visibility Toggle Groups feature.
+FlexLine responsive visibility controls are available in the block inspector and write FlexLine attributes/classes (`hideOnDesktop`, `hideOnTablet`, `hideOnMobile` and `flexline-hide-on-*`) for frontend breakpoint behavior. This does not affect the separate Visibility Toggle Groups feature.
 
 ## Shortcode Tokens
 

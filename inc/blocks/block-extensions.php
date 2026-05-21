@@ -14,19 +14,9 @@ use WP_HTML_Tag_Processor;
  * @return void
  */
 function flexline_enqueue_block_editor_assets() {
-	$wp_version         = get_bloginfo( 'version' );
-	$wp_numeric_version = preg_match( '/^\d+(?:\.\d+)?/', $wp_version, $version_matches ) ? $version_matches[0] : $wp_version;
-	$visibility_mode    = 'legacy';
-
-	if ( version_compare( $wp_numeric_version, '7.2', '>=' ) ) {
-		$visibility_mode = 'hidden';
-	} elseif ( version_compare( $wp_numeric_version, '7.0', '>=' ) ) {
-		$visibility_mode = 'notice';
-	}
-
 	$block_extension_config = array(
-		'useCoreGalleryLightbox' => version_compare( $wp_numeric_version, '7.0', '>=' ),
-		'visibilityMode'         => $visibility_mode,
+		'useCoreGalleryLightbox' => version_compare( get_bloginfo( 'version' ), '7.0', '>=' ),
+		'visibilityMode'         => 'legacy',
 	);
 
 	// Modal addons to core button and image blocks.
@@ -46,6 +36,45 @@ function flexline_enqueue_block_editor_assets() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+
+/**
+ * Disable WordPress core block visibility support for all block types.
+ *
+ * FlexLine provides its own responsive visibility controls and class-based
+ * frontend behavior (`hideOnMobile`, `hideOnTablet`, `hideOnDesktop` ->
+ * `flexline-hide-on-*`). In WP 7+, core visibility adds a second, competing
+ * "Hide" UI based on `metadata.blockVisibility.viewport`.
+ *
+ * Keeping both systems active creates editor confusion and unpredictable
+ * cascade outcomes because FlexLine and core use different breakpoint models
+ * and different mechanisms (class-driven rules vs metadata-driven CSS rules).
+ * We intentionally disable core support so users have one consistent visibility
+ * system until FlexLine fully migrates breakpoints/UX to core semantics.
+ *
+ * @param array $metadata Block type metadata from block.json.
+ * @return array
+ */
+function flexline_disable_core_block_visibility_support( $metadata ) {
+	if ( ! is_array( $metadata ) ) {
+		return $metadata;
+	}
+
+	// Allow an explicit override from FlexLine Theme Settings.
+	// Default is disabled (option missing/0) to keep one visibility system.
+	if ( (bool) get_option( 'flexline_enable_core_block_hide', 0 ) ) {
+		return $metadata;
+	}
+
+	if ( ! isset( $metadata['supports'] ) || ! is_array( $metadata['supports'] ) ) {
+		$metadata['supports'] = array();
+	}
+
+	$metadata['supports']['visibility'] = false;
+
+	return $metadata;
+}
+
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\flexline_disable_core_block_visibility_support', 20 );
 
 /**
  * Merge inline style rules into a block's markup.
@@ -86,20 +115,6 @@ function flexline_merge_inline_style( $block_content, $new_style_rules ) {
 }
 
 /**
- * Determine whether a block already uses WordPress core viewport visibility.
- *
- * @param array $attrs The block attributes.
- * @return bool True when core viewport visibility metadata is present.
- */
-function has_core_viewport_visibility( $attrs ) {
-	$block_visibility = $attrs['metadata']['blockVisibility'] ?? null;
-
-	return is_array( $block_visibility )
-		&& isset( $block_visibility['viewport'] )
-		&& is_array( $block_visibility['viewport'] );
-}
-
-/**
  * Generate visibility classes based on block attributes.
  *
  * @param array $attrs The block attributes.
@@ -107,10 +122,6 @@ function has_core_viewport_visibility( $attrs ) {
  */
 function get_visibility_classes( $attrs ) {
 	$visibility_classes = '';
-
-	if ( has_core_viewport_visibility( $attrs ) ) {
-		return $visibility_classes;
-	}
 
 	if ( ! empty( $attrs['hideOnMobile'] ) ) {
 		$visibility_classes .= 'flexline-hide-on-mobile ';

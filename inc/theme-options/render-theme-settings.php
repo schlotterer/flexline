@@ -43,6 +43,18 @@ function flexline_render_settings_tab() {
 				<td><input id="flexline-show-menu-all-the-time" type="checkbox" name="flexline_show_menu_all_the_time" value="1" <?php checked( 1, get_option( 'flexline_show_menu_all_the_time', 0 ), true ); ?> /></td>
 			</tr>
 		</table>
+
+		<h2>Block Editor Settings</h2>
+		<hr />
+		<table class="form-table">
+			<tr valign="top">
+				<th scope="row">
+					<label for="flexline-enable-core-block-hide"><strong>Enable WordPress core Hide controls</strong></label>
+					<p>Default is off. Keep disabled to avoid conflicts with FlexLine visibility controls and breakpoint mismatches.</p>
+				</th>
+				<td><input id="flexline-enable-core-block-hide" type="checkbox" name="flexline_enable_core_block_hide" value="1" <?php checked( 1, get_option( 'flexline_enable_core_block_hide', 0 ), true ); ?> /></td>
+			</tr>
+		</table>
 		
 		<h2>Fallback Settings</h2>
 		<hr />
