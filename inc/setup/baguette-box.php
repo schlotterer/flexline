@@ -139,6 +139,48 @@ function disable_core_lightbox_for_legacy_gallery_blocks( $parsed_block ) {
 add_filter( 'render_block_data', __NAMESPACE__ . '\disable_core_lightbox_for_legacy_gallery_blocks' );
 
 /**
+ * On WP 7+, map legacy poster-gallery attrs to core lightbox attrs at render time.
+ *
+ * This keeps old saved content working with core lightbox without rewriting post
+ * content in the database.
+ *
+ * @param array         $parsed_block The parsed block.
+ * @param array         $source_block Original parsed block.
+ * @param \WP_Block|null $parent_block Parent block instance for nested blocks.
+ * @return array Updated parsed block.
+ */
+function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $source_block = array(), $parent_block = null ) {
+	if ( ! should_use_core_gallery_lightbox() || empty( $parsed_block['blockName'] ) ) {
+		return $parsed_block;
+	}
+
+	$attrs = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
+
+	if ( 'core/gallery' === $parsed_block['blockName'] && ! empty( $attrs['enablePosterGallery'] ) && empty( $attrs['linkTo'] ) ) {
+		$attrs['linkTo']      = 'lightbox';
+		$parsed_block['attrs'] = $attrs;
+	}
+
+	if ( 'core/image' === $parsed_block['blockName'] ) {
+		$parent_attrs = array();
+		if ( $parent_block instanceof \WP_Block && isset( $parent_block->parsed_block['attrs'] ) && is_array( $parent_block->parsed_block['attrs'] ) ) {
+			$parent_attrs = $parent_block->parsed_block['attrs'];
+		}
+
+		if (
+			! empty( $parent_attrs['enablePosterGallery'] ) &&
+			empty( $attrs['lightbox'] )
+		) {
+			$attrs['lightbox']    = array( 'enabled' => true );
+			$parsed_block['attrs'] = $attrs;
+		}
+	}
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', __NAMESPACE__ . '\enable_core_lightbox_for_legacy_poster_gallery_blocks', 15, 3 );
+
+/**
  * Enqueue legacy baguetteBox assets.
  *
  * @return void
@@ -166,6 +208,17 @@ function block_needs_legacy_baguettebox( $block_content, $block ) {
 		false !== strpos( $block_content, 'core/gallery' );
 
 	if ( $uses_core_lightbox ) {
+		return false;
+	}
+
+	// WP 7+ should prefer core lightbox for poster-gallery blocks even when
+	// legacy attrs were saved before upgrade.
+	if (
+		should_use_core_gallery_lightbox() &&
+		isset( $block['blockName'] ) &&
+		'core/gallery' === $block['blockName'] &&
+		! empty( $attrs['enablePosterGallery'] )
+	) {
 		return false;
 	}
 
