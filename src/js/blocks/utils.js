@@ -66,7 +66,9 @@ export const getVisibilityControls = (props) => {
 				label={
 					<>
 						<span>Hide on Tablet</span>
-						<span style={{ display: 'block' }}>(782px-991.98px)</span>
+						<span style={{ display: 'block' }}>
+							(782px-991.98px)
+						</span>
 					</>
 				}
 				checked={!!props.attributes.hideOnTablet}

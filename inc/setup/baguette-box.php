@@ -144,8 +144,8 @@ add_filter( 'render_block_data', __NAMESPACE__ . '\disable_core_lightbox_for_leg
  * This keeps old saved content working with core lightbox without rewriting post
  * content in the database.
  *
- * @param array         $parsed_block The parsed block.
- * @param array         $source_block Original parsed block.
+ * @param array          $parsed_block The parsed block.
+ * @param array          $source_block Original parsed block.
  * @param \WP_Block|null $parent_block Parent block instance for nested blocks.
  * @return array Updated parsed block.
  */
@@ -157,7 +157,7 @@ function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $
 	$attrs = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
 
 	if ( 'core/gallery' === $parsed_block['blockName'] && ! empty( $attrs['enablePosterGallery'] ) && empty( $attrs['linkTo'] ) ) {
-		$attrs['linkTo']      = 'lightbox';
+		$attrs['linkTo']       = 'lightbox';
 		$parsed_block['attrs'] = $attrs;
 	}
 
@@ -171,7 +171,7 @@ function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $
 			! empty( $parent_attrs['enablePosterGallery'] ) &&
 			empty( $attrs['lightbox'] )
 		) {
-			$attrs['lightbox']    = array( 'enabled' => true );
+			$attrs['lightbox']     = array( 'enabled' => true );
 			$parsed_block['attrs'] = $attrs;
 		}
 	}
