@@ -3,7 +3,7 @@
 
 		/* -- Navigation Link -- */
 		// TODO: why is this like this?
-		:where(
+		:is(
 			.wp-block-navigation-item.is-style-outline a,
 			.wp-block-navigation-item[class*="is-style-outline--"] a
 		) {
@@ -13,7 +13,7 @@
 	}
 
 	/* Temporary legacy fallback for theme.json-suffixed classes; remove after site content resave cycle. */
-	:where(
+	:is(
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
 		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button
 	) {
@@ -35,7 +35,7 @@
 		text-decoration: none;
 	}
 
-	:where(
+	:is(
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover,
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus,
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible,
@@ -51,7 +51,7 @@
 		filter: none;
 	}
 
-	:where(
+	:is(
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button::before,
 		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button::before
 	) {
@@ -65,7 +65,7 @@
 		transition: height var(--wp--custom--transition-time);
 	}
 
-	:where(
+	:is(
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover::before,
 		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible::before,
 		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover::before,
@@ -75,7 +75,7 @@
 	}
 
 	/* Button outline fallback (canonical + temporary legacy suffixed classes). */
-	:where(
+	:is(
 		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button,
 		.wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button
 	) {
@@ -92,7 +92,7 @@
 		padding-left: calc(var(--wp--preset--spacing--large) - 1px);
 	}
 
-	:where(
+	:is(
 		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:hover,
 		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:focus,
 		.wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:hover,
@@ -102,7 +102,17 @@
 	}
 
 	/* Typography fallbacks (canonical + temporary legacy suffixed classes). */
-	:where(.is-style-eyebrow, [class*="is-style-eyebrow--"]) {
+	:is(.is-style-eyebrow, [class*="is-style-eyebrow--"]) {
+		color: var(--wp--custom--eyebrow-color);
+		font-family: var(--wp--custom--eyebrow-font);
+		font-size: var(--wp--custom--eyebrow-size);
+		font-style: normal;
+		font-weight: 400;
+		letter-spacing: 0.05em;
+		line-height: 1.05;
+		text-transform: var(--wp--custom--eyebrow-text-transform);
+	}
+	.flexline :is(.is-style-eyebrow, [class*="is-style-eyebrow--"]) {
 		color: var(--wp--custom--eyebrow-color);
 		font-family: var(--wp--custom--eyebrow-font);
 		font-size: var(--wp--custom--eyebrow-size);
@@ -113,7 +123,14 @@
 		text-transform: var(--wp--custom--eyebrow-text-transform);
 	}
 
-	:where(.is-style-creative, [class*="is-style-creative--"]) {
+	:is(.is-style-creative, [class*="is-style-creative--"]) {
+		color: var(--wp--custom--creative-color);
+		font-family: var(--wp--custom--creative-font);
+		font-size: var(--wp--custom--creative-size);
+		line-height: 1.05;
+		text-transform: var(--wp--custom--creative-text-transform);
+	}
+	.flexline :is(.is-style-creative, [class*="is-style-creative--"]) {
 		color: var(--wp--custom--creative-color);
 		font-family: var(--wp--custom--creative-font);
 		font-size: var(--wp--custom--creative-size);
@@ -122,7 +139,7 @@
 	}
 
 	/* Navigation link text shadow style variation. */
-	:where(
+	:is(
 		.wp-block-navigation-item.is-style-text-shadow,
 		.wp-block-navigation-item.is-style-text-shadow a,
 		.wp-block-navigation-item[class*="is-style-text-shadow--"],
@@ -132,7 +149,7 @@
 	}
 
 	/* List no-disc style variation (canonical + temporary legacy suffixed classes). */
-	:where(
+	:is(
 		ul.is-style-no-disc,
 		ol.is-style-no-disc,
 		ul[class*="is-style-no-disc--"],
@@ -143,7 +160,7 @@
 	}
 
 	/* Social links outline style variation. */
-	:where(
+	:is(
 		.wp-block-social-links.is-style-outline .wp-block-social-link,
 		.wp-block-social-links[class*="is-style-outline--"] .wp-block-social-link
 	) {

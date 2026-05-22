@@ -1,6 +1,6 @@
 @mixin flexline-card-variations-rules {
 	// All.
-	:where(
+	:is(
 		.is-style-card,
 		[class*="is-style-card--"],
 		.is-style-card-alt,
@@ -20,7 +20,7 @@
 	}
 
 	// Cards.
-	:where(
+	:is(
 		.is-style-card,
 		[class*="is-style-card--"],
 		.is-style-card-alt,
@@ -40,7 +40,7 @@
 		}
 	}
 
-	:where(.is-style-card, [class*="is-style-card--"]) {
+	:is(.is-style-card, [class*="is-style-card--"]) {
 		padding: 0;
 
 		&.has-global-padding,
@@ -49,7 +49,7 @@
 		}
 	}
 
-	:where(.is-style-glass-card-no-padding, [class*="is-style-glass-card-no-padding--"]) {
+	:is(.is-style-glass-card-no-padding, [class*="is-style-glass-card-no-padding--"]) {
 		padding: 0;
 
 		&.has-global-padding,
@@ -58,7 +58,7 @@
 		}
 	}
 
-	:where(
+	:is(
 		.is-style-glass-card,
 		[class*="is-style-glass-card--"],
 		.is-style-card-padded,
@@ -74,7 +74,7 @@
 		}
 	}
 
-	:where(.is-style-card-alt, [class*="is-style-card-alt--"]) {
+	:is(.is-style-card-alt, [class*="is-style-card-alt--"]) {
 		padding: 0;
 
 		&.has-global-padding,
@@ -94,13 +94,13 @@
 	}
 
 	// Outlines.
-	:where(.is-style-outlined, [class*="is-style-outlined--"]) {
+	:is(.is-style-outlined, [class*="is-style-outlined--"]) {
 		border-radius: var(--wp--custom--border-radius);
 		border: 1px solid var(--wp--custom--deco-color);
 	}
 
 	// Shadows.
-	:where(.is-style-shadow-light, [class*="is-style-shadow-light--"]) {
+	:is(.is-style-shadow-light, [class*="is-style-shadow-light--"]) {
 		box-shadow: var(--wp--preset--shadow--light);
 
 		&.group-link {
@@ -110,7 +110,7 @@
 		}
 	}
 
-	:where(.is-style-shadow-dark, [class*="is-style-shadow-dark--"]) {
+	:is(.is-style-shadow-dark, [class*="is-style-shadow-dark--"]) {
 		box-shadow: var(--wp--preset--shadow--dark);
 
 		&.group-link {
@@ -120,7 +120,7 @@
 		}
 	}
 
-	:where(.is-style-shadow-diffused, [class*="is-style-shadow-diffused--"]) {
+	:is(.is-style-shadow-diffused, [class*="is-style-shadow-diffused--"]) {
 		box-shadow: var(--wp--preset--shadow--diffused);
 
 		&.group-link {
@@ -130,7 +130,7 @@
 		}
 	}
 
-	:where(
+	:is(
 		.is-style-glass,
 		[class*="is-style-glass--"],
 		.is-style-glass-card,
@@ -157,7 +157,7 @@
 		}
 	}
 
-	:where(
+	:is(
 		.is-style-glass-card,
 		[class*="is-style-glass-card--"],
 		.is-style-glass-card-no-padding,
@@ -168,7 +168,7 @@
 		box-shadow: var(--wp--preset--shadow--light);
 	}
 
-	:where(
+	:is(
 		.wp-block-button.is-style-glass-button .wp-element-button,
 		.wp-block-button[class*="is-style-glass-button--"] .wp-element-button
 	) {

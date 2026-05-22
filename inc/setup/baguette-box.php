@@ -63,8 +63,8 @@ function register_assets() {
 	// injected post-load.
 	$config = wp_json_encode(
 		array(
-			'selector' => $baguettebox_selector,
-			'filter'   => $baguettebox_filter,
+			'selector'               => $baguettebox_selector,
+			'filter'                 => $baguettebox_filter,
 			'useCoreGalleryLightbox' => should_use_core_gallery_lightbox(),
 		),
 		JSON_UNESCAPED_SLASHES
@@ -174,9 +174,9 @@ function enqueue_baguettebox_assets() {
  * @return bool
  */
 function block_needs_legacy_baguettebox( $block_content, $block ) {
-	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
-	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
-	$block_name = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
+	$attrs                     = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+	$class                     = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$block_name                = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
 	$has_poster_gallery_marker =
 		! empty( $attrs['enablePosterGallery'] ) ||
 		false !== strpos( $class, 'poster-gallery' ) ||
