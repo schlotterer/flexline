@@ -175,6 +175,24 @@ function enqueue_baguettebox_assets() {
 function block_needs_legacy_baguettebox( $block_content, $block ) {
 	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
 	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$block_name = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
+	$has_poster_gallery_marker =
+		! empty( $attrs['enablePosterGallery'] ) ||
+		false !== strpos( $class, 'poster-gallery' ) ||
+		false !== strpos( $block_content, 'poster-gallery' ) ||
+		false !== strpos( $block_content, 'enablePosterGallery' );
+
+	// On WP 7+ treat poster-gallery core/gallery blocks as core lightbox-owned.
+	// Supports both modern attribute-based poster gallery and legacy class-based
+	// style-variation content so older posts do not fall through to baguetteBox.
+	if (
+		should_use_core_gallery_lightbox() &&
+		'core/gallery' === $block_name &&
+		$has_poster_gallery_marker
+	) {
+		return false;
+	}
+
 	// Treat a block as "core lightbox-owned" only when explicit runtime markers
 	// exist in rendered HTML, or when gallery attrs explicitly request it.
 	// Avoid broad text matches that can produce false positives.
