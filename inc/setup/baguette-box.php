@@ -76,6 +76,10 @@ add_action( 'init', __NAMESPACE__ . '\register_assets' );
 /**
  * Whether core should own gallery lightbox behavior.
  *
+ * Note: this controls only how newly authored pattern content is serialized.
+ * We do not run automatic migration of legacy saved content in this branch.
+ * Legacy poster-gallery markup remains on the baguetteBox fallback path.
+ *
  * @return bool
  */
 function should_use_core_gallery_lightbox() {
@@ -96,6 +100,8 @@ function poster_gallery_pattern_attrs( $attrs = array() ) {
 		$attrs
 	);
 
+	// New pattern inserts on WP 7+ should serialize directly to core lightbox.
+	// Existing saved content is intentionally not rewritten automatically.
 	if ( should_use_core_gallery_lightbox() ) {
 		$attrs['linkTo'] = 'lightbox';
 	}
@@ -110,6 +116,8 @@ function poster_gallery_pattern_attrs( $attrs = array() ) {
  * @return string JSON-encoded block attributes.
  */
 function poster_gallery_image_pattern_attrs( $attrs = array() ) {
+	// Companion to poster_gallery_pattern_attrs(): for newly inserted image
+	// children we write the core lightbox flag directly in block attributes.
 	if ( should_use_core_gallery_lightbox() ) {
 		$attrs['lightbox'] = array(
 			'enabled' => true,
@@ -147,53 +155,6 @@ function disable_core_lightbox_for_legacy_gallery_blocks( $parsed_block ) {
 add_filter( 'render_block_data', __NAMESPACE__ . '\disable_core_lightbox_for_legacy_gallery_blocks' );
 
 /**
- * On WP 7+, map legacy poster-gallery attrs to core lightbox attrs at render time.
- *
- * This keeps old saved content working with core lightbox without rewriting post
- * content in the database.
- *
- * @param array          $parsed_block The parsed block.
- * @param array          $source_block Original parsed block.
- * @param \WP_Block|null $parent_block Parent block instance for nested blocks.
- * @return array Updated parsed block.
- */
-function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $source_block = array(), $parent_block = null ) {
-	if ( ! should_use_core_gallery_lightbox() || empty( $parsed_block['blockName'] ) ) {
-		return $parsed_block;
-	}
-
-	$attrs             = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
-	$class             = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
-	$is_poster_gallery = ! empty( $attrs['enablePosterGallery'] ) || false !== strpos( $class, 'poster-gallery' );
-
-	if ( 'core/gallery' === $parsed_block['blockName'] && $is_poster_gallery && empty( $attrs['linkTo'] ) ) {
-		$attrs['linkTo']       = 'lightbox';
-		$parsed_block['attrs'] = $attrs;
-	}
-
-	if ( 'core/image' === $parsed_block['blockName'] ) {
-		$parent_attrs = array();
-		if ( $parent_block instanceof \WP_Block && isset( $parent_block->parsed_block['attrs'] ) && is_array( $parent_block->parsed_block['attrs'] ) ) {
-			$parent_attrs = $parent_block->parsed_block['attrs'];
-		}
-
-		if (
-			(
-				! empty( $parent_attrs['enablePosterGallery'] ) ||
-				( isset( $parent_attrs['className'] ) && false !== strpos( (string) $parent_attrs['className'], 'poster-gallery' ) )
-			) &&
-			empty( $attrs['lightbox'] )
-		) {
-			$attrs['lightbox']     = array( 'enabled' => true );
-			$parsed_block['attrs'] = $attrs;
-		}
-	}
-
-	return $parsed_block;
-}
-add_filter( 'render_block_data', __NAMESPACE__ . '\enable_core_lightbox_for_legacy_poster_gallery_blocks', 15, 3 );
-
-/**
  * Enqueue legacy baguetteBox assets.
  *
  * @return void
@@ -212,29 +173,17 @@ function enqueue_baguettebox_assets() {
  * @return bool
  */
 function block_needs_legacy_baguettebox( $block_content, $block ) {
-	$attrs              = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
-	$class              = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	// Treat a block as "core lightbox-owned" only when explicit runtime markers
+	// exist in rendered HTML, or when gallery attrs explicitly request it.
+	// Avoid broad text matches that can produce false positives.
 	$uses_core_lightbox =
 		( isset( $attrs['linkTo'] ) && 'lightbox' === $attrs['linkTo'] ) ||
 		false !== strpos( $block_content, 'wp-lightbox-container' ) ||
-		false !== strpos( $block_content, 'showLightbox' ) ||
-		false !== strpos( $block_content, 'core/gallery' );
+		false !== strpos( $block_content, 'showLightbox' );
 
 	if ( $uses_core_lightbox ) {
-		return false;
-	}
-
-	// WP 7+ should prefer core lightbox for poster-gallery blocks even when
-	// legacy attrs were saved before upgrade.
-	if (
-		should_use_core_gallery_lightbox() &&
-		isset( $block['blockName'] ) &&
-		'core/gallery' === $block['blockName'] &&
-		(
-			! empty( $attrs['enablePosterGallery'] ) ||
-			false !== strpos( $class, 'poster-gallery' )
-		)
-	) {
 		return false;
 	}
 
@@ -332,6 +281,8 @@ function current_content_has_classic_gallery_shortcode() {
 function enqueue_assets() {
 	$legacy_default = current_content_has_classic_gallery_shortcode() || current_content_needs_legacy_baguettebox();
 
+	// On pre-WP7 sites, keep broad parity with historical behavior and enqueue
+	// baguetteBox for core gallery/media-text usage even without poster markers.
 	if ( ! should_use_core_gallery_lightbox() ) {
 		$legacy_default = $legacy_default ||
 			has_block( 'core/gallery' ) ||
