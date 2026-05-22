@@ -1,6 +1,17 @@
 import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
+import { shouldUseCoreGalleryLightbox } from '../utils';
+
+const getPosterGalleryAttributes = (enablePosterGallery) => {
+	const nextAttributes = { enablePosterGallery };
+
+	if (enablePosterGallery && shouldUseCoreGalleryLightbox()) {
+		nextAttributes.linkTo = 'lightbox';
+	}
+
+	return nextAttributes;
+};
 
 export const controls = (BlockEdit, props) => (
 	<Fragment>
@@ -11,7 +22,9 @@ export const controls = (BlockEdit, props) => (
 					label="Enable Poster Gallery"
 					checked={!!props.attributes.enablePosterGallery}
 					onChange={(newValue) =>
-						props.setAttributes({ enablePosterGallery: newValue })
+						props.setAttributes(
+							getPosterGalleryAttributes(newValue)
+						)
 					}
 				/>
 			</PanelBody>

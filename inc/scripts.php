@@ -18,11 +18,15 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_styles' );
  * @return string Version string
  */
 function flexline_asset_ver( $relative_path ) {
-	$path = get_theme_file_path( $relative_path );
-	if ( file_exists( $path ) ) {
-		return (string) filemtime( $path );
+	static $cache = array();
+	if ( isset( $cache[ $relative_path ] ) ) {
+		return $cache[ $relative_path ];
 	}
-	return defined( 'THEME_VERSION' ) ? THEME_VERSION : '';
+	$path                    = get_theme_file_path( $relative_path );
+	$cache[ $relative_path ] = file_exists( $path )
+		? (string) filemtime( $path )
+		: ( defined( 'THEME_VERSION' ) ? THEME_VERSION : '' );
+	return $cache[ $relative_path ];
 }
 
 /**
@@ -70,9 +74,6 @@ function flexline_enqueue_styles() {
 	wp_register_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
 	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
 
-	// Customized Scripts.
-	wp_enqueue_script( 'flexline-customize', get_theme_file_uri( 'assets/js/customize.js' ), $early_deps, flexline_asset_ver( 'assets/js/customize.js' ), true );
-
 	// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
 	wp_register_script(
 		'flexline-slider',
@@ -100,7 +101,6 @@ function flexline_enqueue_styles() {
 		'flexline-headroom-init',
 		'flexline-modal',
 		'flexline-slidein',
-		'flexline-customize',
 		'flexline-visibility-toggle',
 	);
 	foreach ( $defer_handles as $handle ) {
@@ -114,13 +114,6 @@ function flexline_enqueue_styles() {
  * Enqueue block editor shell assets (sidebar UI and editor chrome).
  */
 function flexline_admin_enqueue_scripts() {
-	// Styles.
-	wp_enqueue_style( 'flexline-base-admin', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
-	// Modal Styles.
-	wp_enqueue_style( 'flexline-modal-admin', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
-	// Customized Styles.
-	wp_enqueue_style( 'flexline-custom-admin', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
-
 	wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
@@ -145,6 +138,8 @@ function flexline_admin_enqueue_canvas_runtime_assets() {
 	if ( ! is_admin() ) {
 		return;
 	}
+
+	wp_enqueue_style( 'flexline-editor', get_theme_file_uri( 'assets/built/css/editor.css' ), array(), flexline_asset_ver( 'assets/built/css/editor.css' ) );
 
 	$editor_runtime_deps = array( 'wp-data', 'wp-dom-ready' );
 
@@ -184,8 +179,13 @@ function flexline_maybe_enqueue_modal( $block_content, $block ) {
 	}
 
 	$attrs = isset( $block['attrs'] ) ? (array) $block['attrs'] : array();
+	$name  = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
 	$class = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
 	$needs = false;
+
+	if ( 'web4sl/location-map' === $name ) {
+		$needs = true;
+	}
 
 	if ( $class ) {
 		if ( false !== strpos( $class, 'enable-modal' ) || false !== strpos( $class, 'group-link-type-modal_media' ) ) {

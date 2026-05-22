@@ -38,7 +38,40 @@ function flexlineOnEarlyReady(callback) {
 }
 
 flexlineOnEarlyReady(() => {
+	const MODAL_BOUND_ATTR = 'data-flexline-modal-bound';
+	const MODAL_SCOPE_SELECTOR = '.enable-modal, .group-link-type-modal_media';
+
+	const isElementNode = (node) => node && node.nodeType === 1;
+
+	const collectMatches = (root, selector) => {
+		const matches = [];
+		const scope =
+			root && typeof root.querySelectorAll === 'function'
+				? root
+				: document;
+
+		if (isElementNode(root) && root.matches(selector)) {
+			matches.push(root);
+		}
+
+		scope.querySelectorAll(selector).forEach((element) => {
+			matches.push(element);
+		});
+
+		return matches;
+	};
+
+	const isAlreadyBound = (element) =>
+		element.getAttribute(MODAL_BOUND_ATTR) === '1';
+
+	const markAsBound = (element) =>
+		element.setAttribute(MODAL_BOUND_ATTR, '1');
+
 	const enableModal = (element, url) => {
+		if (isAlreadyBound(element)) {
+			return;
+		}
+
 		element.classList.add('has-modal');
 		element.setAttribute('data-enable-modal', 'true');
 		element.setAttribute('data-modal-media-url', url);
@@ -90,71 +123,82 @@ flexlineOnEarlyReady(() => {
 				openFromTrigger(e.currentTarget);
 			}
 		});
+
+		markAsBound(element);
 	};
 
-	document
-		.querySelectorAll('.enable-modal:not(.wp-block-button)')
-		.forEach((block) => {
-			const mediaElement = block.querySelector('img, a');
-			if (!mediaElement) {
-				return;
-			}
-
-			const mediaUrl =
-				block.dataset.modalMediaUrl ||
-				mediaElement.getAttribute(
-					mediaElement.tagName === 'A' ? 'href' : 'src'
-				);
-			if (mediaUrl) {
-				enableModal(mediaElement, mediaUrl);
-			}
-		});
-
-	// find all .enable-modal.wp-block-button elements
-	document
-		.querySelectorAll('.enable-modal.wp-block-button a')
-		.forEach((element) => {
-			const url = element.href;
-			if (!url) {
-				return;
-			}
-
-			if (url) {
-				element.setAttribute('aria-haspopup', 'dialog');
-				element.setAttribute('aria-controls', 'flexline-modal');
-				element.setAttribute('aria-expanded', 'false');
-				if (
-					!element.textContent.trim() &&
-					!element.getAttribute('aria-label')
-				) {
-					element.setAttribute('aria-label', 'Open media in modal');
+	const bindModalTriggers = (root = document) => {
+		collectMatches(root, '.enable-modal:not(.wp-block-button)').forEach(
+			(block) => {
+				const mediaElement = block.querySelector('img, a');
+				if (!mediaElement) {
+					return;
 				}
-				const openFromTrigger = (trigger) => {
-					trigger.setAttribute('aria-expanded', 'true');
-					displayModal(url, trigger);
+
+				const mediaUrl =
+					block.dataset.modalMediaUrl ||
+					mediaElement.getAttribute(
+						mediaElement.tagName === 'A' ? 'href' : 'src'
+					);
+				if (mediaUrl) {
+					enableModal(mediaElement, mediaUrl);
+				}
+			}
+		);
+
+		// Bind modal triggers for button blocks rendered as either <a> or <button>.
+		collectMatches(root, '.enable-modal.wp-block-button').forEach(
+			(block) => {
+				const trigger = block.querySelector('a, button');
+				if (!trigger || isAlreadyBound(trigger)) {
+					return;
+				}
+
+				const blockUrl = (block.dataset.modalMediaUrl || '').trim();
+				const hrefUrl =
+					trigger.tagName === 'A' ? (trigger.href || '').trim() : '';
+				const url = blockUrl || hrefUrl;
+				if (!url) {
+					return;
+				}
+
+				trigger.setAttribute('aria-haspopup', 'dialog');
+				trigger.setAttribute('aria-controls', 'flexline-modal');
+				trigger.setAttribute('aria-expanded', 'false');
+				if (
+					!trigger.textContent.trim() &&
+					!trigger.getAttribute('aria-label')
+				) {
+					trigger.setAttribute('aria-label', 'Open media in modal');
+				}
+				const openFromTrigger = (activeTrigger) => {
+					activeTrigger.setAttribute('aria-expanded', 'true');
+					displayModal(url, activeTrigger);
 				};
-				element.addEventListener('click', (e) => {
+				trigger.addEventListener('click', (e) => {
 					e.preventDefault();
 					openFromTrigger(e.currentTarget);
 				});
-				element.addEventListener('keydown', (e) => {
+				trigger.addEventListener('keydown', (e) => {
 					if (e.key === 'Enter' || e.key === ' ') {
 						e.preventDefault();
 						openFromTrigger(e.currentTarget);
 					}
 				});
-			}
-		});
 
-	document
-		.querySelectorAll(
+				markAsBound(trigger);
+			}
+		);
+
+		collectMatches(
+			root,
 			'.group-link-type-modal_media .flexline-group-link-anchor'
-		)
-		.forEach((block) => {
+		).forEach((block) => {
 			const mediaUrl = block.href;
-			if (!mediaUrl) {
+			if (!mediaUrl || isAlreadyBound(block)) {
 				return;
 			}
+
 			block.setAttribute('aria-haspopup', 'dialog');
 			block.setAttribute('aria-controls', 'flexline-modal');
 			block.setAttribute('aria-expanded', 'false');
@@ -170,7 +214,104 @@ flexlineOnEarlyReady(() => {
 					triggerModal(e);
 				}
 			});
+
+			markAsBound(block);
 		});
+	};
+
+	const pendingRoots = new Set();
+	let bindScheduled = false;
+
+	const scheduleBind = (root = document) => {
+		pendingRoots.add(root || document);
+		if (bindScheduled) {
+			return;
+		}
+
+		bindScheduled = true;
+		window.requestAnimationFrame(() => {
+			bindScheduled = false;
+			const roots = Array.from(pendingRoots);
+			pendingRoots.clear();
+			roots.forEach((candidate) => {
+				bindModalTriggers(candidate);
+			});
+		});
+	};
+
+	const nodeHasPotentialModalTrigger = (node) => {
+		if (!isElementNode(node)) {
+			return false;
+		}
+
+		if (
+			node.matches(MODAL_SCOPE_SELECTOR) ||
+			node.closest(MODAL_SCOPE_SELECTOR)
+		) {
+			return true;
+		}
+
+		return !!node.querySelector(MODAL_SCOPE_SELECTOR);
+	};
+
+	const observeModalCandidates = () => {
+		const MutationObserverConstructor = window.MutationObserver;
+		if (typeof MutationObserverConstructor !== 'function') {
+			return;
+		}
+
+		const observer = new MutationObserverConstructor((mutations) => {
+			mutations.forEach((mutation) => {
+				if (
+					mutation.type !== 'childList' ||
+					!mutation.addedNodes.length
+				) {
+					return;
+				}
+
+				mutation.addedNodes.forEach((addedNode) => {
+					if (!nodeHasPotentialModalTrigger(addedNode)) {
+						return;
+					}
+
+					const bindRoot = isElementNode(addedNode)
+						? addedNode.closest(MODAL_SCOPE_SELECTOR) || addedNode
+						: document;
+					scheduleBind(bindRoot);
+				});
+			});
+		});
+
+		const observeTarget = (target) => {
+			if (!target || typeof target.nodeType !== 'number') {
+				return false;
+			}
+
+			try {
+				observer.observe(target, {
+					childList: true,
+					subtree: true,
+				});
+				return true;
+			} catch (error) {
+				return false;
+			}
+		};
+
+		if (!observeTarget(document.body || document.documentElement)) {
+			window.requestAnimationFrame(() => {
+				observeTarget(document.body || document.documentElement);
+			});
+		}
+	};
+
+	bindModalTriggers(document);
+
+	window.addEventListener('flexline:content-updated', () => {
+		scheduleBind(document);
+	});
+
+	observeModalCandidates();
 });
 
 // Lock/unlock body scroll while preserving position
@@ -194,8 +335,6 @@ function unlockBodyScroll() {
 }
 
 function displayModal(mediaUrl, openerEl) {
-	// eslint-disable-next-line no-console
-	console.log('Displaying modal for:', mediaUrl);
 	let contentHtml = '';
 
 	if (mediaUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/)) {

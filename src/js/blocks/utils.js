@@ -11,6 +11,29 @@ import {
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
+export const shouldUseCoreGalleryLightbox = () =>
+	!!window.flexlineBlockExtensions?.useCoreGalleryLightbox;
+
+export const getLegacyGalleryLightboxAttributes = (blockName, attrs = {}) => {
+	if (shouldUseCoreGalleryLightbox()) {
+		return null;
+	}
+
+	if (blockName === 'core/gallery' && attrs.linkTo === 'lightbox') {
+		return {
+			linkTo: 'none',
+		};
+	}
+
+	if (blockName === 'core/image' && attrs.lightbox !== undefined) {
+		return {
+			lightbox: undefined,
+		};
+	}
+
+	return null;
+};
+
 /**
  * Returns a JSX fragment containing ToggleControls for hiding an element on different screen sizes.
  *
@@ -26,7 +49,12 @@ export const getVisibilityControls = (props) => {
 	return (
 		<>
 			<ToggleControl
-				label="Hide on Desktop"
+				label={
+					<>
+						<span>Hide on Desktop</span>
+						<span style={{ display: 'block' }}>(992px+)</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnDesktop}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -35,7 +63,14 @@ export const getVisibilityControls = (props) => {
 				}
 			/>
 			<ToggleControl
-				label="Hide on Tablet"
+				label={
+					<>
+						<span>Hide on Tablet</span>
+						<span style={{ display: 'block' }}>
+							(782px-991.98px)
+						</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnTablet}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -44,7 +79,12 @@ export const getVisibilityControls = (props) => {
 				}
 			/>
 			<ToggleControl
-				label="Hide on Mobile"
+				label={
+					<>
+						<span>Hide on Mobile</span>
+						<span style={{ display: 'block' }}>(0-781.98px)</span>
+					</>
+				}
 				checked={!!props.attributes.hideOnMobile}
 				onChange={(newValue) =>
 					props.setAttributes({
@@ -53,6 +93,19 @@ export const getVisibilityControls = (props) => {
 				}
 			/>
 		</>
+	);
+};
+
+export const getVisibilityPanel = (
+	props,
+	legacyControls = null,
+	panelProps = {}
+) => {
+	return (
+		<PanelBody title="FlexLine Visibility" {...panelProps}>
+			{legacyControls}
+			{getVisibilityControls(props)}
+		</PanelBody>
 	);
 };
 
@@ -96,7 +149,10 @@ export const getContentShiftControls = (props) => {
 						<hr />
 						<p>
 							SHIFT - NEGATIVE MARGINS <br />
-							<small>Enter positive numbers only.</small>
+							<small>
+								Leave empty to keep normal margins. Enter 0 for
+								an explicit zero shift.
+							</small>
 						</p>
 					</>
 				)}
@@ -238,6 +294,71 @@ export const getVisibilityClasses = (attrs) => {
 		classes += 'flexline-hide-on-desktop ';
 	}
 	return classes.trim();
+};
+
+/**
+ * Returns whether a content-shift field is intentionally set.
+ *
+ * Empty string means "inherit normal margins" while any numeric/unit value,
+ * including 0, is treated as intentional.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {boolean} True if the field is intentionally set.
+ */
+export const isContentShiftFieldSet = (value) => {
+	if (value === undefined || value === null) {
+		return false;
+	}
+
+	if (typeof value === 'string') {
+		return value.trim() !== '';
+	}
+
+	return true;
+};
+
+/**
+ * Trims a content-shift field into a normalized string, or empty string when unset.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {string} Normalized field value or empty string when unset.
+ */
+export const normalizeContentShiftInput = (value) => {
+	if (!isContentShiftFieldSet(value)) {
+		return '';
+	}
+
+	return `${value}`.trim();
+};
+
+/**
+ * Converts a positive shift value into its negative margin form.
+ *
+ * Explicit zero remains zero (never `-0`), preserving the "0 = intentional"
+ * behavior without introducing invalid-looking values.
+ *
+ * @param {string|number|undefined|null} value Field value from block attributes.
+ * @return {string} Negative shift value, zero value, or empty string when unset.
+ */
+export const toNegativeContentShiftValue = (value) => {
+	const normalized = normalizeContentShiftInput(value);
+	if (!normalized) {
+		return '';
+	}
+
+	const match = normalized.match(/^(-?\d*\.?\d+)([a-z%]*)$/i);
+	if (!match) {
+		return normalized.startsWith('-') ? normalized : `-${normalized}`;
+	}
+
+	const amount = Number(match[1]);
+	const unit = match[2] || '';
+
+	if (!Number.isFinite(amount) || amount === 0) {
+		return `0${unit}`;
+	}
+
+	return `${-Math.abs(amount)}${unit}`;
 };
 
 // Utility function to manage class additions and removals

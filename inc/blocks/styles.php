@@ -53,8 +53,7 @@ function flexline_get_block_styles() {
 				'glass-card-no-padding' => __( 'Glass Card (No Padding)', 'flexline' ),
 			),
 			'core/columns'                          => array(
-				'columns-reverse'   => __( 'Reverse when stacked', 'flexline' ),
-				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
+				'columns-reverse' => __( 'Reverse when stacked', 'flexline' ),
 			),
 			'core/group'                            => array(
 				'card'                  => __( 'Card', 'flexline' ),
@@ -81,8 +80,7 @@ function flexline_get_block_styles() {
 				'light-over-dark' => __( 'Light on Dark', 'flexline' ),
 			),
 			'core/navigation-link'                  => array(
-				'outline'     => __( 'Outline', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/page-link'                        => array(
 				'outline' => __( 'Outline', 'flexline' ),
@@ -111,14 +109,12 @@ function flexline_get_block_styles() {
 				'outline' => __( 'Outline', 'flexline' ),
 			),
 			'core/heading'                          => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
 			),
 			'core/paragraph'                        => array(
-				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
-				'creative'    => __( 'Creative', 'flexline' ),
-				'text-shadow' => __( 'Text Shadow', 'flexline' ),
+				'eyebrow'  => __( 'Eyebrow', 'flexline' ),
+				'creative' => __( 'Creative', 'flexline' ),
 			),
 			'core/site-title'                       => array(
 				'eyebrow'     => __( 'Eyebrow', 'flexline' ),
@@ -171,9 +167,6 @@ function flexline_get_block_styles() {
 				'glass-button' => __( 'Glass Button', 'flexline' ),
 				'outline'      => __( 'Outline', 'flexline' ),
 				'text-link'    => __( 'Plain Text', 'flexline' ),
-			),
-			'core/post-template'                    => array(
-				'horizontal-scroll' => __( 'Horizontal Scroll', 'flexline' ),
 			),
 			// Web4SL Floor Plan image-like blocks (use image styles only).
 			'web4sl/floor-plan-2d-image'            => array(

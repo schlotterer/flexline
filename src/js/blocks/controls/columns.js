@@ -13,7 +13,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { getVisibilityControls } from '../utils';
+import { getVisibilityPanel } from '../utils';
 
 const iconButtonLabel = (id, label) =>
 	id ? `Change ${label} Icon (ID ${id})` : `Select ${label} Icon`;
@@ -41,7 +41,11 @@ const IconPickerControl = ({
 			if (!iconId) {
 				return null;
 			}
-			return select('core').getMedia(iconId);
+			return select('core').getEntityRecord(
+				'postType',
+				'attachment',
+				iconId
+			);
 		},
 		[iconId]
 	);
@@ -232,6 +236,8 @@ export const controls = (BlockEdit, props) => {
 				>
 					{isScrollerEnabled && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Display Mode"
 							value={props.attributes.buttonDisplayMode}
 							options={[
@@ -256,6 +262,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && props.attributes.showRangeDots && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Range Dots Layout"
 							value={props.attributes.rangeDotsLayout}
 							options={[
@@ -290,6 +298,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && props.attributes.showRangeDots && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Range Dots Color"
 							value={props.attributes.rangeDotsColor}
 							options={[
@@ -308,6 +318,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && !isSideButtonsMode && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Horizontal Position"
 							value={props.attributes.positionButtonsHorizontal}
 							options={[
@@ -324,6 +336,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && !isSideButtonsMode && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Vertical Position"
 							value={props.attributes.positionButtonsVertical}
 							options={[
@@ -350,6 +364,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Text Color"
 							value={props.attributes.buttonsTextColor}
 							options={[
@@ -368,6 +384,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Background Color"
 							value={props.attributes.buttonsBackgroundColor}
 							options={[
@@ -389,6 +407,8 @@ export const controls = (BlockEdit, props) => {
 					)}
 					{isScrollerEnabled && (
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label="Buttons Border Color"
 							value={props.attributes.buttonsBorderColor}
 							options={[
@@ -475,16 +495,17 @@ export const controls = (BlockEdit, props) => {
 						/>
 					)}
 				</PanelBody>
-				<PanelBody title="FlexLine Visibility">
+				{getVisibilityPanel(
+					props,
 					<ToggleControl
-						label="Stack at Tablet"
+						label="Stack at Medium (782px-991.98px)"
+						help="Applies only between 782px and 991.98px."
 						checked={!!props.attributes.stackAtTablet}
 						onChange={(newValue) =>
 							props.setAttributes({ stackAtTablet: newValue })
 						}
 					/>
-					{getVisibilityControls(props)}
-				</PanelBody>
+				)}
 			</InspectorControls>
 		</Fragment>
 	);
@@ -817,11 +838,15 @@ export const useHooks = (props) => {
 			if (
 				!id ||
 				!mediaStore ||
-				typeof mediaStore.getMedia !== 'function'
+				typeof mediaStore.getEntityRecord !== 'function'
 			) {
 				return '';
 			}
-			const media = mediaStore.getMedia(id);
+			const media = mediaStore.getEntityRecord(
+				'postType',
+				'attachment',
+				id
+			);
 			return getMediaUrl(media);
 		};
 		const prevUrl =

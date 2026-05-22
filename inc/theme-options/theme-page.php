@@ -41,22 +41,58 @@ function flexline_theme_options_page() {
 	?>
 	<div class="wrap">
 		<h1>FlexLine Theme Options</h1>
-		
+
 		<!-- Tabs -->
-		<h2 class="nav-tab-wrapper">
-						<?php foreach ( $tabs as $tab_id => $tab ) : ?>
-								<a href="#<?php echo esc_attr( $tab_id ); ?>" class="nav-tab" data-tab="<?php echo esc_attr( $tab_id ); ?>" onclick="openTab(event, '<?php echo esc_attr( $tab_id ); ?>')"><?php echo esc_html( $tab['title'] ); ?></a>
-						<?php endforeach; ?>
-				</h2>
-		
+		<div class="nav-tab-wrapper" role="tablist" aria-label="FlexLine options sections">
+			<?php
+			$tab_index = 0;
+			foreach ( $tabs as $tab_id => $tab ) :
+				$button_id = 'flexline-tab-button-' . $tab_id;
+				$panel_id  = 'flexline-tab-panel-' . $tab_id;
+				$is_active = 0 === $tab_index;
+				?>
+				<button
+					type="button"
+					id="<?php echo esc_attr( $button_id ); ?>"
+					class="nav-tab<?php echo $is_active ? ' nav-tab-active' : ''; ?>"
+					role="tab"
+					aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
+					aria-controls="<?php echo esc_attr( $panel_id ); ?>"
+					data-tab-target="<?php echo esc_attr( $panel_id ); ?>"
+				>
+					<?php echo esc_html( $tab['title'] ); ?>
+				</button>
+				<?php
+				++$tab_index;
+			endforeach;
+			?>
+		</div>
+
 		<!-- Tab Contents -->
-				<?php foreach ( $tabs as $tab_id => $tab ) : ?>
-						<div id="<?php echo esc_attr( $tab_id ); ?>" class="tab-content">
-								<?php call_user_func( $tab['content'] ); ?>
-						</div>
-				<?php endforeach; ?>
+		<?php
+		$panel_index = 0;
+		foreach ( $tabs as $tab_id => $tab ) :
+			$button_id = 'flexline-tab-button-' . $tab_id;
+			$panel_id  = 'flexline-tab-panel-' . $tab_id;
+			$is_active = 0 === $panel_index;
+			?>
+			<div
+				id="<?php echo esc_attr( $panel_id ); ?>"
+				class="tab-content<?php echo $is_active ? ' active' : ''; ?>"
+				role="tabpanel"
+				aria-labelledby="<?php echo esc_attr( $button_id ); ?>"
+				<?php if ( ! $is_active ) : ?>
+					hidden
+				<?php endif; ?>
+			>
+				<?php call_user_func( $tab['content'] ); ?>
+			</div>
+			<?php
+			++$panel_index;
+		endforeach;
+		?>
 	</div>
-	
+
 	<style>
 		.tab-content {
 			display: none;
@@ -73,59 +109,5 @@ function flexline_theme_options_page() {
 			padding: 5px;
 		}
 	</style>
-	<script>
-		function openTab(event, tabId) {
-			var i, tabcontent, tablinks;
-			tabcontent = document.getElementsByClassName("tab-content");
-			for (i = 0; i < tabcontent.length; i++) {
-				tabcontent[i].classList.remove("active");
-			}
-			tablinks = document.getElementsByClassName("nav-tab");
-			for (i = 0; i < tablinks.length; i++) {
-				tablinks[i].classList.remove("nav-tab-active");
-			}
-			document.getElementById(tabId).classList.add("active");
-			event.currentTarget.classList.add("nav-tab-active");
-		}
-
-		document.addEventListener('DOMContentLoaded', function() {
-			var defaultTab = document.querySelector('.nav-tab');
-			if (defaultTab) {
-				defaultTab.click();
-			}
-
-			var uploadButton = document.getElementById('upload-button');
-			if (uploadButton) {
-				var featureFallbackInput = document.getElementById('feature-fallback-input');
-				var featureFallbackImage = document.getElementById('feature-fallback-image');
-				
-				uploadButton.addEventListener('click', function(e) {
-					e.preventDefault();
-					
-										// Create the media frame.
-					var imageFrame = wp.media({
-						title: 'Upload Image',
-						multiple: false,
-						library: {
-							type: 'image'
-						},
-						button: {
-							text: 'Use this image'
-						}
-					});
-
-										// When an image is selected, run a callback.
-					imageFrame.on('select', function() {
-						var attachment = imageFrame.state().get('selection').first().toJSON();
-						featureFallbackInput.value = attachment.url;
-						featureFallbackImage.src = attachment.url;
-					});
-
-										// Finally, open the modal.
-					imageFrame.open();
-				});
-			}
-		});
-	</script>
 	<?php
 }

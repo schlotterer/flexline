@@ -22,25 +22,25 @@ namespace FlexLine;
         <!-- /wp:column -->
 
         <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"}} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery {"linkTo":"media","metadata":{"name":"Poster Gallery"},"enablePosterGallery":true} -->
-            <figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
+        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery <?php echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) ); ?> -->
+            <figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
+                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
+                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
+                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
+                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
+                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
+                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
+                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
 
-                <!-- wp:image {"sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-                <figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url(feature_image_fallback()); ?>"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></a></figure>
+                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
+                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
                 <!-- /wp:image -->
             </figure>
             <!-- /wp:gallery -->

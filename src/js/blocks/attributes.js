@@ -313,19 +313,19 @@ export const customShiftAttributes = {
 	},
 	shiftLeft: {
 		type: 'string', // none, left, right
-		default: '0px',
+		default: '',
 	},
 	shiftRight: {
 		type: 'string', // small, medium, large, etc.
-		default: '0px',
+		default: '',
 	},
 	shiftUp: {
 		type: 'string', // none, top, bottom
-		default: '0px',
+		default: '',
 	},
 	shiftDown: {
 		type: 'string',
-		default: '0px',
+		default: '',
 	},
 	shiftToTop: {
 		type: 'boolean',
@@ -333,11 +333,11 @@ export const customShiftAttributes = {
 	},
 	slideHorizontal: {
 		type: 'string', // small, medium, large, etc.
-		default: '0px',
+		default: '',
 	},
 	slideVertical: {
 		type: 'string', // none, top, bottom
-		default: '0px',
+		default: '',
 	},
 	resetMobile: {
 		type: 'boolean',
@@ -362,5 +362,13 @@ export const customRelatedPostsAttributes = {
 		type: 'string',
 		enum: ['current', 'all'],
 		default: 'current',
+	},
+};
+
+// Categories - Define custom attributes
+export const customCategoriesAttributes = {
+	flexlinePrimaryTermOnly: {
+		type: 'boolean',
+		default: false,
 	},
 };

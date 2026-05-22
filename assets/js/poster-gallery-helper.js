@@ -18,7 +18,7 @@
 	 * If parsing fails we return null and let baguetteBox use its own default.
 	 *
 	 * @param {string} expression
-	 * @return {RegExp|null}
+	 * @return {RegExp|null} Parsed regular expression, or null when invalid.
 	 */
 	const parseRegexExpression = (expression) => {
 		if (typeof expression !== 'string') {
@@ -41,7 +41,7 @@
 		try {
 			return new RegExp(pattern, flags);
 		} catch (error) {
-			console.warn(
+			window.console?.warn(
 				'[flexline/poster-gallery-helper] Failed to parse baguette filter regex.',
 				error
 			);
@@ -69,25 +69,49 @@
 		return { selector, filter };
 	};
 
+	const CORE_LIGHTBOX_SELECTOR = [
+		'.wp-lightbox-container',
+		'[data-wp-on--click*="showLightbox"]',
+		'[data-wp-on--click*="show-lightbox"]',
+		'[data-wp-interactive*="core/image"]',
+		'[data-wp-interactive*="core/gallery"]',
+	].join(',');
+
+	const hasCoreLightbox = (element) =>
+		!!element?.closest?.(CORE_LIGHTBOX_SELECTOR) ||
+		!!element?.querySelector?.(CORE_LIGHTBOX_SELECTOR);
+
+	const isCoreLightboxTrigger = (trigger) =>
+		!!trigger?.matches?.(CORE_LIGHTBOX_SELECTOR) ||
+		!!trigger?.closest?.(CORE_LIGHTBOX_SELECTOR);
+
 	/**
 	 * Shared caption resolver kept in JS (instead of a one-time inline load
 	 * callback) so we can safely re-run baguetteBox after dynamic DOM updates.
 	 *
 	 * @param {HTMLAnchorElement} trigger
-	 * @return {string|boolean}
+	 * @return {string|boolean} Caption HTML, or false when none exists.
 	 */
 	const resolveCaption = (trigger) => {
+		if (isCoreLightboxTrigger(trigger)) {
+			return false;
+		}
+
 		if (!trigger || !trigger.parentElement) {
 			return false;
 		}
 
 		const isImageFigure =
 			trigger.parentElement.classList.contains('wp-block-image') ||
-			trigger.parentElement.classList.contains('wp-block-media-text__media');
+			trigger.parentElement.classList.contains(
+				'wp-block-media-text__media'
+			);
 
 		const captionNode = isImageFigure
 			? trigger.parentElement.querySelector('figcaption')
-			: trigger.parentElement.parentElement?.querySelector('figcaption,dd');
+			: trigger.parentElement.parentElement?.querySelector(
+					'figcaption,dd'
+				);
 
 		return captionNode ? captionNode.innerHTML : false;
 	};
@@ -105,7 +129,10 @@
 	let refreshRequested = false;
 
 	const refreshBaguetteBox = () => {
-		if (!window.baguetteBox || typeof window.baguetteBox.run !== 'function') {
+		if (
+			!window.baguetteBox ||
+			typeof window.baguetteBox.run !== 'function'
+		) {
 			return;
 		}
 		if (refreshInProgress) {
@@ -125,7 +152,7 @@
 				try {
 					window.baguetteBox.destroy();
 				} catch (error) {
-					console.warn(
+					window.console?.warn(
 						'[flexline/poster-gallery-helper] baguetteBox.destroy() failed; continuing with fresh run.',
 						error
 					);
@@ -179,9 +206,19 @@
 	 * @param {Element} galleryEl
 	 */
 	const prepareGallery = (galleryEl) => {
+		if (hasCoreLightbox(galleryEl)) {
+			return false;
+		}
+
+		let changed = false;
+
 		galleryEl
 			.querySelectorAll('figure.wp-block-image')
 			.forEach((figure) => {
+				if (hasCoreLightbox(figure)) {
+					return;
+				}
+
 				// Already wrapped – bail.
 				if (figure.querySelector('a')) {
 					return;
@@ -209,15 +246,29 @@
 				// Move the <img> into <a>, then back into <figure>
 				figure.replaceChild(anchor, img);
 				anchor.appendChild(img);
+				changed = true;
 			});
+
+		return changed;
 	};
 
 	/**
 	 * Initialise once DOM is ready.
 	 */
 	const init = () => {
-		document.querySelectorAll('.poster-gallery').forEach(prepareGallery);
-		queueLightboxRefresh();
+		let changed = false;
+		document.querySelectorAll('.poster-gallery').forEach((galleryEl) => {
+			changed = prepareGallery(galleryEl) || changed;
+		});
+
+		if (
+			changed ||
+			document.querySelector(
+				'.poster-gallery:not(.wp-lightbox-container)'
+			)
+		) {
+			queueLightboxRefresh();
+		}
 	};
 
 	// DOM ready – cover classic, module, and delayed hydration.
@@ -228,7 +279,7 @@
 	}
 
 	// Optional: observe late-loaded blocks (Site Editor, ACF blocks, etc.)
-	const mo = new MutationObserver((mutations) => {
+	const mo = new window.MutationObserver((mutations) => {
 		let changed = false;
 
 		for (const m of mutations) {
@@ -237,15 +288,15 @@
 					return;
 				} // not an element
 				if (n.matches?.('.poster-gallery')) {
-					prepareGallery(n);
-					changed = true;
+					changed = prepareGallery(n) || changed;
 				}
 				// or new figures inserted under an existing gallery
 				if (n.querySelector?.('.poster-gallery')) {
 					n.querySelectorAll('.poster-gallery').forEach(
-						prepareGallery
+						(galleryEl) => {
+							changed = prepareGallery(galleryEl) || changed;
+						}
 					);
-					changed = true;
 				}
 			});
 		}

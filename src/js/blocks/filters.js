@@ -16,6 +16,7 @@ import {
 	customNoWrapAttributes,
 	customLogoAttributes,
 	customRelatedPostsAttributes,
+	customCategoriesAttributes,
 } from './attributes';
 
 function registerAttributes(blockNames, attributes) {
@@ -88,6 +89,10 @@ registerAttributes(['core/post-template'], {
 
 registerAttributes(['core/query'], {
 	...customRelatedPostsAttributes,
+});
+
+registerAttributes(['core/categories'], {
+	...customCategoriesAttributes,
 });
 
 const relatedPostsAllowedControls = [
@@ -167,6 +172,7 @@ registerAttributes(
 		'web4sl/location-phone-link',
 		'web4sl/location-map-link',
 		'web4sl/location-filter-family',
+		'mylifesite/location-gallery',
 	],
 	{ ...customVisibilityAttributes }
 );

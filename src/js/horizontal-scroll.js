@@ -11,6 +11,39 @@ function isBlockEditor() {
 	);
 }
 
+let editorDragActive = false;
+let editorReinitTimeout = null;
+let editorReinitRaf = null;
+
+function isEditorDraggingBlocks() {
+	if (!isBlockEditor()) {
+		return false;
+	}
+
+	const blockEditor = wp.data.select('core/block-editor');
+	if (!blockEditor || typeof blockEditor.isDraggingBlocks !== 'function') {
+		return false;
+	}
+
+	try {
+		return !!blockEditor.isDraggingBlocks();
+	} catch {
+		return false;
+	}
+}
+
+function getScrollerWrapper(scroller) {
+	const parent = scroller && scroller.parentNode;
+	if (
+		parent &&
+		parent.classList &&
+		parent.classList.contains('horizontal-scroll-wrapper')
+	) {
+		return parent;
+	}
+	return null;
+}
+
 const PREV_ICON_SVG =
 	'<span class="material-symbols-outlined">' +
 	'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
@@ -201,25 +234,59 @@ function ensureWrapper(scroller) {
 		return scroller;
 	}
 
-	if (
-		scroller.parentNode &&
-		scroller.parentNode.classList.contains('horizontal-scroll-wrapper')
-	) {
-		return scroller.parentNode;
+	const existingWrapper = getScrollerWrapper(scroller);
+	if (existingWrapper) {
+		return existingWrapper;
+	}
+
+	if (isBlockEditor() && editorDragActive) {
+		return scroller.parentNode || scroller;
+	}
+
+	const parent = scroller.parentNode;
+	if (!parent || typeof parent.insertBefore !== 'function') {
+		return scroller;
+	}
+	if (typeof parent.contains === 'function' && !parent.contains(scroller)) {
+		return scroller;
 	}
 
 	const wrapper = document.createElement('div');
 	wrapper.classList.add('horizontal-scroll-wrapper');
 	wrapper.style.position = 'relative';
-	scroller.parentNode.insertBefore(wrapper, scroller);
-	wrapper.appendChild(scroller);
-	return wrapper;
+	try {
+		parent.insertBefore(wrapper, scroller);
+		wrapper.appendChild(scroller);
+	} catch {
+		if (wrapper.parentNode) {
+			wrapper.remove();
+		}
+		return scroller;
+	}
+	return getScrollerWrapper(scroller) || scroller;
 }
 
 function removeWrapper(scroller) {
-	const parent = scroller.parentNode;
-	if (parent && parent.classList.contains('horizontal-scroll-wrapper')) {
-		parent.parentNode.insertBefore(scroller, parent);
+	const parent = getScrollerWrapper(scroller);
+	if (!parent) {
+		return;
+	}
+	const grandParent = parent.parentNode;
+	if (!grandParent || typeof grandParent.insertBefore !== 'function') {
+		return;
+	}
+	if (
+		typeof grandParent.contains === 'function' &&
+		!grandParent.contains(parent)
+	) {
+		return;
+	}
+	try {
+		grandParent.insertBefore(scroller, parent);
+	} catch {
+		return;
+	}
+	if (parent.parentNode === grandParent) {
 		parent.remove();
 	}
 }
@@ -259,8 +326,8 @@ function clearDotsRuntime(scroller) {
 }
 
 function clearControlContainers(scroller) {
-	const wrapper = ensureWrapper(scroller);
-	if (!wrapper || wrapper === scroller) {
+	const wrapper = getScrollerWrapper(scroller);
+	if (!wrapper) {
 		return;
 	}
 	wrapper
@@ -410,6 +477,11 @@ function setupScrollerButtons(scroller) {
 			setupScrollerButtons(scroller)
 		).observe(scroller, { attributes: true, attributeFilter: ['class'] });
 		scroller.dataset.classObserverAttached = 'true';
+	}
+
+	if (isBlockEditor() && editorDragActive) {
+		teardownScrollerRuntime(scroller);
+		return;
 	}
 
 	const wrapper = ensureWrapper(scroller);
@@ -672,6 +744,14 @@ function buildThresholdList() {
 }
 
 function setupStatusObserver(scroller) {
+	if (isBlockEditor() && editorDragActive) {
+		if (scroller._statusObserver) {
+			scroller._statusObserver.disconnect();
+			scroller._statusObserver = null;
+		}
+		return;
+	}
+
 	if (scroller._statusObserver) {
 		scroller._statusObserver.disconnect();
 	}
@@ -716,7 +796,72 @@ function setupStatusObserver(scroller) {
 	scroller._statusObserver = observer;
 }
 
+function teardownScrollerRuntime(scroller) {
+	clearAutoScrollRuntime(scroller);
+	clearDotsRuntime(scroller);
+	clearControlContainers(scroller);
+	if (scroller._statusObserver) {
+		scroller._statusObserver.disconnect();
+		scroller._statusObserver = null;
+	}
+	teardownInfiniteLoop(scroller);
+	removeWrapper(scroller);
+}
+
+function teardownAllEditorDragScrollers() {
+	document
+		.querySelectorAll('.is-style-horizontal-scroll')
+		.forEach((scroller) => {
+			teardownScrollerRuntime(scroller);
+		});
+}
+
+function queueEditorReinit() {
+	if (!isBlockEditor()) {
+		return;
+	}
+	if (editorReinitTimeout) {
+		clearTimeout(editorReinitTimeout);
+	}
+	if (editorReinitRaf) {
+		window.cancelAnimationFrame(editorReinitRaf);
+	}
+	editorReinitTimeout = setTimeout(() => {
+		editorReinitTimeout = null;
+		editorReinitRaf = requestAnimationFrame(() => {
+			editorReinitRaf = null;
+			if (!editorDragActive) {
+				initScrollers();
+			}
+		});
+	}, 120);
+}
+
+function updateEditorDragState() {
+	if (!isBlockEditor()) {
+		return false;
+	}
+
+	const isDragging = isEditorDraggingBlocks();
+	if (isDragging === editorDragActive) {
+		return isDragging;
+	}
+
+	editorDragActive = isDragging;
+	if (editorDragActive) {
+		teardownAllEditorDragScrollers();
+	} else {
+		queueEditorReinit();
+	}
+	return isDragging;
+}
+
 function initScroller(scroller) {
+	if (isBlockEditor() && editorDragActive) {
+		teardownScrollerRuntime(scroller);
+		return;
+	}
+
 	if (scroller.classList.contains('is-style-horizontal-scroll')) {
 		ensureWrapper(scroller);
 	} else {
@@ -757,6 +902,10 @@ function watchLoopToggle(scroller) {
 		return;
 	}
 	new window.MutationObserver(() => {
+		if (isBlockEditor() && editorDragActive) {
+			teardownInfiniteLoop(scroller);
+			return;
+		}
 		if (!scroller.classList.contains('horizontal-scroller-loop')) {
 			teardownInfiniteLoop(scroller);
 		} else {
@@ -777,6 +926,11 @@ function watchChildrenForLoop(scroller) {
 		return;
 	}
 	const mo = new window.MutationObserver((mutations) => {
+		if (isBlockEditor() && editorDragActive) {
+			teardownScrollerRuntime(scroller);
+			return;
+		}
+
 		const realChange = mutations.some((m) => {
 			return (
 				Array.from(m.addedNodes).some(
@@ -810,6 +964,13 @@ function watchChildrenForLoop(scroller) {
 }
 
 function initInfiniteLoops() {
+	if (isBlockEditor() && editorDragActive) {
+		document
+			.querySelectorAll('[data-loop-initialised="true"]')
+			.forEach(teardownInfiniteLoop);
+		return;
+	}
+
 	if (isBlockEditor()) {
 		document
 			.querySelectorAll('[data-loop-initialised="true"]')
@@ -828,6 +989,11 @@ function initInfiniteLoops() {
 }
 
 function initOneScroller(scroller) {
+	if (isBlockEditor() && editorDragActive) {
+		teardownScrollerRuntime(scroller);
+		return;
+	}
+
 	maybeRandomizeSlidesOnLoad(scroller);
 	initScroller(scroller);
 	if (scroller.classList.contains('horizontal-scroller-loop')) {
@@ -836,6 +1002,10 @@ function initOneScroller(scroller) {
 }
 
 function scheduleScrollerInit(scroller) {
+	if (isBlockEditor() && editorDragActive) {
+		return;
+	}
+
 	watchLoopToggle(scroller);
 	watchChildrenForLoop(scroller);
 
@@ -888,6 +1058,11 @@ function scheduleScrollerInit(scroller) {
 }
 
 function initScrollers() {
+	if (isBlockEditor() && editorDragActive) {
+		teardownAllEditorDragScrollers();
+		return;
+	}
+
 	document
 		.querySelectorAll('.is-style-horizontal-scroll')
 		.forEach(scheduleScrollerInit);
@@ -912,6 +1087,9 @@ window.addEventListener('load', initScrollers);
 
 if (isBlockEditor()) {
 	const bodyObserver = new window.MutationObserver((records) => {
+		if (updateEditorDragState()) {
+			return;
+		}
 		for (const rec of records) {
 			for (const node of rec.addedNodes) {
 				if (
@@ -932,9 +1110,25 @@ if (isBlockEditor()) {
 	});
 	wp.domReady(() => {
 		let t;
+		editorDragActive = isEditorDraggingBlocks();
+		if (editorDragActive) {
+			teardownAllEditorDragScrollers();
+		}
 		wp.data.subscribe(() => {
+			const wasDragging = editorDragActive;
+			const isDragging = updateEditorDragState();
+			if (isDragging) {
+				return;
+			}
+			if (wasDragging !== isDragging) {
+				return;
+			}
 			clearTimeout(t);
-			t = setTimeout(() => initScrollers(), 200);
+			t = setTimeout(() => {
+				if (!updateEditorDragState()) {
+					initScrollers();
+				}
+			}, 200);
 		});
 	});
 }
