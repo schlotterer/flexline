@@ -69,6 +69,12 @@
 		return { selector, filter };
 	};
 
+	const shouldUseCoreGalleryLightbox = () =>
+		!!(
+			window.flexlineBaguetteConfig &&
+			window.flexlineBaguetteConfig.useCoreGalleryLightbox
+		);
+
 	const CORE_LIGHTBOX_SELECTOR = [
 		'.wp-lightbox-container',
 		'[data-wp-on--click*="showLightbox"]',
@@ -206,6 +212,15 @@
 	 * @param {Element} galleryEl
 	 */
 	const prepareGallery = (galleryEl) => {
+		// On WP 7+ core gallery lightbox owns poster-gallery behavior.
+		// Skip legacy helper wrapping/binding for core gallery containers.
+		if (
+			shouldUseCoreGalleryLightbox() &&
+			galleryEl?.classList?.contains('wp-block-gallery')
+		) {
+			return false;
+		}
+
 		if (hasCoreLightbox(galleryEl)) {
 			return false;
 		}

@@ -65,6 +65,7 @@ function register_assets() {
 		array(
 			'selector' => $baguettebox_selector,
 			'filter'   => $baguettebox_filter,
+			'useCoreGalleryLightbox' => should_use_core_gallery_lightbox(),
 		),
 		JSON_UNESCAPED_SLASHES
 	);
