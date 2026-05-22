@@ -38,7 +38,15 @@ function register_assets() {
 	 *
 	 * @param string  $value  The CSS selector to a gallery (or galleries) containing a tags.
 	 */
-	$baguettebox_selector = apply_filters( 'baguettebox_selector', '.wp-block-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery' );
+	$default_selector = '.wp-block-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery';
+
+	// On WP 7+, let core own Gallery lightbox. Legacy baguetteBox should only
+	// target legacy indicators/containers and must not bind all core galleries.
+	if ( should_use_core_gallery_lightbox() ) {
+		$default_selector = '.poster-gallery,:not(.wp-block-gallery)>.wp-block-image,.wp-block-media-text__media,.gallery';
+	}
+
+	$baguettebox_selector = apply_filters( 'baguettebox_selector', $default_selector );
 
 	/**
 	 * Filters the image files filter of baguetteBox.js.
@@ -154,9 +162,11 @@ function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $
 		return $parsed_block;
 	}
 
-	$attrs = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
+	$attrs             = isset( $parsed_block['attrs'] ) && is_array( $parsed_block['attrs'] ) ? $parsed_block['attrs'] : array();
+	$class             = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$is_poster_gallery = ! empty( $attrs['enablePosterGallery'] ) || false !== strpos( $class, 'poster-gallery' );
 
-	if ( 'core/gallery' === $parsed_block['blockName'] && ! empty( $attrs['enablePosterGallery'] ) && empty( $attrs['linkTo'] ) ) {
+	if ( 'core/gallery' === $parsed_block['blockName'] && $is_poster_gallery && empty( $attrs['linkTo'] ) ) {
 		$attrs['linkTo']       = 'lightbox';
 		$parsed_block['attrs'] = $attrs;
 	}
@@ -168,7 +178,10 @@ function enable_core_lightbox_for_legacy_poster_gallery_blocks( $parsed_block, $
 		}
 
 		if (
-			! empty( $parent_attrs['enablePosterGallery'] ) &&
+			(
+				! empty( $parent_attrs['enablePosterGallery'] ) ||
+				( isset( $parent_attrs['className'] ) && false !== strpos( (string) $parent_attrs['className'], 'poster-gallery' ) )
+			) &&
 			empty( $attrs['lightbox'] )
 		) {
 			$attrs['lightbox']     = array( 'enabled' => true );
@@ -217,7 +230,10 @@ function block_needs_legacy_baguettebox( $block_content, $block ) {
 		should_use_core_gallery_lightbox() &&
 		isset( $block['blockName'] ) &&
 		'core/gallery' === $block['blockName'] &&
-		! empty( $attrs['enablePosterGallery'] )
+		(
+			! empty( $attrs['enablePosterGallery'] ) ||
+			false !== strpos( $class, 'poster-gallery' )
+		)
 	) {
 		return false;
 	}
