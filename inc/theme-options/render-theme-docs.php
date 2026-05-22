@@ -77,7 +77,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 				'attributes' => array(
 					array(
 						'name'        => 'Poster Gallery',
-						'description' => 'Converts a tiled gallery into a film‑strip style with one large “poster” image.',
+						'description' => 'Converts a tiled gallery into a film‑strip style with one large “poster” image. FlexLine does not run automatic poster-gallery migration. Legacy poster galleries keep legacy lightbox behavior until content is replaced with updated patterns.',
 					),
 				),
 			),

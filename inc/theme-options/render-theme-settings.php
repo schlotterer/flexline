@@ -55,7 +55,6 @@ function flexline_render_settings_tab() {
 				<td><input id="flexline-enable-core-block-hide" type="checkbox" name="flexline_enable_core_block_hide" value="1" <?php checked( 1, get_option( 'flexline_enable_core_block_hide', 0 ), true ); ?> /></td>
 			</tr>
 		</table>
-		
 		<h2>Fallback Settings</h2>
 		<hr />
 		<table class="form-table">

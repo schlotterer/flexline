@@ -5,6 +5,7 @@ import {
 	getLegacyGalleryLightboxAttributes,
 	isContentShiftFieldSet,
 	normalizeContentShiftInput,
+	shouldUseCoreGalleryLightbox,
 	toNegativeContentShiftValue,
 	updateBlockClasses,
 } from '../utils';
@@ -176,6 +177,20 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 		}
 
 		useEffect(() => {
+			const shouldEnforcePosterGalleryLightbox =
+				props.name === 'core/gallery' &&
+				!!props.attributes.enablePosterGallery &&
+				shouldUseCoreGalleryLightbox() &&
+				props.attributes.linkTo !== 'lightbox';
+
+			// Keep Poster Gallery synced with core lightbox on WP 7+ without
+			// running a broad content migration. If poster mode is later turned
+			// off, we intentionally leave the link setting as-is.
+			if (shouldEnforcePosterGalleryLightbox) {
+				props.setAttributes({ linkTo: 'lightbox' });
+				return;
+			}
+
 			const galleryLightboxAttrs = getLegacyGalleryLightboxAttributes(
 				props.name,
 				props.attributes
