@@ -35,8 +35,6 @@ function extend_query_block_context_metadata( $metadata ) {
 	);
 
 	if ( 'core/query' === $metadata['name'] ) {
-		error_log( 'Adding flexline context to core/query metadata' );
-
 		$metadata['providesContext'] = array_merge(
 			$metadata['providesContext'] ?? array(),
 			array(

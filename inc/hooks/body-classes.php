@@ -41,11 +41,11 @@ function get_style_context_classes( $context = 'frontend' ) {
 
 	// Add a class if header is fixed all the time.
 	$show_menu_on_scroll = get_option( 'flexline_show_menu_on_scroll_up', false );
-	if ( '1' === $show_menu_on_scroll ) {
+	if ( (bool) $show_menu_on_scroll ) {
 		$classes[] = 'headroom-in-use';
 	}
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
-	if ( '1' === $show_menu_all_the_time ) {
+	if ( (bool) $show_menu_all_the_time ) {
 		$classes[] = 'headroom--fixed-all-the-time';
 	}
 
@@ -58,10 +58,10 @@ function get_style_context_classes( $context = 'frontend' ) {
 	$classes[] = 'flexline';
 
 	// Slide-in button visibility classes for CSS padding (no new options; mirror existing settings).
-	if ( '1' === get_option( 'flexline_hide_search_tablet', false ) ) {
+	if ( (bool) get_option( 'flexline_hide_search_tablet', false ) ) {
 		$classes[] = 'slidein-hide-on-tablet';
 	}
-	if ( '1' === get_option( 'flexline_hide_search_desktop', false ) ) {
+	if ( (bool) get_option( 'flexline_hide_search_desktop', false ) ) {
 		$classes[] = 'slidein-hide-on-desktop';
 	}
 

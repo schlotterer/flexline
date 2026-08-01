@@ -19,12 +19,35 @@ namespace FlexLine;
  * @return void
  */
 function flexline_register_settings() {
-	register_setting( 'flexline_theme_options_group', 'flexline_use_menu_icon' );
-	register_setting( 'flexline_theme_options_group', 'flexline_hide_search_tablet' );
-	register_setting( 'flexline_theme_options_group', 'flexline_hide_search_desktop' );
-	register_setting( 'flexline_theme_options_group', 'flexline_feature_fallback' );
-	register_setting( 'flexline_theme_options_group', 'flexline_show_menu_on_scroll_up' );
-	register_setting( 'flexline_theme_options_group', 'flexline_show_menu_all_the_time' );
-	register_setting( 'flexline_theme_options_group', 'flexline_enable_core_block_hide' );
+	$boolean_settings = array(
+		'flexline_use_menu_icon',
+		'flexline_hide_search_tablet',
+		'flexline_hide_search_desktop',
+		'flexline_show_menu_on_scroll_up',
+		'flexline_show_menu_all_the_time',
+		'flexline_enable_core_block_hide',
+	);
+
+	foreach ( $boolean_settings as $setting ) {
+		register_setting(
+			'flexline_theme_options_group',
+			$setting,
+			array(
+				'type'              => 'integer',
+				'default'           => 0,
+				'sanitize_callback' => 'absint',
+			)
+		);
+	}
+
+	register_setting(
+		'flexline_theme_options_group',
+		'flexline_feature_fallback',
+		array(
+			'type'              => 'string',
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
 }
 add_action( 'admin_init', __NAMESPACE__ . '\flexline_register_settings' );

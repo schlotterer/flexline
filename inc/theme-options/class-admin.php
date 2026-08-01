@@ -14,20 +14,6 @@ defined( 'ABSPATH' ) || exit;
  */
 class Admin {
 
-	// Central defaults (first load behavior).
-	private const DEFAULTS = array(
-		'enable_og_tags'              => 1,
-		'remove_generator'            => 1,
-		'disable_xmlrpc'              => 1,
-		'rest_cors_allow_all'         => 0,
-		'disable_all_comments'        => 0,
-		'custom_login_enabled'        => 0,
-		'custom_login_slug'           => '',
-		'custom_login_strict_mode'    => 1,
-		'custom_login_fallback_key'   => '',
-		'custom_login_fallback_value' => '',
-	);
-
 	/**
 	 * Register settings. UI is rendered on the FlexLine Options page.
 	 *
@@ -58,7 +44,7 @@ class Admin {
 	 */
 	private static function get_options(): array {
 		$saved = get_option( 'flexline_utilities', array() );
-		return \wp_parse_args( is_array( $saved ) ? $saved : array(), self::DEFAULTS );
+		return \wp_parse_args( is_array( $saved ) ? $saved : array(), \FlexLine\flexline_utilities_get_defaults() );
 	}
 
 	/**
@@ -128,7 +114,7 @@ class Admin {
 			'flexline_utilities',
 			array(
 				'sanitize_callback' => array( __CLASS__, 'sanitize_options' ),
-				'default'           => self::DEFAULTS,
+				'default'           => \FlexLine\flexline_utilities_get_defaults(),
 			)
 		);
 
@@ -355,20 +341,7 @@ class Admin {
 			$fallback_val = (string) $saved['custom_login_fallback_value'];
 		}
 
-		// Prevent lockout by requiring a usable slug and fallback secrets when alternate login is enabled.
-		$has_fallback      = ( '' !== $fallback_key && '' !== $fallback_val );
-		$submitted_enabled = (int) ( $input['custom_login_enabled'] ?? 0 );
-		if ( 0 === $submitted_enabled && '' !== $slug && $has_fallback && 1 === (int) $sanitized['custom_login_strict_mode'] ) {
-			// Failsafe for environments where checkbox values are intermittently dropped.
-			$sanitized['custom_login_enabled'] = 1;
-			add_settings_error(
-				'flexline_utilities',
-				'flexline_auto_enabled_custom_login',
-				'Alternate login was auto-enabled because slug, strict mode, and fallback credentials are set.',
-				'warning'
-			);
-		}
-
+		// Fallback credentials are retained for recovery, but never enable the feature.
 		if ( 1 === (int) $sanitized['custom_login_enabled'] ) {
 			if ( '' === $slug ) {
 				add_settings_error(
@@ -395,7 +368,7 @@ class Admin {
 		$sanitized['custom_login_fallback_key']   = $fallback_key;
 		$sanitized['custom_login_fallback_value'] = $fallback_val;
 
-		return \wp_parse_args( $sanitized, self::DEFAULTS );
+		return \wp_parse_args( $sanitized, \FlexLine\flexline_utilities_get_defaults() );
 	}
 
 	/**

@@ -46,15 +46,9 @@ function flexline_is_custom_login_enabled( array $opts ): bool {
 		return false;
 	}
 
-	if ( ! empty( $opts['custom_login_enabled'] ) ) {
-		return true;
-	}
-
-	// Failsafe: if strict mode + fallback credentials are configured, enforce hardening even
-	// when the enable checkbox value is unexpectedly dropped by settings serialization.
-	return ! empty( $opts['custom_login_strict_mode'] )
-		&& ! empty( $opts['custom_login_fallback_key'] )
-		&& ! empty( $opts['custom_login_fallback_value'] );
+	// The checkbox is authoritative. Fallback credentials are recovery credentials,
+	// not an implicit enable switch.
+	return ! empty( $opts['custom_login_enabled'] );
 }
 
 /**

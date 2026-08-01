@@ -16,7 +16,6 @@ const evergreenTwoBrowserslist = [
 const jsFiles = [
         'src/js/blocks/block-extensions.js',
         'src/js/modal.js',
-        'src/js/global.js',
         'src/js/horizontal-scroll.js',
 		'src/js/slider.js',
         'src/js/slidein.js',
@@ -35,7 +34,7 @@ const sassFiles = [
 
 // Compile each JavaScript file to its own output
 jsFiles.forEach((file) => {
-	mix.js(file, 'js').react(); // If you're using React. Remove this line if not.
+		mix.js(file, 'js');
 });
 
 // Compile each SASS file to its own output with autoprefixer

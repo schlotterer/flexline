@@ -93,7 +93,16 @@
 
 	flexline.onReady(() => {
 		updateHeaderMetrics();
-		window.addEventListener('resize', updateHeaderMetrics);
+		let resizeFrame = null;
+		window.addEventListener('resize', () => {
+			if (resizeFrame) {
+				return;
+			}
+			resizeFrame = window.requestAnimationFrame(() => {
+				resizeFrame = null;
+				updateHeaderMetrics();
+			});
+		});
 		if (typeof flexline.resolveEarly === 'function') {
 			flexline.resolveEarly();
 		}

@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 function flexlineOnEarlyReady(callback) {
 	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
 		window.Flexline.onEarlyReady(callback);
@@ -69,7 +71,10 @@ flexlineOnEarlyReady(function () {
 
 		button.id = 'slide-in-menu-button';
 		button.className = 'slide-in-menu-button wp-element-button';
-		button.setAttribute('aria-label', 'Open Search and Menu');
+		button.setAttribute(
+			'aria-label',
+			__('Open Search and Menu', 'flexline')
+		);
 		button.setAttribute('aria-controls', 'slide-in-menu');
 		button.setAttribute('aria-expanded', 'false');
 		button.setAttribute('tabindex', '0');
@@ -98,7 +103,9 @@ flexlineOnEarlyReady(function () {
 			iconSpan.innerHTML = isLargeScreen ? iconSearch : iconMenu;
 			mainButton.setAttribute(
 				'aria-label',
-				isLargeScreen ? 'Search' : 'Menu'
+				isLargeScreen
+					? __('Search', 'flexline')
+					: __('Menu', 'flexline')
 			);
 		}
 	}
@@ -111,11 +118,13 @@ flexlineOnEarlyReady(function () {
 
 		// If header siteheader has a class of headroom and headroom--unpinned then user header--unpinned as a condition
 		if (
+			headerSiteHeader &&
 			headerSiteHeader.classList.contains('headroom') &&
 			headerSiteHeader.classList.contains('headroom--unpinned')
 		) {
 			isScrolled = true;
 		} else if (
+			headerSiteHeader &&
 			headerSiteHeader.classList.contains('headroom') &&
 			headerSiteHeader.classList.contains('headroom--pinned')
 		) {
@@ -150,15 +159,20 @@ flexlineOnEarlyReady(function () {
 	}
 
 	// Function to trap focus within the slide-in menu for accessibility.
-	function trapFocus(element) {
-		const focusableElements = element.querySelectorAll(
-			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-		);
-		const firstFocusableElement = focusableElements[0];
-		const lastFocusableElement =
-			focusableElements[focusableElements.length - 1];
+	const focusableSelector =
+		'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+	let removeFocusTrap = null;
 
-		element.addEventListener('keydown', function (e) {
+	function trapFocus(element) {
+		const onKeydown = function (e) {
+			const focusableElements =
+				element.querySelectorAll(focusableSelector);
+			if (!focusableElements.length) {
+				return;
+			}
+			const firstFocusableElement = focusableElements[0];
+			const lastFocusableElement =
+				focusableElements[focusableElements.length - 1];
 			const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 
 			if (!isTabPressed) {
@@ -180,7 +194,10 @@ flexlineOnEarlyReady(function () {
 				firstFocusableElement.focus(); // move focus to the first focusable element
 				e.preventDefault();
 			}
-		});
+		};
+
+		element.addEventListener('keydown', onKeydown);
+		return () => element.removeEventListener('keydown', onKeydown);
 	}
 
 	// Function to toggle the visibility of the slide-in menu.
@@ -196,14 +213,19 @@ flexlineOnEarlyReady(function () {
 
 			if (!expanded) {
 				addCloseButton(slideInMenu);
-				const focusableElements = slideInMenu.querySelectorAll(
-					'bubuttonToPositiontton, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-				);
+				removeFocusTrap?.();
+				removeFocusTrap = trapFocus(slideInMenu);
+				const focusableElements =
+					slideInMenu.querySelectorAll(focusableSelector);
 				if (focusableElements.length) {
 					focusableElements[0].focus();
-					trapFocus(slideInMenu);
+				} else {
+					slideInMenu.setAttribute('tabindex', '-1');
+					slideInMenu.focus();
 				}
 			} else {
+				removeFocusTrap?.();
+				removeFocusTrap = null;
 				const closeButton = document.getElementById(
 					'slide-in-menu-close'
 				);
@@ -249,7 +271,10 @@ flexlineOnEarlyReady(function () {
 			closeButton = document.createElement('button');
 			closeButton.id = 'slide-in-menu-close';
 			closeButton.className = 'slide-in-menu-close wp-element-button';
-			closeButton.setAttribute('aria-label', 'Close Menu');
+			closeButton.setAttribute(
+				'aria-label',
+				__('Close Menu', 'flexline')
+			);
 			closeButton.setAttribute('tabindex', '0');
 			closeButton.innerHTML =
 				'<span class="material-symbols-outlined">' +

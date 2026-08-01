@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 // Function to detect video type and return an embeddable URL
 function getVideoEmbedUrl(mediaUrl) {
 	const urlParsers = [
@@ -104,7 +106,7 @@ flexlineOnEarlyReady(() => {
 			const label =
 				altText && altText.trim() !== ''
 					? altText
-					: 'Open media in modal';
+					: __('Open media in modal', 'flexline');
 			element.setAttribute('aria-label', label);
 		}
 
@@ -169,7 +171,10 @@ flexlineOnEarlyReady(() => {
 					!trigger.textContent.trim() &&
 					!trigger.getAttribute('aria-label')
 				) {
-					trigger.setAttribute('aria-label', 'Open media in modal');
+					trigger.setAttribute(
+						'aria-label',
+						__('Open media in modal', 'flexline')
+					);
 				}
 				const openFromTrigger = (activeTrigger) => {
 					activeTrigger.setAttribute('aria-expanded', 'true');
@@ -371,7 +376,7 @@ function displayModal(mediaUrl, openerEl) {
 	modal.style.cursor = 'pointer';
 	modal.setAttribute('role', 'dialog');
 	modal.setAttribute('aria-modal', 'true');
-	modal.setAttribute('aria-label', 'Media modal');
+	modal.setAttribute('aria-label', __('Media modal', 'flexline'));
 	modal.setAttribute('tabindex', '-1');
 
 	// Create the close button
@@ -384,7 +389,7 @@ function displayModal(mediaUrl, openerEl) {
 	closeButton.style.fontSize = '24px';
 	closeButton.style.color = '#fff';
 	closeButton.style.cursor = 'pointer';
-	closeButton.setAttribute('aria-label', 'Close modal');
+	closeButton.setAttribute('aria-label', __('Close modal', 'flexline'));
 	closeButton.setAttribute('aria-keyshortcuts', 'Escape');
 	closeButton.setAttribute('role', 'button');
 	closeButton.setAttribute('tabindex', '0'); // Make it focusable
