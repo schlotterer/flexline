@@ -67,7 +67,7 @@ export const getVisibilityControls = (props) => {
 					<>
 						<span>Hide on Tablet</span>
 						<span style={{ display: 'block' }}>
-							(782px-991.98px)
+							(782px - 991.98px)
 						</span>
 					</>
 				}
@@ -82,7 +82,9 @@ export const getVisibilityControls = (props) => {
 				label={
 					<>
 						<span>Hide on Mobile</span>
-						<span style={{ display: 'block' }}>(0-781.98px)</span>
+						<span style={{ display: 'block' }}>
+							(0px - 781.98px)
+						</span>
 					</>
 				}
 				checked={!!props.attributes.hideOnMobile}

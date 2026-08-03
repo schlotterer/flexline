@@ -39,7 +39,13 @@ jsFiles.forEach((file) => {
 
 // Compile each SASS file to its own output with autoprefixer
 sassFiles.forEach((file) => {
-	mix.sass(file, 'css').options({
+	mix.sass(file, 'css', {
+		sassOptions: {
+			// FlexLine still uses Sass @import across the theme SCSS tree.
+			// Keep production builds quiet until the broader module migration is done.
+			silenceDeprecations: ['import'],
+		},
+	}).options({
 		processCssUrls: false,
 		postCss: [
 			autoprefixer({

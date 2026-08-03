@@ -65,26 +65,6 @@ function get_style_context_classes( $context = 'frontend' ) {
 		$classes[] = 'slidein-hide-on-desktop';
 	}
 
-	// Web4SL call/phone button visibility -> add body classes for padding-left.
-	// Only if the plugin appears active to avoid leaking classes.
-	$web4sl_active = defined( 'WEB4SL_PLUGIN_FILE' );
-
-	if ( $web4sl_active ) {
-		$hide_desktop = (bool) get_option( 'web4sl_hide_phone_desktop', false );
-		$hide_tablet  = (bool) get_option( 'web4sl_hide_phone_tablet', false );
-		$hide_mobile  = (bool) get_option( 'web4sl_hide_phone_mobile', false );
-
-		if ( ! $hide_mobile ) {
-			$classes[] = 'web4sl-phone-link-show-on-mobile';
-		}
-		if ( ! $hide_tablet ) {
-			$classes[] = 'web4sl-phone-link-show-on-tablet';
-		}
-		if ( ! $hide_desktop ) {
-			$classes[] = 'web4sl-phone-link-show-on-desktop';
-		}
-	}
-
 	return array_values( array_unique( $classes ) );
 }
 

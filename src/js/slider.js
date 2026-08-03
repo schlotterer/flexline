@@ -478,6 +478,9 @@ import { __, sprintf } from '@wordpress/i18n';
 		}
 		slider._isInView = false;
 		const wrapper = slider._wrapper || slider.parentElement;
+		if (!wrapper || typeof wrapper.nodeType !== 'number') {
+			return;
+		}
 		const IO = window.IntersectionObserver;
 		if (typeof IO !== 'function') {
 			// Fallback: if IO is unavailable, consider it always in view
@@ -646,6 +649,9 @@ import { __, sprintf } from '@wordpress/i18n';
 			return;
 		}
 		const container = getSlideContainer(slider);
+		if (!container || typeof container.nodeType !== 'number') {
+			return;
+		}
 		const mo = new window.MutationObserver(() => {
 			applyStacking(slider);
 			clampState(slider);
@@ -1110,13 +1116,31 @@ import { __, sprintf } from '@wordpress/i18n';
 			rerunInit();
 		}
 	});
-	bodyObserver.observe(document.body, {
-		childList: true,
-		subtree: true,
-		attributes: true,
-		attributeFilter: ['class'],
-		attributeOldValue: true,
-	});
+	const observeBody = () => {
+		if (!document.body || typeof document.body.nodeType !== 'number') {
+			return false;
+		}
+
+		try {
+			bodyObserver.observe(document.body, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['class'],
+				attributeOldValue: true,
+			});
+			return true;
+		} catch (error) {
+			return false;
+		}
+	};
+
+	if (!observeBody()) {
+		document.addEventListener('DOMContentLoaded', observeBody, {
+			once: true,
+		});
+		window.requestAnimationFrame(observeBody);
+	}
 
 	// Editor: listen for live CSS var updates from controls
 	document.addEventListener('flexline-slider-vars-updated', (e) => {

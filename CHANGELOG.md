@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## Unreleased
+
+- Removed the theme-owned alternate-login URL, fallback credentials, and strict
+  login blocking; standard WordPress login and host/security-stack 2FA are now
+  the supported authentication path.
+- Removed the remaining slide-in missing-element console error and migrated the
+  retired settings through a multisite-safe cleanup.
+- Added multisite-safe migration support for retired custom-login settings.
+- Added settings defaults/types/sanitization and made explicit opt-outs
+  authoritative for retained utilities settings.
+- Suppressed FlexLine-owned OG/description output when Yoast or Rank Math owns
+  overlapping metadata.
+- Replaced block parsing for site-logo metadata fallback with WordPress
+  `custom_logo` and site-icon fallbacks.
+- Improved slide-in focus trapping, teardown, trigger focus restoration, and
+  header-less template guards.
+- Improved slider accessibility with `prefers-reduced-motion`, live status for
+  user-triggered changes, and inactive-slide focus management.
+- Removed unconditional runtime work including the empty global JS enqueue,
+  universal featured-image preload, and production Query Loop logging.
+- Cleaned block visibility inspector labels so breakpoint ranges appear only on
+  secondary help text.
+- Documented that Web4SL directory/floor-plan pattern rendering is plugin-owned
+  and depends on fragment-local WordPress style-engine output.
+- Refreshed Browserslist data and silenced known Sass `@import` deprecation
+  noise in the Laravel Mix build until the broader SCSS module migration is
+  scheduled.
+
 ## April 2026
 
 ### WordPress 7.0 Readiness

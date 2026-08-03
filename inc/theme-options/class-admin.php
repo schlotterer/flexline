@@ -48,62 +48,6 @@ class Admin {
 	}
 
 	/**
-	 * Return reserved slugs that should never be used for custom login.
-	 *
-	 * @return array
-	 */
-	private static function get_reserved_login_slugs(): array {
-		return array(
-			'wp-admin',
-			'wp-login',
-			'wp-login.php',
-			'wp-signup',
-			'wp-signup.php',
-			'wp-register',
-			'wp-register.php',
-			'admin',
-			'login',
-			'register',
-			'dashboard',
-			'xmlrpc.php',
-			'wp-json',
-		);
-	}
-
-	/**
-	 * Validate custom login slug strength and safety.
-	 *
-	 * @param string $slug Sanitized slug.
-	 * @return bool
-	 */
-	private static function is_valid_custom_login_slug( string $slug ): bool {
-		if ( strlen( $slug ) < 8 ) {
-			return false;
-		}
-		if ( ! preg_match( '/[a-z]/', $slug ) || ! preg_match( '/\d/', $slug ) ) {
-			return false;
-		}
-		if ( in_array( $slug, self::get_reserved_login_slugs(), true ) ) {
-			return false;
-		}
-		if ( 0 === strpos( $slug, 'wp-' ) ) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Sanitize key/value token used for emergency fallback.
-	 *
-	 * @param string $token Raw token.
-	 * @return string
-	 */
-	private static function sanitize_token( string $token ): string {
-		$sanitized = preg_replace( '/[^a-zA-Z0-9_-]/', '', $token );
-		return is_string( $sanitized ) ? $sanitized : '';
-	}
-
-	/**
 	 * Register settings and render sections/fields.
 	 *
 	 * @return void
@@ -147,15 +91,7 @@ class Admin {
 				'flexline_utilities_section_security',
 				'Security Utilities',
 				function () {
-					$options          = self::get_options();
-					$slug             = (string) $options['custom_login_slug'];
-					$key              = (string) $options['custom_login_fallback_key'];
-					$value            = (string) $options['custom_login_fallback_value'];
-					$alt_url          = $slug ? home_url( '/' . trim( $slug, '/' ) . '/' ) : '';
-					$fallback_preview = '';
-					if ( $key && $value ) {
-						$fallback_preview = add_query_arg( $key, $value, home_url( '/wp-login.php' ) );
-					}
+					$options = self::get_options();
 					?>
 				<p>
 					<label for="flexline-util-remove-generator">
@@ -190,81 +126,6 @@ class Admin {
 							Adds “Access-Control-Allow-Origin: *” to REST responses. Useful for public APIs—avoid if you need to restrict origins.
 						</span>
 					</p>
-					<hr />
-					<p>
-							<label for="flexline-util-custom-login-enabled">
-								<input type="hidden"
-									form="flexline-utilities-form"
-									name="flexline_utilities[custom_login_enabled]"
-									value="0" />
-								<input id="flexline-util-custom-login-enabled" type="checkbox"
-									form="flexline-utilities-form"
-									name="flexline_utilities[custom_login_enabled]"
-									value="1" <?php checked( (int) $options['custom_login_enabled'], 1 ); ?> />
-							<strong>Enable Alternate Login URL</strong>
-						</label><br />
-						<span class="description">
-							Enables a custom login slug and blocks direct access to the default WordPress login page in strict mode.
-						</span>
-					</p>
-					<p>
-						<label for="flexline-custom-login-slug"><strong>Alternate Login Slug</strong></label><br />
-							<input id="flexline-custom-login-slug"
-								form="flexline-utilities-form"
-								type="text"
-								class="regular-text"
-								name="flexline_utilities[custom_login_slug]"
-							value="<?php echo esc_attr( $slug ); ?>"
-							placeholder="secure-entry-9x7" />
-						<br />
-						<span class="description">Use at least 8 characters and include both letters and numbers.</span>
-					</p>
-					<p>
-						<label for="flexline-util-custom-login-strict-mode">
-								<input id="flexline-util-custom-login-strict-mode" type="checkbox"
-									form="flexline-utilities-form"
-									name="flexline_utilities[custom_login_strict_mode]"
-									value="1" <?php checked( (int) $options['custom_login_strict_mode'], 1 ); ?> />
-							<strong>Strict Mode (block direct /wp-login.php and unauthenticated /wp-admin)</strong>
-						</label>
-					</p>
-					<p>
-						<label for="flexline-custom-login-fallback-key"><strong>Emergency Fallback Key</strong></label><br />
-							<input id="flexline-custom-login-fallback-key"
-								form="flexline-utilities-form"
-								type="text"
-								class="regular-text"
-								name="flexline_utilities[custom_login_fallback_key]"
-							value="<?php echo esc_attr( $key ); ?>"
-							placeholder="rescue" />
-					</p>
-					<p>
-						<label for="flexline-custom-login-fallback-value"><strong>Emergency Fallback Value</strong></label><br />
-							<input id="flexline-custom-login-fallback-value"
-								form="flexline-utilities-form"
-								type="text"
-								class="regular-text"
-								name="flexline_utilities[custom_login_fallback_value]"
-							value="<?php echo esc_attr( $value ); ?>"
-							placeholder="your-secret-value" />
-					</p>
-					<?php if ( $alt_url ) : ?>
-						<p>
-							<strong>Alternate Login URL:</strong>
-							<input type="text" class="regular-text code" readonly value="<?php echo esc_url( $alt_url ); ?>" />
-						</p>
-					<?php endif; ?>
-					<?php if ( $fallback_preview ) : ?>
-						<p>
-							<strong>Emergency Fallback URL Preview:</strong>
-							<input type="text" class="regular-text code" readonly value="<?php echo esc_url( $fallback_preview ); ?>" />
-						</p>
-					<?php endif; ?>
-					<?php if ( ! empty( $options['custom_login_enabled'] ) ) : ?>
-						<div class="notice notice-warning inline">
-							<p><strong>Warning:</strong> You can lock yourself out if you lose the custom slug and fallback credentials.</p>
-						</div>
-					<?php endif; ?>
 					<?php
 				},
 				'flexline_utilities'
@@ -301,7 +162,6 @@ class Admin {
 	 */
 	public static function sanitize_options( $input ) {
 		$input = is_array( $input ) ? $input : array();
-		$saved = self::get_options();
 
 		$keys      = array(
 			'enable_og_tags',
@@ -309,64 +169,11 @@ class Admin {
 			'disable_xmlrpc',
 			'rest_cors_allow_all',
 			'disable_all_comments',
-			'custom_login_enabled',
-			'custom_login_strict_mode',
 		);
 		$sanitized = array();
 		foreach ( $keys as $k ) {
 			$sanitized[ $k ] = ( 1 === (int) ( $input[ $k ] ?? 0 ) ) ? 1 : 0; // Yoda.
 		}
-
-		$raw_slug = (string) ( $input['custom_login_slug'] ?? '' );
-		$slug     = trim( sanitize_title_with_dashes( $raw_slug ), '/' );
-		if ( '' === $slug && ! empty( $saved['custom_login_slug'] ) ) {
-			$slug = (string) $saved['custom_login_slug'];
-		}
-		if ( $slug && ! self::is_valid_custom_login_slug( $slug ) ) {
-			add_settings_error(
-				'flexline_utilities',
-				'flexline_invalid_custom_login_slug',
-				'Alternate login slug is invalid. Use at least 8 characters, include letters and numbers, and avoid reserved terms.',
-				'error'
-			);
-			$slug = ! empty( $saved['custom_login_slug'] ) ? (string) $saved['custom_login_slug'] : '';
-		}
-
-		$fallback_key = self::sanitize_token( (string) ( $input['custom_login_fallback_key'] ?? '' ) );
-		$fallback_val = self::sanitize_token( (string) ( $input['custom_login_fallback_value'] ?? '' ) );
-		if ( '' === $fallback_key && ! empty( $saved['custom_login_fallback_key'] ) ) {
-			$fallback_key = (string) $saved['custom_login_fallback_key'];
-		}
-		if ( '' === $fallback_val && ! empty( $saved['custom_login_fallback_value'] ) ) {
-			$fallback_val = (string) $saved['custom_login_fallback_value'];
-		}
-
-		// Fallback credentials are retained for recovery, but never enable the feature.
-		if ( 1 === (int) $sanitized['custom_login_enabled'] ) {
-			if ( '' === $slug ) {
-				add_settings_error(
-					'flexline_utilities',
-					'flexline_missing_custom_login_slug',
-					'Alternate login could not be enabled because no valid slug was provided.',
-					'error'
-				);
-				$sanitized['custom_login_enabled'] = 0;
-			}
-			if ( '' === $fallback_key || '' === $fallback_val ) {
-				$fallback_key = 'rescue_' . strtolower( wp_generate_password( 6, false, false ) );
-				$fallback_val = wp_generate_password( 24, false, false );
-				add_settings_error(
-					'flexline_utilities',
-					'flexline_generated_custom_login_fallback',
-					'Emergency fallback key/value were auto-generated so alternate login can be safely enabled.',
-					'warning'
-				);
-			}
-		}
-
-		$sanitized['custom_login_slug']           = $slug;
-		$sanitized['custom_login_fallback_key']   = $fallback_key;
-		$sanitized['custom_login_fallback_value'] = $fallback_val;
 
 		return \wp_parse_args( $sanitized, \FlexLine\flexline_utilities_get_defaults() );
 	}

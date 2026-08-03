@@ -30,10 +30,8 @@ flexlineOnEarlyReady(function () {
 	const iconClose =
 		'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="#ffffff" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
 
-	// Check if the .slide-in div exists, log an error if not.
+	// The slide-in component is optional on blank and specialized templates.
 	if (!slideInDiv) {
-		// eslint-disable-next-line no-console
-		console.error('The .slide-in div was not found.');
 		return;
 	}
 

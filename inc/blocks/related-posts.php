@@ -24,6 +24,18 @@ global $flexline_related_query_registry;
 $flexline_related_query_registry = array();
 
 /**
+ * Write recurring related-post diagnostics only when debugging is enabled.
+ *
+ * @param string $message Diagnostic message.
+ * @return void
+ */
+function related_debug_log( string $message ): void {
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		error_log( '[FlexLine Related Posts] ' . $message );
+	}
+}
+
+/**
  * Capture Query Loop attributes before render so we can reference them while building queries.
  *
  * @param array $parsed_block Current parsed block.
@@ -44,9 +56,7 @@ function register_related_posts_query_settings( $parsed_block, $source_block = a
 	if ( empty( $attrs['enableRelatedPosts'] ) ) {
 		if ( $query_id && isset( $flexline_related_query_registry[ $query_id ] ) ) {
 			unset( $flexline_related_query_registry[ $query_id ] );
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( sprintf( 'Cleared related settings for queryId %d (disabled)', $query_id ) );
-			}
+			related_debug_log( sprintf( 'Cleared related settings for queryId %d (disabled)', $query_id ) );
 		}
 		return $parsed_block;
 	}
@@ -69,21 +79,17 @@ function register_related_posts_query_settings( $parsed_block, $source_block = a
 		$current_query['inherit']       = false;
 		$parsed_block['attrs']['query'] = $current_query;
 		$flexline_related_query_registry[ $query_id ]['force_inherit_false'] = true;
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Forced inherit=false for queryId %d', $query_id ) );
-		}
+		related_debug_log( sprintf( 'Forced inherit=false for queryId %d', $query_id ) );
 	}
 
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log(
-			sprintf(
-				'Registered related posts settings for queryId %d (taxonomy: %s, scope: %s)',
-				$query_id,
-				$flexline_related_query_registry[ $query_id ]['taxonomy'],
-				$flexline_related_query_registry[ $query_id ]['scope']
-			)
-		);
-	}
+	related_debug_log(
+		sprintf(
+			'Registered related posts settings for queryId %d (taxonomy: %s, scope: %s)',
+			$query_id,
+			$flexline_related_query_registry[ $query_id ]['taxonomy'],
+			$flexline_related_query_registry[ $query_id ]['scope']
+		)
+	);
 
 	return $parsed_block;
 }
@@ -102,36 +108,27 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 
 	$query_id = $block->context['queryId'] ?? null;
 
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		// Debug logging.
-		error_log(
-			sprintf(
-				'Related Posts Filter Called for block: %s (queryId: %s)',
-				$block->name ?? 'unknown',
-				$query_id ? (string) $query_id : 'none'
-			)
-		);
-	}
+	related_debug_log(
+		sprintf(
+			'Related Posts Filter Called for block: %s (queryId: %s)',
+			$block->name ?? 'unknown',
+			$query_id ? (string) $query_id : 'none'
+		)
+	);
 
 	if ( ! $query_id || empty( $flexline_related_query_registry[ $query_id ] ) ) {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'No related settings registered for this queryId; skipping' );
-		}
+		related_debug_log( 'No related settings registered for this queryId; skipping' );
 		return $query_vars;
 	}
 
 	$settings = $flexline_related_query_registry[ $query_id ];
 
 	if ( empty( $settings['enabled'] ) ) {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Related Posts disabled for this queryId' );
-		}
+		related_debug_log( 'Related Posts disabled for this queryId' );
 		return $query_vars;
 	}
 
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log( 'Related Posts IS enabled for this queryId' );
-	}
+	related_debug_log( 'Related Posts IS enabled for this queryId' );
 
 	// 2. Only apply on singular views.
 	if ( ! is_singular() ) {
@@ -155,15 +152,13 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 	// 5. Resolve which term to match.
 	$term_id = get_related_posts_term_id( $post_id, $taxonomy );
 
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		if ( $term_id > 0 ) {
-			$term = get_term( $term_id, $taxonomy );
-			if ( $term && ! is_wp_error( $term ) ) {
-				error_log( sprintf( 'Related Posts: Using term "%s" (ID: %d) from taxonomy "%s"', $term->name, $term_id, $taxonomy ) );
-			}
-		} else {
-			error_log( 'Related Posts: No term found for matching' );
+	if ( $term_id > 0 ) {
+		$term = get_term( $term_id, $taxonomy );
+		if ( $term && ! is_wp_error( $term ) ) {
+			related_debug_log( sprintf( 'Using term "%s" (ID: %d) from taxonomy "%s"', $term->name, $term_id, $taxonomy ) );
 		}
+	} else {
+		related_debug_log( 'No term found for matching' );
 	}
 
 	if ( $term_id <= 0 ) {
@@ -183,9 +178,7 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 	// 7. Exclude current post.
 	$existing_excludes          = (array) ( $query_vars['post__not_in'] ?? array() );
 	$query_vars['post__not_in'] = array_unique( array_merge( $existing_excludes, array( $post_id ) ) );
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log( sprintf( 'Related Posts: Excluding current post ID %d from results', $post_id ) );
-	}
+	related_debug_log( sprintf( 'Excluding current post ID %d from results', $post_id ) );
 
 	// 8. Add taxonomy filter (merge with existing tax_query if present).
 	$new_tax_query = array(

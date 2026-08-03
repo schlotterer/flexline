@@ -498,8 +498,8 @@ export const controls = (BlockEdit, props) => {
 				{getVisibilityPanel(
 					props,
 					<ToggleControl
-						label="Stack at Medium (782px-991.98px)"
-						help="Applies only between 782px and 991.98px."
+						label="Stack at Medium"
+						help="(782px - 991.98px)"
 						checked={!!props.attributes.stackAtTablet}
 						onChange={(newValue) =>
 							props.setAttributes({ stackAtTablet: newValue })
