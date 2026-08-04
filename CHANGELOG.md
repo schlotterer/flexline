@@ -24,6 +24,13 @@
   secondary help text.
 - Documented that Web4SL directory/floor-plan pattern rendering is plugin-owned
   and depends on fragment-local WordPress style-engine output.
+- Documented the deferred `primary-terms.php` structural refactor plan in
+  `docs/primary-terms-structural-debt-plan.md`; the current file mixes hook,
+  synchronization, admin, REST/query, helper, and WP-CLI responsibilities and
+  should be split only after regression coverage exists.
+- Added primary-term resolver contract tests, made Yoast/Rank Math read-only
+  primary-term authorities, retained FlexLine canonical primary-term fallback
+  caching for breadcrumbs/permalinks, and extracted the WP-CLI command class.
 - Refreshed Browserslist data and silenced known Sass `@import` deprecation
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
