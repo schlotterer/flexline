@@ -31,6 +31,7 @@ $flexline_related_query_registry = array();
  */
 function related_debug_log( string $message ): void {
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug-only diagnostics.
 		error_log( '[FlexLine Related Posts] ' . $message );
 	}
 }
@@ -39,10 +40,13 @@ function related_debug_log( string $message ): void {
  * Capture Query Loop attributes before render so we can reference them while building queries.
  *
  * @param array $parsed_block Current parsed block.
+ * @param array $source_block Original parsed block.
  * @return array
  */
 function register_related_posts_query_settings( $parsed_block, $source_block = array() ) {
 	global $flexline_related_query_registry;
+
+	unset( $source_block );
 
 	if ( empty( $parsed_block['blockName'] ) || 'core/query' !== $parsed_block['blockName'] ) {
 		return $parsed_block;
@@ -105,6 +109,8 @@ add_filter( 'render_block_data', __NAMESPACE__ . '\\register_related_posts_query
  */
 function related_posts_query_vars( $query_vars, $block, $page ) {
 	global $flexline_related_query_registry;
+
+	unset( $page );
 
 	$query_id = $block->context['queryId'] ?? null;
 
@@ -181,6 +187,7 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 	related_debug_log( sprintf( 'Excluding current post ID %d from results', $post_id ) );
 
 	// 8. Add taxonomy filter (merge with existing tax_query if present).
+	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Related post matching requires taxonomy filtering.
 	$new_tax_query = array(
 		'taxonomy' => $taxonomy,
 		'field'    => 'term_id',
@@ -189,9 +196,12 @@ function related_posts_query_vars( $query_vars, $block, $page ) {
 
 	if ( isset( $query_vars['tax_query'] ) && is_array( $query_vars['tax_query'] ) ) {
 		// Merge with existing tax queries.
-		$query_vars['tax_query'][]           = $new_tax_query;
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Related post matching requires taxonomy filtering.
+		$query_vars['tax_query'][] = $new_tax_query;
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Related post matching requires taxonomy filtering.
 		$query_vars['tax_query']['relation'] = 'AND'; // All conditions must match.
 	} else {
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Related post matching requires taxonomy filtering.
 		$query_vars['tax_query'] = array( $new_tax_query );
 	}
 

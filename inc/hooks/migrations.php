@@ -21,7 +21,7 @@ function flexline_run_platform_migrations(): void {
 	$version = '2.2.0-login-removal';
 
 	if ( is_multisite() ) {
-		if ( $version === get_site_option( 'flexline_platform_migration_version', '' ) ) {
+		if ( get_site_option( 'flexline_platform_migration_version', '' ) === $version ) {
 			return;
 		}
 
@@ -40,7 +40,7 @@ function flexline_run_platform_migrations(): void {
 		return;
 	}
 
-	if ( $version !== get_option( 'flexline_platform_migration_version', '' ) ) {
+	if ( get_option( 'flexline_platform_migration_version', '' ) !== $version ) {
 		flexline_remove_retired_login_settings();
 		update_option( 'flexline_platform_migration_version', $version, false );
 	}

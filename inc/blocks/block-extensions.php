@@ -493,7 +493,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
 			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
-			$block_content = flexline_set_first_tag_attributes(
+			$block_content                 = flexline_set_first_tag_attributes(
 				$block_content,
 				array( 'data-scroll-interval' => (int) $block['attrs']['scrollSpeed'] )
 			);
@@ -501,7 +501,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
 			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
-			$block_content = flexline_set_first_tag_attributes(
+			$block_content                        = flexline_set_first_tag_attributes(
 				$block_content,
 				array( 'data-scroll-speed' => (int) $block['attrs']['transitionDuration'] )
 			);

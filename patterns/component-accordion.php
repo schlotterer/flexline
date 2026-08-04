@@ -3,9 +3,12 @@
  * Title: Accordion
  * Slug: flexline/accordion
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;
+
 ?>
 <!-- wp:accordion {"autoclose":true,"headingLevel":2,"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
 <div role="group" class="wp-block-accordion is-style-default"><!-- wp:accordion-item {"metadata":{"name":"Accordion Item - Card"},"className":"is-style-card","style":{"spacing":{"blockGap":"0"}}} -->
