@@ -7,46 +7,97 @@
  */
 
 namespace FlexLine;
+
 ?>
 <!-- wp:group {"metadata":{"name":"Text and Poster Gallery","categories":["flexline-modules"],"patternName":"flexline/text-poster-gallery"},"align":"full","className":"welcome","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull welcome"><!-- wp:columns {"verticalAlignment":"center"} -->
-    <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"textAlign":"left","className":"wp-block-heading","style":{"spacing":{"margin":{"bottom":"0px"}}},"fontSize":"max-36"} -->
-            <h2 class="wp-block-heading has-text-align-left has-max-36-font-size" style="margin-bottom:0px">Text and Poster Gallery</h2>
-            <!-- /wp:heading -->
+	<div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Text Column"},"style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
+		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"textAlign":"left","className":"wp-block-heading","style":{"spacing":{"margin":{"bottom":"0px"}}},"fontSize":"max-36"} -->
+			<h2 class="wp-block-heading has-text-align-left has-max-36-font-size" style="margin-bottom:0px">Text and Poster Gallery</h2>
+			<!-- /wp:heading -->
 
-            <!-- wp:paragraph {"align":"left","fontSize":"small"} -->
-            <p class="has-text-align-left has-small-font-size">This pattern presets a columns block with some text and gallery set to Poster style. Don't forget, you can use the columns block "Reverse at Mobile" option to put the gallery above the text at mobile.</p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:column -->
+			<!-- wp:paragraph {"align":"left","fontSize":"small"} -->
+			<p class="has-text-align-left has-small-font-size">This pattern presets a columns block with some text and gallery set to Poster style. Don't forget, you can use the columns block "Reverse at Mobile" option to put the gallery above the text at mobile.</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:column -->
 
-        <!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"}} -->
-        <div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery <?php echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) ); ?> -->
-            <figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
-                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
-                <!-- /wp:image -->
+		<!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"}} -->
+		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery <?php echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) ); ?> -->
+			<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image 
+			<?php
+			echo poster_gallery_image_pattern_attrs(
+				array(
+					'sizeSlug'        => 'large',
+					'linkDestination' => 'none',
+					'className'       => 'is-style-card',
+				)
+			);
+			?>
+			-->
+				<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" /></figure>
+				<!-- /wp:image -->
 
-                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
-                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
-                <!-- /wp:image -->
+				<!-- wp:image 
+				<?php
+				echo poster_gallery_image_pattern_attrs(
+					array(
+						'sizeSlug'        => 'large',
+						'linkDestination' => 'none',
+						'className'       => 'is-style-card',
+					)
+				);
+				?>
+				-->
+				<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" /></figure>
+				<!-- /wp:image -->
 
-                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
-                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
-                <!-- /wp:image -->
+				<!-- wp:image 
+				<?php
+				echo poster_gallery_image_pattern_attrs(
+					array(
+						'sizeSlug'        => 'large',
+						'linkDestination' => 'none',
+						'className'       => 'is-style-card',
+					)
+				);
+				?>
+				-->
+				<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" /></figure>
+				<!-- /wp:image -->
 
-                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
-                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
-                <!-- /wp:image -->
+				<!-- wp:image 
+				<?php
+				echo poster_gallery_image_pattern_attrs(
+					array(
+						'sizeSlug'        => 'large',
+						'linkDestination' => 'none',
+						'className'       => 'is-style-card',
+					)
+				);
+				?>
+				-->
+				<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" /></figure>
+				<!-- /wp:image -->
 
-                <!-- wp:image <?php echo poster_gallery_image_pattern_attrs( array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'is-style-card' ) ); ?> -->
-                <figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url(feature_image_fallback()); ?>" alt="Sample Image" class="" /></figure>
-                <!-- /wp:image -->
-            </figure>
-            <!-- /wp:gallery -->
-        </div>
-        <!-- /wp:column -->
-    </div>
-    <!-- /wp:columns -->
+				<!-- wp:image 
+				<?php
+				echo poster_gallery_image_pattern_attrs(
+					array(
+						'sizeSlug'        => 'large',
+						'linkDestination' => 'none',
+						'className'       => 'is-style-card',
+					)
+				);
+				?>
+				-->
+				<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" /></figure>
+				<!-- /wp:image -->
+			</figure>
+			<!-- /wp:gallery -->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
 </div>
 <!-- /wp:group -->

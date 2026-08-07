@@ -7,45 +7,46 @@
  */
 
 namespace FlexLine;
+
 ?>
 <!-- wp:group {"metadata":{"name":"Home Hero","categories":["flexline-heroes"],"patternName":"flexline/hero-home"},"align":"full","className":"","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeightUnit":"px","metadata":{"name":"Hero Background"},"align":"full","className":"no-lazy-load","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","padding":{"top":"var:preset|spacing|xxx-large","bottom":"var:preset|spacing|xxx-large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}},"color":[]},"layout":{"type":"constrained"},"enableLazyLoad":false} -->
-    <div class="wp-block-cover alignfull no-lazy-load" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--medium)"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
-        <div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Content Row"},"align":"wide","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-            <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--x-large)"><!-- wp:group {"metadata":{"name":"Content Width Container"},"className":"","layout":{"type":"constrained","contentSize":"700px","wideSize":"1000px"}} -->
-                <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"layout":{"type":"flex","orientation":"vertical"}} -->
-                    <div class="wp-block-group has-link-color"><!-- wp:heading {"level":1,"className":"is-style-eyebrow"} -->
-                        <h1 class="wp-block-heading is-style-eyebrow">H1 - Eyebrow - SEO Headline</h1>
-                        <!-- /wp:heading -->
+	<div class="wp-block-cover alignfull no-lazy-load" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--xxx-large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--xxx-large);padding-left:var(--wp--preset--spacing--medium)"><span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim-80 has-background-dim"></span>
+		<div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Content Row"},"align":"wide","className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+			<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--x-large)"><!-- wp:group {"metadata":{"name":"Content Width Container"},"className":"","layout":{"type":"constrained","contentSize":"700px","wideSize":"1000px"}} -->
+				<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Text Group"},"className":"","style":{"spacing":{"blockGap":"var:preset|spacing|x-small"},"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|highlight"}}}}},"layout":{"type":"flex","orientation":"vertical"}} -->
+					<div class="wp-block-group has-link-color"><!-- wp:heading {"level":1,"className":"is-style-eyebrow"} -->
+						<h1 class="wp-block-heading is-style-eyebrow">H1 - Eyebrow - SEO Headline</h1>
+						<!-- /wp:heading -->
 
-                        <!-- wp:heading {"className":"is-style-creative","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"lineHeight":"1"}},"textColor":"base"} -->
-                        <h2 class="wp-block-heading is-style-creative has-base-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;line-height:1">H2 - Creative Headline</h2>
-                        <!-- /wp:heading -->
+						<!-- wp:heading {"className":"is-style-creative","style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"lineHeight":"1"}},"textColor":"base"} -->
+						<h2 class="wp-block-heading is-style-creative has-base-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;line-height:1">H2 - Creative Headline</h2>
+						<!-- /wp:heading -->
 
-                        <!-- wp:paragraph {"className":"is-style-default"} -->
-                        <p class="is-style-default">Heroes play a crucial role in grabbing attention and establishing the ambiance. The FlexLine theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
-                        <!-- /wp:paragraph -->
-                    </div>
-                    <!-- /wp:group -->
+						<!-- wp:paragraph {"className":"is-style-default"} -->
+						<p class="is-style-default">Heroes play a crucial role in grabbing attention and establishing the ambiance. The FlexLine theme gives you the tools to craft compelling hero sections designed to captivate and meet the specific demands of the senior living audience.</p>
+						<!-- /wp:paragraph -->
+					</div>
+					<!-- /wp:group -->
 
-                    <!-- wp:buttons {"metadata":{"name":"Calls to action"},"className":""} -->
-                    <div class="wp-block-buttons"><!-- wp:button {"className":"flexline-icon-none"} -->
-                        <div class="wp-block-button flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#quickForm">Contact Us</a></div>
-                        <!-- /wp:button -->
+					<!-- wp:buttons {"metadata":{"name":"Calls to action"},"className":""} -->
+					<div class="wp-block-buttons"><!-- wp:button {"className":"flexline-icon-none"} -->
+						<div class="wp-block-button flexline-icon-none"><a class="wp-block-button__link wp-element-button" href="#quickForm">Contact Us</a></div>
+						<!-- /wp:button -->
 
-                        <!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59"} -->
-                        <div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59">Watch video</a></div>
-                        <!-- /wp:button -->
-                    </div>
-                    <!-- /wp:buttons -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-    </div>
-    <!-- /wp:cover -->
+						<!-- wp:button {"textColor":"base","className":"is-style-outline enable-modal  flexline-icon-video-play","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"iconType":"video-play","enableModal":true,"modalMediaURL":"https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59"} -->
+						<div class="wp-block-button is-style-outline enable-modal  flexline-icon-video-play"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="https://www.loom.com/embed/56f37570c2854166ab3d4da0e5ad32f6?sid=8aa1f6b8-a3a6-4f88-bd0d-2c1e8a0cff59">Watch video</a></div>
+						<!-- /wp:button -->
+					</div>
+					<!-- /wp:buttons -->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:group -->
+		</div>
+	</div>
+	<!-- /wp:cover -->
 
-    <!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
+	<!-- wp:pattern {"slug":"flexline/button-scroll-to"} /-->
 </div>
 <!-- /wp:group -->
