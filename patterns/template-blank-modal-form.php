@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Blank Template - Modal Form
  * Slug: flexline/template-blank-modal-form
  * Categories: flexline-utilities
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Modal Container"},"align":"full","className":"","style":{"dimensions":{"minHeight":"100vh"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="min-height:100vh;margin-top:0;margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"vh","gradient":"primary-alternate","metadata":{"name":"Modal Background"},"align":"full","className":"","style":{"color":{"duotone":"var:preset|duotone|primary-highlight"}},"layout":{"type":"constrained"}} -->

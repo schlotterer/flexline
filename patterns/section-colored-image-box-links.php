@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section with colored boxes with image in the background and links
  * Slug: flexline/section-colored-image-box-links
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

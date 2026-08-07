@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Header - Centered logo.
  * Slug: flexline/header-centered
  * Categories: flexline-headers
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Header Centered","categories":["flexline-headers"],"patternName":"flexline/header-centered"},"className":"is-style-shadow-diffused","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"0"}}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-shadow-diffused has-base-background-color has-background" style="margin-top:0;padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)"><!-- wp:template-part {"slug":"notification-bar","align":"full","className":""} /-->

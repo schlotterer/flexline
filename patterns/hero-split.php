@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Hero for Home Page - Split ( no breadcrumbs ).
  * Slug: flexline/hero-split
  * Categories: flexline-heroes
+ *
+ * @package FlexLine
  */
+
 namespace FlexLine;
 
 ?>

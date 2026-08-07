@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Post Grid Single - Outline, Category, Title
  * Slug: flexline/post-grid-single-outline-text
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"dimensions":{"minHeight":"100%"}},"className":"is-style-outlined","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"stretch"},"metadata":{"name":"Post Grid Single - Outline, Category, Title"}} -->
 <div class="wp-block-group is-style-outlined" style="min-height:100%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small","padding":{"right":"0","left":"0","top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"dimensions":{"minHeight":""},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"top"}} -->

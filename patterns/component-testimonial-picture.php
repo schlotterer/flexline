@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Testimonial with Picture
  * Slug: flexline/testimonial-picture
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

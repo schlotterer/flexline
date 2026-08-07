@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Intro Text and Image.
  * Slug: flexline/text-image
  * Categories: flexline-modules
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

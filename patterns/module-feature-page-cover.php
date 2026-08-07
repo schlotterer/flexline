@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Feature Page - Cover
  * Slug: flexline/feature-page-cover
  * Categories: flexline-modules, flexline-components
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

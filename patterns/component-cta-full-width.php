@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: CTA Full Width
  * Slug: flexline/cta-full-width
  * Categories: flexline-components, flexline-cta,
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"CTA - Full Width"},"align":"full","className":"is-style-default","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"},":hover":{"color":{"text":"var:preset|color|secondary-light"}}}},"spacing":{"padding":{"top":"8px","bottom":"8px","left":"50px","right":"50px"}},"position":{"type":"sticky","top":"0px"}},"backgroundColor":"primary","textColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-default has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:8px;padding-right:50px;padding-bottom:8px;padding-left:50px"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Testimonial Card
  * Slug: flexline/testimonial-card
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Testimonial Card"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary","fontSize":"max-72"} -->

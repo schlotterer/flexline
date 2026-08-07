@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section with cover boxes to highlight content and provide links.
  * Slug: flexline/section-cover-boxes
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

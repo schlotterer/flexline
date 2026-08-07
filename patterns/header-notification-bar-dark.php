@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Header notification bar with text, button.
  * Slug: flexline/header-notification-bar-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Notification Container"},"align":"full","className":"headroom-hide-on-scroll","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"right":"30px","left":"30px","top":"8px","bottom":"8px"},"margin":{"top":"0"}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull headroom-hide-on-scroll has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="margin-top:0;padding-top:8px;padding-right:30px;padding-bottom:8px;padding-left:30px"><!-- wp:group {"metadata":{"name":"Content Row"},"className":"","style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->

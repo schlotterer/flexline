@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Section with colored boxes with links
  * Slug: flexline/section-colored-box-links
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Colored Cards with links","categories":["flexline-sections"],"patternName":"flexline/section-colored-box-links"},"align":"full","className":"","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"margin":{"top":"var:preset|spacing|large"}}},"layout":{"type":"constrained","wideSize":"1200px"}} -->
 <div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--large);padding-top:0;padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"metadata":{"name":"Text"},"className":"","layout":{"type":"constrained"}} -->

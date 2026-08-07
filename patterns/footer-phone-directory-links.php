@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Footer with Phone Directory and links
  * Slug: flexline/footer-phone-directory-links
  * Categories: flexline-footers
  * Block Types: core/template-part/footer
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"margin":{"top":"0px"}}},"backgroundColor":"contrast","textColor":"base","className":"has-background-color","layout":{"type":"constrained"},"fontSize":"small","metadata":{"name":"Footer Phone Directory and Links"}} -->
 <div class="wp-block-group alignfull has-background-color has-base-color has-contrast-background-color has-text-color has-background has-link-color has-small-font-size" style="margin-top:0px"><!-- wp:cover {"dimRatio":90,"overlayColor":"contrast","align":"full","style":{"color":{"duotone":"var:preset|duotone|neutral-dark"}},"layout":{"type":"constrained"}} -->

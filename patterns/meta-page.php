@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Page Meta Bar
  * Slug: flexline/meta-page
  * Categories: flexline-posts-templates
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Page Meta Bar","categories":["flexline-heroes"],"patternName":"flexline/meta-page"},"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-top:0;margin-bottom:0"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":90,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":100,"metadata":{"name":"Featured Image Background"},"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|large","right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"},"blockGap":"0","margin":{"top":"0"}},"color":{"duotone":"var:preset|duotone|primary"}},"layout":{"type":"constrained"},"enableLazyLoad":false} -->

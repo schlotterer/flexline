@@ -1,11 +1,12 @@
 <?php
-
 /**
  * Title: Slide In (Mobile Nav).
  * Slug: flexline/slide-in-menu
  * Categories: flexline-utilities
  * Block Types: core/template-part/header
  * Inserter: false
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

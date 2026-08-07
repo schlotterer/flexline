@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Button - Scroll to.
  * Slug: flexline/button-scroll-to
  * Categories: flexline-components, flexline-utilities, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Scroll-to button","categories":["flexline-components","flexline-utilities","flexline-misc"],"patternName":"flexline/button-scroll-to"},"className":"flexline-content-shift flexline-content-shift-above flexline-content-shift-up flexline-content-shift-down flexline-content-slide-y","layout":{"type":"constrained"},"useContentShift":true,"shiftUp":"36px","shiftDown":"","shiftToTop":true,"slideVertical":"18px"} -->
 <div id="scrollTo" class="wp-block-group flexline-content-shift flexline-content-shift-above flexline-content-shift-up flexline-content-shift-down flexline-content-slide-y"><!-- wp:buttons {"className":"","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"top"}} -->

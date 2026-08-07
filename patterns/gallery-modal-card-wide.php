@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Media Modal - Card.
  * Slug: flexline/gallery-media-card-wide
  * Categories: flexline-components, flexline-galleries
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

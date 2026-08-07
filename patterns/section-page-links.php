@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Section Page Links with sticky subnav.
  * Slug: flexline/section-page-links
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
+
 namespace FlexLine;
 
 ?>

@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Search Meta Bar
  * Slug: flexline/meta-search
  * Categories: flexline-posts-templates
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"bottom":"0"},"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"primary","layout":{"type":"constrained"},"metadata":{"name":"Search Meta Bar"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background" style="margin-bottom:0;padding-top:0;padding-bottom:0"><!-- wp:cover {"dimRatio":80,"overlayColor":"primary","minHeight":50,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"},"color":{"duotone":["#000000","#ffffff"]}},"layout":{"type":"constrained"},"enableLazyLoad":false} -->

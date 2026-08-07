@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Title: Demo Patterns - Components CTAs
  * Slug: flexline/demo-patterns-components-ctas
  * Categories: flexline-demos
  * Inserter: false
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

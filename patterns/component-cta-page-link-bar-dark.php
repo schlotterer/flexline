@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: CTA Page Link Bar
  * Slug: flexline/cta-page-link-bar-dark
  * Description: Use the Group Link option to make the entire CTA clickable.
  * Categories: flexline-components, flexline-cta
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Page CTA Dark","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar-dark"},"className":"group-link group-link-type-none is-style-shadow-light","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"#"} -->
 <div class="wp-block-group group-link group-link-type-none is-style-shadow-light has-base-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Team Leadership.
  * Slug: flexline/team-leadership
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 namespace FlexLine;
 
 ?>

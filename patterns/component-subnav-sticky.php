@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Sticky Subnav.
  * Slug: flexline/subnav-sticky
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

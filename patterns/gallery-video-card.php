@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Video Modal.
  * Slug: flexline/gallery-video-card
  * Categories: flexline-components, flexline-galleries
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

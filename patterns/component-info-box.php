@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Info Boxes
  * Slug: flexline/info-box
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"className":"is-style-outlined","layout":{"type":"default"},"metadata":{"name":"Info Box"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3} -->

@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Testimonial Wide with Picture
  * Options : plain, outline, card, card-padded
  * Slug: flexline/testimonial-wide
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 namespace FlexLine;
 
 ?>

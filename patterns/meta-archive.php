@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Archive Meta Bar
  * Slug: flexline/meta-archive
  * Categories: flexline-posts-templates
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Archive Meta Bar","categories":["flexline-posts"],"patternName":"flexline/meta-archive"},"align":"full","backgroundColor":"primary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-primary-background-color has-background"><!-- wp:cover {"dimRatio":80,"overlayColor":"primary","isUserOverlayColor":true,"minHeight":50,"isDark":false,"metadata":{"name":"Background Image"},"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-small","bottom":"var:preset|spacing|large","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"},"blockGap":"var:preset|spacing|small"},"color":{"duotone":["#000000","#ffffff"]},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"constrained"},"enableLazyLoad":false} -->

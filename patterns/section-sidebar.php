@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section with sidebar (sticky).
  * Slug: flexline/section-sidebar
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

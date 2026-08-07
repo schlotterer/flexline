@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Header - Flagged logo - transparent.
  * Slug: flexline/header-flagged-light-on-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Header Flagged - Transparent","categories":["flexline-headers"],"patternName":"flexline/header-flagged-light-on-dark"},"className":"is-style-default","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"},"margin":{"top":"0","bottom":"-20px"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-default has-dark-transparent-top-to-bottom-gradient-background has-background" style="margin-top:0;margin-bottom:-20px;padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)"><!-- wp:template-part {"slug":"notification-bar","align":"full","className":""} /-->

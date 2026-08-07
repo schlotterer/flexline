@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Timeline Columns
  * Slug: flexline/section-timeline-columns
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Phone Directory
  * Slug: flexline/phone-directory
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"},"metadata":{"name":"Phone Directory"}} -->
 <div id="phoneDirectory" class="wp-block-group"><!-- wp:heading {"textAlign":"center"} -->

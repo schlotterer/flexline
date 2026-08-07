@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Title: Demo Patterns - Components Galleries
  * Slug: flexline/demo-patterns-components-galleries
  * Categories: flexline-demos
  * Inserter: false
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

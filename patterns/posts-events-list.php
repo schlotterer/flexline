@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Events List
  * Slug: flexline/events-list
  * Categories: flexline-posts-templates
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

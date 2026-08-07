@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Query loop with horizontal posts scroll
  * Slug: flexline/section-horizontal-posts-scroll
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Box with text and button.
  * Slug: flexline/cta-box
  * Categories: flexline-components, flexline-cta
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Box - text and button"},"className":"is-style-outlined","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-outlined"><!-- wp:heading {"level":3,"className":""} -->

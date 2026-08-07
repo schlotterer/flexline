@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section Page Links with sticky Sidebar.
  * Slug: flexline/section-page-links-sticky-sidebar
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

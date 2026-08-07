@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Quick Form
  * Slug: flexline/footer-quick-form
  * Categories: flexline-footers
  * Block Types: core/template-part/footer
+ *
+ * @package FlexLine
  */
+
 namespace FlexLine;
 
 ?>

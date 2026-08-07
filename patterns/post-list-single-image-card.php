@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Post List Single Image Text/Card
  * Slug: flexline/post-list-single-image-card
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Post Card - Image, Category, Title"},"className":"is-style-default","style":{"spacing":{"blockGap":"0"},"dimensions":{"minHeight":""}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-default"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"className":"","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|small","left":"var:preset|spacing|x-small"}}}} -->

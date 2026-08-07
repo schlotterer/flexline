@@ -9,6 +9,7 @@
  *
  * @package FlexLine
  */
+
 ?>
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php esc_html_e( 'Related', 'flexline' ); ?></h3>

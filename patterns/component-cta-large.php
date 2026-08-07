@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: CTA Large
  * Slug: flexline/cta-large
  * Categories: flexline-components, flexline-cta
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

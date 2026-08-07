@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Title: Post Grid Single - Card Image, Category, Title
  * Slug: flexline/post-grid-single-card-alt
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Gallery for photos using the Photo Poster format as a card.
  * Slug: flexline/gallery-photo-poster-card
  * Categories: flexline-components, flexline-galleries
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;
@@ -12,6 +13,7 @@ namespace FlexLine;
 <!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card","categories":["flexline-components","flexline-galleries"],"patternName":"flexline/gallery-photo-poster-card"},"className":"group-link-type-none is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkURL":"#"} -->
 <div class="wp-block-group group-link-type-none is-style-card-alt"><!-- wp:gallery 
 <?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 echo poster_gallery_pattern_attrs(
 	array(
 		'columns'   => 3,
@@ -28,6 +30,7 @@ echo poster_gallery_pattern_attrs(
 -->
 	<figure class="wp-block-gallery has-nested-images columns-3 is-cropped poster-gallery"><!-- wp:image 
 	<?php
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 	echo poster_gallery_image_pattern_attrs(
 		array(
 			'sizeSlug'        => 'large',
@@ -42,6 +45,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -56,6 +60,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -70,6 +75,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -84,6 +90,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -98,6 +105,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -112,6 +120,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',
@@ -126,6 +135,7 @@ echo poster_gallery_pattern_attrs(
 
 		<!-- wp:image 
 		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 		echo poster_gallery_image_pattern_attrs(
 			array(
 				'sizeSlug'        => 'large',

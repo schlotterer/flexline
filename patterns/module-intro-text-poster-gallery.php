@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Intro Text and Poster Gallery.
  * Slug: flexline/text-poster-gallery
  * Categories: flexline-modules
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;
@@ -23,9 +24,15 @@ namespace FlexLine;
 		<!-- /wp:column -->
 
 		<!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Poster Gallery Column"}} -->
-		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery <?php echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) ); ?> -->
+		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery
+		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
+		echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) );
+		?>
+		-->
 			<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image 
 			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 			echo poster_gallery_image_pattern_attrs(
 				array(
 					'sizeSlug'        => 'large',
@@ -40,6 +47,7 @@ namespace FlexLine;
 
 				<!-- wp:image 
 				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 				echo poster_gallery_image_pattern_attrs(
 					array(
 						'sizeSlug'        => 'large',
@@ -54,6 +62,7 @@ namespace FlexLine;
 
 				<!-- wp:image 
 				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 				echo poster_gallery_image_pattern_attrs(
 					array(
 						'sizeSlug'        => 'large',
@@ -68,6 +77,7 @@ namespace FlexLine;
 
 				<!-- wp:image 
 				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 				echo poster_gallery_image_pattern_attrs(
 					array(
 						'sizeSlug'        => 'large',
@@ -82,6 +92,7 @@ namespace FlexLine;
 
 				<!-- wp:image 
 				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 				echo poster_gallery_image_pattern_attrs(
 					array(
 						'sizeSlug'        => 'large',

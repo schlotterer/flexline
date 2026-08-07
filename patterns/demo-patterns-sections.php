@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Title: Demo Patterns - Sections
  * Slug: flexline/demo-patterns-sections
  * Categories: flexline-demos
  * Inserter: false
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

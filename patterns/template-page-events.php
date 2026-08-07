@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Events page - using Tribe Events.
  * Slug: flexline/page-events
  * Categories: flexline-events
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

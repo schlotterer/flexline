@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Header - Left Logo - Transparent.
  * Slug: flexline/header-light-on-dark
  * Categories: flexline-headers
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Header Base - transparent","categories":["flexline-headers"],"patternName":"flexline/header-light-on-dark"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"gradient":"dark-transparent-top-to-bottom","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-dark-transparent-top-to-bottom-gradient-background has-background" style="padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)">

@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Header - Left Logo.
  * Slug: flexline/header-default
  * Categories: flexline-headers
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Header Base","categories":["flexline-headers"],"patternName":"flexline/header-default"},"className":"","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"var:preset|spacing|large","right":"var:preset|spacing|large"}}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-base-background-color has-background" style="padding-top:0;padding-right:var(--wp--preset--spacing--large);padding-bottom:0;padding-left:var(--wp--preset--spacing--large)">

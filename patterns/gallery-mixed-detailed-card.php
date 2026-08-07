@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Mixed Media Modal - detailed - card.
  * Slug: flexline/gallery-mixed-detailed-card
  * Categories: flexline-components, flexline-galleries
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

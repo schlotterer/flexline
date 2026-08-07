@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Pricing Card Dark
  * Slug: flexline/pricing-card-dark
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Pricing Dark"}} -->
 <div class="wp-block-group is-style-card-padded has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->

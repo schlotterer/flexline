@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Grid of posts in three columns.
  * Slug: flexline/posts-grid
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:query {"queryId":9,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false,"taxQuery":null,"parents":[]},"enhancedPagination":true,"className":"alignwide"} -->
 <div class="wp-block-query alignwide">

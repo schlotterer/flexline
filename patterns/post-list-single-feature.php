@@ -4,7 +4,10 @@
  * Slug: flexline/post-list-single-feature-post
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Post list single Feature Post with cover left"},"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast","className":"is-style-outlined","layout":{"type":"default"}} -->
 <div class="wp-block-group is-style-outlined has-contrast-color has-text-color has-link-color"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}},"className":"is-style-default"} -->

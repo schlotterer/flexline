@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: CTA - Card with image, heading, text, button.
  * Slug: flexline/cta-image-text-button
  * Categories: flexline-cta, flexline-components
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Section - Latest Posts
  * Slug: flexline/section-latest-posts
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Latests Posts - 3 card","categories":["flexline-sections"],"patternName":"flexline/section-latest-posts"},"align":"full","className":"latests-posts-3-card","style":{"spacing":{"padding":{"right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull latests-posts-3-card" style="padding-right:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:heading {"textAlign":"center","className":""} -->

@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Post List Single Text/Outline
  * Slug: flexline/post-list-single-outline
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"className":"is-style-outlined","layout":{"type":"constrained","justifyContent":"left"},"metadata":{"name":"Post List Single Text/Outline"}} -->
 <div class="wp-block-group is-style-outlined">

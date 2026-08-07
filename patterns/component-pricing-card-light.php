@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Title: Pricing Card Light
  * Slug: flexline/pricing-card-light
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"className":"is-style-card-padded","layout":{"type":"default"},"metadata":{"name":"Pricing Light"}} -->
 <div class="wp-block-group is-style-card-padded"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->

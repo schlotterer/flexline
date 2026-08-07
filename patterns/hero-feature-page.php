@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Title: Feature Page Meta.
  * Slug: flexline/meta-feature-page
  * Categories: flexline-heroes
  * Block Types: core/template-part/header
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Hero for Home Page ( no breadcrumbs ).
  * Slug: flexline/hero-home
  * Categories: flexline-heroes
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

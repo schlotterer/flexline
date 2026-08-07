@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section Gallery
  * Slug: flexline/section-gallery
  * Categories: flexline-modules
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

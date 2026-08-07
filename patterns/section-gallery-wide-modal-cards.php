@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Title: Section Gallery Wide Modal Cards
  * Slug: flexline/section-gallery-wide-modal-cards
  * Categories: flexline-sections
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;

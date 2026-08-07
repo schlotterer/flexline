@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Post List Single Image Text/Outline
  * Slug: flexline/post-list-single-image-outline
  * Categories: flexline-posts-templates
  * Block Types: core/query
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Post List Single Image Text/Outline"},"style":{"spacing":{"blockGap":"10px"}},"className":"is-style-default","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-default"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|x-small"}}}} -->

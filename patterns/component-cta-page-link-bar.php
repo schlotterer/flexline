@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: CTA Page Link Bar
  * Slug: flexline/cta-page-link-bar
  * Description: Use the Group Link option to make the entire CTA clickable.
  * Categories: flexline-components, flexline-cta
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:group {"metadata":{"name":"Page CTA Light","categories":["flexline-cta"],"patternName":"flexline/cta-page-link-bar"},"className":"group-link group-link-type-none is-style-card","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"default"},"enableGroupLink":true,"groupLinkURL":"/health-services/assisted-living"} -->
 <div class="wp-block-group group-link group-link-type-none is-style-card has-base-color has-primary-background-color has-text-color has-background has-link-color"><!-- wp:columns {"templateLock":"all","lock":{"move":true,"remove":true},"metadata":{"name":"CTA content columns"},"className":"","style":{"spacing":{"blockGap":{"top":"0","left":"0"},"margin":{"top":"0","bottom":"0"}}}} -->
