@@ -14,23 +14,27 @@ namespace FlexLine;
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Return the canonical FlexLine Utilities defaults.
+ *
+ * @return array
+ */
+function flexline_utilities_get_defaults(): array {
+	return array(
+		'enable_og_tags'       => 1,
+		'remove_generator'     => 1,
+		'disable_xmlrpc'       => 1,
+		'rest_cors_allow_all'  => 0,
+		'disable_all_comments' => 0,
+	);
+}
+
+/**
  * Return FlexLine Utilities options merged with defaults.
  *
  * @return array
  */
 function flexline_utilities_get_options(): array {
-	$defaults = array(
-		'enable_og_tags'              => 0,
-		'remove_generator'            => 1,
-		'disable_xmlrpc'              => 1,
-		'rest_cors_allow_all'         => 0,
-		'disable_all_comments'        => 0,
-		'custom_login_enabled'        => 0,
-		'custom_login_slug'           => '',
-		'custom_login_strict_mode'    => 1,
-		'custom_login_fallback_key'   => '',
-		'custom_login_fallback_value' => '',
-	);
+	$defaults = flexline_utilities_get_defaults();
 
 	$opts = get_option( 'flexline_utilities', array() );
 	return wp_parse_args( is_array( $opts ) ? $opts : array(), $defaults );

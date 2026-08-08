@@ -2,7 +2,7 @@
 
 If you intend to clone the repository for custom development or contributions, please:
 - [Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)
-- [Review the Coding Standards](CODING_STANDARDS.md)
+- [Review the Coding Standards](docs/coding-standards.md)
 - [Review the Code of Conduct](CODE_OF_CONDUCT.md)
 
 Then you can follow these instructions:
@@ -98,6 +98,18 @@ If you wish to manually lint your files prior to committing, you can use the fol
 
 These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.
 
+### SCSS Module Migration Debt
+
+FlexLine still uses Sass `@import` throughout the theme SCSS tree. The
+production build currently silences the known `@import` deprecation warning so
+release builds stay readable, but the underlying migration is still needed.
+
+Do not convert these imports casually one file at a time. Moving from `@import`
+to `@use` changes variable, mixin, and function scoping, so the migration should
+be handled as a controlled SCSS architecture refactor with a full visual
+regression pass across frontend pages, editor styles, modals, and block
+variations.
+
 ## Block Utility Functions
 
 Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
@@ -108,6 +120,10 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 ## Responsive Visibility
 
 FlexLine responsive visibility controls are available in the block inspector and write FlexLine attributes/classes (`hideOnDesktop`, `hideOnTablet`, `hideOnMobile` and `flexline-hide-on-*`) for frontend breakpoint behavior. This does not affect the separate Visibility Toggle Groups feature.
+
+Inspector labels intentionally keep breakpoint ranges on the secondary help
+line. Main labels should stay short, for example `Hide on Tablet`, while the
+help text carries ranges such as `(782px - 991.98px)`.
 
 ## Shortcode Tokens
 
@@ -127,6 +143,35 @@ FlexLine ships opinionated styling for several third-party plugins so they feel 
 - [Events Manager](https://wordpress.org/plugins/events-manager/) – keeps event lists, single templates, and the bundled starter settings consistent with FlexLine layouts.
 - [Query Loop Filters](https://github.com/humanmade/query-filter) – matches filter bars and control states from Human Made’s Query Loop Filters plugin to the theme’s navigation spacing and button treatments.
 - [Yoast SEO](https://yoast.com/wordpress/plugins/seo/) and [Rank Math SEO](https://wordpress.org/plugins/seo-by-rank-math/) – optional. FlexLine mirrors canonical primary-term choices to/from both plugins when installed.
+
+## Authentication and Security Ownership
+
+FlexLine does not own alternate-login URLs, fallback credentials, strict login
+blocking, or 2FA enforcement. Standard WordPress authentication uses
+`/wp-login.php`.
+
+Use the operational security stack for 2FA:
+
+- SiteGround Security Optimizer on SiteGround-hosted sites.
+- Wordfence Login Security where Wordfence owns login security.
+- The official Two-Factor plugin only where enrollment/compliance can be
+  audited operationally.
+
+Do not enable overlapping login-security systems without an explicit operations
+decision. See [`SECURITY.md`](SECURITY.md) for rollout notes.
+
+## Pattern Rendering Dependency
+
+FlexLine supplies theme styles, global style presets, and block variations that
+custom Web4SL patterns depend on, but it does not render Web4SL directory or
+floor-plan patterns itself.
+
+For `web4sl-location-sync`, pattern rendering must happen in the plugin so the
+plugin can provide the correct `directory_locations` post context, REST security
+rules, and fragment-local WordPress style-engine output. If directory card or
+popover spacing/link colors regress after a WordPress update, start with
+`web4sl-location-sync/docs/pattern-rendering-architecture.md`, not FlexLine
+theme wrappers.
 
 ## Primary Terms and Breadcrumbs
 

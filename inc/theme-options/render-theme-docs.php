@@ -811,6 +811,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.is-align-items-center-tablet</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container at the tablet breakpoint.</td></tr>
 							<tr><td><code>.is-text-align-center-tablet</code></td><td>Adds <code>text-align: center !important;</code> to the container at the tablet breakpoint.</td></tr>
 							<tr><td><code>.is-center-tablet</code></td><td>Centers content at the tablet breakpoint: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
+							<tr><td><code>.is-left-tablet</code></td><td>Stacks and left-aligns at tablet: <code>flex-direction: column</code>, <code>justify-content: flex-start</code>, <code>align-items: flex-start</code>, and <code>text-align: left</code> (also applied to direct children).</td></tr>
+							<tr><td><code>.is-right-tablet</code></td><td>Stacks and right-aligns at tablet: <code>flex-direction: column</code>, <code>justify-content: flex-start</code>, <code>align-items: flex-end</code>, and <code>text-align: right</code> (also applied to direct children).</td></tr>
 						</tbody>
 					</table>
 	
@@ -829,6 +831,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							<tr><td><code>.is-align-items-center-mobile</code></td><td>Adds <code>align-items: center !important;</code> to the flex‑container on mobile.</td></tr>
 							<tr><td><code>.is-text-align-center-mobile</code></td><td>Adds <code>text-align: center !important;</code> to the container on mobile.</td></tr>
 							<tr><td><code>.is-center-mobile</code></td><td>Centers content on mobile: <code>justify-content: center</code>, <code>align-items: center</code>, and <code>text-align: center</code>.</td></tr>
+							<tr><td><code>.is-left-mobile</code></td><td>Stacks and left-aligns on mobile: <code>flex-direction: column</code>, <code>justify-content: flex-start</code>, <code>align-items: flex-start</code>, and <code>text-align: left</code> (also applied to direct children).</td></tr>
+							<tr><td><code>.is-right-mobile</code></td><td>Stacks and right-aligns on mobile: <code>flex-direction: column</code>, <code>justify-content: flex-start</code>, <code>align-items: flex-end</code>, and <code>text-align: right</code> (also applied to direct children).</td></tr>
 						</tbody>
 					</table>
 

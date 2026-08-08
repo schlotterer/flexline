@@ -1,9 +1,9 @@
 === FlexLine ===
-Contributors: wpengine, bgardner
-Requires at least: 6.3
-Tested up to: 6.3
-Requires PHP: 7.0
-Stable tag: 2.1.0
+Contributors: joelschlotterer
+Requires at least: 6.5
+Tested up to: 7.0
+Requires PHP: 8.1
+Stable tag: 2.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ With its clean, minimal design and powerful feature set, FlexLine enables agenci
 
 == Installation Notes ==
 
-For additional helper features, install the optional **FlexLine Utilities Plugin**. It can be downloaded from https://github.com/wpengine/flexline/releases/latest/download/flexline-utilities.zip and provides shortcodes like `[flexline_year]` for the current year or `[flexline_loginout]` to output login and logout links.
+FlexLine includes its utility features, shortcodes, security settings, and primary-term integrations directly in the theme.
 
 == Plugin Integrations ==
 

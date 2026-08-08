@@ -1,6 +1,6 @@
 {
   "name": "flexline",
-  "version": "1.1.0",
+  "version": "2.2.0",
   "description": "WordPress FSE Theme",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,9 @@
     "production": "npm run fix-php && npm run lint-style:fix && npm run lint-js:fix && npm run build",
     "lint": "npm run lint-js && npm run lint-style && npm run lint-php",
     "lint-staged": "lint-staged",
-    "lint-php": "vendor/bin/phpcs --standard=WordPress inc",
-    "fix-php": "vendor/bin/phpcbf --standard=WordPress inc",
+    "lint-php": "vendor/bin/phpcs --extensions=php",
+    "test:primary-terms": "php tests/primary-terms-resolver-contract.php",
+    "fix-php": "vendor/bin/phpcbf --extensions=php",
     "lint-js": "wp-scripts lint-js src/js",
     "lint-js:fix": "wp-scripts lint-js src/js --fix",
     "lint-style": "wp-scripts lint-style src/scss",
@@ -23,7 +24,7 @@
   },
   "keywords": [],
   "author": "Joel Schlotterer",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
@@ -36,6 +37,7 @@
     "@wordpress/element": "^6.37.0",
     "@wordpress/eslint-plugin": "^23.0.0",
     "@wordpress/hooks": "^4.37.0",
+    "@wordpress/i18n": "^6.11.0",
     "@wordpress/scripts": "^31.2.0",
     "@wordpress/stylelint-config": "^23.29.0",
     "autoprefixer": "^10.4.23",

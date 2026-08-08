@@ -23,6 +23,8 @@
  *   slide state classes and unwraps the temporary .slider-wrapper + nav container.
  */
 
+import { __, sprintf } from '@wordpress/i18n';
+
 (() => {
 	'use strict';
 
@@ -34,6 +36,10 @@
 	const BTN_PREV = 'is-slider-prev';
 	const BTN_NEXT = 'is-slider-next';
 	const BTN_PAUSE = 'is-slider-pause';
+	const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+	const prefersReducedMotion = () =>
+		window.matchMedia && window.matchMedia(REDUCED_MOTION_QUERY).matches;
 
 	const isEditor = () =>
 		!!document.body &&
@@ -345,6 +351,8 @@
 			if (isPrev) {
 				el.classList.add('is-slide-prev');
 			}
+			el.setAttribute('aria-hidden', on ? 'false' : 'true');
+			el.inert = !on;
 		});
 	}
 
@@ -369,6 +377,7 @@
 		slider._activeIndex = next;
 		clampState(slider);
 		if (fromNav) {
+			announceSlide(slider);
 			restartAuto(slider);
 		}
 	}
@@ -384,7 +393,7 @@
 	function startAuto(slider) {
 		/** Start/restart the autoplay timer (if interval > 0). */
 		stopAuto(slider);
-		if (!(slider._intervalMs > 0)) {
+		if (!(slider._intervalMs > 0) || prefersReducedMotion()) {
 			return;
 		}
 		slider._autoTimer = setInterval(() => {
@@ -400,6 +409,54 @@
 			clearInterval(slider._autoTimer);
 			slider._autoTimer = null;
 		}
+	}
+
+	function announceSlide(slider) {
+		if (!slider._liveRegion || !slider._slides?.length) {
+			return;
+		}
+		slider._liveRegion.textContent = sprintf(
+			// translators: 1: active slide number, 2: total slide count.
+			__('Slide %1$d of %2$d', 'flexline'),
+			(slider._activeIndex || 0) + 1,
+			slider._slides.length
+		);
+	}
+
+	function attachReducedMotionHandler(slider) {
+		if (!window.matchMedia) {
+			return;
+		}
+		const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+		const onChange = () => {
+			if (mediaQuery.matches) {
+				stopAuto(slider);
+			} else {
+				restartAuto(slider);
+			}
+		};
+		if (mediaQuery.addEventListener) {
+			mediaQuery.addEventListener('change', onChange);
+		} else if (mediaQuery.addListener) {
+			mediaQuery.addListener(onChange);
+		}
+		slider._reducedMotionQuery = mediaQuery;
+		slider._onReducedMotionChange = onChange;
+	}
+
+	function detachReducedMotionHandler(slider) {
+		const mediaQuery = slider._reducedMotionQuery;
+		const onChange = slider._onReducedMotionChange;
+		if (!mediaQuery || !onChange) {
+			return;
+		}
+		if (mediaQuery.removeEventListener) {
+			mediaQuery.removeEventListener('change', onChange);
+		} else if (mediaQuery.removeListener) {
+			mediaQuery.removeListener(onChange);
+		}
+		slider._reducedMotionQuery = null;
+		slider._onReducedMotionChange = null;
 	}
 
 	function restartAuto(slider) {
@@ -421,6 +478,9 @@
 		}
 		slider._isInView = false;
 		const wrapper = slider._wrapper || slider.parentElement;
+		if (!wrapper || typeof wrapper.nodeType !== 'number') {
+			return;
+		}
 		const IO = window.IntersectionObserver;
 		if (typeof IO !== 'function') {
 			// Fallback: if IO is unavailable, consider it always in view
@@ -533,12 +593,25 @@
 	}
 
 	function attachResize(slider) {
+		let frame = null;
 		const onResize = () => {
-			computeAndSetEffectiveHeight(slider);
-			lockSliderHeight(slider);
+			if (frame) {
+				return;
+			}
+			frame = window.requestAnimationFrame(() => {
+				frame = null;
+				computeAndSetEffectiveHeight(slider);
+				lockSliderHeight(slider);
+			});
 		};
 		window.addEventListener('resize', onResize);
 		slider._onResize = onResize;
+		slider._resizeFrame = () => {
+			if (frame) {
+				window.cancelAnimationFrame(frame);
+				frame = null;
+			}
+		};
 	}
 
 	function attachTransitionClamp(slider) {
@@ -576,6 +649,9 @@
 			return;
 		}
 		const container = getSlideContainer(slider);
+		if (!container || typeof container.nodeType !== 'number') {
+			return;
+		}
 		const mo = new window.MutationObserver(() => {
 			applyStacking(slider);
 			clampState(slider);
@@ -657,7 +733,7 @@
 			prev = document.createElement('button');
 			prev.type = 'button';
 			prev.className = BTN_CLASS + ' ' + BTN_PREV;
-			prev.setAttribute('aria-label', 'Previous');
+			prev.setAttribute('aria-label', __('Previous', 'flexline'));
 			prev.innerHTML =
 				'<span class="material-symbols-outlined">' +
 				'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
@@ -680,7 +756,7 @@
 				pause = document.createElement('button');
 				pause.type = 'button';
 				pause.className = BTN_CLASS + ' ' + BTN_PAUSE;
-				pause.setAttribute('aria-label', 'Pause/Play');
+				pause.setAttribute('aria-label', __('Pause/Play', 'flexline'));
 				pause.innerHTML =
 					'<span class="material-symbols-outlined">' +
 					'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
@@ -717,7 +793,7 @@
 			next = document.createElement('button');
 			next.type = 'button';
 			next.className = BTN_CLASS + ' ' + BTN_NEXT;
-			next.setAttribute('aria-label', 'Next');
+			next.setAttribute('aria-label', __('Next', 'flexline'));
 			next.innerHTML =
 				'<span class="material-symbols-outlined">' +
 				'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">' +
@@ -764,6 +840,14 @@
 		}
 		applyStacking(slider);
 		clampState(slider);
+		const liveRegion = document.createElement('div');
+		liveRegion.className = 'screen-reader-text';
+		liveRegion.setAttribute('aria-live', 'polite');
+		liveRegion.setAttribute('aria-atomic', 'true');
+		liveRegion.setAttribute('role', 'status');
+		wrapper.appendChild(liveRegion);
+		slider._liveRegion = liveRegion;
+		attachReducedMotionHandler(slider);
 
 		// Transitions are CSS-driven; no JS step required here
 
@@ -804,13 +888,20 @@
 		slides.forEach((el) => {
 			el.style.opacity = '';
 			el.style.zIndex = '';
+			el.removeAttribute('aria-hidden');
+			el.inert = false;
 			el.classList.remove('is-slide-active', 'is-slide-prev');
 		});
+		if (slider._liveRegion) {
+			slider._liveRegion.remove();
+			slider._liveRegion = null;
+		}
 	}
 
 	function teardownSlider(slider) {
 		// Stop timers and observers
 		stopAuto(slider);
+		detachReducedMotionHandler(slider);
 		if (slider._io) {
 			slider._io.disconnect();
 			slider._io = null;
@@ -828,6 +919,10 @@
 		if (slider._onResize) {
 			window.removeEventListener('resize', slider._onResize);
 			slider._onResize = null;
+		}
+		if (slider._resizeFrame) {
+			slider._resizeFrame();
+			slider._resizeFrame = null;
 		}
 		if (slider._onHoverEnter) {
 			const wrapper = slider._wrapper || slider.parentElement;
@@ -1021,13 +1116,31 @@
 			rerunInit();
 		}
 	});
-	bodyObserver.observe(document.body, {
-		childList: true,
-		subtree: true,
-		attributes: true,
-		attributeFilter: ['class'],
-		attributeOldValue: true,
-	});
+	const observeBody = () => {
+		if (!document.body || typeof document.body.nodeType !== 'number') {
+			return false;
+		}
+
+		try {
+			bodyObserver.observe(document.body, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['class'],
+				attributeOldValue: true,
+			});
+			return true;
+		} catch (error) {
+			return false;
+		}
+	};
+
+	if (!observeBody()) {
+		document.addEventListener('DOMContentLoaded', observeBody, {
+			once: true,
+		});
+		window.requestAnimationFrame(observeBody);
+	}
 
 	// Editor: listen for live CSS var updates from controls
 	document.addEventListener('flexline-slider-vars-updated', (e) => {

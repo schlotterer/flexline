@@ -62,27 +62,30 @@ function flexline_enqueue_styles() {
 
 	$early_deps = array( $early_handle );
 
-	wp_enqueue_script( 'flexline-global', get_theme_file_uri( 'assets/built/js/global.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/global.js' ), true );
 	wp_enqueue_script( 'flexline-scroll', get_theme_file_uri( 'assets/built/js/horizontal-scroll.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/horizontal-scroll.js' ), true );
 	$show_menu_on_scroll    = get_option( 'flexline_show_menu_on_scroll_up', false );
 	$show_menu_all_the_time = get_option( 'flexline_show_menu_all_the_time', false );
-	if ( '1' === $show_menu_on_scroll || '1' === $show_menu_all_the_time ) {
+	if ( (bool) $show_menu_on_scroll || (bool) $show_menu_all_the_time ) {
 		wp_enqueue_script( 'flexline-headroom', get_theme_file_uri( 'assets/js/headroom.min.js' ), $early_deps, flexline_asset_ver( 'assets/js/headroom.min.js' ), true );
 		wp_enqueue_script( 'flexline-headroom-init', get_theme_file_uri( 'assets/built/js/headroom.js' ), array_merge( $early_deps, array( 'flexline-headroom' ) ), flexline_asset_ver( 'assets/built/js/headroom.js' ), true );
 	}
 	// Register modal runtime. Enqueue is conditional in render_block.
-	wp_register_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
-	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $early_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
+	$i18n_deps = array_merge( $early_deps, array( 'wp-i18n' ) );
+	wp_register_script( 'flexline-modal', get_theme_file_uri( 'assets/built/js/modal.js' ), $i18n_deps, flexline_asset_ver( 'assets/built/js/modal.js' ), true );
+	wp_enqueue_script( 'flexline-slidein', get_theme_file_uri( 'assets/built/js/slidein.js' ), $i18n_deps, flexline_asset_ver( 'assets/built/js/slidein.js' ), true );
+	wp_set_script_translations( 'flexline-modal', 'flexline', get_template_directory() . '/languages' );
+	wp_set_script_translations( 'flexline-slidein', 'flexline', get_template_directory() . '/languages' );
 
 	// Register slider runtime (footer + defer). It will be enqueued conditionally in render_block.
 	wp_register_script(
 		'flexline-slider',
 		get_theme_file_uri( 'assets/built/js/slider.js' ),
-		$early_deps,
+		$i18n_deps,
 		flexline_asset_ver( 'assets/built/js/slider.js' ),
 		true
 	);
 	wp_script_add_data( 'flexline-slider', 'strategy', 'defer' );
+	wp_set_script_translations( 'flexline-slider', 'flexline', get_template_directory() . '/languages' );
 
 	$relative_path = 'assets/built/js/visibility-toggle.js';
 
@@ -95,7 +98,6 @@ function flexline_enqueue_styles() {
 	);
 
 	$defer_handles = array(
-		'flexline-global',
 		'flexline-scroll',
 		'flexline-headroom',
 		'flexline-headroom-init',
@@ -114,7 +116,6 @@ function flexline_enqueue_styles() {
  * Enqueue block editor shell assets (sidebar UI and editor chrome).
  */
 function flexline_admin_enqueue_scripts() {
-	wp_enqueue_script( 'flexline-global-admin', get_theme_file_uri( 'assets/built/js/global.js' ), array(), flexline_asset_ver( 'assets/built/js/global.js' ), true );
 	// The slide-in admin script is intentionally not enqueued.
 	// Template pattern inserter.
 	wp_enqueue_script(

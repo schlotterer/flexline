@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Title: Post Starter Starter
  * Description: Clone this pattern and name it Post Starter to have it auto insert when a new post is created.
  * Slug: flexline/post-starter-starter
  * Categories: flexline-utilities
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:paragraph {"className":""} -->
 <p>Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.</p>

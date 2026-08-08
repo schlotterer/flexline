@@ -144,11 +144,37 @@ function get_visibility_classes( $attrs ) {
  * @return string The modified block content with the new classes.
  */
 function add_classes_to_block_content( $block_content, $added_classes ) {
-	$search_string  = 'class="';
-	$replace_string = 'class="' . esc_attr( $added_classes );
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
 
-	// Use str_replace_first to ensure only the first occurrence is replaced.
-	return str_replace_first( $search_string, $replace_string, $block_content );
+	$existing_classes = $processor->get_attribute( 'class' );
+	$classes          = trim( $added_classes . ' ' . ( is_string( $existing_classes ) ? $existing_classes : '' ) );
+	$processor->set_attribute( 'class', $classes );
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Set attributes on the outermost tag in rendered block content.
+ *
+ * @param string      $block_content Rendered block HTML.
+ * @param array       $attributes Attribute/value pairs.
+ * @param string|null $tag_name Optional tag name to match.
+ * @return string Updated block HTML.
+ */
+function flexline_set_first_tag_attributes( $block_content, $attributes, $tag_name = null ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag( $tag_name ) ) {
+		return $block_content;
+	}
+
+	foreach ( $attributes as $name => $value ) {
+		$processor->set_attribute( $name, $value );
+	}
+
+	return $processor->get_updated_html();
 }
 
 /**
@@ -263,9 +289,11 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 
 	if ( 'core/button' === $block['blockName'] ) {
 		if ( isset( $block['attrs']['iconType'] ) && 'download' === $block['attrs']['iconType'] ) {
-				$search_string  = 'href="';
-				$replace_string = 'download href="';
-				$block_content  = str_replace( $search_string, $replace_string, $block_content );
+			$block_content = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'download' => '' ),
+				'a'
+			);
 		}
 	}
 
@@ -338,9 +366,10 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 				// Insert your data attribute just before the closing tag of the element.
 				// This is a basic string replacement and might need to be adjusted based on the block markup.
 				// $block_content = str_replace('>', ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">', $block_content);'.
-				$search_string  = '>';
-				$replace_string = ' data-modal-media-url="' . esc_attr( $block['attrs']['modalMediaURL'] ) . '">';
-				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+				$block_content = flexline_set_first_tag_attributes(
+					$block_content,
+					array( 'data-modal-media-url' => esc_url_raw( $block['attrs']['modalMediaURL'] ) )
+				);
 			}
 		}
 	}
@@ -415,11 +444,15 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 				$type_class    = 'group-link-type-' . $link_type_raw;
 				$added_classes = 'group-link ' . $type_class . ' ';
 				$block_content = add_classes_to_block_content( $block_content, $added_classes );
+				$block_content = flexline_set_first_tag_attributes(
+					$block_content,
+					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'] ) )
+				);
 
 				// Insert your data attribute just before the closing tag of the element.
-				// This is a basic string replacement and might need to be adjusted based on the block markup.
+				// The anchor is inserted immediately inside the outer wrapper.
 				$search_string  = '>';
-				$replace_string = ' data-group-link-url="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '">' . $link;
+				$replace_string = '>' . $link;
 				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
 			}
 		}
@@ -460,22 +493,22 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
 			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
-			$data_scroll_interval          = 'data-scroll-interval="' . $block['attrs']['scrollSpeed'] . '"';
-			$search_string                 = '>';
-			$replace_string                = ' ' . $data_scroll_interval . '>';
-			$block_content                 = str_replace_first( $search_string, $replace_string, $block_content );
+			$block_content                 = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'data-scroll-interval' => (int) $block['attrs']['scrollSpeed'] )
+			);
 		}
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
 			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
-			$data_scroll_interval                 = 'data-scroll-speed="' . $block['attrs']['transitionDuration'] . '"';
-			$search_string                        = '>';
-			$replace_string                       = ' ' . $data_scroll_interval . '>';
-			$block_content                        = str_replace_first( $search_string, $replace_string, $block_content );
+			$block_content                        = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'data-scroll-speed' => (int) $block['attrs']['transitionDuration'] )
+			);
 		}
 
 		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
-			$icon_data_attrs = '';
+			$icon_data_attrs = array();
 			$icon_map        = array(
 				'prevIconMediaId'  => array(
 					'data_attr' => 'data-icon-prev-url',
@@ -501,23 +534,21 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 					$icon_url = esc_url_raw( $block['attrs'][ $map['url_attr'] ] );
 				}
 				if ( $icon_url ) {
-					$icon_data_attrs .= ' ' . $map['data_attr'] . '="' . esc_url( $icon_url ) . '"';
+					$icon_data_attrs[ $map['data_attr'] ] = esc_url_raw( $icon_url );
 				}
 			}
 
 			$button_icon_height = isset( $block['attrs']['buttonIconHeight'] ) ? (int) $block['attrs']['buttonIconHeight'] : 18;
 			$pause_icon_height  = isset( $block['attrs']['pauseButtonIconHeight'] ) ? (int) $block['attrs']['pauseButtonIconHeight'] : 18;
 			if ( $button_icon_height > 0 ) {
-				$icon_data_attrs .= ' data-button-icon-height="' . $button_icon_height . '"';
+				$icon_data_attrs['data-button-icon-height'] = $button_icon_height;
 			}
 			if ( $pause_icon_height > 0 ) {
-				$icon_data_attrs .= ' data-pause-icon-height="' . $pause_icon_height . '"';
+				$icon_data_attrs['data-pause-icon-height'] = $pause_icon_height;
 			}
 
-			if ( '' !== $icon_data_attrs ) {
-				$search_string  = '>';
-				$replace_string = $icon_data_attrs . '>';
-				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			if ( ! empty( $icon_data_attrs ) ) {
+				$block_content = flexline_set_first_tag_attributes( $block_content, $icon_data_attrs );
 			}
 		}
 	}

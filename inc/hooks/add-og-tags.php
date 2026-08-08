@@ -119,8 +119,13 @@ function add_og_tags() {
  * Register OG tags conditionally from Utilities settings.
  */
 function flexline_register_og_tags() {
-	$opts = flexline_utilities_get_options();
-	if ( ! empty( $opts['enable_og_tags'] ) ) {
+	$opts              = flexline_utilities_get_options();
+	$seo_plugin_active = defined( 'WPSEO_VERSION' )
+		|| class_exists( 'WPSEO_Options' )
+		|| defined( 'RANK_MATH_VERSION' )
+		|| class_exists( 'RankMath' );
+
+	if ( ! $seo_plugin_active && ! empty( $opts['enable_og_tags'] ) ) {
 		add_action( 'wp_head', __NAMESPACE__ . '\\add_og_tags' );
 	}
 }

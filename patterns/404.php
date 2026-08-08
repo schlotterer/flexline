@@ -3,7 +3,10 @@
  * Title: 404 error content.
  * Slug: flexline/404
  * Inserter: false
+ *
+ * @package FlexLine
  */
+
 ?>
 <!-- wp:heading {"level":1} -->
 <h1><?php echo esc_html__( 'Not found, error 404', 'flexline' ); ?></h1>

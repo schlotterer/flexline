@@ -49,7 +49,7 @@ function auto_insert_pattern_smart( $content, $post ) {
 		$pattern_slug = $legacy_map[ $post_type ];
 	} else {
 		// For custom post types, use WordPress template hierarchy convention.
-		// Pattern slug: single-{post_type}-starter
+		// Pattern slug: single-{post_type}-starter.
 		$pattern_slug = 'single-' . $post_type . '-starter';
 	}
 

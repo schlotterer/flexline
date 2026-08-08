@@ -3,9 +3,12 @@
  * Title: Accordion
  * Slug: flexline/accordion
  * Categories: flexline-components, flexline-misc
+ *
+ * @package FlexLine
  */
 
 namespace FlexLine;
+
 ?>
 <!-- wp:accordion {"autoclose":true,"headingLevel":2,"className":"is-style-default","style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
 <div role="group" class="wp-block-accordion is-style-default"><!-- wp:accordion-item {"metadata":{"name":"Accordion Item - Card"},"className":"is-style-card","style":{"spacing":{"blockGap":"0"}}} -->
@@ -23,7 +26,7 @@ namespace FlexLine;
 
 <!-- wp:column {"width":"33.33%","className":""} -->
 <div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":""} -->
-<figure class="wp-block-image size-full"><img src="https://flexlinetheme.com/wp-content/uploads/2024/04/fallback-large.webp" alt=""/></figure>
+<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/built/images/fallback.webp' ) ); ?>" alt=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -49,7 +52,7 @@ namespace FlexLine;
 
 <!-- wp:accordion-panel {"className":"","style":{"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|small","right":"var:preset|spacing|small"}}}} -->
 <div role="region" class="wp-block-accordion-panel" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><!-- wp:image {"aspectRatio":"16/9","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-card"} -->
-<figure class="wp-block-image size-full is-style-card"><img src="https://flexlinetheme.com/wp-content/uploads/2024/04/fallback-large.webp" alt="" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<figure class="wp-block-image size-full is-style-card"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/built/images/fallback.webp' ) ); ?>" alt="" style="aspect-ratio:16/9;object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":""} -->
@@ -73,7 +76,7 @@ namespace FlexLine;
 
 <!-- wp:column {"width":"33.33%","className":""} -->
 <div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":""} -->
-<figure class="wp-block-image size-full"><img src="https://flexlinetheme.com/wp-content/uploads/2024/04/fallback-large.webp" alt=""/></figure>
+<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/built/images/fallback.webp' ) ); ?>" alt=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
