@@ -71,7 +71,7 @@ Untracked changes to include and test:
 
 - `SECURITY.md`
 - `inc/hooks/migrations.php`
-- `BRANCH_TESTING_NOTES.md`
+- `docs/branch-testing-notes.md`
 
 ### Test notes
 

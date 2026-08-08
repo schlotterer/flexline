@@ -25,7 +25,7 @@ We love to receive suggestions for enhancements! If you have ideas to improve th
 ### Pull Requests
 We actively welcome your pull requests. If you've improved or added something valuable to the project, please send a pull request with a clear list of what you've done. Here’s how you can contribute effectively:
 
-[Review the Coding Standards](CODING_STANDARDS.md)
+[Review the Coding Standards](docs/coding-standards.md)
 
 1. **Fork the Repository**
    - Fork the project on GitHub. This means creating a copy of the repository under your GitHub account to make your changes.

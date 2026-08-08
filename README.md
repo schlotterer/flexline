@@ -2,7 +2,7 @@
 
 If you intend to clone the repository for custom development or contributions, please:
 - [Review the Contribution Guidelines](CONTRIBUTION_GUIDELINES.md)
-- [Review the Coding Standards](CODING_STANDARDS.md)
+- [Review the Coding Standards](docs/coding-standards.md)
 - [Review the Code of Conduct](CODE_OF_CONDUCT.md)
 
 Then you can follow these instructions:
