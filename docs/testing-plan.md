@@ -33,7 +33,6 @@ inc/functions/utilities-options.php \
 inc/hooks/add-og-tags.php \
 inc/hooks/body-classes.php \
 inc/hooks/query-loop.php \
-inc/hooks/security.php \
 inc/scripts.php \
 inc/setup/preload-assets.php \
 inc/theme-options/class-admin.php \
