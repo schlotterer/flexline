@@ -105,23 +105,20 @@ const contentShiftBooleanMap = {
 	resetMobile: 'flexline-content-shift-revert-mobile',
 };
 
-// Content shift classes that are independent from useContentShift.
-const contentShiftIndependentMap = {
-	shiftToTop: 'flexline-content-shift-above',
-};
+const raisedZIndexClass = 'flexline-raise-z-index';
+const legacyRaisedZIndexClass = 'flexline-content-shift-above';
 
 const getContentShiftClasses = (attrs) => {
 	const removed = [];
 	const added = [];
 	const base = 'flexline-content-shift';
 
-	Object.entries(contentShiftIndependentMap).forEach(([attr, cls]) => {
-		if (attrs[attr]) {
-			added.push(cls);
-		} else {
-			removed.push(cls);
-		}
-	});
+	removed.push(legacyRaisedZIndexClass);
+	if (attrs.shiftToTop) {
+		added.push(raisedZIndexClass);
+	} else {
+		removed.push(raisedZIndexClass);
+	}
 
 	if (!attrs.useContentShift) {
 		removed.push(
@@ -261,6 +258,23 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					inlineVars[name] = `${val}`;
 				}
 			};
+			const applyWrapperStyleUpdates = () => {
+				props.wrapperProps.style = Object.entries({
+					...inlineVars,
+					...inlineStyles,
+				}).reduce(
+					(style, [key, value]) => {
+						if (value === undefined) {
+							delete style[key];
+						} else {
+							style[key] = value;
+						}
+
+						return style;
+					},
+					{ ...(props.wrapperProps.style || {}) }
+				);
+			};
 
 			// Content Shift variables
 			if (props.attributes.useContentShift) {
@@ -336,6 +350,15 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 			}
 
 			// Slider variables
+			const sliderHeightValue = (attributes.sliderHeight || '')
+				.toString()
+				.trim();
+			const sliderTransitionMs = attributes.transitionDuration ?? 500;
+			const isAutoEnabled = !!attributes.sliderAuto;
+			const sliderIntervalMs = isAutoEnabled
+				? (attributes.sliderSpeed ?? 4000)
+				: 0;
+
 			if (props.attributes.enableSlider) {
 				const height = attributes.sliderHeight || '';
 				const transitionMs = attributes.transitionDuration ?? 500;
@@ -358,7 +381,33 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 						  --slider-show-pause: ${showPause};
 						  --slider-nav: ${showNav};
 						`;
+
+				// Only set height if provided; otherwise supply a preview default
+				if (sliderHeightValue) {
+					setVar('--slider-height', sliderHeightValue);
+					setVar('--slider-height-default', undefined); // not needed when explicit height exists
+				} else {
+					setVar('--slider-height', undefined);
+					setVar(
+						'--slider-height-default',
+						'calc(100svh - var(--header-site-header-height, 0px))'
+					);
+				}
+				// Ensure we always have a header height var in the editor canvas
+				setVar('--header-site-header-height', '0px');
+				setVar('--slider-transition-ms', sliderTransitionMs);
+				setVar('--slider-interval-ms', sliderIntervalMs);
+			} else {
+				// Clear slider vars if disabled
+				setVar('--slider-height', undefined);
+				setVar('--slider-height-default', undefined);
+				setVar('--header-site-header-height', undefined);
+				setVar('--slider-transition-ms', undefined);
+				setVar('--slider-interval-ms', undefined);
 			}
+
+			// Commit inline vars and preview styles for both content shift and slider.
+			applyWrapperStyleUpdates();
 
 			if (cssRules) {
 				const styles = `#${uniqueClass} { ${cssRules} }`;
@@ -369,48 +418,6 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					document.head.appendChild(styleElementRef.current);
 				}
 				styleElementRef.current.textContent = styles;
-
-				// Also apply vars directly on the wrapper for immediate inheritance (editor iframe)
-				const sliderHeightValue = (attributes.sliderHeight || '')
-					.toString()
-					.trim();
-				const sliderTransitionMs = attributes.transitionDuration ?? 500;
-				const isAutoEnabled = !!attributes.sliderAuto;
-				const sliderIntervalMs = isAutoEnabled
-					? (attributes.sliderSpeed ?? 4000)
-					: 0;
-
-				if (props.attributes.enableSlider) {
-					// Only set height if provided; otherwise supply a preview default
-					if (sliderHeightValue) {
-						setVar('--slider-height', sliderHeightValue);
-						setVar('--slider-height-default', undefined); // not needed when explicit height exists
-					} else {
-						setVar('--slider-height', undefined); // remove if previously set
-						setVar(
-							'--slider-height-default',
-							'calc(100svh - var(--header-site-header-height, 0px))'
-						);
-					}
-					// Ensure we always have a header height var in the editor canvas
-					setVar('--header-site-header-height', '0px');
-					setVar('--slider-transition-ms', sliderTransitionMs);
-					setVar('--slider-interval-ms', sliderIntervalMs);
-				} else {
-					// Clear slider vars if disabled
-					setVar('--slider-height', undefined);
-					setVar('--slider-height-default', undefined);
-					setVar('--header-site-header-height', undefined);
-					setVar('--slider-transition-ms', undefined);
-					setVar('--slider-interval-ms', undefined);
-				}
-
-				// Commit inline vars and preview styles for both content shift and slider
-				props.wrapperProps.style = {
-					...(props.wrapperProps.style || {}),
-					...inlineVars,
-					...inlineStyles,
-				};
 
 				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
 				try {

@@ -1,4 +1,5 @@
 @mixin flexline-content-shift-rules {
+	.flexline-raise-z-index,
 	.flexline-content-shift-above {
 	    position: relative;
 	    z-index: 8;

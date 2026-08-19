@@ -115,6 +115,55 @@ function flexline_merge_inline_style( $block_content, $new_style_rules ) {
 }
 
 /**
+ * Remove selected inline CSS properties from the first tag in block markup.
+ *
+ * @param string $block_content The original block HTML.
+ * @param array  $properties CSS properties to remove.
+ * @return string Updated block HTML.
+ */
+function flexline_remove_inline_style_properties( $block_content, $properties ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$existing_style = $processor->get_attribute( 'style' );
+	if ( ! is_string( $existing_style ) || '' === trim( $existing_style ) ) {
+		return $block_content;
+	}
+
+	$remove_map = array_fill_keys( array_map( 'strtolower', $properties ), true );
+	$kept_rules = array();
+
+	foreach ( explode( ';', $existing_style ) as $rule ) {
+		$rule = trim( $rule );
+		if ( '' === $rule ) {
+			continue;
+		}
+
+		$separator = strpos( $rule, ':' );
+		if ( false === $separator ) {
+			$kept_rules[] = $rule;
+			continue;
+		}
+
+		$property = strtolower( trim( substr( $rule, 0, $separator ) ) );
+		if ( ! isset( $remove_map[ $property ] ) ) {
+			$kept_rules[] = $rule;
+		}
+	}
+
+	if ( empty( $kept_rules ) ) {
+		$processor->remove_attribute( 'style' );
+	} else {
+		$processor->set_attribute( 'style', implode( '; ', $kept_rules ) );
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
  * Generate visibility classes based on block attributes.
  *
  * @param array $attrs The block attributes.
@@ -152,6 +201,48 @@ function add_classes_to_block_content( $block_content, $added_classes ) {
 	$existing_classes = $processor->get_attribute( 'class' );
 	$classes          = trim( $added_classes . ' ' . ( is_string( $existing_classes ) ? $existing_classes : '' ) );
 	$processor->set_attribute( 'class', $classes );
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Remove selected classes from a block's first tag.
+ *
+ * @param string $block_content The original block content.
+ * @param array  $removed_classes Classes to remove.
+ * @return string The modified block content.
+ */
+function flexline_remove_classes_from_block_content( $block_content, $removed_classes ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$existing_classes = $processor->get_attribute( 'class' );
+	if ( ! is_string( $existing_classes ) || '' === trim( $existing_classes ) ) {
+		return $block_content;
+	}
+
+	$remove_map = array_fill_keys( $removed_classes, true );
+	$classes    = preg_split( '/\s+/', trim( $existing_classes ) );
+	$classes    = array_values(
+		array_filter(
+			$classes,
+			static function ( $class ) use ( $remove_map ) {
+				if ( isset( $remove_map[ $class ] ) ) {
+					return false;
+				}
+
+				return ! preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class );
+			}
+		)
+	);
+
+	if ( empty( $classes ) ) {
+		$processor->remove_attribute( 'class' );
+	} else {
+		$processor->set_attribute( 'class', implode( ' ', $classes ) );
+	}
 
 	return $processor->get_updated_html();
 }
@@ -286,6 +377,7 @@ function flexline_render_primary_term_categories( $block_content, $block, $block
  * @return mixed The modified block content.
  */
 function flexline_block_customizations_render( $block_content, $block, $block_instance = null ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
 
 	if ( 'core/button' === $block['blockName'] ) {
 		if ( isset( $block['attrs']['iconType'] ) && 'download' === $block['attrs']['iconType'] ) {
@@ -553,58 +645,135 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		}
 	}
 
+	$raised_z_index_classes = array(
+		'flexline-raise-z-index',
+		'flexline-content-shift-above',
+	);
+	$has_raised_z_index_state = array_key_exists( 'shiftToTop', $attrs ) || false !== strpos( $block_content, 'flexline-content-shift-above' );
+
+	if ( $has_raised_z_index_state ) {
+		$block_content = flexline_remove_classes_from_block_content( $block_content, $raised_z_index_classes );
+	}
+
 	// **Add raised z-index independently from Content Shift margins**.
-	if ( ! empty( $block['attrs']['shiftToTop'] ) ) {
-		$block_content = add_classes_to_block_content( $block_content, 'flexline-content-shift-above ' );
+	if ( ! empty( $attrs['shiftToTop'] ) ) {
+		$block_content = add_classes_to_block_content( $block_content, 'flexline-raise-z-index ' );
+	}
+
+	$content_shift_style_properties = array(
+		'--flexline-shift-left',
+		'--flexline-shift-right',
+		'--flexline-shift-up',
+		'--flexline-shift-down',
+		'--flexline-slide-x',
+		'--flexline-slide-y',
+	);
+	$content_shift_classes          = array(
+		'flexline-content-shift',
+		'flexline-content-shift-left',
+		'flexline-content-shift-right',
+		'flexline-content-shift-up',
+		'flexline-content-shift-down',
+		'flexline-content-slide-x',
+		'flexline-content-slide-y',
+		'flexline-content-shift-revert-mobile',
+	);
+	$content_shift_attr_names      = array(
+		'useContentShift',
+		'shiftLeft',
+		'shiftRight',
+		'shiftUp',
+		'shiftDown',
+		'slideHorizontal',
+		'slideVertical',
+		'resetMobile',
+	);
+	$has_content_shift_state       = false;
+
+	foreach ( $content_shift_attr_names as $attr_name ) {
+		if ( array_key_exists( $attr_name, $attrs ) ) {
+			$has_content_shift_state = true;
+			break;
+		}
+	}
+
+	if ( ! $has_content_shift_state ) {
+		$has_content_shift_state = false !== strpos( $block_content, '--flexline-shift-' ) || false !== strpos( $block_content, '--flexline-slide-' );
+	}
+
+	if ( ! $has_content_shift_state ) {
+		return $block_content;
+	}
+
+	if ( empty( $attrs['useContentShift'] ) ) {
+		$block_content = flexline_remove_classes_from_block_content( $block_content, $content_shift_classes );
+
+		return flexline_remove_inline_style_properties( $block_content, $content_shift_style_properties );
 	}
 
 	// **Add Unique Class and Styles for Content Shift**.
-	if ( ! empty( $block['attrs']['useContentShift'] ) ) {
-		$added_classes = '';
-		// Generate the visibility classes.
-		$added_classes .= get_visibility_classes( $block['attrs'] );
-		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
-		// Generate a unique class based on the block's attributes.
-		$unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $block['attrs'] ) ), 0, 8 );
-		// Add the unique class to the block's classes.
-		$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
-		$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+	$block_content = flexline_remove_inline_style_properties( $block_content, $content_shift_style_properties );
+	$added_classes = '';
+	// Generate the visibility classes.
+	$added_classes .= get_visibility_classes( $attrs );
+	$block_content  = add_classes_to_block_content( $block_content, $added_classes );
 
-		// Generate the styles.
-		$shift_left  = '0';
-		$shift_right = '0';
-		$shift_up    = '0';
-		$shift_down  = '0';
-		$slide_x     = '0';
-		$slide_y     = '0';
-		if ( isset( $block['attrs']['shiftLeft'] ) ) {
-				$shift_left = '-' . $block['attrs']['shiftLeft'];
-		}
-		if ( isset( $block['attrs']['shiftRight'] ) ) {
-				$shift_right = '-' . $block['attrs']['shiftRight'];
-		}
-		if ( isset( $block['attrs']['shiftUp'] ) ) {
-				$shift_up = '-' . $block['attrs']['shiftUp'];
-		}
-		if ( isset( $block['attrs']['shiftDown'] ) ) {
-				$shift_down = '-' . $block['attrs']['shiftDown'];
-		}
-		if ( isset( $block['attrs']['slideHorizontal'] ) ) {
-				$slide_x = $block['attrs']['slideHorizontal'];
-		}
-		if ( isset( $block['attrs']['slideVertical'] ) ) {
-				$slide_y = $block['attrs']['slideVertical'];
-		}
-		// Build the CSS.
-		$styles  = ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
+	// Generate a unique class based on the block's attributes.
+	$unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $attrs ) ), 0, 8 );
+	// Add the unique class to the block's classes.
+	$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
+	$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+
+	// Generate the styles.
+	$shift_left  = '0';
+	$shift_right = '0';
+	$shift_up    = '0';
+	$shift_down  = '0';
+	$slide_x     = '0';
+	$slide_y     = '0';
+	if ( isset( $attrs['shiftLeft'] ) && '' !== trim( (string) $attrs['shiftLeft'] ) ) {
+		$shift_left = '-' . $attrs['shiftLeft'];
+	}
+	if ( isset( $attrs['shiftRight'] ) && '' !== trim( (string) $attrs['shiftRight'] ) ) {
+		$shift_right = '-' . $attrs['shiftRight'];
+	}
+	if ( isset( $attrs['shiftUp'] ) && '' !== trim( (string) $attrs['shiftUp'] ) ) {
+		$shift_up = '-' . $attrs['shiftUp'];
+	}
+	if ( isset( $attrs['shiftDown'] ) && '' !== trim( (string) $attrs['shiftDown'] ) ) {
+		$shift_down = '-' . $attrs['shiftDown'];
+	}
+	if ( isset( $attrs['slideHorizontal'] ) && '' !== trim( (string) $attrs['slideHorizontal'] ) ) {
+		$slide_x = $attrs['slideHorizontal'];
+	}
+	if ( isset( $attrs['slideVertical'] ) && '' !== trim( (string) $attrs['slideVertical'] ) ) {
+		$slide_y = $attrs['slideVertical'];
+	}
+	// Build the CSS.
+	$styles = '';
+	if ( '0' !== $shift_left ) {
+		$styles .= ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
+	}
+	if ( '0' !== $shift_right ) {
 		$styles .= ' --flexline-shift-right: ' . esc_attr( $shift_right ) . ';';
+	}
+	if ( '0' !== $shift_up ) {
 		$styles .= ' --flexline-shift-up: ' . esc_attr( $shift_up ) . ';';
+	}
+	if ( '0' !== $shift_down ) {
 		$styles .= ' --flexline-shift-down: ' . esc_attr( $shift_down ) . ';';
+	}
+	if ( '0' !== $slide_x ) {
 		$styles .= ' --flexline-slide-x: ' . esc_attr( $slide_x ) . ';';
+	}
+	if ( '0' !== $slide_y ) {
 		$styles .= ' --flexline-slide-y: ' . esc_attr( $slide_y ) . ';';
+	}
 
+	if ( '' !== $styles ) {
 		$block_content = flexline_merge_inline_style( $block_content, $styles );
 	}
+
 	return $block_content;
 }
 add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 3 );
