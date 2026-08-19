@@ -125,6 +125,35 @@ Inspector labels intentionally keep breakpoint ranges on the secondary help
 line. Main labels should stay short, for example `Hide on Tablet`, while the
 help text carries ranges such as `(782px - 991.98px)`.
 
+## Positioned Background Image Utilities
+
+FlexLine includes opt-in utility classes for decorative block background images
+that should sit smaller in a corner or edge position instead of covering the
+whole block. Assign the background image through the WordPress block controls,
+then add one position class in **Advanced > Additional CSS class(es)**:
+
+- `flexline-bkg-top-left`
+- `flexline-bkg-top-center`
+- `flexline-bkg-top-right`
+- `flexline-bkg-center-left`
+- `flexline-bkg-center-center`
+- `flexline-bkg-center-right`
+- `flexline-bkg-bottom-left`
+- `flexline-bkg-bottom-center`
+- `flexline-bkg-bottom-right`
+
+Size and inset the image with custom properties on the same block:
+
+```css
+--flexline-background-width: clamp(240px, 42vw, 720px);
+--flexline-background-height: auto;
+--flexline-background-x-offset: 0px;
+--flexline-background-y-offset: 0px;
+```
+
+The utility only controls `background-repeat`, `background-size`, and
+`background-position`. It does not set the background image, color, or overlay.
+
 ## Shortcode Tokens
 
 FlexLine shortcodes remain available for backward compatibility, and the same values can be used as token placeholders inside block content and patterns. Tokens are replaced at render time using double braces, for example:

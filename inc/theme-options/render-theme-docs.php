@@ -762,6 +762,36 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						</tbody>
 						</table>
 
+						<h4 id="background-image-positioning">Background Image Positioning</h4>
+						<p>Use these on Group, Cover, or other blocks that already have a background image assigned through WordPress, but need that image to render smaller in a specific position instead of covering the whole block.</p>
+
+						<table class="flexline-docs-table">
+							<thead>
+								<tr>
+									<th style="width:28%">Class</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td><code>.flexline-bkg-top-left</code></td><td>Positions the background image at the top left.</td></tr>
+								<tr><td><code>.flexline-bkg-top-center</code></td><td>Positions the background image at the top center.</td></tr>
+								<tr><td><code>.flexline-bkg-top-right</code></td><td>Positions the background image at the top right.</td></tr>
+								<tr><td><code>.flexline-bkg-center-left</code></td><td>Positions the background image at the center left.</td></tr>
+								<tr><td><code>.flexline-bkg-center-center</code></td><td>Positions the background image in the center.</td></tr>
+								<tr><td><code>.flexline-bkg-center-right</code></td><td>Positions the background image at the center right.</td></tr>
+								<tr><td><code>.flexline-bkg-bottom-left</code></td><td>Positions the background image at the bottom left.</td></tr>
+								<tr><td><code>.flexline-bkg-bottom-center</code></td><td>Positions the background image at the bottom center.</td></tr>
+								<tr><td><code>.flexline-bkg-bottom-right</code></td><td>Positions the background image at the bottom right.</td></tr>
+							</tbody>
+						</table>
+
+						<p>Optional custom properties on the same block control size and inset:</p>
+
+						<pre><code>--flexline-background-width: clamp(240px, 42vw, 720px);
+--flexline-background-height: auto;
+--flexline-background-x-offset: 0px;
+--flexline-background-y-offset: 0px;</code></pre>
+
 						<h4 id="flexbox-alignment">Flexbox Alignment</h4>
 						<p>Quick alignment helpers for flex containers without custom CSS.</p>
 
