@@ -131,7 +131,7 @@ export const getContentShiftControls = (props) => {
 					}
 				/>
 				<ToggleControl
-					label="Shift Above (z-index)"
+					label="Raise z-index"
 					checked={!!props.attributes.shiftToTop}
 					onChange={(value) =>
 						props.setAttributes({ shiftToTop: value })

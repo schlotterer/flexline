@@ -553,8 +553,13 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		}
 	}
 
+	// **Add raised z-index independently from Content Shift margins**.
+	if ( ! empty( $block['attrs']['shiftToTop'] ) ) {
+		$block_content = add_classes_to_block_content( $block_content, 'flexline-content-shift-above ' );
+	}
+
 	// **Add Unique Class and Styles for Content Shift**.
-	if ( isset( $block['attrs']['useContentShift'] ) && $block['attrs']['useContentShift'] ) {
+	if ( ! empty( $block['attrs']['useContentShift'] ) ) {
 		$added_classes = '';
 		// Generate the visibility classes.
 		$added_classes .= get_visibility_classes( $block['attrs'] );
