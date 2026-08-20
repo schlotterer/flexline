@@ -5,6 +5,9 @@
 - Removed the theme-owned alternate-login URL, fallback credentials, and strict
   login blocking; standard WordPress login and host/security-stack 2FA are now
   the supported authentication path.
+- Removed the remaining theme-owned security utility controls for generator
+  meta removal, XML-RPC disabling, and global REST CORS headers; deployment
+  security policy now belongs to the hosting/security stack.
 - Removed the remaining slide-in missing-element console error and migrated the
   retired settings through a multisite-safe cleanup.
 - Added multisite-safe migration support for retired custom-login settings.

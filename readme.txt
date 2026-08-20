@@ -14,7 +14,7 @@ With its clean, minimal design and powerful feature set, FlexLine enables agenci
 
 == Installation Notes ==
 
-FlexLine includes its utility features, shortcodes, security settings, and primary-term integrations directly in the theme.
+FlexLine includes its utility features, shortcodes, and primary-term integrations directly in the theme. Authentication and host-level security policy should be managed by the hosting/security stack rather than theme settings.
 
 == Plugin Integrations ==
 

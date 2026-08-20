@@ -2,8 +2,8 @@
 /**
  * Render Utilities tab (options + docs) inside FlexLine Options.
  *
- * This embeds the existing Utilities settings (SEO, Security, Discussion)
- * and the Shortcodes reference directly into the FlexLine Options page.
+ * This embeds the existing Utilities settings (SEO, Discussion) and the
+ * Shortcodes reference directly into the FlexLine Options page.
  *
  * @package flexline
  */

@@ -20,6 +20,8 @@ included.
 
 - Removed FlexLine's alternate-login URL, fallback credentials, strict-mode
   blocking, URL filters, and related settings.
+- Removed the remaining theme-owned security utility controls for generator
+  meta removal, XML-RPC disabling, and global REST CORS headers.
 - Added a multisite-safe migration that removes the retired custom-login values
   from `flexline_utilities`.
 - Standardized the supported login path on WordPress core `/wp-login.php`.

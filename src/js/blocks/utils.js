@@ -120,21 +120,36 @@ export const getVisibilityPanel = (
  * @return {JSX.Element} A JSX fragment containing the Content Shift controls.
  */
 export const getContentShiftControls = (props) => {
+	const disableContentShiftAttributes = {
+		useContentShift: false,
+		shiftLeft: undefined,
+		shiftRight: undefined,
+		shiftUp: undefined,
+		shiftDown: undefined,
+		slideHorizontal: undefined,
+		slideVertical: undefined,
+		resetMobile: false,
+	};
+
 	return (
 		<InspectorControls group="styles">
 			<PanelBody title="FlexLine Content Shift">
 				<ToggleControl
-					label="Use Content Shift"
-					checked={!!props.attributes.useContentShift}
-					onChange={(newValue) =>
-						props.setAttributes({ useContentShift: newValue })
-					}
-				/>
-				<ToggleControl
-					label="Shift Above (z-index)"
+					label="Raise z-index"
 					checked={!!props.attributes.shiftToTop}
 					onChange={(value) =>
 						props.setAttributes({ shiftToTop: value })
+					}
+				/>
+				<ToggleControl
+					label="Use Content Shift"
+					checked={!!props.attributes.useContentShift}
+					onChange={(newValue) =>
+						props.setAttributes(
+							newValue
+								? { useContentShift: true }
+								: disableContentShiftAttributes
+						)
 					}
 				/>
 				{props.attributes.useContentShift && (

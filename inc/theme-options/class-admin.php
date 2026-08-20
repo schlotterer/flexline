@@ -86,51 +86,6 @@ class Admin {
 				'flexline_utilities'
 			);
 
-		// Security section.
-			add_settings_section(
-				'flexline_utilities_section_security',
-				'Security Utilities',
-				function () {
-					$options = self::get_options();
-					?>
-				<p>
-					<label for="flexline-util-remove-generator">
-						<input id="flexline-util-remove-generator" type="checkbox"
-							name="flexline_utilities[remove_generator]"
-							value="1" <?php checked( $options['remove_generator'], 1 ); ?> />
-						<strong>Remove “generator” Meta</strong>
-					</label><br />
-					<span class="description">
-						Removes the WordPress version “generator” meta tag from page output for minor hardening.
-					</span>
-				</p>
-				<p>
-					<label for="flexline-util-disable-xmlrpc">
-						<input id="flexline-util-disable-xmlrpc" type="checkbox"
-							name="flexline_utilities[disable_xmlrpc]"
-							value="1" <?php checked( $options['disable_xmlrpc'], 1 ); ?> />
-						<strong>Disable XML-RPC</strong>
-					</label><br />
-					<span class="description">
-						Turns off XML-RPC endpoints which are rarely needed and can be a brute-force vector.
-					</span>
-				</p>
-					<p>
-						<label for="flexline-util-rest-cors-allow-all">
-							<input id="flexline-util-rest-cors-allow-all" type="checkbox"
-								name="flexline_utilities[rest_cors_allow_all]"
-							value="1" <?php checked( $options['rest_cors_allow_all'], 1 ); ?> />
-						<strong>REST API: Allow Any Origin (*)</strong>
-					</label><br />
-					<span class="description">
-							Adds “Access-Control-Allow-Origin: *” to REST responses. Useful for public APIs—avoid if you need to restrict origins.
-						</span>
-					</p>
-					<?php
-				},
-				'flexline_utilities'
-			);
-
 		// Discussion section.
 		add_settings_section(
 			'flexline_utilities_section_discussion',
@@ -165,9 +120,6 @@ class Admin {
 
 		$keys      = array(
 			'enable_og_tags',
-			'remove_generator',
-			'disable_xmlrpc',
-			'rest_cors_allow_all',
 			'disable_all_comments',
 		);
 		$sanitized = array();
