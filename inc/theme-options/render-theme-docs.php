@@ -785,7 +785,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 							</tbody>
 						</table>
 
-						<p>Optional custom properties on the same block control size and inset:</p>
+						<p>Optional custom properties on the same block control size and inset. If a custom property is omitted, the utility uses the fallback value shown here:</p>
 
 						<pre><code>--flexline-background-width: clamp(240px, 42vw, 720px);
 --flexline-background-height: auto;

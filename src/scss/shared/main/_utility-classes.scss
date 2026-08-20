@@ -44,28 +44,24 @@
 	.flexline-bkg-bottom-left,
 	.flexline-bkg-bottom-center,
 	.flexline-bkg-bottom-right {
-		--flexline-background-height: auto;
-		--flexline-background-width: clamp(240px, 42vw, 720px);
-		--flexline-background-x-offset: 0px;
-		--flexline-background-y-offset: 0px;
 		background-repeat: no-repeat !important;
-		background-size: var(--flexline-background-width) var(--flexline-background-height) !important;
+		background-size: var(--flexline-background-width, clamp(240px, 42vw, 720px)) var(--flexline-background-height, auto) !important;
 	}
 
 	.flexline-bkg-top-left {
-		background-position: left var(--flexline-background-x-offset) top var(--flexline-background-y-offset) !important;
+		background-position: left var(--flexline-background-x-offset, 0px) top var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.flexline-bkg-top-center {
-		background-position: center top var(--flexline-background-y-offset) !important;
+		background-position: center top var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.flexline-bkg-top-right {
-		background-position: right var(--flexline-background-x-offset) top var(--flexline-background-y-offset) !important;
+		background-position: right var(--flexline-background-x-offset, 0px) top var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.flexline-bkg-center-left {
-		background-position: left var(--flexline-background-x-offset) center !important;
+		background-position: left var(--flexline-background-x-offset, 0px) center !important;
 	}
 
 	.flexline-bkg-center-center {
@@ -73,19 +69,19 @@
 	}
 
 	.flexline-bkg-center-right {
-		background-position: right var(--flexline-background-x-offset) center !important;
+		background-position: right var(--flexline-background-x-offset, 0px) center !important;
 	}
 
 	.flexline-bkg-bottom-left {
-		background-position: left var(--flexline-background-x-offset) bottom var(--flexline-background-y-offset) !important;
+		background-position: left var(--flexline-background-x-offset, 0px) bottom var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.flexline-bkg-bottom-center {
-		background-position: center bottom var(--flexline-background-y-offset) !important;
+		background-position: center bottom var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.flexline-bkg-bottom-right {
-		background-position: right var(--flexline-background-x-offset) bottom var(--flexline-background-y-offset) !important;
+		background-position: right var(--flexline-background-x-offset, 0px) bottom var(--flexline-background-y-offset, 0px) !important;
 	}
 
 	.is-aligned-center {

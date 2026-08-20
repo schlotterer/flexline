@@ -142,7 +142,8 @@ then add one position class in **Advanced > Additional CSS class(es)**:
 - `flexline-bkg-bottom-center`
 - `flexline-bkg-bottom-right`
 
-Size and inset the image with custom properties on the same block:
+Size and inset the image with custom properties on the same block. If a custom
+property is omitted, the utility uses the fallback value shown here:
 
 ```css
 --flexline-background-width: clamp(240px, 42vw, 720px);
