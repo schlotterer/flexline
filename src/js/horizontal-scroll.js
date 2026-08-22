@@ -198,6 +198,76 @@ function getRealSlides(scroller) {
 	);
 }
 
+function getLoopMetrics(scroller) {
+	const realSlides = getRealSlides(scroller);
+	if (!realSlides.length) {
+		return null;
+	}
+
+	const realWidth = realSlides.reduce(
+		(sum, slide) => sum + slide.offsetWidth,
+		0
+	);
+
+	return {
+		realSlides,
+		realWidth,
+		start: realSlides[0].offsetLeft,
+		end: realSlides[0].offsetLeft + realWidth,
+	};
+}
+
+function setLoopStart(scroller, force = false) {
+	const metrics = getLoopMetrics(scroller);
+	if (!metrics || !metrics.realWidth) {
+		return;
+	}
+
+	const target = metrics.start + 1;
+	const previousTarget = scroller._loopStartTarget;
+	const stillAtPreviousStart =
+		previousTarget === undefined ||
+		Math.abs(scroller.scrollLeft - previousTarget) <= 4;
+
+	if (force || stillAtPreviousStart) {
+		scroller.scrollLeft = target;
+		scroller._loopStartTarget = target;
+		if (scroller._updateRangeDots) {
+			scroller._updateRangeDots();
+		}
+	}
+}
+
+function scheduleEditorLoopStartCorrection(scroller) {
+	if (!isBlockEditor()) {
+		return;
+	}
+
+	const win = getOwnerWindow(scroller);
+	const correct = () => {
+		if (
+			scroller.dataset.loopInitialised === 'true' &&
+			scroller.classList.contains('horizontal-scroller-loop')
+		) {
+			setLoopStart(scroller);
+		}
+	};
+
+	// Editor iframe layout can settle after runtime init. Re-check the start
+	// offset after paint and after late-loading images without changing FE.
+	requestFrame(scroller, () => requestFrame(scroller, correct));
+	win.setTimeout(correct, 250);
+	win.setTimeout(correct, 750);
+	getLoopMetrics(scroller)?.realSlides.forEach((slide) => {
+		slide.querySelectorAll('img').forEach((img) => {
+			if (!img.complete) {
+				img.addEventListener('load', correct, { once: true });
+				img.addEventListener('error', correct, { once: true });
+			}
+		});
+	});
+}
+
 function maybeRandomizeSlidesOnLoad(scroller) {
 	if (isBlockEditor()) {
 		return;
@@ -253,11 +323,6 @@ function setupInfiniteLoop(scroller) {
 		return;
 	}
 
-	const realWidth = realSlides.reduce(
-		(sum, slide) => sum + slide.offsetWidth,
-		0
-	);
-
 	const makeClone = (el) => {
 		const c = el.cloneNode(true);
 		c.classList.add('cloned-slide');
@@ -273,7 +338,7 @@ function setupInfiniteLoop(scroller) {
 	backClones.forEach((c) => scroller.appendChild(c));
 
 	requestFrame(scroller, () => {
-		scroller.scrollLeft = realWidth + 1;
+		setLoopStart(scroller, true);
 		scroller.style.visibility = '';
 
 		if (scroller._loopScrollHandler) {
@@ -281,16 +346,21 @@ function setupInfiniteLoop(scroller) {
 		}
 
 		scroller._loopScrollHandler = () => {
+			const metrics = getLoopMetrics(scroller);
+			if (!metrics || !metrics.realWidth) {
+				return;
+			}
 			const s = scroller.scrollLeft;
-			if (s < realWidth) {
-				scroller.scrollLeft = s + realWidth;
-			} else if (s >= realWidth * 2) {
-				scroller.scrollLeft = s - realWidth;
+			if (s < metrics.start) {
+				scroller.scrollLeft = s + metrics.realWidth;
+			} else if (s >= metrics.end) {
+				scroller.scrollLeft = s - metrics.realWidth;
 			}
 		};
 		scroller.addEventListener('scroll', scroller._loopScrollHandler, {
 			passive: true,
 		});
+		scheduleEditorLoopStartCorrection(scroller);
 	});
 
 	scroller.dataset.loopInitialised = 'true';
@@ -993,6 +1063,7 @@ function teardownInfiniteLoop(scroller) {
 		scroller._loopScrollHandler = null;
 	}
 	scroller.scrollLeft = 0;
+	delete scroller._loopStartTarget;
 	delete scroller.dataset.loopInitialised;
 	if (scroller._updateRangeDots) {
 		scroller._updateRangeDots();
