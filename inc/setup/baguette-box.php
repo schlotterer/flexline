@@ -183,17 +183,6 @@ function block_needs_legacy_baguettebox( $block_content, $block ) {
 		false !== strpos( $block_content, 'poster-gallery' ) ||
 		false !== strpos( $block_content, 'enablePosterGallery' );
 
-	// On WP 7+ treat poster-gallery core/gallery blocks as core lightbox-owned.
-	// Supports both modern attribute-based poster gallery and legacy class-based
-	// style-variation content so older posts do not fall through to baguetteBox.
-	if (
-		should_use_core_gallery_lightbox() &&
-		'core/gallery' === $block_name &&
-		$has_poster_gallery_marker
-	) {
-		return false;
-	}
-
 	// Treat a block as "core lightbox-owned" only when explicit runtime markers
 	// exist in rendered HTML, or when gallery attrs explicitly request it.
 	// Avoid broad text matches that can produce false positives.
@@ -204,6 +193,17 @@ function block_needs_legacy_baguettebox( $block_content, $block ) {
 
 	if ( $uses_core_lightbox ) {
 		return false;
+	}
+
+	// On WP 7+, new poster galleries serialize core lightbox attributes and
+	// are handled above. Legacy class-only poster galleries still need the
+	// baguetteBox fallback because saved content is not migrated automatically.
+	if (
+		should_use_core_gallery_lightbox() &&
+		'core/gallery' === $block_name &&
+		$has_poster_gallery_marker
+	) {
+		return true;
 	}
 
 	if ( ! empty( $attrs['enablePosterGallery'] ) || false !== strpos( $class, 'poster-gallery' ) ) {
@@ -226,6 +226,43 @@ function block_needs_legacy_baguettebox( $block_content, $block ) {
 	}
 
 	return false;
+}
+
+/**
+ * Determine whether a rendered poster gallery is using core image lightbox.
+ *
+ * @param string $block_content The rendered block HTML.
+ * @param array  $block         The parsed block.
+ * @return bool
+ */
+function block_uses_core_gallery_lightbox( $block_content, $block ) {
+	if ( ! should_use_core_gallery_lightbox() ) {
+		return false;
+	}
+
+	$attrs      = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+	$class      = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$block_name = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
+
+	if ( 'core/gallery' !== $block_name ) {
+		return false;
+	}
+
+	$has_poster_gallery_marker =
+		! empty( $attrs['enablePosterGallery'] ) ||
+		false !== strpos( $class, 'poster-gallery' ) ||
+		false !== strpos( $block_content, 'poster-gallery' );
+
+	if ( ! $has_poster_gallery_marker ) {
+		return false;
+	}
+
+	return (
+		( isset( $attrs['linkTo'] ) && 'lightbox' === $attrs['linkTo'] ) ||
+		false !== strpos( $block_content, 'wp-lightbox-container' ) ||
+		false !== strpos( $block_content, 'data-wp-interactive="core/image"' ) ||
+		false !== strpos( $block_content, "data-wp-interactive='core/image'" )
+	);
 }
 
 /**
@@ -254,6 +291,31 @@ function blocks_need_legacy_baguettebox( $blocks ) {
 }
 
 /**
+ * Recursively inspect parsed content for core poster gallery lightbox behavior.
+ *
+ * @param array $blocks Parsed blocks.
+ * @return bool
+ */
+function blocks_use_core_gallery_lightbox( $blocks ) {
+	foreach ( $blocks as $block ) {
+		if ( ! is_array( $block ) ) {
+			continue;
+		}
+
+		$inner_html = isset( $block['innerHTML'] ) ? (string) $block['innerHTML'] : '';
+		if ( block_uses_core_gallery_lightbox( $inner_html, $block ) ) {
+			return true;
+		}
+
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) && blocks_use_core_gallery_lightbox( $block['innerBlocks'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Determine whether current singular post content needs legacy lightbox assets.
  *
  * @return bool
@@ -269,6 +331,24 @@ function current_content_needs_legacy_baguettebox() {
 	}
 
 	return blocks_need_legacy_baguettebox( parse_blocks( $post->post_content ) );
+}
+
+/**
+ * Determine whether current singular post content uses core poster gallery lightbox.
+ *
+ * @return bool
+ */
+function current_content_uses_core_gallery_lightbox() {
+	if ( ! is_singular() || ! should_use_core_gallery_lightbox() ) {
+		return false;
+	}
+
+	$post = get_post();
+	if ( ! $post || empty( $post->post_content ) || ! function_exists( 'parse_blocks' ) ) {
+		return false;
+	}
+
+	return blocks_use_core_gallery_lightbox( parse_blocks( $post->post_content ) );
 }
 
 /**
@@ -324,6 +404,10 @@ function enqueue_assets() {
 	if ( $baguettebox_enqueue_assets ) {
 		enqueue_baguettebox_assets();
 	}
+
+	if ( current_content_uses_core_gallery_lightbox() && function_exists( 'wp_enqueue_script_module' ) ) {
+		wp_enqueue_script_module( '@wordpress/block-library/image/view' );
+	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 
@@ -335,6 +419,10 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
  * @return string
  */
 function maybe_enqueue_legacy_baguettebox_for_block( $block_content, $block ) {
+	if ( block_uses_core_gallery_lightbox( $block_content, $block ) && function_exists( 'wp_enqueue_script_module' ) ) {
+		wp_enqueue_script_module( '@wordpress/block-library/image/view' );
+	}
+
 	if ( should_use_core_gallery_lightbox() && block_needs_legacy_baguettebox( $block_content, $block ) ) {
 		enqueue_baguettebox_assets();
 	}

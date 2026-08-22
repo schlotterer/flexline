@@ -73,6 +73,45 @@ const handlers = {
 	'web4sl/floor-plan-virtual-tour-button': visibility,
 };
 
+const getEditorCanvasDocument = () => {
+	const iframe = document.querySelector('iframe[name="editor-canvas"]');
+	return iframe?.contentDocument || null;
+};
+
+const getEditorDocuments = () => {
+	const docs = [document];
+	const canvasDocument = getEditorCanvasDocument();
+	if (canvasDocument && canvasDocument !== document) {
+		docs.push(canvasDocument);
+	}
+	return docs;
+};
+
+const notifySliderRuntime = (selector) => {
+	// WP 7 iframe editors keep block content in editor-canvas, while controls
+	// still run in the parent shell. Notify both documents when vars change.
+	getEditorDocuments().forEach((doc) => {
+		const root = doc.querySelector(selector) || doc;
+		const win = doc.defaultView || window;
+		const runtime = win.FlexlineSlider || window.FlexlineSlider;
+
+		if (runtime && typeof runtime.init === 'function') {
+			runtime.init(root);
+			return;
+		}
+
+		try {
+			doc.dispatchEvent(
+				new win.CustomEvent('flexline-slider-vars-updated', {
+					detail: { selector, root },
+				})
+			);
+		} catch {
+			// Ignore update dispatch failures in older editor preview contexts.
+		}
+	});
+};
+
 // Map attributes to the classes they control.
 const classMap = {
 	hideOnMobile: { true: 'flexline-hide-on-mobile' },
@@ -418,24 +457,16 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 					document.head.appendChild(styleElementRef.current);
 				}
 				styleElementRef.current.textContent = styles;
-
-				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.)
-				try {
-					const evt = new CustomEvent(
-						'flexline-slider-vars-updated',
-						{
-							detail: { selector: `#${uniqueClass}` },
-						}
-					);
-					document.dispatchEvent(evt);
-				} catch (e) {
-					// ignore
-				}
 			} else if (styleElementRef.current) {
 				styleElementRef.current.parentNode.removeChild(
 					styleElementRef.current
 				);
 				styleElementRef.current = null;
+			}
+
+			if (props.name === 'core/group' || props.name === 'core/stack') {
+				// Notify the runtime in Preview to re-read CSS vars (height, interval, etc.).
+				notifySliderRuntime(`#${uniqueClass}`);
 			}
 
 			return () => {

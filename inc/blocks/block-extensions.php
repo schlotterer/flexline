@@ -269,6 +269,60 @@ function flexline_set_first_tag_attributes( $block_content, $attributes, $tag_na
 }
 
 /**
+ * Check whether a whitespace-separated class list contains a class.
+ *
+ * @param string|null $class_list The class attribute value.
+ * @param string      $class_name Class name to find.
+ * @return bool
+ */
+function flexline_class_list_contains( $class_list, $class_name ) {
+	if ( ! is_string( $class_list ) || '' === trim( $class_list ) || '' === $class_name ) {
+		return false;
+	}
+
+	return in_array( $class_name, preg_split( '/\s+/', trim( $class_list ) ), true );
+}
+
+/**
+ * Check for a block class in parsed attrs or rendered wrapper markup.
+ *
+ * @param array  $block         Parsed block data.
+ * @param string $block_content Rendered block markup.
+ * @param string $class_name    Class name to find.
+ * @return bool
+ */
+function flexline_block_has_class_name( $block, $block_content, $class_name ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( flexline_class_list_contains( $attrs['className'] ?? '', $class_name ) ) {
+		return true;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( $processor->next_tag() ) {
+		return flexline_class_list_contains( $processor->get_attribute( 'class' ), $class_name );
+	}
+
+	return false;
+}
+
+/**
+ * Determine whether a Columns/Post Template block should use the scroller runtime.
+ *
+ * Older content may only have the former style variation class and no boolean
+ * enableHorizontalScroller attribute.
+ *
+ * @param array  $block         Parsed block data.
+ * @param string $block_content Rendered block markup.
+ * @return bool
+ */
+function flexline_block_has_horizontal_scroller( $block, $block_content ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	return ! empty( $attrs['enableHorizontalScroller'] ) || flexline_block_has_class_name( $block, $block_content, 'is-style-horizontal-scroll' );
+}
+
+/**
  * Update img tag attributes without duplicating them.
  *
  * @param string $block_content The original block content.
@@ -582,8 +636,9 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 
 	if ( in_array( $block['blockName'], array( 'core/columns', 'core/post-template' ), true ) ) {
 
+		$has_horizontal_scroller      = flexline_block_has_horizontal_scroller( $block, $block_content );
 		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && $block['attrs']['scrollAuto'] ) {
+		if ( $has_horizontal_scroller && $block['attrs']['scrollAuto'] ) {
 			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
 			$block_content                 = flexline_set_first_tag_attributes(
 				$block_content,
@@ -591,7 +646,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 			);
 		}
 
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] && isset( $block['attrs']['transitionDuration'] ) ) {
+		if ( $has_horizontal_scroller && isset( $block['attrs']['transitionDuration'] ) ) {
 			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
 			$block_content                        = flexline_set_first_tag_attributes(
 				$block_content,
@@ -599,7 +654,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 			);
 		}
 
-		if ( isset( $block['attrs']['enableHorizontalScroller'] ) && $block['attrs']['enableHorizontalScroller'] ) {
+		if ( $has_horizontal_scroller ) {
 			$icon_data_attrs = array();
 			$icon_map        = array(
 				'prevIconMediaId'  => array(

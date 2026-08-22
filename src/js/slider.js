@@ -38,22 +38,72 @@ import { __, sprintf } from '@wordpress/i18n';
 	const BTN_PAUSE = 'is-slider-pause';
 	const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
-	const prefersReducedMotion = () =>
-		window.matchMedia && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+	const getOwnerDocument = (node) => node?.ownerDocument || document;
 
-	const isEditor = () =>
-		!!document.body &&
-		(document.body.classList.contains('block-editor-page') ||
-			document.querySelector('.editor-styles-wrapper'));
+	// Editor Preview can live in editor-canvas. Resolve window/document from
+	// the slider element so observers, timers, and matchMedia use that context.
+	const getOwnerWindow = (node) => {
+		const doc = getOwnerDocument(node);
+		return doc.defaultView || window;
+	};
+
+	const getRootDocument = (root) => {
+		if (root?.nodeType === 9) {
+			return root;
+		}
+		return root?.ownerDocument || document;
+	};
+
+	const getRootWindow = (root) => {
+		const doc = getRootDocument(root);
+		return doc.defaultView || window;
+	};
+
+	const querySliderElements = (root, selector) => {
+		const searchRoot = root || document;
+		const found = Array.from(searchRoot.querySelectorAll(selector));
+		if (
+			searchRoot.nodeType === 1 &&
+			typeof searchRoot.matches === 'function' &&
+			searchRoot.matches(selector)
+		) {
+			found.unshift(searchRoot);
+		}
+		return found;
+	};
+
+	const isSliderElement = (root) =>
+		root?.nodeType === 1 &&
+		root.classList &&
+		(root.classList.contains('is-style-slider') ||
+			root.classList.contains(RUNTIME_CLASS) ||
+			root.parentElement?.classList.contains(WRAPPER_CLASS));
+
+	const prefersReducedMotion = (slider) => {
+		const win = getOwnerWindow(slider);
+		return win.matchMedia && win.matchMedia(REDUCED_MOTION_QUERY).matches;
+	};
+
+	const isEditor = (root = document) => {
+		const doc = getRootDocument(root);
+		return (
+			!!doc.body &&
+			(doc.body.classList.contains('block-editor-page') ||
+				doc.querySelector('.editor-styles-wrapper'))
+		);
+	};
 
 	const shouldRun = (slider) =>
-		isEditor() ? slider.classList.contains('slider-preview-mode') : true;
+		isEditor(slider)
+			? slider.classList.contains('slider-preview-mode')
+			: true;
 
-	const debounce = (fn, delay) => {
+	const debounce = (fn, delay, root = document) => {
 		let t;
 		return (...args) => {
-			clearTimeout(t);
-			t = setTimeout(() => fn(...args), delay);
+			const win = getRootWindow(root);
+			win.clearTimeout(t);
+			t = win.setTimeout(() => fn(...args), delay);
 		};
 	};
 
@@ -63,7 +113,7 @@ import { __, sprintf } from '@wordpress/i18n';
 	 */
 
 	function getSlideContainer(slider) {
-		if (isEditor()) {
+		if (isEditor(slider)) {
 			const c = slider.querySelector(
 				':scope > .block-editor-block-list__layout'
 			);
@@ -96,9 +146,10 @@ import { __, sprintf } from '@wordpress/i18n';
 		 * sibling nav container. This wrapper is temporary and will be removed
 		 * on teardown or when the feature is disabled.
 		 */
+		const doc = getOwnerDocument(slider);
 		let wrapper = slider.parentElement;
 		if (!wrapper || !wrapper.classList.contains(WRAPPER_CLASS)) {
-			wrapper = document.createElement('div');
+			wrapper = doc.createElement('div');
 			wrapper.className = WRAPPER_CLASS;
 			if (slider.parentNode) {
 				slider.parentNode.insertBefore(wrapper, slider);
@@ -107,7 +158,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		}
 		let nav = wrapper.querySelector(':scope > .' + NAV_CLASS);
 		if (!nav) {
-			nav = document.createElement('div');
+			nav = doc.createElement('div');
 			nav.className = NAV_CLASS;
 			wrapper.appendChild(nav);
 		}
@@ -156,7 +207,7 @@ import { __, sprintf } from '@wordpress/i18n';
 			if (!el) {
 				continue;
 			}
-			const cs = window.getComputedStyle(el);
+			const cs = getOwnerWindow(el).getComputedStyle(el);
 			const raw = (cs.getPropertyValue(cssVarName) || '').trim();
 			if (raw) {
 				const n = parseInt(raw, 10);
@@ -193,7 +244,7 @@ import { __, sprintf } from '@wordpress/i18n';
 			if (!el) {
 				continue;
 			}
-			const cs = window.getComputedStyle(el);
+			const cs = getOwnerWindow(el).getComputedStyle(el);
 			let v = (cs.getPropertyValue(cssVarName) || '').trim();
 			if (v) {
 				v = v.toLowerCase();
@@ -393,21 +444,26 @@ import { __, sprintf } from '@wordpress/i18n';
 	function startAuto(slider) {
 		/** Start/restart the autoplay timer (if interval > 0). */
 		stopAuto(slider);
-		if (!(slider._intervalMs > 0) || prefersReducedMotion()) {
+		if (!(slider._intervalMs > 0) || prefersReducedMotion(slider)) {
 			return;
 		}
-		slider._autoTimer = setInterval(() => {
+		const win = getOwnerWindow(slider);
+		slider._autoTimer = win.setInterval(() => {
 			if (slider._isPaused || slider._hoverPaused) {
 				return;
 			}
 			nextSlide(slider, false);
 		}, slider._intervalMs);
+		slider._autoTimerWindow = win;
 	}
 
 	function stopAuto(slider) {
 		if (slider._autoTimer) {
-			clearInterval(slider._autoTimer);
+			(slider._autoTimerWindow || getOwnerWindow(slider)).clearInterval(
+				slider._autoTimer
+			);
 			slider._autoTimer = null;
+			slider._autoTimerWindow = null;
 		}
 	}
 
@@ -424,10 +480,11 @@ import { __, sprintf } from '@wordpress/i18n';
 	}
 
 	function attachReducedMotionHandler(slider) {
-		if (!window.matchMedia) {
+		const win = getOwnerWindow(slider);
+		if (!win.matchMedia) {
 			return;
 		}
-		const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+		const mediaQuery = win.matchMedia(REDUCED_MOTION_QUERY);
 		const onChange = () => {
 			if (mediaQuery.matches) {
 				stopAuto(slider);
@@ -460,7 +517,7 @@ import { __, sprintf } from '@wordpress/i18n';
 	}
 
 	function restartAuto(slider) {
-		if (isEditor()) {
+		if (isEditor(slider)) {
 			startAuto(slider);
 			return;
 		}
@@ -481,7 +538,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		if (!wrapper || typeof wrapper.nodeType !== 'number') {
 			return;
 		}
-		const IO = window.IntersectionObserver;
+		const IO = getOwnerWindow(slider).IntersectionObserver;
 		if (typeof IO !== 'function') {
 			// Fallback: if IO is unavailable, consider it always in view
 			slider._isInView = true;
@@ -528,7 +585,8 @@ import { __, sprintf } from '@wordpress/i18n';
 		 * we compute a default based on the header height.
 		 */
 		const wrapper = slider._wrapper || slider.parentElement;
-		const csWrapper = wrapper ? window.getComputedStyle(wrapper) : null;
+		const win = getOwnerWindow(slider);
+		const csWrapper = wrapper ? win.getComputedStyle(wrapper) : null;
 		const explicitHeight = csWrapper
 			? (csWrapper.getPropertyValue('--slider-height') || '').trim()
 			: '';
@@ -541,7 +599,8 @@ import { __, sprintf } from '@wordpress/i18n';
 			return;
 		}
 		// No explicit height, provide a robust default based on header size
-		const header = document.querySelector('header.site-header');
+		const doc = getOwnerDocument(slider);
+		const header = doc.querySelector('header.site-header');
 		const h = header ? header.offsetHeight : 0;
 		if (wrapper) {
 			wrapper.style.setProperty(
@@ -558,7 +617,7 @@ import { __, sprintf } from '@wordpress/i18n';
 	 * @param {HTMLElement} slider The slider root element.
 	 */
 	function lockSliderHeight(slider) {
-		const cs = window.getComputedStyle(slider);
+		const cs = getOwnerWindow(slider).getComputedStyle(slider);
 		const minH = parseFloat((cs.minHeight || '0').replace('px', '')) || 0;
 		const boxH = slider.getBoundingClientRect().height || 0;
 		const h = Math.max(minH, boxH);
@@ -594,21 +653,23 @@ import { __, sprintf } from '@wordpress/i18n';
 
 	function attachResize(slider) {
 		let frame = null;
+		const win = getOwnerWindow(slider);
 		const onResize = () => {
 			if (frame) {
 				return;
 			}
-			frame = window.requestAnimationFrame(() => {
+			frame = win.requestAnimationFrame(() => {
 				frame = null;
 				computeAndSetEffectiveHeight(slider);
 				lockSliderHeight(slider);
 			});
 		};
-		window.addEventListener('resize', onResize);
+		win.addEventListener('resize', onResize);
 		slider._onResize = onResize;
+		slider._resizeWindow = win;
 		slider._resizeFrame = () => {
 			if (frame) {
-				window.cancelAnimationFrame(frame);
+				win.cancelAnimationFrame(frame);
 				frame = null;
 			}
 		};
@@ -645,14 +706,18 @@ import { __, sprintf } from '@wordpress/i18n';
 	}
 
 	function attachEditorChildWatcher(slider) {
-		if (!isEditor()) {
+		if (!isEditor(slider)) {
 			return;
 		}
 		const container = getSlideContainer(slider);
 		if (!container || typeof container.nodeType !== 'number') {
 			return;
 		}
-		const mo = new window.MutationObserver(() => {
+		const Observer = getOwnerWindow(slider).MutationObserver;
+		if (typeof Observer !== 'function') {
+			return;
+		}
+		const mo = new Observer(() => {
 			applyStacking(slider);
 			clampState(slider);
 		});
@@ -665,7 +730,11 @@ import { __, sprintf } from '@wordpress/i18n';
 		if (!wrapper) {
 			return;
 		}
-		const obs = new window.MutationObserver(() => {
+		const Observer = getOwnerWindow(slider).MutationObserver;
+		if (typeof Observer !== 'function') {
+			return;
+		}
+		const obs = new Observer(() => {
 			const prevInterval = slider._intervalMs;
 			const prevTransition = slider._transitionMs;
 			const prevShowPause = slider._showPauseButton;
@@ -690,22 +759,25 @@ import { __, sprintf } from '@wordpress/i18n';
 	}
 
 	function attachVisibilityHandler(slider) {
+		const doc = getOwnerDocument(slider);
 		const onVis = () => {
-			if (document.hidden) {
+			if (doc.hidden) {
 				stopAuto(slider);
 			} else {
 				restartAuto(slider);
 			}
 		};
-		document.addEventListener('visibilitychange', onVis);
+		doc.addEventListener('visibilitychange', onVis);
 		slider._onVis = onVis;
+		slider._visibilityDocument = doc;
 	}
 
 	function buildNav(slider) {
+		const doc = getOwnerDocument(slider);
 		const wrapper = slider._wrapper || ensureWrapper(slider);
 		let nav = wrapper.querySelector(':scope > .' + NAV_CLASS);
 		if (!nav) {
-			nav = document.createElement('div');
+			nav = doc.createElement('div');
 			nav.className = NAV_CLASS;
 			wrapper.appendChild(nav);
 		}
@@ -715,7 +787,7 @@ import { __, sprintf } from '@wordpress/i18n';
 
 		// In editor Preview only, swallow selection-related events so buttons stay clickable
 		if (
-			isEditor() &&
+			isEditor(slider) &&
 			slider.classList.contains('slider-preview-mode') &&
 			!slider._navSwallow
 		) {
@@ -730,7 +802,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		// Prev button
 		let prev = nav.querySelector(':scope > .' + BTN_CLASS + '.' + BTN_PREV);
 		if (!prev) {
-			prev = document.createElement('button');
+			prev = doc.createElement('button');
 			prev.type = 'button';
 			prev.className = BTN_CLASS + ' ' + BTN_PREV;
 			prev.setAttribute('aria-label', __('Previous', 'flexline'));
@@ -753,7 +825,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		);
 		if (slider._intervalMs > 0 && slider._showPauseButton) {
 			if (!pause) {
-				pause = document.createElement('button');
+				pause = doc.createElement('button');
 				pause.type = 'button';
 				pause.className = BTN_CLASS + ' ' + BTN_PAUSE;
 				pause.setAttribute('aria-label', __('Pause/Play', 'flexline'));
@@ -790,7 +862,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		// Next button
 		let next = nav.querySelector(':scope > .' + BTN_CLASS + '.' + BTN_NEXT);
 		if (!next) {
-			next = document.createElement('button');
+			next = doc.createElement('button');
 			next.type = 'button';
 			next.className = BTN_CLASS + ' ' + BTN_NEXT;
 			next.setAttribute('aria-label', __('Next', 'flexline'));
@@ -808,7 +880,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		slider._btnNext = next;
 
 		// Editor: keep nav from taking focus to avoid scroll jumps
-		if (isEditor()) {
+		if (isEditor(slider)) {
 			prev.tabIndex = -1;
 			next.tabIndex = -1;
 			if (slider._btnPause) {
@@ -840,7 +912,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		}
 		applyStacking(slider);
 		clampState(slider);
-		const liveRegion = document.createElement('div');
+		const liveRegion = getOwnerDocument(slider).createElement('div');
 		liveRegion.className = 'screen-reader-text';
 		liveRegion.setAttribute('aria-live', 'polite');
 		liveRegion.setAttribute('aria-atomic', 'true');
@@ -863,7 +935,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		// Transitions and observers
 		attachTransitionClamp(slider);
 		attachVarsObserver(slider);
-		if (isEditor()) {
+		if (isEditor(slider)) {
 			attachEditorChildWatcher(slider);
 			// Autoplay starts immediately in editor preview
 			if (slider._intervalMs > 0) {
@@ -917,8 +989,11 @@ import { __, sprintf } from '@wordpress/i18n';
 
 		// Events
 		if (slider._onResize) {
-			window.removeEventListener('resize', slider._onResize);
+			(
+				slider._resizeWindow || getOwnerWindow(slider)
+			).removeEventListener('resize', slider._onResize);
 			slider._onResize = null;
+			slider._resizeWindow = null;
 		}
 		if (slider._resizeFrame) {
 			slider._resizeFrame();
@@ -934,8 +1009,11 @@ import { __, sprintf } from '@wordpress/i18n';
 			slider._onHoverLeave = null;
 		}
 		if (slider._onVis) {
-			document.removeEventListener('visibilitychange', slider._onVis);
+			(
+				slider._visibilityDocument || getOwnerDocument(slider)
+			).removeEventListener('visibilitychange', slider._onVis);
 			slider._onVis = null;
+			slider._visibilityDocument = null;
 		}
 		detachTransitionClamp(slider);
 
@@ -980,50 +1058,55 @@ import { __, sprintf } from '@wordpress/i18n';
 		slider._slides = null;
 	}
 
-	function initSliders() {
-		const sliders = Array.from(document.querySelectorAll(SLIDER_SELECTOR));
-		sliders.forEach((slider) => {
-			const wants = shouldRun(slider);
-			const running = slider.classList.contains(RUNTIME_CLASS);
+	function syncOneSlider(slider) {
+		const wants = shouldRun(slider);
+		const running = slider.classList.contains(RUNTIME_CLASS);
 
-			if (running && wants) {
-				// Already running and should continue: refresh options/stacking/nav only
-				slider._wrapper =
-					slider._wrapper && slider._wrapper.isConnected
-						? slider._wrapper
-						: ensureWrapper(slider);
-				const prevInterval = slider._intervalMs;
-				updateOptionsFromVars(slider);
-				applyStacking(slider);
-				clampState(slider);
-				buildNav(slider);
-				if (slider._intervalMs !== prevInterval) {
-					restartAuto(slider);
-				}
-				return;
+		if (running && wants) {
+			// Already running and should continue: refresh options/stacking/nav only
+			slider._wrapper =
+				slider._wrapper && slider._wrapper.isConnected
+					? slider._wrapper
+					: ensureWrapper(slider);
+			const prevInterval = slider._intervalMs;
+			updateOptionsFromVars(slider);
+			computeAndSetEffectiveHeight(slider);
+			applyStacking(slider);
+			clampState(slider);
+			buildNav(slider);
+			if (slider._intervalMs !== prevInterval) {
+				restartAuto(slider);
 			}
-			if (running && !wants) {
-				teardownSlider(slider);
-				return;
-			}
-			if (!running && wants) {
-				initOneSlider(slider);
-				return;
-			}
-			// Not running and not wanted: ensure clean DOM
-			removeWrapper(slider);
-			clearInlineSlideStyles(slider);
-			slider.classList.remove(RUNTIME_CLASS);
-			slider.classList.remove('slider-has-height');
-			slider.style.removeProperty('--slider-height-effective');
-			// Clear any locked height left from a previous Preview session
-			slider.style.height = '';
+			return;
+		}
+		if (running && !wants) {
+			teardownSlider(slider);
+			return;
+		}
+		if (!running && wants) {
+			initOneSlider(slider);
+			return;
+		}
+		// Not running and not wanted: ensure clean DOM
+		removeWrapper(slider);
+		clearInlineSlideStyles(slider);
+		slider.classList.remove(RUNTIME_CLASS);
+		slider.classList.remove('slider-has-height');
+		slider.style.removeProperty('--slider-height-effective');
+		// Clear any locked height left from a previous Preview session
+		slider.style.height = '';
+	}
+
+	function initSliders(root = document) {
+		const sliders = isSliderElement(root)
+			? [root]
+			: querySliderElements(root, SLIDER_SELECTOR);
+		sliders.forEach((slider) => {
+			syncOneSlider(slider);
 		});
 
 		// Global safety: teardown any stray running sliders that no longer qualify
-		const running = Array.from(
-			document.querySelectorAll('.' + RUNTIME_CLASS)
-		);
+		const running = querySliderElements(root, '.' + RUNTIME_CLASS);
 		running.forEach((el) => {
 			const isSlider =
 				el.classList && el.classList.contains('is-style-slider');
@@ -1033,9 +1116,7 @@ import { __, sprintf } from '@wordpress/i18n';
 		});
 
 		// Also handle orphaned wrappers whose child lost the slider class
-		const wrappers = Array.from(
-			document.querySelectorAll('.slider-wrapper')
-		);
+		const wrappers = querySliderElements(root, '.slider-wrapper');
 		wrappers.forEach((wrap) => {
 			const child = wrap.firstElementChild;
 			if (!child) {
@@ -1051,18 +1132,55 @@ import { __, sprintf } from '@wordpress/i18n';
 		});
 	}
 
-	// Initialize on DOM ready
-	const flexlineOnEarlyReady = (callback) => {
-		if (
-			window.Flexline &&
-			typeof window.Flexline.onEarlyReady === 'function'
-		) {
-			window.Flexline.onEarlyReady(callback);
+	function teardownSliders(root = document) {
+		const sliders = isSliderElement(root)
+			? [root]
+			: [
+					...querySliderElements(root, SLIDER_SELECTOR),
+					...querySliderElements(root, '.' + RUNTIME_CLASS),
+				];
+		new Set(sliders).forEach((slider) => teardownSlider(slider));
+	}
+
+	function refreshSliderVars(root = document, selector = '') {
+		const doc = getRootDocument(root);
+		const scope = selector ? doc.querySelector(selector) : root;
+		const sliders = scope
+			? querySliderElements(scope, SLIDER_SELECTOR)
+			: [];
+		if (!sliders.length) {
+			initSliders(root);
 			return;
 		}
 
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', callback, {
+		sliders.forEach((slider) => {
+			if (!shouldRun(slider)) {
+				syncOneSlider(slider);
+				return;
+			}
+			const prevInterval = slider._intervalMs;
+			updateOptionsFromVars(slider);
+			computeAndSetEffectiveHeight(slider);
+			applyStacking(slider);
+			clampState(slider);
+			buildNav(slider);
+			if (slider._intervalMs !== prevInterval) {
+				restartAuto(slider);
+			}
+		});
+	}
+
+	// Initialize on DOM ready
+	const flexlineOnEarlyReady = (callback, root = document) => {
+		const win = getRootWindow(root);
+		if (win.Flexline && typeof win.Flexline.onEarlyReady === 'function') {
+			win.Flexline.onEarlyReady(callback);
+			return;
+		}
+
+		const doc = getRootDocument(root);
+		if (doc.readyState === 'loading') {
+			doc.addEventListener('DOMContentLoaded', callback, {
 				once: true,
 			});
 		} else {
@@ -1070,105 +1188,109 @@ import { __, sprintf } from '@wordpress/i18n';
 		}
 	};
 
-	flexlineOnEarlyReady(initSliders);
+	function watchSliders(root = document) {
+		const win = getRootWindow(root);
+		const Observer = win.MutationObserver;
+		if (typeof Observer !== 'function') {
+			return;
+		}
 
-	// Watch for editor mode toggles and style/class changes
-	const rerunInit = debounce(initSliders, 80);
-	const bodyObserver = new window.MutationObserver((records) => {
-		let relevant = false;
-		for (const rec of records) {
-			if (rec.type === 'attributes' && rec.attributeName === 'class') {
-				const t = rec.target;
-				if (t && t.nodeType === 1) {
-					// Detect both addition and removal of the key classes on the slider element itself
-					const oldVal = rec.oldValue || '';
-					const hadPreview =
-						oldVal.indexOf('slider-preview-mode') !== -1;
-					const hasPreview =
-						t.classList &&
-						t.classList.contains('slider-preview-mode');
-					const hadSlider = oldVal.indexOf('is-style-slider') !== -1;
-					const hasSlider =
-						t.classList && t.classList.contains('is-style-slider');
-					if (hadPreview || hasPreview || hadSlider || hasSlider) {
-						relevant = true;
+		const doc = getRootDocument(root);
+		// Watch for editor mode toggles and style/class changes
+		const rerunInit = debounce(() => initSliders(root), 80, root);
+		const bodyObserver = new Observer((records) => {
+			let relevant = false;
+			for (const rec of records) {
+				if (
+					rec.type === 'attributes' &&
+					rec.attributeName === 'class'
+				) {
+					const t = rec.target;
+					if (t && t.nodeType === 1) {
+						// Detect both addition and removal of the key classes on the slider element itself
+						const oldVal = rec.oldValue || '';
+						const hadPreview =
+							oldVal.indexOf('slider-preview-mode') !== -1;
+						const hasPreview =
+							t.classList &&
+							t.classList.contains('slider-preview-mode');
+						const hadSlider =
+							oldVal.indexOf('is-style-slider') !== -1;
+						const hasSlider =
+							t.classList &&
+							t.classList.contains('is-style-slider');
+						if (
+							hadPreview ||
+							hasPreview ||
+							hadSlider ||
+							hasSlider
+						) {
+							relevant = true;
+							break;
+						}
+					}
+				}
+				if (rec.type === 'childList') {
+					for (const n of rec.addedNodes) {
+						if (
+							n.nodeType === 1 &&
+							((n.classList &&
+								n.classList.contains('is-style-slider')) ||
+								(n.querySelector &&
+									n.querySelector(SLIDER_SELECTOR)))
+						) {
+							relevant = true;
+							break;
+						}
+					}
+					if (relevant) {
 						break;
 					}
 				}
 			}
-			if (rec.type === 'childList') {
-				for (const n of rec.addedNodes) {
-					if (
-						n.nodeType === 1 &&
-						n.classList &&
-						n.classList.contains('is-style-slider')
-					) {
-						relevant = true;
-						break;
-					}
-				}
-				if (relevant) {
-					break;
-				}
+			if (relevant) {
+				rerunInit();
 			}
-		}
-		if (relevant) {
-			rerunInit();
-		}
-	});
-	const observeBody = () => {
-		if (!document.body || typeof document.body.nodeType !== 'number') {
-			return false;
-		}
+		});
+		const observeBody = () => {
+			if (!doc.body || typeof doc.body.nodeType !== 'number') {
+				return false;
+			}
 
-		try {
-			bodyObserver.observe(document.body, {
-				childList: true,
-				subtree: true,
-				attributes: true,
-				attributeFilter: ['class'],
-				attributeOldValue: true,
+			try {
+				bodyObserver.observe(doc.body, {
+					childList: true,
+					subtree: true,
+					attributes: true,
+					attributeFilter: ['class'],
+					attributeOldValue: true,
+				});
+				return true;
+			} catch (error) {
+				return false;
+			}
+		};
+
+		if (!observeBody()) {
+			doc.addEventListener('DOMContentLoaded', observeBody, {
+				once: true,
 			});
-			return true;
-		} catch (error) {
-			return false;
+			win.requestAnimationFrame(observeBody);
 		}
+	}
+
+	window.FlexlineSlider = {
+		init: initSliders,
+		teardown: teardownSliders,
 	};
 
-	if (!observeBody()) {
-		document.addEventListener('DOMContentLoaded', observeBody, {
-			once: true,
-		});
-		window.requestAnimationFrame(observeBody);
-	}
+	// Keep normal front-end auto-init, but expose init/teardown so editor
+	// controls can refresh Preview mode after iframe-local class/style changes.
+	flexlineOnEarlyReady(() => initSliders(document), document);
+	watchSliders(document);
 
 	// Editor: listen for live CSS var updates from controls
 	document.addEventListener('flexline-slider-vars-updated', (e) => {
-		const sel = e && e.detail && e.detail.selector;
-		if (sel) {
-			const scope = document.querySelector(sel);
-			const sliders = scope
-				? Array.from(scope.querySelectorAll(SLIDER_SELECTOR))
-				: [];
-			if (sliders.length) {
-				sliders.forEach((slider) => {
-					if (!shouldRun(slider)) {
-						return;
-					}
-					const prevInterval = slider._intervalMs;
-					updateOptionsFromVars(slider);
-					computeAndSetEffectiveHeight(slider);
-					applyStacking(slider);
-					clampState(slider);
-					buildNav(slider);
-					if (slider._intervalMs !== prevInterval) {
-						restartAuto(slider);
-					}
-				});
-				return;
-			}
-		}
-		// Fallback: refresh all sliders
-		rerunInit();
+		refreshSliderVars(e?.detail?.root || document, e?.detail?.selector);
 	});
 })();
