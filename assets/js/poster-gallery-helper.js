@@ -87,6 +87,11 @@
 		!!element?.closest?.(CORE_LIGHTBOX_SELECTOR) ||
 		!!element?.querySelector?.(CORE_LIGHTBOX_SELECTOR);
 
+	const isCoreGalleryLightboxOwned = (galleryEl) =>
+		shouldUseCoreGalleryLightbox() &&
+		galleryEl?.classList?.contains('wp-block-gallery') &&
+		hasCoreLightbox(galleryEl);
+
 	const isCoreLightboxTrigger = (trigger) =>
 		!!trigger?.matches?.(CORE_LIGHTBOX_SELECTOR) ||
 		!!trigger?.closest?.(CORE_LIGHTBOX_SELECTOR);
@@ -212,16 +217,10 @@
 	 * @param {Element} galleryEl
 	 */
 	const prepareGallery = (galleryEl) => {
-		// On WP 7+ core gallery lightbox owns poster-gallery behavior.
-		// Skip legacy helper wrapping/binding for core gallery containers.
-		if (
-			shouldUseCoreGalleryLightbox() &&
-			galleryEl?.classList?.contains('wp-block-gallery')
-		) {
-			return false;
-		}
-
-		if (hasCoreLightbox(galleryEl)) {
+		// On WP 7+, only skip when the rendered gallery actually contains
+		// core lightbox markers. Legacy class-only poster galleries still need
+		// anchors and baguetteBox binding.
+		if (isCoreGalleryLightboxOwned(galleryEl)) {
 			return false;
 		}
 

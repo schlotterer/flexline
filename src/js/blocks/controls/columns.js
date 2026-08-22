@@ -21,6 +21,56 @@ const DOT_SIZE_CLASSES = Array.from(
 	{ length: 29 },
 	(_, index) => `horizontal-scroller-dots-size-${index + 4}`
 );
+const HORIZONTAL_SCROLLER_CLASSES = [
+	'is-style-horizontal-scroll',
+	'horizontal-scroller-navigation',
+	'horizontal-scroller-loop',
+	'horizontal-scroller-randomize',
+	'horizontal-scroller-auto',
+	'horizontal-scroller-hide-scrollbar',
+	'horizontal-scroller-hide-pause-button',
+	'horizontal-scroller-buttons-horizontal-left',
+	'horizontal-scroller-buttons-horizontal-center',
+	'horizontal-scroller-buttons-horizontal-right',
+	'horizontal-scroller-buttons-vertical-top',
+	'horizontal-scroller-buttons-vertical-bottom',
+	'horizontal-scroller-buttons-over',
+	'horizontal-scroller-buttons-sides',
+	'horizontal-scroller-show-dots',
+	'horizontal-scroller-dots-inline',
+	'horizontal-scroller-dots-below',
+	'scroller-dots-color-default',
+	'scroller-dots-color-white',
+	'scroller-dots-color-black',
+	'scroller-dots-color-gray',
+	'scroller-dots-color-primary',
+	'scroller-dots-color-secondary',
+	'scroller-dots-color-alternate',
+	...DOT_SIZE_CLASSES,
+	'scroller-buttons-background-transparent',
+	'scroller-buttons-background-white',
+	'scroller-buttons-background-black',
+	'scroller-buttons-background-gray',
+	'scroller-buttons-background-primary',
+	'scroller-buttons-background-secondary',
+	'scroller-buttons-background-alternate',
+	'scroller-buttons-text-white',
+	'scroller-buttons-text-black',
+	'scroller-buttons-text-gray',
+	'scroller-buttons-text-primary',
+	'scroller-buttons-text-secondary',
+	'scroller-buttons-text-alternate',
+	'scroller-buttons-border-none',
+	'scroller-buttons-border-white',
+	'scroller-buttons-border-black',
+	'scroller-buttons-border-gray',
+	'scroller-buttons-border-primary',
+	'scroller-buttons-border-secondary',
+	'scroller-buttons-border-alternate',
+	'scroller-buttons-over',
+	'scroller-buttons-box-shadow',
+	'scroller-pause-on-hover',
+];
 
 const getMediaUrl = (media) =>
 	media?.url ||
@@ -28,6 +78,89 @@ const getMediaUrl = (media) =>
 	media?.media_details?.sizes?.medium?.source_url ||
 	media?.media_details?.sizes?.thumbnail?.source_url ||
 	'';
+
+const hasClassName = (className, targetClass) => {
+	if (typeof className !== 'string' || !targetClass) {
+		return false;
+	}
+
+	return className.split(/\s+/).includes(targetClass);
+};
+
+const hasLegacyHorizontalScrollerClass = (attributes = {}) =>
+	hasClassName(attributes.className, 'is-style-horizontal-scroll');
+
+// Older saved Columns/Post Template scrollers used only the style variation
+// class. Treat it as enabled so opening the editor does not strip the runtime.
+const isHorizontalScrollerEnabled = (attributes = {}) =>
+	!!attributes.enableHorizontalScroller ||
+	hasLegacyHorizontalScrollerClass(attributes);
+
+const removeClassNames = (className, classesToRemove) => {
+	if (typeof className !== 'string' || !className.trim()) {
+		return '';
+	}
+
+	const removeMap = new Set(classesToRemove);
+	return className
+		.split(/\s+/)
+		.filter((classItem) => classItem && !removeMap.has(classItem))
+		.join(' ');
+};
+
+const getEditorCanvasDocument = () => {
+	const iframe = document.querySelector('iframe[name="editor-canvas"]');
+	return iframe?.contentDocument || null;
+};
+
+const getBlockDocuments = () => {
+	const docs = [document];
+	const canvasDocument = getEditorCanvasDocument();
+	if (canvasDocument && canvasDocument !== document) {
+		docs.push(canvasDocument);
+	}
+	return docs;
+};
+
+const findScrollerInDocument = (doc, clientId) => {
+	const blockElement = doc.getElementById(`block-${clientId}`);
+	if (!blockElement) {
+		return { blockElement: null, scroller: null };
+	}
+	const selector =
+		'.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template';
+	return {
+		blockElement,
+		scroller: blockElement.matches(selector)
+			? blockElement
+			: blockElement.querySelector(selector),
+	};
+};
+
+const notifyScrollerRuntime = (root, shouldTeardown = false) => {
+	const win = root?.ownerDocument?.defaultView || root?.defaultView || window;
+	const runtime =
+		win.FlexlineHorizontalScroll || window.FlexlineHorizontalScroll;
+
+	if (runtime && typeof runtime.init === 'function') {
+		if (shouldTeardown && typeof runtime.teardown === 'function') {
+			runtime.teardown(root);
+		} else {
+			runtime.init(root);
+		}
+		return;
+	}
+
+	try {
+		const evt = new win.CustomEvent(
+			'flexline-horizontal-scroller-updated',
+			{ bubbles: true, detail: { root } }
+		);
+		root.dispatchEvent(evt);
+	} catch {
+		// Ignore event dispatch failures in older editor preview contexts.
+	}
+};
 
 const IconPickerControl = ({
 	props,
@@ -107,7 +240,7 @@ const IconPickerControl = ({
 };
 
 export const controls = (BlockEdit, props) => {
-	const isScrollerEnabled = !!props.attributes.enableHorizontalScroller;
+	const isScrollerEnabled = isHorizontalScrollerEnabled(props.attributes);
 	const isAutoScrollEnabled = !!props.attributes.scrollAuto;
 	const isSideButtonsMode = props.attributes.buttonDisplayMode === 'sides';
 	const hasPauseButton =
@@ -123,11 +256,22 @@ export const controls = (BlockEdit, props) => {
 					<ToggleControl
 						label="Enable Horizontal Scroller"
 						checked={isScrollerEnabled}
-						onChange={(newValue) =>
-							props.setAttributes({
+						onChange={(newValue) => {
+							const updates = {
 								enableHorizontalScroller: newValue,
-							})
-						}
+							};
+
+							if (!newValue) {
+								// Legacy class-only scrollers would otherwise keep
+								// reading as enabled after the user turns this off.
+								updates.className = removeClassNames(
+									props.attributes.className,
+									HORIZONTAL_SCROLLER_CLASSES
+								);
+							}
+
+							props.setAttributes(updates);
+						}}
 					/>
 					{isScrollerEnabled && (
 						<ToggleControl
@@ -512,58 +656,10 @@ export const controls = (BlockEdit, props) => {
 };
 
 export const getClasses = (attributes) => {
+	const scrollerEnabled = isHorizontalScrollerEnabled(attributes);
 	const removed = [];
-	if (!attributes.enableHorizontalScroller) {
-		removed.push(
-			'is-style-horizontal-scroll',
-			'horizontal-scroller-navigation',
-			'horizontal-scroller-loop',
-			'horizontal-scroller-randomize',
-			'horizontal-scroller-auto',
-			'horizontal-scroller-hide-scrollbar',
-			'horizontal-scroller-hide-pause-button',
-			'horizontal-scroller-buttons-horizontal-left',
-			'horizontal-scroller-buttons-horizontal-center',
-			'horizontal-scroller-buttons-horizontal-right',
-			'horizontal-scroller-buttons-vertical-top',
-			'horizontal-scroller-buttons-vertical-bottom',
-			'horizontal-scroller-buttons-over',
-			'horizontal-scroller-buttons-sides',
-			'horizontal-scroller-show-dots',
-			'horizontal-scroller-dots-inline',
-			'horizontal-scroller-dots-below',
-			'scroller-dots-color-default',
-			'scroller-dots-color-white',
-			'scroller-dots-color-black',
-			'scroller-dots-color-gray',
-			'scroller-dots-color-primary',
-			'scroller-dots-color-secondary',
-			'scroller-dots-color-alternate',
-			...DOT_SIZE_CLASSES,
-			'scroller-buttons-background-transparent',
-			'scroller-buttons-background-white',
-			'scroller-buttons-background-black',
-			'scroller-buttons-background-gray',
-			'scroller-buttons-background-primary',
-			'scroller-buttons-background-secondary',
-			'scroller-buttons-background-alternate',
-			'scroller-buttons-text-white',
-			'scroller-buttons-text-black',
-			'scroller-buttons-text-gray',
-			'scroller-buttons-text-primary',
-			'scroller-buttons-text-secondary',
-			'scroller-buttons-text-alternate',
-			'scroller-buttons-border-none',
-			'scroller-buttons-border-white',
-			'scroller-buttons-border-black',
-			'scroller-buttons-border-gray',
-			'scroller-buttons-border-primary',
-			'scroller-buttons-border-secondary',
-			'scroller-buttons-border-alternate',
-			'scroller-buttons-over',
-			'scroller-buttons-box-shadow',
-			'scroller-pause-on-hover'
-		);
+	if (!scrollerEnabled) {
+		removed.push(...HORIZONTAL_SCROLLER_CLASSES);
 	}
 	if (!attributes.scrollNav) {
 		removed.push('horizontal-scroller-navigation');
@@ -706,85 +802,67 @@ export const getClasses = (attributes) => {
 	}
 
 	let added = '';
-	if (attributes.enableHorizontalScroller) {
+	if (scrollerEnabled) {
 		added += ' is-style-horizontal-scroll';
 	}
-	if (attributes.scrollNav && attributes.enableHorizontalScroller) {
+	if (attributes.scrollNav && scrollerEnabled) {
 		added += ' horizontal-scroller-navigation';
 	}
-	if (attributes.scrollAuto && attributes.enableHorizontalScroller) {
+	if (attributes.scrollAuto && scrollerEnabled) {
 		added += ' horizontal-scroller-auto';
 	}
-	if (attributes.scrollLoop && attributes.enableHorizontalScroller) {
+	if (attributes.scrollLoop && scrollerEnabled) {
 		added += ' horizontal-scroller-loop';
 	}
-	if (attributes.randomizeOnLoad && attributes.enableHorizontalScroller) {
+	if (attributes.randomizeOnLoad && scrollerEnabled) {
 		added += ' horizontal-scroller-randomize';
 	}
-	if (attributes.hideScrollbar && attributes.enableHorizontalScroller) {
+	if (attributes.hideScrollbar && scrollerEnabled) {
 		added += ' horizontal-scroller-hide-scrollbar';
 	}
-	if (attributes.pauseOnHover && attributes.enableHorizontalScroller) {
+	if (attributes.pauseOnHover && scrollerEnabled) {
 		added += ' scroller-pause-on-hover';
 	}
-	if (attributes.hidePauseButton && attributes.enableHorizontalScroller) {
+	if (attributes.hidePauseButton && scrollerEnabled) {
 		added += ' horizontal-scroller-hide-pause-button';
 	}
-	if (
-		attributes.positionButtonsHorizontal &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.positionButtonsHorizontal && scrollerEnabled) {
 		added += ` horizontal-scroller-buttons-horizontal-${attributes.positionButtonsHorizontal}`;
 	}
-	if (
-		attributes.positionButtonsVertical &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.positionButtonsVertical && scrollerEnabled) {
 		added += ` horizontal-scroller-buttons-vertical-${attributes.positionButtonsVertical}`;
 	}
-	if (attributes.positionButtonsOver && attributes.enableHorizontalScroller) {
+	if (attributes.positionButtonsOver && scrollerEnabled) {
 		added += ' horizontal-scroller-buttons-over';
 	}
-	if (
-		attributes.buttonsBackgroundColor &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.buttonsBackgroundColor && scrollerEnabled) {
 		added += ` scroller-buttons-background-${attributes.buttonsBackgroundColor}`;
 	}
-	if (attributes.buttonsTextColor && attributes.enableHorizontalScroller) {
+	if (attributes.buttonsTextColor && scrollerEnabled) {
 		added += ` scroller-buttons-text-${attributes.buttonsTextColor}`;
 	}
-	if (attributes.buttonsBorderColor && attributes.enableHorizontalScroller) {
+	if (attributes.buttonsBorderColor && scrollerEnabled) {
 		added += ` scroller-buttons-border-${attributes.buttonsBorderColor}`;
 	}
-	if (attributes.buttonsBoxShadow && attributes.enableHorizontalScroller) {
+	if (attributes.buttonsBoxShadow && scrollerEnabled) {
 		added += ' scroller-buttons-box-shadow';
 	}
-	if (
-		attributes.buttonDisplayMode === 'sides' &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.buttonDisplayMode === 'sides' && scrollerEnabled) {
 		added += ' horizontal-scroller-buttons-sides';
 	}
-	if (attributes.showRangeDots && attributes.enableHorizontalScroller) {
+	if (attributes.showRangeDots && scrollerEnabled) {
 		added += ' horizontal-scroller-show-dots';
 	}
-	if (
-		attributes.rangeDotsLayout === 'inline' &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.rangeDotsLayout === 'inline' && scrollerEnabled) {
 		added += ' horizontal-scroller-dots-inline';
 	}
-	if (
-		attributes.rangeDotsLayout === 'below' &&
-		attributes.enableHorizontalScroller
-	) {
+	if (attributes.rangeDotsLayout === 'below' && scrollerEnabled) {
 		added += ' horizontal-scroller-dots-below';
 	}
-	if (attributes.rangeDotsColor && attributes.enableHorizontalScroller) {
+	if (attributes.rangeDotsColor && scrollerEnabled) {
 		added += ` scroller-dots-color-${attributes.rangeDotsColor}`;
 	}
-	if (attributes.enableHorizontalScroller) {
+	if (scrollerEnabled) {
 		const size = Math.min(
 			32,
 			Math.max(4, parseInt(attributes.rangeDotsSize || 8, 10))
@@ -800,36 +878,22 @@ export const getClasses = (attributes) => {
 export const useHooks = (props) => {
 	const {
 		attributes,
-		attributes: { enableHorizontalScroller, isStackedOnMobile },
+		attributes: { isStackedOnMobile },
 		clientId,
 		setAttributes,
 		name,
 	} = props;
+	const scrollerEnabled = isHorizontalScrollerEnabled(attributes);
 	useEffect(() => {
-		if (enableHorizontalScroller && isStackedOnMobile) {
+		if (scrollerEnabled && isStackedOnMobile) {
 			setAttributes({ isStackedOnMobile: false });
 		}
-	}, [enableHorizontalScroller, isStackedOnMobile, setAttributes]);
+	}, [scrollerEnabled, isStackedOnMobile, setAttributes]);
 
 	useEffect(() => {
 		if (name !== 'core/columns' && name !== 'core/post-template') {
 			return;
 		}
-		const blockElement = document.getElementById(`block-${clientId}`);
-		if (!blockElement) {
-			return;
-		}
-		const scroller = blockElement.matches(
-			'.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template'
-		)
-			? blockElement
-			: blockElement.querySelector(
-					'.is-style-horizontal-scroll.wp-block-columns, .is-style-horizontal-scroll.wp-block-post-template'
-				);
-		if (!scroller) {
-			return;
-		}
-
 		const mediaStore =
 			typeof wp !== 'undefined' && wp.data
 				? wp.data.select('core')
@@ -874,7 +938,7 @@ export const useHooks = (props) => {
 			setAttributes(updates);
 		}
 
-		const setDataAttr = (key, value) => {
+		const setDataAttr = (scroller, key, value) => {
 			if (value || value === 0) {
 				scroller.setAttribute(key, `${value}`);
 			} else {
@@ -882,17 +946,36 @@ export const useHooks = (props) => {
 			}
 		};
 
-		setDataAttr('data-icon-prev-url', prevUrl);
-		setDataAttr('data-icon-next-url', nextUrl);
-		setDataAttr('data-icon-pause-url', pauseUrl);
-		setDataAttr(
-			'data-button-icon-height',
-			Math.max(8, parseInt(attributes.buttonIconHeight || 18, 10))
-		);
-		setDataAttr(
-			'data-pause-icon-height',
-			Math.max(8, parseInt(attributes.pauseButtonIconHeight || 18, 10))
-		);
+		getBlockDocuments().forEach((doc) => {
+			const { blockElement, scroller } = findScrollerInDocument(
+				doc,
+				clientId
+			);
+			if (!scroller) {
+				if (blockElement) {
+					notifyScrollerRuntime(blockElement, true);
+				}
+				return;
+			}
+
+			setDataAttr(scroller, 'data-icon-prev-url', prevUrl);
+			setDataAttr(scroller, 'data-icon-next-url', nextUrl);
+			setDataAttr(scroller, 'data-icon-pause-url', pauseUrl);
+			setDataAttr(
+				scroller,
+				'data-button-icon-height',
+				Math.max(8, parseInt(attributes.buttonIconHeight || 18, 10))
+			);
+			setDataAttr(
+				scroller,
+				'data-pause-icon-height',
+				Math.max(
+					8,
+					parseInt(attributes.pauseButtonIconHeight || 18, 10)
+				)
+			);
+			notifyScrollerRuntime(scroller);
+		});
 	});
 
 	useEffect(() => {
@@ -909,7 +992,7 @@ export const useHooks = (props) => {
 								'exceeds the recommended amount'
 							)
 						) {
-							notice.style.display = enableHorizontalScroller
+							notice.style.display = scrollerEnabled
 								? 'none'
 								: '';
 						}
@@ -920,7 +1003,7 @@ export const useHooks = (props) => {
 			observer.observe(document.body, { childList: true, subtree: true });
 			return () => observer.disconnect();
 		}
-	}, [name, enableHorizontalScroller]);
+	}, [name, scrollerEnabled]);
 };
 
 export default { controls, getClasses, useHooks };

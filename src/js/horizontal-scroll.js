@@ -1,6 +1,4 @@
-/* global requestAnimationFrame */
-
-// Horizontal Scroll block behaviour – front-end + block-editor compatible
+// Horizontal Scroll block behaviour - front-end + block-editor compatible
 
 function isBlockEditor() {
 	return (
@@ -14,6 +12,73 @@ function isBlockEditor() {
 let editorDragActive = false;
 let editorReinitTimeout = null;
 let editorReinitRaf = null;
+
+function getOwnerDocument(node) {
+	return node?.ownerDocument || document;
+}
+
+// Runtime may execute inside the editor iframe or the front-end document.
+// Resolve DOM APIs from each scroller so timers/observers bind to the right window.
+function getOwnerWindow(node) {
+	const doc = getOwnerDocument(node);
+	return doc.defaultView || window;
+}
+
+function getRootDocument(root) {
+	if (root?.nodeType === 9) {
+		return root;
+	}
+	return root?.ownerDocument || document;
+}
+
+function getRootWindow(root) {
+	const doc = getRootDocument(root);
+	return doc.defaultView || window;
+}
+
+function queryScrollerElements(root, selector) {
+	const searchRoot = root || document;
+	const found = Array.from(searchRoot.querySelectorAll(selector));
+	if (
+		searchRoot.nodeType === 1 &&
+		typeof searchRoot.matches === 'function' &&
+		searchRoot.matches(selector)
+	) {
+		found.unshift(searchRoot);
+	}
+	return found;
+}
+
+function isScrollerElement(root) {
+	return (
+		root?.nodeType === 1 &&
+		root.classList &&
+		(root.classList.contains('is-style-horizontal-scroll') ||
+			!!getScrollerWrapper(root))
+	);
+}
+
+function requestFrame(node, callback) {
+	const win = getOwnerWindow(node);
+	const raf = win.requestAnimationFrame || window.requestAnimationFrame;
+	if (typeof raf === 'function') {
+		return raf.call(win, callback);
+	}
+	return win.setTimeout(() => {
+		const perf = win.performance || performance;
+		callback(perf.now());
+	}, 16);
+}
+
+function cancelFrame(node, frameId) {
+	const win = getOwnerWindow(node);
+	const cancel =
+		win.cancelAnimationFrame ||
+		window.cancelAnimationFrame ||
+		win.clearTimeout ||
+		clearTimeout;
+	cancel.call(win, frameId);
+}
 
 function isEditorDraggingBlocks() {
 	if (!isBlockEditor()) {
@@ -65,9 +130,11 @@ const PLAY_ICON_SVG =
 	'<path fill="currentColor" d="M320-720v480l400-240-400-240Z"/></svg></span>';
 
 function smoothScrollTo(scroller, targetScrollLeft, duration) {
+	const win = getOwnerWindow(scroller);
 	const start = scroller.scrollLeft;
 	const distance = targetScrollLeft - start;
-	const startTime = performance.now();
+	const perf = win.performance || performance;
+	const startTime = perf.now();
 
 	function step(currentTime) {
 		const elapsed = currentTime - startTime;
@@ -75,7 +142,7 @@ function smoothScrollTo(scroller, targetScrollLeft, duration) {
 		scroller.scrollLeft = start + distance * easeInOutQuad(progress);
 
 		if (progress < 1) {
-			requestAnimationFrame(step);
+			requestFrame(scroller, step);
 		}
 	}
 
@@ -83,7 +150,7 @@ function smoothScrollTo(scroller, targetScrollLeft, duration) {
 		return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
 	}
 
-	requestAnimationFrame(step);
+	requestFrame(scroller, step);
 }
 
 function scrollToNext(scroller) {
@@ -165,7 +232,7 @@ function maybeRandomizeSlidesOnLoad(scroller) {
 		shuffled[j] = tmp;
 	}
 
-	const frag = document.createDocumentFragment();
+	const frag = getOwnerDocument(scroller).createDocumentFragment();
 	shuffled.forEach((slide) => frag.appendChild(slide));
 	scroller.appendChild(frag);
 	scroller.dataset.randomizedOnLoad = 'true';
@@ -205,7 +272,7 @@ function setupInfiniteLoop(scroller) {
 		.forEach((c) => scroller.insertBefore(c, scroller.firstChild));
 	backClones.forEach((c) => scroller.appendChild(c));
 
-	requestAnimationFrame(() => {
+	requestFrame(scroller, () => {
 		scroller.scrollLeft = realWidth + 1;
 		scroller.style.visibility = '';
 
@@ -251,7 +318,7 @@ function ensureWrapper(scroller) {
 		return scroller;
 	}
 
-	const wrapper = document.createElement('div');
+	const wrapper = getOwnerDocument(scroller).createElement('div');
 	wrapper.classList.add('horizontal-scroll-wrapper');
 	wrapper.style.position = 'relative';
 	try {
@@ -293,8 +360,11 @@ function removeWrapper(scroller) {
 
 function clearAutoScrollRuntime(scroller) {
 	if (scroller._autoScrollInterval) {
-		clearInterval(scroller._autoScrollInterval);
+		(
+			scroller._autoIntervalWindow || getOwnerWindow(scroller)
+		).clearInterval(scroller._autoScrollInterval);
 		scroller._autoScrollInterval = null;
+		scroller._autoIntervalWindow = null;
 	}
 
 	if (scroller._autoVisibilityObserver) {
@@ -319,8 +389,11 @@ function clearDotsRuntime(scroller) {
 		scroller._dotsScrollHandler = null;
 	}
 	if (scroller._dotsResizeHandler) {
-		window.removeEventListener('resize', scroller._dotsResizeHandler);
+		(
+			scroller._dotsResizeWindow || getOwnerWindow(scroller)
+		).removeEventListener('resize', scroller._dotsResizeHandler);
 		scroller._dotsResizeHandler = null;
+		scroller._dotsResizeWindow = null;
 	}
 	delete scroller._updateRangeDots;
 }
@@ -356,7 +429,7 @@ function setButtonIcon(button, iconUrl, fallbackSvg, iconLabel, iconHeightPx) {
 
 	button.innerHTML = '';
 	if (iconUrl) {
-		const img = document.createElement('img');
+		const img = getOwnerDocument(button).createElement('img');
 		img.className = 'horizontal-scroller-custom-icon';
 		img.src = iconUrl;
 		img.alt = iconLabel;
@@ -439,11 +512,13 @@ function setupRangeDots(scroller, parentNode, isInline, onDotClick) {
 		return;
 	}
 
-	const dotsContainer = document.createElement('div');
+	const doc = getOwnerDocument(scroller);
+	const win = getOwnerWindow(scroller);
+	const dotsContainer = doc.createElement('div');
 	dotsContainer.classList.add('horizontal-scroller-range-dots');
 	dotsContainer.style.color = resolveRangeDotsColor(scroller);
 	realSlides.forEach((slide, index) => {
-		const dot = document.createElement('button');
+		const dot = doc.createElement('button');
 		dot.type = 'button';
 		dot.classList.add('horizontal-scroller-range-dot');
 		dot.setAttribute('aria-label', `Scroll to item ${index + 1}`);
@@ -467,16 +542,26 @@ function setupRangeDots(scroller, parentNode, isInline, onDotClick) {
 	scroller.addEventListener('scroll', scroller._dotsScrollHandler, {
 		passive: true,
 	});
-	window.addEventListener('resize', scroller._dotsResizeHandler);
-	requestAnimationFrame(update);
+	win.addEventListener('resize', scroller._dotsResizeHandler);
+	scroller._dotsResizeWindow = win;
+	requestFrame(scroller, update);
 }
 
 function setupScrollerButtons(scroller) {
 	if (!scroller.dataset.classObserverAttached && isBlockEditor()) {
-		new window.MutationObserver(() =>
-			setupScrollerButtons(scroller)
-		).observe(scroller, { attributes: true, attributeFilter: ['class'] });
-		scroller.dataset.classObserverAttached = 'true';
+		const Observer =
+			getOwnerWindow(scroller).MutationObserver ||
+			window.MutationObserver;
+		if (Observer) {
+			new Observer(() => setupScrollerButtons(scroller)).observe(
+				scroller,
+				{
+					attributes: true,
+					attributeFilter: ['class'],
+				}
+			);
+			scroller.dataset.classObserverAttached = 'true';
+		}
 	}
 
 	if (isBlockEditor() && editorDragActive) {
@@ -488,6 +573,8 @@ function setupScrollerButtons(scroller) {
 	if (!wrapper || wrapper === scroller) {
 		return;
 	}
+
+	const win = getOwnerWindow(scroller);
 
 	clearAutoScrollRuntime(scroller);
 	clearDotsRuntime(scroller);
@@ -519,16 +606,20 @@ function setupScrollerButtons(scroller) {
 			scroller.getAttribute('data-scroll-interval') || '4000',
 			10
 		);
-		scroller._autoScrollInterval = setInterval(
+		scroller._autoScrollInterval = win.setInterval(
 			() => scrollToNext(scroller),
 			intervalDur
 		);
+		scroller._autoIntervalWindow = win;
 	};
 
 	const stopAutoScroll = () => {
 		if (scroller._autoScrollInterval) {
-			clearInterval(scroller._autoScrollInterval);
+			(scroller._autoIntervalWindow || win).clearInterval(
+				scroller._autoScrollInterval
+			);
 			scroller._autoScrollInterval = null;
+			scroller._autoIntervalWindow = null;
 		}
 	};
 
@@ -560,23 +651,28 @@ function setupScrollerButtons(scroller) {
 			);
 		}
 
-		scroller._autoVisibilityObserver = new window.IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						startAutoScroll();
-					}
-				});
-			},
-			{ threshold: 0.3 }
-		);
-		scroller._autoVisibilityObserver.observe(scroller);
+		if (!win.IntersectionObserver) {
+			startAutoScroll();
+		} else {
+			scroller._autoVisibilityObserver = new win.IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							startAutoScroll();
+						}
+					});
+				},
+				{ threshold: 0.3 }
+			);
+			scroller._autoVisibilityObserver.observe(scroller);
+		}
 	}
 
 	if (!hasAnyControls) {
 		return;
 	}
 
+	const doc = getOwnerDocument(scroller);
 	const dotsInline =
 		scroller.classList.contains('horizontal-scroller-dots-inline') &&
 		hasBottomNavButtons;
@@ -607,7 +703,7 @@ function setupScrollerButtons(scroller) {
 	);
 
 	const buildPrevButton = () => {
-		const btn = document.createElement('button');
+		const btn = doc.createElement('button');
 		btn.classList.add(
 			'is-horizontal-scroll-btn',
 			'is-horizontal-scroll-prev'
@@ -628,7 +724,7 @@ function setupScrollerButtons(scroller) {
 	};
 
 	const buildNextButton = () => {
-		const btn = document.createElement('button');
+		const btn = doc.createElement('button');
 		btn.classList.add(
 			'is-horizontal-scroll-btn',
 			'is-horizontal-scroll-next'
@@ -649,7 +745,7 @@ function setupScrollerButtons(scroller) {
 	};
 
 	const buildPauseButton = () => {
-		const btn = document.createElement('button');
+		const btn = doc.createElement('button');
 		btn.classList.add(
 			'is-horizontal-scroll-btn',
 			'is-horizontal-scroll-pause'
@@ -686,7 +782,7 @@ function setupScrollerButtons(scroller) {
 	};
 
 	if (hasBottomNavButtons) {
-		const navContainer = document.createElement('div');
+		const navContainer = doc.createElement('div');
 		navContainer.classList.add('horizontal-scroller-nav-buttons');
 		navContainer.style.position = 'absolute';
 		navContainer.style.display = 'flex';
@@ -727,7 +823,7 @@ function setupScrollerButtons(scroller) {
 	}
 
 	if (useSideButtons && hasNav) {
-		const sideButtons = document.createElement('div');
+		const sideButtons = doc.createElement('div');
 		sideButtons.classList.add('horizontal-scroller-side-buttons');
 		sideButtons.appendChild(buildPrevButton());
 		sideButtons.appendChild(buildNextButton());
@@ -756,7 +852,12 @@ function setupStatusObserver(scroller) {
 		scroller._statusObserver.disconnect();
 	}
 
-	const observer = new window.IntersectionObserver(
+	const win = getOwnerWindow(scroller);
+	if (!win.IntersectionObserver) {
+		return;
+	}
+
+	const observer = new win.IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
 				const item = entry.target;
@@ -808,30 +909,31 @@ function teardownScrollerRuntime(scroller) {
 	removeWrapper(scroller);
 }
 
-function teardownAllEditorDragScrollers() {
-	document
-		.querySelectorAll('.is-style-horizontal-scroll')
-		.forEach((scroller) => {
+function teardownAllEditorDragScrollers(root = document) {
+	queryScrollerElements(root, '.is-style-horizontal-scroll').forEach(
+		(scroller) => {
 			teardownScrollerRuntime(scroller);
-		});
+		}
+	);
 }
 
-function queueEditorReinit() {
+function queueEditorReinit(root = document) {
 	if (!isBlockEditor()) {
 		return;
 	}
+	const win = getRootWindow(root);
 	if (editorReinitTimeout) {
-		clearTimeout(editorReinitTimeout);
+		win.clearTimeout(editorReinitTimeout);
 	}
 	if (editorReinitRaf) {
-		window.cancelAnimationFrame(editorReinitRaf);
+		cancelFrame(root, editorReinitRaf);
 	}
-	editorReinitTimeout = setTimeout(() => {
+	editorReinitTimeout = win.setTimeout(() => {
 		editorReinitTimeout = null;
-		editorReinitRaf = requestAnimationFrame(() => {
+		editorReinitRaf = requestFrame(root, () => {
 			editorReinitRaf = null;
 			if (!editorDragActive) {
-				initScrollers();
+				initScrollers(root);
 			}
 		});
 	}, 120);
@@ -901,7 +1003,12 @@ function watchLoopToggle(scroller) {
 	if (scroller.dataset.loopObserverAttached) {
 		return;
 	}
-	new window.MutationObserver(() => {
+	const Observer =
+		getOwnerWindow(scroller).MutationObserver || window.MutationObserver;
+	if (!Observer) {
+		return;
+	}
+	new Observer(() => {
 		if (isBlockEditor() && editorDragActive) {
 			teardownInfiniteLoop(scroller);
 			return;
@@ -925,7 +1032,12 @@ function watchChildrenForLoop(scroller) {
 	if (scroller._childObserverAttached) {
 		return;
 	}
-	const mo = new window.MutationObserver((mutations) => {
+	const Observer =
+		getOwnerWindow(scroller).MutationObserver || window.MutationObserver;
+	if (!Observer) {
+		return;
+	}
+	const mo = new Observer((mutations) => {
 		if (isBlockEditor() && editorDragActive) {
 			teardownScrollerRuntime(scroller);
 			return;
@@ -963,29 +1075,28 @@ function watchChildrenForLoop(scroller) {
 	scroller._childObserverAttached = true;
 }
 
-function initInfiniteLoops() {
+function initInfiniteLoops(root = document) {
 	if (isBlockEditor() && editorDragActive) {
-		document
-			.querySelectorAll('[data-loop-initialised="true"]')
-			.forEach(teardownInfiniteLoop);
+		queryScrollerElements(root, '[data-loop-initialised="true"]').forEach(
+			teardownInfiniteLoop
+		);
 		return;
 	}
 
 	if (isBlockEditor()) {
-		document
-			.querySelectorAll('[data-loop-initialised="true"]')
-			.forEach((s) => {
+		queryScrollerElements(root, '[data-loop-initialised="true"]').forEach(
+			(s) => {
 				if (!s.classList.contains('horizontal-scroller-loop')) {
 					teardownInfiniteLoop(s);
 				}
-			});
+			}
+		);
 	}
 
-	document
-		.querySelectorAll(
-			'.is-style-horizontal-scroll.horizontal-scroller-loop'
-		)
-		.forEach(setupInfiniteLoop);
+	queryScrollerElements(
+		root,
+		'.is-style-horizontal-scroll.horizontal-scroller-loop'
+	).forEach(setupInfiniteLoop);
 }
 
 function initOneScroller(scroller) {
@@ -1018,6 +1129,7 @@ function scheduleScrollerInit(scroller) {
 			return;
 		}
 
+		const win = getOwnerWindow(scroller);
 		let didInit = false;
 		if (typeof wp !== 'undefined' && wp.data && wp.data.subscribe) {
 			const unsubscribe = wp.data.subscribe(() => {
@@ -1033,20 +1145,23 @@ function scheduleScrollerInit(scroller) {
 				}
 			});
 		} else {
-			const obs = new window.MutationObserver(() => {
-				if (
-					!didInit &&
-					scroller.querySelectorAll('.wp-block-post').length
-				) {
-					didInit = true;
-					obs.disconnect();
-					initOneScroller(scroller);
-				}
-			});
-			obs.observe(scroller, { childList: true, subtree: true });
+			const Observer = win.MutationObserver || window.MutationObserver;
+			if (Observer) {
+				const obs = new Observer(() => {
+					if (
+						!didInit &&
+						scroller.querySelectorAll('.wp-block-post').length
+					) {
+						didInit = true;
+						obs.disconnect();
+						initOneScroller(scroller);
+					}
+				});
+				obs.observe(scroller, { childList: true, subtree: true });
+			}
 		}
 
-		setTimeout(() => {
+		win.setTimeout(() => {
 			if (!didInit) {
 				didInit = true;
 				initOneScroller(scroller);
@@ -1057,16 +1172,22 @@ function scheduleScrollerInit(scroller) {
 	}
 }
 
-function initScrollers() {
+function initScrollers(root = document) {
 	if (isBlockEditor() && editorDragActive) {
-		teardownAllEditorDragScrollers();
+		teardownAllEditorDragScrollers(root);
 		return;
 	}
 
-	document
-		.querySelectorAll('.is-style-horizontal-scroll')
-		.forEach(scheduleScrollerInit);
-	initInfiniteLoops();
+	if (isScrollerElement(root)) {
+		scheduleScrollerInit(root);
+		initInfiniteLoops(root);
+		return;
+	}
+
+	queryScrollerElements(root, '.is-style-horizontal-scroll').forEach(
+		scheduleScrollerInit
+	);
+	initInfiniteLoops(root);
 }
 
 const flexlineOnEarlyReady = (callback) => {
@@ -1082,32 +1203,83 @@ const flexlineOnEarlyReady = (callback) => {
 	}
 };
 
-flexlineOnEarlyReady(initScrollers);
-window.addEventListener('load', initScrollers);
+function teardownScrollers(root = document) {
+	if (isScrollerElement(root)) {
+		teardownScrollerRuntime(root);
+		return;
+	}
+
+	queryScrollerElements(root, '.is-style-horizontal-scroll').forEach(
+		teardownScrollerRuntime
+	);
+}
+
+window.FlexlineHorizontalScroll = {
+	init: initScrollers,
+	teardown: teardownScrollers,
+};
+
+// Preserve automatic front-end behavior while giving editor controls an
+// idempotent API to re-run against editor-canvas after class/attribute changes.
+flexlineOnEarlyReady(() => initScrollers(document));
+window.addEventListener('load', () => initScrollers(document));
+document.addEventListener('flexline-horizontal-scroller-updated', (event) => {
+	initScrollers(event.detail?.root || document);
+});
 
 if (isBlockEditor()) {
-	const bodyObserver = new window.MutationObserver((records) => {
-		if (updateEditorDragState()) {
-			return;
-		}
-		for (const rec of records) {
-			for (const node of rec.addedNodes) {
-				if (
-					node.nodeType === 1 &&
-					node.classList.contains('is-style-horizontal-scroll') &&
-					!node.dataset._scrollerInitQueued
-				) {
-					node.dataset._scrollerInitQueued = 'true';
-					scheduleScrollerInit(node);
+	const Observer = window.MutationObserver;
+	if (Observer) {
+		const bodyObserver = new Observer((records) => {
+			if (updateEditorDragState()) {
+				return;
+			}
+			for (const rec of records) {
+				for (const node of rec.addedNodes) {
+					if (
+						node.nodeType === 1 &&
+						node.classList.contains('is-style-horizontal-scroll') &&
+						!node.dataset._scrollerInitQueued
+					) {
+						node.dataset._scrollerInitQueued = 'true';
+						scheduleScrollerInit(node);
+					}
+					if (node.nodeType === 1 && node.querySelectorAll) {
+						node.querySelectorAll(
+							'.is-style-horizontal-scroll'
+						).forEach((scroller) => {
+							if (!scroller.dataset._scrollerInitQueued) {
+								scroller.dataset._scrollerInitQueued = 'true';
+								scheduleScrollerInit(scroller);
+							}
+						});
+					}
 				}
 			}
-		}
-	});
+		});
 
-	bodyObserver.observe(document.body, {
-		childList: true,
-		subtree: true,
-	});
+		const observeEditorBody = () => {
+			if (!document.body || typeof document.body.nodeType !== 'number') {
+				return false;
+			}
+			try {
+				bodyObserver.observe(document.body, {
+					childList: true,
+					subtree: true,
+				});
+				return true;
+			} catch {
+				return false;
+			}
+		};
+
+		if (!observeEditorBody()) {
+			document.addEventListener('DOMContentLoaded', observeEditorBody, {
+				once: true,
+			});
+			requestFrame(document, observeEditorBody);
+		}
+	}
 	wp.domReady(() => {
 		let t;
 		editorDragActive = isEditorDraggingBlocks();
@@ -1123,8 +1295,8 @@ if (isBlockEditor()) {
 			if (wasDragging !== isDragging) {
 				return;
 			}
-			clearTimeout(t);
-			t = setTimeout(() => {
+			window.clearTimeout(t);
+			t = window.setTimeout(() => {
 				if (!updateEditorDragState()) {
 					initScrollers();
 				}
