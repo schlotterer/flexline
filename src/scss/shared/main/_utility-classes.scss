@@ -45,7 +45,7 @@
 	.flexline-bkg-bottom-center,
 	.flexline-bkg-bottom-right {
 		background-repeat: no-repeat !important;
-		background-size: var(--flexline-background-width, clamp(240px, 42vw, 720px)) var(--flexline-background-height, auto) !important;
+		background-size: var(--flexline-background-width, auto) var(--flexline-background-height, auto) !important;
 	}
 
 	.flexline-bkg-top-left {

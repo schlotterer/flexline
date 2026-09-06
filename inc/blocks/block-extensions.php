@@ -700,7 +700,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		}
 	}
 
-	$raised_z_index_classes = array(
+	$raised_z_index_classes   = array(
 		'flexline-raise-z-index',
 		'flexline-content-shift-above',
 	);
@@ -733,7 +733,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		'flexline-content-slide-y',
 		'flexline-content-shift-revert-mobile',
 	);
-	$content_shift_attr_names      = array(
+	$content_shift_attr_names       = array(
 		'useContentShift',
 		'shiftLeft',
 		'shiftRight',
@@ -743,7 +743,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 		'slideVertical',
 		'resetMobile',
 	);
-	$has_content_shift_state       = false;
+	$has_content_shift_state        = false;
 
 	foreach ( $content_shift_attr_names as $attr_name ) {
 		if ( array_key_exists( $attr_name, $attrs ) ) {
