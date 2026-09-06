@@ -1,106 +1,116 @@
-# FlexLine Group Frame Presets
+# FlexLine Group Frames — gated controls and Content Shift compatibility
 
 ## Summary
 
-This document captures a future FlexLine parent-theme feature for reusable Group block frame presets. The goal is to let editors apply managed SVG clipping masks to Group blocks from the block inspector, while site-level frame definitions remain centralized in FlexLine Theme Options.
+Implement centrally managed Group frame presets in seven manageable sessions. Add a site-wide enable toggle and a per-Group toggle, both defaulting to off.
 
-The O'Connor Woods child theme `ocw-shape` CSS mask utilities are the current reference for the clipping approach. They should be treated as a proof of concept for using CSS masks on the container itself, not as the final FlexLine class API or source of hardcoded masks.
+Follow the repository’s Lead review → Senior implementation → QA workflow. Each session ends with relevant checks, documentation, a focused commit, and a recorded next step.
 
-## V1 Scope
+## Controls and saved state
 
-V1 should support:
+**Theme Options → Frames**
 
-- `core/group` blocks only.
-- Top and bottom frame sides only.
-- SVG presets managed in the FlexLine parent theme.
-- Per-side frame selection in the Group block inspector.
-- Server-side preset resolution during block render.
+- Add “Enable Group Frames,” stored as `flexline_enable_group_frames`.
+- Show the preset manager only when enabled.
+- Disabling suspends all frame rendering and overlap, and hides block-level frame controls.
+- Preserve presets and block selections while disabled, including when saving the hidden admin section.
 
-V1 should not support:
+**Group Styles → FlexLine Frame**
 
-- Cover, Columns, Column, Row, Stack, or Grid block frame controls.
-- Left or right frame sides.
-- Per-block frame height overrides.
-- Client-child-theme-specific frame management.
-- ACF or another admin dependency.
+- Show “Use Frames,” stored as boolean `flexlineUseFrames`.
+- Reveal frame selections and overlap controls only when checked.
+- Unchecking removes the effects but retains selections and overlap choices.
+- Re-enabling restores valid selections.
 
-Left and right frame sides should remain future scope until corner behavior and SVG requirements are proven.
+**Preset model**
 
-## Theme Options Model
+- Store ordered presets in `flexline_frame_presets`: immutable ID, label, top/bottom side, SVG attachment ID, and responsive height fields.
+- Accept Media Library SVGs only; begin with no bundled presets.
+- Use minimum pixels, preferred `vw`, and maximum pixels, defaulting to `56 / 7 / 112`. Validate positive finite values and minimum ≤ maximum.
+- Store selected IDs in `flexlineFrameTop` and `flexlineFrameBottom`.
+- Store per-edge overlap as `none`, `half`, or `full`, defaulting to `none`.
+- Resolve current preset data during rendering. Missing or wrong-side presets leave that edge unframed.
 
-Add a new FlexLine Theme Options "Frames" tab with a repeater-style preset manager.
+Support ordinary Groups with absent, default, or constrained layouts. Retain settings but suspend effects on Row, Stack, and Grid variations.
 
-Store presets in a new `flexline_frame_presets` option. Each preset row should include:
+## Content Shift compatibility contract
 
-- Label.
-- Generated id/slug.
-- Side: `top` or `bottom` in v1.
-- SVG media attachment id and/or SVG URL.
-- Mask height.
+- Frames own mask properties and frame-specific CSS variables. They do not alter Content Shift attributes, transforms, horizontal margins, or z-index.
+- Frame overlap can affect vertical margins only when Content Shift is not actively controlling that edge.
+- An enabled, explicitly supplied Content Shift value—including zero—takes precedence: `shiftUp` over top overlap, `shiftDown` over bottom overlap.
+- Preserve suppressed overlap selections. Explain beside the overlap control that Content Shift currently controls that edge.
+- Respect “Restore Normal on Mobile”: when Content Shift stops applying at its existing mobile breakpoint, the configured frame overlap becomes effective again.
+- Disabling either frame toggle removes all frame margin overrides and leaves Content Shift behavior intact.
+- Use explicit shared CSS rules for precedence, including editor preview. Do not depend on stylesheet order or competing `!important` declarations.
+- Keep padding manual. Existing “Raise z-index” remains the stacking control; verify its behavior with masked containers.
 
-The admin UI should reuse the existing FlexLine Theme Options media-library upload pattern rather than adding a new dependency.
+## Implementation sessions
 
-Uploaded SVGs should be edge mask SVGs:
+### 1. Architecture and prerequisites
 
-- black or opaque visible area;
-- transparent clipped area;
-- already oriented for the selected side;
-- sized as a single edge mask, not as a full decorative illustration.
+Review ownership boundaries, class/module structure, settings registration, and editor/frontend loading contexts.
 
-## Editor And Render Model
+Establish project-local PHPUnit tooling. Verify and document the existing Web4SL SVG sanitization prerequisite without silently introducing another sanitizer.
 
-Add Group block attributes:
+Confirm compatibility with the theme’s declared WordPress 6.5/PHP 8.1 minimum and the local WordPress 7.1 files.
 
-- `flexlineFrameTop`
-- `flexlineFrameBottom`
+**Exit:** reviewed architecture, explicit dependencies, reproducible checks, and recorded baseline results.
 
-Add a "FlexLine Frame" inspector panel on Group blocks with:
+### 2. Settings model and Frames admin
 
-- Top Frame select populated only with top-side presets.
-- Bottom Frame select populated only with bottom-side presets.
+Implement object-oriented PHP for feature enablement, preset validation, stable IDs, and attachment resolution.
 
-Saved block content should store only the selected preset ids. During `render_block`, FlexLine should resolve the current preset data from `flexline_frame_presets` and apply the render output. This keeps existing pages connected to updated Theme Options presets without requiring page edits.
+Add the gated preset manager using existing Theme Options and Media Library patterns. Support accessible add/edit/remove/reorder actions and a separate settings group.
 
-Rendered classes:
+**Exit:** toggling and saving retain hidden presets; invalid submissions produce useful errors; storage tests pass.
 
-- `flexline-frame`
-- `flexline-frame-top`
-- `flexline-frame-bottom`
+### 3. Frontend masking
 
-Rendered CSS variables:
+Register frame attributes and implement a common activation check covering global toggle, block toggle, supported layout, and valid preset.
 
-- `--flexline-frame-top-mask`
-- `--flexline-frame-top-height`
-- `--flexline-frame-bottom-mask`
-- `--flexline-frame-bottom-height`
+Apply the planned classes and CSS variables to the Group root using WordPress HTML processing APIs. Implement top, bottom, and combined masks with seam tolerance and short-container safeguards.
 
-## CSS Model
+**Exit:** masks clip backgrounds and content correctly; both toggles suppress output; preset edits affect fresh renders without page edits.
 
-Use `mask-image` and `-webkit-mask-image` on the Group block itself so the actual container is clipped. The mask should affect the Group's background color, gradient, background image behavior, and nested content.
+### 4. Block controls and preview
 
-The FlexLine implementation should not use pseudo-elements for the frame shape in v1. Pseudo-elements create divider-like color layers; this feature is intended to clip the actual container shape.
+Add the gated Styles panel, side-filtered selects, and unavailable-preset notices. Pass resolved presets through existing editor configuration.
 
-Top-only, bottom-only, and top-plus-bottom states should all work. CSS should include small overlap tolerance where needed to avoid visible one-pixel gaps between mask layers.
+Apply preview properties without persisting generated frame classes or styles in saved content.
 
-## Test Plan
+**Exit:** disabling/re-enabling retains choices, save/reload produces no validation errors, and post/Site Editor previews match frontend output.
 
-Validate the feature with:
+### 5. Overlap and Content Shift integration
 
-- Theme Options add, remove, reorder, save, and reload behavior for frame presets.
-- Safe SVG media upload and saved attachment/URL values.
-- Group inspector preset lists filtered by side.
-- Editor preview and frontend output for top-only, bottom-only, and top-plus-bottom frames.
-- Background colors, gradients, images, and nested content clipped by the same mask.
-- Existing Groups updating after a Theme Options preset changes, without editing page content.
-- `npm run lint-js`.
-- `npm run lint-style`.
-- PHP lint/PHPCS for changed PHP files where practical.
-- Rebuilt frontend and editor assets.
+Implement responsive half/full overlap and the per-edge precedence contract.
 
-## Assumptions
+Integrate carefully with existing editor wrapper-property handling, which currently writes and clears margins in multiple places. Avoid adding another competing margin writer.
 
-- This belongs in the FlexLine parent theme, not client child themes.
-- OCW remains a reference implementation only.
-- V1 supports Group blocks, top frames, and bottom frames.
-- Preset height is managed centrally in Theme Options.
-- Preset SVGs are trusted admin-managed media-library assets and still sanitized as URLs/attachments.
+**Exit:** Content Shift wins consistently, mobile reset behaves as specified, and toggle changes restore the correct remaining styles.
+
+### 6. Integration QA
+
+Test:
+
+- Global and block toggle combinations, including save/reload while disabled.
+- Top/bottom/both masks, deleted presets/media, and layout transforms.
+- Overlap against empty, zero, and nonzero Content Shift values on each edge.
+- Mobile reset, horizontal shifts, slide transforms, raised z-index, and existing Group spacing.
+- Background colors/gradients/images, nested content, short Groups, keyboard interaction, and Group links.
+- Post editor, Site Editor, frontend, supported browsers, and minimum WordPress compatibility.
+
+Run PHPUnit, PHP lint/PHPCS, JS/CSS lint, explicit lint for modified admin JS, and `npm run build`.
+
+**Exit:** no unresolved feature regressions; unrelated baseline failures are identified separately.
+
+### 7. Documentation and handoff
+
+Update README and the existing plan with configuration instructions, SVG prerequisites, toggle retention behavior, Content Shift precedence, cache refresh expectations, and rollback steps.
+
+**Exit:** reproducible setup and acceptance checklist; existing OCW content remains untouched.
+
+## Boundaries and handoffs
+
+No production deployment, automatic migration, external SVG URLs, bundled artwork, automatic padding, or left/right frames.
+
+Each session records review results, changes, tests, limitations, commit, and next step. Preset and global-toggle changes affect fresh renders; existing page/CDN caches require their normal purge process.
