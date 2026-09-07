@@ -18,6 +18,7 @@ Thumbs.db
 *.log
 *.sql
 *.sqlite
+.phpunit.cache/
 
 # OS generated files
 ._*

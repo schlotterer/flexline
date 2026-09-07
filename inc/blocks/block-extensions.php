@@ -17,6 +17,12 @@ function flexline_enqueue_block_editor_assets() {
 	$block_extension_config = array(
 		'useCoreGalleryLightbox' => version_compare( get_bloginfo( 'version' ), '7.0', '>=' ),
 		'visibilityMode'         => 'legacy',
+		'sectionFrames'          => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
 	);
 
 	// Modal addons to core button and image blocks.
@@ -224,19 +230,18 @@ function flexline_remove_classes_from_block_content( $block_content, $removed_cl
 	}
 
 	$remove_map = array_fill_keys( $removed_classes, true );
-	$classes    = preg_split( '/\s+/', trim( $existing_classes ) );
-	$classes    = array_values(
-		array_filter(
-			$classes,
-			static function ( $class ) use ( $remove_map ) {
-				if ( isset( $remove_map[ $class ] ) ) {
-					return false;
-				}
+	$classes    = array();
+	foreach ( preg_split( '/\s+/', trim( $existing_classes ) ) as $class_name ) {
+		if ( isset( $remove_map[ $class_name ] ) ) {
+			continue;
+		}
 
-				return ! preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class );
-			}
-		)
-	);
+		if ( preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class_name ) ) {
+			continue;
+		}
+
+		$classes[] = $class_name;
+	}
 
 	if ( empty( $classes ) ) {
 		$processor->remove_attribute( 'class' );
@@ -320,6 +325,150 @@ function flexline_block_has_horizontal_scroller( $block, $block_content ) {
 	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
 
 	return ! empty( $attrs['enableHorizontalScroller'] ) || flexline_block_has_class_name( $block, $block_content, 'is-style-horizontal-scroll' );
+}
+
+/**
+ * Determine whether a Group block layout can render Section Frames.
+ *
+ * @param array $attrs Parsed block attributes.
+ * @return bool
+ */
+function flexline_group_layout_supports_section_frames( array $attrs ) {
+	$layout = isset( $attrs['layout'] ) && is_array( $attrs['layout'] ) ? $attrs['layout'] : array();
+	$type   = isset( $layout['type'] ) ? sanitize_key( (string) $layout['type'] ) : '';
+
+	return '' === $type || in_array( $type, array( 'default', 'constrained' ), true );
+}
+
+/**
+ * Escape a URL for CSS url() usage inside an inline style attribute.
+ *
+ * @param string $url Raw URL.
+ * @return string
+ */
+function flexline_css_url_value( $url ) {
+	$allowed_protocols = function_exists( 'wp_allowed_protocols' ) ? wp_allowed_protocols() : array( 'http', 'https' );
+	$url               = esc_url_raw( $url, array_merge( $allowed_protocols, array( 'data' ) ) );
+	$url               = str_replace( array( '\\', '"' ), array( '\\\\', '\"' ), $url );
+
+	return 'url("' . $url . '")';
+}
+
+/**
+ * Return whether Content Shift is intentionally controlling a vertical edge.
+ *
+ * @param array  $attrs Parsed block attributes.
+ * @param string $edge Top or bottom edge.
+ * @return bool
+ */
+function flexline_content_shift_edge_is_active( array $attrs, string $edge ) {
+	if ( empty( $attrs['useContentShift'] ) ) {
+		return false;
+	}
+
+	$attr_name = 'top' === $edge ? 'shiftUp' : 'shiftDown';
+	if ( ! array_key_exists( $attr_name, $attrs ) ) {
+		return false;
+	}
+
+	return '' !== trim( (string) $attrs[ $attr_name ] );
+}
+
+/**
+ * Normalize a Section Frame overlap value.
+ *
+ * @param mixed $value Raw overlap value.
+ * @return string
+ */
+function flexline_normalize_section_frame_overlap( $value ) {
+	$value = sanitize_key( (string) $value );
+
+	return in_array( $value, array( 'half', 'full' ), true ) ? $value : 'none';
+}
+
+/**
+ * Build the negative margin expression for a Section Frame overlap.
+ *
+ * @param string $height_var Frame height CSS custom property name.
+ * @param string $overlap    Normalized overlap value.
+ * @return string
+ */
+function flexline_section_frame_overlap_value( string $height_var, string $overlap ) {
+	if ( 'half' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -0.5)';
+	}
+
+	if ( 'full' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -1)';
+	}
+
+	return '';
+}
+
+/**
+ * Build Section Frame classes and CSS variables for a Group block.
+ *
+ * @param array $attrs Parsed block attributes.
+ * @return array{classes:string,style:string}
+ */
+function flexline_get_section_frame_render_data( array $attrs ) {
+	$empty = array(
+		'classes' => '',
+		'style'   => '',
+	);
+
+	if ( ! class_exists( __NAMESPACE__ . '\Section_Frame_Presets' ) || ! Section_Frame_Presets::is_enabled() ) {
+		return $empty;
+	}
+
+	if ( empty( $attrs['flexlineUseFrames'] ) || ! flexline_group_layout_supports_section_frames( $attrs ) ) {
+		return $empty;
+	}
+
+	$top    = Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameTop'] ?? '' ), 'top' );
+	$bottom = Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameBottom'] ?? '' ), 'bottom' );
+
+	if ( null === $top && null === $bottom ) {
+		return $empty;
+	}
+
+	$classes = array( 'flexline-section-frame' );
+	$styles  = array();
+
+	if ( null !== $top ) {
+		$classes[] = 'flexline-section-frame-top';
+		$styles[]  = '--flexline-frame-top-image: ' . flexline_css_url_value( (string) $top['url'] );
+		$styles[]  = '--flexline-frame-top-height: ' . $top['height'];
+
+		$top_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapTop'] ?? '' );
+		if ( 'none' !== $top_overlap ) {
+			$top_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'top' );
+			if ( ! $top_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $top_content_shift_active ? 'flexline-section-frame-overlap-top-mobile' : 'flexline-section-frame-overlap-top';
+				$styles[]  = '--flexline-frame-top-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-top-height', $top_overlap );
+			}
+		}
+	}
+
+	if ( null !== $bottom ) {
+		$classes[] = 'flexline-section-frame-bottom';
+		$styles[]  = '--flexline-frame-bottom-image: ' . flexline_css_url_value( (string) $bottom['url'] );
+		$styles[]  = '--flexline-frame-bottom-height: ' . $bottom['height'];
+
+		$bottom_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapBottom'] ?? '' );
+		if ( 'none' !== $bottom_overlap ) {
+			$bottom_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'bottom' );
+			if ( ! $bottom_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $bottom_content_shift_active ? 'flexline-section-frame-overlap-bottom-mobile' : 'flexline-section-frame-overlap-bottom';
+				$styles[]  = '--flexline-frame-bottom-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-bottom-height', $bottom_overlap );
+			}
+		}
+	}
+
+	return array(
+		'classes' => implode( ' ', $classes ) . ' ',
+		'style'   => implode( '; ', $styles ) . ';',
+	);
 }
 
 /**
@@ -568,6 +717,14 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 	}
 
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
+		if ( 'core/group' === $block['blockName'] ) {
+			$frame_render_data = flexline_get_section_frame_render_data( $attrs );
+			if ( '' !== $frame_render_data['classes'] ) {
+				$block_content = add_classes_to_block_content( $block_content, $frame_render_data['classes'] );
+				$block_content = flexline_merge_inline_style( $block_content, $frame_render_data['style'] );
+			}
+		}
+
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
 				// Determine target attribute for link types.

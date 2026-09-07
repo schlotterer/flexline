@@ -1,0 +1,96 @@
+@mixin flexline-section-frame-rules {
+	.flexline-section-frame {
+		--flexline-frame-top-height: clamp(56px, 7vw, 112px);
+		--flexline-frame-bottom-height: clamp(56px, 7vw, 112px);
+
+		isolation: isolate;
+		overflow: hidden;
+		overflow: clip;
+		position: relative;
+	}
+
+	.flexline-section-frame-top {
+		mask-image: var(--flexline-frame-top-image), linear-gradient(#000 0 0);
+		mask-mode: alpha;
+		mask-position: top center, bottom center;
+		mask-repeat: no-repeat;
+		mask-size:
+			100% var(--flexline-frame-top-height),
+			100% max(0px, calc(100% - var(--flexline-frame-top-height) + 1px));
+		-webkit-mask-image: var(--flexline-frame-top-image), linear-gradient(#000 0 0);
+		-webkit-mask-position: top center, bottom center;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size:
+			100% var(--flexline-frame-top-height),
+			100% max(0px, calc(100% - var(--flexline-frame-top-height) + 1px));
+	}
+
+	.flexline-section-frame-bottom {
+		mask-image: linear-gradient(#000 0 0), var(--flexline-frame-bottom-image);
+		mask-mode: alpha;
+		mask-position: top center, bottom center;
+		mask-repeat: no-repeat;
+		mask-size:
+			100% max(0px, calc(100% - var(--flexline-frame-bottom-height) + 1px)),
+			100% var(--flexline-frame-bottom-height);
+		-webkit-mask-image: linear-gradient(#000 0 0), var(--flexline-frame-bottom-image);
+		-webkit-mask-position: top center, bottom center;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size:
+			100% max(0px, calc(100% - var(--flexline-frame-bottom-height) + 1px)),
+			100% var(--flexline-frame-bottom-height);
+	}
+
+	.flexline-section-frame-top.flexline-section-frame-bottom {
+		mask-image:
+			var(--flexline-frame-top-image),
+			linear-gradient(#000 0 0),
+			var(--flexline-frame-bottom-image);
+		mask-position:
+			center top,
+			center calc(var(--flexline-frame-top-height) - 1px),
+			center bottom;
+		mask-size:
+			100% var(--flexline-frame-top-height),
+			100% max(0px, calc(100% - var(--flexline-frame-top-height) - var(--flexline-frame-bottom-height) + 2px)),
+			100% var(--flexline-frame-bottom-height);
+		-webkit-mask-image:
+			var(--flexline-frame-top-image),
+			linear-gradient(#000 0 0),
+			var(--flexline-frame-bottom-image);
+		-webkit-mask-position:
+			center top,
+			center calc(var(--flexline-frame-top-height) - 1px),
+			center bottom;
+		-webkit-mask-size:
+			100% var(--flexline-frame-top-height),
+			100% max(0px, calc(100% - var(--flexline-frame-top-height) - var(--flexline-frame-bottom-height) + 2px)),
+			100% var(--flexline-frame-bottom-height);
+	}
+
+	@include screen($tablet-up) {
+		.flexline-section-frame-overlap-top {
+			margin-block-start: var(--flexline-frame-top-overlap, 0) !important;
+			margin-top: var(--flexline-frame-top-overlap, 0);
+		}
+
+		.flexline-section-frame-overlap-bottom {
+			margin-block-end: var(--flexline-frame-bottom-overlap, 0) !important;
+			margin-bottom: var(--flexline-frame-bottom-overlap, 0);
+		}
+	}
+
+	@include screen($mobile) {
+		.flexline-section-frame-overlap-top,
+		.flexline-section-frame-overlap-top-mobile {
+			margin-block-start: var(--flexline-frame-top-overlap, 0) !important;
+			margin-top: var(--flexline-frame-top-overlap, 0);
+		}
+
+		.flexline-section-frame-overlap-bottom,
+		.flexline-section-frame-overlap-bottom-mobile {
+			margin-block-end: var(--flexline-frame-bottom-overlap, 0) !important;
+			margin-bottom: var(--flexline-frame-bottom-overlap, 0);
+		}
+	}
+}
