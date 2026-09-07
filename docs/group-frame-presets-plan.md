@@ -272,11 +272,60 @@ Run PHPUnit, PHP lint/PHPCS, JS/CSS lint, explicit lint for modified admin JS, a
 
 **Exit:** no unresolved feature regressions; unrelated baseline failures are identified separately.
 
+**Session 6 status:** completed locally on 2026-09-07.
+
+QA coverage recorded:
+
+- Admin saving verified during implementation: global enablement, preset add/edit, Media Library SVG selection, label/image persistence, tab retention after save, single combined save action, remove/reorder behavior, and submitted empty preset clearing.
+- Editor behavior verified while testing: controls appear in the Group Styles panel when globally enabled, saved frame selections reload, top/bottom side filters work, unavailable/missing side selections are called out, and unsupported Row/Stack/Grid layouts retain attributes without rendering.
+- Rendering behavior verified while testing: top-only, bottom-only, combined top/bottom frames, different top/bottom heights, Cover/background image/gradient cases, constrained Group width, and the combined-mask placement correction.
+- Overlap behavior covered by tests and manual checks: `none`, `half`, `full`, explicit Content Shift `0`, per-edge precedence, and mobile-reset overlap restoration.
+- SVG workflow reviewed with real Affinity exports. FlexLine now normalizes readable SVG sources at render/preview time by applying `preserveAspectRatio="none"` without mutating uploaded Media Library files.
+- Manual browser/editor coverage still belongs in release QA: Chrome post editor, Site Editor canvas, front end, and Safari CSS mask sanity.
+
+Verification:
+
+- `npm run prod` passes and refreshes compiled assets.
+- `composer test` passes: 23 PHPUnit tests, 67 assertions.
+- `vendor/bin/phpcs --extensions=php` passes.
+- `npm run test:primary-terms` passes: 9 standalone contract checks.
+- `npm run lint-js` passes.
+- `npm run lint-style` passes.
+- `git diff --check` passes.
+
 ### 7. Documentation and handoff
 
 Update README and the existing plan with configuration instructions, SVG prerequisites, toggle retention behavior, Content Shift precedence, cache refresh expectations, and rollback steps.
 
 **Exit:** reproducible setup and acceptance checklist; existing OCW content remains untouched.
+
+**Session 7 status:** completed locally on 2026-09-07.
+
+Documentation added:
+
+- Added README instructions for configuring Section Frames in FlexLine Options and applying presets from the Group Styles panel.
+- Documented supported Group layouts and retained-but-suspended behavior for Row, Stack, and Grid.
+- Documented SVG setup requirements, including Affinity export settings and automatic `preserveAspectRatio="none"` normalization.
+- Documented saved option names, block-attribute storage, cache refresh expectations, and rollback paths.
+- Recorded Session 6 QA coverage and remaining release-level browser/editor sanity checks in this plan.
+
+Acceptance checklist for release handoff:
+
+- `Appearance > FlexLine Options > Section Frames` can enable/disable the feature without deleting saved presets.
+- Presets can be added, edited, reordered, removed, and fully cleared.
+- Presets reject non-SVG Media Library attachments.
+- Saved presets remain available after admin reload.
+- Group Styles controls show only when the global feature is enabled.
+- Top selector only lists top presets; bottom selector only lists bottom presets.
+- Missing/deleted/wrong-side presets do not render broken masks.
+- Ordinary/default/constrained Group blocks render selected frames.
+- Row, Stack, and Grid layouts retain settings but do not render frames.
+- Top-only, bottom-only, and combined frames render against background color, gradient, image, and nested Cover content.
+- Combined top/bottom frames remain aligned when top and bottom heights differ.
+- Overlap values behave independently per edge.
+- Content Shift overrides only the matching edge when explicitly active, including `0`.
+- Content Shift mobile reset allows configured frame overlap to resume at the mobile breakpoint.
+- Production assets are rebuilt before release.
 
 ## Boundaries and handoffs
 

@@ -117,6 +117,81 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
+## Section Frames
+
+Section Frames let editors apply reusable SVG masks to the top and/or bottom
+edge of ordinary Group sections. The feature is opt-in globally and per block,
+so existing content is unchanged until both toggles are enabled.
+
+### Setup
+
+1. Go to **Appearance > FlexLine Options > Section Frames**.
+2. Enable **Section Frames**.
+3. Add one or more **Frame Shape Presets**.
+4. For each preset, enter a label, choose **Top edge** or **Bottom edge**, select
+   a Media Library SVG, and set the responsive mask-band height.
+5. In the block editor, select an ordinary Group block and open
+   **Styles > FlexLine Section Frames**.
+6. Enable **Use Section Frames**, then choose the top and/or bottom frame shape.
+
+Only ordinary/default/constrained Group layouts render frames. Row, Stack, and
+Grid layouts retain saved frame choices but suspend the visual effect.
+
+### SVG Requirements
+
+Frame presets must use SVG files from the Media Library. SVG upload and
+sanitization are owned by the platform stack; FlexLine validates that the chosen
+attachment is an SVG and fails closed when the attachment is missing or not an
+SVG.
+
+For reliable results:
+
+- Export a wide, short strip, such as `1440 x 160`.
+- Keep the artboard or document bounds tight to the frame strip.
+- Use a transparent background.
+- For top frames, the opaque shape should fill below the edge.
+- For bottom frames, the opaque shape should fill above the edge.
+- Avoid text, strokes, filters, embedded raster images, and transformed artwork
+  that extends outside the SVG viewBox.
+
+Affinity exports should use SVG format, **Set view box** enabled, and a valid
+Raster DPI such as `300`. FlexLine automatically applies
+`preserveAspectRatio="none"` to readable SVG attachments when generating saved
+admin previews, editor previews, and front-end masks, so users should not need
+to edit SVG markup by hand.
+
+### Behavior Notes
+
+- Disabling the global Section Frames option hides block controls and suppresses
+  rendering, but saved presets and block selections remain stored.
+- Disabling **Use Section Frames** on a Group suppresses that Group's frames but
+  retains its selected presets and overlap choices.
+- Preset edits affect fresh renders without editing each page again.
+- Frame height values control the mask band at the section edge. They do not
+  move inner blocks or replace Group padding controls.
+- Top and bottom overlap controls move the framed Group against neighboring
+  sections. They do not reposition content inside the Group.
+- Content Shift takes precedence only on the matching edge when it is enabled
+  and that edge has an explicitly supplied value, including `0`.
+- When Content Shift's mobile reset is active, suppressed frame overlap can
+  resume at the existing mobile breakpoint.
+
+### Caching and Rollback
+
+Section Frame settings are stored in normal WordPress options:
+
+- `flexline_enable_group_frames`
+- `flexline_frame_presets`
+
+Block selections are stored in block attributes on the affected Group blocks.
+Changes to presets and the global toggle affect fresh renders immediately, but
+page caches, object caches, and CDN caches may need their normal purge process.
+
+To roll back a frame visually, disable **Use Section Frames** on the Group. To
+disable the feature site-wide while preserving configuration, turn off
+**Enable Section Frames** in FlexLine Options. To remove preset definitions,
+delete the rows in the preset manager and save.
+
 ## Responsive Visibility
 
 FlexLine responsive visibility controls are available in the block inspector and write FlexLine attributes/classes (`hideOnDesktop`, `hideOnTablet`, `hideOnMobile` and `flexline-hide-on-*`) for frontend breakpoint behavior. This does not affect the separate Visibility Toggle Groups feature.
