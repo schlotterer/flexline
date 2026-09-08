@@ -23,6 +23,12 @@ function flexline_enqueue_block_editor_assets() {
 				'enabled' => false,
 				'presets' => array(),
 			),
+		'sectionShapeMasks'      => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_shape_mask_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
 	);
 
 	// Modal addons to core button and image blocks.
@@ -387,6 +393,33 @@ function flexline_normalize_section_frame_overlap( $value ) {
 }
 
 /**
+ * Normalize a Group section shape mode, falling back from legacy selections.
+ *
+ * @param array $attrs Parsed block attributes.
+ * @return string top, bottom, both, or whole.
+ */
+function flexline_normalize_section_shape_mode( array $attrs ) {
+	$mode = sanitize_key( (string) ( $attrs['flexlineFrameMode'] ?? '' ) );
+	if ( in_array( $mode, array( 'top', 'bottom', 'both', 'whole' ), true ) ) {
+		return $mode;
+	}
+
+	if ( ! empty( $attrs['flexlineShapeMask'] ) ) {
+		return 'whole';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameTop'] ) && ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'both';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'bottom';
+	}
+
+	return 'top';
+}
+
+/**
  * Build the negative margin expression for a Section Frame overlap.
  *
  * @param string $height_var Frame height CSS custom property name.
@@ -425,15 +458,35 @@ function flexline_get_section_frame_render_data( array $attrs ) {
 		return $empty;
 	}
 
-	$top    = Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameTop'] ?? '' ), 'top' );
-	$bottom = Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameBottom'] ?? '' ), 'bottom' );
+	$mode   = flexline_normalize_section_shape_mode( $attrs );
+	$top    = in_array( $mode, array( 'top', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameTop'] ?? '' ), 'top' )
+		: null;
+	$bottom = in_array( $mode, array( 'bottom', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameBottom'] ?? '' ), 'bottom' )
+		: null;
+	$mask   = 'whole' === $mode
+		? Section_Frame_Presets::resolve_shape_mask_preset_for_render( (string) ( $attrs['flexlineShapeMask'] ?? '' ) )
+		: null;
 
-	if ( null === $top && null === $bottom ) {
+	if ( null === $top && null === $bottom && null === $mask ) {
 		return $empty;
 	}
 
 	$classes = array( 'flexline-section-frame' );
 	$styles  = array();
+
+	if ( null !== $mask ) {
+		$classes[] = 'flexline-section-shape-mask';
+		if ( 'proportion' === ( $mask['fit'] ?? '' ) ) {
+			$classes[] = 'flexline-section-shape-mask-proportion';
+		}
+		$styles[] = '--flexline-shape-mask-image: ' . flexline_css_url_value( (string) $mask['url'] );
+		$styles[] = '--flexline-shape-mask-size: ' . $mask['css_size'];
+		if ( ! empty( $mask['aspect_ratio'] ) ) {
+			$styles[] = '--flexline-shape-mask-aspect-ratio: ' . $mask['aspect_ratio'];
+		}
+	}
 
 	if ( null !== $top ) {
 		$classes[] = 'flexline-section-frame-top';

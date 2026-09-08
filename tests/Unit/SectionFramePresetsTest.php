@@ -82,8 +82,10 @@ namespace {
 
 namespace FlexLine\Tests\Unit {
 	use FlexLine\Section_Frame_Presets;
+	use FlexLine\Section_Shape_SVG_Source;
 	use PHPUnit\Framework\TestCase;
 
+	require_once dirname( __DIR__, 2 ) . '/inc/functions/class-section-shape-svg-source.php';
 	require_once dirname( __DIR__, 2 ) . '/inc/functions/class-section-frame-presets.php';
 	require_once dirname( __DIR__, 2 ) . '/inc/blocks/block-extensions.php';
 
@@ -110,9 +112,7 @@ namespace FlexLine\Tests\Unit {
 			$GLOBALS['flexline_section_frame_test_errors']     = array();
 			$GLOBALS['flexline_section_frame_test_uuid']       = 0;
 
-			$cache = new \ReflectionProperty( Section_Frame_Presets::class, 'normalized_svg_data_uri_cache' );
-			$cache->setAccessible( true );
-			$cache->setValue( null, array() );
+			Section_Shape_SVG_Source::reset_cache();
 		}
 
 		public function test_sanitize_enabled_returns_integer_flag(): void {
@@ -143,6 +143,7 @@ namespace FlexLine\Tests\Unit {
 					array(
 						'id'                  => 'gentletop',
 						'label'               => 'Gentle top',
+						'type'                => 'frame',
 						'side'                => 'top',
 						'attachment_id'       => 10,
 						'height_min'          => 56.0,
@@ -188,7 +189,7 @@ namespace FlexLine\Tests\Unit {
 			self::assertSame( array(), Section_Frame_Presets::sanitize_presets( array( '_submitted' => '1' ) ) );
 			self::assertSame( 'flexline_frame_presets', $GLOBALS['flexline_section_frame_test_errors'][0]['setting'] );
 			self::assertSame( 'updated', $GLOBALS['flexline_section_frame_test_errors'][0]['type'] );
-			self::assertStringContainsString( '0 frame shape presets saved', $GLOBALS['flexline_section_frame_test_errors'][0]['message'] );
+			self::assertStringContainsString( '0 section shape presets saved', $GLOBALS['flexline_section_frame_test_errors'][0]['message'] );
 		}
 
 		public function test_already_normalized_presets_are_idempotent(): void {
@@ -196,6 +197,7 @@ namespace FlexLine\Tests\Unit {
 				array(
 					'id'                  => 'saved_top',
 					'label'               => 'Saved top',
+					'type'                => 'frame',
 					'side'                => 'top',
 					'attachment_id'       => 10,
 					'height_min'          => 56.0,
@@ -730,6 +732,399 @@ namespace FlexLine\Tests\Unit {
 						'layout'            => array( 'type' => 'grid' ),
 					)
 				)
+			);
+		}
+
+		public function test_section_shape_mode_whole_outputs_mask_and_suppresses_frame_rendering(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><path d="M0 0H1200V300H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::ENABLE_OPTION ]  = 1;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array(
+					'id'                  => 'saved_top',
+					'label'               => 'Saved top',
+					'type'                => 'frame',
+					'side'                => 'top',
+					'attachment_id'       => 10,
+					'height_min'          => 56.0,
+					'height_preferred_vw' => 7.0,
+					'height_max'          => 112.0,
+				),
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'proportion',
+				),
+			);
+
+			$result = \FlexLine\flexline_get_section_frame_render_data(
+				array(
+					'flexlineUseFrames' => true,
+					'flexlineFrameMode' => 'whole',
+					'flexlineFrameTop'  => 'saved_top',
+					'flexlineShapeMask' => 'saved_mask',
+				)
+			);
+			unlink( $file );
+
+			self::assertStringContainsString( 'flexline-section-shape-mask', $result['classes'] );
+			self::assertStringContainsString( 'flexline-section-shape-mask-proportion', $result['classes'] );
+			self::assertStringNotContainsString( 'flexline-section-frame-top ', $result['classes'] );
+			self::assertStringContainsString( '--flexline-shape-mask-image:', $result['style'] );
+			self::assertStringContainsString( '--flexline-shape-mask-size: 100% 100%', $result['style'] );
+			self::assertStringContainsString( '--flexline-shape-mask-aspect-ratio: 1200 / 300', $result['style'] );
+			self::assertStringNotContainsString( '--flexline-frame-top-image:', $result['style'] );
+		}
+
+		public function test_section_shape_mode_whole_with_missing_mask_does_not_render_stale_frames(): void {
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::ENABLE_OPTION ]  = 1;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array(
+					'id'                  => 'saved_top',
+					'label'               => 'Saved top',
+					'type'                => 'frame',
+					'side'                => 'top',
+					'attachment_id'       => 10,
+					'height_min'          => 56.0,
+					'height_preferred_vw' => 7.0,
+					'height_max'          => 112.0,
+				),
+			);
+
+			$result = \FlexLine\flexline_get_section_frame_render_data(
+				array(
+					'flexlineUseFrames' => true,
+					'flexlineFrameMode' => 'whole',
+					'flexlineFrameTop'  => 'saved_top',
+					'flexlineShapeMask' => 'missing_mask',
+				)
+			);
+
+			self::assertSame(
+				array(
+					'classes' => '',
+					'style'   => '',
+				),
+				$result
+			);
+		}
+
+		public function test_sanitize_presets_normalizes_whole_section_rows(): void {
+			$result = Section_Frame_Presets::sanitize_presets(
+				array(
+					'items' => array(
+						array(
+							'id'            => 'Logo Shape',
+							'label'         => ' <strong>Logo shape</strong> ',
+							'type'          => 'whole',
+							'attachment_id' => '10',
+							'fit'           => 'proportion',
+						),
+					),
+				)
+			);
+
+			self::assertSame(
+				array(
+					array(
+						'id'            => 'logoshape',
+						'label'         => 'Logo shape',
+						'type'          => 'mask',
+						'side'          => 'whole',
+						'attachment_id' => 10,
+						'fit'           => 'proportion',
+					),
+				),
+				$result
+			);
+		}
+
+		public function test_sanitize_presets_defaults_whole_section_behavior(): void {
+			$result = Section_Frame_Presets::sanitize_presets(
+				array(
+					'items' => array(
+						array(
+							'id'            => 'badge',
+							'label'         => 'Badge',
+							'type'          => 'whole',
+							'attachment_id' => '10',
+							'fit'           => 'bad-fit',
+						),
+					),
+				)
+			);
+
+			self::assertSame( 'fill', $result[0]['fit'] );
+			self::assertArrayNotHasKey( 'position', $result[0] );
+		}
+
+		public function test_whole_section_shape_rows_are_idempotent(): void {
+			$normalized = array(
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'fill',
+				),
+			);
+
+			self::assertSame( $normalized, Section_Frame_Presets::sanitize_presets( $normalized ) );
+			self::assertSame( array(), $GLOBALS['flexline_section_frame_test_errors'] );
+		}
+
+		public function test_invalid_whole_section_svg_preserves_saved_presets_and_reports_error(): void {
+			$saved = array(
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'fill',
+				),
+			);
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = $saved;
+
+			$result = Section_Frame_Presets::sanitize_presets(
+				array(
+					'items' => array(
+						array(
+							'id'            => 'bad_image',
+							'label'         => 'Bad image',
+							'type'          => 'whole',
+							'attachment_id' => 20,
+							'fit'           => 'fill',
+						),
+					),
+				)
+			);
+
+			self::assertSame( $saved, $result );
+			self::assertSame( 'flexline_frame_presets', $GLOBALS['flexline_section_frame_test_errors'][0]['setting'] );
+			self::assertStringContainsString( 'must use an SVG', $GLOBALS['flexline_section_frame_test_errors'][0]['message'] );
+		}
+
+		public function test_whole_section_duplicate_or_missing_ids_are_replaced_with_unique_ids(): void {
+			$result = Section_Frame_Presets::sanitize_presets(
+				array(
+					'items' => array(
+						array(
+							'id'            => 'shared_id',
+							'label'         => 'First',
+							'type'          => 'whole',
+							'attachment_id' => 10,
+						),
+						array(
+							'id'            => 'shared_id',
+							'label'         => 'Second',
+							'type'          => 'whole',
+							'attachment_id' => 30,
+						),
+						array(
+							'label'         => 'Third',
+							'type'          => 'whole',
+							'attachment_id' => 10,
+						),
+					),
+				)
+			);
+
+			self::assertSame( 'shared_id', $result[0]['id'] );
+			self::assertNotSame( 'shared_id', $result[1]['id'] );
+			self::assertNotSame( '', $result[2]['id'] );
+			self::assertCount( 3, array_unique( array_column( $result, 'id' ) ) );
+		}
+
+		public function test_whole_section_sanitize_presets_resolves_attachment_url_and_label_fallback(): void {
+			$result = Section_Frame_Presets::sanitize_presets(
+				array(
+					'items' => array(
+						array(
+							'id'             => '',
+							'label'          => '',
+							'type'           => 'whole',
+							'attachment_id'  => '',
+							'attachment_url' => 'https://example.test/uploads/top.svg',
+							'fit'            => 'cover',
+						),
+					),
+				)
+			);
+
+			self::assertCount( 1, $result );
+			self::assertSame( 'Saved top', $result[0]['label'] );
+			self::assertSame( 10, $result[0]['attachment_id'] );
+			self::assertSame( 'mask', $result[0]['type'] );
+			self::assertSame( 'whole', $result[0]['side'] );
+			self::assertSame( 'fill', $result[0]['fit'] );
+			self::assertArrayNotHasKey( 'position', $result[0] );
+			self::assertNotSame( '', $result[0]['id'] );
+		}
+
+		public function test_whole_section_resolve_preset_for_render_outputs_css_values(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><path d="M0 0H1200V300H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'proportion',
+				),
+			);
+
+			$preset = Section_Frame_Presets::resolve_shape_mask_preset_for_render( 'saved_mask' );
+			unlink( $file );
+
+			self::assertNotNull( $preset );
+			self::assertSame( 'proportion', $preset['fit'] );
+			self::assertSame( '100% 100%', $preset['css_size'] );
+			self::assertSame( '1200 / 300', $preset['aspect_ratio'] );
+			self::assertStringStartsWith( 'data:image/svg+xml;charset=UTF-8,', $preset['url'] );
+		}
+
+		public function test_editor_configs_filter_unified_shape_presets_by_type(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><path d="M0 0H1200V300H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::ENABLE_OPTION ]  = 1;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array(
+					'id'                  => 'saved_top',
+					'label'               => 'Saved top',
+					'type'                => 'frame',
+					'side'                => 'top',
+					'attachment_id'       => 10,
+					'height_min'          => 56.0,
+					'height_preferred_vw' => 7.0,
+					'height_max'          => 112.0,
+				),
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'proportion',
+				),
+			);
+
+			$frame_config = Section_Frame_Presets::get_editor_config();
+			$mask_config  = Section_Frame_Presets::get_shape_mask_editor_config();
+			unlink( $file );
+
+			self::assertCount( 1, $frame_config['presets'] );
+			self::assertSame( 'saved_top', $frame_config['presets'][0]['id'] );
+			self::assertCount( 1, $mask_config['presets'] );
+			self::assertSame( 'saved_mask', $mask_config['presets'][0]['id'] );
+			self::assertSame( '100% 100%', $mask_config['presets'][0]['css_size'] );
+			self::assertSame( '1200 / 300', $mask_config['presets'][0]['aspect_ratio'] );
+		}
+
+		public function test_shape_mask_preserving_source_removes_conflicting_svg_metadata(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 300 1200" preserveAspectRatio="none"><path d="M0 0H300V1200H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			$source = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' );
+			unlink( $file );
+
+			$decoded = rawurldecode( $source );
+			self::assertStringStartsWith( 'data:image/svg+xml;charset=UTF-8,', $source );
+			self::assertStringContainsString( 'viewBox="0 0 300 1200"', $decoded );
+			self::assertStringContainsString( 'preserveAspectRatio="xMidYMid meet"', $decoded );
+			self::assertStringNotContainsString( 'width="1200"', $decoded );
+			self::assertStringNotContainsString( 'height="300"', $decoded );
+			self::assertStringNotContainsString( 'preserveAspectRatio="none"', $decoded );
+		}
+
+		public function test_shape_mask_preserving_source_requires_usable_viewbox(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300"><path d="M0 0H1200V300H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			$source = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' );
+			unlink( $file );
+
+			self::assertSame( '', $source );
+		}
+
+		public function test_shape_mask_source_does_not_use_frame_url_fallback(): void {
+			self::assertSame( 'https://example.test/uploads/top.svg', Section_Frame_Presets::get_svg_frame_source( 10 ) );
+			self::assertSame( '', Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' ) );
+		}
+
+		public function test_svg_source_cache_is_scoped_by_policy(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			self::assertIsString( $file );
+			file_put_contents(
+				$file,
+				'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300"><path d="M0 0H1200V300H0Z"/></svg>'
+			);
+
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+
+			$frame_source      = Section_Frame_Presets::get_svg_frame_source( 10 );
+			$shape_mask_source = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' );
+			$shape_mask_again  = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' );
+			unlink( $file );
+
+			self::assertStringContainsString( 'preserveAspectRatio="none"', rawurldecode( $frame_source ) );
+			self::assertStringContainsString( 'preserveAspectRatio="xMidYMid meet"', rawurldecode( $shape_mask_source ) );
+			self::assertSame( $shape_mask_source, $shape_mask_again );
+			self::assertSame( 2, $GLOBALS['flexline_section_frame_test_file_reads'][10] );
+		}
+
+		public function test_shape_mask_editor_config_uses_global_section_shapes_switch(): void {
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array(
+					'id'            => 'saved_mask',
+					'label'         => 'Saved mask',
+					'type'          => 'mask',
+					'side'          => 'whole',
+					'attachment_id' => 10,
+					'fit'           => 'fill',
+				),
+			);
+
+			self::assertSame(
+				array(
+					'enabled' => false,
+					'presets' => array(),
+				),
+				Section_Frame_Presets::get_shape_mask_editor_config()
 			);
 		}
 	}

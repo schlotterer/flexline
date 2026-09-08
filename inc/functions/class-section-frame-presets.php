@@ -23,14 +23,7 @@ class Section_Frame_Presets {
 	private const DEFAULT_HEIGHT_MIN          = 56.0;
 	private const DEFAULT_HEIGHT_PREFERRED_VW = 7.0;
 	private const DEFAULT_HEIGHT_MAX          = 112.0;
-	private const MAX_INLINE_SVG_BYTES        = 262144;
-
-	/**
-	 * Normalized SVG data URIs generated during the current request.
-	 *
-	 * @var array<int,string>
-	 */
-	private static array $normalized_svg_data_uri_cache = array();
+	private const DEFAULT_MASK_FIT            = 'fill';
 
 	/**
 	 * Register Section Frame settings.
@@ -93,6 +86,34 @@ class Section_Frame_Presets {
 	}
 
 	/**
+	 * Return normalized top/bottom frame presets.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	public static function get_frame_presets(): array {
+		return array_values(
+			array_filter(
+				self::get_presets(),
+				static fn( array $preset ): bool => 'frame' === ( $preset['type'] ?? 'frame' )
+			)
+		);
+	}
+
+	/**
+	 * Return normalized whole-section mask presets.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	public static function get_shape_mask_presets(): array {
+		return array_values(
+			array_filter(
+				self::get_presets(),
+				static fn( array $preset ): bool => 'mask' === ( $preset['type'] ?? '' )
+			)
+		);
+	}
+
+	/**
 	 * Resolve a saved preset by ID and edge side.
 	 *
 	 * @param string $preset_id Preset ID.
@@ -107,6 +128,10 @@ class Section_Frame_Presets {
 		}
 
 		foreach ( self::get_presets() as $preset ) {
+			if ( 'frame' !== ( $preset['type'] ?? 'frame' ) ) {
+				continue;
+			}
+
 			if ( $preset_id !== $preset['id'] || $side !== $preset['side'] ) {
 				continue;
 			}
@@ -138,6 +163,29 @@ class Section_Frame_Presets {
 	}
 
 	/**
+	 * Resolve a whole-section shape mask preset and include render fields.
+	 *
+	 * @param string $preset_id Preset ID.
+	 * @return array<string,mixed>|null
+	 */
+	public static function resolve_shape_mask_preset_for_render( string $preset_id ): ?array {
+		$preset_id = sanitize_key( $preset_id );
+		if ( '' === $preset_id ) {
+			return null;
+		}
+
+		foreach ( self::get_shape_mask_presets() as $preset ) {
+			if ( $preset_id !== $preset['id'] ) {
+				continue;
+			}
+
+			return self::prepare_shape_mask_preset_for_render( $preset );
+		}
+
+		return null;
+	}
+
+	/**
 	 * Return editor configuration for Section Frame controls and preview.
 	 *
 	 * @return array{enabled:bool,presets:array<int,array<string,mixed>>}
@@ -152,7 +200,7 @@ class Section_Frame_Presets {
 			return $config;
 		}
 
-		foreach ( self::get_presets() as $preset ) {
+		foreach ( self::get_frame_presets() as $preset ) {
 			$prepared = self::prepare_preset_for_render( $preset );
 			if ( null !== $prepared ) {
 				$config['presets'][] = $prepared;
@@ -174,16 +222,34 @@ class Section_Frame_Presets {
 	 * @return string
 	 */
 	public static function get_svg_frame_source( int $attachment_id ): string {
-		if ( ! self::is_svg_attachment( $attachment_id ) ) {
-			return '';
+		return class_exists( __NAMESPACE__ . '\Section_Shape_SVG_Source' )
+			? Section_Shape_SVG_Source::get_frame_source( $attachment_id )
+			: ( self::is_svg_attachment( $attachment_id ) ? self::get_attachment_url( $attachment_id ) : '' );
+	}
+
+	/**
+	 * Return editor configuration for whole-section shape mask controls.
+	 *
+	 * @return array{enabled:bool,presets:array<int,array<string,mixed>>}
+	 */
+	public static function get_shape_mask_editor_config(): array {
+		$config = array(
+			'enabled' => self::is_enabled(),
+			'presets' => array(),
+		);
+
+		if ( ! $config['enabled'] ) {
+			return $config;
 		}
 
-		$data_uri = self::get_normalized_svg_data_uri( $attachment_id );
-		if ( '' !== $data_uri ) {
-			return $data_uri;
+		foreach ( self::get_shape_mask_presets() as $preset ) {
+			$prepared = self::prepare_shape_mask_preset_for_render( $preset );
+			if ( null !== $prepared ) {
+				$config['presets'][] = $prepared;
+			}
 		}
 
-		return self::get_attachment_url( $attachment_id );
+		return $config;
 	}
 
 	/**
@@ -209,6 +275,35 @@ class Section_Frame_Presets {
 			self::format_number( (float) $preset['height_preferred_vw'] ),
 			self::format_number( (float) $preset['height_max'] )
 		);
+
+		return $preset;
+	}
+
+	/**
+	 * Add render/editor fields to a normalized whole-section mask preset.
+	 *
+	 * @param array<string,mixed> $preset            Normalized preset row.
+	 * @return array<string,mixed>|null
+	 */
+	private static function prepare_shape_mask_preset_for_render( array $preset ): ?array {
+		if ( ! class_exists( __NAMESPACE__ . '\Section_Shape_SVG_Source' ) || ! self::is_svg_attachment( (int) $preset['attachment_id'] ) ) {
+			return null;
+		}
+
+		$fit = self::normalize_fit( $preset['fit'] ?? self::DEFAULT_MASK_FIT );
+		$url = Section_Shape_SVG_Source::get_shape_mask_source( (int) $preset['attachment_id'], $fit );
+		if ( '' === $url ) {
+			return null;
+		}
+
+		$preset['url']      = $url;
+		$preset['fit']      = $fit;
+		$preset['css_size'] = '100% 100%';
+
+		$aspect_ratio = Section_Shape_SVG_Source::get_viewbox_aspect_ratio( (int) $preset['attachment_id'] );
+		if ( 'proportion' === $fit && '' !== $aspect_ratio ) {
+			$preset['aspect_ratio'] = $aspect_ratio;
+		}
 
 		return $preset;
 	}
@@ -240,7 +335,7 @@ class Section_Frame_Presets {
 		$items = isset( $input['items'] ) && is_array( $input['items'] ) ? $input['items'] : array();
 		if ( empty( $items ) ) {
 			if ( ! empty( $input['_submitted'] ) ) {
-				self::add_notice( 'saved-frame-presets', '0 frame shape presets saved.' );
+				self::add_notice( 'saved-section-shape-presets', '0 section shape presets saved.' );
 				return array();
 			}
 
@@ -307,7 +402,7 @@ class Section_Frame_Presets {
 			self::add_notice(
 				'saved-frame-presets',
 				sprintf(
-					'%d frame shape preset%s saved.',
+					'%d section shape preset%s saved.',
 					count( $presets ),
 					1 === count( $presets ) ? '' : 's'
 				)
@@ -338,37 +433,80 @@ class Section_Frame_Presets {
 			$label = self::get_attachment_label( $attachment_id );
 		}
 
-		$side = self::normalize_side( $item['side'] ?? '' );
-		if ( '' === $side ) {
-			$errors[ 'invalid-side-' . $index ] = sprintf( 'Frame shape "%s" must use Top edge or Bottom edge.', $label );
+		$type = self::normalize_shape_type( $item );
+		if ( empty( $type ) ) {
+			$errors[ 'invalid-type-' . $index ] = sprintf( 'Section shape "%s" must use Top frame, Bottom frame, or Whole section.', $label );
 			return null;
 		}
 
 		if ( ! self::is_svg_attachment( $attachment_id ) ) {
-			$errors[ 'invalid-svg-' . $index ] = sprintf( 'Frame shape "%s" must use an SVG from the Media Library.', $label );
+			$errors[ 'invalid-svg-' . $index ] = sprintf( 'Section shape "%s" must use an SVG from the Media Library.', $label );
 			return null;
 		}
 
-		$height = self::normalize_height( $item, $label, $index, $errors );
-		if ( empty( $height ) ) {
+		$is_frame = 'frame' === $type['kind'];
+		$side     = $is_frame ? $type['side'] : 'whole';
+		$height   = $is_frame ? self::normalize_height( $item, $label, $index, $errors ) : null;
+		if ( $is_frame && empty( $height ) ) {
 			return null;
 		}
 
 		$id = self::normalize_id( $item['id'] ?? '' );
 		if ( '' === $id || isset( $seen_ids[ $id ] ) ) {
-			$id = self::generate_id( $label, $attachment_id, $side, $seen_ids );
+			$id = self::generate_id( $label, $attachment_id, $side, $type['kind'], $seen_ids );
 		}
 		$seen_ids[ $id ] = true;
 
-		return array(
-			'id'                  => $id,
-			'label'               => $label,
-			'side'                => $side,
-			'attachment_id'       => $attachment_id,
-			'height_min'          => $height['min'],
-			'height_preferred_vw' => $height['preferred_vw'],
-			'height_max'          => $height['max'],
+		$preset = array(
+			'id'            => $id,
+			'label'         => $label,
+			'type'          => $type['kind'],
+			'side'          => $side,
+			'attachment_id' => $attachment_id,
 		);
+
+		if ( $is_frame && is_array( $height ) ) {
+			$preset['height_min']          = $height['min'];
+			$preset['height_preferred_vw'] = $height['preferred_vw'];
+			$preset['height_max']          = $height['max'];
+		} else {
+			$preset['fit'] = self::normalize_fit( $item['fit'] ?? self::DEFAULT_MASK_FIT );
+		}
+
+		return $preset;
+	}
+
+	/**
+	 * Normalize a preset type submitted by the unified Section Shape table.
+	 *
+	 * @param array $item Raw row.
+	 * @return array{kind:string,side:string}|array{}
+	 */
+	private static function normalize_shape_type( array $item ): array {
+		$type = sanitize_key( (string) ( $item['type'] ?? '' ) );
+		if ( in_array( $type, array( 'top', 'bottom' ), true ) ) {
+			return array(
+				'kind' => 'frame',
+				'side' => $type,
+			);
+		}
+
+		if ( in_array( $type, array( 'whole', 'mask', 'shape-mask' ), true ) ) {
+			return array(
+				'kind' => 'mask',
+				'side' => 'whole',
+			);
+		}
+
+		$side = self::normalize_side( $item['side'] ?? '' );
+		if ( in_array( $type, array( '', 'frame' ), true ) && '' !== $side ) {
+			return array(
+				'kind' => 'frame',
+				'side' => $side,
+			);
+		}
+
+		return array();
 	}
 
 	/**
@@ -425,6 +563,26 @@ class Section_Frame_Presets {
 	private static function normalize_side( $side ): string {
 		$side = sanitize_key( (string) $side );
 		return in_array( $side, array( 'top', 'bottom' ), true ) ? $side : '';
+	}
+
+	/**
+	 * Normalize a whole-section mask behavior value.
+	 *
+	 * @param mixed $fit Raw fit value.
+	 * @return string
+	 */
+	public static function normalize_fit( $fit ): string {
+		$fit = sanitize_key( (string) $fit );
+
+		if ( 'contain' === $fit ) {
+			return 'proportion';
+		}
+
+		if ( in_array( $fit, array( 'cover', 'stretch' ), true ) ) {
+			return 'fill';
+		}
+
+		return in_array( $fit, array( 'fill', 'proportion' ), true ) ? $fit : self::DEFAULT_MASK_FIT;
 	}
 
 	/**
@@ -512,14 +670,15 @@ class Section_Frame_Presets {
 	 *
 	 * @param string $label         Preset label.
 	 * @param int    $attachment_id SVG attachment ID.
-	 * @param string $side          Edge side.
+	 * @param string $side          Edge side or whole.
+	 * @param string $kind          Preset kind.
 	 * @param array  $seen_ids      IDs already used during this normalization pass.
 	 * @return string
 	 */
-	private static function generate_id( string $label, int $attachment_id, string $side, array $seen_ids ): string {
+	private static function generate_id( string $label, int $attachment_id, string $side, string $kind, array $seen_ids ): string {
 		do {
 			$seed = function_exists( 'wp_generate_uuid4' ) ? wp_generate_uuid4() : uniqid( '', true );
-			$id   = 'frame_' . substr( md5( $label . '|' . $attachment_id . '|' . $side . '|' . $seed ), 0, 12 );
+			$id   = ( 'mask' === $kind ? 'mask_' : 'frame_' ) . substr( md5( $label . '|' . $attachment_id . '|' . $side . '|' . $seed ), 0, 12 );
 		} while ( isset( $seen_ids[ $id ] ) );
 
 		return $id;
@@ -532,11 +691,9 @@ class Section_Frame_Presets {
 	 * @return bool
 	 */
 	private static function is_svg_attachment( int $attachment_id ): bool {
-		if ( $attachment_id <= 0 || ! function_exists( 'get_post_mime_type' ) ) {
-			return false;
-		}
-
-		return 'image/svg+xml' === get_post_mime_type( $attachment_id );
+		return class_exists( __NAMESPACE__ . '\Section_Shape_SVG_Source' )
+			? Section_Shape_SVG_Source::is_svg_attachment( $attachment_id )
+			: $attachment_id > 0 && function_exists( 'get_post_mime_type' ) && 'image/svg+xml' === get_post_mime_type( $attachment_id );
 	}
 
 	/**
@@ -546,82 +703,24 @@ class Section_Frame_Presets {
 	 * @return string
 	 */
 	private static function get_attachment_url( int $attachment_id ): string {
+		return class_exists( __NAMESPACE__ . '\Section_Shape_SVG_Source' )
+			? Section_Shape_SVG_Source::get_attachment_url( $attachment_id )
+			: self::get_attachment_url_fallback( $attachment_id );
+	}
+
+	/**
+	 * Return an attachment URL when the shared source helper is unavailable.
+	 *
+	 * @param int $attachment_id Attachment ID.
+	 * @return string
+	 */
+	private static function get_attachment_url_fallback( int $attachment_id ): string {
 		if ( $attachment_id <= 0 || ! function_exists( 'wp_get_attachment_url' ) ) {
 			return '';
 		}
 
 		$url = wp_get_attachment_url( $attachment_id );
 		return is_string( $url ) ? $url : '';
-	}
-
-	/**
-	 * Build a normalized SVG data URI for a Media Library attachment.
-	 *
-	 * @param int $attachment_id SVG attachment ID.
-	 * @return string
-	 */
-	private static function get_normalized_svg_data_uri( int $attachment_id ): string {
-		if ( $attachment_id <= 0 || ! function_exists( 'get_attached_file' ) ) {
-			return '';
-		}
-
-		if ( isset( self::$normalized_svg_data_uri_cache[ $attachment_id ] ) ) {
-			return self::$normalized_svg_data_uri_cache[ $attachment_id ];
-		}
-
-		$file = get_attached_file( $attachment_id );
-		if ( ! is_string( $file ) || '' === $file || ! is_readable( $file ) ) {
-			return '';
-		}
-
-		$file_size = filesize( $file );
-		if ( false === $file_size || $file_size > self::MAX_INLINE_SVG_BYTES ) {
-			return '';
-		}
-
-		// SVG uploads are already restricted to Media Library SVG attachments.
-		$svg = file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		if ( ! is_string( $svg ) || '' === trim( $svg ) ) {
-			return '';
-		}
-
-		$svg = self::normalize_svg_preserve_aspect_ratio( $svg );
-		if ( '' === $svg ) {
-			return '';
-		}
-
-		self::$normalized_svg_data_uri_cache[ $attachment_id ] = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode( $svg );
-
-		return self::$normalized_svg_data_uri_cache[ $attachment_id ];
-	}
-
-	/**
-	 * Force preserveAspectRatio="none" on the root SVG element.
-	 *
-	 * @param string $svg SVG markup.
-	 * @return string
-	 */
-	private static function normalize_svg_preserve_aspect_ratio( string $svg ): string {
-		$normalized = preg_replace_callback(
-			'/<svg\b([^>]*)>/i',
-			static function ( array $matches ): string {
-				$attributes = preg_replace(
-					'/\s+preserveAspectRatio\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+)/i',
-					'',
-					$matches[1]
-				);
-
-				if ( ! is_string( $attributes ) ) {
-					$attributes = $matches[1];
-				}
-
-				return '<svg' . $attributes . ' preserveAspectRatio="none">';
-			},
-			$svg,
-			1
-		);
-
-		return is_string( $normalized ) && $normalized !== $svg ? $normalized : '';
 	}
 
 	/**

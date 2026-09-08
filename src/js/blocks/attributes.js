@@ -283,6 +283,11 @@ export const customSectionFrameAttributes = {
 		type: 'boolean',
 		default: false,
 	},
+	flexlineFrameMode: {
+		type: 'string',
+		enum: ['top', 'bottom', 'both', 'whole'],
+		default: 'top',
+	},
 	flexlineFrameTop: {
 		type: 'string',
 		default: '',
@@ -300,6 +305,10 @@ export const customSectionFrameAttributes = {
 		type: 'string',
 		enum: ['none', 'half', 'full'],
 		default: 'none',
+	},
+	flexlineShapeMask: {
+		type: 'string',
+		default: '',
 	},
 };
 

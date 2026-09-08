@@ -233,10 +233,75 @@
 		messageNode.textContent = message;
 	}
 
+	function getMediaAttachmentValue(model, attachment, keys) {
+		for (const key of keys) {
+			if (attachment && attachment[key]) {
+				return attachment[key];
+			}
+
+			if (attachment && key === 'url' && attachment.sizes?.full?.url) {
+				return attachment.sizes.full.url;
+			}
+
+			if (model && typeof model.get === 'function' && model.get(key)) {
+				return model.get(key);
+			}
+
+			if (model && key === 'url') {
+				const sizes =
+					typeof model.get === 'function' ? model.get('sizes') : null;
+				if (sizes?.full?.url) {
+					return sizes.full.url;
+				}
+			}
+
+			if (model && model[key]) {
+				return model[key];
+			}
+
+			if (model?.attributes?.[key]) {
+				return model.attributes[key];
+			}
+
+			if (
+				model?.attributes &&
+				key === 'url' &&
+				model.attributes.sizes?.full?.url
+			) {
+				return model.attributes.sizes.full.url;
+			}
+		}
+
+		return '';
+	}
+
+	function setMediaFieldValue(field, value) {
+		if (!field) {
+			return;
+		}
+
+		field.value = value || '';
+		field.defaultValue = value || '';
+		field.setAttribute('value', value || '');
+	}
+
 	function getFramePresetRows(table) {
 		return Array.from(
 			table.querySelectorAll('tbody tr[data-frame-preset-row]')
 		);
+	}
+
+	function updateFramePresetRowType(row) {
+		const typeField = row.querySelector('[data-frame-field="type"]');
+		const isWholeSection = typeField && typeField.value === 'whole';
+
+		row.dataset.framePresetType = isWholeSection ? 'whole' : 'frame';
+		row.querySelectorAll('[data-frame-panel="height"]').forEach((cell) => {
+			cell.hidden = isWholeSection;
+		});
+		row.querySelectorAll('[data-frame-panel="mask"]').forEach((cell) => {
+			cell.hidden = !isWholeSection;
+		});
 	}
 
 	function chooseFrameSvg(row) {
@@ -245,7 +310,7 @@
 		}
 
 		const frame = window.wp.media({
-			title: 'Choose Frame Shape SVG',
+			title: 'Choose Section Shape SVG',
 			multiple: false,
 			library: { type: 'image' },
 			button: { text: 'Use this SVG' },
@@ -258,35 +323,43 @@
 			}
 
 			const attachment = selection.toJSON();
+			const attachmentUrl = getMediaAttachmentValue(
+				selection,
+				attachment,
+				['url', 'source_url']
+			);
 			const isSvg =
 				attachment.mime === 'image/svg+xml' ||
 				attachment.subtype === 'svg+xml' ||
-				/\.svg(\?.*)?$/i.test(attachment.url || '');
+				/\.svg(\?.*)?$/i.test(attachmentUrl || '');
 
 			if (!isSvg) {
 				updateFrameAttachmentLabel(row, 'Selected file is not an SVG.');
 				return;
 			}
 
+			const attachmentId = getMediaAttachmentValue(
+				selection,
+				attachment,
+				['id', 'ID']
+			);
+			const attachmentLabel = getMediaAttachmentValue(
+				selection,
+				attachment,
+				['title', 'filename', 'name', 'url']
+			);
 			const idField = row.querySelector(
 				'[data-frame-field="attachment_id"]'
 			);
 			const urlField = row.querySelector(
 				'[data-frame-field="attachment_url"]'
 			);
-			if (idField) {
-				idField.value = attachment.id || '';
-			}
-			if (urlField) {
-				urlField.value = attachment.url || '';
-			}
+			setMediaFieldValue(idField, attachmentId || '');
+			setMediaFieldValue(urlField, attachmentUrl || '');
 
 			updateFramePresetRowError(row, '');
-			updateFrameSvgPreview(row, attachment.url || '');
-			updateFrameAttachmentLabel(
-				row,
-				attachment.title || attachment.filename || attachment.url || ''
-			);
+			updateFrameSvgPreview(row, attachmentUrl || '');
+			updateFrameAttachmentLabel(row, attachmentLabel || '');
 		});
 
 		frame.open();
@@ -333,11 +406,16 @@
 				}
 			});
 			row.querySelectorAll('select').forEach((select) => {
-				select.value = 'top';
+				if (select.dataset.frameField === 'fit') {
+					select.value = 'fill';
+				} else {
+					select.value = 'top';
+				}
 			});
 			updateFramePresetRowError(row, '');
 			updateFrameSvgPreview(row, '');
 			updateFrameAttachmentLabel(row, 'No SVG selected');
+			updateFramePresetRowType(row);
 
 			body.appendChild(row);
 			reindexFramePresetRows(table);
@@ -387,6 +465,17 @@
 			}
 		});
 
+		table.addEventListener('change', function (event) {
+			if (!event.target.matches('[data-frame-field="type"]')) {
+				return;
+			}
+
+			const row = event.target.closest('tr[data-frame-preset-row]');
+			if (row && !row.hidden) {
+				updateFramePresetRowType(row);
+			}
+		});
+
 		if (form) {
 			form.addEventListener('submit', function (event) {
 				let firstInvalidField = null;
@@ -412,7 +501,7 @@
 					if (!hasLabel) {
 						updateFramePresetRowError(
 							row,
-							'Add a label before saving this frame shape.'
+							'Add a label before saving this section shape.'
 						);
 						firstInvalidField = firstInvalidField || labelField;
 					}
@@ -423,7 +512,7 @@
 						);
 						updateFramePresetRowError(
 							row,
-							'Choose an SVG before saving this frame shape.'
+							'Choose an SVG before saving this section shape.'
 						);
 						firstInvalidField =
 							firstInvalidField ||
@@ -438,6 +527,8 @@
 				}
 			});
 		}
+
+		getFramePresetRows(table).forEach(updateFramePresetRowType);
 	}
 
 	onReady(function () {
