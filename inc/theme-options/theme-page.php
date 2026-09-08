@@ -35,7 +35,7 @@ function flexline_theme_options_page() {
 			'content' => 'flexline_render_utilities_tab',
 		),
 		'frames'        => array(
-			'title'   => 'Section Frames',
+			'title'   => 'Section Shapes',
 			'content' => 'flexline_render_frames_tab',
 		),
 		'documentation' => array(
@@ -141,7 +141,7 @@ function flexline_theme_options_page() {
 		.flexline-frame-examples {
 			display: grid;
 			gap: 0.75rem;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 		.flexline-frame-examples figure {
 			background: #fff;
@@ -185,6 +185,10 @@ function flexline_theme_options_page() {
 			max-width: 180px;
 			overflow: hidden;
 		}
+		[data-frame-preset-type="whole"] .flexline-frame-svg-preview {
+			height: 80px;
+			max-width: 220px;
+		}
 		.flexline-frame-svg-preview:empty::before {
 			color: #646970;
 			content: "No preview";
@@ -195,6 +199,9 @@ function flexline_theme_options_page() {
 			height: 100%;
 			object-fit: fill;
 			width: 100%;
+		}
+		[data-frame-preset-type="whole"] .flexline-frame-svg-preview img {
+			object-fit: contain;
 		}
 		.flexline-frame-svg-actions {
 			align-items: center;

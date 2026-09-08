@@ -41,6 +41,22 @@
 			100% var(--flexline-frame-bottom-height);
 	}
 
+	.flexline-section-shape-mask {
+		mask-image: var(--flexline-shape-mask-image);
+		mask-mode: alpha;
+		mask-position: center center;
+		mask-repeat: no-repeat;
+		mask-size: var(--flexline-shape-mask-size, 100% 100%);
+		-webkit-mask-image: var(--flexline-shape-mask-image);
+		-webkit-mask-position: center center;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: var(--flexline-shape-mask-size, 100% 100%);
+	}
+
+	.flexline-section-shape-mask-proportion {
+		aspect-ratio: var(--flexline-shape-mask-aspect-ratio);
+	}
+
 	.flexline-section-frame-top.flexline-section-frame-bottom {
 		mask-image:
 			var(--flexline-frame-top-image),

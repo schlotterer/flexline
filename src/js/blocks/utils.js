@@ -40,6 +40,8 @@ const sectionFrameClassNames = [
 	'flexline-section-frame',
 	'flexline-section-frame-top',
 	'flexline-section-frame-bottom',
+	'flexline-section-shape-mask',
+	'flexline-section-shape-mask-proportion',
 	'flexline-section-frame-overlap-top',
 	'flexline-section-frame-overlap-bottom',
 	'flexline-section-frame-overlap-top-mobile',
@@ -53,6 +55,9 @@ const sectionFrameStyleVars = [
 	'--flexline-frame-bottom-image',
 	'--flexline-frame-bottom-height',
 	'--flexline-frame-bottom-overlap',
+	'--flexline-shape-mask-image',
+	'--flexline-shape-mask-size',
+	'--flexline-shape-mask-aspect-ratio',
 ];
 
 const sectionFrameOverlapOptions = [
@@ -63,6 +68,15 @@ const sectionFrameOverlapOptions = [
 
 export const getSectionFrameConfig = () => {
 	const config = window.flexlineBlockExtensions?.sectionFrames || {};
+
+	return {
+		enabled: !!config.enabled,
+		presets: Array.isArray(config.presets) ? config.presets : [],
+	};
+};
+
+export const getSectionShapeMaskConfig = () => {
+	const config = window.flexlineBlockExtensions?.sectionShapeMasks || {};
 
 	return {
 		enabled: !!config.enabled,
@@ -87,6 +101,46 @@ const getSectionFramePresetForSide = (presetId, side) => {
 		) || null
 	);
 };
+
+const getSectionShapeMode = (attributes = {}) => {
+	const mode = attributes.flexlineFrameMode;
+	if (['top', 'bottom', 'both', 'whole'].includes(mode)) {
+		return mode;
+	}
+
+	if (attributes.flexlineShapeMask) {
+		return 'whole';
+	}
+
+	if (attributes.flexlineFrameTop && attributes.flexlineFrameBottom) {
+		return 'both';
+	}
+
+	if (attributes.flexlineFrameBottom) {
+		return 'bottom';
+	}
+
+	return 'top';
+};
+
+const modeUsesTopFrame = (mode) => mode === 'top' || mode === 'both';
+const modeUsesBottomFrame = (mode) => mode === 'bottom' || mode === 'both';
+
+const getSectionShapeMaskPreset = (presetId) => {
+	const id = `${presetId || ''}`.trim();
+	if (!id) {
+		return null;
+	}
+
+	return (
+		getSectionShapeMaskConfig().presets.find(
+			(preset) => preset.id === id
+		) || null
+	);
+};
+
+const hasUnavailableSectionShapeMaskSelection = (presetId) =>
+	!!`${presetId || ''}`.trim() && !getSectionShapeMaskPreset(presetId);
 
 const hasUnavailableSectionFrameSelection = (presetId, side) =>
 	!!`${presetId || ''}`.trim() &&
@@ -117,6 +171,28 @@ const getSectionFrameOptions = (side, selectedId) => {
 	return options;
 };
 
+const getSectionShapeMaskOptions = (selectedId) => {
+	const options = [
+		{
+			label: 'No whole-section shape',
+			value: '',
+		},
+		...getSectionShapeMaskConfig().presets.map((preset) => ({
+			label: preset.label,
+			value: preset.id,
+		})),
+	];
+
+	if (hasUnavailableSectionShapeMaskSelection(selectedId)) {
+		options.push({
+			label: 'Unavailable saved shape',
+			value: selectedId,
+		});
+	}
+
+	return options;
+};
+
 const getSectionFrameSideNotice = (presetId, side) => {
 	if (!hasUnavailableSectionFrameSelection(presetId, side)) {
 		return null;
@@ -126,6 +202,18 @@ const getSectionFrameSideNotice = (presetId, side) => {
 		<Notice status="warning" isDismissible={false}>
 			The saved {side} frame shape is unavailable or assigned to the other
 			edge.
+		</Notice>
+	);
+};
+
+const getSectionShapeMaskNotice = (presetId) => {
+	if (!hasUnavailableSectionShapeMaskSelection(presetId)) {
+		return null;
+	}
+
+	return (
+		<Notice status="warning" isDismissible={false}>
+			The saved whole-section shape is unavailable.
 		</Notice>
 	);
 };
@@ -200,8 +288,17 @@ export const getSectionFramePreviewProps = (blockName, attributes = {}) => {
 		attributes.flexlineFrameBottom,
 		'bottom'
 	);
+	const mode = getSectionShapeMode(attributes);
+	const shapeMask =
+		mode === 'whole'
+			? getSectionShapeMaskPreset(attributes.flexlineShapeMask)
+			: null;
 
-	if (!top && !bottom) {
+	if (
+		!shapeMask &&
+		(!modeUsesTopFrame(mode) || !top) &&
+		(!modeUsesBottomFrame(mode) || !bottom)
+	) {
 		return empty;
 	}
 
@@ -209,7 +306,20 @@ export const getSectionFramePreviewProps = (blockName, attributes = {}) => {
 	const styles = { ...empty.styles };
 	const inlineStyles = {};
 
-	if (top) {
+	if (shapeMask) {
+		classes.push('flexline-section-shape-mask');
+		if (shapeMask.fit === 'proportion') {
+			classes.push('flexline-section-shape-mask-proportion');
+		}
+		styles['--flexline-shape-mask-image'] = cssUrlValue(shapeMask.url);
+		styles['--flexline-shape-mask-size'] = shapeMask.css_size;
+		if (shapeMask.aspect_ratio) {
+			styles['--flexline-shape-mask-aspect-ratio'] =
+				shapeMask.aspect_ratio;
+		}
+	}
+
+	if (modeUsesTopFrame(mode) && top) {
 		classes.push('flexline-section-frame-top');
 		styles['--flexline-frame-top-image'] = cssUrlValue(top.url);
 		styles['--flexline-frame-top-height'] = top.height;
@@ -237,7 +347,7 @@ export const getSectionFramePreviewProps = (blockName, attributes = {}) => {
 		}
 	}
 
-	if (bottom) {
+	if (modeUsesBottomFrame(mode) && bottom) {
 		classes.push('flexline-section-frame-bottom');
 		styles['--flexline-frame-bottom-image'] = cssUrlValue(bottom.url);
 		styles['--flexline-frame-bottom-height'] = bottom.height;
@@ -293,20 +403,22 @@ export const getSectionFrameControls = (props) => {
 	}
 
 	const { attributes } = props;
+	const mode = getSectionShapeMode(attributes);
 	const topPresets = config.presets.filter((preset) => preset.side === 'top');
 	const bottomPresets = config.presets.filter(
 		(preset) => preset.side === 'bottom'
 	);
+	const shapeMaskConfig = getSectionShapeMaskConfig();
 	const layoutSupported = isGroupLayoutSupportedForSectionFrames(attributes);
 
 	return (
 		<InspectorControls group="styles">
 			<PanelBody
-				title="FlexLine Section Frames"
+				title="FlexLine Section Shapes"
 				initialOpen={!!attributes.flexlineUseFrames}
 			>
 				<ToggleControl
-					label="Use Section Frames"
+					label="Use Section Shapes"
 					checked={!!attributes.flexlineUseFrames}
 					onChange={(newValue) =>
 						props.setAttributes({ flexlineUseFrames: newValue })
@@ -314,20 +426,38 @@ export const getSectionFrameControls = (props) => {
 				/>
 				{attributes.flexlineUseFrames && !layoutSupported && (
 					<Notice status="warning" isDismissible={false}>
-						Section Frames are available on ordinary Group layouts.
+						Section Shapes are available on ordinary Group layouts.
 						Row, Stack, and Grid layouts keep their saved choices
-						but do not render frames.
+						but do not render shapes.
 					</Notice>
 				)}
+				{attributes.flexlineUseFrames && (
+					<SelectControl
+						label="Shape Type"
+						value={mode}
+						options={[
+							{ label: 'Top frame', value: 'top' },
+							{ label: 'Bottom frame', value: 'bottom' },
+							{ label: 'Top and bottom frames', value: 'both' },
+							{ label: 'Whole section', value: 'whole' },
+						]}
+						onChange={(value) =>
+							props.setAttributes({ flexlineFrameMode: value })
+						}
+						disabled={!layoutSupported}
+						__nextHasNoMarginBottom={true}
+					/>
+				)}
 				{attributes.flexlineUseFrames &&
+					modeUsesTopFrame(mode) &&
 					topPresets.length === 0 &&
 					!attributes.flexlineFrameTop && (
 						<Notice status="info" isDismissible={false}>
-							Add Top edge frame shapes in FlexLine Section Frames
+							Add Top frame shapes in FlexLine Section Shapes
 							options.
 						</Notice>
 					)}
-				{attributes.flexlineUseFrames && (
+				{attributes.flexlineUseFrames && modeUsesTopFrame(mode) && (
 					<SelectControl
 						label="Top Frame Shape"
 						value={attributes.flexlineFrameTop || ''}
@@ -343,11 +473,13 @@ export const getSectionFrameControls = (props) => {
 					/>
 				)}
 				{attributes.flexlineUseFrames &&
+					modeUsesTopFrame(mode) &&
 					getSectionFrameSideNotice(
 						attributes.flexlineFrameTop,
 						'top'
 					)}
 				{attributes.flexlineUseFrames &&
+					modeUsesTopFrame(mode) &&
 					attributes.flexlineFrameTop && (
 						<SelectControl
 							label="Top Frame Overlap"
@@ -365,17 +497,19 @@ export const getSectionFrameControls = (props) => {
 						/>
 					)}
 				{attributes.flexlineUseFrames &&
+					modeUsesTopFrame(mode) &&
 					attributes.flexlineFrameTop &&
 					getSectionFrameOverlapNotice(attributes, 'top')}
 				{attributes.flexlineUseFrames &&
+					modeUsesBottomFrame(mode) &&
 					bottomPresets.length === 0 &&
 					!attributes.flexlineFrameBottom && (
 						<Notice status="info" isDismissible={false}>
-							Add Bottom edge frame shapes in FlexLine Section
-							Frames options.
+							Add Bottom frame shapes in FlexLine Section Shapes
+							options.
 						</Notice>
 					)}
-				{attributes.flexlineUseFrames && (
+				{attributes.flexlineUseFrames && modeUsesBottomFrame(mode) && (
 					<SelectControl
 						label="Bottom Frame Shape"
 						value={attributes.flexlineFrameBottom || ''}
@@ -391,11 +525,13 @@ export const getSectionFrameControls = (props) => {
 					/>
 				)}
 				{attributes.flexlineUseFrames &&
+					modeUsesBottomFrame(mode) &&
 					getSectionFrameSideNotice(
 						attributes.flexlineFrameBottom,
 						'bottom'
 					)}
 				{attributes.flexlineUseFrames &&
+					modeUsesBottomFrame(mode) &&
 					attributes.flexlineFrameBottom && (
 						<SelectControl
 							label="Bottom Frame Overlap"
@@ -413,8 +549,35 @@ export const getSectionFrameControls = (props) => {
 						/>
 					)}
 				{attributes.flexlineUseFrames &&
+					modeUsesBottomFrame(mode) &&
 					attributes.flexlineFrameBottom &&
 					getSectionFrameOverlapNotice(attributes, 'bottom')}
+				{attributes.flexlineUseFrames &&
+					mode === 'whole' &&
+					shapeMaskConfig.presets.length === 0 &&
+					!attributes.flexlineShapeMask && (
+						<Notice status="info" isDismissible={false}>
+							Add Whole section shapes in FlexLine Section Shapes
+							options.
+						</Notice>
+					)}
+				{attributes.flexlineUseFrames && mode === 'whole' && (
+					<SelectControl
+						label="Whole Section Shape"
+						value={attributes.flexlineShapeMask || ''}
+						options={getSectionShapeMaskOptions(
+							attributes.flexlineShapeMask
+						)}
+						onChange={(value) =>
+							props.setAttributes({ flexlineShapeMask: value })
+						}
+						disabled={!layoutSupported}
+						__nextHasNoMarginBottom={true}
+					/>
+				)}
+				{attributes.flexlineUseFrames &&
+					mode === 'whole' &&
+					getSectionShapeMaskNotice(attributes.flexlineShapeMask)}
 			</PanelBody>
 		</InspectorControls>
 	);

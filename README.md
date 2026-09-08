@@ -117,60 +117,93 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
-## Section Frames
+## Section Shapes
 
-Section Frames let editors apply reusable SVG masks to the top and/or bottom
-edge of ordinary Group sections. The feature is opt-in globally and per block,
-so existing content is unchanged until both toggles are enabled.
+Section Shapes let editors apply reusable SVG masks to ordinary Group sections.
+Presets can frame the top or bottom edge, or mask the whole section with a
+larger shape such as a logo, badge, or organic silhouette. The feature is opt-in
+globally and per block, so existing content is unchanged until both toggles are
+enabled.
 
 ### Setup
 
-1. Go to **Appearance > FlexLine Options > Section Frames**.
-2. Enable **Section Frames**.
-3. Add one or more **Frame Shape Presets**.
-4. For each preset, enter a label, choose **Top edge** or **Bottom edge**, select
-   a Media Library SVG, and set the responsive mask-band height.
+1. Go to **Appearance > FlexLine Options > Section Shapes**.
+2. Enable **Section Shapes**.
+3. Add one or more **Section Shape Presets**.
+4. For each preset, enter a label, select a Media Library SVG, and choose a
+   preset type:
+   - **Top frame** or **Bottom frame** clips only the selected edge and uses the
+     responsive frame-height fields.
+   - **Whole section** masks the full Group and uses the whole-shape behavior
+     field.
 5. In the block editor, select an ordinary Group block and open
-   **Styles > FlexLine Section Frames**.
-6. Enable **Use Section Frames**, then choose the top and/or bottom frame shape.
+   **Styles > FlexLine Section Shapes**.
+6. Enable **Use Section Shapes**, choose **Shape Type**, then select the matching
+   saved shape.
 
-Only ordinary/default/constrained Group layouts render frames. Row, Stack, and
-Grid layouts retain saved frame choices but suspend the visual effect.
+Only ordinary/default/constrained Group layouts render Section Shapes. Row,
+Stack, and Grid layouts retain saved choices but suspend the visual effect.
+
+### Whole-Section Behavior
+
+Whole-section presets have two sizing behaviors:
+
+- **Shape fills group**: the Group's own layout, width, padding, content, and
+  minimum height define the box. The SVG mask fills that box and may stretch.
+- **Group fits SVG proportion**: the SVG `viewBox` defines the Group's aspect
+  ratio. The mask still fills the Group, but the Group honors the SVG's
+  proportions.
+
+Use **Shape fills group** when the section dimensions are already controlled by
+content, padding, or a Cover minimum height. Use **Group fits SVG proportion**
+when the shape itself should define the section's height from its width.
 
 ### SVG Requirements
 
-Frame presets must use SVG files from the Media Library. SVG upload and
+Section Shape presets must use SVG files from the Media Library. SVG upload and
 sanitization are owned by the platform stack; FlexLine validates that the chosen
 attachment is an SVG and fails closed when the attachment is missing or not an
 SVG.
 
 For reliable results:
 
-- Export a wide, short strip, such as `1440 x 160`.
-- Keep the artboard or document bounds tight to the frame strip.
+- For frame presets, export a wide, short strip, such as `1440 x 160`.
+- For whole-section presets, export the full shape inside a clean artboard or
+  document canvas.
+- Keep the artboard or document bounds intentional. Transparent corners, holes,
+  and margins inside the SVG remain meaningful because they clip the section.
 - Use a transparent background.
 - For top frames, the opaque shape should fill below the edge.
 - For bottom frames, the opaque shape should fill above the edge.
+- For whole-section masks, the opaque area is the visible section and transparent
+  areas clip the Group background and descendants.
 - Avoid text, strokes, filters, embedded raster images, and transformed artwork
   that extends outside the SVG viewBox.
 
 Affinity exports should use SVG format, **Set view box** enabled, and a valid
-Raster DPI such as `300`. FlexLine automatically applies
-`preserveAspectRatio="none"` to readable SVG attachments when generating saved
-admin previews, editor previews, and front-end masks, so users should not need
-to edit SVG markup by hand.
+Raster DPI such as `300`. Export the whole document for full-canvas masks, or a
+tight selection/artboard when the mask should have no extra transparent space.
+FlexLine automatically normalizes readable SVG attachments for the chosen
+behavior, including the equivalent of `preserveAspectRatio="none"` for stretching
+masks, so users should not need to edit SVG markup by hand.
 
 ### Behavior Notes
 
-- Disabling the global Section Frames option hides block controls and suppresses
+- Disabling the global Section Shapes option hides block controls and suppresses
   rendering, but saved presets and block selections remain stored.
-- Disabling **Use Section Frames** on a Group suppresses that Group's frames but
+- Disabling **Use Section Shapes** on a Group suppresses that Group's shapes but
   retains its selected presets and overlap choices.
 - Preset edits affect fresh renders without editing each page again.
 - Frame height values control the mask band at the section edge. They do not
   move inner blocks or replace Group padding controls.
 - Top and bottom overlap controls move the framed Group against neighboring
   sections. They do not reposition content inside the Group.
+- Whole-section mode suppresses top/bottom frames and frame overlap while it is
+  selected. Switching back to a frame mode restores the saved frame selections
+  and eligible overlap settings.
+- Whole-section masks clip the Group background and descendants. Authors should
+  keep required links, controls, and readable content inside the visible shape
+  with normal Group padding and layout controls.
 - Content Shift takes precedence only on the matching edge when it is enabled
   and that edge has an explicitly supplied value, including `0`.
 - When Content Shift's mobile reset is active, suppressed frame overlap can
@@ -178,18 +211,19 @@ to edit SVG markup by hand.
 
 ### Caching and Rollback
 
-Section Frame settings are stored in normal WordPress options:
+Section Shape settings are stored in normal WordPress options:
 
 - `flexline_enable_group_frames`
 - `flexline_frame_presets`
 
 Block selections are stored in block attributes on the affected Group blocks.
 Changes to presets and the global toggle affect fresh renders immediately, but
-page caches, object caches, and CDN caches may need their normal purge process.
+page caches, object caches, CDN caches, and already-loaded editor configuration
+may need their normal refresh process.
 
-To roll back a frame visually, disable **Use Section Frames** on the Group. To
+To roll back a shape visually, disable **Use Section Shapes** on the Group. To
 disable the feature site-wide while preserving configuration, turn off
-**Enable Section Frames** in FlexLine Options. To remove preset definitions,
+**Enable Section Shapes** in FlexLine Options. To remove preset definitions,
 delete the rows in the preset manager and save.
 
 ## Responsive Visibility
