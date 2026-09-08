@@ -9,6 +9,7 @@ Blocks: Group
 Card title: Section Shapes
 Card meta: Group
 Suggested image: editor screenshot showing a Group with a visible top frame, bottom frame, or whole-section SVG mask selected in the FlexLine Section Shapes panel.
+Example SVGs: `docs/website/section-shapes-examples/top-gentle-wave.svg`, `docs/website/section-shapes-examples/bottom-gentle-wave.svg`, and `docs/website/section-shapes-examples/whole-curvy-shape.svg`.
 
 ## Excerpt
 
