@@ -96,6 +96,21 @@ test.each(['top', 'bottom', 'both', 'whole'])(
 	}
 );
 
+test.each(['core/group', 'core/stack', 'core/row', 'core/grid'])(
+	'preview props support %s',
+	(supportedBlockName) => {
+		const saved = reopen({
+			...selections,
+			flexlineFrameMode: 'both',
+		});
+
+		expect(
+			getSectionFramePreviewProps(supportedBlockName, saved.attributes)
+				.classes
+		).toEqual(['flexline-section-frame', ...expectedClasses.both]);
+	}
+);
+
 test.each([
 	['whole', 'top'],
 	['both', 'top'],

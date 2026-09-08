@@ -101,7 +101,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					),
 					array(
 						'name'        => 'Section Shapes',
-						'description' => 'Adds reusable SVG top frames, bottom frames, or whole-section masks to ordinary Group blocks. Presets are managed in <a href="#section-shapes">Section Shapes setup</a> and selected from the Group block’s Styles panel.',
+						'description' => 'Adds reusable SVG top frames, bottom frames, or whole-section masks to Group, Row, Stack, and Grid blocks. Presets are managed in <a href="#section-shapes">Section Shapes setup</a> and selected from the block’s Styles panel.',
 					),
 					array(
 						'name'        => 'Slider (Fading)',
@@ -131,6 +131,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
 					),
 					array(
+						'name'        => 'Section Shapes',
+						'description' => 'Adds reusable SVG top frames, bottom frames, or whole-section masks. Presets are managed in <a href="#section-shapes">Section Shapes setup</a> and selected from the block’s Styles panel.',
+					),
+					array(
 						'name'        => 'Slider (Fading)',
 						'description' => 'Same slider feature as Group: enables a fading slider over Stack children (Cover slides). Includes navigation, autoplay, loop, button positions/colors, and height control. See Group → Slider for full option list.',
 					),
@@ -147,6 +151,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						'description' => 'Applies negative margins or transforms so content can nudge or slide relative to its normal flow—values are written as CSS custom properties.',
 					),
 					array(
+						'name'        => 'Section Shapes',
+						'description' => 'Adds reusable SVG top frames, bottom frames, or whole-section masks. Presets are managed in <a href="#section-shapes">Section Shapes setup</a> and selected from the block’s Styles panel.',
+					),
+					array(
 						'name'        => 'Slider (Fading)',
 						'description' => 'Same slider feature as Group: enables a fading slider over Row children (Cover slides). Includes navigation, autoplay, loop, button positions/colors, and height control. See Group → Slider for full option list.',
 					),
@@ -157,6 +165,10 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					array(
 						'name'        => 'Enable Group Link',
 						'description' => 'Makes the entire container clickable—either self, new tab, or opens media modal depending on settings.',
+					),
+					array(
+						'name'        => 'Section Shapes',
+						'description' => 'Adds reusable SVG top frames, bottom frames, or whole-section masks. Presets are managed in <a href="#section-shapes">Section Shapes setup</a> and selected from the block’s Styles panel.',
 					),
 					array(
 						'name'        => 'Slider (Fading)',
@@ -604,8 +616,8 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 
 				<section id="section-shapes">
 					<h3>Section Shapes</h3>
-					<p><strong>Section Shapes</strong> let editors clip ordinary Group sections with reusable SVG presets. A shape can frame the top edge, frame the bottom edge, or mask the whole Group so the section follows a larger silhouette such as a logo, badge, or custom background shape.</p>
-					<p>The feature is opt-in twice: enable it globally under <strong>Appearance &gt; FlexLine Options &gt; Section Shapes</strong>, then enable <strong>Use Section Shapes</strong> on the individual Group block.</p>
+					<p><strong>Section Shapes</strong> let editors clip Group, Row, Stack, and Grid sections with reusable SVG presets. A shape can frame the top edge, frame the bottom edge, or mask the whole section so it follows a larger silhouette such as a logo, badge, or custom background shape.</p>
+					<p>The feature is opt-in twice: enable it globally under <strong>Appearance &gt; FlexLine Options &gt; Section Shapes</strong>, then enable <strong>Use Section Shapes</strong> on the individual block.</p>
 
 					<h4>Admin setup</h4>
 					<ol>
@@ -613,35 +625,33 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 						<li>Enable <strong>Section Shapes</strong>.</li>
 						<li>Add a Section Shape preset, enter a clear label, and choose an SVG from the Media Library.</li>
 						<li>Choose the preset type: <strong>Top frame</strong>, <strong>Bottom frame</strong>, or <strong>Whole section</strong>.</li>
-						<li>For top and bottom frames, set the responsive frame height with <strong>Min</strong>, <strong>Preferred</strong>, and <strong>Max</strong>. These values size the SVG mask band; they do not add padding to the Group content.</li>
-						<li>For whole-section shapes, choose whether the <strong>Shape fills group</strong> or the <strong>Group fits SVG proportion</strong>.</li>
+						<li>For top and bottom frames, set the responsive frame height with <strong>Min</strong>, <strong>Preferred</strong>, and <strong>Max</strong>. These values size the SVG mask band; they do not add padding to the block content.</li>
+						<li>For whole-section shapes, choose whether the <strong>Shape fills block</strong> or the <strong>Block fits SVG proportion</strong>.</li>
 						<li>Save Section Shapes.</li>
 					</ol>
 
 					<h4>Block workflow</h4>
 					<ol>
-						<li>Select an ordinary Group block in the editor.</li>
+						<li>Select a Group, Row, Stack, or Grid block in the editor.</li>
 						<li>Open <strong>Styles &gt; FlexLine Section Shapes</strong>.</li>
 						<li>Enable <strong>Use Section Shapes</strong>.</li>
 						<li>Choose <strong>Shape Type</strong>: <strong>Top frame</strong>, <strong>Bottom frame</strong>, <strong>Top and bottom frames</strong>, or <strong>Whole section</strong>.</li>
 						<li>Select the saved preset shown for the chosen type.</li>
 					</ol>
-					<p>Row, Stack, and Grid layouts keep saved selections but do not render Section Shapes. Switch the block back to an ordinary Group layout before using this feature.</p>
-
 					<h4>SVG authoring notes</h4>
 					<ul>
 						<li>Use Media Library SVG files. FlexLine does not enable arbitrary SVG uploads; upload permissions and sanitization are handled by the site stack.</li>
-						<li>Opaque areas of the SVG are visible. Transparent areas clip the Group background and any child blocks.</li>
+						<li>Opaque areas of the SVG are visible. Transparent areas clip the block background and any child blocks.</li>
 						<li>For top frames, fill the area below the edge and leave the cut-away area transparent.</li>
 						<li>For bottom frames, fill the area above the edge and leave the cut-away area transparent.</li>
 						<li>For whole-section masks, the full silhouette should fit the SVG artboard or document bounds.</li>
-						<li>Whole-section masks must be locally readable SVG attachments no larger than 256 KiB. The <strong>Group fits SVG proportion</strong> behavior also needs a valid SVG <code>viewBox</code>.</li>
+						<li>Whole-section masks must be locally readable SVG attachments no larger than 256 KiB. The <strong>Block fits SVG proportion</strong> behavior also needs a valid SVG <code>viewBox</code>.</li>
 						<li>When exporting from Affinity, use SVG, enable <strong>Set view box</strong>, use a valid Raster DPI such as <code>300</code>, and keep the artboard bounds intentional.</li>
 					</ul>
 
 					<h4>Layout behavior</h4>
-					<p>Top and bottom overlap settings move the shaped Group against nearby sections. They do not reposition inner content. Content Shift only takes precedence for a matching edge when Content Shift is enabled and an explicit edge value is present.</p>
-					<p>Whole-section masks clip the Group’s background and descendants, but content still lays out in a normal rectangular block. Use Group padding, width, and minimum-height controls to keep text, buttons, and links inside the visible part of the shape.</p>
+					<p>Top and bottom overlap settings move the shaped block against nearby sections. They do not reposition inner content. Content Shift only takes precedence for a matching edge when Content Shift is enabled and an explicit edge value is present.</p>
+					<p>Whole-section masks clip the block’s background and descendants, but content still lays out in a normal rectangular block. Use padding, width, and minimum-height controls to keep text, buttons, and links inside the visible part of the shape.</p>
 				</section>
 
 				<!-- ✨ RESPONSIVE VISIBILITY -->

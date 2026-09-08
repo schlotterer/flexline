@@ -7,6 +7,8 @@ Settings API save path, option names, preset IDs or uploaded artwork.
   override the user's selected mode after saving.
 - Accept unchanged normalized SVG roots and single-quoted viewBox values.
 - Cache failed SVG source and aspect-ratio lookups per request and policy.
+- Render Section Shapes on Group, Row, Stack and Grid blocks instead of
+  limiting them to ordinary/constrained Group layouts.
 - Keep the preset table at five columns and disable inactive height controls
   so invisible invalid values cannot block whole-shape saves.
 - Extract Section Shapes editor controls and previews into a dedicated

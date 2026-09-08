@@ -10,7 +10,7 @@ This is a working release record; final release verification remains pending.
 ### Section Shapes and Group masks
 
 - Expanded the reusable Section Frames work into a unified **Section Shapes**
-  feature for ordinary/default/constrained Group blocks.
+  feature for Group, Row, Stack, and Grid blocks.
 - Kept one admin preset library backed by the existing `flexline_frame_presets`
   option. Presets are now typed as **Top frame**, **Bottom frame**, or **Whole
   section**.
@@ -22,8 +22,10 @@ This is a working release record; final release verification remains pending.
 - Added the block-level **Shape Type** selector: **Top frame**, **Bottom frame**,
   **Top and bottom frames**, or **Whole section**. Each mode reveals only its
   relevant saved-shape controls.
-- Added two whole-section behaviors: **Shape fills group** for layout-owned
-  dimensions and **Group fits SVG proportion** for viewBox-derived aspect ratio.
+- Expanded rendering and editor controls across Group, Row, Stack, and Grid
+  blocks.
+- Added two whole-section behaviors: **Shape fills block** for layout-owned
+  dimensions and **Block fits SVG proportion** for viewBox-derived aspect ratio.
 - Normalized readable Media Library SVGs server-side for admin previews, editor
   previews, and frontend masks so authors do not need to hand-edit
   `preserveAspectRatio`.

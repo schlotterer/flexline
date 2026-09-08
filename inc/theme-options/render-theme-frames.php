@@ -97,7 +97,7 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 				</span>
 			</p>
 			<?php if ( $is_whole && $attachment_id > 0 && '' === $preview_url ) : ?>
-				<p class="description" data-frame-source-warning role="status">This whole shape cannot render. Choose a locally readable Media Library SVG of 256 KiB or less. Group fits SVG proportion also requires a viewBox with positive width and height. The preset remains saved.</p>
+				<p class="description" data-frame-source-warning role="status">This whole shape cannot render. Choose a locally readable Media Library SVG of 256 KiB or less. Block fits SVG proportion also requires a viewBox with positive width and height. The preset remains saved.</p>
 			<?php endif; ?>
 		</td>
 		<td>
@@ -150,8 +150,8 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 				<?php disabled( ! $is_whole ); ?>
 				name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][fit]"
 			>
-				<option value="fill" <?php selected( $fit, 'fill' ); ?>>Shape fills group</option>
-				<option value="proportion" <?php selected( $fit, 'proportion' ); ?>>Group fits SVG proportion</option>
+				<option value="fill" <?php selected( $fit, 'fill' ); ?>>Shape fills block</option>
+				<option value="proportion" <?php selected( $fit, 'proportion' ); ?>>Block fits SVG proportion</option>
 			</select>
 			</label>
 			</div>
@@ -175,7 +175,7 @@ function flexline_render_frames_tab() {
 	$shape_presets = Section_Frame_Presets::get_presets();
 	?>
 	<h2>Section Shapes</h2>
-	<p>Section Shapes use reusable SVG presets to clip Group sections. Choose Top frame or Bottom frame for edge shapes, or Whole section for a full Group mask. Presets and block selections are retained while this feature is disabled.</p>
+	<p>Section Shapes use reusable SVG presets to clip Group, Row, Stack, and Grid sections. Choose Top frame or Bottom frame for edge shapes, or Whole section for a full-section mask. Presets and block selections are retained while this feature is disabled.</p>
 
 	<?php settings_errors( Section_Frame_Presets::ENABLE_OPTION ); ?>
 	<?php settings_errors( Section_Frame_Presets::PRESETS_OPTION ); ?>
@@ -186,7 +186,7 @@ function flexline_render_frames_tab() {
 			<tr valign="top">
 				<th scope="row">
 					<label for="flexline-enable-group-frames"><strong>Enable Section Shapes</strong></label>
-					<p>Shows Section Shape controls for Group blocks and allows saved shapes to render on the front end.</p>
+					<p>Shows Section Shape controls for Group, Row, Stack, and Grid blocks and allows saved shapes to render on the front end.</p>
 				</th>
 				<td>
 					<input
@@ -205,7 +205,7 @@ function flexline_render_frames_tab() {
 			<p>Re-enable Section Shapes to add or edit presets. Existing shape presets remain saved.</p>
 		<?php else : ?>
 			<h2>Section Shape Presets</h2>
-			<p>Create reusable Media Library SVG shapes. Top and bottom frame types use height settings; whole-section types choose whether the shape fills the Group or the Group fits the SVG proportion.</p>
+			<p>Create reusable Media Library SVG shapes. Top and bottom frame types use height settings; whole-section types choose whether the shape fills the block or the block fits the SVG proportion.</p>
 			<div class="flexline-frame-guidance">
 				<div>
 					<h3>SVG setup</h3>
@@ -214,9 +214,9 @@ function flexline_render_frames_tab() {
 						<li>Top frame SVGs should be opaque below the shape and transparent above it.</li>
 						<li>Bottom frame SVGs should be opaque above the shape and transparent below it.</li>
 						<li>Whole-section SVGs should include the entire mask shape inside a clean viewBox.</li>
-						<li>Whole-section SVGs must be locally readable and no larger than 256 KiB (262,144 bytes). Offloaded media needs a local file copy. Group fits SVG proportion requires a viewBox with positive width and height.</li>
+						<li>Whole-section SVGs must be locally readable and no larger than 256 KiB (262,144 bytes). Offloaded media needs a local file copy. Block fits SVG proportion requires a viewBox with positive width and height.</li>
 						<li>In Affinity, keep Set view box enabled and enter a valid Raster DPI, such as 300, so the SVG export can be saved.</li>
-						<li>Frames stretch automatically; whole-section shapes either fill the Group or set the Group aspect ratio from the SVG viewBox.</li>
+						<li>Frames stretch automatically; whole-section shapes either fill the selected block or set the block aspect ratio from the SVG viewBox.</li>
 					</ul>
 				</div>
 				<div class="flexline-frame-examples" aria-label="Section Shape SVG examples">

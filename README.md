@@ -128,12 +128,13 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 
 Whole-section masks require a locally readable Media Library SVG no larger than
 256 KiB (262,144 bytes). Offloaded attachments need a local file copy.
-**Group fits SVG proportion** also requires a valid `viewBox` with positive width
-and height. Unavailable whole masks leave the Group unmasked, and the admin
+**Block fits SVG proportion** also requires a valid `viewBox` with positive width
+and height. Unavailable whole masks leave the block unmasked, and the admin
 shows a warning without deleting the saved preset. Top/bottom frames can fall
 back to their attachment URL.
 
-Section Shapes let editors apply reusable SVG masks to ordinary Group sections.
+Section Shapes let editors apply reusable SVG masks to Group, Row, Stack, and
+Grid sections.
 Presets can frame the top or bottom edge, or mask the whole section with a
 larger shape such as a logo, badge, or organic silhouette. The feature is opt-in
 globally and per block, so existing content is unchanged until both toggles are
@@ -148,28 +149,25 @@ enabled.
    preset type:
    - **Top frame** or **Bottom frame** clips only the selected edge and uses the
      responsive frame-height fields.
-   - **Whole section** masks the full Group and uses the whole-shape behavior
+   - **Whole section** masks the full block and uses the whole-shape behavior
      field.
-5. In the block editor, select an ordinary Group block and open
+5. In the block editor, select a Group, Row, Stack, or Grid block and open
    **Styles > FlexLine Section Shapes**.
 6. Enable **Use Section Shapes**, choose **Shape Type**, then select the matching
    saved shape.
-
-Only ordinary/default/constrained Group layouts render Section Shapes. Row,
-Stack, and Grid layouts retain saved choices but suspend the visual effect.
 
 ### Whole-Section Behavior
 
 Whole-section presets have two sizing behaviors:
 
-- **Shape fills group**: the Group's own layout, width, padding, content, and
+- **Shape fills block**: the block's own layout, width, padding, content, and
   minimum height define the box. The SVG mask fills that box and may stretch.
-- **Group fits SVG proportion**: the SVG `viewBox` defines the Group's aspect
-  ratio. The mask still fills the Group, but the Group honors the SVG's
+- **Block fits SVG proportion**: the SVG `viewBox` defines the block's aspect
+  ratio. The mask still fills the block, but the block honors the SVG's
   proportions.
 
-Use **Shape fills group** when the section dimensions are already controlled by
-content, padding, or a Cover minimum height. Use **Group fits SVG proportion**
+Use **Shape fills block** when the section dimensions are already controlled by
+content, padding, or a Cover minimum height. Use **Block fits SVG proportion**
 when the shape itself should define the section's height from its width.
 
 ### SVG Requirements
@@ -190,7 +188,7 @@ For reliable results:
 - For top frames, the opaque shape should fill below the edge.
 - For bottom frames, the opaque shape should fill above the edge.
 - For whole-section masks, the opaque area is the visible section and transparent
-  areas clip the Group background and descendants.
+  areas clip the block background and descendants.
 - Avoid text, strokes, filters, embedded raster images, and transformed artwork
   that extends outside the SVG viewBox.
 
@@ -205,19 +203,19 @@ masks, so users should not need to edit SVG markup by hand.
 
 - Disabling the global Section Shapes option hides block controls and suppresses
   rendering, but saved presets and block selections remain stored.
-- Disabling **Use Section Shapes** on a Group suppresses that Group's shapes but
+- Disabling **Use Section Shapes** on a block suppresses that block's shapes but
   retains its selected presets and overlap choices.
 - Preset edits affect fresh renders without editing each page again.
 - Frame height values control the mask band at the section edge. They do not
-  move inner blocks or replace Group padding controls.
-- Top and bottom overlap controls move the framed Group against neighboring
-  sections. They do not reposition content inside the Group.
+  move inner blocks or replace block padding controls.
+- Top and bottom overlap controls move the framed block against neighboring
+  sections. They do not reposition content inside the block.
 - Whole-section mode suppresses top/bottom frames and frame overlap while it is
   selected. Switching back to a frame mode restores the saved frame selections
   and eligible overlap settings.
-- Whole-section masks clip the Group background and descendants. Authors should
+- Whole-section masks clip the block background and descendants. Authors should
   keep required links, controls, and readable content inside the visible shape
-  with normal Group padding and layout controls.
+  with normal padding and layout controls.
 - Content Shift takes precedence only on the matching edge when it is enabled
   and that edge has an explicitly supplied value, including `0`.
 - When Content Shift's mobile reset is active, suppressed frame overlap can
@@ -230,12 +228,12 @@ Section Shape settings are stored in normal WordPress options:
 - `flexline_enable_group_frames`
 - `flexline_frame_presets`
 
-Block selections are stored in block attributes on the affected Group blocks.
+Block selections are stored in block attributes on the affected blocks.
 Changes to presets and the global toggle affect fresh renders immediately, but
 page caches, object caches, CDN caches, and already-loaded editor configuration
 may need their normal refresh process.
 
-To roll back a shape visually, disable **Use Section Shapes** on the Group. To
+To roll back a shape visually, disable **Use Section Shapes** on the block. To
 disable the feature site-wide while preserving configuration, turn off
 **Enable Section Shapes** in FlexLine Options. To remove preset definitions,
 delete the rows in the preset manager and save.

@@ -521,6 +521,7 @@ namespace FlexLine\Tests\Unit {
 					'style'   => '',
 				),
 				\FlexLine\flexline_get_section_frame_render_data(
+					'core/group',
 					array(
 						'flexlineUseFrames' => true,
 						'flexlineFrameTop'  => 'saved_top',
@@ -536,6 +537,7 @@ namespace FlexLine\Tests\Unit {
 					'style'   => '',
 				),
 				\FlexLine\flexline_get_section_frame_render_data(
+					'core/group',
 					array(
 						'flexlineUseFrames' => false,
 						'flexlineFrameTop'  => 'saved_top',
@@ -568,6 +570,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames'  => true,
 					'flexlineFrameTop'   => 'saved_top',
@@ -606,6 +609,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames'         => true,
 					'flexlineFrameTop'          => 'saved_top',
@@ -645,6 +649,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames'         => true,
 					'flexlineFrameTop'          => 'saved_top',
@@ -678,6 +683,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames'       => true,
 					'flexlineFrameTop'        => 'saved_top',
@@ -692,7 +698,7 @@ namespace FlexLine\Tests\Unit {
 			self::assertStringContainsString( '--flexline-frame-top-overlap: calc(var(--flexline-frame-top-height) * -1)', $result['style'] );
 		}
 
-		public function test_section_frame_render_data_suspends_flex_and_grid_layouts(): void {
+		public function test_section_frame_render_data_supports_group_family_blocks_and_layouts(): void {
 			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::ENABLE_OPTION ]  = 1;
 			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
 				array(
@@ -706,19 +712,18 @@ namespace FlexLine\Tests\Unit {
 				),
 			);
 
-			self::assertSame(
-				array(
-					'classes' => '',
-					'style'   => '',
-				),
-				\FlexLine\flexline_get_section_frame_render_data(
+			foreach ( array( 'core/group', 'core/stack', 'core/row', 'core/grid' ) as $block_name ) {
+				$result = \FlexLine\flexline_get_section_frame_render_data(
+					$block_name,
 					array(
 						'flexlineUseFrames' => true,
 						'flexlineFrameTop'  => 'saved_top',
 						'layout'            => array( 'type' => 'flex' ),
 					)
-				)
-			);
+				);
+
+				self::assertStringContainsString( 'flexline-section-frame-top', $result['classes'] );
+			}
 
 			self::assertSame(
 				array(
@@ -726,10 +731,10 @@ namespace FlexLine\Tests\Unit {
 					'style'   => '',
 				),
 				\FlexLine\flexline_get_section_frame_render_data(
+					'core/paragraph',
 					array(
 						'flexlineUseFrames' => true,
 						'flexlineFrameTop'  => 'saved_top',
-						'layout'            => array( 'type' => 'grid' ),
 					)
 				)
 			);
@@ -770,6 +775,7 @@ namespace FlexLine\Tests\Unit {
 				array( 'id' => 'saved_bottom', 'label' => 'Bottom', 'side' => 'bottom', 'attachment_id' => 30 ),
 			);
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames'         => true,
 					'flexlineFrameMode'         => 'top',
@@ -818,6 +824,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames' => true,
 					'flexlineFrameMode' => 'whole',
@@ -852,6 +859,7 @@ namespace FlexLine\Tests\Unit {
 			);
 
 			$result = \FlexLine\flexline_get_section_frame_render_data(
+				'core/group',
 				array(
 					'flexlineUseFrames' => true,
 					'flexlineFrameMode' => 'whole',

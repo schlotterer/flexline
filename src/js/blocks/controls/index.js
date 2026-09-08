@@ -31,6 +31,8 @@ const handlers = {
 	'core/gallery': gallery,
 	'core/group': slider,
 	'core/stack': slider,
+	'core/row': slider,
+	'core/grid': slider,
 	'core/image': image,
 	'core/navigation': navigation,
 	'core/columns': columns,

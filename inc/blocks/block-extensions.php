@@ -334,16 +334,13 @@ function flexline_block_has_horizontal_scroller( $block, $block_content ) {
 }
 
 /**
- * Determine whether a Group block layout can render Section Frames.
+ * Determine whether a block can render Section Shapes.
  *
- * @param array $attrs Parsed block attributes.
+ * @param string $block_name Parsed block name.
  * @return bool
  */
-function flexline_group_layout_supports_section_frames( array $attrs ) {
-	$layout = isset( $attrs['layout'] ) && is_array( $attrs['layout'] ) ? $attrs['layout'] : array();
-	$type   = isset( $layout['type'] ) ? sanitize_key( (string) $layout['type'] ) : '';
-
-	return '' === $type || in_array( $type, array( 'default', 'constrained' ), true );
+function flexline_block_supports_section_frames( string $block_name ) {
+	return in_array( $block_name, array( 'core/group', 'core/stack', 'core/row', 'core/grid' ), true );
 }
 
 /**
@@ -393,7 +390,7 @@ function flexline_normalize_section_frame_overlap( $value ) {
 }
 
 /**
- * Normalize a Group section shape mode, falling back from legacy selections.
+ * Normalize a section shape mode, falling back from legacy selections.
  *
  * @param array $attrs Parsed block attributes.
  * @return string top, bottom, both, or whole.
@@ -439,12 +436,13 @@ function flexline_section_frame_overlap_value( string $height_var, string $overl
 }
 
 /**
- * Build Section Frame classes and CSS variables for a Group block.
+ * Build Section Frame classes and CSS variables for a supported block.
  *
- * @param array $attrs Parsed block attributes.
+ * @param string $block_name Parsed block name.
+ * @param array  $attrs Parsed block attributes.
  * @return array{classes:string,style:string}
  */
-function flexline_get_section_frame_render_data( array $attrs ) {
+function flexline_get_section_frame_render_data( string $block_name, array $attrs ) {
 	$empty = array(
 		'classes' => '',
 		'style'   => '',
@@ -454,7 +452,7 @@ function flexline_get_section_frame_render_data( array $attrs ) {
 		return $empty;
 	}
 
-	if ( empty( $attrs['flexlineUseFrames'] ) || ! flexline_group_layout_supports_section_frames( $attrs ) ) {
+	if ( empty( $attrs['flexlineUseFrames'] ) || ! flexline_block_supports_section_frames( $block_name ) ) {
 		return $empty;
 	}
 
@@ -770,12 +768,10 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 	}
 
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
-		if ( 'core/group' === $block['blockName'] ) {
-			$frame_render_data = flexline_get_section_frame_render_data( $attrs );
-			if ( '' !== $frame_render_data['classes'] ) {
-				$block_content = add_classes_to_block_content( $block_content, $frame_render_data['classes'] );
-				$block_content = flexline_merge_inline_style( $block_content, $frame_render_data['style'] );
-			}
+		$frame_render_data = flexline_get_section_frame_render_data( (string) $block['blockName'], $attrs );
+		if ( '' !== $frame_render_data['classes'] ) {
+			$block_content = add_classes_to_block_content( $block_content, $frame_render_data['classes'] );
+			$block_content = flexline_merge_inline_style( $block_content, $frame_render_data['style'] );
 		}
 
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {

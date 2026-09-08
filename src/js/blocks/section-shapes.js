@@ -37,6 +37,16 @@ const sectionFrameOverlapOptions = [
 	{ label: 'Full frame overlap', value: 'full' },
 ];
 
+const sectionFrameSupportedBlocks = [
+	'core/group',
+	'core/stack',
+	'core/row',
+	'core/grid',
+];
+
+export const isBlockSupportedForSectionFrames = (blockName) =>
+	sectionFrameSupportedBlocks.includes(blockName);
+
 export const getSectionFrameConfig = () => {
 	const config = window.flexlineBlockExtensions?.sectionFrames || {};
 
@@ -53,11 +63,6 @@ export const getSectionShapeMaskConfig = () => {
 		enabled: !!config.enabled,
 		presets: Array.isArray(config.presets) ? config.presets : [],
 	};
-};
-
-export const isGroupLayoutSupportedForSectionFrames = (attributes = {}) => {
-	const type = attributes.layout?.type || '';
-	return type === '' || type === 'default' || type === 'constrained';
 };
 
 const getSectionFramePresetForSide = (presetId, side) => {
@@ -233,10 +238,9 @@ export const getSectionFramePreviewProps = (blockName, attributes = {}) => {
 	};
 
 	if (
-		blockName !== 'core/group' ||
+		!isBlockSupportedForSectionFrames(blockName) ||
 		!getSectionFrameConfig().enabled ||
-		!attributes.flexlineUseFrames ||
-		!isGroupLayoutSupportedForSectionFrames(attributes)
+		!attributes.flexlineUseFrames
 	) {
 		return empty;
 	}
@@ -359,7 +363,7 @@ const getSectionFrameOverlapNotice = (attributes, edge) => {
 
 export const getSectionFrameControls = (props) => {
 	const config = getSectionFrameConfig();
-	if (props.name !== 'core/group' || !config.enabled) {
+	if (!isBlockSupportedForSectionFrames(props.name) || !config.enabled) {
 		return null;
 	}
 
@@ -370,7 +374,6 @@ export const getSectionFrameControls = (props) => {
 		(preset) => preset.side === 'bottom'
 	);
 	const shapeMaskConfig = getSectionShapeMaskConfig();
-	const layoutSupported = isGroupLayoutSupportedForSectionFrames(attributes);
 
 	return (
 		<InspectorControls group="styles">
@@ -385,13 +388,6 @@ export const getSectionFrameControls = (props) => {
 						props.setAttributes({ flexlineUseFrames: newValue })
 					}
 				/>
-				{attributes.flexlineUseFrames && !layoutSupported && (
-					<Notice status="warning" isDismissible={false}>
-						Section Shapes are available on ordinary Group layouts.
-						Row, Stack, and Grid layouts keep their saved choices
-						but do not render shapes.
-					</Notice>
-				)}
 				{attributes.flexlineUseFrames && (
 					<SelectControl
 						label="Shape Type"
@@ -405,7 +401,6 @@ export const getSectionFrameControls = (props) => {
 						onChange={(value) =>
 							props.setAttributes({ flexlineFrameMode: value })
 						}
-						disabled={!layoutSupported}
 						__nextHasNoMarginBottom={true}
 					/>
 				)}
@@ -429,7 +424,6 @@ export const getSectionFrameControls = (props) => {
 						onChange={(value) =>
 							props.setAttributes({ flexlineFrameTop: value })
 						}
-						disabled={!layoutSupported}
 						__nextHasNoMarginBottom={true}
 					/>
 				)}
@@ -453,7 +447,6 @@ export const getSectionFrameControls = (props) => {
 									flexlineFrameOverlapTop: value,
 								})
 							}
-							disabled={!layoutSupported}
 							__nextHasNoMarginBottom={true}
 						/>
 					)}
@@ -481,7 +474,6 @@ export const getSectionFrameControls = (props) => {
 						onChange={(value) =>
 							props.setAttributes({ flexlineFrameBottom: value })
 						}
-						disabled={!layoutSupported}
 						__nextHasNoMarginBottom={true}
 					/>
 				)}
@@ -505,7 +497,6 @@ export const getSectionFrameControls = (props) => {
 									flexlineFrameOverlapBottom: value,
 								})
 							}
-							disabled={!layoutSupported}
 							__nextHasNoMarginBottom={true}
 						/>
 					)}
@@ -532,7 +523,6 @@ export const getSectionFrameControls = (props) => {
 						onChange={(value) =>
 							props.setAttributes({ flexlineShapeMask: value })
 						}
-						disabled={!layoutSupported}
 						__nextHasNoMarginBottom={true}
 					/>
 				)}

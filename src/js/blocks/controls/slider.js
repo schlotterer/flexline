@@ -35,6 +35,8 @@ import { getVisibilityPanel, getContentShiftControls } from '../utils';
  */
 const Controls = (BlockEdit, props) => {
 	const { clientId, attributes } = props;
+	const supportsSlider =
+		props.name === 'core/group' || props.name === 'core/stack';
 	const sliderEnabled = !!attributes.enableSlider;
 
 	// Read direct children of this block
@@ -67,7 +69,7 @@ const Controls = (BlockEdit, props) => {
 
 	// Phase 2: auto‑wrap non‑Covers on insertion while slider is enabled
 	useEffect(() => {
-		if (!sliderEnabled) {
+		if (!supportsSlider || !sliderEnabled) {
 			return undefined;
 		}
 		let prevIds = (children || []).map((b) => b.clientId);
@@ -92,12 +94,12 @@ const Controls = (BlockEdit, props) => {
 			}
 		});
 		return () => unsubscribe();
-	}, [clientId, sliderEnabled, replaceInnerBlocks, children]);
+	}, [clientId, supportsSlider, sliderEnabled, replaceInnerBlocks, children]);
 
 	return (
 		<Fragment>
 			<BlockControls>
-				{sliderEnabled && (
+				{supportsSlider && sliderEnabled && (
 					<ToolbarGroup>
 						<ToolbarButton
 							icon="plus-alt2"
@@ -109,7 +111,7 @@ const Controls = (BlockEdit, props) => {
 			</BlockControls>
 			<BlockEdit {...props} />
 			<InspectorControls>
-				{sliderEnabled && hasNonCover && (
+				{supportsSlider && sliderEnabled && hasNonCover && (
 					<Notice status="warning" isDismissible={false}>
 						<p>
 							Direct children in a slider must be Cover blocks.
@@ -164,7 +166,7 @@ const Controls = (BlockEdit, props) => {
 						)}
 					</PanelBody>
 				)}
-				{!props.attributes.enableGroupLink && (
+				{supportsSlider && !props.attributes.enableGroupLink && (
 					<PanelBody title="FlexLine Slider Options">
 						<ToggleControl
 							label="Enable Slider"
