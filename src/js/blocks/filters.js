@@ -3,6 +3,7 @@ const { registerBlockVariation } = wp.blocks;
 
 import {
 	customModalAttributes,
+	customSectionFrameAttributes,
 	customVisibilityAttributes,
 	customIconAttributes,
 	customLazyAttributes,
@@ -57,6 +58,7 @@ registerAttributes(['core/group'], {
 	...customVisibilityAttributes,
 	...customShiftAttributes,
 	...customSliderAttributes,
+	...customSectionFrameAttributes,
 });
 
 registerAttributes(['core/stack'], {
@@ -64,6 +66,14 @@ registerAttributes(['core/stack'], {
 	...customGroupAttributes,
 	...customVisibilityAttributes,
 	...customShiftAttributes,
+	...customSectionFrameAttributes,
+});
+
+registerAttributes(['core/row', 'core/grid'], {
+	...customGroupAttributes,
+	...customVisibilityAttributes,
+	...customShiftAttributes,
+	...customSectionFrameAttributes,
 });
 
 registerAttributes(['core/image'], {

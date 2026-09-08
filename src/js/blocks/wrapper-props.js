@@ -2,9 +2,12 @@
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import {
+	getSectionFramePreviewProps,
+	isContentShiftEdgeActive,
 	isContentShiftFieldSet,
 	normalizeContentShiftInput,
 	toNegativeContentShiftValue,
+	updateBlockClasses,
 } from './utils';
 
 /**
@@ -33,6 +36,7 @@ const withFlexlineWrapperProps = createHigherOrderComponent(
 			};
 
 			if (attributes.useContentShift) {
+				const resetMobile = !!attributes.resetMobile;
 				const shiftLeft = isContentShiftFieldSet(attributes.shiftLeft)
 					? toNegativeContentShiftValue(attributes.shiftLeft)
 					: '';
@@ -66,12 +70,27 @@ const withFlexlineWrapperProps = createHigherOrderComponent(
 				setStyleValue('--flexline-slide-y', slideY || undefined);
 
 				// Inline preview fallbacks
-				setStyleValue('marginLeft', shiftLeft || undefined);
-				setStyleValue('marginRight', shiftRight || undefined);
-				setStyleValue('marginTop', shiftUp || undefined);
-				setStyleValue('marginBlockStart', shiftUp || undefined);
-				setStyleValue('marginBottom', shiftDown || undefined);
-				if (slideX || slideY) {
+				setStyleValue(
+					'marginLeft',
+					resetMobile ? undefined : shiftLeft || undefined
+				);
+				setStyleValue(
+					'marginRight',
+					resetMobile ? undefined : shiftRight || undefined
+				);
+				setStyleValue(
+					'marginTop',
+					resetMobile ? undefined : shiftUp || undefined
+				);
+				setStyleValue(
+					'marginBlockStart',
+					resetMobile ? undefined : shiftUp || undefined
+				);
+				setStyleValue(
+					'marginBottom',
+					resetMobile ? undefined : shiftDown || undefined
+				);
+				if ((slideX || slideY) && !resetMobile) {
 					const existingTransform = style.transform || '';
 					const translate = `translateX(${slideX || '0'}) translateY(${slideY || '0'})`;
 					setStyleValue(
@@ -97,6 +116,41 @@ const withFlexlineWrapperProps = createHigherOrderComponent(
 				setStyleValue('marginBottom', undefined);
 				setStyleValue('transform', undefined);
 			}
+
+			const sectionFramePreview = getSectionFramePreviewProps(
+				props.name,
+				attributes
+			);
+			nextWrapperProps.className = updateBlockClasses(
+				nextWrapperProps.className || '',
+				sectionFramePreview.classes.join(' '),
+				sectionFramePreview.removedClasses
+			);
+			Object.entries(sectionFramePreview.styles).forEach(
+				([name, value]) => {
+					setStyleValue(name, value);
+				}
+			);
+			Object.entries(sectionFramePreview.inlineStyles).forEach(
+				([name, value]) => {
+					if (
+						(name === 'marginTop' || name === 'marginBlockStart') &&
+						isContentShiftEdgeActive(attributes, 'top')
+					) {
+						return;
+					}
+
+					if (
+						(name === 'marginBottom' ||
+							name === 'marginBlockEnd') &&
+						isContentShiftEdgeActive(attributes, 'bottom')
+					) {
+						return;
+					}
+
+					setStyleValue(name, value);
+				}
+			);
 
 			nextWrapperProps.style = style;
 

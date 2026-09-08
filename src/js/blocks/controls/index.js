@@ -317,6 +317,7 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 			// Content Shift variables
 			if (props.attributes.useContentShift) {
+				const resetMobile = !!props.attributes.resetMobile;
 				const shiftLeft = isContentShiftFieldSet(attributes.shiftLeft)
 					? toNegativeContentShiftValue(attributes.shiftLeft)
 					: '';
@@ -354,13 +355,23 @@ const withCustomControls = createHigherOrderComponent((BlockEdit) => {
 
 				// Additionally, apply direct inline styles so Template Editor canvas
 				// (which may not load our CSS) still previews the shift.
-				inlineStyles.marginLeft = shiftLeft || undefined;
-				inlineStyles.marginRight = shiftRight || undefined;
-				inlineStyles.marginTop = shiftUp || undefined;
-				inlineStyles.marginBlockStart = shiftUp || undefined;
-				inlineStyles.marginBottom = shiftDown || undefined;
+				inlineStyles.marginLeft = resetMobile
+					? undefined
+					: shiftLeft || undefined;
+				inlineStyles.marginRight = resetMobile
+					? undefined
+					: shiftRight || undefined;
+				inlineStyles.marginTop = resetMobile
+					? undefined
+					: shiftUp || undefined;
+				inlineStyles.marginBlockStart = resetMobile
+					? undefined
+					: shiftUp || undefined;
+				inlineStyles.marginBottom = resetMobile
+					? undefined
+					: shiftDown || undefined;
 
-				if (slideX || slideY) {
+				if ((slideX || slideY) && !resetMobile) {
 					const existingTransform =
 						(props.wrapperProps.style &&
 							props.wrapperProps.style.transform) ||

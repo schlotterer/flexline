@@ -19,7 +19,11 @@ import {
 import { useSelect, useDispatch, subscribe } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 
-import { getVisibilityPanel, getContentShiftControls } from '../utils';
+import {
+	getVisibilityPanel,
+	getContentShiftControls,
+	getSectionFrameControls,
+} from '../utils';
 
 /**
  * Controls: Slider-specific editor UI for Group/Stack blocks
@@ -420,6 +424,7 @@ const Controls = (BlockEdit, props) => {
 				{getVisibilityPanel(props)}
 			</InspectorControls>
 			{getContentShiftControls(props)}
+			{getSectionFrameControls(props)}
 		</Fragment>
 	);
 };
