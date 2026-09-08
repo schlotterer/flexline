@@ -1,0 +1,33 @@
+fix(section-shapes): stabilize saved modes, SVG sources and preset controls
+
+Address the release-2.2.2 review findings without changing the existing
+Settings API save path, option names, preset IDs or uploaded artwork.
+
+- Serialize explicit top mode so retained whole/bottom selections cannot
+  override the user's selected mode after saving.
+- Accept unchanged normalized SVG roots and single-quoted viewBox values.
+- Cache failed SVG source and aspect-ratio lookups per request and policy.
+- Keep the preset table at five columns and disable inactive height controls
+  so invisible invalid values cannot block whole-shape saves.
+- Extract Section Shapes editor controls and previews into a dedicated
+  module while retaining shared Content Shift behavior.
+- Simplify the picker around WordPress attachment JSON.
+- Warn about unavailable whole SVGs without discarding preset definitions.
+- Document local-file, 256 KiB and positive-viewBox requirements.
+- Move Section Shapes release notes to 2.2.2 and preserve 2.2.1 history.
+
+Add regression coverage for WordPress block serialization, SVG policy and
+size boundaries, PHP-rendered admin validation, row ordering and media
+selection. Avoid additional preset caching after measuring sub-millisecond
+normalization for 40 reads of a representative 20-preset library.
+
+Verification:
+- npm run prod, npm run lint, explicit admin JS lint and git diff --check
+- 46 PHPUnit tests / 166 assertions; 17 JS tests; nine primary-term checks
+- Live Chrome preset add/edit/SVG replacement/reorder/save and disable/enable
+- Four-mode draft save/reopen and frontend masks; whole-to-top saved attributes
+
+Original presets restored; disposable draft trashed. No version bump.
+Safari/device, Site Editor/synced-pattern, expanded visual acceptance,
+delete-all and unavailable-SVG UI checks remain open release gates.
+See docs/section-shapes-release-2.2.2-cleanup-plan.md for exact coverage.

@@ -233,48 +233,6 @@
 		messageNode.textContent = message;
 	}
 
-	function getMediaAttachmentValue(model, attachment, keys) {
-		for (const key of keys) {
-			if (attachment && attachment[key]) {
-				return attachment[key];
-			}
-
-			if (attachment && key === 'url' && attachment.sizes?.full?.url) {
-				return attachment.sizes.full.url;
-			}
-
-			if (model && typeof model.get === 'function' && model.get(key)) {
-				return model.get(key);
-			}
-
-			if (model && key === 'url') {
-				const sizes =
-					typeof model.get === 'function' ? model.get('sizes') : null;
-				if (sizes?.full?.url) {
-					return sizes.full.url;
-				}
-			}
-
-			if (model && model[key]) {
-				return model[key];
-			}
-
-			if (model?.attributes?.[key]) {
-				return model.attributes[key];
-			}
-
-			if (
-				model?.attributes &&
-				key === 'url' &&
-				model.attributes.sizes?.full?.url
-			) {
-				return model.attributes.sizes.full.url;
-			}
-		}
-
-		return '';
-	}
-
 	function setMediaFieldValue(field, value) {
 		if (!field) {
 			return;
@@ -296,11 +254,15 @@
 		const isWholeSection = typeField && typeField.value === 'whole';
 
 		row.dataset.framePresetType = isWholeSection ? 'whole' : 'frame';
-		row.querySelectorAll('[data-frame-panel="height"]').forEach((cell) => {
-			cell.hidden = isWholeSection;
-		});
-		row.querySelectorAll('[data-frame-panel="mask"]').forEach((cell) => {
-			cell.hidden = !isWholeSection;
+		row.querySelectorAll('[data-frame-panel]').forEach((panel) => {
+			const inactive =
+				panel.dataset.framePanel === 'height'
+					? isWholeSection
+					: !isWholeSection;
+			panel.hidden = inactive;
+			panel.querySelectorAll('input, select').forEach((field) => {
+				field.disabled = inactive;
+			});
 		});
 	}
 
@@ -323,11 +285,7 @@
 			}
 
 			const attachment = selection.toJSON();
-			const attachmentUrl = getMediaAttachmentValue(
-				selection,
-				attachment,
-				['url', 'source_url']
-			);
+			const attachmentUrl = attachment.url;
 			const isSvg =
 				attachment.mime === 'image/svg+xml' ||
 				attachment.subtype === 'svg+xml' ||
@@ -338,16 +296,9 @@
 				return;
 			}
 
-			const attachmentId = getMediaAttachmentValue(
-				selection,
-				attachment,
-				['id', 'ID']
-			);
-			const attachmentLabel = getMediaAttachmentValue(
-				selection,
-				attachment,
-				['title', 'filename', 'name', 'url']
-			);
+			const attachmentId = attachment.id;
+			const attachmentLabel =
+				attachment.title || attachment.filename || attachmentUrl;
 			const idField = row.querySelector(
 				'[data-frame-field="attachment_id"]'
 			);
@@ -357,6 +308,7 @@
 			setMediaFieldValue(idField, attachmentId || '');
 			setMediaFieldValue(urlField, attachmentUrl || '');
 
+			row.querySelector('[data-frame-source-warning]')?.remove();
 			updateFramePresetRowError(row, '');
 			updateFrameSvgPreview(row, attachmentUrl || '');
 			updateFrameAttachmentLabel(row, attachmentLabel || '');

@@ -735,6 +735,57 @@ namespace FlexLine\Tests\Unit {
 			);
 		}
 
+		public function test_explicit_section_shape_modes_override_retained_selections(): void {
+			$attrs = array(
+				'flexlineFrameTop'    => 'saved_top',
+				'flexlineFrameBottom' => 'saved_bottom',
+				'flexlineShapeMask'   => 'saved_mask',
+			);
+
+			foreach ( array( 'top', 'bottom', 'both', 'whole' ) as $mode ) {
+				$attrs['flexlineFrameMode'] = $mode;
+				self::assertSame( $mode, \FlexLine\flexline_normalize_section_shape_mode( $attrs ) );
+			}
+		}
+
+		public function test_section_shape_mode_infers_selections_only_when_mode_is_absent(): void {
+			self::assertSame( 'top', \FlexLine\flexline_normalize_section_shape_mode( array() ) );
+			self::assertSame( 'bottom', \FlexLine\flexline_normalize_section_shape_mode( array( 'flexlineFrameBottom' => 'saved_bottom' ) ) );
+			self::assertSame(
+				'both',
+				\FlexLine\flexline_normalize_section_shape_mode(
+					array(
+						'flexlineFrameTop'    => 'saved_top',
+						'flexlineFrameBottom' => 'saved_bottom',
+					)
+				)
+			);
+			self::assertSame( 'whole', \FlexLine\flexline_normalize_section_shape_mode( array( 'flexlineShapeMask' => 'saved_mask' ) ) );
+		}
+
+		public function test_explicit_top_mode_restores_only_top_frame_and_overlap(): void {
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::ENABLE_OPTION ] = 1;
+			$GLOBALS['flexline_section_frame_test_options'][ Section_Frame_Presets::PRESETS_OPTION ] = array(
+				array( 'id' => 'saved_top', 'label' => 'Top', 'side' => 'top', 'attachment_id' => 10 ),
+				array( 'id' => 'saved_bottom', 'label' => 'Bottom', 'side' => 'bottom', 'attachment_id' => 30 ),
+			);
+			$result = \FlexLine\flexline_get_section_frame_render_data(
+				array(
+					'flexlineUseFrames'         => true,
+					'flexlineFrameMode'         => 'top',
+					'flexlineFrameTop'          => 'saved_top',
+					'flexlineFrameBottom'       => 'saved_bottom',
+					'flexlineShapeMask'         => 'saved_mask',
+					'flexlineFrameOverlapTop'   => 'half',
+					'flexlineFrameOverlapBottom' => 'full',
+				)
+			);
+			self::assertSame( 'flexline-section-frame flexline-section-frame-top flexline-section-frame-overlap-top ', $result['classes'] );
+			self::assertStringContainsString( '--flexline-frame-top-overlap:', $result['style'] );
+			self::assertStringNotContainsString( '--flexline-frame-bottom-', $result['style'] );
+			self::assertStringNotContainsString( '--flexline-shape-mask-', $result['style'] );
+		}
+
 		public function test_section_shape_mode_whole_outputs_mask_and_suppresses_frame_rendering(): void {
 			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
 			self::assertIsString( $file );
@@ -1043,6 +1094,87 @@ namespace FlexLine\Tests\Unit {
 			self::assertSame( 'saved_mask', $mask_config['presets'][0]['id'] );
 			self::assertSame( '100% 100%', $mask_config['presets'][0]['css_size'] );
 			self::assertSame( '1200 / 300', $mask_config['presets'][0]['aspect_ratio'] );
+		}
+
+		public function test_already_normalized_shape_sources_remain_renderable(): void {
+			foreach ( array( 'fill' => 'none', 'proportion' => 'xMidYMid meet' ) as $fit => $policy ) {
+				$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+				$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="' . $policy . '"><path d="M0 0H1200V300H0Z"/></svg>';
+				file_put_contents( $file, $svg );
+				$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+				Section_Shape_SVG_Source::reset_cache();
+				try {
+					$source = Section_Shape_SVG_Source::get_shape_mask_source( 10, $fit );
+					self::assertSame( 'data:image/svg+xml;charset=UTF-8,' . rawurlencode( $svg ), $source );
+					self::assertSame( $source, Section_Shape_SVG_Source::get_shape_mask_source( 10, $fit ) );
+					self::assertSame( $svg, file_get_contents( $file ) );
+				} finally {
+					unlink( $file );
+				}
+			}
+		}
+
+		public function test_viewbox_quote_styles_produce_equivalent_sources_and_ratios(): void {
+			foreach ( array( '"', "'" ) as $quote ) {
+				$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+				file_put_contents( $file, '<svg xmlns="http://www.w3.org/2000/svg" viewBox=' . $quote . '0 0 1200 300' . $quote . '><path d="M0 0H1200V300H0Z"/></svg>' );
+				$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+				Section_Shape_SVG_Source::reset_cache();
+				try {
+					self::assertSame( '1200 / 300', Section_Shape_SVG_Source::get_viewbox_aspect_ratio( 10 ) );
+					$source = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' );
+					self::assertStringStartsWith( 'data:image/svg+xml;charset=UTF-8,', $source );
+					self::assertStringContainsString( 'preserveAspectRatio="xMidYMid meet"', rawurldecode( $source ) );
+				} finally {
+					unlink( $file );
+				}
+			}
+		}
+
+		public function test_failed_source_and_ratio_lookups_are_cached_per_request(): void {
+			for ( $attempt = 0; $attempt < 2; $attempt++ ) {
+				self::assertSame( '', Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' ) );
+				self::assertSame( '', Section_Shape_SVG_Source::get_viewbox_aspect_ratio( 10 ) );
+			}
+			self::assertSame( 2, $GLOBALS['flexline_section_frame_test_file_reads'][10] );
+		}
+
+		public function test_failed_proportional_normalization_does_not_block_fill_policy(): void {
+			$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+			file_put_contents( $file, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 300"><path d="M0 0H1200V300H0Z"/></svg>' );
+			$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+			try {
+				self::assertSame( '', Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' ) );
+				self::assertSame( '', Section_Shape_SVG_Source::get_shape_mask_source( 10, 'proportion' ) );
+				self::assertSame( 1, $GLOBALS['flexline_section_frame_test_file_reads'][10] );
+				self::assertStringStartsWith( 'data:image/svg+xml;', Section_Shape_SVG_Source::get_shape_mask_source( 10, 'fill' ) );
+			} finally {
+				unlink( $file );
+			}
+		}
+
+		public function test_shape_source_read_limit_and_frame_url_fallback(): void {
+			foreach ( array( 262144, 262145 ) as $bytes ) {
+				$file = tempnam( sys_get_temp_dir(), 'flexline-mask' );
+				$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><path d="M0 0H1200V300H0Z"/></svg>';
+				file_put_contents( $file, str_pad( $svg, $bytes ) );
+				$GLOBALS['flexline_section_frame_test_files'][10] = $file;
+				$GLOBALS['flexline_section_frame_test_file_reads'][10] = 0;
+				Section_Shape_SVG_Source::reset_cache();
+				try {
+					$source = Section_Shape_SVG_Source::get_shape_mask_source( 10, 'fill' );
+					self::assertSame( $source, Section_Shape_SVG_Source::get_shape_mask_source( 10, 'fill' ) );
+					self::assertSame( 1, $GLOBALS['flexline_section_frame_test_file_reads'][10] );
+					if ( 262144 === $bytes ) {
+						self::assertStringStartsWith( 'data:image/svg+xml;', $source );
+					} else {
+						self::assertSame( '', $source );
+						self::assertSame( 'https://example.test/uploads/top.svg', Section_Shape_SVG_Source::get_frame_source( 10 ) );
+					}
+				} finally {
+					unlink( $file );
+				}
+			}
 		}
 
 		public function test_shape_mask_preserving_source_removes_conflicting_svg_metadata(): void {

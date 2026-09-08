@@ -73,36 +73,6 @@ included.
 - Updated block-extension and related-post behavior to match the current editor
   and build output.
 
-### Section Shapes and Group masks
-
-- Expanded the reusable Section Frames work into a unified **Section Shapes**
-  feature for ordinary/default/constrained Group blocks.
-- Kept one admin preset library backed by the existing `flexline_frame_presets`
-  option. Presets are now typed as **Top frame**, **Bottom frame**, or **Whole
-  section**.
-- Renamed the admin/editor controls around the broader Section Shapes concept
-  while preserving the existing option names and saved frame selections.
-- Added whole-section SVG masks that clip the Group root, including the
-  background and descendants, without inserting layout-affecting wrapper markup
-  or SVG children.
-- Added the block-level **Shape Type** selector: **Top frame**, **Bottom frame**,
-  **Top and bottom frames**, or **Whole section**. Each mode reveals only its
-  relevant saved-shape controls.
-- Added two whole-section behaviors: **Shape fills group** for layout-owned
-  dimensions and **Group fits SVG proportion** for viewBox-derived aspect ratio.
-- Normalized readable Media Library SVGs server-side for admin previews, editor
-  previews, and frontend masks so authors do not need to hand-edit
-  `preserveAspectRatio`.
-- Added fixed-size admin SVG previews and user-facing Affinity export guidance.
-- Preserved Content Shift behavior. Frame overlap is overridden only when
-  Content Shift is explicitly active on the matching edge, including explicit
-  zero values.
-- Whole-section mode suppresses stale top/bottom frame rendering and overlap
-  while it is selected, then restores saved frame settings when the editor
-  switches back to a frame mode.
-- Added PHPUnit coverage for Section Shape preset normalization, SVG source
-  normalization/cache-policy separation, and whole-section render fallback.
-
 ### Primary terms: ownership and first refactor step
 
 - Added focused resolver contract tests and `npm run test:primary-terms`.
@@ -127,8 +97,6 @@ included.
 - Moved working documentation into `docs/`, including testing, coding standards,
   font conversion, deferred-refactor, and primary-term documentation.
 - Added a 2.2.1 branch-testing record and the primary-terms refactor report.
-- Documented Section Shapes setup, SVG authoring requirements, Affinity export
-  settings, cache refresh expectations, and rollback behavior.
 
 ## Validation Completed
 
@@ -157,21 +125,11 @@ Manual checks completed:
 - WordPress core's skip link is present; FlexLine does not add a duplicate.
 - With Yoast active, FlexLine does not emit duplicate OG/description metadata.
 - With Yoast skipped/inactive, FlexLine emits its enabled fallback metadata.
-- Section Shapes admin saves were checked in a Local browser and verified
-  against the Local database option. Label, SVG attachment, type, behavior, and
-  reordered preset state persisted through reloads.
-- Whole-section fill/proportion behavior, frame-mode restoration, top/bottom
-  frame rendering, nested Cover content, constrained Group placement, and
-  Content Shift precedence were manually checked during editor/frontend testing.
 
 ## Compatibility Notes
 
 - Existing saved utility settings remain readable.
 - No saved block attributes or pattern markup are intentionally changed.
-- Existing top/bottom frame presets remain stored in `flexline_frame_presets`.
-  Rows without a `type` key normalize as frame rows.
-- Whole-section presets require readable Media Library SVGs. Proportional mode
-  also requires a usable SVG `viewBox`.
 - Standard WordPress login is now the only FlexLine-supported login URL.
 - Yoast and Rank Math are never overwritten by FlexLine primary-term writes.
 - FlexLine primary-term data remains available as a canonical cache/fallback.
@@ -186,9 +144,6 @@ Manual checks completed:
 - `primary-terms.php` is still structurally dense after the CLI extraction. The
   remaining split is documented in `docs/deferred-refactors-plan.md` and should
   proceed test-first.
-- Section Shapes still need final release-device coverage for mobile
-  Chrome/Safari, desktop Safari, and any Site Editor or synced-pattern reopen
-  checks not completed before release.
 - Events Manager's malformed-meta warning and Gravity Forms' missing local
   reCAPTCHA site-key error are third-party/local-configuration issues, not
   regressions introduced by this release.

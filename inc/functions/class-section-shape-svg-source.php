@@ -90,6 +90,7 @@ class Section_Shape_SVG_Source {
 		if ( isset( self::$aspect_ratio_cache[ $attachment_id ] ) ) {
 			return self::$aspect_ratio_cache[ $attachment_id ];
 		}
+		self::$aspect_ratio_cache[ $attachment_id ] = '';
 
 		$file = get_attached_file( $attachment_id );
 		if ( ! is_string( $file ) || '' === $file || ! is_readable( $file ) ) {
@@ -168,6 +169,8 @@ class Section_Shape_SVG_Source {
 		if ( isset( self::$data_uri_cache[ $key ] ) ) {
 			return self::$data_uri_cache[ $key ];
 		}
+		// Remember failures as well as successes for this attachment and policy.
+		self::$data_uri_cache[ $key ] = '';
 
 		$file = get_attached_file( $attachment_id );
 		if ( ! is_string( $file ) || '' === $file || ! is_readable( $file ) ) {
@@ -246,7 +249,7 @@ class Section_Shape_SVG_Source {
 			1
 		);
 
-		return is_string( $normalized ) && $normalized !== $svg ? $normalized : '';
+		return is_string( $normalized ) ? $normalized : '';
 	}
 
 	/**
@@ -280,7 +283,7 @@ class Section_Shape_SVG_Source {
 	 * @return string
 	 */
 	private static function parse_viewbox_aspect_ratio( string $attributes ): string {
-		if ( ! preg_match( '/\sviewBox\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $attributes, $matches ) ) {
+		if ( ! preg_match( '/\sviewBox\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $attributes, $matches, PREG_UNMATCHED_AS_NULL ) ) {
 			return '';
 		}
 

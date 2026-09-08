@@ -2,6 +2,10 @@
 
 ## Summary
 
+Follow-up: [2.2.2 review cleanup](section-shapes-release-2.2.2-cleanup-plan.md).
+The results below are historical feature checks; final cleanup acceptance is
+tracked separately in that plan.
+
 Implement centrally managed Group frame presets in seven manageable sessions. Add a site-wide enable toggle and a per-Group toggle, both defaulting to off.
 
 Follow the repository’s Lead review → Senior implementation → QA workflow. Each session ends with relevant checks, documentation, a focused commit, and a recorded next step.

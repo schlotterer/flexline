@@ -1,8 +1,8 @@
+import { getSectionFramePreviewProps } from './section-shapes';
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import {
-	getSectionFramePreviewProps,
 	isContentShiftEdgeActive,
 	isContentShiftFieldSet,
 	normalizeContentShiftInput,

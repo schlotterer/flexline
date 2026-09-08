@@ -98,6 +98,13 @@ If you wish to manually lint your files prior to committing, you can use the fol
 
 These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.
 
+### Regression Tests
+
+Run `composer test` for the PHP unit suite and `npm run test:js -- --watch=false`
+for JavaScript tests using the existing WordPress test tooling. Section Shape
+mode tests exercise WordPress serialization/reopening and editor preview behavior.
+The separate primary-term contract checks run with `npm run test:primary-terms`.
+
 ### SCSS Module Migration Debt
 
 FlexLine still uses Sass `@import` throughout the theme SCSS tree. The
@@ -118,6 +125,13 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
 
 ## Section Shapes
+
+Whole-section masks require a locally readable Media Library SVG no larger than
+256 KiB (262,144 bytes). Offloaded attachments need a local file copy.
+**Group fits SVG proportion** also requires a valid `viewBox` with positive width
+and height. Unavailable whole masks leave the Group unmasked, and the admin
+shows a warning without deleting the saved preset. Top/bottom frames can fall
+back to their attachment URL.
 
 Section Shapes let editors apply reusable SVG masks to ordinary Group sections.
 Presets can frame the top or bottom edge, or mask the whole section with a

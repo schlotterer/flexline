@@ -24,6 +24,7 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 	$preset_type      = (string) ( $preset['type'] ?? 'frame' );
 	$preset_side      = (string) ( $preset['side'] ?? 'top' );
 	$row_type         = 'mask' === $preset_type || 'whole' === $preset_side ? 'whole' : $preset_side;
+	$is_whole         = 'whole' === $row_type;
 	$attachment_id    = isset( $preset['attachment_id'] ) ? (int) $preset['attachment_id'] : 0;
 	$attachment_label = '';
 	$attachment_url   = '';
@@ -52,6 +53,7 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 			/>
 			<input
 				type="text"
+				aria-label="Section shape label"
 				class="regular-text"
 				data-frame-field="label"
 				name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][label]"
@@ -61,6 +63,7 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 		</td>
 		<td>
 			<select
+				aria-label="Section shape type"
 				data-frame-field="type"
 				name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][type]"
 			>
@@ -93,60 +96,65 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 					<?php echo $attachment_label ? esc_html( $attachment_label ) : esc_html__( 'No SVG selected', 'flexline' ); ?>
 				</span>
 			</p>
+			<?php if ( $is_whole && $attachment_id > 0 && '' === $preview_url ) : ?>
+				<p class="description" data-frame-source-warning role="status">This whole shape cannot render. Choose a locally readable Media Library SVG of 256 KiB or less. Group fits SVG proportion also requires a viewBox with positive width and height. The preset remains saved.</p>
+			<?php endif; ?>
 		</td>
-		<td data-frame-panel="height">
+		<td>
+			<div class="flexline-frame-height-settings" data-frame-panel="height" <?php echo $is_whole ? 'hidden' : ''; ?>>
 			<label>
-				<span class="screen-reader-text">Minimum frame height in pixels</span>
+				<span>Min Height (px)</span>
 				<input
 					type="number"
 					min="1"
 					step="1"
 					class="small-text"
 					data-frame-field="height_min"
+					<?php disabled( $is_whole ); ?>
 					name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][height_min]"
 					value="<?php echo esc_attr( $preset['height_min'] ?? 56 ); ?>"
 				/>
-				px
 			</label>
-		</td>
-		<td data-frame-panel="height">
 			<label>
-				<span class="screen-reader-text">Preferred frame height in viewport width units</span>
+				<span>Preferred Height (vw)</span>
 				<input
 					type="number"
 					min="0.1"
 					step="0.1"
 					class="small-text"
 					data-frame-field="height_preferred_vw"
+					<?php disabled( $is_whole ); ?>
 					name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][height_preferred_vw]"
 					value="<?php echo esc_attr( $preset['height_preferred_vw'] ?? 7 ); ?>"
 				/>
-				vw
 			</label>
-		</td>
-		<td data-frame-panel="height">
 			<label>
-				<span class="screen-reader-text">Maximum frame height in pixels</span>
+				<span>Max Height (px)</span>
 				<input
 					type="number"
 					min="1"
 					step="1"
 					class="small-text"
 					data-frame-field="height_max"
+					<?php disabled( $is_whole ); ?>
 					name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][height_max]"
 					value="<?php echo esc_attr( $preset['height_max'] ?? 112 ); ?>"
 				/>
-				px
 			</label>
-		</td>
-		<td data-frame-panel="mask">
+			</div>
+			<div data-frame-panel="mask" <?php echo $is_whole ? '' : 'hidden'; ?>>
+			<label>
+				<span>Whole Shape Behavior</span>
 			<select
 				data-frame-field="fit"
+				<?php disabled( ! $is_whole ); ?>
 				name="flexline_frame_presets[items][<?php echo esc_attr( $index ); ?>][fit]"
 			>
 				<option value="fill" <?php selected( $fit, 'fill' ); ?>>Shape fills group</option>
 				<option value="proportion" <?php selected( $fit, 'proportion' ); ?>>Group fits SVG proportion</option>
 			</select>
+			</label>
+			</div>
 		</td>
 		<td>
 			<button type="button" class="button" data-frame-move-up aria-label="Move section shape up">Up</button>
@@ -206,6 +214,7 @@ function flexline_render_frames_tab() {
 						<li>Top frame SVGs should be opaque below the shape and transparent above it.</li>
 						<li>Bottom frame SVGs should be opaque above the shape and transparent below it.</li>
 						<li>Whole-section SVGs should include the entire mask shape inside a clean viewBox.</li>
+						<li>Whole-section SVGs must be locally readable and no larger than 256 KiB (262,144 bytes). Offloaded media needs a local file copy. Group fits SVG proportion requires a viewBox with positive width and height.</li>
 						<li>In Affinity, keep Set view box enabled and enter a valid Raster DPI, such as 300, so the SVG export can be saved.</li>
 						<li>Frames stretch automatically; whole-section shapes either fill the Group or set the Group aspect ratio from the SVG viewBox.</li>
 					</ul>
@@ -239,10 +248,7 @@ function flexline_render_frames_tab() {
 						<th scope="col">Label</th>
 						<th scope="col">Type</th>
 						<th scope="col">SVG Shape</th>
-						<th scope="col" data-frame-heading="height">Min Height</th>
-						<th scope="col" data-frame-heading="height">Preferred Height</th>
-						<th scope="col" data-frame-heading="height">Max Height</th>
-						<th scope="col" data-frame-heading="mask">Whole Shape Behavior</th>
+						<th scope="col">Settings</th>
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>

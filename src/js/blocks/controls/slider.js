@@ -1,3 +1,4 @@
+import { getSectionFrameControls } from '../section-shapes';
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 import { Fragment, useEffect } from '@wordpress/element';
 import {
@@ -19,11 +20,7 @@ import {
 import { useSelect, useDispatch, subscribe } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 
-import {
-	getVisibilityPanel,
-	getContentShiftControls,
-	getSectionFrameControls,
-} from '../utils';
+import { getVisibilityPanel, getContentShiftControls } from '../utils';
 
 /**
  * Controls: Slider-specific editor UI for Group/Stack blocks

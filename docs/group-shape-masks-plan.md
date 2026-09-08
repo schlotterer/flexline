@@ -2,6 +2,10 @@
 
 ## Summary and status
 
+Follow-up: [2.2.2 review cleanup](section-shapes-release-2.2.2-cleanup-plan.md).
+The results below are historical feature checks; final cleanup acceptance is
+tracked separately in that plan.
+
 Add reusable SVG presets that mask an entire Group, including its background and
 descendants. Use cases include a giant logo, badge, or organic silhouette. Authors
 can let the shape fill the Group or let the Group fit the SVG proportion.

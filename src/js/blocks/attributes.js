@@ -286,7 +286,7 @@ export const customSectionFrameAttributes = {
 	flexlineFrameMode: {
 		type: 'string',
 		enum: ['top', 'bottom', 'both', 'whole'],
-		default: 'top',
+		// Keep explicit modes in saved markup; an absent mode uses legacy selections.
 	},
 	flexlineFrameTop: {
 		type: 'string',

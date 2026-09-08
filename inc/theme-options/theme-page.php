@@ -206,8 +206,27 @@ function flexline_theme_options_page() {
 		.flexline-frame-svg-actions {
 			align-items: center;
 			display: flex;
+			flex-wrap: wrap;
 			gap: 0.5rem;
 			margin: 0;
+		}
+		#flexline-frame-presets-table input.regular-text,
+		#flexline-frame-presets-table select {
+			max-width: 100%;
+		}
+		#flexline-frame-presets-table input.regular-text {
+			width: 100%;
+			min-width: 100px;
+		}
+		#flexline-frame-presets-table [data-frame-panel] label {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+		.flexline-frame-height-settings:not([hidden]) {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
 		}
 		@media (max-width: 960px) {
 			.flexline-frame-guidance,
