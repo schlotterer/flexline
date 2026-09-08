@@ -28,6 +28,8 @@ This is a working release record; final release verification remains pending.
   previews, and frontend masks so authors do not need to hand-edit
   `preserveAspectRatio`.
 - Added fixed-size admin SVG previews and user-facing Affinity export guidance.
+- Added Section Shapes to the in-admin Documentation tab and drafted the
+  companion website article for the Custom Attributes section.
 - Preserved Content Shift behavior. Frame overlap is overridden only when
   Content Shift is explicitly active on the matching edge, including explicit
   zero values.
@@ -38,7 +40,8 @@ This is a working release record; final release verification remains pending.
   normalization/cache-policy separation, and whole-section render fallback.
 
 - Documented Section Shapes setup, SVG authoring requirements, Affinity export
-  settings, cache refresh expectations, and rollback behavior.
+  settings, cache refresh expectations, rollback behavior, and admin/user-facing
+  article copy.
 
 ## Review Cleanup
 

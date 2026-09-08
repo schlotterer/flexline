@@ -14,6 +14,8 @@ Settings API save path, option names, preset IDs or uploaded artwork.
 - Simplify the picker around WordPress attachment JSON.
 - Warn about unavailable whole SVGs without discarding preset definitions.
 - Document local-file, 256 KiB and positive-viewBox requirements.
+- Add Section Shapes to the in-admin Documentation tab and draft the Custom
+  Attributes website article copy.
 - Move Section Shapes release notes to 2.2.2 and preserve 2.2.1 history.
 
 Add regression coverage for WordPress block serialization, SVG policy and
