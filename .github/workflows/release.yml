@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: '22.19.0'
       - name: Build and verify runtime ZIP
-        uses: schlotterer/web4sl-ci@75a8b70eb28bc57888ac8ed3bc47a0be22a8d634
+        uses: schlotterer/web4sl-ci@a6367e140d16cce8e630d9c4caedbdafff6d5497
         with:
           mode: build
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -52,7 +52,7 @@ jobs:
           name: runtime-package
           path: .release-output/
       - name: Publish verified candidate assets
-        uses: schlotterer/web4sl-ci@75a8b70eb28bc57888ac8ed3bc47a0be22a8d634
+        uses: schlotterer/web4sl-ci@a6367e140d16cce8e630d9c4caedbdafff6d5497
         with:
           mode: publish
         env:
