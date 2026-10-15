@@ -141,3 +141,9 @@ Before deployment acceptance, obtain exact retained/installed baseline artifacts
 and validate broader functionality/activation/dependency scopes and Canary pages.
 Campaign Manager additionally needs a compatible legacy recovery package or
 owner-selected recovery policy; do not invent an unsafe reverse secret migration.
+
+### Morning review decision ready
+
+Implementation checkpoint is ready for Joel's review. See [HISTORICAL_RELEASE_CLARIFICATION.md](HISTORICAL_RELEASE_CLARIFICATION.md)
+for exact source evidence, practical options and the approvals/decisions needed.
+This note changes no storage/runtime/deployment behavior.
