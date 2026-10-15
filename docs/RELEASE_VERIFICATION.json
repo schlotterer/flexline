@@ -1,0 +1,27 @@
+{
+  "package": "flexline",
+  "runtime_version": "2.2.2",
+  "full_build_exit_code": 0,
+  "tested_source_commit": "df0d6d9dbb8f10b98133d1f7f7c26b356edd2d6a",
+  "tested_build_tooling_commit": "a6367e140d16cce8e630d9c4caedbdafff6d5497",
+  "final_pinned_tooling_commit": "da4755a586a3444a27307f2d3d704e1132f50f9f",
+  "final_tooling_refusal_tests": 21,
+  "archive_sha256": "27bed56fd980bf1fb1f7e46475d4ea0e50c8b0040face211eed5d3751ef9d575",
+  "runtime_files": 437,
+  "checks": "48 PHPUnit tests / 180 assertions, primary-terms contract, JS/CSS lint and production build",
+  "workflow_actionlint": "passed (1.7.7; shellcheck/pyflakes integrations disabled)",
+  "zip_install_activate": {
+    "install": 0,
+    "activate": 0
+  },
+  "fresh_boot_exit_code": 0,
+  "fixture_container_removed": true,
+  "environment": {
+    "php": "8.2.29",
+    "node": "22.19.0",
+    "wordpress_fixture": "6.8"
+  },
+  "github_publication_tested": false,
+  "canary_upgrade_recovery_tested": false,
+  "artifacts": "Local ignored .release-output preview; no tag and no publication authority."
+}
