@@ -52,3 +52,6 @@ convert-fonts.sh
 
 # Local release output
 .release-output/
+
+# Local reconstructed historical recovery evidence
+.recovery-output/

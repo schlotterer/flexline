@@ -64,7 +64,7 @@ Compilation/lint alone does not prove live
 upgrade/recovery or Canary acceptance. No publication, live site deployment,
 credential setup or DFG reconfiguration is authorized by this document.
 
-Shared action pin: `da4755a586a3444a27307f2d3d704e1132f50f9f`. This commit is local until the shared
+Shared action pin: `e8f8566927ab16213c425dfee4a4809a6be4f0c0`. This commit is local until the shared
 repository is pushed/reviewed; publish it before callers can run on GitHub.
 
 ### Completed local verification
@@ -104,3 +104,40 @@ the merged source and use the final pin.
 The 2.2.2 header was already present. Only isolated package/composer metadata and
 lock metadata were aligned to the owner's intended v2.2.2; no tag was created,
 and the active release-2.2.2 work-in-progress checkout was not changed.
+
+### Additional local review and recovery verification
+
+- [x] Review runtime manifests and preserve existing branch consumers.
+- [x] Reject moved/ambiguous remote tags before draft creation and publication;
+  resolve lightweight and annotated tag objects in the exact tags namespace.
+  Shared tooling now has **26 passing tests**, with no real GitHub mutations.
+- [x] Exercise historical snapshot → candidate → historical snapshot on disposable
+  WordPress 6.8 single-site and multisite, observing main and child data.
+- [x] Preserve synthetic content created both before and after upgrade, plus
+  package-specific native settings (Health token, Site Ops off-consent/key hash,
+  floor-plan setting, Location Sync setting, theme mods, or GA4 settings).
+- [x] Remove/confirm absence of the synthetic database container.
+
+Historical baseline: `f06da6597f65d5b43224e5d7f5ffeff5710e31f5` (header 2.2.0).
+Source: Reconstructed from locally available Git-tracked runtime files; not a retained or production-verified release artifact. No rebuild or old metadata rewrite.
+Readiness: **partial-filesystem-proof**. Reconstructed Git runtime snapshot, not retained production bytes; seeded settings/content coverage only. Exact installed recovery artifact and full functional/Canary acceptance remain unverified. Historical tag 2.2.1 declares header 2.2.0. Mac case-insensitive extraction collapses two identical Montserrat font aliases; Linux static extraction verifies all 407 files, but full Linux WordPress downgrade remains untested.
+
+Five plugin cases reproduced the exact baseline and candidate file manifests.
+FlexLine's historical font-case alias limitation is documented separately;
+settings/content preservation must not be confused with complete file proof.
+For Campaign Manager, the database value stays encrypted through recovery, but
+the legacy bridge cannot interpret it. Reinstalling the candidate restores secret
+interpretation in both topologies; that forward recovery does not make legacy
+downgrade compatible. No credential algorithm or stored production data changed.
+
+See `RECOVERY_VERIFICATION.json` for case-level evidence. Local reconstructed
+recovery ZIP/provenance is retained in ignored `.recovery-output/`, alongside
+previous `.release-output/` preview bytes (not overwritten). The previews' old
+release metadata predates these new readiness annotations; future tagged builds
+will include the current `release-package.json` compatibility limits.
+
+**Next action:** review/push shared tooling first, then callers and GitHub CI.
+Before deployment acceptance, obtain exact retained/installed baseline artifacts
+and validate broader functionality/activation/dependency scopes and Canary pages.
+Campaign Manager additionally needs a compatible legacy recovery package or
+owner-selected recovery policy; do not invent an unsafe reverse secret migration.
