@@ -49,3 +49,6 @@ yarn-error.log
 convert-fonts.sh
 
 /vendor
+
+# Local release output
+.release-output/
