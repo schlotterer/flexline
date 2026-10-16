@@ -1,0 +1,59 @@
+name: Versioned runtime package
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: runtime-package-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.2'
+          tools: composer:2.10.3
+          coverage: none
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.19.0'
+      - name: Build and verify runtime ZIP
+        uses: schlotterer/web4sl-ci@e8f8566927ab16213c425dfee4a4809a6be4f0c0
+        with:
+          mode: build
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: runtime-package
+          path: .release-output/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  publish:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: runtime-package
+          path: .release-output/
+      - name: Publish verified candidate assets
+        uses: schlotterer/web4sl-ci@e8f8566927ab16213c425dfee4a4809a6be4f0c0
+        with:
+          mode: publish
+        env:
+          GH_TOKEN: ${{ github.token }}

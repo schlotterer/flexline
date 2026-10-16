@@ -335,3 +335,29 @@ theme wrappers.
 ## WordPress 6.9 Accordion Block
 
 WordPress 6.9 ships a native accordion/accordion-item/heading/panel family. FlexLine automatically injects its visibility toggles and card/glass style variations into each of those blocks, so editors can keep using the same FlexLine controls—such as Card, Card w/ Padding, Outline, Glass, and Glass Card—without depending on a third-party accordion plugin.
+
+
+## Versioned runtime releases
+
+Feature branches are merged into `main`; an explicit `vMAJOR.MINOR.PATCH` tag
+selects the exact release commit. GitHub Actions runs the checks/build and produces
+a runtime-only installable ZIP, `SHA256SUMS` and `release.json`. Main/PR builds
+produce preview artifacts only. Publishing a candidate never deploys a site.
+Current tracked build files remain for existing DFG branch consumers.
+
+Managed releases must preserve backward compatibility where practical or document
+and test additional recovery steps. Prefer additive migrations; code rollback
+does not reverse data changes. Declare dependency compatibility and release/rollback
+ordering, retain exact previous packages, and verify upgrades and recovery before
+broader rollout with the existing Canary Health/visual checks. Never automatically
+restore an old database over new content.
+
+See [repository release progress](docs/RELEASE_IMPLEMENTATION_PLAN.md) for the
+package file list, exact check commands, blockers and next steps.
+
+### Build runtime — 16 October 2026
+
+Local builds and CI use Node 24.19.0 (`nvm use`) and Composer 2.10.3.
+Workflow actions are pinned to verified releases declaring the Node 24 runtime.
+Ubuntu runners are pinned to 24.04. PHP runtime requirements remain unchanged.
+See docs/RELEASE_IMPLEMENTATION_PLAN.md for verification and release gates.

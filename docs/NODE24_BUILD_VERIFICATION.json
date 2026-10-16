@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-16",
+  "package": "flexline",
+  "source_head": "8a83eb0c997e8ac5ceda3794631026c8949196a4",
+  "verification_snapshot": "8350467fd971824fb6c29cde33226b611304624a",
+  "node": "24.19.0",
+  "composer": "2.10.3",
+  "php": "8.2.29",
+  "host": "macOS arm64",
+  "runner": "ubuntu-24.04",
+  "actions": {
+    "actions/checkout": {
+      "version": "v7.0.1",
+      "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "runtime": "node24"
+    },
+    "actions/setup-node": {
+      "version": "v7.1.0",
+      "sha": "949feb2413d6458794dcd2491c4babbbce0c15c1",
+      "runtime": "node24"
+    },
+    "actions/upload-artifact": {
+      "version": "v7.0.2",
+      "sha": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+      "runtime": "node24"
+    },
+    "actions/download-artifact": {
+      "version": "v8.0.2",
+      "sha": "9000827ccba6bdab643e8b6fd33ac0654aef8333",
+      "runtime": "node24"
+    },
+    "shivammathur/setup-php": {
+      "version": "v2",
+      "sha": "eb7c497e18156a6bbabfef1d3a82760b9eda3962",
+      "runtime": "node24"
+    }
+  },
+  "workflow_validation": {
+    "actionlint": "1.7.12",
+    "aggregate_workflows": 12,
+    "passed": true,
+    "shellcheck": false,
+    "pyflakes": false
+  },
+  "published": false,
+  "deployed": false,
+  "existing_tags_modified": false,
+  "build": {
+    "exit_code": 0,
+    "seconds": 29.5,
+    "log": "/private/tmp/web4sl-node24-dz848_te/logs/flexline.log",
+    "output": "/private/tmp/web4sl-node24-dz848_te/outputs/flexline",
+    "verify_exit": 0,
+    "version": "2.2.2",
+    "files": 437,
+    "sha256": "1e7777048a7c19cc4c3c313e3feac892610462cada2e851c8efdd6dc2ee8436c"
+  },
+  "passed": true,
+  "artifact_kind": "local non-publishable preview"
+}

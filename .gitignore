@@ -49,3 +49,9 @@ yarn-error.log
 convert-fonts.sh
 
 /vendor
+
+# Local release output
+.release-output/
+
+# Local reconstructed historical recovery evidence
+.recovery-output/

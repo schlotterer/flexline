@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "package": "flexline",
+  "native_executor": "WordPress WP-CLI install --force, local ZIP only; not DFG or Site Ops deployment execution",
+  "baseline": {
+    "source_ref": "2.2.1",
+    "commit": "f06da6597f65d5b43224e5d7f5ffeff5710e31f5",
+    "header_version": "2.2.0",
+    "sha256": "0743ba161b31564a9858521664aa158bb407b1aa260473f05bc36a8266a2be36",
+    "provenance": "Reconstructed from locally available Git-tracked runtime files; not a retained or production-verified release artifact. No rebuild or old metadata rewrite."
+  },
+  "cases": {
+    "single": {
+      "historical_commit": "f06da6597f65d5b43224e5d7f5ffeff5710e31f5",
+      "historical_version": "2.2.0",
+      "candidate_version": "2.2.2",
+      "historical_artifact_sha256": "0743ba161b31564a9858521664aa158bb407b1aa260473f05bc36a8266a2be36",
+      "candidate_artifact_sha256": "27bed56fd980bf1fb1f7e46475d4ea0e50c8b0040face211eed5d3751ef9d575",
+      "historical_provenance": "Reconstructed from locally available Git-tracked runtime files; not a retained or production-verified release artifact. No rebuild or old metadata rewrite.",
+      "baseline_exact_files": false,
+      "baseline": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": false,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        }
+      ],
+      "candidate_exact_files": true,
+      "upgraded": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        }
+      ],
+      "recovery_exact_files": false,
+      "recovered": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        }
+      ],
+      "content_preservation_passed": true,
+      "native_settings_preserved": true,
+      "code_replacement_passed": false,
+      "secret_compatible_after_recovery": true,
+      "candidate_restored": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        }
+      ]
+    },
+    "multisite": {
+      "historical_commit": "f06da6597f65d5b43224e5d7f5ffeff5710e31f5",
+      "historical_version": "2.2.0",
+      "candidate_version": "2.2.2",
+      "historical_artifact_sha256": "0743ba161b31564a9858521664aa158bb407b1aa260473f05bc36a8266a2be36",
+      "candidate_artifact_sha256": "27bed56fd980bf1fb1f7e46475d4ea0e50c8b0040face211eed5d3751ef9d575",
+      "historical_provenance": "Reconstructed from locally available Git-tracked runtime files; not a retained or production-verified release artifact. No rebuild or old metadata rewrite.",
+      "baseline_exact_files": false,
+      "baseline": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": false,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        },
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": false,
+          "blog_id": 2,
+          "native_settings_preserved": true
+        }
+      ],
+      "candidate_exact_files": true,
+      "upgraded": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        },
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 2,
+          "native_settings_preserved": true
+        }
+      ],
+      "recovery_exact_files": false,
+      "recovered": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        },
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 2,
+          "native_settings_preserved": true
+        }
+      ],
+      "content_preservation_passed": true,
+      "native_settings_preserved": true,
+      "code_replacement_passed": false,
+      "secret_compatible_after_recovery": true,
+      "candidate_restored": [
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 1,
+          "native_settings_preserved": true
+        },
+        {
+          "sentinel_preserved": true,
+          "old_content_preserved": true,
+          "new_content_preserved": true,
+          "blog_id": 2,
+          "native_settings_preserved": true
+        }
+      ]
+    }
+  },
+  "readiness": "partial-filesystem-proof",
+  "limits": "Reconstructed Git runtime snapshot, not retained production bytes; seeded settings/content coverage only. Exact installed recovery artifact and full functional/Canary acceptance remain unverified. Historical tag 2.2.1 declares header 2.2.0. Mac case-insensitive extraction collapses two identical Montserrat font aliases; Linux static extraction verifies all 407 files, but full Linux WordPress downgrade remains untested.",
+  "fixture_container_removed": true,
+  "database_restored": false,
+  "live_sites_touched": false,
+  "linux_static_archive_proof": {
+    "exact_files": 407,
+    "case_aliases_preserved": true,
+    "image_digest": "sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce",
+    "wordpress_runtime_tested_on_linux": false
+  }
+}
