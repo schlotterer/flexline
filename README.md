@@ -354,3 +354,10 @@ restore an old database over new content.
 
 See [repository release progress](docs/RELEASE_IMPLEMENTATION_PLAN.md) for the
 package file list, exact check commands, blockers and next steps.
+
+### Build runtime — 16 October 2026
+
+Local builds and CI use Node 24.19.0 (`nvm use`) and Composer 2.10.3.
+Workflow actions are pinned to verified releases declaring the Node 24 runtime.
+Ubuntu runners are pinned to 24.04. PHP runtime requirements remain unchanged.
+See docs/RELEASE_IMPLEMENTATION_PLAN.md for verification and release gates.

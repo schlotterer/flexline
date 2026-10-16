@@ -147,3 +147,23 @@ owner-selected recovery policy; do not invent an unsafe reverse secret migration
 Implementation checkpoint is ready for Joel's review. See [HISTORICAL_RELEASE_CLARIFICATION.md](HISTORICAL_RELEASE_CLARIFICATION.md)
 for exact source evidence, practical options and the approvals/decisions needed.
 This note changes no storage/runtime/deployment behavior.
+
+## 16 October — Node 24 build verification
+
+Build runtime pinned to Node 24.19.0 in workflows and `.nvmrc`; relevant JavaScript
+actions now pin verified Node-24 releases. Composer is pinned to 2.10.3 and the
+runner label to Ubuntu 24.04. Existing package/PHP requirements, release controls,
+shared action pin, runtime allowlists and installed package versions are preserved.
+A full isolated build and ZIP checksum/file verification passed using Node
+24.19.0, Composer 2.10.3 and local PHP 8.2.29. No active Local checkout was used for compilation or dependency installation.
+
+See `NODE24_BUILD_VERIFICATION.json` for snapshot identity, action pins, artifacts
+and results. These are local proofs; Ubuntu/GitHub execution of the updated
+workflows remains unverified. No source/runtime dependency upgrades, version tags,
+GitHub publication, live deployment or changes to existing recovery gates occurred.
+
+GitHub currently has only the old shared CI `main`; Web4SL's tagged packaging run
+38902050611 failed during job setup because shared action commit
+`e8f8566927ab16213c425dfee4a4809a6be4f0c0` is unavailable remotely. Push/review
+the prepared shared implementation first, then callers. Preserve existing tags;
+version changes and a new candidate tag remain owner-led release steps.
