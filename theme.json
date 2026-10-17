@@ -3,6 +3,10 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "settings": {
     "appearanceTools": true,
+    "viewport": {
+      "mobile": "781.98px",
+      "tablet": "991.98px"
+    },
     "layout": {
       "contentSize": "960px",
       "wideSize": "1380px"

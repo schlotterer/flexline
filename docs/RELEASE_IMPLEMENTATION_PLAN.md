@@ -167,3 +167,19 @@ GitHub currently has only the old shared CI `main`; Web4SL's tagged packaging ru
 `e8f8566927ab16213c425dfee4a4809a6be4f0c0` is unavailable remotely. Push/review
 the prepared shared implementation first, then callers. Preserve existing tags;
 version changes and a new candidate tag remain owner-led release steps.
+
+## WordPress 7.2 preparation October 16 2026
+
+Branch `wp-7.2-remediation` is based on release-2.2.2 at 1bab7b25. Added
+settings.viewport mobile 781.98px and tablet 991.98px to match existing SCSS
+maximum widths. No SCSS, saved content, preset or class changes. The local
+WordPress 7.1.2 WP_Theme_JSON::get_viewport_media_queries check passed for mobile,
+tablet and desktop output. JSON comparison confirms viewport is the only theme
+configuration change; maximum widths match SCSS. git diff --check passed.
+
+See WORDPRESS_7_2_REMEDIATION_PLAN.md for safeguards and separate plugin branches.
+Existing Core responsive styles may activate at different widths; fractional
+boundaries, user/child overrides and browser acceptance remain pending. No JS/CSS
+compilation needed for this JSON-only change. Further integration is paused until
+the owner installs 7.2 beta locally. No deployment, release, or compatibility-header
+claim is made. Existing Local checkout and uncommitted release work are untouched.
