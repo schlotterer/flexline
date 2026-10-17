@@ -342,7 +342,9 @@ WordPress 6.9 ships a native accordion/accordion-item/heading/panel family. Flex
 Feature branches are merged into `main`; an explicit `vMAJOR.MINOR.PATCH` tag
 selects the exact release commit. GitHub Actions runs the checks/build and produces
 a runtime-only installable ZIP, `SHA256SUMS` and `release.json`. Main/PR builds
-produce preview artifacts only. Publishing a candidate never deploys a site.
+produce preview artifacts only. A successful tag release then updates the
+`production` branch from the exact verified ZIP; DFG consumers configured for that
+branch may deploy on its push. No site configuration is changed by the workflow.
 Current tracked build files remain for existing DFG branch consumers.
 
 Managed releases must preserve backward compatibility where practical or document
@@ -361,3 +363,20 @@ Local builds and CI use Node 24.19.0 (`nvm use`) and Composer 2.10.3.
 Workflow actions are pinned to verified releases declaring the Node 24 runtime.
 Ubuntu runners are pinned to 24.04. PHP runtime requirements remain unchanged.
 See docs/RELEASE_IMPLEMENTATION_PLAN.md for verification and release gates.
+
+### Production branch delivery
+
+The tag workflow builds once, publishes/verifies the release assets, then updates
+`production` with precisely the runtime ZIP contents, without the outer package
+directory. Main/PR/manual previews never update that branch. No force push is
+used; branch history retains prior runtime trees. Older releases, changed bytes
+for a repeated version, unmanaged existing production branches and concurrent
+updates are refused. Identical repeats are no-ops. If publication succeeds but
+production fails, rerun failed jobs only; the published ZIP remains retained.
+
+Before changing any site's DFG branch, verify GitHub production publication and
+webhook delivery on an explicitly approved staging target, then complete its
+Health/visual and supported recovery checks. Local installer evidence does not
+prove activation/migration or private-auth/live-webhook acceptance. Existing
+package-specific recovery limits remain in force. No site branch or webhook was
+changed during implementation.

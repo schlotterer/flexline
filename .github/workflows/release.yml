@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: '24.19.0'
       - name: Build and verify runtime ZIP
-        uses: schlotterer/web4sl-ci@e8f8566927ab16213c425dfee4a4809a6be4f0c0
+        uses: schlotterer/web4sl-ci@1f74bb9a8bedeebf8744c394c37edb66b3c7ae17
         with:
           mode: build
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -52,8 +52,30 @@ jobs:
           name: runtime-package
           path: .release-output/
       - name: Publish verified candidate assets
-        uses: schlotterer/web4sl-ci@e8f8566927ab16213c425dfee4a4809a6be4f0c0
+        uses: schlotterer/web4sl-ci@1f74bb9a8bedeebf8744c394c37edb66b3c7ae17
         with:
           mode: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+  production:
+    name: Update DFG production branch
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: production-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: runtime-package
+          path: .release-output/
+      - name: Promote exact verified release bytes
+        uses: schlotterer/web4sl-ci@1f74bb9a8bedeebf8744c394c37edb66b3c7ae17
+        with:
+          mode: production
         env:
           GH_TOKEN: ${{ github.token }}

@@ -167,3 +167,25 @@ GitHub currently has only the old shared CI `main`; Web4SL's tagged packaging ru
 `e8f8566927ab16213c425dfee4a4809a6be4f0c0` is unavailable remotely. Push/review
 the prepared shared implementation first, then callers. Preserve existing tags;
 version changes and a new candidate tag remain owner-led release steps.
+
+## 16 October — tagged production branch wiring
+
+Owner confirmed the intended DFG path: tag → one verified ZIP → published release
+→ production branch, not ZIP publication alone. All three shared-action steps pin
+`1f74bb9a8bedeebf8744c394c37edb66b3c7ae17` on shared branch `codex/tagged-production-branch`.
+Push/review shared code first and preserve that commit when merging, then callers.
+
+The tag-only production job depends on successful release publication, downloads
+the same artifact and has a separate contents-write token and per-repository
+concurrency group. Preview/main builds cannot update production. Git uses normal
+fast-forward pushes and preserves prior runtime trees; stale releases, same-version
+byte changes, unmanaged baselines and races are refused. No runtime/schema/data,
+site branch, webhook or credential was changed. Existing recovery gates remain.
+
+All six real runtime trees and branch archives were verified against their ZIP
+file hashes; actual DFG 1.0.13 installed each twice on disposable WordPress 6.8
+multisite, retaining seeded option/post data and removing obsolete files. The
+shared suite passed 43 tests. API guards were mocked; actual private GitHub token
+push, branch protections and webhook delivery still need remote/staging acceptance.
+Activation/migrations and real-site Health/visual/recovery checks remain separate.
+See PRODUCTION_BRANCH_VERIFICATION.json and the shared verification receipt.
