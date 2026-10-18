@@ -214,3 +214,25 @@ theme wrappers.
 ## WordPress 6.9 Accordion Block
 
 WordPress 6.9 ships a native accordion/accordion-item/heading/panel family. FlexLine automatically injects its visibility toggles and card/glass style variations into each of those blocks, so editors can keep using the same FlexLine controls—such as Card, Card w/ Padding, Outline, Glass, and Glass Card—without depending on a third-party accordion plugin.
+
+
+## Dependency branch maintenance
+
+Weekly npm and Composer version-update PRs target `dependabot-releases`.
+Keep this branch current with `main`, then integrate dependency updates and
+verify a clean install, lint, and `npm run build` before proposing a merge back.
+GitHub security-update PRs use the default branch regardless of `target-branch`;
+security alerts remain open until their fixes reach that branch. See the
+[GitHub target-branch documentation](https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference#target-branch).
+
+Webpack is explicitly pinned to **5.104.1** for Laravel Mix 6.0.49 compatibility.
+A fresh resolution to 5.112.0 fails because Mix imports the removed internal
+`webpack/lib/SizeFormatHelpers` module. Trying 5.106.2 instead fails validation
+of the progress-plugin options passed by Mix/webpackbar. Keep the working pin
+until an upgrade or build-tool replacement passes a clean production build;
+do not patch installed dependencies to bypass these failures.
+
+Use Node 24 for the current build verification. `npm run production` runs
+source auto-fix commands; use `npm run build` when verifying generated assets
+without unrelated source rewrites. Dependency/build checks do not replace
+Canary visual, editor, health, and supported recovery checks before release.

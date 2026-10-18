@@ -465,3 +465,36 @@ The current working tree has already received the following checks:
   those failures as regressions.
 - PHPCS, full browser accessibility checks, visual regression checks, and
   production/backup dry-run reporting remain release-gate work.
+
+
+## FlexLine dependency branch refresh — 2026-10-18
+
+- `dependabot-releases` fast-forwarded to GitHub `main` at
+  `4f6decc8531558f39dd1ca72d88e3d00311684f9`; no merge conflicts or unique
+  dependency-branch commits existed. No open PRs (including Dependabot PRs)
+  were available to merge at either check.
+- Rebuilt `package-lock.json` from the manifest and verified `npm ci` with
+  Node 24.19.0 / npm 11.17.0. Retained webpack 5.104.1 explicitly because
+  freshly resolved 5.112.0 and an attempted 5.106.2 break Laravel Mix. Other
+  dependencies resolve within their existing manifest ranges.
+- JavaScript lint, style lint, `npm run build`, and all nine cases in
+  `php tests/primary-terms-resolver-contract.php` pass. Committed runtime
+  CSS/JS outputs were regenerated. The only source change is the formatter's
+  wrapping of the gallery effect guard; behavior is unchanged.
+- Composer install succeeds using the existing `composer.lock`. Full PHP lint
+  has zero errors and one existing warning at
+  `inc/blocks/block-extensions.php:231` for a `$class` parameter name.
+  PHP lint with warnings excluded passes. Composer dependencies were not updated.
+- `npm audit` still exits 1: 125 dependency vulnerabilities (79 high,
+  40 moderate, 6 low, zero critical). This refresh is not a completed security
+  remediation or release approval. Retained peer warnings include the upstream
+  `react-autosize-textarea` / React version mismatch.
+- Weekly version-update PRs remain configured for `dependabot-releases`.
+  Automated security updates are enabled and not paused, but GitHub targets
+  security PRs at `main`. The latest observed Dependabot job (39036165102)
+  failed because a branch named `dependabot` blocked its PR namespace. That
+  branch has been renamed to `archive/dependabot-setup`; a successful fresh
+  Dependabot run is still unverified. Alerts on `main` remain until fixes land.
+- Verification used an isolated temporary clone. The active Local theme checkout
+  on `release-2.2.2` was not edited. No deployment, release tag, live-site checks,
+  Canary visual tests, or recovery exercise was performed.

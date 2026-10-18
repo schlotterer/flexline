@@ -52,7 +52,8 @@
     "postcss-scss": "^4.0.9",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.97.2",
-    "sass-loader": "^16.0.6"
+    "sass-loader": "^16.0.6",
+    "webpack": "5.104.1"
   },
   "lint-staged": {
     "*.php": "vendor/bin/phpcbf --standard=WordPress",

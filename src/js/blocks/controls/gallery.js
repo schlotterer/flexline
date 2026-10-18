@@ -145,12 +145,10 @@ const useHooks = (props) => {
 	);
 
 	useEffect(() => {
-		if (
-			!(
-				props.attributes.enablePosterGallery &&
-				shouldUseCoreGalleryLightbox()
-			)
-		) {
+		if (!(
+			props.attributes.enablePosterGallery &&
+			shouldUseCoreGalleryLightbox()
+		)) {
 			return;
 		}
 
