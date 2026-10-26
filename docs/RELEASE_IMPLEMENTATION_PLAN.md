@@ -245,3 +245,34 @@ branch/tag-only publication guard checks passed; actual GitHub execution is stil
 unverified. Tags must be reachable from main. Publishing a tag can subsequently
 update the production branch and trigger DFG consumers; that action remains
 separately authorized. Shared action pin and runtime package identity are retained.
+
+## 26 October — canonical Montserrat package path
+
+Joel reported that staging2 Fleet verification rejects the two Git-tracked font
+paths differing only by capitalization. Removed the lowercase tracked duplicate
+from release-2.2.2, retaining `assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2`.
+Both original Git entries have blob f690491158b57f323c5ddc4204edcf986ea18707;
+the retained font SHA256 remains
+`3fb1102ae9faef4750889284dff01cc4d1933873dbe98582ab5d28062a3bff91`.
+The Mac working file was normalized to the canonical spelling, with the index
+change limited to deletion of the lowercase alias. Added the exact canonical
+path to release-package.json required files so packaging refuses a missing or
+incorrectly cased canonical font. Current runtime source references already use
+that spelling; no references, font bytes, versions or database content changed.
+
+Checks passed: Git index and local preview ZIP have no case-fold path collisions;
+ZIP contains the uppercase path only with the original SHA256; source search
+found no lowercase font reference in runtime code. Established shared
+`package_release.py build` and `verify` succeeded using cached locked Composer
+runtime dependencies with network disabled. Preflight evidence is in workspace
+`diagnostics/wp72-beta-20261026/packages/font-case-preflight/`; committed preview
+is retained separately under `font-case-final/`. These previews retain
+`checks_passed: false`; no full CI rerun or Fleet integration pass is claimed.
+
+Historical tags/archives and prior recovery evidence are unchanged. Restoring a
+historical ZIP can reintroduce the collision and be rejected by Fleet; select and
+verify an exact supported recovery artifact before rollout. Before removing the
+alias on a case-sensitive hosted site, separately approve the concrete correction
+and check saved/custom references plus font loading there. Joel reports the
+approved staging2 diagnostic is installed and MCP/Health verified; that is not
+approval to modify its theme. No push, tag, publication or hosted change occurred.

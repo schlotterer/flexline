@@ -35,11 +35,15 @@ and theme settings survived. Isolated Linux extraction verified **all 407**
 historical runtime files, including both aliases. This is static Linux archive
 proof, not a full Linux WordPress upgrade/downgrade test.
 
-The current tracked font tree also retains the two path spellings; do not delete
-or rename a compatibility path by assumption. Local Mac preview ZIP contents may
-therefore differ from a fresh Linux checkout's path set. Fleet rollout must pin
-and distribute the single final Linux-produced ZIP/digest, not rebuild per site
-or equate platform-specific preview archives.
+The historical checkpoint retained both path spellings. On October 26, Joel
+reported that Fleet rejects this case ambiguity on staging2 and authorized the
+source correction before FlexLine publication. The release-2.2.2 source now keeps
+only `Montserrat-VariableFont_wght.woff2`, which all current theme references use;
+the retained bytes are unchanged. The runtime manifest requires that exact path.
+Historical tags and recovery fixtures remain unchanged: their two aliases are
+still a historical recovery limitation. Fleet rollout must distribute one verified
+final ZIP/digest, not rebuild per site or equate platform-specific previews.
+The hosted correction requires separate approval; this change is local only.
 
 ## What existing Linux CI can prove after an approved push
 

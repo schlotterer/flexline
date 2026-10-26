@@ -29,7 +29,8 @@
     "assets/built/css/app.css",
     "assets/built/css/editor.css",
     "assets/built/js/load-early.js",
-    "assets/fonts/REM/REM-VariableFont_wght.woff2"
+    "assets/fonts/REM/REM-VariableFont_wght.woff2",
+    "assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2"
   ],
   "generated": [
     "build",
