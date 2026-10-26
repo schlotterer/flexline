@@ -325,14 +325,14 @@
 			line-height: 1;
 		}
 
-		// Fallback for inline Text Shadow format when style-variation JSON overrides theme.json CSS.
-		.is-style-text-shadow,
-		.is-style-text-shadow a,
-		[class*="is-style-text-shadow--"],
-		[class*="is-style-text-shadow--"] a,
-		a.is-style-text-shadow,
-		a .is-style-text-shadow {
+		// Keep legacy/inline shadows as zero-specificity fallbacks for Core controls.
+		@at-root :where(#{$scope}) :where(.is-style-text-shadow, [class*="is-style-text-shadow--"]) {
 			text-shadow: var(--wp--custom--text-shadow);
+		}
+
+		// Links inherit the resolved block shadow, including an explicit Core none.
+		@at-root :where(#{$scope}) :where(.is-style-text-shadow, [class*="is-style-text-shadow--"]) :where(a) {
+			text-shadow: inherit;
 		}
 
 		// Scroll to button

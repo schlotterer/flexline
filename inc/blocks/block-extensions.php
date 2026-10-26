@@ -50,6 +50,37 @@ function flexline_enqueue_block_editor_assets() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
 
 /**
+ * Match directory block schemas to FlexLine's existing editor layout controls.
+ *
+ * Core server previews restore client attribute defaults before making their
+ * REST request, so these attributes must also be accepted by the server.
+ *
+ * @param array $metadata Block type metadata.
+ * @return array
+ */
+function flexline_register_directory_layout_attributes( $metadata ) {
+	$blocks = array(
+		'web4sl/location-address',
+		'web4sl/location-phone-link',
+		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
+	);
+	if ( ! in_array( $metadata['name'] ?? '', $blocks, true ) ) {
+		return $metadata;
+	}
+	foreach ( array( 'stackAtTablet', 'hideOnDesktop', 'hideOnTablet', 'hideOnMobile' ) as $attribute ) {
+		if ( ! isset( $metadata['attributes'][ $attribute ] ) ) {
+			$metadata['attributes'][ $attribute ] = array(
+				'type'    => 'boolean',
+				'default' => false,
+			);
+		}
+	}
+	return $metadata;
+}
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\\flexline_register_directory_layout_attributes' );
+
+/**
  * Disable WordPress core block visibility support for all block types.
  *
  * FlexLine provides its own responsive visibility controls and class-based

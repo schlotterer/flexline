@@ -189,3 +189,59 @@ shared suite passed 43 tests. API guards were mocked; actual private GitHub toke
 push, branch protections and webhook delivery still need remote/staging acceptance.
 Activation/migrations and real-site Health/visual/recovery checks remain separate.
 See PRODUCTION_BRANCH_VERIFICATION.json and the shared verification receipt.
+
+## 26 October — scoped WordPress 7.2-beta1 acceptance
+
+Work was performed in the loaded `mylifesite2026/app/public` checkouts, on local
+`wp-7.2-beta-fixes` branches. No additional checkout/worktree was created. Old
+remediation worktrees remain untouched. No push, tag, remote workflow, publication,
+version bump or deployment was performed.
+
+Local Core: 7.2-beta1. Build runtime: Node 24.19.0 / CLI PHP 8.2.29; Local web
+runtime: PHP 8.2.27. The local main-site pattern and alpha draft page exercised
+native spacing, borders and text shadow alongside legacy controls. Draft fixtures
+are labeled `WP 7.2 beta acceptance draft 2026-10-26`: main-site wp_block 121765,
+alpha page 5281, and the initial unsupported-context system wp_block 1382. Location
+Sync intentionally registers blocks on the main site only; the system fixture's
+unsupported blocks are not a beta regression. Existing published content and
+options were not rewritten. MyLifeSite Location Sync remained network-active.
+
+Local runtime packages are preview artifacts under workspace
+`diagnostics/wp72-beta-20261026/packages/`; the established
+`web4sl-ci/scripts/package_release.py build` and `verify` paths are used, without
+`--execute` or a tag. They are not publishable releases (`checks_passed: false`),
+and checksums/file validation must not be represented as full CI acceptance.
+Local shared packaging/refusal suite: 43 tests passed. Map, media and composite
+floor-plan runtime build files remain unchanged; outer controls are deferred.
+
+No schema/data migration or automatic resave is introduced. Code rollback means
+reinstalling the exact retained pre-update package; never restore an older DB over
+new content. New native text-shadow settings require supporting Core. Full stable
+Core/minimum-version regression, retained installed-artifact recovery, beta/RC
+retesting and production Canary acceptance remain release gates. Browser warnings
+about existing iframe styles and third-party deprecations were observed, so this
+is scoped acceptance, not a claim of a warning-free editor or complete WP 7.2
+platform certification.
+
+FlexLine: configured mobile/tablet maxima 781.98px/991.98px to match SCSS. Native
+text shadows (including explicit none/presets) override the zero-specificity legacy
+fallback; inline child shadows remain. Existing visibility option/default and
+legacy classes stay intact. Declared the existing four directory layout attributes
+server-side for the four Location blocks already extended by FlexLine: Core's SSR
+sanitizer restores client defaults, which otherwise fail REST schema validation.
+This adds no new controls or saved-data migration. Other block schemas are untouched.
+
+Checks: production build, JS/SCSS lint, PHPUnit 48 tests/180 assertions,
+`php tests/primary-terms-resolver-contract.php` (9 cases),
+`php tests/directory-preview-schema-contract.php`, and
+`WP_CORE_DIR=/absolute/path/to/app/public php tests/viewport-core-contract.php`
+passed. The viewport contract uses installed Core, without a DB. Browser checks
+at 390/781/782/900/991/992/1325px confirmed 7/11/23px native responsive padding and
+existing visibility classes. Mobile/tablet editor canvases reflected 781/991px.
+Fractional legacy boundary gaps are documented in the remediation plan.
+
+The existing package workflow now also covers release-2.2.2 pushes/PRs. YAML and
+branch/tag-only publication guard checks passed; actual GitHub execution is still
+unverified. Tags must be reachable from main. Publishing a tag can subsequently
+update the production branch and trigger DFG consumers; that action remains
+separately authorized. Shared action pin and runtime package identity are retained.
