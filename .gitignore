@@ -55,3 +55,6 @@ convert-fonts.sh
 
 # Local reconstructed historical recovery evidence
 .recovery-output/
+
+# Local Python release-tool test caches
+__pycache__/

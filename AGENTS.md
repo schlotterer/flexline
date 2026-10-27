@@ -13,7 +13,9 @@ upgrade/rollback order. Retain exact artifacts and actual installation recovery
 points, and verify the relevant Canary Health/visual checks before broader rollout.
 
 Build from version tags on commits reachable from main, not moving feature branches.
-Use release-package.json and the pinned shared action. Preserve runtime assets,
+Use release-package.json and the repository-local release action, vendored from
+the reviewed shared pin recorded in .github/actions/runtime-package/UPSTREAM.json.
+Preserve runtime assets,
 fonts and dependencies; exclude source-only build inputs and dev dependencies.
 Do not delete tracked builds while existing DFG consumers require them. Child themes
 keep their existing revert-main/redeploy process; MyLifeSite Location Sync is excluded.

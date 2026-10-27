@@ -380,3 +380,11 @@ Health/visual and supported recovery checks. Local installer evidence does not
 prove activation/migration or private-auth/live-webhook acceptance. Existing
 package-specific recovery limits remain in force. No site branch or webhook was
 changed during implementation.
+
+### Repository-local release tooling
+
+Public FlexLine uses `.github/actions/runtime-package` instead of loading the private
+`web4sl-ci` action. The build, publication and production guards are copied from the
+reviewed upstream commit recorded in `UPSTREAM.json`; private plugins keep their
+shared action. No cross-repository token is required. See the action's README for
+parity checks and the release implementation plan for verification and remaining gates.

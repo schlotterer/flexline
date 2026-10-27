@@ -276,3 +276,57 @@ alias on a case-sensitive hosted site, separately approve the concrete correctio
 and check saved/custom references plus font loading there. Joel reports the
 approved staging2 diagnostic is installed and MCP/Health verified; that is not
 approval to modify its theme. No push, tag, publication or hosted change occurred.
+
+
+## 27 October — public FlexLine uses a repository-local release action
+
+The hosted release-2.2.2 preview failed before build setup because public FlexLine
+cannot resolve the private shared action. The shared commit is already published;
+private-plugin callers continue to use it. FlexLine now uses
+`.github/actions/runtime-package`, copied byte-for-byte from reviewed upstream
+`1f74bb9a8bedeebf8744c394c37edb66b3c7ae17`. The copy contains only the composite
+action, packaging/production scripts and their refusal tests. `UPSTREAM.json`
+records exact hashes; its README describes the review/parity update procedure.
+No upstream internal docs, history or old branch publisher were copied.
+
+All three release jobs use the local action. Publish and production first check
+out `${{ github.sha }}` with credentials persistence disabled, then download the
+same-run artifact. They retain tag-push-only conditions and scoped write tokens;
+build/PR/branch/manual previews remain read-only. Existing manifest, exact-byte
+verification, tag/version/main ancestry, publication refusal and production
+history/race/recovery guards are unchanged. The explicit runtime allowlist and
+`.github` exclusion keep this tooling out of the installable theme ZIP.
+
+Local verification on clean starting HEAD 8fc6441f57ad178705af795ea753fafc57fcc2cc:
+
+- All five upstream files exactly match the reviewed Git commit and recorded hashes.
+- 48 release-tool tests passed: 43 upstream tests plus five local action/workflow
+  tests, including actual composite Bash execution and write-job checkout guards.
+  Production tests use disposable local bare Git remotes; GitHub APIs are mocked.
+- Ruby/Psych parsed both workflow/action YAML files; `git diff --check` passed.
+  `actionlint` was unavailable locally; hosted runner semantics remain to verify.
+- Node 24.19.0 JS/SCSS lint passed. PHPUnit: 48 tests / 180 assertions. Primary-term
+  contract: 9 cases; directory-schema and installed-Core viewport contracts passed.
+- Production compilation passed in a disposable source snapshot with existing
+  Node dependencies; the active theme's compiled assets were not overwritten.
+  The snapshot block-extensions bundle differs in webpack module numbering/order;
+  AST-based comparison confirmed the same module bodies and bootstrap after ID
+  normalization. This is not a claim of reproducing committed build bytes.
+- Composer 2.10.3 with cached locked runtime dependencies and networking disabled
+  built/verified separate local-action and unchanged-upstream previews. Both ZIPs
+  and metadata are identical: 333 runtime files, ZIP SHA256
+  `f95ebc6d4ca74cffe9dbcfaa987d4cd9c3e978ad1a64d913fb535ffb1f328df0`.
+  No case-fold collisions or local tooling; canonical Montserrat and SVG sanitizer
+  runtime dependencies remain. These previews use current committed runtime
+  assets, `checks_passed: false` and no tag; they cannot be published.
+
+The first package attempt used an unavailable default Composer cache and failed
+with networking disabled. Repeating with the existing cached locked dependency
+and Composer 2.10.3 succeeded; no dependency/lockfile update was needed.
+
+No push, tag, release, production branch/site update, credential/access setting or
+private shared/plugin repository change occurred. No runtime source or tracked
+compiled asset was changed. Next: review/commit this local diff, then explicitly
+authorize pushing release-2.2.2 for a hosted preview. Verify complete runner
+checks and resulting artifact; publication/production must stay skipped. Merge to
+main and any version tag/DFG promotion remain separately approved release steps.
