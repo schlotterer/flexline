@@ -438,3 +438,38 @@ Installed SEO integration, target-specific Canary and exact prior-ZIP installati
 recovery remain separate gates; no broad 7.2 certification is claimed. No existing
 content migration, Core change, release version/tag, publication, DFG promotion
 or remote push was performed. The CI release branches/PR remain unchanged.
+
+## 30 October — token integration, additive admin docs and 7.2 checkpoint
+
+Owner approved integrating tokens into the release branch and clarified that
+shortcode examples should be removed from admin documentation, while all other
+documentation changes remain additive. Runtime shortcode registrations and aliases
+are retained for existing sites. Converted the Web4SL reference examples to tokens
+while retaining phone/address/settings explanations, dynamic-token guidance and
+existing anchors. Removed the theme's legacy shortcode reference and made its
+retired renderer delegate to the current Utilities renderer. The general theme
+documentation gains only a token-reference section/link; its previous content is
+unchanged. No existing content was resaved or migrated.
+
+FlexLine token PR #583 merged into release-2.2.2 at ac8971c3. Hosted run 41098036518
+passed and its exact runtime artifact was downloaded and independently verified;
+publish and DFG production remained skipped. Web4SL main separately advanced
+through published 1.2.3; token PR #7's two append-only documentation conflicts
+were resolved while retaining both feature/release records. No dirty Local plugin
+checkout was reset, stashed or used to absorb unrelated work.
+
+Fresh read-only checks against official Beta 2 cover 23 registered-block probes
+(including the two Core-plugin probes), six bundled patterns and 71 selected saved
+documents. All block structures/attributes were retained; the same two deliberate
+acceptance fixtures have DOM differences, and sanitization remains idempotent.
+Core NOSCRIPT still drops following content; encoded shortcode examples still
+activate, including the Location Phone Link label. No existing document was saved
+by these checks. Evidence: parent diagnostics/wp72-token-integration-20261030.
+
+Readiness remains scoped: viewports, legacy controls, native-shadow precedence
+and token editor roundtrips are covered; map/main floor-plan outer controls and
+automatic class/content migrations remain deferred. Core KSES regressions, review
+of the three existing shortcode-example pages, official newer-beta/RC retesting,
+actual SEO integration, Section Shapes device/Safari gates and exact installed-ZIP
+Canary/recovery acceptance remain open. This is not full WordPress 7.2 certification.
+No Core update, version tag, publication or production promotion is authorized here.

@@ -409,8 +409,8 @@ interpreted. Existing encoded shortcode examples are not converted.
 
 These FlexLine tokens work without Web4SL. Phone/address and Web4SL custom-field
 tokens require that plugin and use its namespace. `[flexline_theme_docs]` remains
-shortcode-only. Admin documentation favors tokens with a collapsed legacy
-reference. No Core sanitization behavior is changed.
+shortcode-only. Admin documentation uses tokens; existing shortcode implementations remain
+supported for legacy content. No Core sanitization behavior is changed.
 
 Recovery requires only reinstalling the retained prior package, not restoring a
 database. Existing syntax and data are preserved. Older code displays new option

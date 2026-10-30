@@ -3,7 +3,7 @@
  * Render Utilities tab (options + docs) inside FlexLine Options.
  *
  * This embeds the existing Utilities settings (SEO, Discussion) and the
- * Shortcodes reference directly into the FlexLine Options page.
+ * authoring token reference directly into the FlexLine Options page.
  *
  * @package flexline
  */
@@ -35,68 +35,5 @@ function flexline_render_utilities_tab() {
 	</ul>
 	<p>Use straight double or single quotes for options. Unsupported options stay unchanged. To display a literal token example in page content, add <code>!</code>: <code>{{!flexline_site_name}}</code> displays <code>{{flexline_site_name}}</code>. A Code block alone does not prevent replacement; encoded braces are not a reliable escape.</p>
 	<p>No saved content is converted. Keep the updated code installed anywhere that uses the new token options or literal syntax; older versions will display those new expressions unchanged.</p>
-	<details>
-	<summary>Legacy shortcode reference</summary>
-	<p>Retained for existing content and integrations. The theme documentation helper remains shortcode-only.</p>
-
-	<?php
-	$shortcodes = array(
-		array(
-			'title'       => 'Theme Documentation',
-			'description' => 'Renders the FlexLine theme documentation tab.',
-			'usage'       => '[flexline_theme_docs]',
-		),
-		array(
-			'title'       => 'Page Title',
-			'description' => 'Outputs the current page title.',
-			'usage'       => '[flexline_page_title]',
-		),
-		array(
-			'title'       => 'Site Name',
-			'description' => 'Outputs the site name.',
-			'usage'       => '[flexline_site_name]',
-		),
-		array(
-			'title'       => 'Copyright Year',
-			'description' => 'Displays the current year or a range from a starting year to the current year.',
-			'usage'       => array(
-				'[flexline_copyright_year]',
-				'[flexline_copyright_year starting_year="2015"]',
-				'[flexline_copyright_year starting_year="2010" separator=" - "]',
-			),
-		),
-	);
-	?>
-	<table class="widefat fixed striped">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Usage</th>
-			</tr>
-		</thead>
-		<tbody>
-		<?php foreach ( $shortcodes as $shortcode ) : ?>
-			<tr>
-				<td><?php echo esc_html( $shortcode['title'] ); ?></td>
-				<td><?php echo esc_html( $shortcode['description'] ); ?></td>
-				<td>
-					<?php
-					$usage = $shortcode['usage'];
-					if ( is_array( $usage ) ) {
-						foreach ( $usage as $usage_item ) {
-							printf( '<code style="display:block;margin-bottom:5px;">%s</code>', esc_html( $usage_item ) );
-						}
-					} else {
-						printf( '<code>%s</code>', esc_html( $usage ) );
-					}
-					?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</tbody>
-	</table>
-
-	</details>
 	<?php
 }

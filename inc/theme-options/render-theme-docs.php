@@ -503,6 +503,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<p>Below you’ll find a reference for the block‑level Inspector controls <em>and</em> utility classes that ship with the theme. Everything is <strong>opt‑in</strong>: nothing changes until you either (a)&nbsp;add a class in the block editor’s <em>Additional&nbsp;CSS&nbsp;Class(es)</em> field or (b)&nbsp;toggle an option inside the block’s sidebar. Use the nav on the right to jump around.</p>
 				</section>
 				<!-- ✨ BLOCK OPTIONS & STYLES -->
+				<section id="authoring-tokens">
+					<h3>Authoring tokens</h3>
+					<p>Use tokens for site names, page titles and copyright years. The <a href="<?php echo esc_url( admin_url( 'themes.php?page=flexline_theme_options&tab=utilities' ) ); ?>">Utilities reference</a> lists token options and literal-example syntax. Phone, address and custom Web4SL tokens are documented in the Web4SL plugin. Existing content is not converted.</p>
+				</section>
+
 				<section id="block-options">
 					<h3>Block Options &amp; Style Variations</h3>
 					<p>The following custom attributes and style variations are available on various core blocks.</p>
@@ -1196,6 +1201,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\flexline_render_documentation_tab' ) 
 					<h4>On this page</h4>
 					<ul>
 						<li><a href="#intro">Introduction</a></li>
+						<li><a href="#authoring-tokens">Authoring Tokens</a></li>
 						<li><a href="#block-options">FlexLine Block Options &amp; Styles</a></li>
 						<li><a href="#section-shapes">Section Shapes</a></li>
 						<li><a href="#responsive-visibility">Responsive Visibility</a></li>

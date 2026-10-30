@@ -279,3 +279,15 @@ for exact local checks, fixtures, package limitations and release gates. Existin
 legacy classes/attributes are retained without resaving old content. Composite map
 and floor-plan outer controls, automated migration, remaining platform changes and
 final certification remain deferred.
+
+## Current checkpoint — October 30, 2026
+
+The earlier beta pause and branch descriptions are historical. Tokens are now
+in release-2.2.2 via PR #583; admin docs use token examples and retain all unrelated
+help, while runtime shortcodes/aliases remain compatible. See the current release
+progress record for editor evidence, the token-inclusive verified CI artifact and
+the fresh read-only KSES comparison. Both known Core KSES failures persist; token
+adoption does not silently repair existing shortcode-example content. No bulk
+resave, Core patch or composite map/floor-plan control expansion is introduced.
+The remaining RC/stable, device, installed-artifact recovery and Canary gates must
+pass before a broad 7.2 compatibility claim.
