@@ -58,6 +58,15 @@
       "npm",
       "run",
       "test:primary-terms"
+    ],
+    [
+      "npm",
+      "run",
+      "test:js"
+    ],
+    [
+      "php",
+      "tests/directory-preview-schema-contract.php"
     ]
   ],
   "compatibility": {

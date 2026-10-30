@@ -330,3 +330,37 @@ compiled asset was changed. Next: review/commit this local diff, then explicitly
 authorize pushing release-2.2.2 for a hosted preview. Verify complete runner
 checks and resulting artifact; publication/production must stay skipped. Merge to
 main and any version tag/DFG promotion remain separately approved release steps.
+
+## 30 October — release readiness and hosted CI verification
+
+release-2.2.2 is clean at ebf5738b before this checkpoint. The GitHub preview
+40508011617 succeeded: local-action tests, lint/PHP contracts, production build
+and artifact upload passed; publish and production were skipped as required.
+Downloaded the actual runtime-package artifact and verified it with the vendored
+package_release.py. Provenance matches ebf5738b1020897f4d488efa2599521c84289111,
+checks_passed true, tag null; ZIP SHA256 is
+f95ebc6d4ca74cffe9dbcfaa987d4cd9c3e978ad1a64d913fb535ffb1f328df0.
+All 26 referenced WOFF2 paths exist, canonical Montserrat is retained, case-fold
+collisions are absent, and .github action tooling is excluded from the ZIP.
+Downloaded evidence is retained in ignored .release-output/hosted-40508011617/.
+
+The existing JavaScript suite passed locally on Node 24.19.0: two suites, 21 tests.
+Added that existing command and the standalone directory-preview-schema contract
+to release-package.json checks so hosted release builds enforce them. No runtime
+source/assets, dependencies, saved content or Core files changed for this work.
+The Core viewport contract still requires a separately installed supporting Core;
+this release CI does not establish WordPress 7.2 compatibility.
+
+2.2.2 includes Section Shapes, runtime-package CI, font cleanup, native-first
+text-shadow fallback and viewport alignment. The remaining 7.2 platform audit and
+KSES upstream issues are separate from this release. Device/UI/recovery gates in
+docs/releases/pr-notes-2.2.2.md remain explicit limitations; do not label them passed.
+Before the final tag, resolve whether ZIP publication should stay coupled to the
+DFG production job or be split like Web4SL 1.2.2. Publication/production has not
+been triggered by this readiness checkpoint.
+
+Remote push of the added test gates was refused by automatic approval review,
+which cited the owner's earlier no-push instruction. The command was rejected
+before execution; no remote mutation occurred. Preserve the local commit and
+obtain explicit approval before pushing the release branch or opening its PR.
+No workaround, version tag, publication or production update was attempted.
