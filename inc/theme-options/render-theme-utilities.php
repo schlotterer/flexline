@@ -25,7 +25,20 @@ function flexline_render_utilities_tab() {
 		?>
 	</form>
 
-	<h2>Shortcodes</h2>
+	<h2>Authoring Tokens</h2>
+	<p>Use these tokens for new blocks, patterns, templates, titles, SEO metadata, excerpts and Text/Block widgets. Existing shortcodes remain supported. FlexLine tokens work without Web4SL; phone, address and custom Web4SL tokens require the Web4SL plugin.</p>
+	<ul>
+		<li><code>{{flexline_page_title}}</code> — current page title.</li>
+		<li><code>{{flexline_site_name}}</code> — site name.</li>
+		<li><code>{{flexline_copyright_year}}</code> — current year.</li>
+		<li><code>{{flexline_copyright_year starting_year="2015" separator=" to "}}</code> — year range.</li>
+	</ul>
+	<p>Use straight double or single quotes for options. Unsupported options stay unchanged. To display a literal token example in page content, add <code>!</code>: <code>{{!flexline_site_name}}</code> displays <code>{{flexline_site_name}}</code>. A Code block alone does not prevent replacement; encoded braces are not a reliable escape.</p>
+	<p>No saved content is converted. Keep the updated code installed anywhere that uses the new token options or literal syntax; older versions will display those new expressions unchanged.</p>
+	<details>
+	<summary>Legacy shortcode reference</summary>
+	<p>Retained for existing content and integrations. The theme documentation helper remains shortcode-only.</p>
+
 	<?php
 	$shortcodes = array(
 		array(
@@ -84,15 +97,6 @@ function flexline_render_utilities_tab() {
 		</tbody>
 	</table>
 
-	<h2>Shortcode Tokens</h2>
-	<p>FlexLine shortcodes are backward compatible, and you can also use token placeholders in block content and patterns. Tokens are replaced at render time, so editors do not see them unless they open the block HTML.</p>
-	<p>Use double braces with the existing shortcode names (e.g., <code>{{flexline_site_name}}</code>). Empty values render as blank strings.</p>
-	<ul>
-		<li><code>{{flexline_copyright_year}}</code></li>
-		<li><code>{{flexline_site_name}}</code></li>
-		<li><code>{{flexline_page_title}}</code></li>
-	</ul>
-	<pre><code>&lt;h1&gt;{{flexline_page_title}}&lt;/h1&gt;
-&lt;p&gt;{{flexline_site_name}}&lt;/p&gt;</code></pre>
+	</details>
 	<?php
 }

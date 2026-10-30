@@ -364,3 +364,77 @@ which cited the owner's earlier no-push instruction. The command was rejected
 before execution; no remote mutation occurred. Preserve the local commit and
 obtain explicit approval before pushing the release branch or opening its PR.
 No workaround, version tag, publication or production update was attempted.
+
+## 30 October — authoring tokens (outside the 2.2.2 release branch)
+
+Owner approved a separate token-authoring enhancement. Created local
+`feature/authoring-tokens` from clean release-2.2.2 at 8b091faa in the existing
+Local theme checkout. release-2.2.2 and PR #582 are untouched; no new worktree.
+
+Added named copyright options and `{{!flexline_name}}` literal examples while
+retaining existing tokens, shortcodes and the administrative theme-docs helper.
+Supported title/SEO/excerpt/Text/Block widget contexts resolve before typography.
+A capability check delegates to a supporting Web4SL version; standalone FlexLine
+and older Web4SL APIs retain the theme's token-only fallback. Literal output is
+protected from ancestor rendering and subsequent shortcode passes. Admin Utilities
+docs favor tokens with a collapsed legacy reference. No saved page is rewritten.
+
+Integration tests run against official 7.2 Beta 2 with database writes blocked,
+using both KSES parsers and Web4SL active/absent. They cover default/parameterized
+rendering, context hooks, nested literal examples and malformed options. WPCS
+checks the changed runtime PHP. A PHP-rendered static documentation preview was
+visually inspected. Evidence is in diagnostics/kses-issue-followup-20261030 in
+the parent Local site. Prior committed renderer comparisons demonstrate unchanged
+existing output and literal display of new syntax on rollback. No package install
+or hosted Canary/recovery acceptance is claimed by these source-level checks.
+
+No version/dependency/asset change, content save, database migration, Core change,
+commit, push, PR modification, tag, publication or production promotion. README
+records that old packages display new expressions unchanged: review newer usages
+before a rollback; never restore an older database automatically. Editor insertion,
+actual SEO integration and target-site package/Canary acceptance remain gates.
+This enhancement does not resolve Core KSES defects or establish 7.2 certification.
+
+Final local results: 126 Web4SL assertions, 78 FlexLine assertions with Web4SL
+active and 79 with it absent, plus 16 comparisons against prior committed PHP.
+Changed runtime PHP syntax, FlexLine WPCS and both Git diff whitespace checks pass.
+Web4SL's two Health contracts and publication-workflow contract pass. All content
+probes used the write-blocked isolated Beta 2 runtime; no existing content was saved.
+
+## 30 October — editor acceptance and local commit preparation
+
+Owner authorized editor testing without resaving existing content, followed by
+local commits in both repos, with no push. Created only one new disposable page,
+ID 121771, on the main Local site; it remains an unpublished draft for review.
+No existing post, page, pattern, template or settings form was opened for saving.
+The browser preview reports active Core 7.2-beta3; Core was not updated here.
+This UI result is separate from the checksum-verified isolated Beta 2 contracts.
+
+Inserted fixtures via the code editor, switched to the visual editor, edited the
+native Button label and URL through its actual controls, saved the new draft,
+previewed it and reopened it. Blocks retained their syntax without validation or
+recovery notices. Both namespaces, default/site/page values, year ranges, full
+phone/contact HTML and the legacy shortcode rendered as expected. Four nested
+Code examples stayed literal, including dynamic-field syntax and a shortcode
+inside token text. Unsupported options stayed uninterpreted. A read-only check
+verified seven saved-fixture properties, including draft status and raw tokens.
+
+Core's Button URL control rejected a bare phone href token. The accepted authoring
+form is `/{{web4sl_phone_href}}`; Web4SL now unwraps only that exact complete href
+attribute before resolving the token. Ordinary paths/data attributes/text remain
+unchanged. Raw HTML's original bare href form remains supported. Documentation
+explains the editor form and rollback limit: older Web4SL would retain the extra
+slash before the phone URL. No Core or editor-vendor JavaScript was patched.
+
+The updated Beta 2 Web4SL contract passed 131 assertions, including both KSES
+parsers and the exact URL wrapper. FlexLine's unchanged runtime contract has 78
+assertions with Web4SL and 79 without it; prior-code comparisons have 16 checks.
+Evidence in the parent Local site's diagnostics/kses-issue-followup-20261030:
+token-editor-visual.png, token-editor-preview.png, token-editor-reopened.txt,
+token-editor-roundtrip.json and updated authoring-tokens-integration.log.
+
+This closes editor insertion/save/reopen/preview acceptance for these fixtures.
+Installed SEO integration, target-specific Canary and exact prior-ZIP installation
+recovery remain separate gates; no broad 7.2 certification is claimed. No existing
+content migration, Core change, release version/tag, publication, DFG promotion
+or remote push was performed. The CI release branches/PR remain unchanged.

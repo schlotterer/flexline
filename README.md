@@ -388,3 +388,46 @@ Public FlexLine uses `.github/actions/runtime-package` instead of loading the pr
 reviewed upstream commit recorded in `UPSTREAM.json`; private plugins keep their
 shared action. No cross-repository token is required. See the action's README for
 parity checks and the release implementation plan for verification and remaining gates.
+
+## Authoring tokens
+
+Prefer tokens in new blocks, patterns, templates, titles, existing Yoast/Rank Math
+metadata hooks, excerpts and Text/Block widgets. They resolve before typography
+can change attribute quotes. Existing shortcodes and token-map filters remain.
+
+```text
+{{flexline_copyright_year starting_year="2015" separator=" to "}}
+{{flexline_site_name}}
+{{flexline_page_title}}
+{{!flexline_site_name}}
+```
+
+The `!` form displays a literal example, including in nested Code blocks. Named
+copyright options accept straight double/single quotes or unquoted scalar values.
+Unsupported/malformed attributes and curly braces inside values are not
+interpreted. Existing encoded shortcode examples are not converted.
+
+These FlexLine tokens work without Web4SL. Phone/address and Web4SL custom-field
+tokens require that plugin and use its namespace. `[flexline_theme_docs]` remains
+shortcode-only. Admin documentation favors tokens with a collapsed legacy
+reference. No Core sanitization behavior is changed.
+
+Recovery requires only reinstalling the retained prior package, not restoring a
+database. Existing syntax and data are preserved. Older code displays new option
+expressions and `!` literal expressions unchanged: before rollback, identify new
+usages and retain supporting code or review reverting those authoring changes.
+No automatic content migration, schema change, dependency update or coordinated
+package upgrade is required. Each package owns its own namespace independently.
+No release version/tag is created by this development change.
+
+Run the CLI integration contract against a bootstrap that installs the test-only
+`Web4SL_KSES_Read_Only_DB` adapter (rejecting writes and starting a read-only
+transaction before plugins load):
+
+```sh
+php tests/authoring-tokens-integration.php /path/to/read-only/wp-load.php
+```
+
+Run FlexLine with Web4SL active and absent. Target-site editor insertion, actual
+SEO integration and prior-package Canary acceptance remain deployment gates.
+These contracts do not establish complete WordPress 7.2 compatibility.
