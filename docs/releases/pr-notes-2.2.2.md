@@ -2,14 +2,16 @@
 
 ## Summary
 
-FlexLine 2.2.2 adds Section Shapes, expanded authoring tokens, responsive preset
-administration and verified runtime ZIP delivery. Existing frame settings and
-legacy shortcodes remain compatible. Scoped breakpoint/text-shadow preparation
-is included; this is not a full WordPress 7.2 compatibility release.
+FlexLine 2.2.2 centers on Section Shapes, WordPress 7.2 readiness and
+ZIP-delivered versioned updates through CI. Token authoring and responsive
+preset administration support that work. Existing frame settings and legacy
+shortcode rendering remain compatible; this is not full final-7.2 certification.
 
 The mobile fix, hosted CI and exact-ZIP installation checks are complete.
 Publication and DFG production promotion have not occurred. Remaining limits and
 release actions are listed below.
+
+[Draft public release and shortcode/token guide](public-release-2.2.2.md).
 
 ## Feature Changes
 
@@ -133,10 +135,24 @@ Detailed historical receipts: [30 October ZIP/recovery](acceptance-2.2.2-2026-10
   2.2.0 and contains both font-case aliases. It is not an actual hosted backup or
   a verified Fleet rollback package. Target-specific recovery, Canary Health and
   installed SEO integration remain separate deployment acceptance limits.
-- Broader WordPress 7.2/KSES review and newer beta/RC testing remain separate.
-  Known upstream NOSCRIPT/encoded-shortcode behavior is not claimed fixed by this
-  release. Map/main floor-plan outer controls and automatic content/class
-  migrations remain deferred.
+- The shortcode-related KSES authoring issue is handled for this release through
+  supported tokens, literal-example syntax and updated documentation. Existing
+  shortcodes remain for legacy rendering; use tokens when adding, moving or
+  replacing dynamic content. No automatic conversion/resave occurs. This is not
+  a claim that the upstream Core sanitizer was patched.
+- The separate NOSCRIPT issue and broader newer-beta/RC verification remain
+  distinct. Web4SL examples using the expanded options/literal/Button URL behavior
+  require its companion token update, which is not in the published v1.2.3 tag.
+
+## Low-priority backlog (not 2.2.2 release gates)
+
+- [Location map outer visual controls](https://github.com/schlotterer/web4sl-location-sync/issues/85).
+- [Main floor-plan interface outer visual controls](https://github.com/schlotterer/web4sl-advanced-floor-plans/issues/4).
+- [Safe content/class migration evaluation](https://github.com/schlotterer/flexline/issues/584).
+
+Each issue is labeled Low Priority. Existing layout/control and migration
+safeguards remain part of that future review; no implementation or automatic
+migration is introduced by this release.
 
 ## Release actions still pending
 

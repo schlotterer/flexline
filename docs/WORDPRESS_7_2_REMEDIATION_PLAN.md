@@ -291,3 +291,21 @@ adoption does not silently repair existing shortcode-example content. No bulk
 resave, Core patch or composite map/floor-plan control expansion is introduced.
 The remaining RC/stable, device, installed-artifact recovery and Canary gates must
 pass before a broad 7.2 compatibility claim.
+
+## 31 October — release scope and low-priority follow-up
+
+The owner set FlexLine 2.2.2's public focus to Shapes, WordPress 7.2 readiness
+and ZIP-delivered version CI updates. The shortcode-related KSES authoring case
+is handled for this release by the token/literal approach and updated guidance;
+legacy shortcodes continue to render and no saved content is automatically
+converted. This does not claim an upstream Core patch; NOSCRIPT remains separate.
+
+Composite outer controls and possible automatic migrations are low-priority
+backlog, not release gates:
+- Location map: https://github.com/schlotterer/web4sl-location-sync/issues/85
+- Main floor-plan interface: https://github.com/schlotterer/web4sl-advanced-floor-plans/issues/4
+- Content/class migrations: https://github.com/schlotterer/flexline/issues/584
+
+Each issue retains the Group-first review, interactive-layout/no-value defaults
+and existing-content safeguards relevant to its scope. No implementation or
+automatic migration is authorized by creating these backlog issues.

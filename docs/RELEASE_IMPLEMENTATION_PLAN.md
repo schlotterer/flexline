@@ -582,3 +582,35 @@ Updated the GitHub PR description to present the current change and validation
 instead of a chronological list of superseded artifacts. Documentation only;
 no runtime package content changed. Markdown links and git diff --check verified.
 No tag, publication or DFG promotion.
+
+## 31 October — public release draft and low-priority backlog
+
+Owner clarified public scope: Shapes, WordPress 7.2 readiness and ZIP-delivered
+version CI updates. Added docs/releases/public-release-2.2.2.md as draft public
+GitHub release copy, explaining retained legacy shortcode rendering, token
+authoring for new/moved/replaced dynamic content, named options, native Button
+phone URLs, literal examples and no automatic saved-content conversion. Marked
+the shortcode-related KSES authoring case handled for this release without
+claiming an upstream Core fix. NOSCRIPT remains separate.
+
+Publication preflight: expanded Web4SL token support is merged in PR #7, but
+GitHub comparison shows that merge is five commits ahead of published v1.2.3.
+The public draft explicitly requires the companion Web4SL token update for its
+phone options/literal/native Button examples. Confirm that companion release's
+availability/version before publishing those instructions. FlexLine-only tokens
+work without Web4SL. Keep this Markdown draft for GitHub; if publishing through
+WordPress, protect token examples using the supported literal prefix in saved
+content. A Code block alone does not prevent token expansion. No public page or
+release was created, and no saved content was resaved.
+
+Created and verified Low Priority enhancement issues in owning repositories:
+Location Sync #85 (map outer controls), Advanced Floor Plans #4 (main interface
+outer controls), FlexLine #584 (safe content/class migration evaluation). Checked
+for existing related issues first. These are backlog, not 2.2.2 release blockers.
+Retained Group-first, layout/interaction, backward-compatibility and migration
+safeguards in the issue bodies. Plugin connector search lacked access; existing
+authenticated GitHub CLI access was used for the two private plugin issues.
+
+Checked example names/options against implemented theme and Web4SL token parsers
+and admin references; Markdown links and diff whitespace verified. Documentation
+only: no plugin/Core/runtime change, release tag, publication or DFG promotion.
