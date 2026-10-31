@@ -1,0 +1,1075 @@
+<?php
+/**
+ * Set up the block customizations for media modals.
+ *
+ * @package flexline
+ */
+
+namespace FlexLine;
+
+use WP_HTML_Tag_Processor;
+/**
+ * Enqueue block editor assets for the FlexLine theme.
+ *
+ * @return void
+ */
+function flexline_enqueue_block_editor_assets() {
+	$block_extension_config = array(
+		'useCoreGalleryLightbox' => version_compare( get_bloginfo( 'version' ), '7.0', '>=' ),
+		'visibilityMode'         => 'legacy',
+		'sectionFrames'          => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
+		'sectionShapeMasks'      => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_shape_mask_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
+	);
+
+	// Modal addons to core button and image blocks.
+	wp_enqueue_script(
+		'flexline-block-extensions',
+		get_theme_file_uri( '/assets/built/js/block-extensions.js' ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-rich-text', 'wp-data' ),
+		function_exists( __NAMESPACE__ . '\flexline_asset_ver' ) ? flexline_asset_ver( 'assets/built/js/block-extensions.js' ) : ( defined( 'THEME_VERSION' ) ? THEME_VERSION : null ),
+		false
+	);
+
+	wp_add_inline_script(
+		'flexline-block-extensions',
+		'window.flexlineBlockExtensions = Object.assign({}, window.flexlineBlockExtensions || {}, ' . wp_json_encode( $block_extension_config ) . ');',
+		'before'
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+
+/**
+ * Match directory block schemas to FlexLine's existing editor layout controls.
+ *
+ * Core server previews restore client attribute defaults before making their
+ * REST request, so these attributes must also be accepted by the server.
+ *
+ * @param array $metadata Block type metadata.
+ * @return array
+ */
+function flexline_register_directory_layout_attributes( $metadata ) {
+	$blocks = array(
+		'web4sl/location-address',
+		'web4sl/location-phone-link',
+		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
+	);
+	if ( ! in_array( $metadata['name'] ?? '', $blocks, true ) ) {
+		return $metadata;
+	}
+	foreach ( array( 'stackAtTablet', 'hideOnDesktop', 'hideOnTablet', 'hideOnMobile' ) as $attribute ) {
+		if ( ! isset( $metadata['attributes'][ $attribute ] ) ) {
+			$metadata['attributes'][ $attribute ] = array(
+				'type'    => 'boolean',
+				'default' => false,
+			);
+		}
+	}
+	return $metadata;
+}
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\\flexline_register_directory_layout_attributes' );
+
+/**
+ * Disable WordPress core block visibility support for all block types.
+ *
+ * FlexLine provides its own responsive visibility controls and class-based
+ * frontend behavior (`hideOnMobile`, `hideOnTablet`, `hideOnDesktop` ->
+ * `flexline-hide-on-*`). In WP 7+, core visibility adds a second, competing
+ * "Hide" UI based on `metadata.blockVisibility.viewport`.
+ *
+ * Keeping both systems active creates editor confusion and unpredictable
+ * cascade outcomes because FlexLine and core use different breakpoint models
+ * and different mechanisms (class-driven rules vs metadata-driven CSS rules).
+ * We intentionally disable core support so users have one consistent visibility
+ * system until FlexLine fully migrates breakpoints/UX to core semantics.
+ *
+ * @param array $metadata Block type metadata from block.json.
+ * @return array
+ */
+function flexline_disable_core_block_visibility_support( $metadata ) {
+	if ( ! is_array( $metadata ) ) {
+		return $metadata;
+	}
+
+	// Allow an explicit override from FlexLine Theme Settings.
+	// Default is disabled (option missing/0) to keep one visibility system.
+	if ( (bool) get_option( 'flexline_enable_core_block_hide', 0 ) ) {
+		return $metadata;
+	}
+
+	if ( ! isset( $metadata['supports'] ) || ! is_array( $metadata['supports'] ) ) {
+		$metadata['supports'] = array();
+	}
+
+	$metadata['supports']['visibility'] = false;
+
+	return $metadata;
+}
+
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\flexline_disable_core_block_visibility_support', 20 );
+
+/**
+ * Merge inline style rules into a block's markup.
+ *
+ * Appends additional CSS rules to the first HTML tag found in the provided
+ * block content.
+ *
+ * @param string $block_content The original block HTML.
+ * @param string $new_style_rules CSS rules to append to the existing style attribute.
+ * @return string Updated block HTML with merged inline styles.
+ */
+function flexline_merge_inline_style( $block_content, $new_style_rules ) {
+
+	// Create the processor.
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	// "Move" to the first tag – in many blocks, the wrapper is the first or second tag.
+	// If you know the block markup better, you might do while ($processor->next_tag()) ...
+	// Or you might specifically look for a <div> or a <figure>, etc.
+	if ( $processor->next_tag() ) {
+		// Get the existing style attribute, if any.
+		$existing_style = $processor->get_attribute( 'style' );
+
+		// If it already has some rules, append a semicolon & space before ours.
+		if ( ! empty( $existing_style ) ) {
+			$existing_style = rtrim( $existing_style, '; ' ) . '; ';
+		}
+
+		// Append the new style rules.
+		$combined_style = $existing_style . $new_style_rules;
+
+		// Set it back on the element.
+		$processor->set_attribute( 'style', $combined_style );
+	}
+
+	// Return the updated HTML markup.
+	return $processor->get_updated_html();
+}
+
+/**
+ * Remove selected inline CSS properties from the first tag in block markup.
+ *
+ * @param string $block_content The original block HTML.
+ * @param array  $properties CSS properties to remove.
+ * @return string Updated block HTML.
+ */
+function flexline_remove_inline_style_properties( $block_content, $properties ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$existing_style = $processor->get_attribute( 'style' );
+	if ( ! is_string( $existing_style ) || '' === trim( $existing_style ) ) {
+		return $block_content;
+	}
+
+	$remove_map = array_fill_keys( array_map( 'strtolower', $properties ), true );
+	$kept_rules = array();
+
+	foreach ( explode( ';', $existing_style ) as $rule ) {
+		$rule = trim( $rule );
+		if ( '' === $rule ) {
+			continue;
+		}
+
+		$separator = strpos( $rule, ':' );
+		if ( false === $separator ) {
+			$kept_rules[] = $rule;
+			continue;
+		}
+
+		$property = strtolower( trim( substr( $rule, 0, $separator ) ) );
+		if ( ! isset( $remove_map[ $property ] ) ) {
+			$kept_rules[] = $rule;
+		}
+	}
+
+	if ( empty( $kept_rules ) ) {
+		$processor->remove_attribute( 'style' );
+	} else {
+		$processor->set_attribute( 'style', implode( '; ', $kept_rules ) );
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Generate visibility classes based on block attributes.
+ *
+ * @param array $attrs The block attributes.
+ * @return string The generated visibility classes.
+ */
+function get_visibility_classes( $attrs ) {
+	$visibility_classes = '';
+
+	if ( ! empty( $attrs['hideOnMobile'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-mobile ';
+	}
+	if ( ! empty( $attrs['hideOnTablet'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-tablet ';
+	}
+	if ( ! empty( $attrs['hideOnDesktop'] ) ) {
+		$visibility_classes .= 'flexline-hide-on-desktop ';
+	}
+
+	return $visibility_classes;
+}
+
+/**
+ * Replace or append classes to a block's content.
+ *
+ * @param string $block_content The original block content.
+ * @param string $added_classes The classes to be added.
+ * @return string The modified block content with the new classes.
+ */
+function add_classes_to_block_content( $block_content, $added_classes ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$existing_classes = $processor->get_attribute( 'class' );
+	$classes          = trim( $added_classes . ' ' . ( is_string( $existing_classes ) ? $existing_classes : '' ) );
+	$processor->set_attribute( 'class', $classes );
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Remove selected classes from a block's first tag.
+ *
+ * @param string $block_content The original block content.
+ * @param array  $removed_classes Classes to remove.
+ * @return string The modified block content.
+ */
+function flexline_remove_classes_from_block_content( $block_content, $removed_classes ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	$existing_classes = $processor->get_attribute( 'class' );
+	if ( ! is_string( $existing_classes ) || '' === trim( $existing_classes ) ) {
+		return $block_content;
+	}
+
+	$remove_map = array_fill_keys( $removed_classes, true );
+	$classes    = array();
+	foreach ( preg_split( '/\s+/', trim( $existing_classes ) ) as $class_name ) {
+		if ( isset( $remove_map[ $class_name ] ) ) {
+			continue;
+		}
+
+		if ( preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class_name ) ) {
+			continue;
+		}
+
+		$classes[] = $class_name;
+	}
+
+	if ( empty( $classes ) ) {
+		$processor->remove_attribute( 'class' );
+	} else {
+		$processor->set_attribute( 'class', implode( ' ', $classes ) );
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Set attributes on the outermost tag in rendered block content.
+ *
+ * @param string      $block_content Rendered block HTML.
+ * @param array       $attributes Attribute/value pairs.
+ * @param string|null $tag_name Optional tag name to match.
+ * @return string Updated block HTML.
+ */
+function flexline_set_first_tag_attributes( $block_content, $attributes, $tag_name = null ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag( $tag_name ) ) {
+		return $block_content;
+	}
+
+	foreach ( $attributes as $name => $value ) {
+		$processor->set_attribute( $name, $value );
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Check whether a whitespace-separated class list contains a class.
+ *
+ * @param string|null $class_list The class attribute value.
+ * @param string      $class_name Class name to find.
+ * @return bool
+ */
+function flexline_class_list_contains( $class_list, $class_name ) {
+	if ( ! is_string( $class_list ) || '' === trim( $class_list ) || '' === $class_name ) {
+		return false;
+	}
+
+	return in_array( $class_name, preg_split( '/\s+/', trim( $class_list ) ), true );
+}
+
+/**
+ * Check for a block class in parsed attrs or rendered wrapper markup.
+ *
+ * @param array  $block         Parsed block data.
+ * @param string $block_content Rendered block markup.
+ * @param string $class_name    Class name to find.
+ * @return bool
+ */
+function flexline_block_has_class_name( $block, $block_content, $class_name ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( flexline_class_list_contains( $attrs['className'] ?? '', $class_name ) ) {
+		return true;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( $processor->next_tag() ) {
+		return flexline_class_list_contains( $processor->get_attribute( 'class' ), $class_name );
+	}
+
+	return false;
+}
+
+/**
+ * Determine whether a Columns/Post Template block should use the scroller runtime.
+ *
+ * Older content may only have the former style variation class and no boolean
+ * enableHorizontalScroller attribute.
+ *
+ * @param array  $block         Parsed block data.
+ * @param string $block_content Rendered block markup.
+ * @return bool
+ */
+function flexline_block_has_horizontal_scroller( $block, $block_content ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	return ! empty( $attrs['enableHorizontalScroller'] ) || flexline_block_has_class_name( $block, $block_content, 'is-style-horizontal-scroll' );
+}
+
+/**
+ * Determine whether a block can render Section Shapes.
+ *
+ * @param string $block_name Parsed block name.
+ * @return bool
+ */
+function flexline_block_supports_section_frames( string $block_name ) {
+	return in_array( $block_name, array( 'core/group', 'core/stack', 'core/row', 'core/grid' ), true );
+}
+
+/**
+ * Escape a URL for CSS url() usage inside an inline style attribute.
+ *
+ * @param string $url Raw URL.
+ * @return string
+ */
+function flexline_css_url_value( $url ) {
+	$allowed_protocols = function_exists( 'wp_allowed_protocols' ) ? wp_allowed_protocols() : array( 'http', 'https' );
+	$url               = esc_url_raw( $url, array_merge( $allowed_protocols, array( 'data' ) ) );
+	$url               = str_replace( array( '\\', '"' ), array( '\\\\', '\"' ), $url );
+
+	return 'url("' . $url . '")';
+}
+
+/**
+ * Return whether Content Shift is intentionally controlling a vertical edge.
+ *
+ * @param array  $attrs Parsed block attributes.
+ * @param string $edge Top or bottom edge.
+ * @return bool
+ */
+function flexline_content_shift_edge_is_active( array $attrs, string $edge ) {
+	if ( empty( $attrs['useContentShift'] ) ) {
+		return false;
+	}
+
+	$attr_name = 'top' === $edge ? 'shiftUp' : 'shiftDown';
+	if ( ! array_key_exists( $attr_name, $attrs ) ) {
+		return false;
+	}
+
+	return '' !== trim( (string) $attrs[ $attr_name ] );
+}
+
+/**
+ * Normalize a Section Frame overlap value.
+ *
+ * @param mixed $value Raw overlap value.
+ * @return string
+ */
+function flexline_normalize_section_frame_overlap( $value ) {
+	$value = sanitize_key( (string) $value );
+
+	return in_array( $value, array( 'half', 'full' ), true ) ? $value : 'none';
+}
+
+/**
+ * Normalize a section shape mode, falling back from legacy selections.
+ *
+ * @param array $attrs Parsed block attributes.
+ * @return string top, bottom, both, or whole.
+ */
+function flexline_normalize_section_shape_mode( array $attrs ) {
+	$mode = sanitize_key( (string) ( $attrs['flexlineFrameMode'] ?? '' ) );
+	if ( in_array( $mode, array( 'top', 'bottom', 'both', 'whole' ), true ) ) {
+		return $mode;
+	}
+
+	if ( ! empty( $attrs['flexlineShapeMask'] ) ) {
+		return 'whole';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameTop'] ) && ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'both';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'bottom';
+	}
+
+	return 'top';
+}
+
+/**
+ * Build the negative margin expression for a Section Frame overlap.
+ *
+ * @param string $height_var Frame height CSS custom property name.
+ * @param string $overlap    Normalized overlap value.
+ * @return string
+ */
+function flexline_section_frame_overlap_value( string $height_var, string $overlap ) {
+	if ( 'half' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -0.5)';
+	}
+
+	if ( 'full' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -1)';
+	}
+
+	return '';
+}
+
+/**
+ * Build Section Frame classes and CSS variables for a supported block.
+ *
+ * @param string $block_name Parsed block name.
+ * @param array  $attrs Parsed block attributes.
+ * @return array{classes:string,style:string}
+ */
+function flexline_get_section_frame_render_data( string $block_name, array $attrs ) {
+	$empty = array(
+		'classes' => '',
+		'style'   => '',
+	);
+
+	if ( ! class_exists( __NAMESPACE__ . '\Section_Frame_Presets' ) || ! Section_Frame_Presets::is_enabled() ) {
+		return $empty;
+	}
+
+	if ( empty( $attrs['flexlineUseFrames'] ) || ! flexline_block_supports_section_frames( $block_name ) ) {
+		return $empty;
+	}
+
+	$mode   = flexline_normalize_section_shape_mode( $attrs );
+	$top    = in_array( $mode, array( 'top', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameTop'] ?? '' ), 'top' )
+		: null;
+	$bottom = in_array( $mode, array( 'bottom', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameBottom'] ?? '' ), 'bottom' )
+		: null;
+	$mask   = 'whole' === $mode
+		? Section_Frame_Presets::resolve_shape_mask_preset_for_render( (string) ( $attrs['flexlineShapeMask'] ?? '' ) )
+		: null;
+
+	if ( null === $top && null === $bottom && null === $mask ) {
+		return $empty;
+	}
+
+	$classes = array( 'flexline-section-frame' );
+	$styles  = array();
+
+	if ( null !== $mask ) {
+		$classes[] = 'flexline-section-shape-mask';
+		if ( 'proportion' === ( $mask['fit'] ?? '' ) ) {
+			$classes[] = 'flexline-section-shape-mask-proportion';
+		}
+		$styles[] = '--flexline-shape-mask-image: ' . flexline_css_url_value( (string) $mask['url'] );
+		$styles[] = '--flexline-shape-mask-size: ' . $mask['css_size'];
+		if ( ! empty( $mask['aspect_ratio'] ) ) {
+			$styles[] = '--flexline-shape-mask-aspect-ratio: ' . $mask['aspect_ratio'];
+		}
+	}
+
+	if ( null !== $top ) {
+		$classes[] = 'flexline-section-frame-top';
+		$styles[]  = '--flexline-frame-top-image: ' . flexline_css_url_value( (string) $top['url'] );
+		$styles[]  = '--flexline-frame-top-height: ' . $top['height'];
+
+		$top_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapTop'] ?? '' );
+		if ( 'none' !== $top_overlap ) {
+			$top_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'top' );
+			if ( ! $top_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $top_content_shift_active ? 'flexline-section-frame-overlap-top-mobile' : 'flexline-section-frame-overlap-top';
+				$styles[]  = '--flexline-frame-top-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-top-height', $top_overlap );
+			}
+		}
+	}
+
+	if ( null !== $bottom ) {
+		$classes[] = 'flexline-section-frame-bottom';
+		$styles[]  = '--flexline-frame-bottom-image: ' . flexline_css_url_value( (string) $bottom['url'] );
+		$styles[]  = '--flexline-frame-bottom-height: ' . $bottom['height'];
+
+		$bottom_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapBottom'] ?? '' );
+		if ( 'none' !== $bottom_overlap ) {
+			$bottom_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'bottom' );
+			if ( ! $bottom_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $bottom_content_shift_active ? 'flexline-section-frame-overlap-bottom-mobile' : 'flexline-section-frame-overlap-bottom';
+				$styles[]  = '--flexline-frame-bottom-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-bottom-height', $bottom_overlap );
+			}
+		}
+	}
+
+	return array(
+		'classes' => implode( ' ', $classes ) . ' ',
+		'style'   => implode( '; ', $styles ) . ';',
+	);
+}
+
+/**
+ * Update img tag attributes without duplicating them.
+ *
+ * @param string $block_content The original block content.
+ * @param array  $attributes    Attribute name/value pairs to set.
+ * @param array  $remove        Attribute names to remove.
+ * @param bool   $set_if_missing Only set attributes that are missing when true.
+ * @return string Updated block content.
+ */
+function flexline_update_img_attributes( $block_content, $attributes = array(), $remove = array(), $set_if_missing = true ) {
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	$updated   = false;
+
+	while ( $processor->next_tag( 'img' ) ) {
+		foreach ( $remove as $attr_name ) {
+			if ( null !== $processor->get_attribute( $attr_name ) ) {
+				$processor->remove_attribute( $attr_name );
+				$updated = true;
+			}
+		}
+
+		foreach ( $attributes as $attr_name => $attr_value ) {
+			if ( $set_if_missing && null !== $processor->get_attribute( $attr_name ) ) {
+				continue;
+			}
+
+			$processor->set_attribute( $attr_name, $attr_value );
+			$updated = true;
+		}
+	}
+
+	return $updated ? $processor->get_updated_html() : $block_content;
+}
+
+/**
+ * Render core/categories as a single primary term when enabled.
+ *
+ * @param string         $block_content  Rendered block markup.
+ * @param array          $block          Parsed block data.
+ * @param \WP_Block|null $block_instance Block instance.
+ * @return string
+ */
+function flexline_render_primary_term_categories( $block_content, $block, $block_instance ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( empty( $attrs['flexlinePrimaryTermOnly'] ) ) {
+		return $block_content;
+	}
+
+	if ( ! is_singular() ) {
+		return $block_content;
+	}
+
+	$post_id = (int) get_queried_object_id();
+	if ( $post_id <= 0 ) {
+		return $block_content;
+	}
+
+	$taxonomy = isset( $attrs['taxonomy'] ) ? sanitize_key( (string) $attrs['taxonomy'] ) : 'category';
+	if ( '' === $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
+		return $block_content;
+	}
+
+	if ( ! function_exists( '\\FlexLine\\PrimaryTerms\\resolve_primary_term_id' ) ) {
+		return $block_content;
+	}
+
+	$term_id = (int) \FlexLine\PrimaryTerms\resolve_primary_term_id( $post_id, $taxonomy );
+	if ( $term_id <= 0 ) {
+		return $block_content;
+	}
+
+	$term = get_term( $term_id, $taxonomy );
+	if ( ! $term || is_wp_error( $term ) ) {
+		return $block_content;
+	}
+
+	if ( ! function_exists( 'render_block_core_categories' ) ) {
+		return $block_content;
+	}
+
+	// Re-render through core with include[] so we preserve native list/dropdown behavior,
+	// wrapper classes, and enhanced-pagination link handling.
+	$render_attrs = array_merge(
+		array(
+			'taxonomy' => 'category',
+		),
+		$attrs,
+		array(
+			'taxonomy' => $taxonomy,
+			'include'  => array( $term_id ),
+		)
+	);
+
+	$rendered = render_block_core_categories( $render_attrs, '', $block_instance );
+
+	return is_string( $rendered ) && '' !== $rendered ? $rendered : $block_content;
+}
+
+
+/**
+ * Renders the flexline block modal.
+ *
+ * @param mixed $block_content The content of the block.
+ * @param array $block The block settings.
+ * @param mixed $block_instance Block instance.
+ * @return mixed The modified block content.
+ */
+function flexline_block_customizations_render( $block_content, $block, $block_instance = null ) {
+	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( 'core/button' === $block['blockName'] ) {
+		if ( isset( $block['attrs']['iconType'] ) && 'download' === $block['attrs']['iconType'] ) {
+			$block_content = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'download' => '' ),
+				'a'
+			);
+		}
+	}
+
+	if ( 'core/categories' === $block['blockName'] ) {
+		return flexline_render_primary_term_categories( $block_content, $block, $block_instance );
+	}
+
+	if ( 'core/image' === $block['blockName'] ) {
+
+		// Check if your custom attributes are set and not empty.
+		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array(),
+				array( 'loading', 'decoding' )
+			);
+		} else {
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array(
+					'decoding' => 'async',
+					'loading'  => 'lazy',
+				),
+				array(),
+				true
+			);
+		}
+
+		// Add aria-label to linked images using img alt or figcaption (simple, block-style approach).
+		if ( false !== strpos( $block_content, '<a' ) ) {
+
+			$label         = '';
+			$attachment_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
+
+			if ( $attachment_id ) {
+				$alt      = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+				$filepath = get_attached_file( $attachment_id );
+				$filename = $filepath ? basename( $filepath ) : '';
+
+				if ( $alt ) {
+					$label = $alt;
+				} elseif ( $filename ) {
+					$label = sprintf( 'Link to %s', $filename );
+				}
+			} elseif ( ! empty( $block['attrs']['alt'] ) ) {
+				$label = $block['attrs']['alt'];
+			}
+
+			if ( '' === $label ) {
+				$label = 'Image link';
+			}
+
+			$label     = sanitize_text_field( $label );
+			$processor = new WP_HTML_Tag_Processor( $block_content );
+			while ( $processor->next_tag( 'a' ) ) {
+				$has_aria  = $processor->get_attribute( 'aria-label' );
+				$has_title = $processor->get_attribute( 'title' );
+				if ( null === $has_aria && null === $has_title ) {
+					$processor->set_attribute( 'aria-label', $label );
+					break; // Label the first anchor encountered.
+				}
+			}
+			$block_content = $processor->get_updated_html();
+
+		}
+		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
+			// Add a class.
+			// Add the media URL as a data attribute if it exists.
+			if ( ! empty( $block['attrs']['modalMediaURL'] ) ) {
+				// Insert your data attribute just before the closing tag of the element.
+				// This is a basic string replacement and might need to be adjusted based on the block markup.
+				// $block_content = str_replace('>', ' data-modal-media-url="' . esc_attr($block['attrs']['modalMediaURL']) . '">', $block_content);'.
+				$block_content = flexline_set_first_tag_attributes(
+					$block_content,
+					array( 'data-modal-media-url' => esc_url_raw( $block['attrs']['modalMediaURL'] ) )
+				);
+			}
+		}
+	}
+
+	if ( 'core/site-logo' === $block['blockName'] && ! empty( $block['attrs']['useHighResLogo'] ) ) {
+		$width_attr = isset( $block['attrs']['width'] ) ? (int) $block['attrs']['width'] : 0;
+		if ( $width_attr > 0 ) {
+			$hires_width = max( 1, $width_attr * 2 );
+			$processor   = new WP_HTML_Tag_Processor( $block_content );
+			if ( $processor->next_tag( 'img' ) ) {
+				$sizes_value = sprintf( '(min-width: %1$spx) %1$spx, 100vw', $hires_width );
+				$processor->set_attribute( 'sizes', $sizes_value );
+				$current_img_class = $processor->get_attribute( 'class' );
+				$img_class_string  = is_string( $current_img_class ) ? trim( $current_img_class ) : '';
+				if ( false === strpos( ' ' . $img_class_string . ' ', ' flexline-logo-hires ' ) ) {
+					$processor->set_attribute( 'class', trim( $img_class_string . ' flexline-logo-hires' ) );
+				}
+				$block_content = $processor->get_updated_html();
+			}
+		}
+		$block_content = add_classes_to_block_content( $block_content, 'flexline-logo-hires ' );
+	}
+
+	if ( 'core/cover' === $block['blockName'] ) {
+		// Check if your custom attributes are set and not empty.
+		if ( isset( $block['attrs']['enableLazyLoad'] ) && ! $block['attrs']['enableLazyLoad'] ) {
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array( 'decoding' => 'sync' ),
+				array( 'loading' ),
+				false
+			);
+		} else {
+			$block_content = flexline_update_img_attributes(
+				$block_content,
+				array( 'loading' => 'lazy' ),
+				array(),
+				true
+			);
+		}
+
+			// FlexLine Glass overlay: classes only (no inline styles).
+		$toggle    = ! empty( $block['attrs']['flexlineGlassOverlay'] );
+		$level     = isset( $block['attrs']['flexlineGlassLevel'] ) ? (float) $block['attrs']['flexlineGlassLevel'] : 0.0;
+		$level     = max( 0.0, min( 10.0, $level ) );
+		$effective = $level > 0 ? (int) round( $level ) : ( $toggle ? 10 : 0 );
+		if ( $effective > 0 ) {
+			$block_content = add_classes_to_block_content( $block_content, 'flexline-glass-overlay glass-level-' . $effective . ' ' );
+		}
+	}
+
+	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
+		$frame_render_data = flexline_get_section_frame_render_data( (string) $block['blockName'], $attrs );
+		if ( '' !== $frame_render_data['classes'] ) {
+			$block_content = add_classes_to_block_content( $block_content, $frame_render_data['classes'] );
+			$block_content = flexline_merge_inline_style( $block_content, $frame_render_data['style'] );
+		}
+
+		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
+			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
+				// Determine target attribute for link types.
+				$link_type_raw = isset( $block['attrs']['groupLinkType'] ) ? (string) $block['attrs']['groupLinkType'] : 'self';
+				$target_attr   = '';
+				if ( 'new_tab' === $link_type_raw ) {
+					$target_attr = ' target="_blank" rel="noopener"';
+				} elseif ( 'self' === $link_type_raw || 'none' === $link_type_raw ) {
+					$target_attr = ''; // Default same-window; no target attribute needed.
+				} elseif ( 'modal_media' === $link_type_raw ) {
+					// Modal handled via JS on container class 'group-link-type-modal_media'.
+					// Do not set target to avoid opening a new tab.
+					$target_attr = '';
+				}
+
+				// Media links only navigate HTTP(S); normal links retain phone/email support.
+				$protocols  = 'modal_media' === $link_type_raw ? array( 'http', 'https' ) : wp_allowed_protocols();
+				$link_url   = esc_url( $block['attrs']['groupLinkURL'], $protocols );
+				$aria_label = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
+				// Do not emit href="" for rejected URLs: it would navigate to the current page.
+				$link = '' !== $link_url ? '<a class="flexline-group-link-anchor is-position-absolute" href="' . $link_url . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>' : '';
+
+				// Ensure the wrapper carries the link-type class for runtime JS hooks.
+				$type_class    = 'group-link-type-' . $link_type_raw;
+				$added_classes = 'group-link ' . $type_class . ' ';
+				$block_content = add_classes_to_block_content( $block_content, $added_classes );
+				$block_content = flexline_set_first_tag_attributes(
+					$block_content,
+					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'], $protocols ) )
+				);
+
+				// Insert your data attribute just before the closing tag of the element.
+				// The anchor is inserted immediately inside the outer wrapper.
+				$search_string  = '>';
+				$replace_string = '>' . $link;
+				$block_content  = str_replace_first( $search_string, $replace_string, $block_content );
+			}
+		}
+
+		// Slider CSS variables for Group/Stack when enabled.
+		if (
+			( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] ) &&
+			! empty( $block['attrs']['enableSlider'] )
+		) {
+			$height         = isset( $block['attrs']['sliderHeight'] ) ? trim( (string) $block['attrs']['sliderHeight'] ) : '';
+			$transition_ms  = isset( $block['attrs']['transitionDuration'] ) ? (int) $block['attrs']['transitionDuration'] : 500;
+			$auto           = ! empty( $block['attrs']['sliderAuto'] );
+			$interval_ms    = $auto ? ( (int) ( $block['attrs']['sliderSpeed'] ?? 4000 ) ) : 0;
+			$loop           = ! empty( $block['attrs']['sliderLoop'] ) ? 1 : 0;
+			$pause_on_hover = ( $auto && ! empty( $block['attrs']['pauseOnHover'] ) ) ? 1 : 0;
+			$show_pause     = ( $auto && empty( $block['attrs']['hidePauseButton'] ) ) ? 1 : 0;
+			$show_nav       = ! empty( $block['attrs']['sliderNav'] ) ? 1 : 0;
+
+			$vars = '';
+			if ( '' !== $height ) {
+				$vars .= ' --slider-height: ' . esc_attr( $height ) . ';';
+			}
+			$vars .= ' --slider-transition-ms: ' . esc_attr( $transition_ms ) . ';';
+			$vars .= ' --slider-interval-ms: ' . esc_attr( $interval_ms ) . ';';
+			$vars .= ' --slider-loop: ' . esc_attr( $loop ) . ';';
+			$vars .= ' --slider-pause-on-hover: ' . esc_attr( $pause_on_hover ) . ';';
+			$vars .= ' --slider-show-pause: ' . esc_attr( $show_pause ) . ';';
+			$vars .= ' --slider-nav: ' . esc_attr( $show_nav ) . ';';
+
+			if ( $vars ) {
+				$block_content = flexline_merge_inline_style( $block_content, $vars );
+			}
+		}
+	}
+
+	if ( in_array( $block['blockName'], array( 'core/columns', 'core/post-template' ), true ) ) {
+
+		$has_horizontal_scroller      = flexline_block_has_horizontal_scroller( $block, $block_content );
+		$block['attrs']['scrollAuto'] = isset( $block['attrs']['scrollAuto'] ) ? $block['attrs']['scrollAuto'] : false;
+		if ( $has_horizontal_scroller && $block['attrs']['scrollAuto'] ) {
+			$block['attrs']['scrollSpeed'] = isset( $block['attrs']['scrollSpeed'] ) ? $block['attrs']['scrollSpeed'] : 4000;
+			$block_content                 = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'data-scroll-interval' => (int) $block['attrs']['scrollSpeed'] )
+			);
+		}
+
+		if ( $has_horizontal_scroller && isset( $block['attrs']['transitionDuration'] ) ) {
+			$block['attrs']['transitionDuration'] = isset( $block['attrs']['transitionDuration'] ) ? $block['attrs']['transitionDuration'] : 500;
+			$block_content                        = flexline_set_first_tag_attributes(
+				$block_content,
+				array( 'data-scroll-speed' => (int) $block['attrs']['transitionDuration'] )
+			);
+		}
+
+		if ( $has_horizontal_scroller ) {
+			$icon_data_attrs = array();
+			$icon_map        = array(
+				'prevIconMediaId'  => array(
+					'data_attr' => 'data-icon-prev-url',
+					'url_attr'  => 'prevIconUrl',
+				),
+				'nextIconMediaId'  => array(
+					'data_attr' => 'data-icon-next-url',
+					'url_attr'  => 'nextIconUrl',
+				),
+				'pauseIconMediaId' => array(
+					'data_attr' => 'data-icon-pause-url',
+					'url_attr'  => 'pauseIconUrl',
+				),
+			);
+
+			foreach ( $icon_map as $attr_key => $map ) {
+				$icon_id  = isset( $block['attrs'][ $attr_key ] ) ? (int) $block['attrs'][ $attr_key ] : 0;
+				$icon_url = '';
+				if ( $icon_id > 0 ) {
+					$icon_url = wp_get_attachment_image_url( $icon_id, 'full' );
+				}
+				if ( '' === $icon_url && ! empty( $block['attrs'][ $map['url_attr'] ] ) ) {
+					$icon_url = esc_url_raw( $block['attrs'][ $map['url_attr'] ] );
+				}
+				if ( $icon_url ) {
+					$icon_data_attrs[ $map['data_attr'] ] = esc_url_raw( $icon_url );
+				}
+			}
+
+			$button_icon_height = isset( $block['attrs']['buttonIconHeight'] ) ? (int) $block['attrs']['buttonIconHeight'] : 18;
+			$pause_icon_height  = isset( $block['attrs']['pauseButtonIconHeight'] ) ? (int) $block['attrs']['pauseButtonIconHeight'] : 18;
+			if ( $button_icon_height > 0 ) {
+				$icon_data_attrs['data-button-icon-height'] = $button_icon_height;
+			}
+			if ( $pause_icon_height > 0 ) {
+				$icon_data_attrs['data-pause-icon-height'] = $pause_icon_height;
+			}
+
+			if ( ! empty( $icon_data_attrs ) ) {
+				$block_content = flexline_set_first_tag_attributes( $block_content, $icon_data_attrs );
+			}
+		}
+	}
+
+	$raised_z_index_classes   = array(
+		'flexline-raise-z-index',
+		'flexline-content-shift-above',
+	);
+	$has_raised_z_index_state = array_key_exists( 'shiftToTop', $attrs ) || false !== strpos( $block_content, 'flexline-content-shift-above' );
+
+	if ( $has_raised_z_index_state ) {
+		$block_content = flexline_remove_classes_from_block_content( $block_content, $raised_z_index_classes );
+	}
+
+	// **Add raised z-index independently from Content Shift margins**.
+	if ( ! empty( $attrs['shiftToTop'] ) ) {
+		$block_content = add_classes_to_block_content( $block_content, 'flexline-raise-z-index ' );
+	}
+
+	$content_shift_style_properties = array(
+		'--flexline-shift-left',
+		'--flexline-shift-right',
+		'--flexline-shift-up',
+		'--flexline-shift-down',
+		'--flexline-slide-x',
+		'--flexline-slide-y',
+	);
+	$content_shift_classes          = array(
+		'flexline-content-shift',
+		'flexline-content-shift-left',
+		'flexline-content-shift-right',
+		'flexline-content-shift-up',
+		'flexline-content-shift-down',
+		'flexline-content-slide-x',
+		'flexline-content-slide-y',
+		'flexline-content-shift-revert-mobile',
+	);
+	$content_shift_attr_names       = array(
+		'useContentShift',
+		'shiftLeft',
+		'shiftRight',
+		'shiftUp',
+		'shiftDown',
+		'slideHorizontal',
+		'slideVertical',
+		'resetMobile',
+	);
+	$has_content_shift_state        = false;
+
+	foreach ( $content_shift_attr_names as $attr_name ) {
+		if ( array_key_exists( $attr_name, $attrs ) ) {
+			$has_content_shift_state = true;
+			break;
+		}
+	}
+
+	if ( ! $has_content_shift_state ) {
+		$has_content_shift_state = false !== strpos( $block_content, '--flexline-shift-' ) || false !== strpos( $block_content, '--flexline-slide-' );
+	}
+
+	if ( ! $has_content_shift_state ) {
+		return $block_content;
+	}
+
+	if ( empty( $attrs['useContentShift'] ) ) {
+		$block_content = flexline_remove_classes_from_block_content( $block_content, $content_shift_classes );
+
+		return flexline_remove_inline_style_properties( $block_content, $content_shift_style_properties );
+	}
+
+	// **Add Unique Class and Styles for Content Shift**.
+	$block_content = flexline_remove_inline_style_properties( $block_content, $content_shift_style_properties );
+	$added_classes = '';
+	// Generate the visibility classes.
+	$added_classes .= get_visibility_classes( $attrs );
+	$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+
+	// Generate a unique class based on the block's attributes.
+	$unique_class = 'flexline-content-shift-' . substr( md5( wp_json_encode( $attrs ) ), 0, 8 );
+	// Add the unique class to the block's classes.
+	$added_classes .= 'flexline-content-shift ' . $unique_class . ' ';
+	$block_content  = add_classes_to_block_content( $block_content, $added_classes );
+
+	// Generate the styles.
+	$shift_left  = '0';
+	$shift_right = '0';
+	$shift_up    = '0';
+	$shift_down  = '0';
+	$slide_x     = '0';
+	$slide_y     = '0';
+	if ( isset( $attrs['shiftLeft'] ) && '' !== trim( (string) $attrs['shiftLeft'] ) ) {
+		$shift_left = '-' . $attrs['shiftLeft'];
+	}
+	if ( isset( $attrs['shiftRight'] ) && '' !== trim( (string) $attrs['shiftRight'] ) ) {
+		$shift_right = '-' . $attrs['shiftRight'];
+	}
+	if ( isset( $attrs['shiftUp'] ) && '' !== trim( (string) $attrs['shiftUp'] ) ) {
+		$shift_up = '-' . $attrs['shiftUp'];
+	}
+	if ( isset( $attrs['shiftDown'] ) && '' !== trim( (string) $attrs['shiftDown'] ) ) {
+		$shift_down = '-' . $attrs['shiftDown'];
+	}
+	if ( isset( $attrs['slideHorizontal'] ) && '' !== trim( (string) $attrs['slideHorizontal'] ) ) {
+		$slide_x = $attrs['slideHorizontal'];
+	}
+	if ( isset( $attrs['slideVertical'] ) && '' !== trim( (string) $attrs['slideVertical'] ) ) {
+		$slide_y = $attrs['slideVertical'];
+	}
+	// Build the CSS.
+	$styles = '';
+	if ( '0' !== $shift_left ) {
+		$styles .= ' --flexline-shift-left: ' . esc_attr( $shift_left ) . ';';
+	}
+	if ( '0' !== $shift_right ) {
+		$styles .= ' --flexline-shift-right: ' . esc_attr( $shift_right ) . ';';
+	}
+	if ( '0' !== $shift_up ) {
+		$styles .= ' --flexline-shift-up: ' . esc_attr( $shift_up ) . ';';
+	}
+	if ( '0' !== $shift_down ) {
+		$styles .= ' --flexline-shift-down: ' . esc_attr( $shift_down ) . ';';
+	}
+	if ( '0' !== $slide_x ) {
+		$styles .= ' --flexline-slide-x: ' . esc_attr( $slide_x ) . ';';
+	}
+	if ( '0' !== $slide_y ) {
+		$styles .= ' --flexline-slide-y: ' . esc_attr( $slide_y ) . ';';
+	}
+
+	if ( '' !== $styles ) {
+		$block_content = flexline_merge_inline_style( $block_content, $styles );
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block', __NAMESPACE__ . '\flexline_block_customizations_render', 10, 3 );
