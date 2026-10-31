@@ -312,7 +312,7 @@ results; the shell's default Node may differ from the build environment.
 - Top-only after whole/both mode, retaining prior selections and overlap values.
 - Whole shapes: fill/proportion with wide/tall SVGs and the corrected SVG fixtures.
 - Default/constrained/wide/full Groups, nested Cover content, padding, and content
-  growth; unsupported Row/Stack/Grid layouts still suspend shapes.
+  growth; supported Row/Stack/Grid Group variations retain their layouts and shapes.
 - Content Shift: inactive, explicit zero, active per edge, and mobile reset.
 - Site Editor and synced-pattern save/reopen using disposable local test content.
 - Desktop Chrome/Safari and mobile Chrome/Safari, with responsive layout checks.
@@ -389,3 +389,44 @@ Append this record after each completed session:
 - [x] Session 3: Admin validation and table alignment are corrected; remaining live checks tracked in Session 5.
 - [x] Session 4: Focused cleanup and 2.2.2 documentation are complete.
 - [x] Session 5: Production build and verification results are recorded; open release gates remain above.
+
+### Final-ZIP acceptance follow-up — 2026-10-30
+
+Exact CI ZIP at runtime commit 9cacf206 was installed using native WordPress
+Theme_Upgrader in an independent official Beta 2/PHP 8.2.35 Linux canary.
+Both-to-top/whole-to-top save/reopen, synced-pattern and Site Editor save/reopen,
+delete-all persistence, unavailable-SVG warning/fallback, Content Shift edge/zero/
+mobile-reset behavior and the expanded 22-case layout matrix were exercised.
+Owner reported desktop Safari, iPhone and iPad checks complete; Android is
+untested. Desktop/mobile Chrome geometry was recorded separately.
+
+Two responsive findings remain: proportion mode can expand beyond the container
+with padding/Core minimum height, and the admin preset table overflows at 390px.
+These are not marked passed. The old Row/Stack/Grid suspension expectation above
+was corrected to match the supported implementation and feature documentation.
+
+Native prior-ZIP rollback and candidate re-upgrade matched all archive files and
+retained newer synthetic content/settings without a database restore. Historical
+2.2.1 has only a source ZIP (header 2.2.0), with both font-case aliases; this test
+does not establish Fleet rollback or an actual hosted backup. Raw data snapshots
+retain the sole expected Core widget-activation timestamp change. No existing
+Local content/preset was saved, runtime source changed, or release published.
+
+See [full evidence, findings and recovery limits](releases/acceptance-2.2.2-2026-10-30.md).
+
+### Mobile preset cards — 2026-10-31
+
+Owner approved stacking presets and verifying save/media/reorder with disposable
+data. Rows now become labeled cards through 1024px and remain a five-column
+table above it. Saving, real Media Library selection/replacement, pointer/keyboard
+reordering, reopen and UI removal passed in the independent Beta 2 canary.
+Eleven widths passed without horizontal overflow; the original seven synthetic
+presets were restored exactly. PHP 48/180, JS 21 tests, scoped PHPCS, extracted
+inline CSS stylelint and diff checks passed. No existing Local content resaved.
+
+Owner clarified proportion mode is for decorative shapes without content; the
+previous content-filled stress case is not a release blocker for that intended
+use. No frontend sizing change or new decorative-rendering acceptance claimed.
+The old ZIP remains unchanged; this working-tree fix needs fresh package/CI
+verification. Nothing committed, pushed, published or promoted.
+See [full follow-up](releases/mobile-presets-2.2.2-2026-10-31.md).

@@ -473,3 +473,70 @@ of the three existing shortcode-example pages, official newer-beta/RC retesting,
 actual SEO integration, Section Shapes device/Safari gates and exact installed-ZIP
 Canary/recovery acceptance remain open. This is not full WordPress 7.2 certification.
 No Core update, version tag, publication or production promotion is authorized here.
+
+## 30 October — final-ZIP Section Shapes and native recovery acceptance
+
+Tested hosted artifact from runtime commit 9cacf206 (SHA256
+eff2ea69605269f9c1589a5cb10772602375383c2f3d1a12661b9d9162def70f)
+in an independent Docker canary: official checksum-verified 7.2 Beta 2,
+PHP 8.2.35, MySQL 8.0 and Linux case-sensitive files. No Local site was deployed
+to or existing content/presets resaved. No extra source checkout was created.
+
+Native install command: `php -d memory_limit=512M /tmp/native-install.php
+/tmp/candidate.zip` inside the disposable web container; prior cycles use
+`/tmp/prior.zip`. Probe/script receipts in parent diagnostics document exact
+file comparisons and posts/postmeta/options before/after each cycle. All 548
+prior files and all 333 candidate files matched their archives. New page 25
+and an updated option survived prior rollback and final re-upgrade without
+a database restore. Only Core's explicit theme-activation widget timestamp
+was normalized during data comparison; raw snapshots remain retained.
+
+The original GitHub 2.2.1 release has no runtime asset; its unchanged source ZIP
+(header 2.2.0) was used and retains both historical font-case aliases. Native
+Linux installation can restore those files. This does not certify Fleet rollback
+or provide an actual hosted installation backup. The candidate has only the
+canonical uppercase WOFF2. Target delivery/recovery and Canary Health remain
+separate from this native installer exercise.
+
+UI checks now cover both/whole-to-top save/reopen with inactive settings retained,
+Site Editor and synced pattern save/reopen, warning/fail-open unavailable SVG,
+live delete-all persistence, Content Shift zero/edge/mobile reset and expanded
+layout rendering. Owner reported desktop Safari, iPhone and iPad complete;
+Android remains untested. Chrome tested six viewport widths. Two open responsive
+findings prevent marking this acceptance matrix fully passed: proportion sizing
+with padding/minimum height and preset-table overflow at 390px. No runtime fix,
+commit, push, tag, publication or DFG promotion occurred in this pass.
+
+See [complete acceptance receipt](releases/acceptance-2.2.2-2026-10-30.md).
+
+## 31 October — responsive preset manager implemented and tested
+
+Owned runtime changes are limited to inc/theme-options/theme-page.php and
+render-theme-frames.php. Cards through 1024px retain desktop columns, field
+labels/roles, hidden/disabled controls and unchanged form/JS/storage contracts.
+Tested the two PHP files over the previous candidate in the existing independent
+Beta 2/PHP 8.2.35 Docker canary, without installing into the active Local site.
+
+Live mobile UI created two disposable presets, chose and replaced SVGs through
+WordPress Media Library, saved/reopened settings and order, and exercised both
+reorder directions (including Enter). Confirmed first-save attachments/order in
+the database. Removed both test presets through the UI and restored all seven
+original synthetic definitions exactly. Posts/postmeta remained unchanged.
+No overflow at 11 widths from 320 through 1440px; restored mixed library checked
+at six widths including 1024/1025 boundary. Viewport overrides reset afterward.
+
+Commands/results: PHP syntax/scoped PHPCS passed; vendor/bin/phpunit
+--configuration phpunit.xml.dist passed 48 tests/180 assertions; Node 24.14.0
+wp-scripts test-unit-js --runInBand --watch=false passed 21 tests; stylelint of
+changed inline CSS using .stylelintrc.json and git diff --check passed. Existing
+dev dependencies only; no build-source autofix or generated-asset modification.
+
+The owner clarified that proportional masks are decorative and not intended for
+content-filled sections. Earlier padding/content stress observations are not a
+release blocker for that use. No frontend sizing change made; empty decorative
+shape acceptance remains separate. Prior native ZIP/Fleet limits are unchanged.
+
+This is a patched working-tree check, not a new final-ZIP receipt. Next package
+CI must include the two PHP changes before publication. No commit, push, tag,
+publication, DFG promotion or existing Local content resave. Evidence and
+[full report](releases/mobile-presets-2.2.2-2026-10-31.md) record the test scope.

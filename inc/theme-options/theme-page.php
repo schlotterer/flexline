@@ -223,10 +223,59 @@ function flexline_theme_options_page() {
 			flex-direction: column;
 			gap: 4px;
 		}
+		.flexline-frame-mobile-label {
+			display: none;
+		}
 		.flexline-frame-height-settings:not([hidden]) {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 12px;
+		}
+		@media (max-width: 1024px) {
+			#flexline-frame-presets-table,
+			#flexline-frame-presets-table > tbody {
+				box-sizing: border-box;
+				display: block;
+				width: 100%;
+			}
+			#flexline-frame-presets-table {
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+			}
+			/* Retain column headers for assistive technology in the stacked layout. */
+			#flexline-frame-presets-table > thead {
+				clip-path: inset(50%);
+				height: 1px;
+				overflow: hidden;
+				position: absolute;
+				white-space: nowrap;
+				width: 1px;
+			}
+			#flexline-frame-presets-table [data-frame-preset-row]:not([hidden]) {
+				background: #fff;
+				border: 1px solid #c3c4c7;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				margin-bottom: 16px;
+			}
+			#flexline-frame-presets-table [data-frame-preset-row] > td {
+				border: 0;
+				box-sizing: border-box;
+				display: block;
+				min-width: 0;
+				padding: 12px;
+				width: auto;
+			}
+			#flexline-frame-presets-table .flexline-frame-mobile-label {
+				display: block;
+				font-weight: 600;
+				margin-bottom: 8px;
+			}
+			#flexline-frame-presets-table [data-frame-attachment-label] {
+				min-width: 0;
+				overflow-wrap: anywhere;
+			}
 		}
 		@media (max-width: 960px) {
 			.flexline-frame-guidance,

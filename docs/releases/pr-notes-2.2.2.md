@@ -90,8 +90,26 @@ passed with original presets restored. A disposable draft verified four-mode
 save/reopen and frontend masks plus whole-to-top saved attributes, then was
 trashed. The cleanup plan records remaining UI and device gates explicitly.
 
-- Section Shapes still need final release-device coverage for mobile
-  Chrome/Safari, desktop Safari, and any Site Editor or synced-pattern reopen
-  checks not completed before release.
-- Expanded layout acceptance, live unavailable-SVG warnings and delete-all
-  clearing remain pending; see the Session 5 results for the full list.
+- Final-ZIP canary checks completed on 30 October: mode transitions, Site Editor
+  and synced-pattern save/reopen, unavailable-SVG warning, live delete-all,
+  Content Shift and expanded layout checks. Owner completed desktop Safari,
+  iPhone and iPad checks; Android remains untested.
+- Two responsive findings remain unresolved: proportion shapes with padding or
+  minimum height can overflow narrow containers, and the admin preset table
+  overflows at 390px. These checks are not marked passed.
+- Native prior-ZIP restore/re-upgrade preserved newer synthetic data and matched
+  all installed files. Prior archive provenance, Fleet/hosted recovery limits,
+  exact artifact/environment and screenshots are in the
+  [30 October acceptance report](acceptance-2.2.2-2026-10-30.md).
+- No publication, production promotion or existing-content resave occurred.
+
+## 31 October — mobile preset manager follow-up
+
+- Preset rows stack into labeled cards through 1024px; desktop retains the table.
+- Disposable live save/reopen, real SVG selection/replacement and both reorder
+  directions passed. All 11 tested widths fit; original synthetic presets restored.
+- Proportion mode is intended for standalone decorative shapes, per owner
+  clarification; the earlier content-filled stress case is not a release blocker.
+- No frontend sizing or stored-data change. This admin fix requires a fresh
+  package/CI check; the 30 October ZIP does not include it.
+- [Checks and evidence](mobile-presets-2.2.2-2026-10-31.md). No publication.

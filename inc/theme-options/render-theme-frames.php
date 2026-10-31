@@ -43,8 +43,9 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 		}
 	}
 	?>
-	<tr<?php echo $row_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-		<td>
+	<tr role="row"<?php echo $row_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<td role="cell">
+			<span class="flexline-frame-mobile-label" aria-hidden="true">Label</span>
 			<input
 				type="hidden"
 				data-frame-field="id"
@@ -61,7 +62,8 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 				placeholder="Gentle wave"
 			/>
 		</td>
-		<td>
+		<td role="cell">
+			<span class="flexline-frame-mobile-label" aria-hidden="true">Type</span>
 			<select
 				aria-label="Section shape type"
 				data-frame-field="type"
@@ -72,7 +74,8 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 				<option value="whole" <?php selected( $row_type, 'whole' ); ?>>Whole section</option>
 			</select>
 		</td>
-		<td>
+		<td role="cell">
+			<span class="flexline-frame-mobile-label" aria-hidden="true">SVG Shape</span>
 			<input
 				type="hidden"
 				data-frame-field="attachment_id"
@@ -100,7 +103,8 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 				<p class="description" data-frame-source-warning role="status">This whole shape cannot render. Choose a locally readable Media Library SVG of 256 KiB or less. Block fits SVG proportion also requires a viewBox with positive width and height. The preset remains saved.</p>
 			<?php endif; ?>
 		</td>
-		<td>
+		<td role="cell">
+			<span class="flexline-frame-mobile-label" aria-hidden="true">Settings</span>
 			<div class="flexline-frame-height-settings" data-frame-panel="height" <?php echo $is_whole ? 'hidden' : ''; ?>>
 			<label>
 				<span>Min Height (px)</span>
@@ -156,7 +160,8 @@ function flexline_render_frame_preset_row( array $preset, $index, bool $is_templ
 			</label>
 			</div>
 		</td>
-		<td>
+		<td role="cell">
+			<span class="flexline-frame-mobile-label" aria-hidden="true">Actions</span>
 			<button type="button" class="button" data-frame-move-up aria-label="Move section shape up">Up</button>
 			<button type="button" class="button" data-frame-move-down aria-label="Move section shape down">Down</button>
 			<button type="button" class="button-link-delete" data-frame-remove>Remove</button>
@@ -242,17 +247,17 @@ function flexline_render_frames_tab() {
 			</div>
 			<input type="hidden" name="<?php echo esc_attr( Section_Frame_Presets::PRESETS_OPTION ); ?>[_submitted]" value="1" />
 
-			<table class="widefat striped" id="flexline-frame-presets-table">
-				<thead>
-					<tr>
-						<th scope="col">Label</th>
-						<th scope="col">Type</th>
-						<th scope="col">SVG Shape</th>
-						<th scope="col">Settings</th>
-						<th scope="col">Actions</th>
+			<table class="widefat striped" id="flexline-frame-presets-table" role="table">
+				<thead role="rowgroup">
+					<tr role="row">
+						<th scope="col" role="columnheader">Label</th>
+						<th scope="col" role="columnheader">Type</th>
+						<th scope="col" role="columnheader">SVG Shape</th>
+						<th scope="col" role="columnheader">Settings</th>
+						<th scope="col" role="columnheader">Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody role="rowgroup">
 					<?php
 					if ( empty( $shape_presets ) ) {
 						flexline_render_frame_preset_row(
@@ -288,7 +293,7 @@ function flexline_render_frames_tab() {
 	<?php if ( $is_enabled ) : ?>
 		<template id="flexline-frame-preset-row-template">
 			<table>
-				<tbody>
+				<tbody role="rowgroup">
 					<?php
 					flexline_render_frame_preset_row(
 						array(
