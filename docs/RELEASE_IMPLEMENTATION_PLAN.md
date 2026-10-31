@@ -570,3 +570,15 @@ native installer receipt. Artifact retained at
 draft/unmerged; decorative-only acceptance and target-specific recovery/Canary
 limits remain distinct from these checks. No tag, publication or DFG promotion.
 This receipt-only follow-up changes no runtime payload.
+
+## 31 October — release-note status consolidated
+
+Removed stale pending-layout and pending-fresh-CI statements from the current
+PR notes. Consolidated feature scope, completed hosted runs 41212422925 /
+41212427782, verified 333-file artifact/hash, exact native installation and
+remaining coverage/recovery/publication limits. Marked the mobile browser
+receipt as historical and linked it to the current status, preserving evidence.
+Updated the GitHub PR description to present the current change and validation
+instead of a chronological list of superseded artifacts. Documentation only;
+no runtime package content changed. Markdown links and git diff --check verified.
+No tag, publication or DFG promotion.

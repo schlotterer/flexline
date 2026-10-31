@@ -1,7 +1,9 @@
 # Mobile preset cards — 31 October 2026
 
-Implemented on the existing release-2.2.2 checkout. No extra checkout/worktree,
-commit, push, release tag, publication or DFG promotion.
+This is the original browser-test receipt from before commit/push. The fix has
+since been committed, pushed, built in hosted CI and installed from the exact
+verified ZIP. See [current release status](pr-notes-2.2.2.md). No release tag,
+publication or DFG promotion occurred. No extra checkout/worktree was created.
 
 ## Change
 
@@ -23,8 +25,9 @@ initial 782px cutoff with the WordPress admin sidebar present.
 Used the existing independent Docker canary at 127.0.0.1:63188, official WordPress
 7.2 Beta 2 / PHP 8.2.35. Applied just the two changed owned PHP files over the
 previously tested candidate. These results cover that patched working tree;
-the original 30 October ZIP has not changed and does not contain this fix.
-A fresh package/CI verification is required before release.
+the original 30 October ZIP did not contain this fix. Subsequent hosted CI/ZIP
+verification and native installation are complete, as recorded in the current
+release status linked above.
 
 Preserved all seven original synthetic presets, then started an empty canary
 preset library. No real Local presets, uploads or content were used.
@@ -63,7 +66,8 @@ physical-device or Safari pass for the changed admin CSS.
 - git diff --check: passed.
 
 No compiled frontend assets require rebuilding for these PHP-rendered admin
-styles; the release package must still be regenerated and checked before tagging.
+styles. The subsequent fresh release package was generated and checked;
+publication still requires authorization.
 
 ## Acceptance clarification
 
