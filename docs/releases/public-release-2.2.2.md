@@ -107,6 +107,14 @@ The full references are in **FlexLine Options → Utilities** and the Web4SL
 plugin's **Authoring Tokens** documentation. Keep the corresponding updated theme
 and plugin installed wherever you use the new token features.
 
+## Safer media modals
+
+Media modals now validate URLs consistently and construct images, videos and
+iframes without reinterpreting URL values as HTML. Existing HTTP(S) and relative
+media URLs, YouTube/Vimeo links and external embeds remain supported. Unsafe
+media URL schemes are rejected. Normal Group phone and email links still work,
+and existing content does not need to be resaved.
+
 ## Versioned ZIP delivery
 
 Theme release ZIPs are now built and checked in CI, with checksums and source

@@ -431,3 +431,14 @@ php tests/authoring-tokens-integration.php /path/to/read-only/wp-load.php
 Run FlexLine with Web4SL active and absent. Target-site editor insertion, actual
 SEO integration and prior-package Canary acceptance remain deployment gates.
 These contracts do not establish complete WordPress 7.2 compatibility.
+
+### Media modal URL safety
+
+Image, Button and Group media modals accept HTTP(S) URLs, including relative and
+protocol-relative URLs. Existing saved markup is checked when the modal opens;
+no content resave or migration is required. YouTube, Vimeo and external HTTP(S)
+iframe embeds remain supported. Media elements are constructed through DOM APIs
+so decoded attribute values are never reparsed as HTML. Invalid media schemes
+open no modal. Normal Group links retain supported phone and email URLs.
+
+Run the modal regression tests with `npm run test:js -- --watch=false`.

@@ -7,9 +7,10 @@ ZIP-delivered versioned updates through CI. Token authoring and responsive
 preset administration support that work. Existing frame settings and legacy
 shortcode rendering remain compatible; this is not full final-7.2 certification.
 
-The mobile fix, hosted CI and exact-ZIP installation checks are complete.
-Publication and DFG production promotion have not occurred. Remaining limits and
-release actions are listed below.
+The mobile fix and its hosted CI/exact-ZIP checks are complete. The subsequent
+modal security fix passed local regression checks and requires fresh hosted
+verification for the current PR head. Publication and DFG production promotion
+have not occurred. Current delivery status is tracked on PR #582.
 
 [Draft public release and shortcode/token guide](public-release-2.2.2.md).
 
@@ -67,6 +68,11 @@ release actions are listed below.
 
 ## Review Cleanup
 
+- Apply a shared HTTP(S) URL policy to all modal triggers, including legacy saved
+  markup and dynamically inserted content. Construct media through DOM APIs.
+- Sanitize Group link URLs independently of JavaScript; retain normal phone/email
+  links and reject unsafe links without emitting an empty navigable anchor.
+
 - Save explicit shape modes, including top-only, rather than infer them from stale selections.
 - Accept already-normalized SVG roots and single-quoted viewBox values.
 - Cache failed SVG reads per request and policy, without modifying uploaded artwork.
@@ -88,6 +94,18 @@ release actions are listed below.
 - Whole masks fail open when unavailable; edge frames retain their attachment-URL fallback.
 
 ## Completed verification
+
+- Modal fix: four harmless probes reproduced the original protocol/attribute
+  defects in the isolated Beta 2/PHP 8.2.35 canary as an Author without
+  unfiltered_html. The same saved fixture passed 49 browser checks after the
+  fix, covering desktop/mobile widths, image/video/frame output, legacy/dynamic
+  triggers, keyboard/focus/scroll and Group links without JavaScript. Test post
+  and Author were deleted; every existing post/postmeta row matched its baseline.
+- Current local checks: 59 JavaScript tests, 48 PHPUnit tests / 180 assertions,
+  primary-term and directory contracts, full JS/style lint, changed PHP syntax/
+  PHPCS and production build passed. Provider responses were stubbed; no fresh
+  Safari, physical-device or Beta 3 runtime claim. The following hosted ZIP
+  receipts predate this modal fix and do not verify its current package.
 
 - Hosted branch CI [41212422925](https://github.com/schlotterer/flexline/actions/runs/41212422925)
   and PR CI [41212427782](https://github.com/schlotterer/flexline/actions/runs/41212427782)
@@ -156,9 +174,11 @@ migration is introduced by this release.
 
 ## Release actions still pending
 
-PR #582 remains draft and unmerged into main. After final review/acceptance,
-merge to main and verify main CI. Creating v2.2.2 requires separate publication
-authorization. The approved workflow keeps ZIP publication and DFG production
+The owner authorized committing/pushing the modal fixes and merging PR #582.
+The PR is ready for review, not draft. Fresh head-specific CI, CodeQL and ZIP
+verification are required; GitHub also requires an independent approving review.
+Merge through the protected workflow, then verify main CI. Tag/publication remain
+outside this preparation step. The workflow keeps ZIP publication and DFG production
 branch promotion coupled; production consumers may react to that branch update.
 Retain each target's actual recovery package and never restore an older database
 over newer content. No tag, publication or production promotion is authorized by

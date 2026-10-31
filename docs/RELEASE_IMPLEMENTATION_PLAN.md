@@ -632,3 +632,47 @@ restrict protected-ref updates. No review was fabricated or requirement bypassed
 No merge, release tag, publication, DFG promotion or Local content write occurred.
 Setup/scan/check receipts retained in parent diagnostics/flexline-codeql-20261031;
 the resulting PR analysis status is recorded in PR #582 after it completes.
+
+## 31 October — modal URL security fixes verified locally
+
+Owner approved fixing the unsafe modal URL protocols and HTML attribute reparse,
+with disposable testing only and no publication. Added a shared HTTP(S) URL
+boundary for all Image, Button, Group and legacy/dynamic triggers, DOM media
+construction, and protocol-safe Group link output. Normal phone/email links,
+relative media, provider embeds, generic frames and saved public classes remain.
+Rejected Group URLs emit no navigable anchor; rejected modal URLs do not open or
+lock scroll. No stored-content transformation or schema/dependency change.
+
+Reproduced both defects through four harmless browser probes on the original
+runtime in the existing isolated WordPress 7.2 Beta 2/PHP 8.2.35 canary. Created
+one disposable post through the real REST endpoint as an Author without
+unfiltered_html, then tested the same saved bytes after replacing only the two
+changed runtime files. All 49 desktop/mobile-width browser checks passed,
+including script schemes, encoded attribute values, media loading, provider URL
+construction, dynamic insertion, keyboard/Escape/focus, and Group output with
+JavaScript disabled. Third-party frame responses were stubbed; vendor playback,
+fresh Safari/physical-device coverage and Beta 3 runtime are not certified here.
+
+Deleted the disposable post and Author. All pre-existing canary posts and postmeta
+matched the pre-test SHA256 exactly. No main Local database request or content
+resave was performed by this work. Validation: 59 JavaScript tests; 48 PHPUnit
+tests / 180 assertions; nine primary-term contracts; directory schema contract;
+full JS/style lint; changed PHP syntax/PHPCS; production build; diff whitespace.
+Independent read-only candidate review found no concrete bypass or regression.
+Only assets/built/js/modal.js changed among rebuilt runtime assets (SHA256
+32b6ec043ff8f1f63fc3386f245d3b45cbd40c446a2cbb28c4a3e301c9b0c1c4).
+Source tests are in src/js/test/modal-media.test.js; detailed browser evidence
+is retained in the private Codex Security artifact collection for this repository.
+That local validation preceded commit/push. No tag, publication or DFG promotion
+occurred. Current delivery status is tracked on PR #582.
+
+## 31 October — modal fix delivery and merge preparation authorized
+
+Owner requested merging and preparing 2.2.2. Commit/push the reviewed modal patch
+from the existing release-2.2.2 checkout, then verify fresh head-specific package
+CI, CodeQL and the actual hosted ZIP before merging. Keep tag/publication and DFG
+promotion outside this step. The pre-push GitHub snapshot still requires an
+independent latest-push approval; do not fabricate a review or bypass protection.
+Public release copy now describes modal URL safety. Web4SL's published v1.2.3
+still lacks the expanded token update; its public examples remain explicitly
+conditional on that companion update. Main Local content remains untouched.

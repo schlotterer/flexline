@@ -820,8 +820,12 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 					$target_attr = '';
 				}
 
+				// Media links only navigate HTTP(S); normal links retain phone/email support.
+				$protocols  = 'modal_media' === $link_type_raw ? array( 'http', 'https' ) : wp_allowed_protocols();
+				$link_url   = esc_url( $block['attrs']['groupLinkURL'], $protocols );
 				$aria_label = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-				$link       = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>';
+				// Do not emit href="" for rejected URLs: it would navigate to the current page.
+				$link = '' !== $link_url ? '<a class="flexline-group-link-anchor is-position-absolute" href="' . $link_url . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>' : '';
 
 				// Ensure the wrapper carries the link-type class for runtime JS hooks.
 				$type_class    = 'group-link-type-' . $link_type_raw;
@@ -829,7 +833,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 				$block_content = add_classes_to_block_content( $block_content, $added_classes );
 				$block_content = flexline_set_first_tag_attributes(
 					$block_content,
-					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'] ) )
+					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'], $protocols ) )
 				);
 
 				// Insert your data attribute just before the closing tag of the element.
