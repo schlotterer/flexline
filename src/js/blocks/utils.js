@@ -34,6 +34,16 @@ export const getLegacyGalleryLightboxAttributes = (blockName, attrs = {}) => {
 	return null;
 };
 
+export const isContentShiftEdgeActive = (attributes = {}, edge) => {
+	if (!attributes.useContentShift) {
+		return false;
+	}
+
+	return isContentShiftFieldSet(
+		edge === 'top' ? attributes.shiftUp : attributes.shiftDown
+	);
+};
+
 /**
  * Returns a JSX fragment containing ToggleControls for hiding an element on different screen sizes.
  *

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" role="img" aria-labelledby="title desc">
+	<title id="title">Top soft curve section shape</title>
+	<desc id="desc">A top frame mask with a broad centered curve and an opaque section area below.</desc>
+	<path fill="#000" d="M0 118C210 84 391 63 593 83C763 100 865 136 1031 129C1175 122 1299 85 1440 57V180H0Z"/>
+</svg>

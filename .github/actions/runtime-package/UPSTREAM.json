@@ -1,0 +1,11 @@
+{
+  "repository": "schlotterer/web4sl-ci",
+  "commit": "1f74bb9a8bedeebf8744c394c37edb66b3c7ae17",
+  "sha256": {
+    "action.yml": "a749f4df8d802bfa3085cc4f49a7d1e939bc3eb0a9dab2841405a48be08dbd10",
+    "scripts/package_release.py": "6eabfa07e1447892846ebc07b91ebf10bf6785c14d1a76ebe96dbb207b9b3ae2",
+    "scripts/production_branch.py": "2cefefc8464e1e4392f3ce758ef4d403b5e7df51c0ec983699462a0c7f3ae20e",
+    "scripts/test_package_release.py": "64dbdb9b83dd5e25286ee55f4d8ae7584d0bde19af2204092812feab42c43679",
+    "scripts/test_production_branch.py": "75627152820d5366c256a8a64931fd4093ec3a108ccad123382bb8275a219988"
+  }
+}

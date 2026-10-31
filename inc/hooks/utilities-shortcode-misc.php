@@ -1,6 +1,6 @@
 <?php
 /**
- * Miscellaneous Utilities hooks (shortcodes in meta, SVG mimes).
+ * Miscellaneous Utilities hooks (shortcodes in meta, SVG uploads).
  *
  * @package flexline
  */
@@ -36,7 +36,7 @@ function render_allowed_shortcodes( $value ) {
 }
 
 /**
- * Enable the SVG mime type; SVG content is sanitized by Web4SL before upload.
+ * Enable the SVG mime type; SVG content is sanitized before upload.
  *
  * @param array $mimes Allowed mime types keyed by file extension.
  * @return array Filtered mime types.
@@ -46,3 +46,7 @@ function custom_mime_types( $mimes ) {
 	return $mimes;
 }
 add_filter( 'upload_mimes', __NAMESPACE__ . '\\custom_mime_types' );
+
+if ( class_exists( '\\FlexLine\\SVG_Security' ) ) {
+	\FlexLine\SVG_Security::init();
+}

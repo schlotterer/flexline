@@ -277,6 +277,41 @@ export const customGroupAttributes = {
 	},
 };
 
+// Section Frames - Define custom attributes
+export const customSectionFrameAttributes = {
+	flexlineUseFrames: {
+		type: 'boolean',
+		default: false,
+	},
+	flexlineFrameMode: {
+		type: 'string',
+		enum: ['top', 'bottom', 'both', 'whole'],
+		// Keep explicit modes in saved markup; an absent mode uses legacy selections.
+	},
+	flexlineFrameTop: {
+		type: 'string',
+		default: '',
+	},
+	flexlineFrameBottom: {
+		type: 'string',
+		default: '',
+	},
+	flexlineFrameOverlapTop: {
+		type: 'string',
+		enum: ['none', 'half', 'full'],
+		default: 'none',
+	},
+	flexlineFrameOverlapBottom: {
+		type: 'string',
+		enum: ['none', 'half', 'full'],
+		default: 'none',
+	},
+	flexlineShapeMask: {
+		type: 'string',
+		default: '',
+	},
+};
+
 // Visibility - Define custom attributes
 export const customVisibilityAttributes = {
 	stackAtTablet: {

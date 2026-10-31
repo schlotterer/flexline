@@ -138,14 +138,18 @@
 		text-transform: var(--wp--custom--creative-text-transform);
 	}
 
-	/* Navigation link text shadow style variation. */
-	:is(
+	/* Legacy navigation shadows yield to native Core block styles. */
+	:where(
 		.wp-block-navigation-item.is-style-text-shadow,
-		.wp-block-navigation-item.is-style-text-shadow a,
-		.wp-block-navigation-item[class*="is-style-text-shadow--"],
-		.wp-block-navigation-item[class*="is-style-text-shadow--"] a
+		.wp-block-navigation-item[class*="is-style-text-shadow--"]
 	) {
 		text-shadow: var(--wp--custom--text-shadow);
+	}
+	:where(
+		.wp-block-navigation-item.is-style-text-shadow,
+		.wp-block-navigation-item[class*="is-style-text-shadow--"]
+	) :where(a) {
+		text-shadow: inherit;
 	}
 
 	/* List no-disc style variation (canonical + temporary legacy suffixed classes). */
