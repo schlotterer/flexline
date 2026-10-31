@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" role="img" aria-labelledby="title desc">
+	<title id="title">Top gentle wave section shape</title>
+	<desc id="desc">A top frame mask with transparent space above a gentle wave and an opaque section area below.</desc>
+	<path fill="#000" d="M0 86C160 116 307 102 456 72C621 39 766 14 934 42C1111 72 1276 125 1440 92V180H0Z"/>
+</svg>

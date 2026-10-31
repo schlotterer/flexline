@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "slug": "flexline",
+  "repository": "schlotterer/flexline",
+  "type": "theme",
+  "entry": "style.css",
+  "node": true,
+  "include": [
+    "functions.php",
+    "style.css",
+    "theme.json",
+    "screenshot.png",
+    "inc",
+    "parts",
+    "patterns",
+    "styles",
+    "templates",
+    "assets",
+    "vendor",
+    "LICENSE"
+  ],
+  "required": [
+    "functions.php",
+    "style.css",
+    "theme.json",
+    "screenshot.png",
+    "vendor/autoload.php",
+    "vendor/enshrined/svg-sanitize/src/Sanitizer.php",
+    "assets/built/css/app.css",
+    "assets/built/css/editor.css",
+    "assets/built/js/load-early.js",
+    "assets/fonts/REM/REM-VariableFont_wght.woff2",
+    "assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2"
+  ],
+  "generated": [
+    "build",
+    "assets/built",
+    "assets/vendor",
+    "vendor"
+  ],
+  "checks": [
+    [
+      "npm",
+      "run",
+      "lint-js"
+    ],
+    [
+      "npm",
+      "run",
+      "lint-style"
+    ],
+    [
+      "vendor/bin/phpunit",
+      "--configuration",
+      "phpunit.xml.dist"
+    ],
+    [
+      "npm",
+      "run",
+      "test:primary-terms"
+    ],
+    [
+      "npm",
+      "run",
+      "test:js"
+    ],
+    [
+      "php",
+      "tests/directory-preview-schema-contract.php"
+    ]
+  ],
+  "compatibility": {
+    "wordpress": "Verify package declared requirements and tested target before deployment.",
+    "dependencies": "FlexLine parent compatibility must be checked against relevant child themes.",
+    "recovery": "Reinstall retained prior supported ZIP against updated data; test upgrade and recovery before acceptance. Irreversible migrations require a separately documented tested recovery path.",
+    "tested_stack_versions": {
+      "web4sl": "1.2.0",
+      "web4sl-campaign-manager": "2.1.0",
+      "web4sl-advanced-floor-plans": "0.1.1",
+      "web4sl-location-sync": "1.1.1",
+      "web4sl-mcp-site-ops": "0.1.0",
+      "flexline": "2.2.2"
+    },
+    "recovery_readiness": "partial-filesystem-proof",
+    "recovery_limits": "Reconstructed Git runtime snapshot, not retained production bytes; seeded settings/content coverage only. Exact installed recovery artifact and full functional/Canary acceptance remain unverified. Historical tag 2.2.1 declares header 2.2.0. Mac case-insensitive extraction collapses two identical Montserrat font aliases; Linux static extraction verifies all 407 files, but full Linux WordPress downgrade remains untested."
+  }
+}

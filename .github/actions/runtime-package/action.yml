@@ -1,0 +1,44 @@
+name: Web4SL runtime release package
+description: Build, publish or promote exact runtime ZIP bytes; never configure sites.
+inputs:
+  mode:
+    description: build, publish or production
+    required: true
+  output:
+    description: Release asset directory
+    default: .release-output
+runs:
+  using: composite
+  steps:
+    - name: Validate action mode
+      shell: bash
+      env:
+        RELEASE_MODE: ${{ inputs.mode }}
+      run: '[[ "$RELEASE_MODE" == build || "$RELEASE_MODE" == publish || "$RELEASE_MODE" == production ]]'
+    - name: Build and verify package
+      if: inputs.mode == 'build'
+      shell: bash
+      env:
+        RELEASE_TOOL: ${{ github.action_path }}/scripts/package_release.py
+        RELEASE_OUTPUT: ${{ inputs.output }}
+      run: |
+        set -euo pipefail
+        args=(build --execute --output "$RELEASE_OUTPUT")
+        if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+          args+=(--tag "${GITHUB_REF#refs/tags/}")
+        fi
+        python3 "$RELEASE_TOOL" "${args[@]}"
+    - name: Verify uploaded assets and publish candidate
+      if: inputs.mode == 'publish'
+      shell: bash
+      env:
+        RELEASE_TOOL: ${{ github.action_path }}/scripts/package_release.py
+        RELEASE_OUTPUT: ${{ inputs.output }}
+      run: python3 "$RELEASE_TOOL" publish --output "$RELEASE_OUTPUT"
+    - name: Update production from the verified published release
+      if: inputs.mode == 'production'
+      shell: bash
+      env:
+        PRODUCTION_TOOL: ${{ github.action_path }}/scripts/production_branch.py
+        RELEASE_OUTPUT: ${{ inputs.output }}
+      run: python3 "$PRODUCTION_TOOL" --output "$RELEASE_OUTPUT"

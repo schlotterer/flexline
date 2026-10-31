@@ -17,6 +17,18 @@ function flexline_enqueue_block_editor_assets() {
 	$block_extension_config = array(
 		'useCoreGalleryLightbox' => version_compare( get_bloginfo( 'version' ), '7.0', '>=' ),
 		'visibilityMode'         => 'legacy',
+		'sectionFrames'          => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
+		'sectionShapeMasks'      => class_exists( __NAMESPACE__ . '\Section_Frame_Presets' )
+			? Section_Frame_Presets::get_shape_mask_editor_config()
+			: array(
+				'enabled' => false,
+				'presets' => array(),
+			),
 	);
 
 	// Modal addons to core button and image blocks.
@@ -36,6 +48,37 @@ function flexline_enqueue_block_editor_assets() {
 }
 
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_enqueue_block_editor_assets' );
+
+/**
+ * Match directory block schemas to FlexLine's existing editor layout controls.
+ *
+ * Core server previews restore client attribute defaults before making their
+ * REST request, so these attributes must also be accepted by the server.
+ *
+ * @param array $metadata Block type metadata.
+ * @return array
+ */
+function flexline_register_directory_layout_attributes( $metadata ) {
+	$blocks = array(
+		'web4sl/location-address',
+		'web4sl/location-phone-link',
+		'web4sl/location-map-link',
+		'web4sl/location-filter-family',
+	);
+	if ( ! in_array( $metadata['name'] ?? '', $blocks, true ) ) {
+		return $metadata;
+	}
+	foreach ( array( 'stackAtTablet', 'hideOnDesktop', 'hideOnTablet', 'hideOnMobile' ) as $attribute ) {
+		if ( ! isset( $metadata['attributes'][ $attribute ] ) ) {
+			$metadata['attributes'][ $attribute ] = array(
+				'type'    => 'boolean',
+				'default' => false,
+			);
+		}
+	}
+	return $metadata;
+}
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\\flexline_register_directory_layout_attributes' );
 
 /**
  * Disable WordPress core block visibility support for all block types.
@@ -224,19 +267,18 @@ function flexline_remove_classes_from_block_content( $block_content, $removed_cl
 	}
 
 	$remove_map = array_fill_keys( $removed_classes, true );
-	$classes    = preg_split( '/\s+/', trim( $existing_classes ) );
-	$classes    = array_values(
-		array_filter(
-			$classes,
-			static function ( $class ) use ( $remove_map ) {
-				if ( isset( $remove_map[ $class ] ) ) {
-					return false;
-				}
+	$classes    = array();
+	foreach ( preg_split( '/\s+/', trim( $existing_classes ) ) as $class_name ) {
+		if ( isset( $remove_map[ $class_name ] ) ) {
+			continue;
+		}
 
-				return ! preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class );
-			}
-		)
-	);
+		if ( preg_match( '/^flexline-content-shift-[a-f0-9]{8}$/', $class_name ) ) {
+			continue;
+		}
+
+		$classes[] = $class_name;
+	}
 
 	if ( empty( $classes ) ) {
 		$processor->remove_attribute( 'class' );
@@ -320,6 +362,195 @@ function flexline_block_has_horizontal_scroller( $block, $block_content ) {
 	$attrs = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
 
 	return ! empty( $attrs['enableHorizontalScroller'] ) || flexline_block_has_class_name( $block, $block_content, 'is-style-horizontal-scroll' );
+}
+
+/**
+ * Determine whether a block can render Section Shapes.
+ *
+ * @param string $block_name Parsed block name.
+ * @return bool
+ */
+function flexline_block_supports_section_frames( string $block_name ) {
+	return in_array( $block_name, array( 'core/group', 'core/stack', 'core/row', 'core/grid' ), true );
+}
+
+/**
+ * Escape a URL for CSS url() usage inside an inline style attribute.
+ *
+ * @param string $url Raw URL.
+ * @return string
+ */
+function flexline_css_url_value( $url ) {
+	$allowed_protocols = function_exists( 'wp_allowed_protocols' ) ? wp_allowed_protocols() : array( 'http', 'https' );
+	$url               = esc_url_raw( $url, array_merge( $allowed_protocols, array( 'data' ) ) );
+	$url               = str_replace( array( '\\', '"' ), array( '\\\\', '\"' ), $url );
+
+	return 'url("' . $url . '")';
+}
+
+/**
+ * Return whether Content Shift is intentionally controlling a vertical edge.
+ *
+ * @param array  $attrs Parsed block attributes.
+ * @param string $edge Top or bottom edge.
+ * @return bool
+ */
+function flexline_content_shift_edge_is_active( array $attrs, string $edge ) {
+	if ( empty( $attrs['useContentShift'] ) ) {
+		return false;
+	}
+
+	$attr_name = 'top' === $edge ? 'shiftUp' : 'shiftDown';
+	if ( ! array_key_exists( $attr_name, $attrs ) ) {
+		return false;
+	}
+
+	return '' !== trim( (string) $attrs[ $attr_name ] );
+}
+
+/**
+ * Normalize a Section Frame overlap value.
+ *
+ * @param mixed $value Raw overlap value.
+ * @return string
+ */
+function flexline_normalize_section_frame_overlap( $value ) {
+	$value = sanitize_key( (string) $value );
+
+	return in_array( $value, array( 'half', 'full' ), true ) ? $value : 'none';
+}
+
+/**
+ * Normalize a section shape mode, falling back from legacy selections.
+ *
+ * @param array $attrs Parsed block attributes.
+ * @return string top, bottom, both, or whole.
+ */
+function flexline_normalize_section_shape_mode( array $attrs ) {
+	$mode = sanitize_key( (string) ( $attrs['flexlineFrameMode'] ?? '' ) );
+	if ( in_array( $mode, array( 'top', 'bottom', 'both', 'whole' ), true ) ) {
+		return $mode;
+	}
+
+	if ( ! empty( $attrs['flexlineShapeMask'] ) ) {
+		return 'whole';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameTop'] ) && ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'both';
+	}
+
+	if ( ! empty( $attrs['flexlineFrameBottom'] ) ) {
+		return 'bottom';
+	}
+
+	return 'top';
+}
+
+/**
+ * Build the negative margin expression for a Section Frame overlap.
+ *
+ * @param string $height_var Frame height CSS custom property name.
+ * @param string $overlap    Normalized overlap value.
+ * @return string
+ */
+function flexline_section_frame_overlap_value( string $height_var, string $overlap ) {
+	if ( 'half' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -0.5)';
+	}
+
+	if ( 'full' === $overlap ) {
+		return 'calc(var(' . $height_var . ') * -1)';
+	}
+
+	return '';
+}
+
+/**
+ * Build Section Frame classes and CSS variables for a supported block.
+ *
+ * @param string $block_name Parsed block name.
+ * @param array  $attrs Parsed block attributes.
+ * @return array{classes:string,style:string}
+ */
+function flexline_get_section_frame_render_data( string $block_name, array $attrs ) {
+	$empty = array(
+		'classes' => '',
+		'style'   => '',
+	);
+
+	if ( ! class_exists( __NAMESPACE__ . '\Section_Frame_Presets' ) || ! Section_Frame_Presets::is_enabled() ) {
+		return $empty;
+	}
+
+	if ( empty( $attrs['flexlineUseFrames'] ) || ! flexline_block_supports_section_frames( $block_name ) ) {
+		return $empty;
+	}
+
+	$mode   = flexline_normalize_section_shape_mode( $attrs );
+	$top    = in_array( $mode, array( 'top', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameTop'] ?? '' ), 'top' )
+		: null;
+	$bottom = in_array( $mode, array( 'bottom', 'both' ), true )
+		? Section_Frame_Presets::resolve_preset_for_render( (string) ( $attrs['flexlineFrameBottom'] ?? '' ), 'bottom' )
+		: null;
+	$mask   = 'whole' === $mode
+		? Section_Frame_Presets::resolve_shape_mask_preset_for_render( (string) ( $attrs['flexlineShapeMask'] ?? '' ) )
+		: null;
+
+	if ( null === $top && null === $bottom && null === $mask ) {
+		return $empty;
+	}
+
+	$classes = array( 'flexline-section-frame' );
+	$styles  = array();
+
+	if ( null !== $mask ) {
+		$classes[] = 'flexline-section-shape-mask';
+		if ( 'proportion' === ( $mask['fit'] ?? '' ) ) {
+			$classes[] = 'flexline-section-shape-mask-proportion';
+		}
+		$styles[] = '--flexline-shape-mask-image: ' . flexline_css_url_value( (string) $mask['url'] );
+		$styles[] = '--flexline-shape-mask-size: ' . $mask['css_size'];
+		if ( ! empty( $mask['aspect_ratio'] ) ) {
+			$styles[] = '--flexline-shape-mask-aspect-ratio: ' . $mask['aspect_ratio'];
+		}
+	}
+
+	if ( null !== $top ) {
+		$classes[] = 'flexline-section-frame-top';
+		$styles[]  = '--flexline-frame-top-image: ' . flexline_css_url_value( (string) $top['url'] );
+		$styles[]  = '--flexline-frame-top-height: ' . $top['height'];
+
+		$top_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapTop'] ?? '' );
+		if ( 'none' !== $top_overlap ) {
+			$top_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'top' );
+			if ( ! $top_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $top_content_shift_active ? 'flexline-section-frame-overlap-top-mobile' : 'flexline-section-frame-overlap-top';
+				$styles[]  = '--flexline-frame-top-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-top-height', $top_overlap );
+			}
+		}
+	}
+
+	if ( null !== $bottom ) {
+		$classes[] = 'flexline-section-frame-bottom';
+		$styles[]  = '--flexline-frame-bottom-image: ' . flexline_css_url_value( (string) $bottom['url'] );
+		$styles[]  = '--flexline-frame-bottom-height: ' . $bottom['height'];
+
+		$bottom_overlap = flexline_normalize_section_frame_overlap( $attrs['flexlineFrameOverlapBottom'] ?? '' );
+		if ( 'none' !== $bottom_overlap ) {
+			$bottom_content_shift_active = flexline_content_shift_edge_is_active( $attrs, 'bottom' );
+			if ( ! $bottom_content_shift_active || ! empty( $attrs['resetMobile'] ) ) {
+				$classes[] = $bottom_content_shift_active ? 'flexline-section-frame-overlap-bottom-mobile' : 'flexline-section-frame-overlap-bottom';
+				$styles[]  = '--flexline-frame-bottom-overlap: ' . flexline_section_frame_overlap_value( '--flexline-frame-bottom-height', $bottom_overlap );
+			}
+		}
+	}
+
+	return array(
+		'classes' => implode( ' ', $classes ) . ' ',
+		'style'   => implode( '; ', $styles ) . ';',
+	);
 }
 
 /**
@@ -568,6 +799,12 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 	}
 
 	if ( 'core/group' === $block['blockName'] || 'core/stack' === $block['blockName'] || 'core/row' === $block['blockName'] || 'core/grid' === $block['blockName'] ) {
+		$frame_render_data = flexline_get_section_frame_render_data( (string) $block['blockName'], $attrs );
+		if ( '' !== $frame_render_data['classes'] ) {
+			$block_content = add_classes_to_block_content( $block_content, $frame_render_data['classes'] );
+			$block_content = flexline_merge_inline_style( $block_content, $frame_render_data['style'] );
+		}
+
 		if ( isset( $block['attrs']['enableGroupLink'] ) && $block['attrs']['enableGroupLink'] ) {
 			if ( ! empty( $block['attrs']['groupLinkURL'] ) ) {
 				// Determine target attribute for link types.
@@ -583,8 +820,12 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 					$target_attr = '';
 				}
 
+				// Media links only navigate HTTP(S); normal links retain phone/email support.
+				$protocols  = 'modal_media' === $link_type_raw ? array( 'http', 'https' ) : wp_allowed_protocols();
+				$link_url   = esc_url( $block['attrs']['groupLinkURL'], $protocols );
 				$aria_label = ! empty( $block['attrs']['ariaLabel'] ) ? esc_attr( $block['attrs']['ariaLabel'] ) : 'Open link';
-				$link       = '<a class="flexline-group-link-anchor is-position-absolute" href="' . esc_attr( $block['attrs']['groupLinkURL'] ) . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>';
+				// Do not emit href="" for rejected URLs: it would navigate to the current page.
+				$link = '' !== $link_url ? '<a class="flexline-group-link-anchor is-position-absolute" href="' . $link_url . '" aria-label="' . $aria_label . '" tabindex="0"' . $target_attr . '></a>' : '';
 
 				// Ensure the wrapper carries the link-type class for runtime JS hooks.
 				$type_class    = 'group-link-type-' . $link_type_raw;
@@ -592,7 +833,7 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 				$block_content = add_classes_to_block_content( $block_content, $added_classes );
 				$block_content = flexline_set_first_tag_attributes(
 					$block_content,
-					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'] ) )
+					array( 'data-group-link-url' => esc_url_raw( $block['attrs']['groupLinkURL'], $protocols ) )
 				);
 
 				// Insert your data attribute just before the closing tag of the element.

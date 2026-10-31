@@ -1,30 +1,5 @@
 import { __ } from '@wordpress/i18n';
-
-// Function to detect video type and return an embeddable URL
-function getVideoEmbedUrl(mediaUrl) {
-	const urlParsers = [
-		{
-			match: /(youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/,
-			embedUrl: (id) =>
-				`https://www.youtube.com/embed/${id}?autoplay=1&enablejsapi=1`,
-		},
-		{
-			match: /vimeo\.com\/(\d+)/,
-			embedUrl: (id) => `https://player.vimeo.com/video/${id}?autoplay=1`,
-		},
-	];
-
-	for (const parser of urlParsers) {
-		const match = mediaUrl.match(parser.match);
-		if (match && match[1]) {
-			// For Vimeo the ID is in match[1], same for YouTube as match[2] is the second group.
-			const videoId = match[2] || match[1]; // Fallback to match[1] if match[2] is undefined.
-			return parser.embedUrl(videoId);
-		}
-	}
-
-	return '';
-}
+import { createModalMediaContent } from './modal-media';
 
 function flexlineOnEarlyReady(callback) {
 	if (window.Flexline && typeof window.Flexline.onEarlyReady === 'function') {
@@ -111,8 +86,7 @@ flexlineOnEarlyReady(() => {
 		}
 
 		const openFromTrigger = (trigger) => {
-			trigger.setAttribute('aria-expanded', 'true');
-			displayModal(url, trigger); // Function to display the modal
+			displayModal(url, trigger);
 		};
 
 		element.addEventListener('click', (e) => {
@@ -177,7 +151,6 @@ flexlineOnEarlyReady(() => {
 					);
 				}
 				const openFromTrigger = (activeTrigger) => {
-					activeTrigger.setAttribute('aria-expanded', 'true');
 					displayModal(url, activeTrigger);
 				};
 				trigger.addEventListener('click', (e) => {
@@ -209,7 +182,6 @@ flexlineOnEarlyReady(() => {
 			block.setAttribute('aria-expanded', 'false');
 			const triggerModal = (e) => {
 				e.preventDefault();
-				block.setAttribute('aria-expanded', 'true');
 				displayModal(mediaUrl, block);
 			};
 			block.addEventListener('click', triggerModal);
@@ -340,25 +312,11 @@ function unlockBodyScroll() {
 }
 
 function displayModal(mediaUrl, openerEl) {
-	let contentHtml = '';
-
-	if (mediaUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/)) {
-		contentHtml = `<img src="${mediaUrl}" style="max-width:90%; max-height:80vh;">`;
-	} else if (
-		mediaUrl.includes('youtube.com') ||
-		mediaUrl.includes('youtu.be') ||
-		mediaUrl.includes('vimeo.com')
-	) {
-		// Extract the YouTube video ID and construct the embed URL with autoplay
-		const videoEmbedUrl = getVideoEmbedUrl(mediaUrl);
-		contentHtml = `<div class="aspect-ratio-16-9 iframe"><iframe src="${videoEmbedUrl}" frameborder="0" title="Embedded video" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-	} else if (mediaUrl.match(/\.(mp4|webm|ogg)$/)) {
-		// For native video elements, add the autoplay attribute
-		contentHtml = `<div class="aspect-ratio-16-9 video"><video controls autoplay src="${mediaUrl}" style="object-fit: contain;"></video></div>`;
-	} else {
-		// other domains try to put them in an iframe
-		contentHtml = `<div class="aspect-ratio-match-window"><iframe src="${mediaUrl}" frameborder="0" title="Embedded content" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+	const mediaContent = createModalMediaContent(mediaUrl);
+	if (!mediaContent) {
+		return;
 	}
+	openerEl?.setAttribute('aria-expanded', 'true');
 
 	// Create the modal container
 	const modal = document.createElement('div');
@@ -396,7 +354,7 @@ function displayModal(mediaUrl, openerEl) {
 	closeButton.className = 'material-symbols-outlined';
 
 	// Append the media content and close button to the modal
-	modal.innerHTML = contentHtml;
+	modal.appendChild(mediaContent);
 	modal.appendChild(closeButton);
 
 	// Lock scroll and append the modal

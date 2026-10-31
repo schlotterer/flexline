@@ -98,6 +98,13 @@ If you wish to manually lint your files prior to committing, you can use the fol
 
 These commands provide a way to proactively check and fix your code, helping you avoid surprises during the commit process.
 
+### Regression Tests
+
+Run `composer test` for the PHP unit suite and `npm run test:js -- --watch=false`
+for JavaScript tests using the existing WordPress test tooling. Section Shape
+mode tests exercise WordPress serialization/reopening and editor preview behavior.
+The separate primary-term contract checks run with `npm run test:primary-terms`.
+
 ### SCSS Module Migration Debt
 
 FlexLine still uses Sass `@import` throughout the theme SCSS tree. The
@@ -116,6 +123,120 @@ Reusable React helpers for block controls live in `src/js/blocks/utils.js`.
 
 - `getVisibilityControls( props )` – renders ToggleControls to hide blocks on desktop, tablet, or mobile.
 - `getContentShiftControls( props )` – outputs the Content Shift/Slide panel for applying negative margins and transforms.
+
+## Section Shapes
+
+Whole-section masks require a locally readable Media Library SVG no larger than
+256 KiB (262,144 bytes). Offloaded attachments need a local file copy.
+**Block fits SVG proportion** also requires a valid `viewBox` with positive width
+and height. Unavailable whole masks leave the block unmasked, and the admin
+shows a warning without deleting the saved preset. Top/bottom frames can fall
+back to their attachment URL.
+
+Section Shapes let editors apply reusable SVG masks to Group, Row, Stack, and
+Grid sections.
+Presets can frame the top or bottom edge, or mask the whole section with a
+larger shape such as a logo, badge, or organic silhouette. The feature is opt-in
+globally and per block, so existing content is unchanged until both toggles are
+enabled.
+
+### Setup
+
+1. Go to **Appearance > FlexLine Options > Section Shapes**.
+2. Enable **Section Shapes**.
+3. Add one or more **Section Shape Presets**.
+4. For each preset, enter a label, select a Media Library SVG, and choose a
+   preset type:
+   - **Top frame** or **Bottom frame** clips only the selected edge and uses the
+     responsive frame-height fields.
+   - **Whole section** masks the full block and uses the whole-shape behavior
+     field.
+5. In the block editor, select a Group, Row, Stack, or Grid block and open
+   **Styles > FlexLine Section Shapes**.
+6. Enable **Use Section Shapes**, choose **Shape Type**, then select the matching
+   saved shape.
+
+### Whole-Section Behavior
+
+Whole-section presets have two sizing behaviors:
+
+- **Shape fills block**: the block's own layout, width, padding, content, and
+  minimum height define the box. The SVG mask fills that box and may stretch.
+- **Block fits SVG proportion**: the SVG `viewBox` defines the block's aspect
+  ratio. The mask still fills the block, but the block honors the SVG's
+  proportions.
+
+Use **Shape fills block** when the section dimensions are already controlled by
+content, padding, or a Cover minimum height. Use **Block fits SVG proportion**
+when the shape itself should define the section's height from its width.
+
+### SVG Requirements
+
+Section Shape presets must use SVG files from the Media Library. SVG upload and
+sanitization are owned by the platform stack; FlexLine validates that the chosen
+attachment is an SVG and fails closed when the attachment is missing or not an
+SVG.
+
+For reliable results:
+
+- For frame presets, export a wide, short strip, such as `1440 x 160`.
+- For whole-section presets, export the full shape inside a clean artboard or
+  document canvas.
+- Keep the artboard or document bounds intentional. Transparent corners, holes,
+  and margins inside the SVG remain meaningful because they clip the section.
+- Use a transparent background.
+- For top frames, the opaque shape should fill below the edge.
+- For bottom frames, the opaque shape should fill above the edge.
+- For whole-section masks, the opaque area is the visible section and transparent
+  areas clip the block background and descendants.
+- Avoid text, strokes, filters, embedded raster images, and transformed artwork
+  that extends outside the SVG viewBox.
+
+Affinity exports should use SVG format, **Set view box** enabled, and a valid
+Raster DPI such as `300`. Export the whole document for full-canvas masks, or a
+tight selection/artboard when the mask should have no extra transparent space.
+FlexLine automatically normalizes readable SVG attachments for the chosen
+behavior, including the equivalent of `preserveAspectRatio="none"` for stretching
+masks, so users should not need to edit SVG markup by hand.
+
+### Behavior Notes
+
+- Disabling the global Section Shapes option hides block controls and suppresses
+  rendering, but saved presets and block selections remain stored.
+- Disabling **Use Section Shapes** on a block suppresses that block's shapes but
+  retains its selected presets and overlap choices.
+- Preset edits affect fresh renders without editing each page again.
+- Frame height values control the mask band at the section edge. They do not
+  move inner blocks or replace block padding controls.
+- Top and bottom overlap controls move the framed block against neighboring
+  sections. They do not reposition content inside the block.
+- Whole-section mode suppresses top/bottom frames and frame overlap while it is
+  selected. Switching back to a frame mode restores the saved frame selections
+  and eligible overlap settings.
+- Whole-section masks clip the block background and descendants. Authors should
+  keep required links, controls, and readable content inside the visible shape
+  with normal padding and layout controls.
+- Content Shift takes precedence only on the matching edge when it is enabled
+  and that edge has an explicitly supplied value, including `0`.
+- When Content Shift's mobile reset is active, suppressed frame overlap can
+  resume at the existing mobile breakpoint.
+
+### Caching and Rollback
+
+Section Shape settings are stored in normal WordPress options:
+
+- `flexline_enable_group_frames`
+- `flexline_frame_presets`
+
+Block selections are stored in block attributes on the affected blocks.
+Changes to presets and the global toggle affect fresh renders immediately, but
+page caches, object caches, CDN caches, and already-loaded editor configuration
+may need their normal refresh process.
+
+To roll back a shape visually, disable **Use Section Shapes** on the block. To
+disable the feature site-wide while preserving configuration, turn off
+**Enable Section Shapes** in FlexLine Options. To remove preset definitions,
+delete the rows in the preset manager and save.
 
 ## Responsive Visibility
 
@@ -214,3 +335,110 @@ theme wrappers.
 ## WordPress 6.9 Accordion Block
 
 WordPress 6.9 ships a native accordion/accordion-item/heading/panel family. FlexLine automatically injects its visibility toggles and card/glass style variations into each of those blocks, so editors can keep using the same FlexLine controls—such as Card, Card w/ Padding, Outline, Glass, and Glass Card—without depending on a third-party accordion plugin.
+
+
+## Versioned runtime releases
+
+Feature branches are merged into `main`; an explicit `vMAJOR.MINOR.PATCH` tag
+selects the exact release commit. GitHub Actions runs the checks/build and produces
+a runtime-only installable ZIP, `SHA256SUMS` and `release.json`. Main/PR builds
+produce preview artifacts only. A successful tag release then updates the
+`production` branch from the exact verified ZIP; DFG consumers configured for that
+branch may deploy on its push. No site configuration is changed by the workflow.
+Current tracked build files remain for existing DFG branch consumers.
+
+Managed releases must preserve backward compatibility where practical or document
+and test additional recovery steps. Prefer additive migrations; code rollback
+does not reverse data changes. Declare dependency compatibility and release/rollback
+ordering, retain exact previous packages, and verify upgrades and recovery before
+broader rollout with the existing Canary Health/visual checks. Never automatically
+restore an old database over new content.
+
+See [repository release progress](docs/RELEASE_IMPLEMENTATION_PLAN.md) for the
+package file list, exact check commands, blockers and next steps.
+
+### Build runtime — 16 October 2026
+
+Local builds and CI use Node 24.19.0 (`nvm use`) and Composer 2.10.3.
+Workflow actions are pinned to verified releases declaring the Node 24 runtime.
+Ubuntu runners are pinned to 24.04. PHP runtime requirements remain unchanged.
+See docs/RELEASE_IMPLEMENTATION_PLAN.md for verification and release gates.
+
+### Production branch delivery
+
+The tag workflow builds once, publishes/verifies the release assets, then updates
+`production` with precisely the runtime ZIP contents, without the outer package
+directory. Main/PR/manual previews never update that branch. No force push is
+used; branch history retains prior runtime trees. Older releases, changed bytes
+for a repeated version, unmanaged existing production branches and concurrent
+updates are refused. Identical repeats are no-ops. If publication succeeds but
+production fails, rerun failed jobs only; the published ZIP remains retained.
+
+Before changing any site's DFG branch, verify GitHub production publication and
+webhook delivery on an explicitly approved staging target, then complete its
+Health/visual and supported recovery checks. Local installer evidence does not
+prove activation/migration or private-auth/live-webhook acceptance. Existing
+package-specific recovery limits remain in force. No site branch or webhook was
+changed during implementation.
+
+### Repository-local release tooling
+
+Public FlexLine uses `.github/actions/runtime-package` instead of loading the private
+`web4sl-ci` action. The build, publication and production guards are copied from the
+reviewed upstream commit recorded in `UPSTREAM.json`; private plugins keep their
+shared action. No cross-repository token is required. See the action's README for
+parity checks and the release implementation plan for verification and remaining gates.
+
+## Authoring tokens
+
+Prefer tokens in new blocks, patterns, templates, titles, existing Yoast/Rank Math
+metadata hooks, excerpts and Text/Block widgets. They resolve before typography
+can change attribute quotes. Existing shortcodes and token-map filters remain.
+
+```text
+{{flexline_copyright_year starting_year="2015" separator=" to "}}
+{{flexline_site_name}}
+{{flexline_page_title}}
+{{!flexline_site_name}}
+```
+
+The `!` form displays a literal example, including in nested Code blocks. Named
+copyright options accept straight double/single quotes or unquoted scalar values.
+Unsupported/malformed attributes and curly braces inside values are not
+interpreted. Existing encoded shortcode examples are not converted.
+
+These FlexLine tokens work without Web4SL. Phone/address and Web4SL custom-field
+tokens require that plugin and use its namespace. `[flexline_theme_docs]` remains
+shortcode-only. Admin documentation uses tokens; existing shortcode implementations remain
+supported for legacy content. No Core sanitization behavior is changed.
+
+Recovery requires only reinstalling the retained prior package, not restoring a
+database. Existing syntax and data are preserved. Older code displays new option
+expressions and `!` literal expressions unchanged: before rollback, identify new
+usages and retain supporting code or review reverting those authoring changes.
+No automatic content migration, schema change, dependency update or coordinated
+package upgrade is required. Each package owns its own namespace independently.
+No release version/tag is created by this development change.
+
+Run the CLI integration contract against a bootstrap that installs the test-only
+`Web4SL_KSES_Read_Only_DB` adapter (rejecting writes and starting a read-only
+transaction before plugins load):
+
+```sh
+php tests/authoring-tokens-integration.php /path/to/read-only/wp-load.php
+```
+
+Run FlexLine with Web4SL active and absent. Target-site editor insertion, actual
+SEO integration and prior-package Canary acceptance remain deployment gates.
+These contracts do not establish complete WordPress 7.2 compatibility.
+
+### Media modal URL safety
+
+Image, Button and Group media modals accept HTTP(S) URLs, including relative and
+protocol-relative URLs. Existing saved markup is checked when the modal opens;
+no content resave or migration is required. YouTube, Vimeo and external HTTP(S)
+iframe embeds remain supported. Media elements are constructed through DOM APIs
+so decoded attribute values are never reparsed as HTML. Invalid media schemes
+open no modal. Normal Group links retain supported phone and email URLs.
+
+Run the modal regression tests with `npm run test:js -- --watch=false`.

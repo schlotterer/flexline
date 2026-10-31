@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-16",
+  "package": "flexline",
+  "shared_commit": "1f74bb9a8bedeebf8744c394c37edb66b3c7ae17",
+  "shared_tests": 43,
+  "git_rehearsal": {
+    "status": "passed",
+    "runtime_files": 437,
+    "zip": "1e7777048a7c19cc4c3c313e3feac892610462cada2e851c8efdd6dc2ee8436c",
+    "production_tree": "4d3eef8c02f897d06d7a303498088b822cdd0710",
+    "repeat": "unchanged",
+    "branch_archive": "/private/tmp/web4sl-node24-dz848_te/production-rehearsal/flexline-production.zip",
+    "scope": "disposable local bare remote, not GitHub publication"
+  },
+  "dfg_installer": {
+    "status": "passed",
+    "type": "theme",
+    "runtime_files": 437,
+    "repeat_install": "exact files; obsolete fixture removed",
+    "data": "synthetic option/post preserved"
+  },
+  "wordpress": "6.8 multisite",
+  "dfg": "1.0.13",
+  "remote_production_changed": false,
+  "site_settings_changed": false,
+  "limits": [
+    "GitHub API publication guards tested with mocks; actual scoped-token push and webhook delivery are pending remote/staging acceptance.",
+    "Local DFG proof used intercepted public-archive downloads, no real account credentials, plugin activation, migrations, visual checks or site updates.",
+    "Existing per-package recovery blockers remain unchanged; Git history preservation is not database rollback."
+  ]
+}
