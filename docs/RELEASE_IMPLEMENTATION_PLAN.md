@@ -540,3 +540,33 @@ This is a patched working-tree check, not a new final-ZIP receipt. Next package
 CI must include the two PHP changes before publication. No commit, push, tag,
 publication, DFG promotion or existing Local content resave. Evidence and
 [full report](releases/mobile-presets-2.2.2-2026-10-31.md) record the test scope.
+
+## 31 October — committed mobile fix and fresh hosted artifact verified
+
+Owner approved commit/push and fresh CI/ZIP checks, with publication prohibited.
+Runtime/admin and acceptance changes committed as d014d07f2c5dcf7a50fdb97d4b11508e87fa15cb
+and pushed only to release-2.2.2. Branch run 41212044462 and PR run 41212047921
+passed; package jobs succeeded and publish/DFG production jobs were skipped.
+
+Downloaded the branch artifact with gh run download --name runtime-package and
+ran the repository package_release.py verify command. Independently checked
+metadata commit/build-run/checks_passed, archive checksums and 333-file membership,
+case-fold uniqueness, runtime exclusions, all 145 owned PHP files against the
+commit and WOFF2 references across theme.json/style variations. ZIP SHA256:
+27d958ea8a47eeab3042ebc943517e0fd11b2b73d8f9725677f10a76b1fe306d.
+Only inc/theme-options/render-theme-frames.php and theme-page.php differ from the
+previous hosted ZIP; every other archive member is byte-identical.
+
+Installed those exact bytes using native Theme_Upgrader in the existing disposable
+Beta 2/PHP 8.2.35 canary. All 333 installed file hashes matched release.json.
+Captured posts, postmeta and tested options were preserved without database
+restore, excluding only Core's expected widget-activation timestamp. The Local
+site was not installed into or resaved. No new hosted/Fleet recovery claim.
+
+Evidence: parent diagnostics/flexline-ci-mobile-20261031 contains successful run
+receipts, independent artifact verification, before/after data/file snapshots and
+native installer receipt. Artifact retained at
+.release-output/hosted-mobile-d014d07f/. PR #582 records these results and remains
+draft/unmerged; decorative-only acceptance and target-specific recovery/Canary
+limits remain distinct from these checks. No tag, publication or DFG promotion.
+This receipt-only follow-up changes no runtime payload.
