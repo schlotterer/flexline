@@ -676,3 +676,36 @@ independent latest-push approval; do not fabricate a review or bypass protection
 Public release copy now describes modal URL safety. Web4SL's published v1.2.3
 still lacks the expanded token update; its public examples remain explicitly
 conditional on that companion update. Main Local content remains untouched.
+
+## 31 October — modal fix hosted ZIP and final shape checks passed
+
+Committed/pushed bf9afce7 on release-2.2.2. Branch package run 41230394591, PR
+package run 41230398167 and CodeQL run 41230396196 passed; publication/DFG jobs
+were skipped. Downloaded runtime-package and ran package_release.py verify.
+Independent inspection verified 333 files, all 145 owned PHP files against the
+commit, case uniqueness, exclusions, exact build identity and tested modal bytes.
+ZIP SHA256: 148fc23f77abed0453aa31d1a7ab9e82d42a09889431dbc1918287a7bf443db6.
+Native Theme_Upgrader installation in the disposable Beta 2/PHP 8.2.35 canary
+matched all files and preserved captured posts/postmeta/settings. Reran all 49
+modal browser checks against the actual hosted installation successfully.
+
+Closed the separate empty decorative-shape check: wide 1200×300 and tall 320×900
+SVGs, empty Group blocks, 11 widths from 320 to 1440px; masks/aspect ratios were
+correct with no horizontal overflow. Corrected the test's initial assumed tall
+1:4 ratio from the real fixture SVG; no theme sizing change was required.
+Deleted only temporary posts/Author; pre-existing content hashes matched. No
+main Local content was resaved. Reused the existing isolated canary and no new
+repository/worktree. Browser/provider/physical-device limits above still apply.
+
+GitHub merge status remains REVIEW_REQUIRED: independent latest-push approval,
+with auto-merge disabled. No protection bypass or fabricated review. The push
+also reported existing Dependabot alerts: three npm criticals are development
+tools (basic-ftp, shell-quote, websocket-driver), not shipped Node dependencies;
+flagged Composer tools are already patched in this branch. No runtime Composer
+alert was returned. This scoped check is not a full dependency audit or closure
+of the outstanding development-tool alerts. Public Web4SL examples remain
+conditional on its unpublished companion token update.
+
+This receipt changes documentation only. Check the current PR head's fresh CI
+and verify its artifact is byte-identical before merge. No tag, publication or
+DFG promotion; actual target recovery/Canary gates remain deployment-specific.

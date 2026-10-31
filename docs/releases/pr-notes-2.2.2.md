@@ -7,10 +7,9 @@ ZIP-delivered versioned updates through CI. Token authoring and responsive
 preset administration support that work. Existing frame settings and legacy
 shortcode rendering remain compatible; this is not full final-7.2 certification.
 
-The mobile fix and its hosted CI/exact-ZIP checks are complete. The subsequent
-modal security fix passed local regression checks and requires fresh hosted
-verification for the current PR head. Publication and DFG production promotion
-have not occurred. Current delivery status is tracked on PR #582.
+The mobile and modal security fixes passed hosted CI and exact-ZIP checks.
+Publication and DFG production promotion have not occurred. Current head-specific
+delivery and review status is tracked on PR #582.
 
 [Draft public release and shortcode/token guide](public-release-2.2.2.md).
 
@@ -95,6 +94,21 @@ have not occurred. Current delivery status is tracked on PR #582.
 
 ## Completed verification
 
+- Modal runtime commit bf9afce7: branch CI [41230394591](https://github.com/schlotterer/flexline/actions/runs/41230394591),
+  PR CI [41230398167](https://github.com/schlotterer/flexline/actions/runs/41230398167)
+  and CodeQL [41230396196](https://github.com/schlotterer/flexline/actions/runs/41230396196)
+  passed. ZIP SHA256:
+  `148fc23f77abed0453aa31d1a7ab9e82d42a09889431dbc1918287a7bf443db6`.
+  Verified all 333 runtime files, exact commit/build identity, 145 owned PHP files,
+  case uniqueness and exclusions. Native Theme_Upgrader installation matched all
+  files and preserved captured posts/postmeta/settings. All 49 modal browser
+  checks passed again against these installed hosted bytes.
+- Empty decorative wide/tall proportional shapes passed at 11 widths from 320 to
+  1440px: correct SVG-derived aspect ratios, applied masks and no page overflow.
+  Temporary posts/Author were deleted; existing content hashes matched afterward.
+  The tall fixture is 320×900, not 1:4; the initial harness assumption was corrected
+  from its actual SVG before rerunning. No theme sizing code changed.
+
 - Modal fix: four harmless probes reproduced the original protocol/attribute
   defects in the isolated Beta 2/PHP 8.2.35 canary as an Author without
   unfiltered_html. The same saved fixture passed 49 browser checks after the
@@ -147,7 +161,7 @@ Detailed historical receipts: [30 October ZIP/recovery](acceptance-2.2.2-2026-10
 - Proportion mode is primarily for standalone decorative shapes without content.
   The earlier content/padding stress case is retained as an observation, not a
   release blocker for that intended use. No frontend sizing change was made;
-  focused empty decorative-shape acceptance remains separate.
+  empty decorative-shape acceptance now passed as recorded above.
 - Native prior-ZIP restore/re-upgrade preserved newer synthetic data and matched
   installed files. The historical GitHub 2.2.1 source archive declares header
   2.2.0 and contains both font-case aliases. It is not an actual hosted backup or
@@ -175,8 +189,9 @@ migration is introduced by this release.
 ## Release actions still pending
 
 The owner authorized committing/pushing the modal fixes and merging PR #582.
-The PR is ready for review, not draft. Fresh head-specific CI, CodeQL and ZIP
-verification are required; GitHub also requires an independent approving review.
+The PR is ready for review, not draft. Runtime CI, CodeQL and ZIP checks passed;
+this documentation receipt still needs its own head-specific CI before merge.
+GitHub requires an independent latest-push approval and auto-merge is disabled.
 Merge through the protected workflow, then verify main CI. Tag/publication remain
 outside this preparation step. The workflow keeps ZIP publication and DFG production
 branch promotion coupled; production consumers may react to that branch update.
