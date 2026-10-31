@@ -614,3 +614,21 @@ authenticated GitHub CLI access was used for the two private plugin issues.
 Checked example names/options against implemented theme and Web4SL token parsers
 and admin references; Markdown links and diff whitespace verified. Documentation
 only: no plugin/Core/runtime change, release tag, publication or DFG promotion.
+
+## 31 October — required CodeQL configuration enabled
+
+Owner requested CodeQL setup and PR #582 analysis before reassessing the merge
+blockers. Enabled GitHub-managed default setup via PATCH code-scanning/default-setup
+with JavaScript/TypeScript, standard runners and the default query suite.
+Initial main-branch validation run 41219324351 passed; GET confirms configured
+state and weekly schedule. Main currently contains JavaScript but no Python;
+this configuration does not scan PHP or replace the existing PHP checks.
+No custom workflow or token-permission/branch-protection relaxation was added.
+
+This documentation-only push triggers CodeQL for the existing PR after setup;
+PR-specific scan results and remaining merge requirements must be checked before
+merging. Existing rules require CodeQL plus independent/latest-push approval and
+restrict protected-ref updates. No review was fabricated or requirement bypassed.
+No merge, release tag, publication, DFG promotion or Local content write occurred.
+Setup/scan/check receipts retained in parent diagnostics/flexline-codeql-20261031;
+the resulting PR analysis status is recorded in PR #582 after it completes.
