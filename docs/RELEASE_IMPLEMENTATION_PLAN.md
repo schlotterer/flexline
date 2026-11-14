@@ -748,3 +748,21 @@ matched. `vendor/bin/phpunit --do-not-cache-result` passed 48 tests with
 This patch adds no migrations or dependency updates. Retain the published
 2.2.3 ZIP for code rollback. The owner will use Fleet for the Testing rollout
 and its installation recovery, Canary Health and visual checks.
+
+## FlexLine 2.2.5 conditional component CSS
+
+Package the tested slider and horizontal-scroll CSS split. Keep full app.css
+for hosted requests by default, editor styling and frontend fallback. Hosted
+Testing can opt in per subsite with `flexline_conditional_component_styles`.
+The package requires all split CSS assets, and its checks include
+`php tests/component-styles-contract.php`.
+
+Local Chrome verified the reduced base on Charlie Home and About, desktop
+Testimonials scrolling, and touch scrolling on Resources. Temporary native
+Charlie responses verified slider click and keyboard controls on mobile and
+desktop, component coexistence and full fallback. No pages were saved.
+`node tests/component-css-equivalence.cjs` verified 1,291 declarations in
+the original order. There are no migrations or dependency changes. Opt out
+and clear the subsite cache to restore the full bundle, or reinstall the
+retained 2.2.4 ZIP. Hosted visual and health checks remain part of the owner's
+Fleet rollout.

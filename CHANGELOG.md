@@ -38,6 +38,13 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.5
+
+- Split the frontend stylesheet so native block templates can request slider and
+  horizontal-scroll CSS only where those components render.
+- Enable the split by default in Local and development. Hosted environments can
+  opt in and retain the full stylesheet as a fallback.
+
 ## 2.2.4
 
 - Preload the first eligible Image or Cover in the main content with FlexLine's

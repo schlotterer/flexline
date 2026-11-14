@@ -28,6 +28,10 @@ const jsFiles = [
 // Individual SASS files
 const sassFiles = [
 	'src/scss/app.scss',
+	'src/scss/app-conditional.scss',
+	'src/scss/component-horizontal-scroll.scss',
+	'src/scss/component-slider.scss',
+	'src/scss/component-tail.scss',
 	'src/scss/editor.scss',
 	'src/scss/modal.scss',
 ];

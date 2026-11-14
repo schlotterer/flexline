@@ -27,6 +27,10 @@
     "vendor/autoload.php",
     "vendor/enshrined/svg-sanitize/src/Sanitizer.php",
     "assets/built/css/app.css",
+    "assets/built/css/app-conditional.css",
+    "assets/built/css/component-horizontal-scroll.css",
+    "assets/built/css/component-slider.css",
+    "assets/built/css/component-tail.css",
     "assets/built/css/editor.css",
     "assets/built/js/load-early.js",
     "assets/fonts/REM/REM-VariableFont_wght.woff2",
@@ -67,6 +71,10 @@
     [
       "php",
       "tests/directory-preview-schema-contract.php"
+    ],
+    [
+      "php",
+      "tests/component-styles-contract.php"
     ]
   ],
   "compatibility": {
