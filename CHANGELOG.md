@@ -38,6 +38,13 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.4
+
+- Preload the first eligible Image or Cover in the main content with FlexLine's
+  Enable Lazy Load setting turned off.
+- Prevent WP Rocket and Image Prioritizer from adding another hint for the same
+  selected image.
+
 ## 2.2.3
 
 - Preload the opening eager Cover image with its rendered responsive sources.
