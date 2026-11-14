@@ -729,3 +729,22 @@ This patch introduces no data or settings migrations and no dependency
 upgrade. Reinstall the retained prior ZIP for code rollback. Testing's
 installed recovery package and hosted Health and visual checks remain part
 of the owner's Fleet deployment.
+
+## 14 November — 2.2.4 Lazy Load opt-in for responsive preloads
+
+The first eligible Image or Cover in the main content with saved
+`enableLazyLoad: false` supplies the responsive preload. The same image keeps
+eager loading and is excluded from duplicate hints from WP Rocket and Image
+Prioritizer.
+
+The Local WordPress render checks verified unset and enabled settings, hidden
+blocks, Cover backgrounds, document order and WP Rocket hint deduplication.
+Fresh local Charlie Chrome runs with the cache disabled and after rebuilding
+the local page cache each observed one HTTP 200 high-priority hero request.
+Mobile picked 768×513, desktop picked 1536×1025, and the mobile bypass run
+matched. `vendor/bin/phpunit --do-not-cache-result` passed 48 tests with
+180 assertions. Targeted PHPCS, PHP syntax and `git diff --check` passed.
+
+This patch adds no migrations or dependency updates. Retain the published
+2.2.3 ZIP for code rollback. The owner will use Fleet for the Testing rollout
+and its installation recovery, Canary Health and visual checks.
