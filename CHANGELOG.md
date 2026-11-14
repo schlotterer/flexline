@@ -38,6 +38,11 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.3
+
+- Preload the opening eager Cover image with its rendered responsive sources.
+  Keep one matching hero preload when WP Rocket generates the same hint.
+
 ## April 2026
 
 ### WordPress 7.0 Readiness
