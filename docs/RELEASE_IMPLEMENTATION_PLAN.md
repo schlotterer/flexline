@@ -709,3 +709,23 @@ conditional on its unpublished companion token update.
 This receipt changes documentation only. Check the current PR head's fresh CI
 and verify its artifact is byte-identical before merge. No tag, publication or
 DFG promotion; actual target recovery/Canary gates remain deployment-specific.
+
+## 14 November — 2.2.3 responsive opening Cover preload
+
+FlexLine reads the main post's rendered opening Cover before `wp_head` and
+uses its `srcset` and `sizes` for the preload. The WP Rocket buffer removes
+a matching hero hint while retaining its other hints.
+
+`vendor/bin/phpunit --do-not-cache-result` passed 48 tests with 180 assertions.
+`vendor/bin/phpcs --standard=phpcs.xml inc/setup/preload-assets.php` and
+`git diff --check` passed. Fresh Chrome requests to Local Charlie returned
+HTTP 200 with one high-priority hero request at both tested viewport widths:
+768×513 at 412 CSS pixels and 1536×1025 at 1440 CSS pixels. Mobile also passed
+with WP Rocket bypassed. The installed WP Rocket 3.19.4 controller generated
+a duplicate with a completed record supplied in memory, and the FlexLine
+filter removed it while leaving the theme hint.
+
+This patch introduces no data or settings migrations and no dependency
+upgrade. Reinstall the retained prior ZIP for code rollback. Testing's
+installed recovery package and hosted Health and visual checks remain part
+of the owner's Fleet deployment.
