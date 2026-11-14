@@ -1,0 +1,20 @@
+// Frontend opt-in bundle. app.scss remains the complete editor/fallback bundle.
+@import "main/variables";
+@import "main/base";
+@import "main/utilities";
+@import "main/utility-classes";
+@import "main/navigation";
+@import "main/slide-in-menu";
+@import "main/templates";
+@import "main/gravity-forms";
+@import "main/headroom";
+@import "main/events-manager";
+@import "main/query-loop-filters";
+@import "blocks/block-customizations";
+@import "blocks/style-variations";
+@import "blocks/content-shift";
+@import "blocks/section-frames";
+@import "blocks/card-variations";
+@import "blocks/visibility-variations";
+@import "blocks/poster-gallery";
+@import "blocks/icons";

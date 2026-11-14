@@ -7,6 +7,8 @@
 
 namespace FlexLine;
 
+require_once __DIR__ . '/component-styles.php';
+
 // Enqueue style sheet.
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\flexline_enqueue_styles' );
 
@@ -40,13 +42,13 @@ function flexline_asset_ver( $relative_path ) {
  */
 function flexline_enqueue_styles() {
 	// Styles.
-	wp_enqueue_style( 'flexline-base', get_theme_file_uri( 'assets/built/css/app.css' ), array(), flexline_asset_ver( 'assets/built/css/app.css' ) );
+	flexline_enqueue_component_styles();
 	// Register modal styles. Enqueue is conditional in render_block.
 	wp_register_style( 'flexline-modal', get_theme_file_uri( 'assets/built/css/modal.css' ), array(), flexline_asset_ver( 'assets/built/css/modal.css' ) );
 	// Customized Styles.
 	$custom_css_path = get_theme_file_path( 'assets/css/customize.css' );
 	if ( file_exists( $custom_css_path ) && filesize( $custom_css_path ) > 0 ) {
-		wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), array(), flexline_asset_ver( 'assets/css/customize.css' ) );
+		wp_enqueue_style( 'flexline-custom', get_theme_file_uri( 'assets/css/customize.css' ), flexline_component_style_dependencies(), flexline_asset_ver( 'assets/css/customize.css' ) );
 	}
 	// Scripts.
 	$early_handle = 'flexline-load-early';
