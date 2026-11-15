@@ -788,3 +788,22 @@ The retained 2.2.5 ZIP is the code rollback package. Previously inserted
 invalid galleries may need to be replaced with corrected patterns. The owner
 will deploy through Fleet and verify Testing's installed recovery artifact,
 Canary Health, and the affected galleries.
+
+## FlexLine 2.2.7 Text and Poster Gallery
+
+The Text and Poster Gallery pattern now places its poster-gallery class on
+both the Gallery block attributes and the saved figure. Without the class,
+the demo showed five thumbnails. This is distinct from the Gallery comment
+parsing fix in 2.2.6.
+
+PHP syntax, PHPCS, the eight component CSS contracts, and the 1,291-declaration
+equivalence check passed. The WordPress block parser verified one Gallery with
+five images and the poster class in each demo fixture. The same markup was
+saved as a temporary page-level correction on Testing Sample Modules on
+The Gardens, Artisan Heights, and Desert Ridge. Chrome showed one poster in
+each and opened the five-image lightbox.
+
+There are no dependency, schema, or option changes. The retained 2.2.6 ZIP is
+the code rollback package. After the Testing rollout, restore all three Sample
+Modules pages to the theme pattern reference, then verify the installed
+pattern on the normal demo URLs before recording a visual regression baseline.
