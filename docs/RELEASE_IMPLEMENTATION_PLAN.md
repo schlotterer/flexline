@@ -766,3 +766,25 @@ the original order. There are no migrations or dependency changes. Opt out
 and clear the subsite cache to restore the full bundle, or reinstall the
 retained 2.2.4 ZIP. Hosted visual and health checks remain part of the owner's
 Fleet rollout.
+
+## FlexLine 2.2.6 Poster Gallery Card markup
+
+The pattern now emits a space between the serialized Gallery attributes and
+the closing HTML comment delimiter. On WordPress 7.2 Beta 5 the block parser
+skipped the old opener, causing Section Gallery and other nested users of this
+card to render an incorrect block tree.
+
+PHP syntax and PHPCS passed for the pattern. Rendering the exact change with
+the local WordPress parser produced all six Section Gallery cards with eight
+images and a title in each. A temporary Local Charlie page rendered ten cards
+across Section Gallery and Gallery next to Title. Desktop and mobile Chrome
+showed one poster per card, and the lightbox opened and closed with Escape.
+The fixture used an available local image because its cloned placeholder URL
+returns 404. All eight component CSS contract cases and 1,291 declaration
+equivalence checks passed.
+
+The version update does not change dependencies, options, or stored content.
+The retained 2.2.5 ZIP is the code rollback package. Previously inserted
+invalid galleries may need to be replaced with corrected patterns. The owner
+will deploy through Fleet and verify Testing's installed recovery artifact,
+Canary Health, and the affected galleries.

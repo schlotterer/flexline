@@ -38,6 +38,11 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.6
+
+- Fix malformed Gallery block markup in the Poster Gallery Card pattern so
+  Section Gallery and other patterns that include it render their cards correctly.
+
 ## 2.2.5
 
 - Split the frontend stylesheet so native block templates can request slider and
