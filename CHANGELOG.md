@@ -38,6 +38,11 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.7
+
+- Add the missing poster-gallery class to the Text and Poster Gallery pattern.
+  It now displays one poster and opens the full gallery in the lightbox.
+
 ## 2.2.6
 
 - Fix malformed Gallery block markup in the Poster Gallery Card pattern so

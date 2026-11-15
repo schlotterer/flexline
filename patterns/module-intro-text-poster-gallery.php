@@ -27,10 +27,15 @@ namespace FlexLine;
 		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:gallery
 		<?php
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
-		echo poster_gallery_pattern_attrs( array( 'metadata' => array( 'name' => 'Poster Gallery' ) ) );
+		echo poster_gallery_pattern_attrs(
+			array(
+				'className' => 'poster-gallery',
+				'metadata'  => array( 'name' => 'Poster Gallery' ),
+			)
+		);
 		?>
 		-->
-			<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image 
+			<figure class="wp-block-gallery has-nested-images columns-default is-cropped poster-gallery"><!-- wp:image
 			<?php
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 			echo poster_gallery_image_pattern_attrs(
