@@ -13,6 +13,7 @@ namespace FlexLine;
 <!-- wp:group {"metadata":{"name":"Poster Gallery Group - Card","categories":["flexline-components","flexline-galleries"],"patternName":"flexline/gallery-photo-poster-card"},"className":"group-link-type-none is-style-card-alt","style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"groupLinkURL":"#"} -->
 <div class="wp-block-group group-link-type-none is-style-card-alt"><!-- wp:gallery 
 <?php
+// PHP consumes the newline after the closing tag. Keep the block delimiter separated from the JSON.
 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded Gutenberg block attributes from trusted helpers.
 echo poster_gallery_pattern_attrs(
 	array(
@@ -25,7 +26,7 @@ echo poster_gallery_pattern_attrs(
 			),
 		),
 	)
-);
+) . ' ';
 ?>
 -->
 	<figure class="wp-block-gallery has-nested-images columns-3 is-cropped poster-gallery"><!-- wp:image 
