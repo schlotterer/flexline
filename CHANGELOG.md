@@ -38,6 +38,14 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.8
+
+- Keep poster galleries ready for the first click when WP Rocket delays scripts.
+- Preserve the scroll position when the legacy lightbox opens and closes, and
+  wait for it to close before refreshing its gallery links.
+- Keep WordPress lightbox scroll resets immediate while the overlay is open or
+  closing.
+
 ## 2.2.7
 
 - Add the missing poster-gallery class to the Text and Poster Gallery pattern.

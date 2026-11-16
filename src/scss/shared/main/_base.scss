@@ -19,7 +19,16 @@
 		text-rendering: optimizeLegibility;
 	}
 
-	body.baguetteBox-open,
+	// Lock the viewport without taking the page out of flow or losing its scroll position.
+	html:has(body.baguetteBox-open) {
+		overflow: hidden;
+	}
+
+	// WordPress resets the viewport while its lightbox is open or closing.
+	html:has(.wp-lightbox-overlay.active, .wp-lightbox-overlay.show-closing-animation) {
+		scroll-behavior: auto;
+	}
+
 	body.no-scroll {
 		overflow: hidden; /* Hide scrollbars and disable scrolling */
 		height: 100%; /* Optional: to ensure full page height */
