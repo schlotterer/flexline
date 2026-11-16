@@ -807,3 +807,49 @@ There are no dependency, schema, or option changes. The retained 2.2.6 ZIP is
 the code rollback package. After the Testing rollout, restore all three Sample
 Modules pages to the theme pattern reference, then verify the installed
 pattern on the normal demo URLs before recording a visual regression baseline.
+
+## FlexLine 2.2.8 poster gallery opening and scroll
+
+The 2.2.6 checks covered the corrected card markup and a local Sample Modules
+fixture. The 2.2.7 checks covered the corrected five-image poster on three
+Testing Sample Modules pages. The upgrade and rollback checks counted rendered
+posters and verified data preservation. Those checks did not exercise every
+poster on the public Photo Gallery pages, WP Rocket's first interaction, or
+page scrolling after repeated opens and closes.
+
+The Gardens on Testing served three legacy media-link galleries. System
+Charlie served a WordPress lightbox followed by two legacy galleries. The
+O’Connor Woods gallery capture included two WordPress lightboxes. The demo
+responses used full app.css. WP Rocket delayed the lightbox scripts in each
+optimized response. The local patch keeps only those scripts out of Delay JS,
+binds legacy links immediately, and defers a requested legacy refresh until the
+open lightbox closes.
+
+In a local Chromium fixture using the captured gallery markup and exact hosted
+WordPress modules, legacy galleries jumped from the opening scroll position to
+the top. The rebuilt bundles preserved the position and allowed wheel
+scrolling after repeated closes on desktop and mobile. The shared CSS also
+keeps WordPress's scroll resets immediate during the overlay transition.
+With an update requested while the legacy overlay was open, the previous
+helper left the scroll lock on in all twelve desktop and mobile trials.
+The updated helper closed normally and preserved scrolling in all twelve.
+
+Removing the core focus initialization in the fixture reproduced the exact
+hosted exception at Image view line 1, column 2796 and the persistent scroll
+reset. A fixture-only change that cleared WordPress's selection before
+optionally restoring focus resolved both. The hosted markup includes the
+initialization directive. The live cause of the missing focus reference remains
+unverified, so the FlexLine patch leaves the WordPress core script intact.
+
+The Local Alpha WordPress demo compared the published 2.2.7 runtime ZIP with
+the patched assets on one page. The patched runtime preserved the scroll
+position in eight open/close cycles, split between desktop and mobile, and
+the prior runtime reproduced the legacy scroll lock on both viewports.
+The simulated WordPress focus fault reproduced the hosted exception and
+the QA-only core proof cleared it on both viewports.
+
+The release changes no saved content, settings, or dependencies. The retained
+2.2.7 ZIP is the recovery package. The local comparison page and its WordPress
+core proof stay outside the release. Before wider rollout, verify first click,
+navigation, repeated closes and post-close scrolling on the Testing gallery
+pages with normal optimization and with WP Rocket bypassed.

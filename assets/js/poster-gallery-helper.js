@@ -138,12 +138,22 @@
 	let hasBoundLightbox = false;
 	let refreshInProgress = false;
 	let refreshRequested = false;
+	let refreshAfterHide = false;
 
 	const refreshBaguetteBox = () => {
 		if (
 			!window.baguetteBox ||
 			typeof window.baguetteBox.run !== 'function'
 		) {
+			return;
+		}
+		// Destroying an open baguetteBox removes the overlay before it can
+		// release its scroll lock or restore focus.
+		if (
+			document.getElementById('baguetteBox-overlay')?.style.display ===
+			'block'
+		) {
+			refreshAfterHide = true;
 			return;
 		}
 		if (refreshInProgress) {
@@ -173,6 +183,12 @@
 			window.baguetteBox.run(selector, {
 				captions: resolveCaption,
 				filter,
+				afterHide: () => {
+					if (refreshAfterHide) {
+						refreshAfterHide = false;
+						queueLightboxRefresh();
+					}
+				},
 			});
 			hasBoundLightbox = true;
 		} finally {
@@ -281,7 +297,9 @@
 				'.poster-gallery:not(.wp-lightbox-container)'
 			)
 		) {
-			queueLightboxRefresh();
+			// Bind before a click can reach the media link. Debounce only later
+			// updates, where several DOM mutations can arrive together.
+			refreshBaguetteBox();
 		}
 	};
 
