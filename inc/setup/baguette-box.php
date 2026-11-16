@@ -29,7 +29,7 @@ function register_assets() {
 
 	wp_register_style( 'baguettebox-css', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.css' ), array(), '1.11.1' );
 	wp_register_script( 'baguettebox', get_theme_file_uri( 'assets/baguetteBox/baguetteBox.min.js' ), array(), '1.11.1', true );
-	wp_register_script( 'poster-gallery-helper', get_theme_file_uri( 'assets/js/poster-gallery-helper.js' ), array(), THEME_VERSION, true );
+	wp_register_script( 'poster-gallery-helper', get_theme_file_uri( 'assets/js/poster-gallery-helper.js' ), array( 'baguettebox' ), THEME_VERSION, true );
 
 	/**
 	 * Filters the CSS selector of baguetteBox.js.
@@ -164,6 +164,42 @@ function enqueue_baguettebox_assets() {
 	wp_enqueue_script( 'baguettebox' );
 	wp_enqueue_script( 'poster-gallery-helper' );
 	wp_enqueue_style( 'baguettebox-css' );
+	add_filter( 'rocket_delay_js_exclusions', __NAMESPACE__ . '\exclude_legacy_lightbox_from_rocket_delay' );
+}
+
+/**
+ * Keep the legacy lightbox and its inline configuration ready for the first click.
+ *
+ * @param string[] $exclusions WP Rocket Delay JS exclusions.
+ * @return string[] Updated exclusions.
+ */
+function exclude_legacy_lightbox_from_rocket_delay( $exclusions ) {
+	$exclusions[] = 'id=["\']baguettebox-js(?:-before)?["\']';
+	$exclusions[] = 'id=["\']poster-gallery-helper-js["\']';
+	return $exclusions;
+}
+
+/**
+ * Enqueue the WordPress Image module for a poster gallery using core lightbox.
+ *
+ * @return void
+ */
+function enqueue_core_poster_lightbox() {
+	if ( function_exists( 'wp_enqueue_script_module' ) ) {
+		wp_enqueue_script_module( '@wordpress/block-library/image/view' );
+		add_filter( 'rocket_delay_js_exclusions', __NAMESPACE__ . '\exclude_core_lightbox_from_rocket_delay' );
+	}
+}
+
+/**
+ * Keep the core module active before the first poster click or tap.
+ *
+ * @param string[] $exclusions WP Rocket Delay JS exclusions.
+ * @return string[] Updated exclusions.
+ */
+function exclude_core_lightbox_from_rocket_delay( $exclusions ) {
+	$exclusions[] = 'id=["\']@wordpress/block-library/image/view-js-module["\']';
+	return $exclusions;
 }
 
 /**
@@ -405,8 +441,8 @@ function enqueue_assets() {
 		enqueue_baguettebox_assets();
 	}
 
-	if ( current_content_uses_core_gallery_lightbox() && function_exists( 'wp_enqueue_script_module' ) ) {
-		wp_enqueue_script_module( '@wordpress/block-library/image/view' );
+	if ( current_content_uses_core_gallery_lightbox() ) {
+		enqueue_core_poster_lightbox();
 	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
@@ -419,8 +455,8 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
  * @return string
  */
 function maybe_enqueue_legacy_baguettebox_for_block( $block_content, $block ) {
-	if ( block_uses_core_gallery_lightbox( $block_content, $block ) && function_exists( 'wp_enqueue_script_module' ) ) {
-		wp_enqueue_script_module( '@wordpress/block-library/image/view' );
+	if ( block_uses_core_gallery_lightbox( $block_content, $block ) ) {
+		enqueue_core_poster_lightbox();
 	}
 
 	if ( should_use_core_gallery_lightbox() && block_needs_legacy_baguettebox( $block_content, $block ) ) {
