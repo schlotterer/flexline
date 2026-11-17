@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><title>Isolated iframe navigation probe</title>
+<h1>Iframe navigation controls</h1>
+<h2>Ordinary same-origin document</h2><iframe title="HTTP control" src="editor-iframe-http.html"></iframe>
+<h2>Inline srcdoc document</h2><iframe title="Srcdoc control" srcdoc="<h1>Srcdoc iframe loaded</h1>"></iframe>
+<h2>Blob document (WordPress editor mechanism)</h2><iframe title="Blob control" id="blob"></iframe>
+<script>document.querySelector('#blob').src=URL.createObjectURL(new Blob(['<!doctype html><h1>Blob iframe loaded</h1>'],{type:'text/html'}));</script>

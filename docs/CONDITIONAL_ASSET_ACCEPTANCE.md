@@ -56,7 +56,7 @@ required package artifact. Tests cover both sides of the version boundary.
 | Concurrent/stale/failure/retry | Phase 3 JS contract tests pass in package verification. Dedicated HTTP failure-injection/browser acceptance remains open. |
 | Pattern graph/cache/site isolation | Phase 2 contract coverage retained; full page/optimizer cache integration remains open. |
 | Buttons | Phase 4 modern-Core default/global/variation/child/individual fixtures retained; minimum-version regression fixed and retested here. |
-| Real post/Site Editor previews | **Open.** Actual post-editor iframe is blank in the test browser with both candidate and released v2.2.9. No candidate-specific regression established; the earlier isolated iframe probe is insufficient to close this gate. Site Editor acceptance remains open. |
+| Real post/Site Editor previews | **Partially verified.** Native Chrome loads the actual candidate post-editor canvas, including Floor Plans content/media tabs and scroller controls. Blank canvas is isolated to in-app browser blob navigation (see diagnosis below). Shipped hero/timeline patterns render without validation warnings; hero Next and draft save pass, timeline Next changes visible columns. Site Editor and full interaction coverage remain open. |
 | Mobile resize, comparison/filter variants, modal opening | Full interaction matrix remains open. Do not infer passes from related slider/media checks. |
 | Brice Pointe and representative client canary | Not deployed; no candidate client-site acceptance claimed. |
 
@@ -113,3 +113,39 @@ retained ZIPs and separate test databases; never point these at a client databas
 and the named disposable container. `http-matrix.py <evidence-directory>` measures
 its six synthetic routes. The final runtime packages passed all required local gates;
 GitHub package/CodeQL checks still require PR execution.
+
+## Blank editor diagnosis — 2026-11-17
+
+The in-app browser aborts the editor's `blob:` document navigation with
+`net::ERR_ABORTED`; the iframe remains `about:blank`, without a captured JavaScript
+exception. A standalone control page (no WordPress/theme/plugin code) reproduces
+this: ordinary same-origin HTTP and `srcdoc` iframes render, but a Blob URL does not.
+The identical three controls all render in installed native Google Chrome.
+
+Native Chrome also renders the actual candidate WordPress post editor: the Floor
+Plans block shows Cedar/Maple/Oak/Willow, panel content and 3D/2D tabs. The combined
+fixture shows horizontal-scroll controls, but Gutenberg reports invalid Group
+markup for its hand-authored slider. These observations establish canvas loading,
+not a full interaction pass. Correct/regenerate that editor fixture and verify
+slider insertion, selection, preview, save/reload and Site Editor next.
+
+No production code or browser security setting was changed for this diagnosis.
+Use native Chrome for real editor acceptance; do not add a theme workaround for
+the in-app browser. Reproduction controls are retained in
+`tests/fixtures/conditional-assets/editor-iframe-probe.html` and
+`editor-iframe-http.html`; serve both together over HTTP. Local diagnostic evidence
+is under `diagnostics/conditional-assets-editor-20261117`. This closes the unknown
+blank-canvas cause, not the remaining Phase 5 release gates.
+
+### Follow-up using shipped patterns
+
+At the user's direction, editor acceptance now uses unmodified registered
+`flexline/hero-slider` and `flexline/section-timeline-columns` content, seeded as
+separate disposable drafts by `seed-editor-patterns.php` (IDs 24 and 25 in this run).
+Both load without the hand-authored fixture's invalid-block warning. Hero Next
+changes visible slide content and draft save reports success. Timeline renders
+its controls and Next changes the visible column set. Screenshots:
+`shipped-hero-editor.png` and `shipped-timeline-editor.png` in the diagnostic folder.
+The old minimal fixtures remain for reproducible frontend byte/rollback comparisons;
+they are not the source of truth for editor validation. Save/reload persistence,
+editing/insertion variants and Site Editor still require full acceptance.

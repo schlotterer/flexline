@@ -897,3 +897,18 @@ file rollback preserve synthetic content, after explicit PHP opcode cache resets
 No client installation changed. Actual editor acceptance is unresolved (blank iframe
 also reproduces with released v2.2.9); further UI/cache/canary/GitHub gates remain.
 No release tag, production-default change or deployment is authorized by this record.
+
+### Phase 5 editor diagnosis follow-up — 2026-11-17
+
+Isolated blank canvas to in-app browser Blob URL iframe navigation using standalone
+HTTP/srcdoc/blob controls; native Chrome passes all three and renders the actual
+candidate post editor. No runtime/package changes required. The editor gate remains
+partial: synthetic slider Group markup needs correction, then full editor/Site
+Editor interactions. See CONDITIONAL_ASSET_ACCEPTANCE.md for exact scope. Existing
+package hashes remain applicable; no rebuild was required for documentation and
+standalone diagnostic fixtures. Other UI/cache/canary/GitHub gates remain open.
+
+Follow-up: use existing registered hero-slider and timeline patterns for editor
+acceptance. Guarded seed helper PHP syntax passed; native Chrome renders both
+without validation warnings. Hero Next/draft save and timeline Next were observed.
+No runtime changes or package rebuild; full editor/Site Editor gate stays partial.

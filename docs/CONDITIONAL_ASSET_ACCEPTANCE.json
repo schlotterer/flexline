@@ -161,5 +161,5 @@
     }
   },
   "measurement_scope": "Unique external FlexLine CSS/JS, HTTP identity encoding, same server; excludes inline CSS, fonts, WP/plugin assets. Synthetic local comparison, not client production performance.",
-  "editor_gate": "Blank actual editor iframe with both candidate and released v2.2.9 in the test browser. No candidate-specific regression established; real editor acceptance remains open."
+  "editor_gate": "Blank-canvas cause isolated to in-app browser blob iframe navigation. Native Chrome renders actual candidate editor. Shipped hero-slider and section-timeline-columns patterns render without validation warnings; hero Next and draft save pass; timeline Next changes visible column set. Full editor interactions/save-reload and Site Editor remain open."
 }
