@@ -25,7 +25,9 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 		// Make theme available for translation.
 		load_theme_textdomain( 'flexline', get_template_directory() . '/languages' );
 
-		// Enqueue editor styles and fonts.
+		// Keep the complete content bundle in both editor canvases and previews.
+		// Frontend feature detection cannot predict blocks inserted during editing.
+		// add_editor_style lets WordPress scope these styles to its canvas.
 		$editor_styles = array(
 			'./style.css',
 			'./assets/built/css/app.css',

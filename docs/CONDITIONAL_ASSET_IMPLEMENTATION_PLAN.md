@@ -109,13 +109,17 @@ Asset metadata must be derived from trusted server registrations. Reuse WordPres
 
 ## Phase 4 editor behavior and editable defaults
 
-- [ ] Make required styles available when a user inserts a feature or changes a setting, including inside the Site Editor iframe and server-rendered plugin previews. Use the editor's asset pipeline and document context.
-- [ ] Preserve the complete editor bundle during transition if necessary for reliable insertion. Measure and document its eventual relationship to component loading.
+- [x] Make required styles available when a user inserts a feature or changes a setting, including inside the Site Editor iframe and server-rendered plugin previews. Use the editor's asset pipeline and document context.
+- [x] Preserve the complete editor bundle during transition if necessary for reliable insertion. Measure and document its eventual relationship to component loading.
 - [x] Define Plain Text zero padding in its WordPress style variation defaults. Remove the high-specificity padding reset after verifying both parent-only FlexLine and child themes.
-- [ ] Check other editable values in Plain Text and Outline fallbacks, especially colors, borders, line height, and padding. Adjust those proven to block saved editor settings.
-- [ ] Preserve legacy suffixed style classes and the corrected underline selectors. Test defaults, global Button styles, variation-specific styles, child-theme values, and individual block overrides as distinct cases.
+- [x] Check other editable values in Plain Text and Outline fallbacks, especially colors, borders, line height, and padding. Adjust those proven to block saved editor settings.
+- [x] Preserve legacy suffixed style classes and the corrected underline selectors. Test defaults, global Button styles, variation-specific styles, child-theme values, and individual block overrides as distinct cases.
 
 Brice Pointe's Contact button is the concrete regression fixture. Its saved vertical padding must compute to 8px, its horizontal padding to 0, and its 3px underline must appear on hover and Tab focus with the arrow visible. Resetting the variation's padding should restore the theme default through WordPress's normal style resolution.
+
+Local Phase 4 implementation and fixture evidence are recorded in
+[the editor asset review](CONDITIONAL_EDITOR_ASSETS.md). Real plugin preview UIs,
+saved site styles and supported installed-package combinations remain Phase 5 gates.
 
 ## Phase 5 acceptance matrix
 
@@ -183,6 +187,7 @@ limits, exact verification results, reusable WordPress probe and outstanding gat
 Phase 2 has local initial-page coverage. Phase 3 transport and lifecycle implementation
 is recorded in [the fragment contract](CONDITIONAL_FRAGMENT_ASSETS.md), including
 local checks and remaining installed-package/integration acceptance gates. Phase 4
-editor work and the broader Phase 5 acceptance matrix remain outstanding.
+implementation is recorded in the editor asset review; the broader Phase 5
+acceptance matrix remains outstanding.
 WordPress 6.5/7.0 execution is still a verification gate. No installed client theme,
 plugin, page, or saved option was changed during this implementation.

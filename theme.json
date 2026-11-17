@@ -785,7 +785,68 @@
                 "bottom": "0",
                 "left": "0"
               }
-            }
+            },
+            "border": {
+              "radius": "0",
+              "style": "none",
+              "width": "0"
+            },
+            "typography": {
+              "lineHeight": "var(--wp--custom--line-height--body)",
+              "textDecoration": "none"
+            },
+            "elements": {
+              "button": {
+                ":hover": {
+                  "color": {
+                    "background": "transparent",
+                    "gradient": "none"
+                  },
+                  "shadow": "none"
+                },
+                ":focus": {
+                  "color": {
+                    "background": "transparent",
+                    "gradient": "none"
+                  },
+                  "shadow": "none"
+                },
+                ":active": {
+                  "color": {
+                    "background": "transparent",
+                    "gradient": "none"
+                  },
+                  "shadow": "none"
+                }
+              }
+            },
+            "color": {
+              "background": "transparent",
+              "text": "currentColor",
+              "gradient": "none"
+            },
+            "shadow": "none"
+          },
+          "outline": {
+            "border": {
+              "color": "currentColor",
+              "style": "solid",
+              "width": "1px"
+            },
+            "spacing": {
+              "padding": {
+                "top": "calc(var(--wp--preset--spacing--medium) - 1px)",
+                "right": "calc(var(--wp--preset--spacing--large) - 1px)",
+                "bottom": "calc(var(--wp--preset--spacing--medium) - 1px)",
+                "left": "calc(var(--wp--preset--spacing--large) - 1px)"
+              }
+            },
+            "color": {
+              "background": "transparent",
+              "gradient": "none",
+              "text": "var(--flexline-outline-color, var(--wp--preset--color--primary))"
+            },
+            "shadow": "none"
           }
         },
         "border": {

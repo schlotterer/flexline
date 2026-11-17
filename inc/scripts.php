@@ -111,7 +111,10 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\flexline_admin_enqu
  * to support iframe/non-iframe editor canvases.
  */
 function flexline_admin_enqueue_canvas_runtime_assets() {
-	if ( ! function_exists( 'wp_should_load_block_editor_scripts_and_styles' ) || ! wp_should_load_block_editor_scripts_and_styles() ) {
+	// Core deliberately disables should_load_block_editor_scripts_and_styles
+	// while collecting iframe content assets. Use the host screen instead.
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( ! is_admin() || ! $screen || ! $screen->is_block_editor() ) {
 		return;
 	}
 
@@ -135,6 +138,7 @@ function flexline_admin_enqueue_canvas_runtime_assets() {
 		flexline_asset_ver( 'assets/built/js/slider.js' ),
 		true
 	);
+	wp_set_script_translations( 'flexline-slider-admin', 'flexline', get_template_directory() . '/languages' );
 }
 
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\flexline_admin_enqueue_canvas_runtime_assets' );
