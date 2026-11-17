@@ -111,3 +111,21 @@ local build and fixture syntax checks pass. Exact evidence, baseline Watch video
 validation warning and restoration instructions are in CONDITIONAL_ASSET_ACCEPTANCE.md.
 Page-cache/optimizer/CDN, authorized client canaries and hosted CI still gate release;
 no production-default change, tag or client deployment occurred.
+
+
+## Phase 5 acceptance closeout — 2026-11-17
+
+Local/editor acceptance and hosted package checks are complete; FlexLine CodeQL and
+both plugins' configured validation checks passed. The taxonomy checkbox concern
+was reproduced as an attempt to select inside a collapsed dropdown. Opening it first
+passes mouse/keyboard filtering and reset without runtime changes. Exact hosted ZIP
+identities, Composer-generated differences, installed smoke results, CI run links and
+reproduction steps are recorded in CONDITIONAL_ASSET_ACCEPTANCE.md and its JSON.
+This supersedes earlier entries listing hosted CI/editor checks as unresolved.
+
+Remaining release gates are actual page-cache/optimizer/CDN integration and authorized
+client canaries/installation recovery. Keep production opt-in and all three PRs in
+draft. No merge, tag, release or client deployment occurred. Documentation whitespace
+and JSON parsing checks pass; runtime test suites are unchanged from the passing
+package runs. The existing released-theme Watch video validation warning remains
+separately documented, not silently repaired by this work.

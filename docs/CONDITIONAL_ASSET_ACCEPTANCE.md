@@ -1,4 +1,4 @@
-# Phase 5 acceptance record — local checks, rollout held
+# Phase 5 acceptance record — local and hosted checks passed, rollout held
 
 Work remains on `codex/conditional-css-plan`. This is **partial acceptance**, not
 permission to enable conditional delivery by default or deploy to client sites.
@@ -58,7 +58,7 @@ required package artifact. Tests cover both sides of the version boundary.
 | Pattern graph/cache/site isolation | Phase 2 contract coverage retained; real synced-pattern cold/warm and edit-invalidation checks now pass. Full page/optimizer/CDN integration remains a rollout gate. |
 | Buttons | Phase 4 modern-Core default/global/variation/child/individual fixtures retained; minimum-version regression fixed and retested here. |
 | Real post/Site Editor previews | **Passed scoped checks.** Shipped Hero Slider inserted in actual Site Editor, controls work immediately, save/reload retains it. Real post editor renders shipped hero/timeline and Floor Plans server previews; 2D switching works with the Local child theme. Existing Watch video warning reproduces with released 2.2.9 on Core 7.2-RC1; tracked below. |
-| Mobile resize, comparison/filter variants, modal opening | Desktop/mobile/desktop scroller and mobile navigation checks pass. Location keyword/no-results/reset, pagination/infinite and comparison cards/table pass. Floor-plan grouping, sort, media expansion/close and mobile selection persistence pass. |
+| Mobile resize, comparison/filter variants, modal opening | Desktop/mobile/desktop scroller and mobile navigation checks pass. Location taxonomy checkbox mouse/keyboard/reset, keyword/no-results/reset, pagination/infinite and comparison cards/table pass. Floor-plan grouping, sort, media expansion/close and mobile selection persistence pass. |
 | Brice Pointe and representative client canary | Not deployed; no candidate client-site acceptance claimed. |
 
 A fixture initially used plain permalinks, causing the map client to receive HTML
@@ -250,6 +250,53 @@ change was restored. Fixture PHP/Python syntax and `git diff --check` pass. Runt
 code did not change, so prior exact preview ZIP hashes remain applicable.
 
 **Phase 5 release signoff remains held** for actual page-cache/optimizer/CDN behavior,
-authorized Brice Pointe and representative client canaries/recovery, and hosted
-package/CodeQL PR checks. Conditional production delivery remains opt-in. Local
+authorized Brice Pointe and representative client canaries/recovery. Conditional production delivery remains opt-in. Local
 checks must not be promoted to a claim that these external gates passed.
+
+
+## Final checkbox and hosted-package acceptance — 2026-11-17
+
+The apparent taxonomy checkbox reset was a test-sequence error, not a demonstrated
+runtime regression. The earlier automation targeted South while Phase 5 Region was
+collapsed. Its options remained discoverable in the initial accessibility tree,
+but the options container had `max-height: 0`; clicking that control did not select
+it. Opening the Region dropdown first, then using the same checkbox check action,
+leaves South selected and renders **Oak and Willow / 2 Results**. No taxonomy,
+cache, package or runtime edits were needed between failure and success. The filter
+dropdown source has no differences from Location Sync's `origin/main`.
+
+Keyboard Space on North, followed by Space to deselect South, produces **Cedar and
+Maple / 2 Results**. Both selected yields zero results because this synthetic family
+uses the existing `multi=false` default (all selected terms required). Reset Filters
+returns **4 Results / Page 1 of 2** and clears selections. Repeating open-dropdown →
+South `check()` passes. No console errors or warnings were captured. Evidence:
+`location-checkbox-passed.jpg` and `location-checkbox-passed.txt` in the Local
+follow-up diagnostics directory. The initially collapsed options' accessibility
+exposure is an existing dropdown behavior, not changed or certified by this work.
+
+Hosted checks passed on the exact heads recorded in the JSON receipt:
+
+| Draft PR | Package | Additional checks |
+| --- | --- | --- |
+| [FlexLine #593](https://github.com/schlotterer/flexline/pull/593) | [Passed](https://github.com/schlotterer/flexline/actions/runs/44157165889) | [CodeQL passed](https://github.com/schlotterer/flexline/actions/runs/44157156150) |
+| [Location Sync #86](https://github.com/schlotterer/web4sl-location-sync/pull/86) | [Passed](https://github.com/schlotterer/web4sl-location-sync/actions/runs/44157263431) | [Validation passed](https://github.com/schlotterer/web4sl-location-sync/actions/runs/44157263418) |
+| [Advanced Floor Plans #5](https://github.com/schlotterer/web4sl-advanced-floor-plans/pull/5) | [Passed](https://github.com/schlotterer/web4sl-advanced-floor-plans/actions/runs/44157279595) | [Validation passed](https://github.com/schlotterer/web4sl-advanced-floor-plans/actions/runs/44157279420) |
+
+Both hosted plugin ZIPs match the locally tested ZIPs byte for byte. Hosted FlexLine
+SHA256 is `49404d89f8fdf88c90dbe4eaad52f810dddce3702118001c87ca6d61dc6df517`.
+It differs from the original local ZIP in five generated Composer support files
+(listed in JSON), with no differences in theme source, built CSS/JS or dependency
+library code. Keep both artifact identities; do not substitute the local hash for
+the hosted artifact. The pinned `package_release.py verify --root <theme-worktree>
+--output <hosted-flexline-directory>` command passes. The exact hosted theme ZIP was
+installed on both disposable WordPress 7.1.4 and 6.5.7 environments, restarting PHP
+containers to invalidate opcode caches; location cards/checkboxes and floor-plan
+Maple selection/2D switching pass. Hosted files and hashes are retained under
+`diagnostics/conditional-assets-local-testing-20261117/hosted-*`.
+
+**Local acceptance and hosted CI gates are closed. External rollout gates remain
+open:** actual page-cache/optimizer/CDN integration and explicitly authorized client
+canaries with installation recovery. This documentation closeout changes no runtime
+code, dependencies, versions or production defaults. PRs stay drafts; no merge, tag,
+publication or client deployment is implied. Prior dated checkpoints above describe
+historical progress; this section and the JSON receipt are the current status.

@@ -70,3 +70,21 @@ Preserve original child/theme/network-plugin options and unrelated content.
 
 Release signoff still requires actual optimizer/CDN and authorized client canaries;
 these helpers do not change the production opt-in policy.
+
+
+## Taxonomy checkbox acceptance sequence
+
+On the disposable single-site fixture, create a `location_filter` parent named
+Phase 5 Region with `_w4sl_family=1`, then child terms North and South. Assign North
+to the synthetic Cedar/Maple locations and South to Oak/Willow. Retain the default
+`multi=false` semantics: all selected terms are required; two disjoint terms yield
+zero results. Do not assign these fixture terms to real Local/client records.
+
+Wait for the shipped pagination page's initial 4 Results, then explicitly open
+**Phase 5 Region** and verify `aria-expanded=true` before targeting a checkbox.
+The initial collapsed options can appear in the accessibility tree despite their
+zero-height container; that is not evidence the checkbox can receive a user click.
+Select South: checked, Oak/Willow, 2 Results. Use keyboard Space to select North and
+clear South: Cedar/Maple, 2 Results. Reset Filters: both clear, 4 Results, Page 1 of 2.
+Capture checked state and rendered results together. A click attempted before opening
+the dropdown is an invalid acceptance step, not proof that application state reset.

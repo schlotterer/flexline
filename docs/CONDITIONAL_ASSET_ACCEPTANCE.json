@@ -1,6 +1,6 @@
 {
   "date": "2026-11-17",
-  "status": "expanded-local-regression-passed-external-release-gates-open",
+  "status": "local-and-hosted-acceptance-passed-external-rollout-gates-open",
   "wordpress_installed": "7.1.4",
   "wordpress_minimum_theme_probe": "6.5.7",
   "php_container": "8.2.35",
@@ -177,8 +177,63 @@
     "runtime_changed": false,
     "remaining_release_gates": [
       "page-cache/optimizer/CDN integration",
-      "authorized client canaries and installation recovery",
-      "hosted package and CodeQL checks"
-    ]
+      "authorized client canaries and installation recovery"
+    ],
+    "taxonomy_checkbox": {
+      "result": "passed; no runtime change required",
+      "cause": "Earlier automation targeted a checkbox while its dropdown was collapsed (max-height: 0). Opening the family dropdown before selecting resolves the apparent reset.",
+      "checks": [
+        "South mouse selection remains checked: Oak and Willow, 2 results",
+        "North keyboard Space selection and South deselection: Cedar and Maple, 2 results",
+        "Both selections: 0 results under the fixture default multi=false (all selected terms required)",
+        "Reset Filters: 4 results, page 1 of 2",
+        "Repeated open-dropdown then checkbox.check(): South checked, 2 results"
+      ],
+      "console_errors_or_warnings": 0,
+      "evidence": [
+        "location-checkbox-passed.jpg",
+        "location-checkbox-passed.txt"
+      ],
+      "scope": "Disposable WordPress 7.1.4, hosted candidate packages; filter dropdown source unchanged from plugin origin/main"
+    }
+  },
+  "hosted_verification": {
+    "date": "2026-11-17",
+    "publication": "preview artifacts only; PRs remain drafts; publish/production jobs skipped",
+    "flexline": {
+      "commit": "46fed87b49df00e255ca00767deea32e372af883",
+      "pr": "https://github.com/schlotterer/flexline/pull/593",
+      "package_run": 44157165889,
+      "codeql_run": 44157156150,
+      "checks": "success",
+      "sha256": "49404d89f8fdf88c90dbe4eaad52f810dddce3702118001c87ca6d61dc6df517",
+      "local_zip_differences": [
+        "vendor/autoload.php",
+        "vendor/composer/InstalledVersions.php",
+        "vendor/composer/autoload_static.php",
+        "vendor/composer/installed.php",
+        "vendor/composer/platform_check.php"
+      ],
+      "difference_scope": "Five generated Composer support files only; theme source, built CSS/JS and dependency library code match. Original local artifact hash retained above.",
+      "verification": "Pinned package verify passed; hosted ZIP installed on disposable WordPress 7.1.4 and 6.5.7 with PHP container restarts; location cards/checkboxes and floor-plan Maple/2D smoke passed."
+    },
+    "location_sync": {
+      "commit": "a87ca8abac157c3d702fcef2ff31c3c49b11fafe",
+      "pr": "https://github.com/schlotterer/web4sl-location-sync/pull/86",
+      "package_run": 44157263431,
+      "validation_run": 44157263418,
+      "checks": "success",
+      "sha256": "998370806ce504db288a0dc2dc5ef35152ad3c1324d60b3b5a14ec28b92b90d0",
+      "matches_local_zip": true
+    },
+    "floor_plans": {
+      "commit": "ab9c56972129713d7b279adc2983d428920d3db1",
+      "pr": "https://github.com/schlotterer/web4sl-advanced-floor-plans/pull/5",
+      "package_run": 44157279595,
+      "validation_run": 44157279420,
+      "checks": "success",
+      "sha256": "d27fe04c88b046e9efb2114f54bf9b1748b4f2100ac8bc82c53ad7ec52518be3",
+      "matches_local_zip": true
+    }
   }
 }
