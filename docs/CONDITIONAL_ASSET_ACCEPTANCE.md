@@ -2,9 +2,10 @@
 
 Work remains on `codex/conditional-css-plan`. This is **partial acceptance**, not
 permission to enable conditional delivery by default or deploy to client sites.
-The production opt-in policy is unchanged. No active Local/client installation
-was modified. Package installation, content writes and recovery occurred only in
-disposable Docker WordPress installations.
+The production opt-in policy is unchanged. Initial package/recovery tests used disposable Docker installations. The owner later
+authorized the dedicated `mylifesite2026.test/testing/` subsite for branch testing.
+That subsite now has isolated candidate paths and new regression content. Other
+subsites and shared theme/plugin source files were preserved; no client deployment occurred.
 
 ## Verified package/environment record
 
@@ -53,11 +54,11 @@ required package artifact. Tests cover both sides of the version boundary.
 | Floor-plan media | 3D/2D controls work before and after changing the selected floor plan. Synthetic attachments only. |
 | Conservative fallback | Floor Plans with the dynamic media-toggle pattern reports `dynamic-pattern-output` and retains complete CSS/runtimes. This is expected safety behavior, not an optimization success. |
 | Mixed versions/recovery | All four released/candidate theme/plugin combinations render cards/pages. Metadata appears only with candidate theme + candidate plugins. Seeded content/meta checksums remain identical across all four swaps. |
-| Concurrent/stale/failure/retry | Phase 3 JS contract tests pass in package verification. Dedicated HTTP failure-injection/browser acceptance remains open. |
-| Pattern graph/cache/site isolation | Phase 2 contract coverage retained; full page/optimizer cache integration remains open. |
+| Concurrent/stale/failure/retry | Phase 3 JS contract tests pass in package verification. Live REST-request failure and later stylesheet failure/retry now pass; see follow-up below. Deterministic concurrent/stale cases retain the Phase 3 contract coverage. |
+| Pattern graph/cache/site isolation | Phase 2 contract coverage retained; real synced-pattern cold/warm and edit-invalidation checks now pass. Full page/optimizer/CDN integration remains a rollout gate. |
 | Buttons | Phase 4 modern-Core default/global/variation/child/individual fixtures retained; minimum-version regression fixed and retested here. |
-| Real post/Site Editor previews | **Partially verified.** Native Chrome loads the actual candidate post-editor canvas, including Floor Plans content/media tabs and scroller controls. Blank canvas is isolated to in-app browser blob navigation (see diagnosis below). Shipped hero/timeline patterns render without validation warnings; hero Next and draft save pass, timeline Next changes visible columns. Site Editor and full interaction coverage remain open. |
-| Mobile resize, comparison/filter variants, modal opening | Full interaction matrix remains open. Do not infer passes from related slider/media checks. |
+| Real post/Site Editor previews | **Passed scoped checks.** Shipped Hero Slider inserted in actual Site Editor, controls work immediately, save/reload retains it. Real post editor renders shipped hero/timeline and Floor Plans server previews; 2D switching works with the Local child theme. Existing Watch video warning reproduces with released 2.2.9 on Core 7.2-RC1; tracked below. |
+| Mobile resize, comparison/filter variants, modal opening | Desktop/mobile/desktop scroller and mobile navigation checks pass. Location keyword/no-results/reset, pagination/infinite and comparison cards/table pass. Floor-plan grouping, sort, media expansion/close and mobile selection persistence pass. |
 | Brice Pointe and representative client canary | Not deployed; no candidate client-site acceptance claimed. |
 
 A fixture initially used plain permalinks, causing the map client to receive HTML
@@ -149,3 +150,106 @@ its controls and Next changes the visible column set. Screenshots:
 The old minimal fixtures remain for reproducible frontend byte/rollback comparisons;
 they are not the source of truth for editor validation. Save/reload persistence,
 editing/insertion variants and Site Editor still require full acceptance.
+
+## Expanded local regression acceptance — 2026-11-17
+
+### Existing-pattern environments
+
+- **Actual Site Editor, WP 7.1.4 / PHP 8.2.35:** inserted shipped `flexline/hero-slider`
+  using the pattern inserter. Controls appeared immediately inside the real canvas.
+  Pause/Next/Previous changed slides. Saved only Blog Home (unchecked unrelated
+  auto-created template parts/navigation), reloaded and confirmed the inserted
+  pattern and controls persisted. Post editor hero draft save was already verified.
+- **Authorized Local multisite `/testing/` (blog 5), WP 7.2-RC1 / PHP 8.2.27:**
+  retained `oconnor-woods-child-theme`, its saved styles and existing content.
+  Parent runtime and theme.json resolve to the existing `codex/conditional-css-plan`
+  worktree through a guarded MU preview adapter. Candidate plugin ZIPs live in
+  separate directories. The adapter applies only to this local domain and blog 5.
+  No stored theme/network-plugin activation settings changed.
+- The docs page's ten `flexline/demo-patterns-*` references became ten new published
+  regression pages (121384–121393). Index: `/testing/phase5-regression`.
+  Each page returned HTTP 200 in conditional and complete modes: **20/20**, no
+  duplicate stylesheet/script tags and no PHP fatal output. Preload hints are counted
+  separately from script tags. Original byte measurements above remain unchanged;
+  these richer child-theme demos are a separate regression sample.
+- `/testing/phase5-floorplans` uses shipped `fp-card-list` and `fp-detail-panel`,
+  two synthetic records (121395/121396), two grouping terms, and existing local media.
+  Group selection, descending sort, 2D/3D switching, expand/close and mobile dropdown
+  selection work; selecting Cedar at 390px remains selected after returning to 1280px.
+  Actual editor SSR preview also renders and switches from 3D to 2D.
+- **WP 6.5.7 / PHP 8.2.35 combined stack:** installed candidate plugins plus Web4SL
+  1.2.6 in the disposable minimum-version site. Shipped location cards render and
+  keyword filtering selects Maple. Shipped floor-plan patterns render; selecting
+  Maple, switching 2D, expanding and closing work without captured console errors.
+  This extends the earlier minimum-version button test; it is not every PHP/Core permutation.
+
+### Frontend interactions and late assets
+
+The existing Heroes demo passes keyboard slider navigation (status changes to
+Slide 2 of 3; active slide reaches opacity 1). Its real media modal opens, Escape
+closes it, focus returns to its trigger and body scrolling is restored. The Sections
+Timeline scroller responds to Enter (scrollLeft 2401 -> 2675). Resizing keeps exactly
+one set of controls per scroller. Mobile-only navigation lists change from desktop
+`overflow-x: visible` to `auto` at 390px (439px content in 251px viewport), then back
+to visible at 1280px. The gallery's existing 2D/3D controls switch pressed states.
+All browser viewport/network overrides were cleared after testing.
+
+Location Sync intentionally boots only on the multisite main site, so its full
+matrix stays in the isolated single-site fixture rather than changing that policy.
+Shipped directory grid/popover/comparison patterns cover paginated page 2 (Oak,
+Willow), infinite appended results, comparison cards/table, empty keyword results
+and reset to populated results. The comparison setting must be enabled globally;
+the supported navigation value is `paginated`, not `pagination`.
+
+A blocked real `location-cards` REST request preserves existing cards and offers
+Retry; unblocking and Retry loads page 2. A second probe starts with shipped Hero
+Slider card patterns and no scroller CSS/runtime. A guarded disposable REST hook
+then appends the shipped Timeline pattern only to later responses. Blocking its
+required `component-horizontal-scroll.css` leaves both existing sliders usable,
+adds Retry, and inserts no unstyled scroller. Unblock/Retry yields exactly one new
+stylesheet, one runtime, one wrapper and one Next control, with the error removed.
+The new Next control works immediately (scrollLeft 3225 -> 3500). Injection was
+subsequently disabled. This validates the real plugin replacement/asset-loader path;
+the test hook itself is not runtime plugin code.
+
+### Cache, baseline findings and isolation
+
+Synced pattern 121398 initially references the shipped Hero Slider; page 121399
+loads `base.css + component-slider.css` identically cold/warm. Updating only the
+synced pattern to the shipped Timeline changes the next request to
+`base.css + component-horizontal-scroll.css`, again stable warm, without manually
+clearing caches. This tests WordPress/theme requirement invalidation, not a CDN.
+
+Two setup/existing issues were isolated:
+
+1. The Local site's existing `%primary_term%` catch-all route discarded the new
+   page query and redirected it home. The local preview adapter supplies an explicit
+   `phase5-*` fixture route; existing routes and permalink settings are unchanged.
+2. The Heroes demo's Home Hero **Watch video** block reports invalid content in the
+   WP 7.2-RC1 editor. The identical warning reproduces when the adapter serves the
+   exact released v2.2.9 ZIP. No recovery/save of this block was applied. Track its
+   pattern/editor compatibility separately; it is not a new conditional-CSS defect.
+   The shipped Hero Slider and Timeline used for insertion checks validate normally.
+
+A third-party Loom embed logged `crypto.randomUUID` unavailable on HTTP Local;
+its modal still opens/closes. This is not a theme runtime exception. No real forms
+were submitted. Other subsite HTTP responses lack the Phase 5 header. The original
+shared checkout was preserved verbatim at `db51c8c9` on
+`archive/local-flexline-snapshot-20261117`, with annotated tag
+`#deadbranch-2026-11-17-125153`; its source fixes already match released v2.2.9.
+
+### Evidence, reproducibility and remaining release gates
+
+`diagnostics/conditional-assets-local-testing-20261117` retains demo IDs/content
+hashes, 20 response bodies, asset inventory, cache before/after lists, responsive
+measurements, late-asset retry counts, and screenshots. The Site Editor save proof
+is in `diagnostics/conditional-assets-editor-20261117/site-editor-saved.png`.
+Fixture helpers are under `tests/fixtures/conditional-assets/`; see `LOCAL_TESTING.md`.
+The local production build passed; its unrelated generated block-extensions.js
+change was restored. Fixture PHP/Python syntax and `git diff --check` pass. Runtime
+code did not change, so prior exact preview ZIP hashes remain applicable.
+
+**Phase 5 release signoff remains held** for actual page-cache/optimizer/CDN behavior,
+authorized Brice Pointe and representative client canaries/recovery, and hosted
+package/CodeQL PR checks. Conditional production delivery remains opt-in. Local
+checks must not be promoted to a claim that these external gates passed.

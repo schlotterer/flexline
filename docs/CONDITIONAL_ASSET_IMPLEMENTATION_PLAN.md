@@ -200,3 +200,17 @@ all four mixed-version combinations and scoped code rollback have been exercised
 A WordPress 6.5 Plain Text regression was fixed with a version-scoped compatibility
 sheet. Real editor acceptance, remaining UI/cache combinations, GitHub checks and
 client canaries remain open. Phase 5 is not complete and production remains opt-in.
+
+## Phase 5 existing-pattern follow-up — 2026-11-17
+
+Actual Site Editor insertion, controls and save/reload now pass. Owner-authorized
+Local `/testing/` runs the branch through isolated paths with its child theme retained;
+the ten existing docs demo patterns pass 20 conditional/complete HTTP checks.
+Shipped floor-plan media/filter/sort/mobile and real editor SSR pass. Shipped location
+pagination/infinite/comparison/search plus REST and late stylesheet failure/retry pass.
+Cold/warm synced-pattern requirements invalidate after an edit. Minimum WordPress
+6.5.7 now has combined-stack location/floor-plan smoke coverage. No runtime changes;
+local build and fixture syntax checks pass. Exact evidence, baseline Watch video
+validation warning and restoration instructions are in CONDITIONAL_ASSET_ACCEPTANCE.md.
+Page-cache/optimizer/CDN, authorized client canaries and hosted CI still gate release;
+no production-default change, tag or client deployment occurred.

@@ -97,3 +97,17 @@ themes and existing saved Global Styles. These fixtures verify Core's asset/merg
 pipeline but do not replace that acceptance matrix. Older supported WordPress
 versions, optimizer behavior, installed-package rollback, and client-site canaries
 remain open. Conditional frontend loading remains opt-in; no release is included.
+
+## Phase 5 existing-pattern follow-up — 2026-11-17
+
+Actual Site Editor insertion, controls and save/reload now pass. Owner-authorized
+Local `/testing/` runs the branch through isolated paths with its child theme retained;
+the ten existing docs demo patterns pass 20 conditional/complete HTTP checks.
+Shipped floor-plan media/filter/sort/mobile and real editor SSR pass. Shipped location
+pagination/infinite/comparison/search plus REST and late stylesheet failure/retry pass.
+Cold/warm synced-pattern requirements invalidate after an edit. Minimum WordPress
+6.5.7 now has combined-stack location/floor-plan smoke coverage. No runtime changes;
+local build and fixture syntax checks pass. Exact evidence, baseline Watch video
+validation warning and restoration instructions are in CONDITIONAL_ASSET_ACCEPTANCE.md.
+Page-cache/optimizer/CDN, authorized client canaries and hosted CI still gate release;
+no production-default change, tag or client deployment occurred.

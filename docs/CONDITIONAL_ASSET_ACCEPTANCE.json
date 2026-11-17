@@ -1,6 +1,6 @@
 {
   "date": "2026-11-17",
-  "status": "partial-local-acceptance-not-rollout-approved",
+  "status": "expanded-local-regression-passed-external-release-gates-open",
   "wordpress_installed": "7.1.4",
   "wordpress_minimum_theme_probe": "6.5.7",
   "php_container": "8.2.35",
@@ -161,5 +161,24 @@
     }
   },
   "measurement_scope": "Unique external FlexLine CSS/JS, HTTP identity encoding, same server; excludes inline CSS, fonts, WP/plugin assets. Synthetic local comparison, not client production performance.",
-  "editor_gate": "Blank-canvas cause isolated to in-app browser blob iframe navigation. Native Chrome renders actual candidate editor. Shipped hero-slider and section-timeline-columns patterns render without validation warnings; hero Next and draft save pass; timeline Next changes visible column set. Full editor interactions/save-reload and Site Editor remain open."
+  "editor_gate": "Scoped actual Site Editor insertion, slider controls, save/reload passed on WP7.1.4. Local WP7.2-RC1 child-theme post editor and Floor Plans SSR/2D passed. Existing Watch video validation warning reproduced with released v2.2.9; separate baseline issue.",
+  "local_followup": {
+    "site": "http://mylifesite2026.test/testing/",
+    "blog_id": 5,
+    "wordpress": "7.2-RC1",
+    "php": "8.2.27",
+    "demo_responses_passed": 20,
+    "duplicate_asset_tags": 0,
+    "site_editor_save_reload": true,
+    "synced_pattern_invalidation": true,
+    "rest_failure_retry": true,
+    "late_stylesheet_failure_retry": true,
+    "wp65_combined_stack_smoke": true,
+    "runtime_changed": false,
+    "remaining_release_gates": [
+      "page-cache/optimizer/CDN integration",
+      "authorized client canaries and installation recovery",
+      "hosted package and CodeQL checks"
+    ]
+  }
 }
