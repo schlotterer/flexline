@@ -5,6 +5,7 @@ $env = 'local'; $admin = false; $head = 0; $site = 1;
 define('ABSPATH', '/fake/'); define('WPINC', 'wp-includes');
 function add_filter(...$args) {} function add_action(...$args) {} function do_action(...$args) {}
 function wp_normalize_path($p) { return $p; }
+function get_bloginfo($key) { return $GLOBALS['test_wp_version'] ?? '7.2'; }
 function is_admin() { global $admin; return $admin; }
 function did_action($name) { global $head; return $head; }
 function wp_get_environment_type() { global $env; return $env; }
@@ -129,3 +130,8 @@ reset_state(); native(); $filters['flexline_required_component_styles'] = fn($r)
 check(!$GLOBALS['flexline_component_delivery']['split'], 'malformed filter safely selects compatibility');
 
 echo "All component contracts passed.\n";
+
+reset_state(); native(); $GLOBALS["test_wp_version"]="6.5.7"; FlexLine\flexline_enqueue_component_styles();
+check(isset($enqueued["flexline-button-compat"]), "WordPress 6.5 retains Plain Text defaults");
+reset_state(); native(); $GLOBALS["test_wp_version"]="6.6"; FlexLine\flexline_enqueue_component_styles();
+check(!isset($enqueued["flexline-button-compat"]), "Modern WordPress uses editable variation defaults without compatibility CSS");

@@ -159,6 +159,12 @@ function flexline_enqueue_component_styles() {
 		wp_enqueue_style( 'flexline-modal' );
 		$handles[] = 'flexline-modal';
 	}
+	// Custom block-style variation defaults are supported from WordPress 6.6.
+	if ( version_compare( get_bloginfo( 'version' ), '6.6', '<' ) ) {
+		$compat = 'assets/built/css/button-compat.css';
+		wp_enqueue_style( 'flexline-button-compat', get_theme_file_uri( $compat ), $handles, flexline_asset_ver( $compat ) );
+		$handles[] = 'flexline-button-compat';
+	}
 	$GLOBALS['flexline_component_style_handles'] = $handles;
 	$GLOBALS['flexline_component_delivery']      = array(
 		'split'    => $split,

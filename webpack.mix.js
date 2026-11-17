@@ -30,6 +30,7 @@ const jsFiles = [
 const sassFiles = [
 	'src/scss/app.scss',
 	'src/scss/base.scss',
+	'src/scss/button-compat.scss',
 	'src/scss/app-conditional.scss',
 	'src/scss/component-horizontal-scroll.scss',
 	'src/scss/component-slider.scss',

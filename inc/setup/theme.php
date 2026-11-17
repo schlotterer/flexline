@@ -34,7 +34,10 @@ if ( ! function_exists( 'flexline_setup' ) ) {
 			'./assets/built/css/editor.css',
 			'./assets/built/css/modal.css',
 		);
-		$custom_css    = get_theme_file_path( 'assets/css/customize.css' );
+		if ( version_compare( get_bloginfo( 'version' ), '6.6', '<' ) ) {
+			$editor_styles[] = './assets/built/css/button-compat.css';
+		}
+		$custom_css = get_theme_file_path( 'assets/css/customize.css' );
 		if ( file_exists( $custom_css ) && filesize( $custom_css ) > 0 ) {
 			$editor_styles[] = './assets/css/customize.css';
 		}
