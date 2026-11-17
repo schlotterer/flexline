@@ -1,0 +1,532 @@
+[
+  {
+    "file": "src/scss/app-conditional.scss",
+    "group": "composition",
+    "imports": [
+      "src/scss/main/variables.scss",
+      "src/scss/main/base.scss",
+      "src/scss/main/utilities.scss",
+      "src/scss/main/utility-classes.scss",
+      "src/scss/main/navigation.scss",
+      "src/scss/main/slide-in-menu.scss",
+      "src/scss/main/templates.scss",
+      "src/scss/main/gravity-forms.scss",
+      "src/scss/main/headroom.scss",
+      "src/scss/main/events-manager.scss",
+      "src/scss/main/query-loop-filters.scss",
+      "src/scss/blocks/block-customizations.scss",
+      "src/scss/blocks/style-variations.scss",
+      "src/scss/blocks/content-shift.scss",
+      "src/scss/blocks/section-frames.scss",
+      "src/scss/blocks/card-variations.scss",
+      "src/scss/blocks/visibility-variations.scss",
+      "src/scss/blocks/poster-gallery.scss",
+      "src/scss/blocks/icons.scss"
+    ],
+    "bytes": 660
+  },
+  {
+    "file": "src/scss/app.scss",
+    "group": "composition",
+    "imports": [
+      "src/scss/app-conditional.scss",
+      "src/scss/blocks/horizontal-scroll-variations.scss",
+      "src/scss/blocks/slider-variations.scss",
+      "src/scss/component-tail.scss"
+    ],
+    "bytes": 215
+  },
+  {
+    "file": "src/scss/blocks/block-customizations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_block-customizations.scss"
+    ],
+    "bytes": 104
+  },
+  {
+    "file": "src/scss/blocks/card-variations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_card-variations.scss"
+    ],
+    "bytes": 86
+  },
+  {
+    "file": "src/scss/blocks/content-shift.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_content-shift.scss"
+    ],
+    "bytes": 82
+  },
+  {
+    "file": "src/scss/blocks/horizontal-scroll-variations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_horizontal-scroll-variations.scss"
+    ],
+    "bytes": 120
+  },
+  {
+    "file": "src/scss/blocks/icons.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_icons.scss"
+    ],
+    "bytes": 66
+  },
+  {
+    "file": "src/scss/blocks/plethoraplugins.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_plethoraplugins.scss"
+    ],
+    "bytes": 94
+  },
+  {
+    "file": "src/scss/blocks/poster-gallery.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_poster-gallery.scss"
+    ],
+    "bytes": 84
+  },
+  {
+    "file": "src/scss/blocks/section-frames.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_section-frames.scss"
+    ],
+    "bytes": 83
+  },
+  {
+    "file": "src/scss/blocks/slider-variations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_slider-variations.scss"
+    ],
+    "bytes": 90
+  },
+  {
+    "file": "src/scss/blocks/style-variations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_style-variations.scss"
+    ],
+    "bytes": 88
+  },
+  {
+    "file": "src/scss/blocks/visibility-toggle.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_visibility-toggle.scss"
+    ],
+    "bytes": 90
+  },
+  {
+    "file": "src/scss/blocks/visibility-variations.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/blocks/_visibility-variations.scss"
+    ],
+    "bytes": 98
+  },
+  {
+    "file": "src/scss/component-horizontal-scroll.scss",
+    "group": "feature entry",
+    "imports": [
+      "src/scss/main/variables.scss",
+      "src/scss/blocks/horizontal-scroll-variations.scss"
+    ],
+    "bytes": 73
+  },
+  {
+    "file": "src/scss/component-slider.scss",
+    "group": "feature entry",
+    "imports": [
+      "src/scss/blocks/slider-variations.scss"
+    ],
+    "bytes": 36
+  },
+  {
+    "file": "src/scss/component-tail.scss",
+    "group": "composition",
+    "imports": [
+      "src/scss/blocks/plethoraplugins.scss",
+      "src/scss/blocks/visibility-toggle.scss"
+    ],
+    "bytes": 70
+  },
+  {
+    "file": "src/scss/editor/blocks/block-customizations.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_block-customizations.scss"
+    ],
+    "bytes": 125
+  },
+  {
+    "file": "src/scss/editor/blocks/horizontal-scroll-variations.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_horizontal-scroll-variations.scss"
+    ],
+    "bytes": 141
+  },
+  {
+    "file": "src/scss/editor/blocks/icons.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_icons.scss"
+    ],
+    "bytes": 69
+  },
+  {
+    "file": "src/scss/editor/blocks/plethoraplugins.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_plethoraplugins.scss"
+    ],
+    "bytes": 115
+  },
+  {
+    "file": "src/scss/editor/blocks/poster-gallery.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_poster-gallery.scss"
+    ],
+    "bytes": 87
+  },
+  {
+    "file": "src/scss/editor/blocks/section-frames.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/blocks/_section-frames.scss"
+    ],
+    "bytes": 86
+  },
+  {
+    "file": "src/scss/editor/blocks/slider-variations.scss",
+    "group": "editor",
+    "imports": [],
+    "bytes": 3798
+  },
+  {
+    "file": "src/scss/editor/blocks/visibility-toggle.scss",
+    "group": "editor",
+    "imports": [],
+    "bytes": 400
+  },
+  {
+    "file": "src/scss/editor/main/base.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_base.scss"
+    ],
+    "bytes": 91
+  },
+  {
+    "file": "src/scss/editor/main/gravity-forms.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_gravity-forms.scss"
+    ],
+    "bytes": 109
+  },
+  {
+    "file": "src/scss/editor/main/query-loop-filters.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_query-loop-filters.scss"
+    ],
+    "bytes": 119
+  },
+  {
+    "file": "src/scss/editor/main/slide-in-menu.scss",
+    "group": "editor",
+    "imports": [],
+    "bytes": 83
+  },
+  {
+    "file": "src/scss/editor/main/templates.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_templates.scss"
+    ],
+    "bytes": 101
+  },
+  {
+    "file": "src/scss/editor/main/utilities.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_utilities.scss"
+    ],
+    "bytes": 101
+  },
+  {
+    "file": "src/scss/editor/main/utility-classes.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/shared/main/_utility-classes.scss"
+    ],
+    "bytes": 113
+  },
+  {
+    "file": "src/scss/editor.scss",
+    "group": "editor",
+    "imports": [
+      "src/scss/main/variables.scss",
+      "src/scss/editor/main/base.scss",
+      "src/scss/editor/main/templates.scss",
+      "src/scss/editor/main/gravity-forms.scss",
+      "src/scss/editor/main/query-loop-filters.scss",
+      "src/scss/editor/main/utilities.scss",
+      "src/scss/editor/main/utility-classes.scss",
+      "src/scss/editor/main/slide-in-menu.scss",
+      "src/scss/editor/blocks/block-customizations.scss",
+      "src/scss/editor/blocks/section-frames.scss",
+      "src/scss/editor/blocks/horizontal-scroll-variations.scss",
+      "src/scss/editor/blocks/poster-gallery.scss",
+      "src/scss/editor/blocks/icons.scss",
+      "src/scss/editor/blocks/plethoraplugins.scss",
+      "src/scss/editor/blocks/slider-variations.scss",
+      "src/scss/editor/blocks/visibility-toggle.scss"
+    ],
+    "bytes": 613
+  },
+  {
+    "file": "src/scss/main/base.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_base.scss"
+    ],
+    "bytes": 109
+  },
+  {
+    "file": "src/scss/main/events-manager.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_events-manager.scss"
+    ],
+    "bytes": 82
+  },
+  {
+    "file": "src/scss/main/gravity-forms.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_gravity-forms.scss"
+    ],
+    "bytes": 97
+  },
+  {
+    "file": "src/scss/main/headroom.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_headroom.scss"
+    ],
+    "bytes": 70
+  },
+  {
+    "file": "src/scss/main/navigation.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_navigation.scss"
+    ],
+    "bytes": 74
+  },
+  {
+    "file": "src/scss/main/query-loop-filters.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_query-loop-filters.scss"
+    ],
+    "bytes": 158
+  },
+  {
+    "file": "src/scss/main/slide-in-menu.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_slide-in-menu.scss"
+    ],
+    "bytes": 80
+  },
+  {
+    "file": "src/scss/main/templates.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_templates.scss"
+    ],
+    "bytes": 89
+  },
+  {
+    "file": "src/scss/main/utilities.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_utilities.scss"
+    ],
+    "bytes": 80
+  },
+  {
+    "file": "src/scss/main/utility-classes.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_utility-classes.scss"
+    ],
+    "bytes": 92
+  },
+  {
+    "file": "src/scss/main/variables.scss",
+    "group": "frontend wrapper",
+    "imports": [
+      "src/scss/shared/main/_variables.scss"
+    ],
+    "bytes": 36
+  },
+  {
+    "file": "src/scss/modal.scss",
+    "group": "feature entry",
+    "imports": [
+      "src/scss/main/variables.scss"
+    ],
+    "bytes": 2856
+  },
+  {
+    "file": "src/scss/shared/blocks/_block-customizations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 8090
+  },
+  {
+    "file": "src/scss/shared/blocks/_card-variations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 5107
+  },
+  {
+    "file": "src/scss/shared/blocks/_content-shift.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 1833
+  },
+  {
+    "file": "src/scss/shared/blocks/_horizontal-scroll-variations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 18222
+  },
+  {
+    "file": "src/scss/shared/blocks/_icons.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 1055
+  },
+  {
+    "file": "src/scss/shared/blocks/_plethoraplugins.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 1116
+  },
+  {
+    "file": "src/scss/shared/blocks/_poster-gallery.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 1441
+  },
+  {
+    "file": "src/scss/shared/blocks/_section-frames.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 3878
+  },
+  {
+    "file": "src/scss/shared/blocks/_slider-variations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 9844
+  },
+  {
+    "file": "src/scss/shared/blocks/_style-variations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 5832
+  },
+  {
+    "file": "src/scss/shared/blocks/_visibility-toggle.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 450
+  },
+  {
+    "file": "src/scss/shared/blocks/_visibility-variations.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 1193
+  },
+  {
+    "file": "src/scss/shared/main/_base.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 7586
+  },
+  {
+    "file": "src/scss/shared/main/_events-manager.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 4295
+  },
+  {
+    "file": "src/scss/shared/main/_gravity-forms.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 5620
+  },
+  {
+    "file": "src/scss/shared/main/_headroom.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 2057
+  },
+  {
+    "file": "src/scss/shared/main/_navigation.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 4147
+  },
+  {
+    "file": "src/scss/shared/main/_query-loop-filters.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 703
+  },
+  {
+    "file": "src/scss/shared/main/_slide-in-menu.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 2037
+  },
+  {
+    "file": "src/scss/shared/main/_templates.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 738
+  },
+  {
+    "file": "src/scss/shared/main/_utilities.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 2524
+  },
+  {
+    "file": "src/scss/shared/main/_utility-classes.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 14969
+  },
+  {
+    "file": "src/scss/shared/main/_variables.scss",
+    "group": "shared implementation",
+    "imports": [],
+    "bytes": 659
+  }
+]
