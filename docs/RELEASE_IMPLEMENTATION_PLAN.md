@@ -944,3 +944,34 @@ draft. No merge, tag, release or client deployment occurred. Documentation white
 and JSON parsing checks pass; runtime test suites are unchanged from the passing
 package runs. The existing released-theme Watch video validation warning remains
 separately documented, not silently repaired by this work.
+
+
+## Local checkout and primary-term routing correction — 2026-11-17
+
+The owner requested normal Local loading. The adapter was removed, its source retained
+in local diagnostics, and `codex/conditional-css-plan` is now checked out in the actual
+`wp-content/themes/flexline` repository. The old worktree is detached. Normal installed
+plugins and the existing child theme load; candidate plugin substitutions are no longer
+active. The archived local snapshot and its dead-branch tag remain intact.
+
+Removing the adapter exposed an existing routing defect from `4d1d52e8` (April 20):
+Core does not recognize `%primary_term%` as a leading text tag, so its generic term
+rule precedes page rules. This intercepted both real pages and the regression pages.
+The theme now enables Core's verbose page handling for a leading `%primary_term%`,
+both during init/request parsing and during rule generation (including after Core
+resets its flags). Real pages take precedence; nonexistent page matches fall through
+to post rules. Existing tag/query semantics, permalink settings and content are unchanged.
+
+Verification: real Core generation passes primary-term, prefixed primary-term, normal
+post-name and numeric-year structures via `wp eval-file tests/primary-term-permalinks-integration.php`.
+All nine primary-term resolver contracts pass. PHP syntax/PHPCS and `git diff --check`
+pass. After `wp --url=http://mylifesite2026.test/testing/ rewrite flush`, About Us, FAQ,
+regression index, Heroes and Floor Plans return HTTP 200 at their original URLs, as do
+two existing category/post URLs. Only the testing subsite's rules were flushed.
+
+For another affected site, refresh its permalink rules once after installing this fix;
+do not flush on every request. Reverting code requires regenerating that site's rules
+as well and may restore the original routing defect. No content/schema migration is
+needed. The earlier conditional-asset ZIP hashes and full acceptance runs describe the
+prior commit, not this additional PHP routing change. No release or client deployment
+has occurred; external rollout gates remain open.
