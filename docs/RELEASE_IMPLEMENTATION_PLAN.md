@@ -975,3 +975,25 @@ as well and may restore the original routing defect. No content/schema migration
 needed. The earlier conditional-asset ZIP hashes and full acceptance runs describe the
 prior commit, not this additional PHP routing change. No release or client deployment
 has occurred; external rollout gates remain open.
+
+## Gallery PDF markup and toggle contrast — 2026-11-17
+
+Removed the unsupported hard-coded `aria-label` from the floor-plan toggle pattern's
+PDF button. The installed WordPress 7.2-RC1 block library reproduced the old markup's
+validation failure; the corrected button parses with zero validation issues and
+remains valid after serialization/reopening. Font-size classes, PDF text, download
+icon and styling are unchanged. Existing inserted copies still require normal block
+recovery; no saved page content is migrated.
+
+Selected visibility toggles now pair `primary-dark` backgrounds with `base` text.
+The production build passed; both full app CSS and conditional tail CSS are retained.
+Browser checks on the Local Galleries page confirm 2D and 3D each use white base text
+on the dark selected background; unselected buttons retain their gold background
+and dark text. No JavaScript changes are included. PHP syntax and diff whitespace
+checks pass. Prior artifact hashes describe the earlier commits; this change needs
+its own hosted package checks. No version bump, release or client deployment.
+
+Recovery is a code/package revert; it does not require restoring a database. The
+markup correction affects new pattern insertions and does not reverse user recovery
+of existing blocks. Evidence is retained in local diagnostics as
+`pdf-button-validation.txt` and `toggle-base-contrast.jpg`.
