@@ -38,6 +38,13 @@
   noise in the Laravel Mix build until the broader SCSS module migration is
   scheduled.
 
+## 2.2.9
+
+- Restore the Plain Text button underline on hover and keyboard focus while
+  preserving its arrow.
+- Move Plain Text button padding defaults into theme.json so child themes,
+  Site Editor styles, and individual button spacing can override them.
+
 ## 2.2.8
 
 - Keep poster galleries ready for the first click when WP Rocket delays scripts.
