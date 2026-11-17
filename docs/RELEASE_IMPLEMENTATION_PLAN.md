@@ -853,3 +853,32 @@ The release changes no saved content, settings, or dependencies. The retained
 core proof stay outside the release. Before wider rollout, verify first click,
 navigation, repeated closes and post-close scrolling on the Testing gallery
 pages with normal optimization and with WP Rocket bypassed.
+
+## 17 November — 2.2.9 Plain Text button fixes
+
+Release the merged underline selector correction from PR #591 together with the
+Plain Text padding correction. The four high-specificity zero-padding declarations
+move to the text-link variation in theme.json, allowing child theme defaults,
+saved Global Styles, and per-button spacing to participate in WordPress's cascade.
+The conditional asset architecture review is excluded from this release.
+
+`npm run build`, `npm run lint-style`, `node tests/component-css-equivalence.cjs`
+(1,292 declarations), and `php tests/component-styles-contract.php` (eight cases)
+passed. The unrelated generated block-extensions.js difference was discarded.
+A read-only WordPress 7.2 Beta 5 probe generated parent zero-padding defaults,
+child 4px overrides, and custom 8px overrides using WP_Theme_JSON. A temporary
+browser CSS change equivalent to the four removed declarations on Brice Pointe
+verified its existing saved 8px vertical/0 horizontal padding, the 3px underline
+on hover and actual Tab keyboard focus, the visible arrow, and an individual
+12px/16px spacing override. Reload restored the original site response; no site
+files or saved content were changed. Evidence is retained in the workspace's
+`diagnostics/flexline-229-release` directory. Hosted package/CodeQL checks and
+published asset verification remain pending at this preparation commit.
+
+No dependencies, database schema, settings, or stored content change. No plugin
+upgrade or ordering requirement is introduced. Retain the exact published 2.2.8
+ZIP for code rollback; it restores the prior button behavior without a database
+restore. Installation-specific recovery packages and Fleet Canary Health/visual
+checks remain part of the owner's deployment. This browser test is not a native
+ZIP install/rollback acceptance test. Tag publication updates the production
+branch through the existing release workflow; no site configuration is changed.
