@@ -997,3 +997,21 @@ Recovery is a code/package revert; it does not require restoring a database. The
 markup correction affects new pattern insertions and does not reverse user recovery
 of existing blocks. Evidence is retained in local diagnostics as
 `pdf-button-validation.txt` and `toggle-base-contrast.jpg`.
+
+## Intro image and video modal correction — 2026-11-17
+
+The Text and Video intro had `enableModal=true` but omitted the frontend
+`enable-modal` trigger class. Added the class to the source pattern and derive it
+from the enabled image setting during server rendering, so existing saved copies
+without the class also bind correctly. Disabled images remain unchanged. The plain
+Text and Image intro now uses `linkDestination=none` and no anchor around its image.
+Existing inserted plain-image links are not migrated or removed automatically.
+
+Local verification: rendered source patterns have zero anchors; the video pattern
+has its modal class and media URL. Saved image probes with enableModal true/false
+pass. Browser testing of the Modules demo opens the configured Loom embed URL and
+Escape closes the modal and returns focus to the trigger. This verifies modal
+routing and dismissal, not external video playback. PHP syntax, targeted PHPCS and
+whitespace checks pass. Screenshot: local diagnostics `intro-modal-fixed.jpg`.
+No JS/CSS rebuild is needed for these PHP-only changes. Recovery is a code revert;
+no database migration or dependency change. No release or client deployment.
