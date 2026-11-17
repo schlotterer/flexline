@@ -882,3 +882,18 @@ restore. Installation-specific recovery packages and Fleet Canary Health/visual
 checks remain part of the owner's deployment. This browser test is not a native
 ZIP install/rollback acceptance test. Tag publication updates the production
 branch through the existing release workflow; no site configuration is changed.
+
+### Conditional assets Phase 5 — 2026-11-17 (non-publishable previews)
+
+`codex/conditional-css-plan` now has a guarded WordPress <6.6 Plain Text compatibility
+sheet found through installed-package acceptance. Final runtime commit `766ef0ab`;
+preview ZIP SHA256 `02532a906779fa7053384c7cc2146062937bc0506c6aaa8bbe8ff8a62d79c821`,
+344 files. The pinned package tool's `build --execute` passed. Preview version 2.2.9
+is not a replacement for the already published release of that number.
+
+Exact plugin artifacts, environment, commands, metrics and remaining gates are in
+`CONDITIONAL_ASSET_ACCEPTANCE.md` and `.json`. Four old/new combinations and scoped
+file rollback preserve synthetic content, after explicit PHP opcode cache resets.
+No client installation changed. Actual editor acceptance is unresolved (blank iframe
+also reproduces with released v2.2.9); further UI/cache/canary/GitHub gates remain.
+No release tag, production-default change or deployment is authorized by this record.

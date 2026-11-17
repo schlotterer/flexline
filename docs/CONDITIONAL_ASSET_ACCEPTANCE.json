@@ -1,0 +1,165 @@
+{
+  "date": "2026-11-17",
+  "status": "partial-local-acceptance-not-rollout-approved",
+  "wordpress_installed": "7.1.4",
+  "wordpress_minimum_theme_probe": "6.5.7",
+  "php_container": "8.2.35",
+  "wordpress_plugin_unit_tests": "6.8.0",
+  "platform_dependency": "web4sl 1.2.6",
+  "artifacts": {
+    "flexline": {
+      "version": "2.2.9",
+      "commit": "766ef0ab58413dd83220b033d3a7035a659929b6",
+      "sha256": "02532a906779fa7053384c7cc2146062937bc0506c6aaa8bbe8ff8a62d79c821",
+      "checks_passed": true,
+      "archive": "flexline-2.2.9.zip",
+      "files": 344
+    },
+    "web4sl-location-sync": {
+      "version": "1.1.4",
+      "commit": "a1b94239fccf96de016ea76cc7c0bf35b008451c",
+      "sha256": "998370806ce504db288a0dc2dc5ef35152ad3c1324d60b3b5a14ec28b92b90d0",
+      "checks_passed": true,
+      "archive": "web4sl-location-sync-1.1.4.zip",
+      "files": 66
+    },
+    "web4sl-advanced-floor-plans": {
+      "version": "1.0.1",
+      "commit": "607074e05c28aa8ac1cd6efc370fb865ef4f1028",
+      "sha256": "d27fe04c88b046e9efb2114f54bf9b1748b4f2100ac8bc82c53ad7ec52518be3",
+      "checks_passed": true,
+      "archive": "web4sl-advanced-floor-plans-1.0.1.zip",
+      "files": 92
+    }
+  },
+  "measurements": {
+    "plain-split": {
+      "url": "http://127.0.0.1:8795/phase5-plain/",
+      "requests": 4,
+      "bytes": 74577
+    },
+    "plain-complete": {
+      "url": "http://127.0.0.1:8795/phase5-plain/?complete=1",
+      "requests": 8,
+      "bytes": 169378
+    },
+    "slider-split": {
+      "url": "http://127.0.0.1:8795/phase5-slider/",
+      "requests": 6,
+      "bytes": 100579
+    },
+    "slider-complete": {
+      "url": "http://127.0.0.1:8795/phase5-slider/?complete=1",
+      "requests": 8,
+      "bytes": 169378
+    },
+    "scroll-split": {
+      "url": "http://127.0.0.1:8795/phase5-scroll/",
+      "requests": 6,
+      "bytes": 131048
+    },
+    "scroll-complete": {
+      "url": "http://127.0.0.1:8795/phase5-scroll/?complete=1",
+      "requests": 8,
+      "bytes": 169378
+    },
+    "both-split": {
+      "url": "http://127.0.0.1:8795/phase5-both/",
+      "requests": 8,
+      "bytes": 157050
+    },
+    "both-complete": {
+      "url": "http://127.0.0.1:8795/phase5-both/?complete=1",
+      "requests": 8,
+      "bytes": 169378
+    },
+    "locations-split": {
+      "url": "http://127.0.0.1:8795/phase5-locations/",
+      "requests": 11,
+      "bytes": 177198
+    },
+    "locations-complete": {
+      "url": "http://127.0.0.1:8795/phase5-locations/?complete=1",
+      "requests": 9,
+      "bytes": 178513
+    },
+    "floorplans-split": {
+      "url": "http://127.0.0.1:8795/phase5-floorplans/",
+      "requests": 9,
+      "bytes": 178513
+    },
+    "floorplans-complete": {
+      "url": "http://127.0.0.1:8795/phase5-floorplans/?complete=1",
+      "requests": 9,
+      "bytes": 178513
+    }
+  },
+  "mixed_versions": {
+    "released-theme-candidate-plugins": {
+      "metadata": false,
+      "rendered": 2,
+      "html_sha256": "7d7f475cd8cabd8391984dd15a01c15f762b7c97223016970b076d14c5d356dd",
+      "pages": {
+        "locations": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        },
+        "floorplans": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        }
+      },
+      "content_sha256": "1f5825b9f20b651b068567c05ff77dd936fc50578314c15edceef0044a2bd8ce"
+    },
+    "candidate-theme-released-plugins": {
+      "metadata": false,
+      "rendered": 2,
+      "html_sha256": "7d7f475cd8cabd8391984dd15a01c15f762b7c97223016970b076d14c5d356dd",
+      "pages": {
+        "locations": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        },
+        "floorplans": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        }
+      },
+      "content_sha256": "1f5825b9f20b651b068567c05ff77dd936fc50578314c15edceef0044a2bd8ce"
+    },
+    "released-theme-released-plugins": {
+      "metadata": false,
+      "rendered": 2,
+      "html_sha256": "7d7f475cd8cabd8391984dd15a01c15f762b7c97223016970b076d14c5d356dd",
+      "pages": {
+        "locations": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        },
+        "floorplans": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        }
+      },
+      "content_sha256": "1f5825b9f20b651b068567c05ff77dd936fc50578314c15edceef0044a2bd8ce"
+    },
+    "candidate-theme-candidate-plugins": {
+      "metadata": true,
+      "rendered": 2,
+      "html_sha256": "7d7f475cd8cabd8391984dd15a01c15f762b7c97223016970b076d14c5d356dd",
+      "pages": {
+        "locations": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        },
+        "floorplans": {
+          "slider_runtime": true,
+          "scroll_runtime": true
+        }
+      },
+      "content_sha256": "1f5825b9f20b651b068567c05ff77dd936fc50578314c15edceef0044a2bd8ce"
+    }
+  },
+  "measurement_scope": "Unique external FlexLine CSS/JS, HTTP identity encoding, same server; excludes inline CSS, fonts, WP/plugin assets. Synthetic local comparison, not client production performance.",
+  "editor_gate": "Blank actual editor iframe with both candidate and released v2.2.9 in the test browser. No candidate-specific regression established; real editor acceptance remains open."
+}

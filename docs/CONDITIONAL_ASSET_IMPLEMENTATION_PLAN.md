@@ -191,3 +191,12 @@ implementation is recorded in the editor asset review; the broader Phase 5
 acceptance matrix remains outstanding.
 WordPress 6.5/7.0 execution is still a verification gate. No installed client theme,
 plugin, page, or saved option was changed during this implementation.
+
+## Phase 5 local acceptance checkpoint — 2026-11-17
+
+See [the acceptance record](CONDITIONAL_ASSET_ACCEPTANCE.md) and its JSON receipt.
+Exact preview packages, installed dynamic plugin checks, external asset measurements,
+all four mixed-version combinations and scoped code rollback have been exercised.
+A WordPress 6.5 Plain Text regression was fixed with a version-scoped compatibility
+sheet. Real editor acceptance, remaining UI/cache combinations, GitHub checks and
+client canaries remain open. Phase 5 is not complete and production remains opt-in.
