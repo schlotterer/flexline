@@ -52,9 +52,9 @@
 	}
 
 	:is(
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button::before,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button::before
-	) {
+		.wp-block-button.is-style-text-link,
+		.wp-block-button[class*="is-style-text-link--"]
+	) .wp-block-button__link.wp-element-button::before {
 		content: "";
 		position: absolute;
 		left: 0;
@@ -66,11 +66,9 @@
 	}
 
 	:is(
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover::before,
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible::before,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover::before,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible::before
-	) {
+		.wp-block-button.is-style-text-link,
+		.wp-block-button[class*="is-style-text-link--"]
+	) .wp-block-button__link.wp-element-button:is(:hover, :focus-visible)::before {
 		height: 3px;
 	}
 
