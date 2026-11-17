@@ -95,16 +95,17 @@ Completion requires an ordinary page to load the base and common assets, while e
 
 Predeclare requirements from configured patterns on the hosting page wherever possible. Prioritize Floor Plans' existing clone/reset path and Location Sync's active REST clients. Add a small fallback protocol for requirements that become known only when a REST fragment is rendered. Complete this protocol before making production depend on conditional feature delivery.
 
-- [ ] Add optional asset metadata to existing fragment responses, preserving current `html` and `markup` fields and response semantics. Define the schema and dependency ordering in both plugin tests.
-- [ ] Generate metadata from supported registered handles and their dependencies. Include versions and styles/scripts already required by the fragment. Retain authorization and pattern resolution checks before computing it.
-- [ ] Implement one reusable browser helper for documents hosting dynamic plugin content. Reuse an existing suitable helper if Phase 1 finds one. It loads missing assets once, recognizes assets already in the document, and shares in-flight promises across simultaneous requests.
-- [ ] Wait for CSS and prerequisite scripts before initializing and revealing interactive replacement content. Preserve the current usable content while a replacement loads. On failure, expose a retryable error through the plugin's existing status UI.
-- [ ] Ignore stale responses when a newer selection wins. Do not initialize detached panels. Preserve existing cleanup when content is removed.
-- [ ] Reuse `flexline:content-updated` where its listener contract fits. Ensure the affected root is supplied, scripts loaded after DOM readiness initialize correctly, and each slider/scroller/media toggle initializes once.
+- [x] Add optional asset metadata to existing fragment responses, preserving current `html` and `markup` fields and response semantics. Define the schema and dependency ordering in both plugin tests.
+- [x] Generate metadata from supported registered handles and their dependencies. Include versions and styles/scripts already required by the fragment. Retain authorization and pattern resolution checks before computing it.
+- [x] Implement one reusable browser helper for documents hosting dynamic plugin content. Reuse an existing suitable helper if Phase 1 finds one. It loads missing assets once, recognizes assets already in the document, and shares in-flight promises across simultaneous requests.
+- [x] Wait for CSS and prerequisite scripts before initializing and revealing interactive replacement content. Preserve the current usable content while a replacement loads. On failure, expose a retryable error through the plugin's existing status UI.
+- [x] Ignore stale responses when a newer selection wins. Do not initialize detached panels. Preserve existing cleanup when content is removed.
+- [x] Reuse `flexline:content-updated` where its listener contract fits. Ensure the affected root is supplied, scripts loaded after DOM readiness initialize correctly, and each slider/scroller/media toggle initializes once.
 - [ ] Preserve `initMediaToggles()` and Location Sync fragment style capture. Verify returned container and element rules style the new content without changing unrelated page layout.
 - [ ] Ensure payloads with omitted asset metadata still work with known predeclared requirements or compatibility mode. Test new plugins with the prior supported FlexLine release and the new theme with prior supported plugins.
 
 Asset metadata must be derived from trusted server registrations. Reuse WordPress dependency order, versioning, inline configuration, and script attributes where needed. Restrict the initial transport to the component handles actually required by this project. If a handle needs localization, modules, or initialization settings the transport cannot reproduce, predeclare that dependency or use compatibility delivery for that integration until supported.
+
 
 ## Phase 4 editor behavior and editable defaults
 
@@ -179,7 +180,9 @@ conditional pages can omit them. The production opt-in policy remains unchanged.
 
 See [the updated loading contract](CONDITIONAL_COMPONENT_STYLES.md) for the API,
 limits, exact verification results, reusable WordPress probe and outstanding gates.
-Phase 2 has local initial-page coverage. Phase 3 fragment transport/initialization,
-Phase 4 editor work, and the broader Phase 5 acceptance matrix remain outstanding.
+Phase 2 has local initial-page coverage. Phase 3 transport and lifecycle implementation
+is recorded in [the fragment contract](CONDITIONAL_FRAGMENT_ASSETS.md), including
+local checks and remaining installed-package/integration acceptance gates. Phase 4
+editor work and the broader Phase 5 acceptance matrix remain outstanding.
 WordPress 6.5/7.0 execution is still a verification gate. No installed client theme,
 plugin, page, or saved option was changed during this implementation.

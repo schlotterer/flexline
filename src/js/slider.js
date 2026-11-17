@@ -1060,6 +1060,10 @@ import { __, sprintf } from '@wordpress/i18n';
 
 	function syncOneSlider(slider) {
 		const wants = shouldRun(slider);
+		// DOM clones retain classes but not the runtime's slide/listener state.
+		if (slider.classList.contains(RUNTIME_CLASS) && !slider._slides) {
+			teardownSlider(slider);
+		}
 		const running = slider.classList.contains(RUNTIME_CLASS);
 
 		if (running && wants) {

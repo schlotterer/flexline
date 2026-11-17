@@ -8,6 +8,7 @@
 namespace FlexLine;
 
 require_once __DIR__ . '/component-requirements.php';
+require_once __DIR__ . '/component-fragments.php';
 
 /**
  * Record the native canvas, whose complete template renders before wp_head.
@@ -55,6 +56,9 @@ add_action( 'init', __NAMESPACE__ . '\flexline_register_component_assets', 20 );
 function flexline_collect_component_styles( $content, $block ) {
 	if ( is_admin() ) {
 		return $content;
+	}
+	if ( in_array( $block['blockName'] ?? '', array( 'web4sl/location-map', 'web4sl/advanced-floor-plans' ), true ) ) {
+		$GLOBALS['flexline_fragment_host'] = true;
 	}
 	// Capture requirements even in fragment requests; delivery remains request-local.
 	flexline_require_components( flexline_markup_requirements( $content, $block['attrs'] ?? array() ) );
@@ -136,8 +140,11 @@ function flexline_enqueue_component_styles() {
 			}
 		}
 		// Broad toggle/Plethora overrides must remain after optional feature rules.
+		wp_register_style( 'flexline-component-tail', false, $handles, flexline_asset_ver( $files['tail'] ) );
+		wp_enqueue_style( 'flexline-component-tail' );
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local compiled asset.
-		wp_add_inline_style( end( $handles ), file_get_contents( get_theme_file_path( $files['tail'] ) ) );
+		wp_add_inline_style( 'flexline-component-tail', file_get_contents( get_theme_file_path( $files['tail'] ) ) );
+		$handles[] = 'flexline-component-tail';
 	}
 	foreach ( array(
 		'horizontal-scroll' => 'flexline-scroll',
@@ -158,6 +165,7 @@ function flexline_enqueue_component_styles() {
 		'features' => $required,
 		'fallback' => array_keys( $GLOBALS['flexline_component_fallback'] ?? array() ),
 	);
+	flexline_enqueue_fragment_loader();
 	if ( $local && ! empty( $GLOBALS['flexline_component_fallback'] ) ) {
 		// Inspectable without leaking pattern IDs or content into public HTML/logs.
 		do_action( 'flexline_component_diagnostic', $GLOBALS['flexline_component_delivery'] );

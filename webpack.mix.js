@@ -16,6 +16,7 @@ const evergreenTwoBrowserslist = [
 const jsFiles = [
         'src/js/blocks/block-extensions.js',
         'src/js/modal.js',
+        'src/js/component-loader.js',
         'src/js/horizontal-scroll.js',
 		'src/js/slider.js',
         'src/js/slidein.js',
