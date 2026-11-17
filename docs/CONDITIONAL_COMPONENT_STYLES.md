@@ -1,71 +1,136 @@
-# Conditional component CSS
+# Conditional component assets
 
-The initial split covers horizontal scrolling and sliders only. Buttons, colors,
-backgrounds, forms, navigation, typography and other utilities remain available.
-No selectors are purged. The complete `app.css` is still the editor stylesheet
-and the fallback frontend bundle.
+Phase 2 establishes initial-document delivery. `base.css` contains the shared
+foundation. Slider, horizontal-scroll, and modal requirements control their CSS
+and runtimes together. Forms, Events Manager, navigation, poster galleries and
+other shared integrations remain in the base until their triggers are audited.
+The complete `app.css`, `app-conditional.css` compatibility alias, and editor
+bundle remain packaged.
 
-## Activation and rollback
+## Activation and compatibility
 
-`flexline_conditional_component_styles` defaults true only when WordPress reports
-`local` or `development`. It defaults false in production. The option of the
-same name can override the default. Returning false from the filter restores the
-complete bundle immediately; clear the page cache after changing it. No database
-migration is involved.
+`flexline_conditional_component_styles` still defaults true only in Local and
+development. Its option/filter can override that default. Production stays in
+complete mode while later-fragment and cross-version acceptance work continues.
+Clear page caches when changing the mode.
 
-Optimization requires the exact native WordPress template-canvas.php, observed
-pre-head rendered blocks and all built split assets. Otherwise full app.css loads.
-The native canvas renders the full block template before wp_head. The collector
-therefore observes nested template parts, patterns, Query Loops and dynamic output,
-not just blocks in post_content. Mobile-only horizontal-scroll classes count even
-on desktop. Required sheets are enqueued in the head, not on interaction.
+Conditional delivery requires the native WordPress template canvas, observed
+rendering before the head, readable component files, and a complete requirement
+set. Unknown custom templates, malformed declarations, missing references,
+recursive patterns, and unknown dynamic pattern output select compatibility.
+Compatibility loads app.css, modal.css, and the slider/scroller/modal runtimes,
+so custom templates that render after the head have the theme assets available.
+This mode now deliberately includes all three runtimes; it costs more than a
+verified conditional page. It does not replace a plugin's own asset registration.
 
-For asynchronous components or markup injected after template rendering, declare
-requirements before wp_enqueue_scripts, for example:
+`$GLOBALS['flexline_component_delivery']` records the decision, feature union and
+fallback reason codes. In Local/development, the `flexline_component_diagnostic`
+action receives that result when discovery encounters an unresolved requirement.
+No pattern content or IDs are written to public HTML or logs.
+
+## Initial rendering and configured patterns
+
+The final render_block collector sees nested template parts, patterns, Query Loop
+results and dynamic output. It reads actual HTML tag attributes and supported
+block settings, rather than matching words anywhere in the content. Mobile-only
+horizontal scrolling requires component CSS even on desktop, but does not request
+the desktop scrolling runtime.
+
+The FlexLine adapter calls the existing public `resolve_effective_pattern()` API
+on Location Sync and Advanced Floor Plans. Plugin main remains authoritative for
+override/default/fallback behavior. Location comparisons preserve main's grid
+resolution with the card override as fallback. Lists, popovers, comparisons and
+floor-plan panels are inspected even when their initial results are empty.
+No plugin files or record-rendering loops are added by this phase.
+
+Configured pattern discovery follows registered patterns, published user/synced
+patterns and template parts through WordPress APIs. It collects registered block
+style/view-style and script/view-script handles for WordPress to enqueue with their
+normal dependencies and inline configuration. Plugin render helpers retain their
+existing context, generated style capture, and owned asset behavior.
+
+Traversal is limited to 32 levels and 4,096 parsed blocks per request, with an
+active-reference cycle guard. Successful results are memoized in the request,
+keyed by site, stylesheet, reference and source bytes. Cache hits replay feature
+and handle declarations. The normal request-wide feature union also survives the
+plugins' existing request-scoped HTML cache hits. No persistent cache is added.
+
+A configured dynamic block can emit data-dependent content. Unless it is a known
+Core structural/metadata block or resolved pattern host, it selects complete mode.
+An integration can use `flexline_dynamic_block_requirements` to return its complete
+feature union, including an empty array for a block that cannot introduce theme
+features. The default `null` means unknown. Do not use this filter to guess what a
+single record happens to render. Runtime-generated unknown plugin handles and
+module/localization requirements remain integration acceptance work.
+
+## Declaration API
+
+Declare a union before wp_enqueue_scripts:
 
 ```php
-add_filter( 'flexline_required_component_styles', function ( $required ) {
-    $required['horizontal-scroll'] = true;
-    $required['slider'] = true;
-    return $required;
-} );
+do_action( 'flexline_require_components', array(
+    'slider' => true,
+    'horizontal-scroll-mobile' => true,
+    'modal' => true,
+) );
 ```
 
-Alternatively disable optimization for that request. Unknown keys or a malformed
-requirements value cause full fallback. This first release does not attempt to
-infer arbitrary JavaScript-injected markup. Iframes make their own request and
-receive their own asset decision. Admin/editor loading remains unchanged.
+Supported identifiers are `slider`, `horizontal-scroll`,
+`horizontal-scroll-mobile`, and `modal`. Desktop horizontal scrolling requests
+both its CSS and runtime. The existing `flexline_required_component_styles` filter
+remains supported and now applies to runtime requirements too. Repeated true
+flags accumulate; they cannot remove a feature already observed in rendered output.
+
+Registering a requirement after the head cannot retroactively deliver head CSS.
+Phase 3 must cover the fragment-response protocol and root-aware initialization
+before conditional delivery becomes the production default. Existing editor
+bundles and editor runtime enqueue paths remain unchanged in Phase 2.
 
 ## Sources and cascade
 
-app.scss composes app-conditional.scss, horizontal scrolling, slider and the tiny
-component-tail.scss in original order. The frontend reduced base and selected
-component sheets use the same mixins. Tail styles (Plethora overrides and toggle
-states) are included inline after the final selected sheet, preserving cascade
-without a tiny extra request. Nonempty customize.css depends on those handles so
-site overrides remain last. Both complete and split assets must ship together.
+app.scss composes base, horizontal scrolling, slider, and component-tail in that
+order. app-conditional.scss is an alias for base.scss. The small tail still follows
+the last selected feature sheet inline. Its broad Plethora/toggle selectors can
+overlap earlier component rules, so it was deliberately retained in its original
+position. customize.css depends on the selected handles, including modal styles.
 
-## Verification
+Slider startup styles now belong to the head-loaded slider stylesheet and the
+complete bundle. They hide later slides before initialization, retain the height
+baseline, and preserve the former active-slide and legacy inner-container rules.
+The unconditional slider style tag was removed from preload-scripts.php.
+Feature runtimes and modal CSS are registered at init with stable dependencies.
 
-- `npm run build` with Node 24.14.0: passed.
-- `npm run ci-lint-style`: passed.
-- `vendor/bin/phpcs inc/component-styles.php inc/scripts.php`: passed.
-- `php tests/component-styles-contract.php`: 8 focused checks passed.
-- `node tests/component-css-equivalence.cjs`: all 1,291 compiled declarations,
-  including selectors, values, importance and ordering, match the complete bundle.
-- PHP syntax and git diff whitespace checks passed.
-- Local homepage HTTP 200: reduced base and slider CSS appear in head, horizontal
-  scroll CSS omitted, global toggle/button tail retained.
+## Phase 2 verification — 17 November 2026
 
-Built source sizes: complete app.css 111,487 bytes; reduced base 66,782;
-horizontal scroll 36,053; slider 7,337; always-present inline tail 1,318.
-These are uncompressed sizes, not network savings. Existing full app.css output
-is unchanged. When both optional components are needed, all CSS remains available.
+- Node 24.19.0 production build and style lint passed.
+- Changed runtime PHP files passed PHPCS and syntax checks.
+- 26 component contract checks passed, covering delivery, token matching, pattern
+  graphs, recursion, budgets, cache replay/site isolation, plugin adapters and fallback.
+- Full/split CSS equivalence passed for 1,300 declarations, including order,
+  values and importance. The compatibility base alias is byte-identical.
+- PHPUnit passed 48 tests / 180 assertions.
+- Read-only WordPress 7.2 Beta 5 probes loaded the isolated theme and actual plugin
+  main sources, then exercised simple/nested fixtures and both real parent
+  renderers with empty results and configured patterns. No content was saved.
+- Browser fixtures verified plain-page omission, slider/scroller controls,
+  keyboard activation, mobile native overflow/resizing without scroller JS, and
+  complete-mode rendering. Blocking slider.js preserved a visible first slide,
+  hidden second slide, and the 240px fixture height. Final fresh fixtures had no
+  console warnings/errors.
 
-Local Charlie browser checks verified reduced base CSS on Home and About,
-desktop scrolling on Testimonials, and touch scrolling on Resources. Temporary
-Charlie responses verified slider controls with mouse and keyboard, both
-components on the same page, and full CSS fallback. Hosted visual and health
-verification is still pending. To test the split on a hosted subsite, enable
-`flexline_conditional_component_styles` for that subsite and clear its page
-cache before checking requests in the browser.
+The reusable `tests/component-assets-wordpress-probe.php` runs through WP-CLI with
+`--skip-themes --skip-plugins`. Pass the isolated theme root, Location Sync main
+root, Floor Plans main root, an existing output directory, and its local HTTP URL.
+It generates runtime.json and HTML fixtures; serve the output with an `assets`
+symlink to the candidate theme's assets. It does not install or save fixture posts.
+Run against a disposable or explicitly authorized local WordPress environment.
+
+Local evidence is retained in the parent workspace under
+`diagnostics/conditional-assets-phase2-20261117`. The fixture initially omitted
+common slide-in configuration and reused a base-style registration across cases;
+both harness issues were corrected before final verification.
+
+This is branch-level initial-page acceptance. WordPress 6.5/7.0 runtime checks,
+real client visual/optimization checks, later REST insertions, editor acceptance,
+plugin version combinations, and deployment recovery remain later gates. There
+is no release tag, production-default switch, or site installation in Phase 2.

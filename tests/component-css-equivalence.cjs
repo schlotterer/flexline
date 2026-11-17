@@ -18,8 +18,12 @@ const declarations = (css) => {
 	return result;
 };
 const full = declarations(read('app.css'));
-const split = declarations(['app-conditional.css', 'component-horizontal-scroll.css', 'component-slider.css', 'component-tail.css'].map(read).join('\n'));
+const split = declarations(['base.css', 'component-horizontal-scroll.css', 'component-slider.css', 'component-tail.css'].map(read).join('\n'));
 if (JSON.stringify(full) !== JSON.stringify(split)) {
 	throw new Error('Split CSS changed the full bundle declaration sequence.');
 }
 console.log(`PASS: ${full.length} compiled declarations retain selectors, values, importance and order.`);
+
+if (read('base.css') !== read('app-conditional.css')) {
+	throw new Error('Compatibility base alias drifted.');
+}

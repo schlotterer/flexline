@@ -77,15 +77,15 @@ Plugins expose the effective pattern references using their existing resolvers. 
 
 ## Phase 2 initial page and configured patterns
 
-- [ ] Introduce an explicitly named base entry point, proposed as `base.scss` producing `base.css`. Keep compatibility artifacts required by current consumers until their migration is verified.
-- [ ] Consolidate requirement detection for slider CSS, slider JavaScript, horizontal scrolling, and modal assets. Match class tokens and supported block attributes rather than arbitrary text substrings.
-- [ ] Collect requirements from the complete rendered template, including template parts, synced patterns, nested dynamic blocks, and Query Loop results.
-- [ ] Traverse all patterns reachable from the configured plugin block, including views that are initially hidden or empty. Follow registered patterns, user patterns, and synced references through existing resolution APIs.
-- [ ] Guard recursive references with a visited set and bounded traversal. An unresolved or dynamically generated requirement selects the compatibility path for that response and exposes a development diagnostic.
-- [ ] Associate cached pattern HTML with its requirements so cache hits retain the same asset declarations as fresh renders. Start with request-scoped memoization. Any persistent cache must include site, theme, pattern revision, and configuration dependencies and invalidate when they change.
-- [ ] Move fading-slider startup rules into feature-owned delivery that reaches the head before first paint. Confirm slides do not flash or collapse while scripts load.
-- [ ] Audit and resolve tail ordering before moving those rules into the base or their feature owners. Check existing winning declarations at points of overlap.
-- [ ] Retain an explicit complete-bundle compatibility mode for supported custom templates or integrations whose requirements cannot be determined early. Apply the same CSS and runtime requirement policy to that mode.
+- [x] Introduce an explicitly named base entry point, proposed as `base.scss` producing `base.css`. Keep compatibility artifacts required by current consumers until their migration is verified.
+- [x] Consolidate requirement detection for slider CSS, slider JavaScript, horizontal scrolling, and modal assets. Match class tokens and supported block attributes rather than arbitrary text substrings.
+- [x] Collect requirements from the complete rendered template, including template parts, synced patterns, nested dynamic blocks, and Query Loop results.
+- [x] Traverse all patterns reachable from the configured plugin block, including views that are initially hidden or empty. Follow registered patterns, user patterns, and synced references through existing resolution APIs.
+- [x] Guard recursive references with a visited set and bounded traversal. An unresolved or dynamically generated requirement selects the compatibility path for that response and exposes a development diagnostic.
+- [x] Associate cached pattern HTML with its requirements so cache hits retain the same asset declarations as fresh renders. Start with request-scoped memoization. Any persistent cache must include site, theme, pattern revision, and configuration dependencies and invalidate when they change.
+- [x] Move fading-slider startup rules into feature-owned delivery that reaches the head before first paint. Confirm slides do not flash or collapse while scripts load.
+- [x] Audit and resolve tail ordering before moving those rules into the base or their feature owners. Check existing winning declarations at points of overlap.
+- [x] Retain an explicit complete-bundle compatibility mode for supported custom templates or integrations whose requirements cannot be determined early. Apply the same CSS and runtime requirement policy to that mode.
 
 Avoid rendering every location or floor-plan record merely to discover assets. Resolve the configured pattern structure once and use render-time declarations for data-dependent output. Document how each data-dependent branch reports the union of assets it can introduce.
 
@@ -110,7 +110,7 @@ Asset metadata must be derived from trusted server registrations. Reuse WordPres
 
 - [ ] Make required styles available when a user inserts a feature or changes a setting, including inside the Site Editor iframe and server-rendered plugin previews. Use the editor's asset pipeline and document context.
 - [ ] Preserve the complete editor bundle during transition if necessary for reliable insertion. Measure and document its eventual relationship to component loading.
-- [ ] Define Plain Text zero padding in its WordPress style variation defaults. Remove the high-specificity padding reset after verifying both parent-only FlexLine and child themes.
+- [x] Define Plain Text zero padding in its WordPress style variation defaults. Remove the high-specificity padding reset after verifying both parent-only FlexLine and child themes.
 - [ ] Check other editable values in Plain Text and Outline fallbacks, especially colors, borders, line height, and padding. Adjust those proven to block saved editor settings.
 - [ ] Preserve legacy suffixed style classes and the corrected underline selectors. Test defaults, global Button styles, variation-specific styles, child-theme values, and individual block overrides as distinct cases.
 
@@ -160,3 +160,26 @@ This ordering describes dependencies. Existing code that already fulfills a requ
 - [ ] Update `docs/RELEASE_IMPLEMENTATION_PLAN.md` with commands, artifact references, outcomes, and unresolved acceptance cases during execution.
 
 Completion means conditional loading is consistent across supported environments, plugin patterns remain functional through every delivery path, the Style Editor controls editable defaults, and the recorded acceptance matrix supports the shipped version combination.
+
+## Phase 2 execution record — 17 November 2026
+
+Implemented on `codex/conditional-css-plan`, fast-forwarded to released FlexLine
+2.2.9 (`ea736a05`) before editing. The separate button release is preserved.
+Refetched plugin main: Location Sync `2cbcbad39e67f871743b0a54911ed8e401821d94`,
+Advanced Floor Plans `8745c804e2bd569c776b2e298794b0135d302313` (unchanged).
+Their existing public resolvers support the Phase 2 adapter, so neither plugin
+needed a source change. The Phase 1 plan/review/inventory are now committed.
+
+The tail-order audit chose to retain the inline tail after optional features;
+no reorder was needed. Request-scoped pattern discovery retains requirements on
+warm lookups and reads every configured surface without rendering records merely
+to discover assets. Unknown dynamic output uses complete delivery until an explicit
+union can be supplied. Complete mode includes all theme feature runtimes; verified
+conditional pages can omit them. The production opt-in policy remains unchanged.
+
+See [the updated loading contract](CONDITIONAL_COMPONENT_STYLES.md) for the API,
+limits, exact verification results, reusable WordPress probe and outstanding gates.
+Phase 2 has local initial-page coverage. Phase 3 fragment transport/initialization,
+Phase 4 editor work, and the broader Phase 5 acceptance matrix remain outstanding.
+WordPress 6.5/7.0 execution is still a verification gate. No installed client theme,
+plugin, page, or saved option was changed during this implementation.

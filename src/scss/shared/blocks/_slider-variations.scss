@@ -1,6 +1,28 @@
 @mixin flexline-slider-variations-rules {
 	/* Dedicated styles for FlexLine fading slider */
 
+	// Head-loaded feature CSS prevents uninitialized slides from flashing.
+	body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) > *:not(:first-child),
+	body:not(.block-editor-page) .is-style-slider:not(.slider-runtime-active) > .wp-block-group__inner-container > *:not(:first-child) {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	// Preserve the former head rules for direct and legacy inner-container slides.
+	body:not(.block-editor-page) .is-style-slider.slider-runtime-active > *.is-slide-active,
+	body:not(.block-editor-page) .is-style-slider.slider-runtime-active > .wp-block-group__inner-container > *.is-slide-active {
+		opacity: 1;
+		pointer-events: auto;
+		z-index: 2;
+	}
+
+	body:not(.block-editor-page) .is-style-slider.slider-runtime-active > *.is-slide-prev,
+	body:not(.block-editor-page) .is-style-slider.slider-runtime-active > .wp-block-group__inner-container > *.is-slide-prev {
+		z-index: 1;
+	}
+
 	.slider-wrapper {
 	  position: relative;
 	  width: 100%;
