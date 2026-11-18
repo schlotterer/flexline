@@ -1,5 +1,15 @@
 # Phase 3: late fragment assets
 
+## Current activation policy — 2026-11-17
+
+The owner authorized removing the environment restriction: conditional delivery now
+defaults on in all environments when this branch is deployed. Explicit option/filter
+opt-outs and conservative compatibility fallbacks remain supported. Earlier entries
+below describing production opt-in record the previous policy and are superseded.
+Clear full-page and optimizer/CDN caches once on deployment and after rollback.
+This change does not merge, tag, publish, or deploy the branch to a client site.
+
+
 Implemented locally on 2026-11-17. Production conditional delivery remains opt-in.
 No installed theme/plugin, saved content, or site configuration was changed.
 

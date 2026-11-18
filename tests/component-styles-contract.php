@@ -9,7 +9,7 @@ function get_bloginfo($key) { return $GLOBALS['test_wp_version'] ?? '7.2'; }
 function is_admin() { global $admin; return $admin; }
 function did_action($name) { global $head; return $head; }
 function wp_get_environment_type() { global $env; return $env; }
-function get_option($k, $d) { return $d; }
+function get_option($k, $d) { return $GLOBALS['test_options'][$k] ?? $d; }
 function apply_filters($k, $v, ...$args) { global $filters; return isset($filters[$k]) ? $filters[$k]($v, ...$args) : $v; }
 function get_theme_file_path($f) { return dirname(__DIR__) . '/' . $f; }
 function get_theme_file_uri($f) { return $f; }
@@ -56,7 +56,7 @@ eval('namespace FlexLine; function flexline_asset_ver($p) { return "test"; }');
 require get_theme_file_path('inc/component-styles.php');
 function reset_state() {
     global $enqueued, $scripts, $inlines, $filters, $head, $env, $site;
-    $enqueued = $scripts = $inlines = $filters = []; $head = 0; $env = 'local'; $site = 1;
+    $enqueued = $scripts = $inlines = $filters = []; $head = 0; $env = 'local'; $site = 1; $GLOBALS['test_options'] = [];
     foreach (array_keys($GLOBALS) as $key) if (str_starts_with($key, 'flexline_')) unset($GLOBALS[$key]);
 }
 function check($condition, $label) { if (!$condition) throw new Exception($label); echo "PASS $label\n"; }
@@ -86,8 +86,14 @@ reset_state(); native(); $filters['flexline_required_component_styles'] = fn($r)
 check(isset($enqueued['flexline-component-slider'], $scripts['flexline-slider']), 'legacy integration filter declares both asset types');
 reset_state(); native(); $filters['flexline_required_component_styles'] = fn($r) => ['mystery'=>true]; FlexLine\flexline_enqueue_component_styles();
 check(!$GLOBALS['flexline_component_delivery']['split'] && count($scripts) === 3, 'unknown declarations choose complete compatibility');
-reset_state(); native(); $env = 'production'; FlexLine\flexline_enqueue_component_styles();
-check(!$GLOBALS['flexline_component_delivery']['split'], 'production stays complete by default');
+foreach (['local', 'development', 'staging', 'production'] as $environment) {
+    reset_state(); native(); $env = $environment; FlexLine\flexline_enqueue_component_styles();
+    check($GLOBALS['flexline_component_delivery']['split'] && $enqueued['flexline-base'][0] === 'assets/built/css/base.css' && !$scripts, "$environment defaults to conditional delivery");
+}
+reset_state(); native(); $GLOBALS['test_options']['flexline_conditional_component_styles'] = false; FlexLine\flexline_enqueue_component_styles();
+check(!$GLOBALS['flexline_component_delivery']['split'] && $enqueued['flexline-base'][0] === 'assets/built/css/app.css' && count($scripts) === 3, 'saved false option retains complete compatibility');
+reset_state(); native(); $GLOBALS['test_options']['flexline_conditional_component_styles'] = false; $filters['flexline_conditional_component_styles'] = fn($v) => true; FlexLine\flexline_enqueue_component_styles();
+check($GLOBALS['flexline_component_delivery']['split'], 'filter can override saved compatibility option');
 reset_state(); native(); $filters['flexline_conditional_component_styles'] = fn($v) => false; FlexLine\flexline_enqueue_component_styles();
 check(!$GLOBALS['flexline_component_delivery']['split'], 'explicit compatibility filter');
 reset_state();

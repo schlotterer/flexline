@@ -1,8 +1,18 @@
 # Phase 5 acceptance record — local and hosted checks passed, rollout held
 
+## Current activation policy — 2026-11-17
+
+The owner authorized removing the environment restriction: conditional delivery now
+defaults on in all environments when this branch is deployed. Explicit option/filter
+opt-outs and conservative compatibility fallbacks remain supported. Earlier entries
+below describing production opt-in record the previous policy and are superseded.
+Clear full-page and optimizer/CDN caches once on deployment and after rollback.
+This change does not merge, tag, publish, or deploy the branch to a client site.
+
+
 Work remains on `codex/conditional-css-plan`. This is **partial acceptance**, not
-permission to enable conditional delivery by default or deploy to client sites.
-The production opt-in policy is unchanged. Initial package/recovery tests used disposable Docker installations. The owner later
+permission to deploy to client sites. The activation default was subsequently
+changed with owner authorization as recorded above. Initial package/recovery tests used disposable Docker installations. The owner later
 authorized the dedicated `mylifesite2026.test/testing/` subsite for branch testing.
 That subsite now has isolated candidate paths and new regression content. Other
 subsites and shared theme/plugin source files were preserved; no client deployment occurred.

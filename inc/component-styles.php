@@ -96,7 +96,7 @@ function flexline_component_style_dependencies() {
 function flexline_enqueue_component_styles() {
 	flexline_register_component_assets();
 	$local   = in_array( wp_get_environment_type(), array( 'local', 'development' ), true );
-	$enabled = (bool) apply_filters( 'flexline_conditional_component_styles', get_option( 'flexline_conditional_component_styles', $local ) );
+	$enabled = (bool) apply_filters( 'flexline_conditional_component_styles', get_option( 'flexline_conditional_component_styles', true ) );
 	$split   = $enabled && ! is_admin() && ! empty( $GLOBALS['flexline_component_native_canvas'] ) && ! empty( $GLOBALS['flexline_component_render_seen'] );
 	$files   = array(
 		'tail'              => 'assets/built/css/component-tail.css',

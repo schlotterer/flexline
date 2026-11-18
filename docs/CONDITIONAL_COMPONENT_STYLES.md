@@ -9,10 +9,18 @@ bundle remain packaged.
 
 ## Activation and compatibility
 
-`flexline_conditional_component_styles` still defaults true only in Local and
-development. Its option/filter can override that default. Production stays in
-complete mode while later-fragment and cross-version acceptance work continues.
-Clear page caches when changing the mode.
+`flexline_conditional_component_styles` defaults to true in every WordPress
+environment, including staging and production. Deploying this branch enables
+conditional delivery without an environment variable or dashboard setting.
+An explicitly saved false option or false filter still selects complete mode.
+Environment type only limits diagnostic notifications; it does not gate assets.
+
+Clear full-page and optimizer/CDN caches once after deploying this change so cached
+HTML is regenerated with the new asset selection. Existing asset URLs use filemtime
+versions. No automatic global purge or database migration is introduced; cache
+services should be cleared through the site's deployment/cache tools. Reverting
+the code or setting the option false restores complete delivery; clear page caches
+again after rollback.
 
 Conditional delivery requires the native WordPress template canvas, observed
 rendering before the head, readable component files, and a complete requirement
@@ -82,8 +90,7 @@ remains supported and now applies to runtime requirements too. Repeated true
 flags accumulate; they cannot remove a feature already observed in rendered output.
 
 Registering a requirement after the head cannot retroactively deliver head CSS.
-Phase 3 must cover the fragment-response protocol and root-aware initialization
-before conditional delivery becomes the production default. Existing editor
+Phase 3 covers the fragment-response protocol and root-aware initialization. Existing editor
 bundles and editor runtime enqueue paths remain unchanged in Phase 2.
 
 ## Sources and cascade
