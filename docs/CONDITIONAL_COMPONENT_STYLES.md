@@ -20,7 +20,9 @@ HTML is regenerated with the new asset selection. Existing asset URLs use filemt
 versions. No automatic global purge or database migration is introduced; cache
 services should be cleared through the site's deployment/cache tools. For WP Rocket,
 clear its page cache after deployment; if Remove Unused CSS is enabled, clear its
-used CSS as well so it regenerates against the new stylesheet selection. Reverting
+used CSS as well so it regenerates against the new stylesheet selection. Then purge
+SiteGround Dynamic Cache (cached HTML), followed by any separate CDN page cache.
+Verify an anonymous request receives the new asset selection after all layers clear. Reverting
 the code or setting the option false restores complete delivery; clear page caches
 again after rollback.
 

@@ -1024,7 +1024,9 @@ and filter opt-outs and compatibility fallbacks are unchanged. Environment type
 continues to control diagnostics only. No built assets changed or rebuild needed.
 Deployers should purge page/optimizer/CDN caches once to regenerate cached HTML;
 asset URLs already use filemtime versions. For WP Rocket, clear its page cache and,
-when Remove Unused CSS is enabled, its used CSS after deployment. No automatic global cache purge or DB
+when Remove Unused CSS is enabled, its used CSS after deployment. Then purge
+SiteGround Dynamic Cache and any separate CDN page cache; verify fresh anonymous HTML.
+No automatic global cache purge or DB
 migration is introduced. Recovery: revert the change or save a false option, then
 purge cached pages. No merge, release tag, or client deployment is included.
 
