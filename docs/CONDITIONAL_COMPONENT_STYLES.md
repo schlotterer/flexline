@@ -18,7 +18,9 @@ Environment type only limits diagnostic notifications; it does not gate assets.
 Clear full-page and optimizer/CDN caches once after deploying this change so cached
 HTML is regenerated with the new asset selection. Existing asset URLs use filemtime
 versions. No automatic global purge or database migration is introduced; cache
-services should be cleared through the site's deployment/cache tools. Reverting
+services should be cleared through the site's deployment/cache tools. For WP Rocket,
+clear its page cache after deployment; if Remove Unused CSS is enabled, clear its
+used CSS as well so it regenerates against the new stylesheet selection. Reverting
 the code or setting the option false restores complete delivery; clear page caches
 again after rollback.
 
