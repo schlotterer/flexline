@@ -15,16 +15,43 @@ conditional delivery without an environment variable or dashboard setting.
 An explicitly saved false option or false filter still selects complete mode.
 Environment type only limits diagnostic notifications; it does not gate assets.
 
-Clear full-page and optimizer/CDN caches once after deploying this change so cached
-HTML is regenerated with the new asset selection. Existing asset URLs use filemtime
-versions. No automatic global purge or database migration is introduced; cache
-services should be cleared through the site's deployment/cache tools. For WP Rocket,
-clear its page cache after deployment; if Remove Unused CSS is enabled, clear its
-used CSS as well so it regenerates against the new stylesheet selection. Then purge
-SiteGround Dynamic Cache (cached HTML), followed by any separate CDN page cache.
-Verify an anonymous request receives the new asset selection after all layers clear. Reverting
-the code or setting the option false restores complete delivery; clear page caches
-again after rollback.
+The branch includes a one-time automatic WP Rocket and SiteGround cache migration.
+On the first fresh WordPress bootstrap after deployment (frontend, admin, CLI or
+cron), it clears WP Rocket used CSS when enabled, minified assets and page cache,
+then SiteGround Dynamic Cache through Speed Optimizer's public purge API. No login
+or cache-button click is required. An explicit site home URL scopes SiteGround's
+purge to that path and its descendants; a root-site purge can include subsite paths.
+Existing provider integrations may also propagate the purge to other cache layers.
+
+Completion and successful stages are stored per site in
+`flexline_conditional_assets_cache_20261117`. A short lock prevents concurrent
+runs; failures retain progress and retry after five minutes on a fresh request.
+Providers absent at migration time are skipped; installing a cache plugin later
+does not replay this deployment migration. This key is a fixed migration revision,
+not a theme-version or timestamp comparison, so later requests/deployments do not
+repeat a successful purge.
+
+On multisite, fresh non-cron requests wake pending FlexLine sites via their own
+`wp-cron.php` URLs (20 sites per scan, five-minute scan interval). Each target boots
+its own plugins and database context; the migration never reuses a switched
+WP Rocket service container. Only observed per-site completion ends the scan.
+Cron workers do not fan out recursively. Loopback requests must be reachable;
+blocked requests remain pending and can complete through regular traffic/cron.
+
+Deployment file replacement cannot execute newly installed theme code in an
+already-bootstrapped request. The routine starts at the next WordPress bootstrap;
+fully cached traffic alone cannot execute PHP. Deployer for Git's existing cache
+flush setting and normal uncached cron/admin/API traffic provide that bootstrap.
+This is automatic after code loads, not a guarantee of an immediate purge within
+the deployment response. A separate CDN not connected to these plugins still
+needs its own purge. After rollback, clear caches through the deployment tools;
+the fixed completion marker intentionally does not replay on rollback/redeploy.
+
+WP Rocket's current `rocket_container` service exposes
+`rucss_admin_subscriber::delete_used_css_rows()`; the adapter guards that method and
+leaves the migration pending if unavailable. SiteGround uses the documented
+[`sg_cachepress_purge_cache()` API](https://www.siteground.com/tutorials/wordpress/speed-optimizer/custom-filters).
+Asset URLs continue to use filemtime versions.
 
 Conditional delivery requires the native WordPress template canvas, observed
 rendering before the head, readable component files, and a complete requirement

@@ -1033,3 +1033,26 @@ purge cached pages. No merge, release tag, or client deployment is included.
 Validation: component delivery contracts cover local, development, staging and
 production defaults, saved opt-out and filter override, plus existing component,
 fragment and compatibility scenarios. PHP syntax and targeted PHPCS are checked.
+
+## Automatic conditional-assets cache migration — 2026-11-17
+
+Supersedes the manual-purge-only guidance above. Owner requested an automatic,
+one-time purge without logging into each site. Added a fixed-revision per-site
+migration on init (frontend/cron/admin/CLI). It clears enabled WP Rocket used CSS,
+minified files and page cache, followed by Speed Optimizer's site-path purge API.
+Completed stages persist; failures retry after five minutes with a short lock.
+Multisite scans wake pending FlexLine sites through their own uncached cron URL,
+in batches, avoiding reuse of a different site's Rocket container. No privileged
+HTTP endpoint, credential or capability override is added. Unknown CDN providers
+are not purged. New code starts on the next fresh WordPress bootstrap, not inside
+an already-loaded deployment request. Blocked loopbacks remain pending.
+
+Validation: isolated provider lifecycle contracts and PHPUnit cover first run,
+repeat requests, absent providers, failure/retry, lock expiry, site-scoped URLs,
+network selection, completion confirmation and non-recursive cron workers.
+PHP syntax, targeted PHPCS, existing component contracts and the full PHPUnit suite
+are run before push. Real hosted SiteGround cache invalidation remains a canary
+check; local tests verify the API calls and lifecycle, not a hosting-cache purge.
+Recovery: revert code; completion records contain no content and need not be
+removed. Clearing this revision option deliberately re-arms it and should only be
+done for a manual retry. No release, client deployment or third-party edits.

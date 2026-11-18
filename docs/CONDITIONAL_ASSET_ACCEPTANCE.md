@@ -6,7 +6,8 @@ The owner authorized removing the environment restriction: conditional delivery 
 defaults on in all environments when this branch is deployed. Explicit option/filter
 opt-outs and conservative compatibility fallbacks remain supported. Earlier entries
 below describing production opt-in record the previous policy and are superseded.
-Clear full-page and optimizer/CDN caches once on deployment and after rollback.
+The one-time automatic WP Rocket/SiteGround cache migration is documented in
+CONDITIONAL_COMPONENT_STYLES.md; separate CDN and rollback purges remain deployment tasks.
 This change does not merge, tag, publish, or deploy the branch to a client site.
 
 
