@@ -1,0 +1,18 @@
+// WordPress 6.5 cannot resolve custom theme.json block-style variations.
+// Enqueued only before 6.6; match Core 6.5 block specificity and retain inline overrides.
+.wp-block-button:where(.is-style-text-link) .wp-block-button__link {
+	background: transparent none;
+	border-radius: 0;
+	border-style: none;
+	border-width: 0;
+	box-shadow: none;
+	color: currentColor;
+	line-height: var(--wp--custom--line-height--body);
+	padding: 0;
+	text-decoration: none;
+}
+
+.wp-block-button:where(.is-style-text-link) .wp-block-button__link:where(:hover, :focus, :active) {
+	background: transparent none;
+	box-shadow: none;
+}

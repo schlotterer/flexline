@@ -16,6 +16,7 @@ const evergreenTwoBrowserslist = [
 const jsFiles = [
         'src/js/blocks/block-extensions.js',
         'src/js/modal.js',
+        'src/js/component-loader.js',
         'src/js/horizontal-scroll.js',
 		'src/js/slider.js',
         'src/js/slidein.js',
@@ -28,6 +29,8 @@ const jsFiles = [
 // Individual SASS files
 const sassFiles = [
 	'src/scss/app.scss',
+	'src/scss/base.scss',
+	'src/scss/button-compat.scss',
 	'src/scss/app-conditional.scss',
 	'src/scss/component-horizontal-scroll.scss',
 	'src/scss/component-slider.scss',

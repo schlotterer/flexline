@@ -32,6 +32,7 @@ if ( class_exists( '\\WP_CLI_Command' ) ) {
 function bootstrap_primary_terms(): void {
 	add_action( 'init', __NAMESPACE__ . '\\register_primary_term_meta_keys', 20 );
 	add_action( 'init', __NAMESPACE__ . '\\register_primary_term_permalink_rewrite_tag', 20 );
+	add_filter( 'page_rewrite_rules', __NAMESPACE__ . '\\filter_primary_term_page_rewrite_rules' );
 
 	add_action( 'added_post_meta', __NAMESPACE__ . '\\handle_added_post_meta', 10, 4 );
 	add_action( 'updated_post_meta', __NAMESPACE__ . '\\handle_updated_post_meta', 10, 4 );
@@ -1098,6 +1099,35 @@ function enqueue_sidebar_assets(): void {
  */
 function register_primary_term_permalink_rewrite_tag(): void {
 	add_rewrite_tag( '%primary_term%', '([^/]+)', 'primary_term=' );
+	enable_primary_term_verbose_page_rules();
+}
+
+/**
+ * Give real pages precedence over a leading primary-term permalink segment.
+ *
+ * Core recognizes its own leading text tags, but not our custom tag. Verbose
+ * page rules also make request parsing skip page matches that do not exist,
+ * allowing category/post URLs to continue to the post rules.
+ *
+ * @return void
+ */
+function enable_primary_term_verbose_page_rules(): void {
+	global $wp_rewrite;
+
+	if ( $wp_rewrite instanceof \WP_Rewrite && preg_match( '/^[^%]*%primary_term%/', $wp_rewrite->permalink_structure ) ) {
+		$wp_rewrite->use_verbose_page_rules = true;
+	}
+}
+
+/**
+ * Reapply precedence during generation, including after Permalinks resets Core.
+ *
+ * @param array $rules Generated page rewrite rules.
+ * @return array
+ */
+function filter_primary_term_page_rewrite_rules( array $rules ): array {
+	enable_primary_term_verbose_page_rules();
+	return $rules;
 }
 
 /**

@@ -24,8 +24,8 @@ namespace FlexLine;
 		<!-- /wp:column -->
 
 		<!-- wp:column {"verticalAlignment":"center","metadata":{"name":"Image column"},"className":""} -->
-		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"media","className":"is-style-card"} -->
-			<figure class="wp-block-image size-large is-style-card"><a class="" href="<?php echo esc_url( feature_image_fallback() ); ?>"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" style="aspect-ratio:4/3;object-fit:cover" /></a></figure>
+		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"is-style-card"} -->
+			<figure class="wp-block-image size-large is-style-card"><img src="<?php echo esc_url( feature_image_fallback() ); ?>" alt="Sample Image" class="" style="aspect-ratio:4/3;object-fit:cover" /></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

@@ -19,6 +19,7 @@
 	        }
 	        &.flexline-content-shift-down {
 	            margin-bottom: var(--flexline-shift-down, 0);
+	            margin-block-end: var(--flexline-shift-down, 0) !important;
 	        }
 	        &.flexline-content-slide-x,
 	        &.flexline-content-slide-y {
@@ -39,6 +40,7 @@
 	            }
 	            &.flexline-content-shift-down {
 	                margin-bottom: var(--flexline-shift-down, 0);
+	                margin-block-end: var(--flexline-shift-down, 0) !important;
 	            }
 	            &.flexline-content-slide-x,
 	            &.flexline-content-slide-y {
