@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'joelschlotterer/flexline',
-        'pretty_version' => '2.2.9',
-        'version' => '2.2.9.0',
+        'pretty_version' => '2.2.10',
+        'version' => '2.2.10.0',
         'reference' => null,
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'joelschlotterer/flexline' => array(
-            'pretty_version' => '2.2.9',
-            'version' => '2.2.9.0',
+            'pretty_version' => '2.2.10',
+            'version' => '2.2.10.0',
             'reference' => null,
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
