@@ -1058,7 +1058,7 @@ removed. Clearing this revision option deliberately re-arms it and should only b
 done for a manual retry. No release, client deployment or third-party edits.
 
 
-## FlexLine 2.3.0 release — 2026-11-24
+## FlexLine 2.2.10 release — 2026-11-24
 
 Owner authorized merging `codex/conditional-css-plan` and publishing its release.
 This supersedes historical draft-only/no-publication directions for this branch;
@@ -1071,7 +1071,7 @@ gallery PDF and hero video saved-markup fixes; selected-toggle contrast and
 Content Shift margin precedence; the absolute-position utility; and the reviewed
 Brice Pointe Light/Dark/Diffused/Dropdown dark-plum shadow defaults.
 
-Version headers and package metadata align at 2.3.0. Node 24.19.0/PHP 8.2.29:
+Version headers and package metadata align at 2.2.10. Node 24.19.0/PHP 8.2.29:
 `npm run build`, JS/SCSS lint, PHPUnit (49 tests/182 assertions), JS tests
 (66 tests/5 suites), primary-term/schema/component contracts, CSS equivalence
 (1,301 declarations), provider-present/absent cache lifecycle contracts, and
@@ -1094,3 +1094,7 @@ are not cleared by the theme. Real hosted cache invalidation, per-installation
 recovery artifacts and client Canary Health/visual checks remain rollout checks;
 local tests do not certify those integrations. The authorized tag workflow
 promotes verified ZIP bytes to the existing production branch used by DFG.
+
+Owner confirmed patch version 2.2.10 and explicitly authorized the manual merge
+override after passing checks. This is a one-time merge authorization; repository
+protection settings remain unchanged.
