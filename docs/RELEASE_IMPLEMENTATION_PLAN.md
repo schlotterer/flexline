@@ -1056,3 +1056,41 @@ check; local tests verify the API calls and lifecycle, not a hosting-cache purge
 Recovery: revert code; completion records contain no content and need not be
 removed. Clearing this revision option deliberately re-arms it and should only be
 done for a manual retry. No release, client deployment or third-party edits.
+
+
+## FlexLine 2.3.0 release — 2026-11-24
+
+Owner authorized merging `codex/conditional-css-plan` and publishing its release.
+This supersedes historical draft-only/no-publication directions for this branch;
+it does not authorize separate client installations or companion-plugin releases.
+
+Scope: conditional component delivery and editor/dynamic-fragment handling;
+environment-independent defaults with one-time WP Rocket/SiteGround cache
+invalidation; primary-term page routing; intro image modal/link corrections;
+gallery PDF and hero video saved-markup fixes; selected-toggle contrast and
+Content Shift margin precedence; the absolute-position utility; and the reviewed
+Brice Pointe Light/Dark/Diffused/Dropdown dark-plum shadow defaults.
+
+Version headers and package metadata align at 2.3.0. Node 24.19.0/PHP 8.2.29:
+`npm run build`, JS/SCSS lint, PHPUnit (49 tests/182 assertions), JS tests
+(66 tests/5 suites), primary-term/schema/component contracts, CSS equivalence
+(1,301 declarations), provider-present/absent cache lifecycle contracts, and
+vendored packaging/workflow guard tests passed. JSON parsing and diff whitespace
+checks pass. Hosted checks and tagged asset verification will be recorded after
+publication; earlier acceptance evidence remains explicitly tied to its own
+commits and artifact hashes.
+
+No dependency upgrades or destructive schema/content changes are introduced.
+Existing child-theme and saved Styles overrides continue to take precedence.
+Companion Location Sync/Floor Plans branches remain optional for their new
+fragment integration; existing conservative fallbacks remain available.
+Retained exact prior release assets under `/private/tmp/flexline-229-recovery-20261124`
+include the published ZIP, release receipt and SHA256SUMS. Code rollback is to
+v2.2.9, without restoring a database; retain current content/settings. Purge
+page/optimizer/CDN caches after rollback and regenerate permalink rules on sites
+using the corrected leading primary-term structure. One-time cache completion
+markers are additive and do not need removal for rollback. Unknown CDN caches
+are not cleared by the theme. Real hosted cache invalidation, per-installation
+recovery artifacts and client Canary Health/visual checks remain rollout checks;
+local tests do not certify those integrations. The authorized tag workflow
+promotes verified ZIP bytes to the existing production branch used by DFG.

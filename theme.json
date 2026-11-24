@@ -503,17 +503,22 @@
         {
           "name": "Light",
           "slug": "light",
-          "shadow": "0 8px 12px -4px rgb(0 0 0|30%);"
+          "shadow": "0 9px 16px -6px rgba(115, 90, 104, 0.3)"
         },
         {
           "name": "Dark",
           "slug": "dark",
-          "shadow": "0 6px 7px -1px rgb(0 0 0|50%);"
+          "shadow": "0 9px 16px -6px rgba(115, 90, 104, 0.5)"
         },
         {
           "name": "Diffused",
           "slug": "diffused",
-          "shadow": "0 12px 20px -7px rgba(0,0,0,.4)"
+          "shadow": "0 12px 20px -7px rgba(115, 90, 104, 0.4)"
+        },
+        {
+          "name": "Dropdown",
+          "slug": "dropdown",
+          "shadow": "0 4px 54px -2px rgba(115, 90, 104, 0.5)"
         }
       ]
     },
