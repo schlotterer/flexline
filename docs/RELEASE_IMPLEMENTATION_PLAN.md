@@ -882,3 +882,219 @@ restore. Installation-specific recovery packages and Fleet Canary Health/visual
 checks remain part of the owner's deployment. This browser test is not a native
 ZIP install/rollback acceptance test. Tag publication updates the production
 branch through the existing release workflow; no site configuration is changed.
+
+### Conditional assets Phase 5 — 2026-11-17 (non-publishable previews)
+
+`codex/conditional-css-plan` now has a guarded WordPress <6.6 Plain Text compatibility
+sheet found through installed-package acceptance. Final runtime commit `766ef0ab`;
+preview ZIP SHA256 `02532a906779fa7053384c7cc2146062937bc0506c6aaa8bbe8ff8a62d79c821`,
+344 files. The pinned package tool's `build --execute` passed. Preview version 2.2.9
+is not a replacement for the already published release of that number.
+
+Exact plugin artifacts, environment, commands, metrics and remaining gates are in
+`CONDITIONAL_ASSET_ACCEPTANCE.md` and `.json`. Four old/new combinations and scoped
+file rollback preserve synthetic content, after explicit PHP opcode cache resets.
+No client installation changed. Actual editor acceptance is unresolved (blank iframe
+also reproduces with released v2.2.9); further UI/cache/canary/GitHub gates remain.
+No release tag, production-default change or deployment is authorized by this record.
+
+### Phase 5 editor diagnosis follow-up — 2026-11-17
+
+Isolated blank canvas to in-app browser Blob URL iframe navigation using standalone
+HTTP/srcdoc/blob controls; native Chrome passes all three and renders the actual
+candidate post editor. No runtime/package changes required. The editor gate remains
+partial: synthetic slider Group markup needs correction, then full editor/Site
+Editor interactions. See CONDITIONAL_ASSET_ACCEPTANCE.md for exact scope. Existing
+package hashes remain applicable; no rebuild was required for documentation and
+standalone diagnostic fixtures. Other UI/cache/canary/GitHub gates remain open.
+
+Follow-up: use existing registered hero-slider and timeline patterns for editor
+acceptance. Guarded seed helper PHP syntax passed; native Chrome renders both
+without validation warnings. Hero Next/draft save and timeline Next were observed.
+No runtime changes or package rebuild; full editor/Site Editor gate stays partial.
+
+## Phase 5 existing-pattern follow-up — 2026-11-17
+
+Actual Site Editor insertion, controls and save/reload now pass. Owner-authorized
+Local `/testing/` runs the branch through isolated paths with its child theme retained;
+the ten existing docs demo patterns pass 20 conditional/complete HTTP checks.
+Shipped floor-plan media/filter/sort/mobile and real editor SSR pass. Shipped location
+pagination/infinite/comparison/search plus REST and late stylesheet failure/retry pass.
+Cold/warm synced-pattern requirements invalidate after an edit. Minimum WordPress
+6.5.7 now has combined-stack location/floor-plan smoke coverage. No runtime changes;
+local build and fixture syntax checks pass. Exact evidence, baseline Watch video
+validation warning and restoration instructions are in CONDITIONAL_ASSET_ACCEPTANCE.md.
+Page-cache/optimizer/CDN, authorized client canaries and hosted CI still gate release;
+no production-default change, tag or client deployment occurred.
+
+
+## Phase 5 acceptance closeout — 2026-11-17
+
+Local/editor acceptance and hosted package checks are complete; FlexLine CodeQL and
+both plugins' configured validation checks passed. The taxonomy checkbox concern
+was reproduced as an attempt to select inside a collapsed dropdown. Opening it first
+passes mouse/keyboard filtering and reset without runtime changes. Exact hosted ZIP
+identities, Composer-generated differences, installed smoke results, CI run links and
+reproduction steps are recorded in CONDITIONAL_ASSET_ACCEPTANCE.md and its JSON.
+This supersedes earlier entries listing hosted CI/editor checks as unresolved.
+
+Remaining release gates are actual page-cache/optimizer/CDN integration and authorized
+client canaries/installation recovery. Keep production opt-in and all three PRs in
+draft. No merge, tag, release or client deployment occurred. Documentation whitespace
+and JSON parsing checks pass; runtime test suites are unchanged from the passing
+package runs. The existing released-theme Watch video validation warning remains
+separately documented, not silently repaired by this work.
+
+
+## Local checkout and primary-term routing correction — 2026-11-17
+
+The owner requested normal Local loading. The adapter was removed, its source retained
+in local diagnostics, and `codex/conditional-css-plan` is now checked out in the actual
+`wp-content/themes/flexline` repository. The old worktree is detached. Normal installed
+plugins and the existing child theme load; candidate plugin substitutions are no longer
+active. The archived local snapshot and its dead-branch tag remain intact.
+
+Removing the adapter exposed an existing routing defect from `4d1d52e8` (April 20):
+Core does not recognize `%primary_term%` as a leading text tag, so its generic term
+rule precedes page rules. This intercepted both real pages and the regression pages.
+The theme now enables Core's verbose page handling for a leading `%primary_term%`,
+both during init/request parsing and during rule generation (including after Core
+resets its flags). Real pages take precedence; nonexistent page matches fall through
+to post rules. Existing tag/query semantics, permalink settings and content are unchanged.
+
+Verification: real Core generation passes primary-term, prefixed primary-term, normal
+post-name and numeric-year structures via `wp eval-file tests/primary-term-permalinks-integration.php`.
+All nine primary-term resolver contracts pass. PHP syntax/PHPCS and `git diff --check`
+pass. After `wp --url=http://mylifesite2026.test/testing/ rewrite flush`, About Us, FAQ,
+regression index, Heroes and Floor Plans return HTTP 200 at their original URLs, as do
+two existing category/post URLs. Only the testing subsite's rules were flushed.
+
+For another affected site, refresh its permalink rules once after installing this fix;
+do not flush on every request. Reverting code requires regenerating that site's rules
+as well and may restore the original routing defect. No content/schema migration is
+needed. The earlier conditional-asset ZIP hashes and full acceptance runs describe the
+prior commit, not this additional PHP routing change. No release or client deployment
+has occurred; external rollout gates remain open.
+
+## Gallery PDF markup and toggle contrast — 2026-11-17
+
+Removed the unsupported hard-coded `aria-label` from the floor-plan toggle pattern's
+PDF button. The installed WordPress 7.2-RC1 block library reproduced the old markup's
+validation failure; the corrected button parses with zero validation issues and
+remains valid after serialization/reopening. Font-size classes, PDF text, download
+icon and styling are unchanged. Existing inserted copies still require normal block
+recovery; no saved page content is migrated.
+
+Selected visibility toggles now pair `primary-dark` backgrounds with `base` text.
+The production build passed; both full app CSS and conditional tail CSS are retained.
+Browser checks on the Local Galleries page confirm 2D and 3D each use white base text
+on the dark selected background; unselected buttons retain their gold background
+and dark text. No JavaScript changes are included. PHP syntax and diff whitespace
+checks pass. Prior artifact hashes describe the earlier commits; this change needs
+its own hosted package checks. No version bump, release or client deployment.
+
+Recovery is a code/package revert; it does not require restoring a database. The
+markup correction affects new pattern insertions and does not reverse user recovery
+of existing blocks. Evidence is retained in local diagnostics as
+`pdf-button-validation.txt` and `toggle-base-contrast.jpg`.
+
+## Intro image and video modal correction — 2026-11-17
+
+The Text and Video intro had `enableModal=true` but omitted the frontend
+`enable-modal` trigger class. Added the class to the source pattern and derive it
+from the enabled image setting during server rendering, so existing saved copies
+without the class also bind correctly. Disabled images remain unchanged. The plain
+Text and Image intro now uses `linkDestination=none` and no anchor around its image.
+Existing inserted plain-image links are not migrated or removed automatically.
+
+Local verification: rendered source patterns have zero anchors; the video pattern
+has its modal class and media URL. Saved image probes with enableModal true/false
+pass. Browser testing of the Modules demo opens the configured Loom embed URL and
+Escape closes the modal and returns focus to the trigger. This verifies modal
+routing and dismissal, not external video playback. PHP syntax, targeted PHPCS and
+whitespace checks pass. Screenshot: local diagnostics `intro-modal-fixed.jpg`.
+No JS/CSS rebuild is needed for these PHP-only changes. Recovery is a code revert;
+no database migration or dependency change. No release or client deployment.
+
+## Environment-independent conditional delivery — 2026-11-17
+
+Owner requested conditional CSS work immediately when deploying this branch.
+Changed the absent-option default to true for every environment; explicit option
+and filter opt-outs and compatibility fallbacks are unchanged. Environment type
+continues to control diagnostics only. No built assets changed or rebuild needed.
+Deployers should purge page/optimizer/CDN caches once to regenerate cached HTML;
+asset URLs already use filemtime versions. For WP Rocket, clear its page cache and,
+when Remove Unused CSS is enabled, its used CSS after deployment. Then purge
+SiteGround Dynamic Cache and any separate CDN page cache; verify fresh anonymous HTML.
+No automatic global cache purge or DB
+migration is introduced. Recovery: revert the change or save a false option, then
+purge cached pages. No merge, release tag, or client deployment is included.
+
+Validation: component delivery contracts cover local, development, staging and
+production defaults, saved opt-out and filter override, plus existing component,
+fragment and compatibility scenarios. PHP syntax and targeted PHPCS are checked.
+
+## Automatic conditional-assets cache migration — 2026-11-17
+
+Supersedes the manual-purge-only guidance above. Owner requested an automatic,
+one-time purge without logging into each site. Added a fixed-revision per-site
+migration on init (frontend/cron/admin/CLI). It clears enabled WP Rocket used CSS,
+minified files and page cache, followed by Speed Optimizer's site-path purge API.
+Completed stages persist; failures retry after five minutes with a short lock.
+Multisite scans wake pending FlexLine sites through their own uncached cron URL,
+in batches, avoiding reuse of a different site's Rocket container. No privileged
+HTTP endpoint, credential or capability override is added. Unknown CDN providers
+are not purged. New code starts on the next fresh WordPress bootstrap, not inside
+an already-loaded deployment request. Blocked loopbacks remain pending.
+
+Validation: isolated provider lifecycle contracts and PHPUnit cover first run,
+repeat requests, absent providers, failure/retry, lock expiry, site-scoped URLs,
+network selection, completion confirmation and non-recursive cron workers.
+PHP syntax, targeted PHPCS, existing component contracts and the full PHPUnit suite
+are run before push. Real hosted SiteGround cache invalidation remains a canary
+check; local tests verify the API calls and lifecycle, not a hosting-cache purge.
+Recovery: revert code; completion records contain no content and need not be
+removed. Clearing this revision option deliberately re-arms it and should only be
+done for a manual retry. No release, client deployment or third-party edits.
+
+
+## FlexLine 2.2.10 release — 2026-11-24
+
+Owner authorized merging `codex/conditional-css-plan` and publishing its release.
+This supersedes historical draft-only/no-publication directions for this branch;
+it does not authorize separate client installations or companion-plugin releases.
+
+Scope: conditional component delivery and editor/dynamic-fragment handling;
+environment-independent defaults with one-time WP Rocket/SiteGround cache
+invalidation; primary-term page routing; intro image modal/link corrections;
+gallery PDF and hero video saved-markup fixes; selected-toggle contrast and
+Content Shift margin precedence; the absolute-position utility; and the reviewed
+Brice Pointe Light/Dark/Diffused/Dropdown dark-plum shadow defaults.
+
+Version headers and package metadata align at 2.2.10. Node 24.19.0/PHP 8.2.29:
+`npm run build`, JS/SCSS lint, PHPUnit (49 tests/182 assertions), JS tests
+(66 tests/5 suites), primary-term/schema/component contracts, CSS equivalence
+(1,301 declarations), provider-present/absent cache lifecycle contracts, and
+vendored packaging/workflow guard tests passed. JSON parsing and diff whitespace
+checks pass. Hosted checks and tagged asset verification will be recorded after
+publication; earlier acceptance evidence remains explicitly tied to its own
+commits and artifact hashes.
+
+No dependency upgrades or destructive schema/content changes are introduced.
+Existing child-theme and saved Styles overrides continue to take precedence.
+Companion Location Sync/Floor Plans branches remain optional for their new
+fragment integration; existing conservative fallbacks remain available.
+Retained exact prior release assets under `/private/tmp/flexline-229-recovery-20261124`
+include the published ZIP, release receipt and SHA256SUMS. Code rollback is to
+v2.2.9, without restoring a database; retain current content/settings. Purge
+page/optimizer/CDN caches after rollback and regenerate permalink rules on sites
+using the corrected leading primary-term structure. One-time cache completion
+markers are additive and do not need removal for rollback. Unknown CDN caches
+are not cleared by the theme. Real hosted cache invalidation, per-installation
+recovery artifacts and client Canary Health/visual checks remain rollout checks;
+local tests do not certify those integrations. The authorized tag workflow
+promotes verified ZIP bytes to the existing production branch used by DFG.
+
+Owner confirmed patch version 2.2.10 and explicitly authorized the manual merge
+override after passing checks. This is a one-time merge authorization; repository
+protection settings remain unchanged.

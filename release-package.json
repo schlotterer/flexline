@@ -27,14 +27,21 @@
     "vendor/autoload.php",
     "vendor/enshrined/svg-sanitize/src/Sanitizer.php",
     "assets/built/css/app.css",
+    "assets/built/css/base.css",
     "assets/built/css/app-conditional.css",
     "assets/built/css/component-horizontal-scroll.css",
     "assets/built/css/component-slider.css",
     "assets/built/css/component-tail.css",
     "assets/built/css/editor.css",
+    "assets/built/css/modal.css",
+    "assets/built/js/slider.js",
+    "assets/built/js/horizontal-scroll.js",
+    "assets/built/js/modal.js",
+    "assets/built/js/component-loader.js",
     "assets/built/js/load-early.js",
     "assets/fonts/REM/REM-VariableFont_wght.woff2",
-    "assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2"
+    "assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2",
+    "assets/built/css/button-compat.css"
   ],
   "generated": [
     "build",
@@ -75,6 +82,10 @@
     [
       "php",
       "tests/component-styles-contract.php"
+    ],
+    [
+      "node",
+      "tests/component-css-equivalence.cjs"
     ]
   ],
   "compatibility": {

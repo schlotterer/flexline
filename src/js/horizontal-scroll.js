@@ -1071,7 +1071,7 @@ function teardownInfiniteLoop(scroller) {
 }
 
 function watchLoopToggle(scroller) {
-	if (scroller.dataset.loopObserverAttached) {
+	if (scroller._loopObserver) {
 		return;
 	}
 	const Observer =
@@ -1079,7 +1079,7 @@ function watchLoopToggle(scroller) {
 	if (!Observer) {
 		return;
 	}
-	new Observer(() => {
+	const observer = new Observer(() => {
 		if (isBlockEditor() && editorDragActive) {
 			teardownInfiniteLoop(scroller);
 			return;
@@ -1092,10 +1092,12 @@ function watchLoopToggle(scroller) {
 		if (scroller._updateRangeDots) {
 			scroller._updateRangeDots();
 		}
-	}).observe(scroller, {
+	});
+	observer.observe(scroller, {
 		attributes: true,
 		attributeFilter: ['class'],
 	});
+	scroller._loopObserver = observer;
 	scroller.dataset.loopObserverAttached = 'true';
 }
 
@@ -1144,6 +1146,7 @@ function watchChildrenForLoop(scroller) {
 
 	mo.observe(scroller, { childList: true });
 	scroller._childObserverAttached = true;
+	scroller._childObserver = mo;
 }
 
 function initInfiniteLoops(root = document) {
@@ -1184,6 +1187,13 @@ function initOneScroller(scroller) {
 }
 
 function scheduleScrollerInit(scroller) {
+	// A copied loop marker has no corresponding event handler on a DOM clone.
+	if (
+		scroller.dataset.loopInitialised === 'true' &&
+		!scroller._loopScrollHandler
+	) {
+		teardownInfiniteLoop(scroller);
+	}
 	if (isBlockEditor() && editorDragActive) {
 		return;
 	}
@@ -1274,7 +1284,22 @@ const flexlineOnEarlyReady = (callback) => {
 	}
 };
 
+function disconnectScrollerObservers(scroller) {
+	scroller._loopObserver?.disconnect();
+	scroller._childObserver?.disconnect();
+	scroller._loopObserver = null;
+	scroller._childObserver = null;
+	scroller._childObserverAttached = false;
+	delete scroller.dataset.loopObserverAttached;
+}
+
 function teardownScrollers(root = document) {
+	queryScrollerElements(root, '.is-style-horizontal-scroll').forEach(
+		disconnectScrollerObservers
+	);
+	if (isScrollerElement(root)) {
+		disconnectScrollerObservers(root);
+	}
 	if (isScrollerElement(root)) {
 		teardownScrollerRuntime(root);
 		return;

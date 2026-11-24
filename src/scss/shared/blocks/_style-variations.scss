@@ -12,38 +12,28 @@
 		}
 	}
 
-	/* Temporary legacy fallback for theme.json-suffixed classes; remove after site content resave cycle. */
-	:is(
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button
-	) {
-		background-color: transparent;
+	// Editable defaults live in theme.json. Only suffix-only legacy markup needs
+	// fallbacks; :where keeps those at WordPress's normal single-class weight.
+	:where(.wp-block-button[class*="is-style-text-link--"]:not(.is-style-text-link)) .wp-block-button__link {
+		background: transparent none;
 		border-radius: 0;
 		border-style: none;
 		border-width: 0;
 		box-shadow: none;
 		color: currentColor;
 		line-height: var(--wp--custom--line-height--body);
-		position: relative;
-		display: inline-block;
-		background-image: none;
-		filter: none;
+		padding: 0;
 		text-decoration: none;
 	}
 
-	:is(
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:hover,
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus,
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:focus-visible,
-		.wp-block-button.is-style-text-link .wp-block-button__link.wp-element-button:active,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:hover,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:focus-visible,
-		.wp-block-button[class*="is-style-text-link--"] .wp-block-button__link.wp-element-button:active
-	) {
-		background-color: transparent;
-		background-image: none;
+	:where(.wp-block-button[class*="is-style-text-link--"]:not(.is-style-text-link)) .wp-block-button__link:where(:hover, :focus, :focus-visible, :active) {
+		background: transparent none;
 		box-shadow: none;
+	}
+
+	:where(.wp-block-button.is-style-text-link, .wp-block-button[class*="is-style-text-link--"]) .wp-block-button__link {
+		position: relative;
+		display: inline-block;
 		filter: none;
 	}
 
@@ -68,31 +58,23 @@
 		height: 3px;
 	}
 
-	/* Button outline fallback (canonical + temporary legacy suffixed classes). */
-	:is(
-		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button,
-		.wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button
-	) {
+	// Suffix-only outline markup predates canonical style classes.
+	:where(.wp-block-button[class*="is-style-outline--"]:not(.is-style-outline)) .wp-block-button__link {
 		background: transparent none;
-		background-color: transparent;
 		border-color: currentColor;
 		border-style: solid;
 		border-width: 1px;
 		box-shadow: none;
-		color: var(--wp--preset--color--primary);
+		color: var(--flexline-outline-color, var(--wp--preset--color--primary));
 		padding-top: calc(var(--wp--preset--spacing--medium) - 1px);
 		padding-right: calc(var(--wp--preset--spacing--large) - 1px);
 		padding-bottom: calc(var(--wp--preset--spacing--medium) - 1px);
 		padding-left: calc(var(--wp--preset--spacing--large) - 1px);
 	}
 
-	:is(
-		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:hover,
-		.wp-block-button.is-style-outline .wp-block-button__link.wp-element-button:focus,
-		.wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:hover,
-		.wp-block-button[class*="is-style-outline--"] .wp-block-button__link.wp-element-button:focus
-	) {
-		color: var(--wp--preset--color--alternate);
+	// Only change the default color token. A saved WordPress color remains authoritative.
+	:where(.wp-block-button.is-style-outline, .wp-block-button[class*="is-style-outline--"]) .wp-block-button__link:where(:hover, :focus) {
+		--flexline-outline-color: var(--wp--preset--color--alternate);
 	}
 
 	/* Typography fallbacks (canonical + temporary legacy suffixed classes). */

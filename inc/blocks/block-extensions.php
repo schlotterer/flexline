@@ -737,7 +737,8 @@ function flexline_block_customizations_render( $block_content, $block, $block_in
 
 		}
 		if ( isset( $block['attrs']['enableModal'] ) && $block['attrs']['enableModal'] ) {
-			// Add a class.
+			// Older patterns may have the setting without its frontend trigger class.
+			$block_content = add_classes_to_block_content( $block_content, 'enable-modal' );
 			// Add the media URL as a data attribute if it exists.
 			if ( ! empty( $block['attrs']['modalMediaURL'] ) ) {
 				// Insert your data attribute just before the closing tag of the element.

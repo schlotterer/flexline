@@ -13,5 +13,6 @@
 	.visibility-toggle .wp-element-button.toggle-active,
 	.visibility-toggle .wp-element-button[aria-pressed="true"] {
 	    background-color: var(--wp--preset--color--primary-dark);
+	    color: var(--wp--preset--color--base);
 	}
 }
